@@ -3,11 +3,8 @@ package com.example.kangjisung.likeroom.User;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -15,26 +12,41 @@ import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.User.MileageManage.mileage;
+import com.example.kangjisung.likeroom.User.listView.ListViewAdapter;
+import com.example.kangjisung.likeroom.User.listView.ListViewItem;
 
 public class User extends AppCompatActivity {
 
     ImageButton ScBtn;
     EditText ScText;
-    ListView UserView;
-    static final String[] UserList = {"강지성", "List", "LIST3"} ;
-
+    ListView listview ;
+    ListViewAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, UserList);
-        UserView=(ListView)findViewById(R.id.userlist);
-        UserView.setAdapter(adapter);
+
+        adapter = new ListViewAdapter() ;
+
+        listview = (ListView) findViewById(R.id.userlist);
+        listview.setAdapter(adapter);
+        // 첫 번째 아이템 추가
+        adapter.addItem("강지성", "010-4152-5415") ;
+        // 두 번째 아이템 추가.
+        adapter.addItem("박동원", "010-5841-4851") ;
+        // 세 번째 아이템 추가.
+        adapter.addItem("김소연", "010-4156-4615") ;
+
+
         final Intent mil = new Intent(this, mileage.class);
-        UserView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
+                ListViewItem item = (ListViewItem) parent.getItemAtPosition(position) ;
+
+                String nameStr = item.getTitle() ;
+                mil.putExtra("name", nameStr);
 
                 // get TextView's Text.
                 startActivity(mil);

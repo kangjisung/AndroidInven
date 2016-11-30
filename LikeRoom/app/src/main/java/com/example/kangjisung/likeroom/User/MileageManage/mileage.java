@@ -1,6 +1,7 @@
 package com.example.kangjisung.likeroom.User.MileageManage;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
@@ -28,12 +29,14 @@ public class mileage extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_mileage);
+        Intent mil = getIntent();
+        final String name = mil.getExtras().getString("name");
+
         NumView = (EditText) findViewById(R.id.NumView);
 
         for (i = 0; i <= 10; i++) {
             Btn[i] = (Button) findViewById(numBtn[i]);
         }
-
 
         for (i = 0; i <= 10; i++) {
             final int index;
@@ -63,7 +66,7 @@ public class mileage extends Activity {
                 point = Integer.parseInt(NumView.getText().toString());
                 point=(int)(point*0.3);
                 //.execSQL("UPDATE Custom SET Mileage WHERE Mileage+=)
-                Toast.makeText(getApplicationContext(), point+"빵이 적립되었습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), name+"에게"+point+"빵이 적립되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
 
