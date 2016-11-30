@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.kangjisung.likeroom.User.User;
-import com.example.kangjisung.likeroom.User.mileage;
 
 
 public class MainActivity extends ActionBarActivity{

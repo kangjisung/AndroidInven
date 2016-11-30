@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_mileage"
     android:layout_width="400dip"
     android:layout_height="300dip"
     android:background="#FFFFFF"
     android:layout_centerInParent="true"
-    tools:context="com.example.kangjisung.likeroom.User.mileage">
+    tools:context="com.example.kangjisung.likeroom.User.MileageManage.mileage">
 
     <TextView
         android:text="TextView"
@@ -101,17 +102,17 @@
         android:layout_toEndOf="@+id/Num4" />
 
     <Button
-        android:text="Close"
+        android:text="적립"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/CloseBtn"
+        android:id="@+id/PlusBtn"
         android:layout_alignBottom="@+id/Num9"
-        android:layout_alignStart="@+id/Num00" />
+        android:layout_alignStart="@+id/Num10" />
 
     <Button
         android:text="00"
         android:layout_height="70dp"
-        android:id="@+id/Num00"
+        android:id="@+id/Num10"
         android:layout_width="70dp"
         android:layout_below="@+id/NumView"
         android:layout_toEndOf="@+id/Num3"
@@ -122,7 +123,16 @@
         android:layout_height="70dp"
         android:id="@+id/Num0"
         android:layout_width="70dp"
-        android:layout_below="@+id/Num00"
-        android:layout_alignStart="@+id/Num00"
+        android:layout_below="@+id/Num10"
+        android:layout_alignStart="@+id/Num10"
         android:layout_marginStart="6dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/btn_dialog"
+        android:id="@+id/BtnClose"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/Num0"
+        android:layout_marginStart="42dp" />
 </RelativeLayout>

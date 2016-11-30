@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".User.User" />
-        <activity android:name=".User.mileage" android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"></activity>
+        <activity android:name=".User.MileageManage.mileage" android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"></activity>
     </application>
 
 </manifest>
