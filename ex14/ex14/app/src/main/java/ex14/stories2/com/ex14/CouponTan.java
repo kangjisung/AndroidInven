@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import ex14.stories2.com.ex14.CustomStoreListView.CustomStoreListViewAdapter;
 import ex14.stories2.com.ex14.CustomStoreListView.EachStoreListViewItem;
+import ex14.stories2.com.ex14.UserDeviceInfo.CustomersSavedInfoFromDevice;
 
 public class CouponTan extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -30,6 +31,8 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
     ImageView userImageInfo;
     TextView userNameInfo, userPhoneNumberInfo;
     View hamburgerViewHeader;
+    CustomersSavedInfoFromDevice customersSavedInfoFromDevice;
+    String logCatTag;
 
     String[] testCaseOfUserInfo = new String[]{
       "김현우", "010-5635-1845"
@@ -41,6 +44,8 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
         setContentView(R.layout.layout_coupon_tan_main);
 
         AndroidUiInit();
+
+        logCatTag = getString(R.string.app_name);
 
         customStoreListViewAdapter.AddNewCustomStoreListItem(null, "testStore", "app test");
 
@@ -57,7 +62,7 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
                 newActivityIntent.putExtra("targetStoreTitle", eachStoreTitle);
                 startActivity(newActivityIntent);
 
-                Log.d("ex14", "title: " + eachStoreTitle);
+                Log.d(logCatTag, "title: " + eachStoreTitle);
             }
         });
     }
@@ -72,7 +77,7 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Check Your Internet Connection", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, getString(R.string.plusButtonExceptionComment), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
             }
@@ -96,6 +101,11 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
         customerRegisteredStoreList = (ListView)findViewById(R.id.listOfMyStore);
         customStoreListViewAdapter = new CustomStoreListViewAdapter();
         customerRegisteredStoreList.setAdapter(customStoreListViewAdapter);
+        customersSavedInfoFromDevice = new CustomersSavedInfoFromDevice(this.getApplicationContext(), this);
+
+
+        //testCaseOfUserInfo[1] = customersSavedInfoFromDevice.GetDevicePhoneNumber();
+        customersSavedInfoFromDevice.CheckRunningAndroidVersion();
 
         userNameInfo.setText(testCaseOfUserInfo[0]);
         userPhoneNumberInfo.setText(testCaseOfUserInfo[1]);
@@ -133,7 +143,7 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Log.d("ex14", "settings");
+            Log.d(logCatTag, "setting top button");
             return true;
         }
 
@@ -148,7 +158,7 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
-            Log.d("ex14","cameraTest");
+            Log.d(logCatTag,"cameraTest");
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -156,7 +166,11 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
-
+            Intent shareAppToOthers = new Intent();
+            shareAppToOthers.setAction(Intent.ACTION_SEND);
+            shareAppToOthers.putExtra(Intent.EXTRA_TEXT, "Share Test");
+            shareAppToOthers.setType("text/*");
+            startActivity(Intent.createChooser(shareAppToOthers, getString(R.string.appShareComment)));
         } else if (id == R.id.nav_send) {
 
         }

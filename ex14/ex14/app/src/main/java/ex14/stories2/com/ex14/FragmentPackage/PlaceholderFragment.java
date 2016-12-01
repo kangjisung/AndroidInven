@@ -22,13 +22,15 @@ public class PlaceholderFragment extends Fragment {
      * fragment.
      */
 
-    String logCatTag = "ex14";
+    String logCatTag;
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     public PlaceholderFragment() {
 
         //eachStampViewItemList = new ArrayList<EachStampViewItem>();
         //eachStoreNoticeList = new ArrayList<EachStoreListViewItem>();
+
+
     }
 
     /**
@@ -49,6 +51,7 @@ public class PlaceholderFragment extends Fragment {
         View rootView = null;
         try {
             rootView = inflater.inflate(R.layout.fragment_coupon_tan_store_info, container, false);
+            logCatTag = getString(R.string.app_name);
         }
         catch (Exception err) {
             Log.d(logCatTag, "Error in onCreateView: " + err.getMessage());
