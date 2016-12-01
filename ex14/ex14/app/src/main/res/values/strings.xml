@@ -4,7 +4,12 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">앱 셋팅</string>
     <string name="searchHint">검색할 상점의 주소 또는 코드를 입력하세요</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="customerInfoMenu">사용자 정보</string>
+    <string name="customerAppShare">공유</string>
+    <string name="customerEditInfo">정보 수정</string>
+    <string name="appAdvertisedByUser">앱 공유</string>
+    <string name="sendAppFeedback">앱 건의</string>
 </resources>

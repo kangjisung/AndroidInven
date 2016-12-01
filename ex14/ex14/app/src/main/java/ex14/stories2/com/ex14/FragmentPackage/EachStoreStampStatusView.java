@@ -21,7 +21,10 @@ import ex14.stories2.com.ex14.R;
  */
 
 public class EachStoreStampStatusView extends Fragment {
+    int nowMileageStatus = 0, eachMileageStampMeasure = 100, eachStampViewColumnSize = 5;
     List<EachStampViewItem> eachStampViewItemList;
+    GridView myStampStatusView;
+    CustomStampViewAdapter customStampViewAdapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,12 +32,26 @@ public class EachStoreStampStatusView extends Fragment {
 
         eachStampViewItemList = new ArrayList<EachStampViewItem>();
 
-        GridView myStampStatusView = (GridView)view.findViewById(R.id.stampGridLayout);
-        CustomStampViewAdapter customStampViewAdapter = new CustomStampViewAdapter(getActivity().getApplicationContext(), eachStampViewItemList);
+        myStampStatusView = (GridView)view.findViewById(R.id.stampGridLayout);
+        customStampViewAdapter = new CustomStampViewAdapter(getActivity().getApplicationContext(), eachStampViewItemList);
         myStampStatusView.setAdapter(customStampViewAdapter);
-        customStampViewAdapter.AddNewMyStamp(ContextCompat.getDrawable(getActivity(), R.mipmap.ic_launcher), "helloWorld");
+
+        //customStampViewAdapter.AddNewMyStamp(ContextCompat.getDrawable(getActivity(), R.mipmap.ic_launcher), "helloWorld");
+        PrintNowMileageStamp(100, 0);
 
         return view;
         //return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    public void PrintNowMileageStamp(int nowMileageStatus, int eachMileageStampMeasure) {
+        int i;
+        String stampTitle = "";
+        for(i = 0; i < eachStampViewColumnSize * eachStampViewColumnSize; i += 1) {
+            if(i % eachStampViewColumnSize == 4)
+                stampTitle = "mileage change";
+            else
+                stampTitle = "";
+            customStampViewAdapter.AddNewMyStamp(ContextCompat.getDrawable(getActivity(), R.mipmap.ic_launcher), stampTitle);
+        }
     }
 }

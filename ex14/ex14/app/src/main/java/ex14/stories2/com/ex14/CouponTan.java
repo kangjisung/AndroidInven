@@ -16,7 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import ex14.stories2.com.ex14.CustomStoreListView.CustomStoreListViewAdapter;
 import ex14.stories2.com.ex14.CustomStoreListView.EachStoreListViewItem;
@@ -25,6 +27,13 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
 
     ListView customerRegisteredStoreList;
     CustomStoreListViewAdapter customStoreListViewAdapter;
+    ImageView userImageInfo;
+    TextView userNameInfo, userPhoneNumberInfo;
+    View hamburgerViewHeader;
+
+    String[] testCaseOfUserInfo = new String[]{
+      "김현우", "010-5635-1845"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +74,7 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
             public void onClick(View view) {
                 Snackbar.make(view, "Check Your Internet Connection", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
             }
         });
 
@@ -77,9 +87,22 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        hamburgerViewHeader = navigationView.getHeaderView(0);
+
+        userImageInfo = (ImageView)hamburgerViewHeader.findViewById(R.id.userImageInfo);
+        userNameInfo = (TextView)hamburgerViewHeader.findViewById(R.id.userNameInfo);
+        userPhoneNumberInfo = (TextView)hamburgerViewHeader.findViewById(R.id.userPhoneNumberInfo);
+
         customerRegisteredStoreList = (ListView)findViewById(R.id.listOfMyStore);
         customStoreListViewAdapter = new CustomStoreListViewAdapter();
         customerRegisteredStoreList.setAdapter(customStoreListViewAdapter);
+
+        userNameInfo.setText(testCaseOfUserInfo[0]);
+        userPhoneNumberInfo.setText(testCaseOfUserInfo[1]);
+
+        navigationView.getMenu().findItem(R.id.nav_camera).setVisible(false);
+        navigationView.getMenu().findItem(R.id.nav_gallery).setVisible(false);
+        navigationView.getMenu().findItem(R.id.nav_slideshow).setVisible(false);
     }
 
     @Override
@@ -99,6 +122,8 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
         return true;
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -108,6 +133,7 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Log.d("ex14", "settings");
             return true;
         }
 
@@ -122,6 +148,7 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            Log.d("ex14","cameraTest");
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
