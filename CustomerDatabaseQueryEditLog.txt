@@ -1,0 +1,41 @@
+CREATE TABLE IF NOT EXISTS `포인트` (
+  `회원번호` int(11) NOT NULL,
+  `매장번호` int(11) NOT NULL,
+  `포인트` int(11) DEFAULT NULL,
+  `포인트갱신날짜` datetime DEFAULT NULL,
+  PRIMARY KEY(`회원번호`, `매장번호`),
+  FOREIGN KEY (`매장번호`) REFERENCES `매장`(`매장번호`),
+  FOREIGN KEY (`회원번호`) REFERENCES `회원정보`(`회원번호`)
+)
+
+CREATE TABLE IF NOT EXISTS `매장공지` (
+  `매장번호` int(11) NOT NULL,
+  `제목` varchar(2000) DEFAULT NULL,
+  `내용` varchar(2000) DEFAULT NULL,
+  `공지시작날짜` date DEFAULT NULL,
+  `공지마감날짜` date DEFAULT NULL,
+  `삭제` tinyint(1) DEFAULT NULL,
+  `매장공지이미지저장경로` varchar(500) DEFAULT NULL,
+  `읽음여부` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`매장번호`),
+  FOREIGN KEY (`매장번호`) REFERENCES `매장` (`매장번호`)
+)
+
+CREATE TABLE IF NOT EXISTS `쿠폰등록현황` (
+  `매장번호` int(11) NOT NULL,
+  `제목` varchar(2000) DEFAULT NULL,
+  `내용` varchar(2000) DEFAULT NULL,
+  `모양코드` int(11) NOT NULL,
+  `삭제` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`매장번호`, `모양코드`),
+  FOREIGN KEY(`매장번호`) REFERENCES `매장`(`매장번호`)
+)
+
+CREATE TABLE IF NOT EXISTS `쿠폰모양정보` (
+  `모양코드` int(11) NOT NULL,
+  `모양` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`모양코드`),
+  FOREIGN KEY (`모양코드`) REFERENCES `쿠폰등록현황`(`매장번호`)
+)
+
+
