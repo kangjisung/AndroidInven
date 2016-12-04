@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">쿠폰땅</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">앱 셋팅</string>
+    <string name="searchHint">검색할 상점의 주소 또는 코드를 입력하세요</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="customerInfoMenu">사용자 정보</string>
+    <string name="customerAppShare">공유</string>
+    <string name="customerEditInfo">정보 수정</string>
+    <string name="appAdvertisedByUser">앱 공유</string>
+    <string name="sendAppFeedback">앱 건의</string>
+    <string name="appShareComment">공유할 앱을 선택해주세요</string>
+    <string name="plusButtonExceptionComment">인터넷 연결을 확인해 주세요</string>
+    <string name="defaultStoreList">등록된 가게가 존재하지 않습니다</string>
+    <string name="addNewStoreComment">신규 추가</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">이메일 주소</string>
+    <string name="prompt_password">비밀번호(옵션)</string>
+    <string name="action_sign_in">등록하기</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">사용 불가능한 이메일 주소입니다</string>
+    <string name="error_invalid_password">비밀번호가 너무 짧습니다</string>
+    <string name="error_incorrect_password">비밀번호가 틀렸습니다</string>
+    <string name="error_field_required">해당 란은 필수 항목입니다</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+</resources>
