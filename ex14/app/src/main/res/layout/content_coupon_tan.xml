@@ -21,7 +21,7 @@
         <ListView
             android:id="@+id/listOfMyStore"
             android:layout_width="fill_parent"
-            android:layout_height="match_parent">
+            android:layout_height="fill_parent">
 
         </ListView>
     </LinearLayout>

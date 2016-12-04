@@ -3,6 +3,7 @@ package ex14.stories2.com.ex14.FragmentPackage;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.ViewGroup;
 
 /**
  * Created by stories2 on 2016. 11. 28..
@@ -21,7 +22,21 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return placeholderFragment.newInstance(position + 1);
+        //Log.d("ex14", "getItem: " + position);
+        //return placeholderFragment.newInstance(position + 1);
+        switch (position) {
+            case 0:
+                return new EachStoreStampStatusView();
+            case 1:
+                return new EachStoreNoticeListView();
+
+        }
+        return null;
+    }
+
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        return super.instantiateItem(container, position);
     }
 
     @Override

@@ -29,6 +29,50 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:visibility="invisible"
+        app:srcCompat="@android:drawable/ic_dialog_email"
+        />
+
+    <!--<FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        app:layout_anchor="@id/fab"
+        >
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/addNewStore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="16dp"
+            android:src="@drawable/shop_icon"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AddNewStore"
+            android:textSize="28dp"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        app:layout_anchor="@id/addNewStore"
+        >
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/delMyStore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="16dp"
+            android:src="@drawable/trashcan_icon"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DeleteMyStore"
+            android:textSize="28dp"/>
+    </FrameLayout>-->
 
 </android.support.design.widget.CoordinatorLayout>
