@@ -33,6 +33,14 @@ public class CustomersSavedInfoFromDevice implements ActivityCompat.OnRequestPer
         CheckRunningAndroidVersion();
     }
 
+    public CustomersSavedInfoFromDevice() {
+        CheckRunningAndroidVersion();
+    }
+
+    public float GetCustomersDeviceBuildVersion() {
+        return runningThisDeviceAndroidVersion;
+    }
+
     public void StoreDevicePhoneNumber() {
         if(readPhoneStatePermissionStatus) {
             TelephonyManager deviceTelephonyManager = (TelephonyManager) androidContext.getSystemService(androidContext.TELEPHONY_SERVICE);
