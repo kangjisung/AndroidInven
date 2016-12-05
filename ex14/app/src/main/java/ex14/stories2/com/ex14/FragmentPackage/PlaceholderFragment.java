@@ -56,24 +56,6 @@ public class PlaceholderFragment extends Fragment {
         catch (Exception err) {
             Log.d(logCatTag, "Error in onCreateView: " + err.getMessage());
         }
-        //Log.d(logCatTag, "section NO." + ARG_SECTION_NUMBER);
-        //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-        //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-
-        /*GridView myStampStatusView = (GridView)rootView.findViewById(R.id.stampGridLayout);
-        CustomStampViewAdapter customStampViewAdapter = new CustomStampViewAdapter(getContext(), eachStampViewItemList);
-        myStampStatusView.setAdapter(customStampViewAdapter);
-        customStampViewAdapter.AddNewMyStamp(ContextCompat.getDrawable(getActivity(), R.mipmap.ic_launcher), "helloWorld");
-
-        ListView myStoreNoticeList = (ListView) rootView.findViewById(R.id.listOfEachStoreNoti);
-        CustomStoreListViewAdapter customNoticeListViewAdapter = new CustomStoreListViewAdapter();
-        myStoreNoticeList.setAdapter(customNoticeListViewAdapter);
-        customNoticeListViewAdapter.AddNewCustomStoreListItem(null, "notice1", "subNotice");*/
         return rootView;
     }
-
-        /*public static Drawable LoadDrawable(String targetFileName, String targetFolderName) {
-            Context context = this.getContext();
-            int targetResourceID =
-        }*/
 }

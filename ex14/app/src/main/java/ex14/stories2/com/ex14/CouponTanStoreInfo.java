@@ -49,7 +49,7 @@ public class CouponTanStoreInfo extends AppCompatActivity {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         placeholderFragment = new PlaceholderFragment();
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), placeholderFragment);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), placeholderFragment, this.getApplicationContext());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
