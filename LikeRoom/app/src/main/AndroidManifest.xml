@@ -19,10 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".User.User" />
-        <activity
-            android:name=".User.MileageManage.mileage"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
-        <activity android:name=".ActivityMenu"></activity>
+        <activity android:name=".inventory.sales.salesVolume"/>
+        <activity android:name=".User.MileageManage.mileage" android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"></activity>
+
     </application>
 
 </manifest>
