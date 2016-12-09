@@ -2,23 +2,39 @@ package com.example.kangjisung.likeroom;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.kangjisung.likeroom.User.User;
-import com.example.kangjisung.likeroom.inventory.sales.salesVolume;
 
-
-public class MainActivity extends ActionBarActivity{
+public class MainActivity extends ActionBarActivity
+{
+    private Handler mHandler;
+    private Runnable mRunnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent User = new Intent(this, salesVolume.class);
-        startActivity(User);
+        mRunnable = new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(getApplicationContext(), ActivityMenu.class);
+                startActivity(intent);
+            }
+        };
+
+        mHandler = new Handler();
+        mHandler.postDelayed(mRunnable, 2000);
+    }
+
+    protected void onDestroy() {
+        Log.i("test", "onDstory()");
+        mHandler.removeCallbacks(mRunnable);
+        super.onDestroy();
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

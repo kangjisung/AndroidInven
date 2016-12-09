@@ -9,7 +9,6 @@ public class ListViewItem {
     private String nameStr ;
     private String phoneStr ;
 
-
     public void setTitle(String title) {
         nameStr = title ;
     }
