@@ -29,7 +29,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
 
-	int a;
+	int b;
         edittext1 = (EditText)findViewById(R.id.editText1);
         edittext2 = (EditText)findViewById(R.id.editText2);
         edittext3 = (EditText)findViewById(R.id.editText3);
