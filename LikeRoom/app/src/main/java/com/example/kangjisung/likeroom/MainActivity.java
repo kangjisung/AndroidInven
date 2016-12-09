@@ -28,7 +28,7 @@ public class MainActivity extends ActionBarActivity
         };
 
         mHandler = new Handler();
-        mHandler.postDelayed(mRunnable, 2000);
+        mHandler.postDelayed(mRunnable, 2500);
     }
 
     protected void onDestroy() {
