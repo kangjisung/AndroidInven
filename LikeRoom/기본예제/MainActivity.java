@@ -1,4 +1,4 @@
-package com.example.juyeon.myapplication;
+﻿package com.example.juyeon.myapplication;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -28,6 +28,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+int sy;
         edittext1 = (EditText)findViewById(R.id.editText1);
         edittext2 = (EditText)findViewById(R.id.editText2);
         edittext3 = (EditText)findViewById(R.id.editText3);
