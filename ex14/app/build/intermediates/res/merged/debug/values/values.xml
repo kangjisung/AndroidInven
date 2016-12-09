@@ -603,6 +603,9 @@
     <string name="customerEditInfo">정보 수정</string>
     <string name="customerInfoMenu">사용자 정보</string>
     <string name="defaultStoreList">등록된 가게가 존재하지 않습니다</string>
+    <string name="eachStoreTabNameAboutMyStampStatus">내 스탬프 현황</string>
+    <string name="eachStoreTabNameAboutStoreInfo">매점 정보</string>
+    <string name="eachStoreTabNameAboutStoreNotice">매점 공지사항</string>
     <string name="error_field_required">해당 란은 필수 항목입니다</string>
     <string name="error_incorrect_password">비밀번호가 틀렸습니다</string>
     <string name="error_invalid_email">사용 불가능한 이메일 주소입니다</string>
