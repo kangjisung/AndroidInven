@@ -28,7 +28,7 @@ import com.Coupon.Tan.UserDeviceInfo.CustomersSavedInfoFromDevice;
 
 public class CouponTan extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    final int storeAddressInfo = 1, storeNameInfo = 4;
+    final int storeAddressInfo = 1, storeNameInfo = 4, storeIdInfo = 0;
 
     ListView customerRegisteredStoreList;
     CustomStoreListViewAdapter customStoreListViewAdapter;
@@ -67,7 +67,7 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
         int cnt = 0;
         for(boolean isThatStoreRegistered : simpleFinder.DemoFindDataThatUserRegisteredStore()) {
             if(isThatStoreRegistered) {
-                customStoreListViewAdapter.AddNewCustomStoreListItem(getResources().getDrawable(R.mipmap.ic_launcher), testCaseOfAllStoreDataInfo[cnt][storeNameInfo], testCaseOfAllStoreDataInfo[cnt][storeAddressInfo]);
+                customStoreListViewAdapter.AddNewCustomStoreListItem(getResources().getDrawable(R.mipmap.ic_launcher), testCaseOfAllStoreDataInfo[cnt][storeNameInfo], testCaseOfAllStoreDataInfo[cnt][storeAddressInfo], testCaseOfAllStoreDataInfo[cnt][storeIdInfo]);
             }
             cnt += 1;
         }
@@ -80,7 +80,8 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
                 EachStoreListViewItem eachStoreListViewItem = (EachStoreListViewItem) adapterView.getItemAtPosition(itemPosition);
 
                 String eachStoreTitle = eachStoreListViewItem.GetEachStoreTitle(),
-                        eachStoreSubTitle = eachStoreListViewItem.GetEachStoreSubTitle();
+                        eachStoreSubTitle = eachStoreListViewItem.GetEachStoreSubTitle(),
+                        eachStoreId = eachStoreListViewItem.GetEachStoreId();
                 Drawable eachStoreIcon = eachStoreListViewItem.GetEachStoreIcon();
 
                 if(itemPosition == addNewStoreItemPosition) {//신규 매장 추가
@@ -88,9 +89,10 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
                     startActivity(selectNewStoreActivityIntent);
                 }
                 else {//기존 매장 선택
-                    Intent newActivityIntent = new Intent(getApplicationContext(), com.Coupon.Tan.CouponTanStoreInfo.class);
-                    newActivityIntent.putExtra("targetStoreTitle", eachStoreTitle);
-                    startActivity(newActivityIntent);
+                    Intent newActivityThatShowStoreDetailInfo = new Intent(getApplicationContext(), com.Coupon.Tan.CouponTanStoreInfo.class);
+                    newActivityThatShowStoreDetailInfo.putExtra("targetStoreTitle", eachStoreTitle);
+                    newActivityThatShowStoreDetailInfo.putExtra("targetStoreId", eachStoreId);
+                    startActivity(newActivityThatShowStoreDetailInfo);
                 }
 
                 Log.d(logCatTag, "title: " + eachStoreTitle + " #" + itemPosition);

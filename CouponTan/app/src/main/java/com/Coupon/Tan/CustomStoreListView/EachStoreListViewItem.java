@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable;
 
 public class EachStoreListViewItem {
     Drawable eachStoreIcon;
-    String eachStoreTitle, eachStoreSubTitle;
+    String eachStoreTitle, eachStoreSubTitle, eachStoreId;
 
     public void SetEachStoreIcon(Drawable eachStoreIcon) {
         this.eachStoreIcon = eachStoreIcon;
@@ -22,6 +22,10 @@ public class EachStoreListViewItem {
         this.eachStoreSubTitle = eachStoreSubTitle;
     }
 
+    public void SetEachStoreId(String eachStoreId) {
+        this.eachStoreId = eachStoreId;
+    }
+
     public Drawable GetEachStoreIcon() {
         return eachStoreIcon;
     }
@@ -32,5 +36,9 @@ public class EachStoreListViewItem {
 
     public String GetEachStoreSubTitle() {
         return eachStoreSubTitle;
+    }
+
+    public String GetEachStoreId() {
+        return eachStoreId;
     }
 }

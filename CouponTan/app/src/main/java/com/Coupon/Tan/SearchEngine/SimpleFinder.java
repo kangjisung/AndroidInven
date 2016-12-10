@@ -10,7 +10,7 @@ public class SimpleFinder {
 
     DemoDataPusher demoDataPusher;
     final String unregisteredStore = "1", registeredStore = "0";
-    final int zeroRow = 0, isRegisteredStoreColumn = 5, storeAddressInfo = 1, storeNameInfo = 4;
+    final int zeroRow = 0, isRegisteredStoreColumn = 6, storeAddressInfo = 1, storeNameInfo = 4, storeIdInfo = 0;
     final boolean iFoundThis = true;
 
     public SimpleFinder() {
@@ -41,5 +41,16 @@ public class SimpleFinder {
             }
         }
         return userRegisteredStore;
+    }
+
+    public String[] GetSpecialStoreInfoData(String targetStoreId) {
+        String[][] savedStoreData = demoDataPusher.GetAllSavedData();
+        int i, savedStoreDataLength = savedStoreData.length;
+        for(i = zeroRow; i < savedStoreDataLength; i += 1) {
+            if(savedStoreData[i][storeIdInfo].equals(targetStoreId)) {
+                return savedStoreData[i];
+            }
+        }
+        return null;
     }
 }

@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
 import com.Coupon.Tan.R;
+import com.Coupon.Tan.SearchEngine.SimpleFinder;
 
 /**
  * Created by stories2 on 2016. 11. 28..
@@ -18,14 +19,19 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     PlaceholderFragment placeholderFragment;
     Context appContext;
     int numberOfTabs;
+    SimpleFinder simpleDataFinder;
+    String[] storeInfoData;
 
-    public SectionsPagerAdapter(FragmentManager fm, PlaceholderFragment placeholderFragment, Context appContext) {
+    public SectionsPagerAdapter(FragmentManager fm, PlaceholderFragment placeholderFragment, Context appContext, String selectedStoreId) {
         super(fm);
         this.placeholderFragment = placeholderFragment;
         this.appContext = appContext;
 
         numberOfTabs = 3;
         // Show 3 total pages.
+
+        simpleDataFinder = new SimpleFinder();
+        storeInfoData = simpleDataFinder.GetSpecialStoreInfoData(selectedStoreId);
     }
 
     @Override
@@ -45,6 +51,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 EachStoreInfoView eachStoreInfoView = new EachStoreInfoView();
                 Bundle dataTransferBundle = new Bundle();
                 dataTransferBundle.putString("test", "helloworld");
+                dataTransferBundle.putStringArray("storeInfoData", storeInfoData);
                 eachStoreInfoView.setArguments(dataTransferBundle);
                 return eachStoreInfoView;
         }
