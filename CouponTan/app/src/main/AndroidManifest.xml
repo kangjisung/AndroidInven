@@ -56,6 +56,7 @@
 
         <activity android:name=".PopViewManager.AddNewStoreManager"
             android:theme="@style/Theme.CustomDialogNoTitleBar"
+            android:windowSoftInputMode="stateVisible"
             >
 
         </activity>

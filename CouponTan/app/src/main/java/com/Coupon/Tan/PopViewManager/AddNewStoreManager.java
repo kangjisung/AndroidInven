@@ -1,8 +1,10 @@
 package com.Coupon.Tan.PopViewManager;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +28,7 @@ public class AddNewStoreManager extends AppCompatActivity {
     DemoDataPusher demoDataPusher;
     String[][] allStoreListData;
     CustomStoreListViewAdapter customStoreListViewAdapter;
+    InputMethodManager showSearchKeyboardAutomatic;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +42,10 @@ public class AddNewStoreManager extends AppCompatActivity {
         btnCheckTarget = (ImageButton) findViewById(R.id.btnCheckTarget);
         searchStoreWhatYouWant = (SearchView) findViewById(R.id.searchStoreWhatYouWant);
         listOfSearchedStore = (ListView) findViewById(R.id.listOfSearchedStore);
+
+        showSearchKeyboardAutomatic = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        showSearchKeyboardAutomatic.showSoftInputFromInputMethod(searchStoreWhatYouWant.getApplicationWindowToken(), InputMethodManager.SHOW_FORCED);
+
         storeListFinder = new SimpleFinder();
         demoDataPusher = new DemoDataPusher();
         customStoreListViewAdapter = new CustomStoreListViewAdapter();
