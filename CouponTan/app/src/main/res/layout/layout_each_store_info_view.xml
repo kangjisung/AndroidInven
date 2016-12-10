@@ -2,10 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <fragment
+
+    <TextView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="test"
+        android:layout_weight="1"
+        />
+
+    <fragment
+        android:layout_width="300dp"
+        android:layout_height="200dp"
         android:id="@+id/googleMap"
         class="com.google.android.gms.maps.SupportMapFragment"
+        android:name="com.Coupon.Tan.FragmentPackage.EachStoreInfoView"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="test"
+        android:layout_weight="2"
         />
 </LinearLayout>
