@@ -29,7 +29,12 @@ public class EachStoreInfoView extends Fragment implements OnMapReadyCallback{
     //GoogleMap googleMapFragment;
     SupportMapFragment googleMapFragment;
     static final LatLng SEOUL = new LatLng(37.56, 126.97);
+    final int androidVersionLollipop = 21;
     CustomersSavedInfoFromDevice customersSavedInfoFromDevice;
+
+    /*public EachStoreInfoView() {
+        Log.d(getString(R.string.app_name), "can u see me?");
+    }*/
 
     @Nullable
     @Override
@@ -40,7 +45,11 @@ public class EachStoreInfoView extends Fragment implements OnMapReadyCallback{
 
             customersSavedInfoFromDevice = new CustomersSavedInfoFromDevice();
 
-            if(customersSavedInfoFromDevice.GetCustomersDeviceBuildVersion() < 5.0F) {//롤리팝 이전
+            savedInstanceState = getArguments();
+
+            Log.d(getString(R.string.app_name), "bundle get test: " + savedInstanceState.getString("test"));
+
+            if(customersSavedInfoFromDevice.GetCustomersDeviceBuildVersion() < androidVersionLollipop) {//롤리팝 이전
                 googleMapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.googleMap);
             }
             else {
@@ -61,6 +70,6 @@ public class EachStoreInfoView extends Fragment implements OnMapReadyCallback{
         Marker pinMarkAtTargetPlace = googleMap.addMarker(new MarkerOptions().position(SEOUL).title("서울 테스트"));
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
-        googleMap.animateCamera(CameraUpdateFactory.zoomTo(5));
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
     }
 }

@@ -1,6 +1,7 @@
 package com.Coupon.Tan.FragmentPackage;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -41,7 +42,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return new EachStoreNoticeListView();
             case 2:
-                return new EachStoreInfoView();
+                EachStoreInfoView eachStoreInfoView = new EachStoreInfoView();
+                Bundle dataTransferBundle = new Bundle();
+                dataTransferBundle.putString("test", "helloworld");
+                eachStoreInfoView.setArguments(dataTransferBundle);
+                return eachStoreInfoView;
         }
         return null;
     }

@@ -20,7 +20,7 @@ import com.Coupon.Tan.R;
 public class CustomersSavedInfoFromDevice implements ActivityCompat.OnRequestPermissionsResultCallback {
     Context androidContext;
     String logCatTag, customersSimSerialNumber;
-    float runningThisDeviceAndroidVersion;
+    int runningThisDeviceAndroidVersion;
     Activity androidTargetActivity;
     final int REQUEST_READ_PHONE_STATE = 0;
     boolean readPhoneStatePermissionStatus;
@@ -67,7 +67,7 @@ public class CustomersSavedInfoFromDevice implements ActivityCompat.OnRequestPer
 
     public void CheckRunningAndroidVersion() {
         try {
-            runningThisDeviceAndroidVersion = Float.parseFloat(Build.VERSION.RELEASE);
+            runningThisDeviceAndroidVersion = Build.VERSION.SDK_INT;
             Log.d(logCatTag, "" + runningThisDeviceAndroidVersion);
         }
         catch (Exception err) {
