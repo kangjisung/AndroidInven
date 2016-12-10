@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.Coupon.Tan.R;
+import com.Coupon.Tan.SearchEngine.SimpleFinder;
 
 /**
  * Created by stories2 on 2016. 12. 10..
@@ -19,6 +20,7 @@ public class AddNewStoreManager extends AppCompatActivity {
     ImageButton btnClosePopUp, btnCheckTarget;
     SearchView searchStoreWhatYouWant;
     ListView listOfSearchedStore;
+    SimpleFinder storeListFinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class AddNewStoreManager extends AppCompatActivity {
         btnCheckTarget = (ImageButton) findViewById(R.id.btnCheckTarget);
         searchStoreWhatYouWant = (SearchView) findViewById(R.id.searchStoreWhatYouWant);
         listOfSearchedStore = (ListView) findViewById(R.id.listOfSearchedStore);
+        storeListFinder = new SimpleFinder();
 
         btnClosePopUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,4 +64,6 @@ public class AddNewStoreManager extends AppCompatActivity {
             }
         });
     }
+
+
 }
