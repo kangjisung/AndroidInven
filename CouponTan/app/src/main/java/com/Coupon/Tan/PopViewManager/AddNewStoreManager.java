@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.Coupon.Tan.CustomStoreListView.CustomStoreListViewAdapter;
+import com.Coupon.Tan.DataIOManager.DemoDataPusher;
 import com.Coupon.Tan.R;
 import com.Coupon.Tan.SearchEngine.SimpleFinder;
 
@@ -21,6 +23,9 @@ public class AddNewStoreManager extends AppCompatActivity {
     SearchView searchStoreWhatYouWant;
     ListView listOfSearchedStore;
     SimpleFinder storeListFinder;
+    DemoDataPusher demoDataPusher;
+    String[][] allStoreListData;
+    CustomStoreListViewAdapter customStoreListViewAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +40,12 @@ public class AddNewStoreManager extends AppCompatActivity {
         searchStoreWhatYouWant = (SearchView) findViewById(R.id.searchStoreWhatYouWant);
         listOfSearchedStore = (ListView) findViewById(R.id.listOfSearchedStore);
         storeListFinder = new SimpleFinder();
+        demoDataPusher = new DemoDataPusher();
+        customStoreListViewAdapter = new CustomStoreListViewAdapter();
+
+        listOfSearchedStore.setAdapter(customStoreListViewAdapter);
+
+        allStoreListData = demoDataPusher.GetAllSavedData();
 
         btnClosePopUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,9 +71,34 @@ public class AddNewStoreManager extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 Log.d(getString(R.string.app_name), "newText: " + newText);
+
+                int cnt = 0, listShowRowLength, i;
+
+                try {
+                    listShowRowLength = customStoreListViewAdapter.getCount();
+                    Log.d(getString(R.string.app_name), "list size: " + listShowRowLength);
+                    for(i = listShowRowLength - 1; i >= 0; i -= 1) {
+                        customStoreListViewAdapter.DeleteTargetStoreListItem(i);
+                    }
+                    Log.d(getString(R.string.app_name), "list cleaned");
+                    for(boolean isSimillarStore : storeListFinder.DemoFindDataThatContainsString(newText)) {
+                        if(isSimillarStore) {
+                            Log.d(getString(R.string.app_name), "simillar store exist at #" + cnt + " " + allStoreListData[cnt][4]);
+                            customStoreListViewAdapter.AddNewCustomStoreListItem(null, allStoreListData[cnt][4], allStoreListData[cnt][1]);
+                        }
+                        cnt += 1;
+                    }
+                    customStoreListViewAdapter.notifyDataSetChanged();
+                }
+                catch (Exception err) {
+                    Log.d(getString(R.string.app_name), "Error in onQueryTextChange: " + err.getMessage());
+                }
+
                 return false;
             }
         });
+
+
     }
 
 
