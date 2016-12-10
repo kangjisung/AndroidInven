@@ -41,6 +41,12 @@
 
         </activity>
 
+        <activity android:name=".PopViewManager.AddNewStoreManager"
+            android:theme="@style/Theme.CustomDialogNoTitleBar"
+            >
+
+        </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBjoGu6gJ6gpwcWKRjaZm_0TlOIeoLMwT8" />

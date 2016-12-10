@@ -65,6 +65,8 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
                 Drawable eachStoreIcon = eachStoreListViewItem.GetEachStoreIcon();
 
                 if(itemPosition == addNewStoreItemPosition) {//신규 매장 추가
+                    Intent selectNewStoreActivityIntent = new Intent(getApplicationContext(), com.Coupon.Tan.PopViewManager.AddNewStoreManager.class);
+                    startActivity(selectNewStoreActivityIntent);
                 }
                 else {//기존 매장 선택
                     Intent newActivityIntent = new Intent(getApplicationContext(), com.Coupon.Tan.CouponTanStoreInfo.class);

@@ -19,6 +19,7 @@
     <string name="eachStoreTabNameAboutMyStampStatus">내 스탬프 현황</string>
     <string name="eachStoreTabNameAboutStoreNotice">매점 공지사항</string>
     <string name="eachStoreTabNameAboutStoreInfo">매점 정보</string>
+    <string name="addNewStorePopUpHeader">매장목록</string>
     <!-- Strings related to login -->
     <string name="prompt_email">이메일 주소</string>
     <string name="prompt_password">비밀번호(옵션)</string>
