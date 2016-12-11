@@ -9,6 +9,7 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="customerInfoMenu">사용자 정보</string>
     <string name="customerAppShare">공유</string>
+    <string name="customerHomeMenu">홈</string>
     <string name="customerEditInfo">정보 수정</string>
     <string name="appAdvertisedByUser">앱 공유</string>
     <string name="sendAppFeedback">앱 건의</string>
