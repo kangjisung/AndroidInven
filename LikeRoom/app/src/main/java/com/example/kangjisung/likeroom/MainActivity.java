@@ -8,6 +8,7 @@ import android.view.MenuItem;
 
 import com.example.kangjisung.likeroom.User.User;
 import com.example.kangjisung.likeroom.inventory.sales.salesVolume;
+import com.example.kangjisung.likeroom.inventory.statistics.InvenView;
 
 
 public class MainActivity extends ActionBarActivity{
@@ -17,7 +18,7 @@ public class MainActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent User = new Intent(this, salesVolume.class);
+        Intent User = new Intent(this, User.class);
         startActivity(User);
     }
 
