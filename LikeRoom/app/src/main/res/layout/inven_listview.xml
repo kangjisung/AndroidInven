@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--마일리지 유저검색의 리스트뷰의 보여줄 뷰-->
+<!--판매량 최적재고량 리스트뷰의 보여줄 뷰-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="10dp"
         android:layout_height="match_parent"
-        android:layout_weight="4">
-
+        android:layout_weight="0.75">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="New Text"
-            android:id="@+id/nameText"
+            android:id="@+id/breadNameText"
             android:textSize="24dp"
             android:textColor="#000000"
             android:gravity="center_vertical"
@@ -24,10 +24,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="New Text"
-            android:id="@+id/phoneText"
-            android:textSize="16dp"
+            android:id="@+id/todayText"
+            android:textSize="18dp"
             android:textColor="#666666"
             android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="30dp"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/salesText"
+            android:textSize="24dp"
+            android:textColor="#000000"
+            android:gravity="center_vertical"
+            android:layout_weight="3" />
+
     </LinearLayout>
 
 </LinearLayout>
