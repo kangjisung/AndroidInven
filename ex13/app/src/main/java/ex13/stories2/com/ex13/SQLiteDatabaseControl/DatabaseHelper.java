@@ -16,6 +16,8 @@ import java.io.OutputStream;
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+    final boolean isDebugMode = true;
+
     String logCatTag = "ex13", dbPath;
     Context context;
 
@@ -25,11 +27,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         this.context = context;
         this.dbPath = this.context.getApplicationInfo().dataDir + "/databases/";
         try {
-            if(!IsTargetFileAlreadyExist(dbPath, dbName)) {
+            if(isDebugMode) {
                 CopyTargetFileToSomethingPath(dbPath, dbName);
             }
             else {
-                Log.d(logCatTag, "already Exist Target File: " + dbPath + dbName);
+                if(!IsTargetFileAlreadyExist(dbPath, dbName)) {
+                    CopyTargetFileToSomethingPath(dbPath, dbName);
+                }
+                else {
+                    Log.d(logCatTag, "already Exist Target File: " + dbPath + dbName);
+                }
             }
         }
         catch (Exception err) {
