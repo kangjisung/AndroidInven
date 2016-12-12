@@ -41,6 +41,18 @@ public class CustomStoreListViewAdapter extends BaseAdapter{
         //customStoreListView.notifyAll();
     }
 
+    public void AddNewCustomStoreListItem(Drawable eachStoreIcon, String eachStoreTitle, String eachStoreSubTitle, String eachStoreId) {
+        EachStoreListViewItem eachStoreListViewItem = new EachStoreListViewItem();
+
+        eachStoreListViewItem.SetEachStoreIcon(eachStoreIcon);
+        eachStoreListViewItem.SetEachStoreTitle(eachStoreTitle);
+        eachStoreListViewItem.SetEachStoreSubTitle(eachStoreSubTitle);
+        eachStoreListViewItem.SetEachStoreId(eachStoreId);
+
+        customStoreListView.add(eachStoreListViewItem);
+        //customStoreListView.notifyAll();
+    }
+
     public void DeleteTargetStoreListItem(int targetRowPosition) {
         customStoreListView.remove(targetRowPosition);
         //customStoreListView.notifyAll();

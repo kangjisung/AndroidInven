@@ -22,9 +22,13 @@ import android.widget.TextView;
 
 import com.Coupon.Tan.CustomStoreListView.CustomStoreListViewAdapter;
 import com.Coupon.Tan.CustomStoreListView.EachStoreListViewItem;
+import com.Coupon.Tan.DataIOManager.DemoDataPusher;
+import com.Coupon.Tan.SearchEngine.SimpleFinder;
 import com.Coupon.Tan.UserDeviceInfo.CustomersSavedInfoFromDevice;
 
 public class CouponTan extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    final int storeAddressInfo = 1, storeNameInfo = 4, storeIdInfo = 0;
 
     ListView customerRegisteredStoreList;
     CustomStoreListViewAdapter customStoreListViewAdapter;
@@ -34,26 +38,41 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
     CustomersSavedInfoFromDevice customersSavedInfoFromDevice;
     String logCatTag;
     int addNewStoreItemPosition = 0;
+    DemoDataPusher demoDataPusher;
+    SimpleFinder simpleFinder;
 
-    String[] testCaseOfUserInfo = new String[]{
-      "김현우", "010-5635-1845"
-    };
+    String[] testCaseOfUserInfo ;
+    String[][] testCaseOfAllStoreDataInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_coupon_tan_main);
 
-        AndroidUiInit();
-
         logCatTag = getString(R.string.app_name);
+
+        demoDataPusher = new DemoDataPusher();
+        simpleFinder = new SimpleFinder();
+
+        testCaseOfUserInfo = demoDataPusher.GetAllSavedUserInfoData();
+        testCaseOfAllStoreDataInfo = demoDataPusher.GetAllSavedData();
+
+        AndroidUiInit();
 
         //신규 추가 아이템
         customStoreListViewAdapter.AddNewCustomStoreListItem(getResources().getDrawable(R.drawable.add_icon), getString(R.string.addNewStoreComment), "");
 
-        //매장 목록
-        customStoreListViewAdapter.AddNewCustomStoreListItem(getResources().getDrawable(R.mipmap.ic_launcher), "테스트 매장 1", "테스트 중 입니다");
-        customStoreListViewAdapter.AddNewCustomStoreListItem(getResources().getDrawable(R.mipmap.ic_launcher), "테스트 매장 2", "테스트 중 입니다");
+        //등록된 매장 목록
+
+        int cnt = 0;
+        for(boolean isThatStoreRegistered : simpleFinder.DemoFindDataThatUserRegisteredStore()) {
+            if(isThatStoreRegistered) {
+                customStoreListViewAdapter.AddNewCustomStoreListItem(getResources().getDrawable(R.mipmap.ic_launcher), testCaseOfAllStoreDataInfo[cnt][storeNameInfo], testCaseOfAllStoreDataInfo[cnt][storeAddressInfo], testCaseOfAllStoreDataInfo[cnt][storeIdInfo]);
+            }
+            cnt += 1;
+        }
+        //customStoreListViewAdapter.AddNewCustomStoreListItem(getResources().getDrawable(R.mipmap.ic_launcher), "테스트 매장 1", "테스트 중 입니다");
+        //customStoreListViewAdapter.AddNewCustomStoreListItem(getResources().getDrawable(R.mipmap.ic_launcher), "테스트 매장 2", "테스트 중 입니다");
 
         customerRegisteredStoreList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView adapterView, View view, int i, long l) {
@@ -61,15 +80,19 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
                 EachStoreListViewItem eachStoreListViewItem = (EachStoreListViewItem) adapterView.getItemAtPosition(itemPosition);
 
                 String eachStoreTitle = eachStoreListViewItem.GetEachStoreTitle(),
-                        eachStoreSubTitle = eachStoreListViewItem.GetEachStoreSubTitle();
+                        eachStoreSubTitle = eachStoreListViewItem.GetEachStoreSubTitle(),
+                        eachStoreId = eachStoreListViewItem.GetEachStoreId();
                 Drawable eachStoreIcon = eachStoreListViewItem.GetEachStoreIcon();
 
                 if(itemPosition == addNewStoreItemPosition) {//신규 매장 추가
+                    Intent selectNewStoreActivityIntent = new Intent(getApplicationContext(), com.Coupon.Tan.PopViewManager.AddNewStoreManager.class);
+                    startActivity(selectNewStoreActivityIntent);
                 }
                 else {//기존 매장 선택
-                    Intent newActivityIntent = new Intent(getApplicationContext(), com.Coupon.Tan.CouponTanStoreInfo.class);
-                    newActivityIntent.putExtra("targetStoreTitle", eachStoreTitle);
-                    startActivity(newActivityIntent);
+                    Intent newActivityThatShowStoreDetailInfo = new Intent(getApplicationContext(), com.Coupon.Tan.CouponTanStoreInfo.class);
+                    newActivityThatShowStoreDetailInfo.putExtra("targetStoreTitle", eachStoreTitle);
+                    newActivityThatShowStoreDetailInfo.putExtra("targetStoreId", eachStoreId);
+                    startActivity(newActivityThatShowStoreDetailInfo);
                 }
 
                 Log.d(logCatTag, "title: " + eachStoreTitle + " #" + itemPosition);

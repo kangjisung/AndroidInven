@@ -35,6 +35,7 @@ public class CouponTanStoreInfo extends AppCompatActivity {
     private ViewPager mViewPager;
 
     PlaceholderFragment placeholderFragment;
+    String selectedStoreId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +44,14 @@ public class CouponTanStoreInfo extends AppCompatActivity {
 
         Intent beforeActivitySendMessage = getIntent();
         setTitle(beforeActivitySendMessage.getStringExtra("targetStoreTitle"));
+        selectedStoreId = beforeActivitySendMessage.getStringExtra("targetStoreId");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         placeholderFragment = new PlaceholderFragment();
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), placeholderFragment, this.getApplicationContext());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), placeholderFragment, this.getApplicationContext(), selectedStoreId);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
