@@ -189,22 +189,24 @@ public class CouponTan extends AppCompatActivity implements NavigationView.OnNav
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_camera) {//비활성화
             // Handle the camera action
             Log.d(logCatTag,"cameraTest");
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_gallery) {//비활성화
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_slideshow) {//비활성화
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_home) {//메인 메뉴
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_manage) {//정보 수정
+
+        } else if (id == R.id.nav_share) {//앱 공유
             Intent shareAppToOthers = new Intent();
             shareAppToOthers.setAction(Intent.ACTION_SEND);
             shareAppToOthers.putExtra(Intent.EXTRA_TEXT, "Share Test");
             shareAppToOthers.setType("text/*");
             startActivity(Intent.createChooser(shareAppToOthers, getString(R.string.appShareComment)));
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_send) {//피드백 전송
 
         }
 
