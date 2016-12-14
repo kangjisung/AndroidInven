@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="test01">#777777</color>
-    <color name="test02">#999999</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="Black">#000000</color>
-    <color name="Red">#FF0000</color>
-
-    <color name="clrMenuIcon">#B7AF8F</color>
-    <color name="clrMenuIconSelected">#8E886F</color>
-    <color name="clrBackground">#CCC39F</color>
 </resources>

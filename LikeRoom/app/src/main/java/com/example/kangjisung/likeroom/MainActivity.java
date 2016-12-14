@@ -18,22 +18,8 @@ public class MainActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mRunnable = new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(getApplicationContext(), ActivityMenu.class);
-                startActivity(intent);
-            }
-        };
-
-        mHandler = new Handler();
-        mHandler.postDelayed(mRunnable, 2500);
-    }
-
-    protected void onDestroy() {
-        Log.i("test", "onDstory()");
-        mHandler.removeCallbacks(mRunnable);
-        super.onDestroy();
+        Intent User = new Intent(this, User.class);
+        startActivity(User);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
