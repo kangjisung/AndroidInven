@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--마일리지 유저검색의 리스트뷰의 보여줄 뷰-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">

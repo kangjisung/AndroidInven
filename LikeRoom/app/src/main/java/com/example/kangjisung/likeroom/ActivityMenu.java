@@ -1,65 +1,49 @@
 package com.example.kangjisung.likeroom;
 
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 
-public class ActivityMenu extends AppCompatActivity {
+public class ActivityMenu extends AppCompatActivity
+{
+    int MAX_PAGE=3;
+    Fragment cur_fragment=new Fragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        TabLayout tabLayout = (TabLayout)findViewById(R.id.tabLayout);
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.selector_menu_item));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.selector_menu_user));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.selector_menu_point));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        tabLayout.getTabAt(0).getIcon().setColorFilter(getResources().getColor(R.color.clrMenuIconSelected), PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(1).getIcon().setColorFilter(getResources().getColor(R.color.clrMenuIcon), PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(2).getIcon().setColorFilter(getResources().getColor(R.color.clrMenuIcon), PorterDuff.Mode.SRC_IN);
-
-        final ViewPager viewPager = (ViewPager)findViewById(R.id.viewPager);
-        final ActivityMenuPagerAdapter adapter = new ActivityMenuPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        ViewPager viewPager = (ViewPager)findViewById(R.id.viewPager);
+        viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager())
+        {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                tab.getIcon().setColorFilter(getResources().getColor(R.color.clrMenuIconSelected), PorterDuff.Mode.SRC_IN);
-                viewPager.setCurrentItem(tab.getPosition());
+            public Fragment getItem(int position) {
+                if(position<0 || MAX_PAGE<=position)
+                    return null;
+                switch (position){
+                    case 0:
+                        cur_fragment=new FragmentItemMain();
+                        break;
+
+                    case 1:
+                        cur_fragment=new FragmentUserMain();
+                        break;
+
+                    case 2:
+                        cur_fragment=new FragmentPointMain();
+                        break;
+                }
+
+                return cur_fragment;
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-                tab.getIcon().setColorFilter(getResources().getColor(R.color.clrMenuIcon), PorterDuff.Mode.SRC_IN);
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
+            public int getCount() {
+                return 0;
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }
