@@ -1,16 +1,84 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context="com.example.kangjisung.likeroom.FragmentPointMain"
+    android:background="@color/White">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Tab 2"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/Black" />
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/stamp_store_title_background"
+        android:layout_marginBottom="20dp"
+        android:layout_height="110dp">
+
+        <TextView
+            android:text="뚜레주르"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView7"
+            android:textSize="40sp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/clrTextColorDeepDark"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:text="02-407-5004"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6"
+            android:layout_marginLeft="35dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/clrTextColorMediumDark"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true" />
+
+        <TextView
+            android:text="홍길동 고객님"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView8"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="15dp"
+            android:gravity="right"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/clrTextColorDeepDark"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:text="특수 스탬프 카드 보기"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button"
+            android:textSize="24sp"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp" />
+    </RelativeLayout>
 
 </RelativeLayout>

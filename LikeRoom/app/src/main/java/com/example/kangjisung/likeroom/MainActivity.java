@@ -2,21 +2,22 @@ package com.example.kangjisung.likeroom;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.kangjisung.likeroom.User.User;
-import com.example.kangjisung.likeroom.inventory.sales.salesVolume;
-import com.example.kangjisung.likeroom.inventory.statistics.InvenView;
 
-
-public class MainActivity extends ActionBarActivity{
+public class MainActivity extends ActionBarActivity
+{
+    private Handler mHandler;
+    private Runnable mRunnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.dialog_new_product_add);
 
         mRunnable = new Runnable() {
             @Override

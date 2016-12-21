@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--마일리지 추가할 유저 검색창-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,20 +11,32 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.kangjisung.likeroom.User.User">
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_search_category_default"
+        android:id="@+id/SearchBtn"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="34dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/SearchText"
+        android:layout_alignBottom="@+id/SearchBtn"
+        android:layout_toStartOf="@+id/SearchBtn"
+        android:layout_marginBottom="12dp" />
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:id="@+id/userlist"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-    <SearchView
-        android:id="@+id/searchview"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/SearchText"
+        android:layout_marginTop="22dp"
+        android:id="@+id/userlist" />
 
 
 </RelativeLayout>
