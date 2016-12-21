@@ -1,10 +1,4 @@
 <resources>
     <string name="app_name">LikeRoom</string>
     <string name="action_settings">Settings</string>
-    <string name="mainactivity_string">메인화면</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment_item">제품 프래그먼트</string>
-    <string name="hello_blank_fragment_user">고객 프래그먼트</string>
-    <string name="hello_blank_fragment_point">포인트 프래그먼트</string>
 </resources>

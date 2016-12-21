@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--마일리지 팝업창-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_mileage"
-    android:layout_width="400dip"
-    android:layout_height="300dip"
+    android:layout_width="350dip"
+    android:layout_height="550dip"
     android:background="#FFFFFF"
     android:layout_centerInParent="true"
     tools:context="com.example.kangjisung.likeroom.User.MileageManage.mileage">
