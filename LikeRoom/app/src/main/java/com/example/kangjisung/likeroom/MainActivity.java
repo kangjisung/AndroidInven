@@ -17,7 +17,7 @@ public class MainActivity extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_new_product_add);
+        setContentView(R.layout.activity_menu);
 
         mRunnable = new Runnable() {
             @Override

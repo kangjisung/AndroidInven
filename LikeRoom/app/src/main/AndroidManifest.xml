@@ -7,23 +7,21 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/LikeRoomTheme">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/LikeRoomTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".User.User" />
         <activity
-            android:name=".User.MileageManage.mileage"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
-        <activity android:name=".ActivityMenu" />
-        <activity android:name=".ActivityStoreSelect"></activity>
+            android:name=".ActivityMenu"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
     </application>
 
 </manifest>

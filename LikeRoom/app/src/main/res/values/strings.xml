@@ -7,4 +7,10 @@
     <string name="hello_blank_fragment_item">제품 프래그먼트</string>
     <string name="hello_blank_fragment_user">고객 프래그먼트</string>
     <string name="hello_blank_fragment_point">포인트 프래그먼트</string>
+
+    <string name="menu_stamp_string">스탬프</string>
+    <string name="menu_notice_string">공지사항</string>
+    <string name="menu_info_string">매장 정보</string>
+
+
 </resources>
