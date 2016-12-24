@@ -11,7 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ActivityMenu extends AppCompatActivity
-{
+{  //activity_menu 에서 디자인 된 창이 뜬다.
+    //activity_menu -> 하단에 스탬프,공지사항,매장정보 창을 누르면 각각
+    //스탬프(fragment_stamp_main), 공지사항(fragment_notice_main), 매장정보(fragment_info_main)으로 디자인된 창이 뜬다.
+
+    //ActivityMenu는 ActivityMenuPagerAdapter와 연결되어 있으며
+    //ActivityMenuPagerAdapter는 스탬프,공지사항,매장정보 아이콘을 눌렀을 때 실제로 이동시켜주는 부분을 담당한다.
     private int[] tabMipmapResIds = {
             R.mipmap.icon_menu_item,
             R.mipmap.icon_menu_user,

@@ -5,3 +5,5 @@
     android:layout_height="match_parent"
     android:background="@drawable/shape_emptybackground">
 </GridLayout>
+
+<!-- 맨 처음에 어플을 킬 때 켜진다. 한번 터치하면 레이아웃에서 activity_menu부분으로 전환된다-->

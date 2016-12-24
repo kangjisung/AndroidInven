@@ -7,7 +7,9 @@
     android:background="@color/White">
 
     <!-- TODO: Update blank fragment layout -->
-
+<!--점주앱에서 포인트적립이 메인페이지라면 고객앱에서는 이 페이지가 메인페이지이다.
+    적립된 스탬프를 확인할 수 있는 페이지의 디자인이다.
+    여기에서 버튼 밑에 viewPager로 스탬프가 들어가야하는데...나에게는 너무나 어렵...-->
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -59,11 +61,6 @@
             android:layout_alignParentBottom="true" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></LinearLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -78,7 +75,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp" />
+            android:paddingBottom="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="164dp" />
     </RelativeLayout>
 
 </RelativeLayout>

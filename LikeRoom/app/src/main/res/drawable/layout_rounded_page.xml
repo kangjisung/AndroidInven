@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--둥근페이지를 만들기 위해서 레이아웃에서 rounded_corner을 가져다 쓴다.-->
     <item
         android:gravity="left|top"
         android:drawable="@mipmap/rounded_corner">

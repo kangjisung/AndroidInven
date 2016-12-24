@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--공지사항 리스트의 디자인. 나중에 아이콘 수정이 이루어질 것이다.-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"

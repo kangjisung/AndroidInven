@@ -4,6 +4,9 @@ import java.util.Calendar;
 
 public class NoticeRecyclerViewItem
 {
+
+    //NoticeRecyclerViewAdapter에서 사용하는 메소드나 변수들을 정의해두었다.
+
     private String title;
     private String body;
     private Calendar startDate;

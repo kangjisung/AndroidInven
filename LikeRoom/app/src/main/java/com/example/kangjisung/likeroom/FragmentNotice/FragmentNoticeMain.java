@@ -13,6 +13,7 @@ import com.example.kangjisung.likeroom.R;
 import java.util.GregorianCalendar;
 
 public class FragmentNoticeMain extends Fragment {
+//스탬프,공지사항,매장정보 중 공지사항 부분.
 
     private View view;
     private RecyclerView noticeRecyclerView;

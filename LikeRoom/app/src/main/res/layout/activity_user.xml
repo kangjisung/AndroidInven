@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--음...점주앱에 고객관리부분에 쓰이는 유저리스트일까...?고객앱에서는 쓰이지 않는다.-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"

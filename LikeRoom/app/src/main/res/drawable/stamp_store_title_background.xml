@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--fragment_stamp_main에서 쓰이는 작은 둥근배경.
+    둥근배경이지만 drawable에서 layout_rounded_page를 가져다 쓰거나, mipmap에 rounded_corner을 가져다 쓰는게 아니라
+    그냥 radius=15dp라는 코드를 넣어서 만들었다.
+-->
+
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <solid android:color="@color/test01"></solid>

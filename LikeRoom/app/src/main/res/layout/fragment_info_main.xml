@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.kangjisung.likeroom.FragmentNotice.FragmentNoticeMain">
 
+    <!--매장정보부분. 내가 주말동안 디자인할 부분이다!-->
     <!-- TODO: Update blank fragment layout -->
 
 </RelativeLayout>

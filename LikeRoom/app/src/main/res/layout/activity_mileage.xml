@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--지성오빠한테 맨 처음 넘겨받을 때 있었던 부분으로 디자인팀에서는 아직 건들지 않은 부분이다.
+    지워도 된다고 들었던 것 같은데 혹시 몰라 남겨두었다.-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"

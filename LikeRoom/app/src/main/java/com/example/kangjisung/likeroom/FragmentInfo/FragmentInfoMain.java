@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.example.kangjisung.likeroom.R;
 
 public class FragmentInfoMain extends Fragment {
-
+//매장정보에 관한 부분이다. 아마 지도 등 CouponTan에서 만들어진 부분들을 여기로 옮겨올 수 있을 듯하다.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         /* 초기화 코드는 여기서 */

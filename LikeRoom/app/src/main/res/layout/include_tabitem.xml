@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--고객앱에서는 사용한 적이 없다.-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"

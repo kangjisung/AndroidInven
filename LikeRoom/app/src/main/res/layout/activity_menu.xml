@@ -6,7 +6,7 @@
     android:layout_height="fill_parent"
     android:background="@drawable/layout_background"
     android:theme="@style/LikeRoomTheme">
-
+<!--어플에서 사용되는 테두리부분이 디자인되어 있다고 보면 된다.-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

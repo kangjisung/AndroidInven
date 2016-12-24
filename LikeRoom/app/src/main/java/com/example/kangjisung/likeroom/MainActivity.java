@@ -17,13 +17,14 @@ public class MainActivity extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
-
+        setContentView(R.layout.activity_main);
+    //activity_main-> 배경색만 채워져 있는 레이아웃(나중에 시작화면, 대기화면 등을 넣으면 될 것 같다)
+        //맨 처음 시작할 때 activity_main이 뜨고, 한번 클릭하면 ActivityMenu로 넘어간다.
         mRunnable = new Runnable() {
             @Override
             public void run() {
                 Intent intent = new Intent(getApplicationContext(), ActivityMenu.class);
-                startActivity(intent);
+                startActivity(intent);  //ActivityMenu으로 넘어간다.
             }
         };
 

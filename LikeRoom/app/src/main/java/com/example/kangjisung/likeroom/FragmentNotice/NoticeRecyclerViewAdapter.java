@@ -16,6 +16,11 @@ import com.example.kangjisung.likeroom.R;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+// 공지사항리스트에 관한 부분이다.
+// 레이아웃에서는 layout_notice_recycler_view에서 확인할 수 있다.
+// 지금은 어플에서 공지사항을 클릭했을 때 알림창이 뜨는 정도로 구현되어있으며
+// 각각의 공지사항에 대해서 제목,내용,날짜 등을 담당하는 부분이며, 메소드나 변수 등은 NoticeRecyclerViewItem에서 확인할 수 있다.
+
 public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecyclerViewAdapter.NoticeRecyclerViewHolder> {
     private ArrayList<NoticeRecyclerViewItem> noticeListViewItemRecycler = new ArrayList<NoticeRecyclerViewItem>();
     private Context context;
@@ -53,10 +58,10 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
         holder.textViewTitle.setText(noticeRecyclerViewItem.getTitle());
         holder.textViewBody.setText(noticeRecyclerViewItem.getBody());
         String textDate = String.valueOf(noticeRecyclerViewItem.getStartDate().get(Calendar.YEAR)) + "/"
-                + String.valueOf(noticeRecyclerViewItem.getStartDate().get(Calendar.MONTH)) + "/"
+                + String.valueOf(noticeRecyclerViewItem.getStartDate().get(Calendar.MONTH)+1) + "/"
                 + String.valueOf(noticeRecyclerViewItem.getStartDate().get(Calendar.DAY_OF_MONTH)) + "/ - "
                 + String.valueOf(noticeRecyclerViewItem.getEndDate().get(Calendar.YEAR)) + "/"
-                + String.valueOf(noticeRecyclerViewItem.getEndDate().get(Calendar.MONTH)) + "/"
+                + String.valueOf(noticeRecyclerViewItem.getEndDate().get(Calendar.MONTH)+1) + "/"
                 + String.valueOf(noticeRecyclerViewItem.getEndDate().get(Calendar.DAY_OF_MONTH));
         holder.textViewDate.setText(textDate);
         switch (noticeRecyclerViewItem.getType()) {
