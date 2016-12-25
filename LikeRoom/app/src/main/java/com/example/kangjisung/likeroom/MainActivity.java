@@ -23,13 +23,14 @@ public class MainActivity extends ActionBarActivity
         mRunnable = new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(getApplicationContext(), ActivityMenu.class);
+                Intent intent = new Intent(getApplicationContext(), ActivityStoreSelect.class);
                 startActivity(intent);  //ActivityMenu으로 넘어간다.
             }
         };
 
         mHandler = new Handler();
-        mHandler.postDelayed(mRunnable, 2500);
+        mHandler.postDelayed(mRunnable, 1);
+        finish();
     }
 
     protected void onDestroy() {

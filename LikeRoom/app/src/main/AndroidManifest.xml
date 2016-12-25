@@ -20,7 +20,12 @@
         </activity>
         <activity
             android:name=".ActivityMenu"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            >
+        </activity>
+        <activity android:name=".ActivityStoreSelect"
+            >
+
         </activity>
     </application>
 

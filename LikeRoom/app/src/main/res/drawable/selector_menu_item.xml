@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/icon_menu_item">
+        <color android:color="#777777" />
+    </item>
+    <item android:drawable="@drawable/icon_menu_item_selected" android:state_selected="true" />
+</selector>
