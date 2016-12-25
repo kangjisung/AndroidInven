@@ -8,13 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.kangjisung.likeroom.DefineManager;
 import com.example.kangjisung.likeroom.R;
 
 import java.util.GregorianCalendar;
 
 public class FragmentNoticeMain extends Fragment {
 //스탬프,공지사항,매장정보 중 공지사항 부분.
-
     private View view;
     private RecyclerView noticeRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -24,7 +24,7 @@ public class FragmentNoticeMain extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notice_main, container, false);
 
-        mAdapter = new NoticeRecyclerViewAdapter();
+        mAdapter = new NoticeRecyclerViewAdapter(DefineManager.showNoticeList);
         mLayoutManager = new LinearLayoutManager(getActivity());
 
         noticeRecyclerView = (RecyclerView) view.findViewById((R.id.recyclerView));
