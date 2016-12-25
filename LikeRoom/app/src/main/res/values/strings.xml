@@ -12,5 +12,5 @@
     <string name="menu_notice_string">공지사항</string>
     <string name="menu_info_string">매장 정보</string>
 
-
+    <string name="featureLoadFail">기능 준비중</string>
 </resources>
