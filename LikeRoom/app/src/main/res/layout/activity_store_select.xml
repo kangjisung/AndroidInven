@@ -23,7 +23,7 @@
         android:layout_centerHorizontal="true">
 
         <TextView
-            android:text="매장 선택"
+            android:text="@string/selectStore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txtSelectStore"
@@ -56,7 +56,7 @@
                 android:paddingLeft="15dp" />
 
             <TextView
-                android:text="신규 추가"
+                android:text="@string/addNewStore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtAddNewStore"
@@ -66,61 +66,12 @@
                 android:textColor="@color/clrTextColorDeepDark" />
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/layoutEachStoreItem"
-            android:orientation="horizontal"
-            android:layout_height="80dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/White"
-            android:layout_width="350dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imgShopIcon"
-                android:layout_marginLeft="20dp"
-                android:background="@mipmap/shop"
-                android:layout_gravity="center_vertical" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:text="뚜레주르 송파점"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/txtShopName"
-                    android:textSize="20sp"
-                    android:textColor="@color/clrTextColorDeepDark"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="8dp" />
-
-                <TextView
-                    android:text="서울시 송파구 가락2동"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/txtShopAddress"
-                    android:textSize="14sp"
-                    android:textColor="@color/clrTextColorMediumDark"
-                    android:layout_marginLeft="20dp" />
-
-            </LinearLayout>
-
-            <TextView
-                android:text="02-407-5004"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtShopPhoneNumber"
-                android:layout_weight="1"
-                android:textSize="18sp"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_horizontal"
-                android:textColor="@color/clrTextColorMediumDark" />
-
-        </LinearLayout>
+        <include
+            android:id="@+id/eachStoreListItemSample"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/layout_each_registered_store_item"
+            />
 
     </LinearLayout>
 </RelativeLayout>

@@ -8,6 +8,11 @@
     <string name="hello_blank_fragment_user">고객 프래그먼트</string>
     <string name="hello_blank_fragment_point">포인트 프래그먼트</string>
 
+    <!-- 매장 선택 화면-->
+    <string name="loadingStoreAddress">매장 주소</string>
+    <string name="addNewStore">신규 추가</string>
+    <string name="selectStore">매장 선택</string>
+
     <!-- 스탬프 화면-->
     <string name="menu_stamp_string">스탬프</string>
     <string name="showSpecialStamp">특수 스탬프 카드 보기</string>
