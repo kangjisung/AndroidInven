@@ -1,16 +1,19 @@
 package com.example.kangjisung.likeroom.FragmentNotice;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.kangjisung.likeroom.CustomClass.SingleToast;
+import com.example.kangjisung.likeroom.ActivityMenu;
 import com.example.kangjisung.likeroom.R;
 
 import java.util.ArrayList;
@@ -38,6 +41,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
 
         TextView txtShopName, txtShopAddress, txtShopPhoneNumber;
         ImageView imgShopIcon;
+        LinearLayout layoutEachStoreItem;
 
         NoticeRecyclerViewHolder(View view) {
             super(view);
@@ -56,17 +60,27 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                     txtShopName = (TextView) view.findViewById(R.id.txtShopName);
                     txtShopAddress = (TextView) view.findViewById(R.id.txtShopAddress);
                     txtShopPhoneNumber = (TextView) view.findViewById(R.id.txtShopPhoneNumber);
+                    layoutEachStoreItem = (LinearLayout) view.findViewById(R.id.layoutEachStoreItem);
                     break;
             }
         }
     }
 
-    public NoticeRecyclerViewAdapter(int modeOfRecyclerView) {
+    public NoticeRecyclerViewAdapter(int modeOfRecyclerView, Context context) {
         this.modeOfRecyclerView = modeOfRecyclerView;
+        this.context = context;
     }
 
     public NoticeRecyclerViewAdapter.NoticeRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_notice_recycler_view, parent, false);
+        View v = null;
+        switch (modeOfRecyclerView) {
+            case showNoticeList:
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_notice_recycler_view, parent, false);
+                break;
+            case showStoreList:
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_each_registered_store_item, parent, false);
+                break;
+        }
         NoticeRecyclerViewAdapter.NoticeRecyclerViewHolder vh = new NoticeRecyclerViewAdapter.NoticeRecyclerViewHolder(v);
         context = parent.getContext();
         return vh;
@@ -100,12 +114,25 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                 }
                 holder.btnEachNoticeItem.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
-                        SingleToast.show(context, noticeRecyclerViewItem.getTitle().toString() + " 항목을 눌렀습니다", Toast.LENGTH_SHORT);
+                        //SingleToast.show(context, noticeRecyclerViewItem.getTitle().toString() + " 항목을 눌렀습니다", Toast.LENGTH_SHORT);
+                        Snackbar.make(v, noticeRecyclerViewItem.getTitle().toString(), Snackbar.LENGTH_SHORT).show();
                     }
                 });
                 break;
             case showStoreList:
-                
+                holder.imgShopIcon.setImageDrawable(noticeRecyclerViewItem.GetStoreImage());
+                holder.txtShopName.setText(noticeRecyclerViewItem.GetStoreName());
+                holder.txtShopPhoneNumber.setText(noticeRecyclerViewItem.GetStorePhoneNumber());
+                holder.txtShopAddress.setText(noticeRecyclerViewItem.GetStoreAddress());
+
+                holder.layoutEachStoreItem.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //Snackbar.make(view, context.getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
+                        Intent showDetailTargetStore = new Intent(context, ActivityMenu.class);
+                        context.startActivity(showDetailTargetStore);
+                    }
+                });
                 break;
         }
     }
@@ -125,5 +152,16 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
         addItemList.setType(addType);
 
         noticeListViewItemRecycler.add(addItemList);
+    }
+
+    public void addItem(Drawable imgOfStore, String storeName, String storeAddress, String storePhoneNumber) {
+        NoticeRecyclerViewItem newItemWillAddToList = new NoticeRecyclerViewItem();
+
+        newItemWillAddToList.SetStoreImage(imgOfStore);
+        newItemWillAddToList.SetStoreName(storeName);
+        newItemWillAddToList.SetStoreAddress(storeAddress);
+        newItemWillAddToList.SetStorePhoneNumber(storePhoneNumber);
+
+        noticeListViewItemRecycler.add(newItemWillAddToList);
     }
 }

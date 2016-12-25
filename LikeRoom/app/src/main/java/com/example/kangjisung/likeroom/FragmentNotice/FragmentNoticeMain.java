@@ -24,7 +24,7 @@ public class FragmentNoticeMain extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notice_main, container, false);
 
-        mAdapter = new NoticeRecyclerViewAdapter(DefineManager.showNoticeList);
+        mAdapter = new NoticeRecyclerViewAdapter(DefineManager.showNoticeList, getActivity().getApplicationContext());
         mLayoutManager = new LinearLayoutManager(getActivity());
 
         noticeRecyclerView = (RecyclerView) view.findViewById((R.id.recyclerView));
