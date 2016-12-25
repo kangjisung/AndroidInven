@@ -5,5 +5,6 @@ package com.example.kangjisung.likeroom;
  */
 
 public class DefineManager {
-    public final static int showNoticeList = 0, showStoreList = 1;
+    public final static int showNoticeList = 0, showStoreList = 1,
+            shopNameSavedPoint = 0, shopPhoneNumberSavedPoint = 2;
 }

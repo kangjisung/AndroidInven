@@ -37,20 +37,8 @@ public class ActivityStoreSelect extends AppCompatActivity {
         registeredStoreList.setAdapter(registeredStoreListViewAdapter);
         registeredStoreList.setLayoutManager(recyclerViewLayoutManager);
 
-        registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), getString(R.string.loadingStoreName),
-                getString(R.string.loadingStoreAddress), getString(R.string.loadingStorePhoneNumber));
-
-        registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), getString(R.string.loadingStoreName),
-                getString(R.string.loadingStoreAddress), getString(R.string.loadingStorePhoneNumber));
-
-        registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), getString(R.string.loadingStoreName),
-                getString(R.string.loadingStoreAddress), getString(R.string.loadingStorePhoneNumber));
-
-        registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), getString(R.string.loadingStoreName),
-                getString(R.string.loadingStoreAddress), getString(R.string.loadingStorePhoneNumber));
-
-        registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), getString(R.string.loadingStoreName),
-                getString(R.string.loadingStoreAddress), getString(R.string.loadingStorePhoneNumber));
+        registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), "테스트 매장 이름",
+                "테스트 매장 주소", "테스트 매장 번호");
 
 
         btnRegisterNewStore.setOnClickListener(new View.OnClickListener() {

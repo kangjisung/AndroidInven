@@ -77,7 +77,7 @@
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="160dp"
             android:layout_below="@+id/newStoreAddLayout"
             android:id="@+id/registeredStoreList" />
 

@@ -30,6 +30,10 @@ public class ActivityMenu extends AppCompatActivity
             R.string.menu_notice_string,
             R.string.menu_info_string
     };
+    String[] selectedShopInfoDataKey = {
+      "shopName", "shopAddress", "shopPhoneNumber"
+    }, selectedShopInfoData;
+
     private ImageView imageViewSetting;
     private TabLayout tabLayout;
     private TextView textViewTitle;
@@ -49,8 +53,14 @@ public class ActivityMenu extends AppCompatActivity
         tabLayoutInitialize(tabLayout);
         colorInitialize();
 
+        selectedShopInfoData = new String[selectedShopInfoDataKey.length];
+        int i;
+        for(i = 0; i < selectedShopInfoDataKey.length; i += 1) {
+            selectedShopInfoData[i] = getIntent().getStringExtra(selectedShopInfoDataKey[i]);
+        }
+
         final ViewPager viewPager = (ViewPager)findViewById(R.id.viewPager);
-        final ActivityMenuPagerAdapter adapter = new ActivityMenuPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        final ActivityMenuPagerAdapter adapter = new ActivityMenuPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), selectedShopInfoData);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

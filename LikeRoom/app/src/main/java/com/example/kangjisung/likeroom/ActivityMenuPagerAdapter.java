@@ -1,5 +1,6 @@
 package com.example.kangjisung.likeroom;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -14,25 +15,37 @@ import com.example.kangjisung.likeroom.FragmentStamp.FragmentStampMain;
 public class ActivityMenuPagerAdapter extends FragmentStatePagerAdapter
 {
     int mNumOfTabs;
+    String[] selectedShopInfoData;
 
     public ActivityMenuPagerAdapter(FragmentManager fm, int NumOfTabs) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
     }
 
+    public ActivityMenuPagerAdapter(FragmentManager fm, int NumOfTabs, String[] selectedShopInfoData) {
+        super(fm);
+        this.mNumOfTabs = NumOfTabs;
+        this.selectedShopInfoData = selectedShopInfoData;
+    }
+
     @Override
     public Fragment getItem(int position)
     {
+        Bundle dataTransferManager = new Bundle();
+        dataTransferManager.putStringArray("shopInfoData", selectedShopInfoData);
         switch (position) {
             case 0:
-                FragmentStampMain tab1 = new FragmentStampMain();
-                return tab1;
+                FragmentStampMain shopStampManager = new FragmentStampMain();
+                shopStampManager.setArguments(dataTransferManager);
+                return shopStampManager;
             case 1:
-                FragmentNoticeMain tab2 = new FragmentNoticeMain();
-                return tab2;
+                FragmentNoticeMain shopNoticeManager = new FragmentNoticeMain();
+                shopNoticeManager.setArguments(dataTransferManager);
+                return shopNoticeManager;
             case 2:
-                FragmentInfoMain tab3 = new FragmentInfoMain();
-                return tab3;
+                FragmentInfoMain shopInfoManager = new FragmentInfoMain();
+                shopInfoManager.setArguments(dataTransferManager);
+                return shopInfoManager;
             default:
                 return null;
         }

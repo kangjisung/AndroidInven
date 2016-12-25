@@ -130,6 +130,9 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                     public void onClick(View view) {
                         //Snackbar.make(view, context.getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
                         Intent showDetailTargetStore = new Intent(context, ActivityMenu.class);
+                        showDetailTargetStore.putExtra("shopName", noticeRecyclerViewItem.GetStoreName());
+                        showDetailTargetStore.putExtra("shopAddress", noticeRecyclerViewItem.GetStoreAddress());
+                        showDetailTargetStore.putExtra("shopPhoneNumber", noticeRecyclerViewItem.GetStorePhoneNumber());
                         context.startActivity(showDetailTargetStore);
                     }
                 });
