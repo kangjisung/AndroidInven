@@ -28,9 +28,9 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
     public static class NoticeRecyclerViewHolder extends RecyclerView.ViewHolder {
         TextView textViewTitle;
         TextView textViewBody;
-        TextView textViewDate;
-        ImageView imageViewType;
-        Button buttonClick;
+        TextView txtNoticeDate;
+        ImageView imgNoticeType;
+        Button btnEachNoticeItem;
         View view;
 
         NoticeRecyclerViewHolder(View view) {
@@ -39,9 +39,9 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
             this.view = view;
             textViewTitle = (TextView) view.findViewById(R.id.textViewTitle);
             textViewBody = (TextView) view.findViewById(R.id.textViewBody);
-            textViewDate = (TextView) view.findViewById(R.id.textViewDate);
-            imageViewType = (ImageView) view.findViewById(R.id.imageViewType);
-            buttonClick = (Button) view.findViewById(R.id.buttonClick);
+            txtNoticeDate = (TextView) view.findViewById(R.id.txtNoticeDate);
+            imgNoticeType = (ImageView) view.findViewById(R.id.imgNoticeType);
+            btnEachNoticeItem = (Button) view.findViewById(R.id.btnEachNoticeItem);
         }
     }
 
@@ -63,20 +63,20 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                 + String.valueOf(noticeRecyclerViewItem.getEndDate().get(Calendar.YEAR)) + "/"
                 + String.valueOf(noticeRecyclerViewItem.getEndDate().get(Calendar.MONTH)+1) + "/"
                 + String.valueOf(noticeRecyclerViewItem.getEndDate().get(Calendar.DAY_OF_MONTH));
-        holder.textViewDate.setText(textDate);
+        holder.txtNoticeDate.setText(textDate);
         switch (noticeRecyclerViewItem.getType()) {
             default:
             case 1:
-                holder.imageViewType.setBackgroundResource(R.mipmap.icon_menu_item);
+                holder.imgNoticeType.setBackgroundResource(R.mipmap.icon_menu_item);
                 break;
             case 2:
-                holder.imageViewType.setBackgroundResource(R.mipmap.icon_menu_point);
+                holder.imgNoticeType.setBackgroundResource(R.mipmap.icon_menu_point);
                 break;
             case 3:
-                holder.imageViewType.setBackgroundResource(R.mipmap.icon_menu_user);
+                holder.imgNoticeType.setBackgroundResource(R.mipmap.icon_menu_user);
                 break;
         }
-        holder.buttonClick.setOnClickListener(new Button.OnClickListener() {
+        holder.btnEachNoticeItem.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 SingleToast.show(context, noticeRecyclerViewItem.getTitle().toString() + " 항목을 눌렀습니다", Toast.LENGTH_SHORT);
             }
