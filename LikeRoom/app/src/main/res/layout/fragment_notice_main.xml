@@ -24,7 +24,7 @@
             android:background="@mipmap/menu_list_text_line" />
 
         <TextView
-            android:text="뚜레주르"
+            android:text="@string/loadingStoreName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txtStoreName"

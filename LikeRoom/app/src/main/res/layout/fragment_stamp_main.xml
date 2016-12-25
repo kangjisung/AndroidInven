@@ -21,7 +21,7 @@
         android:layout_height="110dp">
 
         <TextView
-            android:text="뚜레주르"
+            android:text="@string/loadingStoreName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtShopName"
@@ -34,7 +34,7 @@
             android:layout_alignParentLeft="true" />
 
         <TextView
-            android:text="02-407-5004"
+            android:text="@string/loadingStorePhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtShopPhoneNumber"
@@ -46,7 +46,7 @@
             android:layout_alignParentBottom="true" />
 
         <TextView
-            android:text="홍길동 고객님"
+            android:text="@string/loadingCustomerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txtCustomerName"
@@ -66,7 +66,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:text="특수 스탬프 카드 보기"
+            android:text="@string/showSpecialStamp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnShowSpecialStamp"
