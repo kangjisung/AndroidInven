@@ -11,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ActivityMenu extends AppCompatActivity
-{  //activity_menu 에서 디자인 된 창이 뜬다.
+{
+    //처음으로 보여지는 탭의 번호를 변경
+    //activity_menu 에서 디자인 된 창이 뜬다.
     //activity_menu -> 하단에 스탬프,공지사항,매장정보 창을 누르면 각각
     //스탬프(fragment_stamp_main), 공지사항(fragment_notice_main), 매장정보(fragment_info_main)으로 디자인된 창이 뜬다.
 
@@ -30,6 +32,8 @@ public class ActivityMenu extends AppCompatActivity
     private ImageView imageViewSetting;
     private TabLayout tabLayout;
     private TextView textViewTitle;
+
+    final int firstShowTabPageNumber = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -66,7 +70,7 @@ public class ActivityMenu extends AppCompatActivity
 
             }
         });
-        tabLayout.getTabAt(2).select();
+        tabLayout.getTabAt(firstShowTabPageNumber).select();
     }
 
     public void tabLayoutInitialize(TabLayout tabLayout)

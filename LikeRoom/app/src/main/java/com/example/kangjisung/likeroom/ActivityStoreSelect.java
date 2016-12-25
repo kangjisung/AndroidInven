@@ -1,5 +1,6 @@
 package com.example.kangjisung.likeroom;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +34,10 @@ public class ActivityStoreSelect extends AppCompatActivity {
         layoutEachStoreItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
+                //Snackbar.make(view, getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
+                //등록된 상점을 클릭했을 시 해당 상점에 관한 화면으로 전환
+                Intent showDetailTargetStore = new Intent(getApplicationContext(), ActivityMenu.class);
+                startActivity(showDetailTargetStore);
             }
         });
     }
