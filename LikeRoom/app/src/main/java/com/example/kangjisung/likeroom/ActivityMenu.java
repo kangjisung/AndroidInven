@@ -2,6 +2,7 @@ package com.example.kangjisung.likeroom;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -71,6 +72,13 @@ public class ActivityMenu extends AppCompatActivity
             }
         });
         tabLayout.getTabAt(firstShowTabPageNumber).select();
+
+        imageViewSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void tabLayoutInitialize(TabLayout tabLayout)
