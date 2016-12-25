@@ -40,6 +40,9 @@ public class ActivityStoreSelect extends AppCompatActivity {
         registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), "테스트 매장 이름",
                 "테스트 매장 주소", "테스트 매장 번호");
 
+        registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), "가나다라",
+                "마바사", "아자차카");
+
 
         btnRegisterNewStore.setOnClickListener(new View.OnClickListener() {
             @Override
