@@ -116,6 +116,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                     public void onClick(View v) {
                         //SingleToast.show(context, noticeRecyclerViewItem.getTitle().toString() + " 항목을 눌렀습니다", Toast.LENGTH_SHORT);
                         Snackbar.make(v, noticeRecyclerViewItem.getTitle().toString(), Snackbar.LENGTH_SHORT).show();
+                        //공지사항을 눌렀을 시 세부 내용을 출력하는 팝업을 구현해야함
                     }
                 });
                 break;

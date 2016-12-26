@@ -13,7 +13,8 @@ import com.example.kangjisung.likeroom.DefineManager;
 import com.example.kangjisung.likeroom.R;
 
 public class FragmentStampMain extends Fragment {
-
+    //스탬프 현황 레이아웃을 그려야할 것
+    //또한 스탬프 사용시 팝업도 띄워야 함
     //스탬프 레이아웃에서 선택된 매장에서 현제 나의 스탬프 상황을 봄
     View stampLayout;
     Button btnShowSpecialStamp;

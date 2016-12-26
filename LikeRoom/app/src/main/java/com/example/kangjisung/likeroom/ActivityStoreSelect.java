@@ -48,6 +48,7 @@ public class ActivityStoreSelect extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
+                //새로 등록할 매장 선택 팝업
             }
         });
 

@@ -87,6 +87,7 @@ public class ActivityMenu extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
+                //환경설정으로 넘어가는 화면을 구현해야함
             }
         });
     }
