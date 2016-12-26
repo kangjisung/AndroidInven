@@ -1,9 +1,9 @@
 package com.example.home7.customlistview;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +15,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.locallistview.R;
+import com.github.clans.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class LocalListviewActivity extends Activity {
+public class LocalListviewActivity extends AppCompatActivity implements View.OnClickListener {
 	ArrayList<MyItem> arItem;
+	FloatingActionButton fab4;
+	FloatingActionButton fab3;
+	FloatingActionButton fab2;
+	FloatingActionButton fab1;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,9 +45,6 @@ public class LocalListviewActivity extends Activity {
 		arItem.add(mi);
 		mi = new MyItem(R.mipmap.ic_lee, "이성당","이성당");
 		arItem.add(mi);
-
-
-
 
 		MyListAdapter MyAdapter = new MyListAdapter(this, R.layout.listitem, arItem);
 
@@ -64,7 +67,38 @@ public class LocalListviewActivity extends Activity {
 
 			}
 		});
+		fab3=(FloatingActionButton)findViewById(R.id.fab3);
+		fab3.setOnClickListener(this);
 
+		fab2=(FloatingActionButton)findViewById(R.id.fab2);
+		fab2.setOnClickListener(this);
+
+		fab1=(FloatingActionButton)findViewById(R.id.fab1);
+		fab1.setOnClickListener(this);
+
+	}
+
+	@Override
+	public void onClick(View view) {
+		if(view==fab3) {
+			System.out.println("fab3 clicked");
+			Intent toy = new Intent(getApplicationContext(), Notice.class);
+
+			startActivity(toy);
+		}
+		else if(view==fab2){
+			System.out.println("fab2 clicked");
+			Intent toy=new Intent(getApplicationContext(),Stamp.class);
+
+			startActivity(toy);
+		}
+
+		else if(view==fab1){
+			System.out.println("fab1 clicked");
+			Intent toy=new Intent(getApplicationContext(),Addcustom.class);
+
+			startActivity(toy);
+		}
 	}
 }
 

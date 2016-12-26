@@ -11,11 +11,11 @@ import static com.example.locallistview.R.layout.itemview;
 
 public class ItemView extends Activity {
 	static final String[] CONTENTS = new String[] {
-		"파리바게트",
-		"뚜레쥬르",
-		"이성당","이성당","이성당","이성당"
+			"파리바게트",
+			"뚜레쥬르",
+			"이성당","이성당","이성당","이성당"
 	};
-	
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(itemview);

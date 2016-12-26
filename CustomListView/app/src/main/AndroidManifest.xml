@@ -22,10 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.home7.customlistview.ItemView" android:theme="@android:style/Theme.Dialog" >
-
-
-        </activity>
+        <activity android:name="com.example.home7.customlistview.ItemView" android:theme="@android:style/Theme.Dialog" />
+        <activity android:name="com.example.home7.customlistview.Notice" android:theme="@android:style/Theme.Dialog" ></activity>
+        <activity android:name="com.example.home7.customlistview.Stamp" android:theme="@android:style/Theme.Dialog"></activity>
+        <activity android:name="com.example.home7.customlistview.Addcustom" android:theme="@android:style/Theme.Dialog"></activity>
     </application>
 
 </manifest>
