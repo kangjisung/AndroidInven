@@ -37,7 +37,9 @@
         <RelativeLayout
             android:background="@color/LightGray"
             android:layout_height="80dp"
-            android:layout_width="350dp">
+            android:layout_width="350dp"
+            android:id="@+id/newStoreAddLayout"
+            >
 
             <Button
                 android:layout_width="match_parent"
@@ -66,12 +68,18 @@
                 android:textColor="@color/clrTextColorDeepDark" />
         </RelativeLayout>
 
-        <include
+        <!--<include
             android:id="@+id/eachStoreListItemSample"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             layout="@layout/layout_each_registered_store_item"
-            />
+            />-->
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_below="@+id/newStoreAddLayout"
+            android:id="@+id/registeredStoreList" />
 
     </LinearLayout>
 </RelativeLayout>

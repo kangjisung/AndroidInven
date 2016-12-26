@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView"
+            android:id="@+id/hamburgerMenu"
             android:layout_centerInParent="false"
             android:layout_centerHorizontal="false"
             android:layout_centerVertical="true"
