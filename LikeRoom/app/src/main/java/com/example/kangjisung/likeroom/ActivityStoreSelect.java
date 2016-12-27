@@ -5,11 +5,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.kangjisung.likeroom.FragmentNotice.NoticeRecyclerViewAdapter;
+import com.example.kangjisung.likeroom.NetworkManager.HttpCommunicationProcess;
 
 public class ActivityStoreSelect extends AppCompatActivity {
 
@@ -18,6 +20,7 @@ public class ActivityStoreSelect extends AppCompatActivity {
     RecyclerView registeredStoreList;
     NoticeRecyclerViewAdapter registeredStoreListViewAdapter;
     RecyclerView.LayoutManager recyclerViewLayoutManager;
+    HttpCommunicationProcess httpCommunicationProcess;
 
     //맨처음에 매장선택해서 들어가는 부분.
     //레이아웃에서는 activity_store_select로 디자인되어 있다.
@@ -43,6 +46,17 @@ public class ActivityStoreSelect extends AppCompatActivity {
         registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), "가나다라",
                 "마바사", "아자차카");
 
+        httpCommunicationProcess = new HttpCommunicationProcess(getApplicationContext());
+        try {
+            String test = httpCommunicationProcess.execute("http://lamb.kangnam.ac.kr").get().toString();
+            /*if(test.equals(null)) {
+                Snackbar.make()
+            }*/
+            Log.d(getString(R.string.app_name), "test: " + test);
+        }
+        catch (Exception err) {
+            Log.d(getString(R.string.app_name), "Error in onCreate: " + err.getMessage());
+        }
 
         btnRegisterNewStore.setOnClickListener(new View.OnClickListener() {
             @Override

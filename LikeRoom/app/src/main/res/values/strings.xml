@@ -25,6 +25,7 @@
     <string name="menu_info_string">매장 정보</string>
 
     <!-- 개발 중-->
-
+    <string name="emailLoadFail">본 앱을 이용하려면 구글 계정이 필요로 합니다</string>
+    <string name="positiveButtonMessage">확인</string>
     <string name="featureLoadFail">기능 준비중</string>
 </resources>

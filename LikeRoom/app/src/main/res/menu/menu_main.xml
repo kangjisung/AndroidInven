@@ -9,6 +9,11 @@
         app:showAsAction="never" />
 </menu>
 
+
+<!--
+저작권:
+creative commons
+-->
 <!--
 mipmap 아이콘 설명
 ic_launcher -> 쓸 아이콘이 없으면 여기저기 썼다. 지금은 layout_notice_recyler_view에서만 쓰였다.
