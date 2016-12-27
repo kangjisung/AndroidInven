@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import static com.example.kangjisung.likeroom.DefineManager.selectedShopInfoDataKey;
+
 public class ActivityMenu extends AppCompatActivity
 {
     //처음으로 보여지는 탭의 번호를 변경
@@ -30,9 +32,7 @@ public class ActivityMenu extends AppCompatActivity
             R.string.menu_notice_string,
             R.string.menu_info_string
     };
-    String[] selectedShopInfoDataKey = {
-      "shopName", "shopAddress", "shopPhoneNumber"
-    }, selectedShopInfoData;
+    String[] selectedShopInfoData;
 
     private ImageView imageViewSetting;
     private TabLayout tabLayout;

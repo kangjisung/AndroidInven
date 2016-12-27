@@ -2,16 +2,15 @@ package com.example.kangjisung.likeroom;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.kangjisung.likeroom.PermissionManager.AndroidVersionController;
 import com.example.kangjisung.likeroom.PermissionManager.UserAccountCrawler;
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -51,14 +50,7 @@ public class MainActivity extends ActionBarActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent moveToPermissionScreen = new Intent();
-                        moveToPermissionScreen.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                        moveToPermissionScreen.addCategory(Intent.CATEGORY_DEFAULT);
-                        moveToPermissionScreen.setData(Uri.parse("package:" + getPackageName()));
-                        moveToPermissionScreen.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        moveToPermissionScreen.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                        moveToPermissionScreen.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                        startActivity(moveToPermissionScreen);
+                        new AndroidVersionController(getApplicationContext()).GoToApplicationPermissionSettingScreen();
                         finish();
                     }
                 });

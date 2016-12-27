@@ -15,8 +15,9 @@ public class NoticeRecyclerViewItem
     private Calendar endDate;
     private int type;
 
-    String storeName, storeAddress, storePhoneNumber;
+    String storeName, storeAddress, storePhoneNumber, storeOpenTime, storeCloseTime;
     Drawable imgOfStore;
+    Double storeLatitude, storeLongtitude;
 
     public void setTitle(String _title) {title = _title;}
     public void setBody(String _body) {body = _body;}
@@ -35,6 +36,18 @@ public class NoticeRecyclerViewItem
     void SetStoreImage(Drawable imgOfStore) {
         this.imgOfStore = imgOfStore;
     }
+    void SetStoreOpenTime(String storeOpenTime) {
+        this.storeOpenTime = storeOpenTime;
+    }
+    void SetStoreCloseTime(String storeCloseTime) {
+        this.storeCloseTime = storeCloseTime;
+    }
+    void SetStoreLatitude(Double storeLatitude) {
+        this.storeLatitude = storeLatitude;
+    }
+    void SetStoreLongtitude(Double storeLongtitude) {
+        this.storeLongtitude = storeLongtitude;
+    }
 
     public String getTitle() {return this.title;}
     public String getBody() {return this.body;}
@@ -52,5 +65,17 @@ public class NoticeRecyclerViewItem
     }
     Drawable GetStoreImage() {
         return imgOfStore;
+    }
+    String GetStoreOpenTime() {
+        return storeOpenTime;
+    }
+    String GetStoreCloseTime() {
+        return storeCloseTime;
+    }
+    Double GetStoreLatitude() {
+        return storeLatitude;
+    }
+    Double GetStoreLongtitude() {
+        return storeLongtitude;
     }
 }

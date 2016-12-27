@@ -43,10 +43,10 @@ public class ActivityStoreSelect extends AppCompatActivity {
         registeredStoreList.setLayoutManager(recyclerViewLayoutManager);
 
         registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), "테스트 매장 이름",
-                "테스트 매장 주소", "테스트 매장 번호");
+                "테스트 매장 주소", "테스트 매장 번호", "10:00", "22:00", 0.00, 0.00);
 
         registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), "가나다라",
-                "마바사", "아자차카");
+                "마바사", "아자차카", "10:00", "22:00", 0.00, 0.00);
 
         httpCommunicationProcess = new HttpCommunicationProcess(getApplicationContext());
         try {
