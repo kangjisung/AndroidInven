@@ -145,8 +145,9 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                         showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopPhoneNumberSavedPoint], noticeRecyclerViewItem.GetStorePhoneNumber());
                         showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopOpenTimeSavedPoint], noticeRecyclerViewItem.GetStoreOpenTime());
                         showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopCloseTimeSavedPoint], noticeRecyclerViewItem.GetStoreCloseTime());
-                        showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopLatitudeSavedPoint], noticeRecyclerViewItem.GetStoreLatitude());
-                        showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopLongtitudedSavedPoint], noticeRecyclerViewItem.GetStoreLongtitude());
+                        showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopLatitudeSavedPoint], "" + noticeRecyclerViewItem.GetStoreLatitude());
+                        showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopLongtitudedSavedPoint], "" + noticeRecyclerViewItem.GetStoreLongtitude());
+                        //Log.d("LikeRoom", "la: " + noticeRecyclerViewItem.GetStoreLatitude() + " lo: " + noticeRecyclerViewItem.GetStoreLongtitude());
                         context.startActivity(showDetailTargetStore);
                     }
                 });
@@ -175,6 +176,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                         String storeCloseTime, Double storeLatitude, Double storeLongtitude) {
         NoticeRecyclerViewItem newItemWillAddToList = new NoticeRecyclerViewItem();
 
+        //Log.d("LikeRoom","la: " + storeLatitude + " lo: " + storeLongtitude);
         newItemWillAddToList.SetStoreImage(imgOfStore);
         newItemWillAddToList.SetStoreName(storeName);
         newItemWillAddToList.SetStoreAddress(storeAddress);

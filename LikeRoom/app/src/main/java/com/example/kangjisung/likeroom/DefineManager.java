@@ -10,7 +10,7 @@ public class DefineManager {
             shopNameSavedPoint = 0,shopAddressSavedPoint = 1, shopPhoneNumberSavedPoint = 2,
             shopLatitudeSavedPoint = 3, shopLongtitudedSavedPoint = 4, shopOpenTimeSavedPoint = 5,
             shopCloseTimeSavedPoint = 6, androidVersionLollipop = 22;
-    public final static float googleMapCameraZoomScale = 1;
+    public final static float googleMapCameraZoomScale = 17;
 
     public final static String[] selectedShopInfoDataKey = {
             "shopName", "shopAddress", "shopPhoneNumber", "shopLatitude", "shopLongtitude", "shopOpenTime", "shopCloseTime"
