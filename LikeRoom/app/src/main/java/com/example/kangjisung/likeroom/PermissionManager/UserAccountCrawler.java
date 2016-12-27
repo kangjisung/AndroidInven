@@ -12,6 +12,7 @@ import android.util.Log;
 import com.example.kangjisung.likeroom.R;
 
 import static android.content.Context.ACCOUNT_SERVICE;
+import static com.example.kangjisung.likeroom.DefineManager.androidVersionLollipop;
 
 /**
  * Created by stories2 on 2016. 12. 27..
@@ -49,7 +50,7 @@ public class UserAccountCrawler {
 
     public String CheckPermissionGranted() {
         Account[] list = null;
-        if(new AndroidVersionController().GetAndroidBuildSDKVersion() > 22) {
+        if(new AndroidVersionController().GetAndroidBuildSDKVersion() > androidVersionLollipop) {
 
             if (ContextCompat.checkSelfPermission(applicationActivity.getApplicationContext(), Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED) {
 

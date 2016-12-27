@@ -13,6 +13,8 @@ import android.util.Log;
 
 import com.example.kangjisung.likeroom.R;
 
+import static com.example.kangjisung.likeroom.DefineManager.androidVersionLollipop;
+
 /**
  * Created by stories2 on 2016. 12. 28..
  */
@@ -55,7 +57,7 @@ public class PhoneCallBridge {
 
         Intent callingIntent = new Intent(Intent.ACTION_CALL, Uri.parse(phoneNumberData));
         //callingIntent.setData(Uri.parse(phoneNumberData));
-        if(new AndroidVersionController().GetAndroidBuildSDKVersion() > 22) {
+        if(new AndroidVersionController().GetAndroidBuildSDKVersion() > androidVersionLollipop) {
             if(IsPermissionNotGranted())
                 applicationActivity.startActivity(callingIntent);
                 Log.d(applicationActivity.getString(R.string.app_name), "call to: " + registeredStorePhoneNumber);

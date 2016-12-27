@@ -42,11 +42,11 @@ public class ActivityStoreSelect extends AppCompatActivity {
         registeredStoreList.setAdapter(registeredStoreListViewAdapter);
         registeredStoreList.setLayoutManager(recyclerViewLayoutManager);
 
-        registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), "테스트 매장 이름",
-                "테스트 매장 주소", "테스트 매장 번호", "10:00", "22:00", 0.00, 0.00);
+        registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), "파리바게트 고덕리엔파크점",
+                "서울특별시 강동구 상일동 75-2", "02-426-8758", "N/A", "N/A", 37.5493294, 127.1690933);
 
-        registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), "가나다라",
-                "마바사", "아자차카", "10:00", "22:00", 0.00, 0.00);
+        registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), "뚜레쥬르 상일세종점",
+                "서울특별시 강동구 상일동 67-2", "02-441-7833", "N/A", "N/A", 37.5495805, 127.1656384);
 
         httpCommunicationProcess = new HttpCommunicationProcess(getApplicationContext());
         try {
