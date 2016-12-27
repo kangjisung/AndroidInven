@@ -7,9 +7,14 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Arrays;
+
+import static com.example.kangjisung.likeroom.DefineManager.selectedShopInfoDataKey;
 
 public class ActivityMenu extends AppCompatActivity
 {
@@ -30,9 +35,7 @@ public class ActivityMenu extends AppCompatActivity
             R.string.menu_notice_string,
             R.string.menu_info_string
     };
-    String[] selectedShopInfoDataKey = {
-      "shopName", "shopAddress", "shopPhoneNumber"
-    }, selectedShopInfoData;
+    String[] selectedShopInfoData;
 
     private ImageView imageViewSetting;
     private TabLayout tabLayout;
@@ -58,6 +61,7 @@ public class ActivityMenu extends AppCompatActivity
         for(i = 0; i < selectedShopInfoDataKey.length; i += 1) {
             selectedShopInfoData[i] = getIntent().getStringExtra(selectedShopInfoDataKey[i]);
         }
+        Log.d(getString(R.string.app_name), Arrays.toString(selectedShopInfoData));
 
         final ViewPager viewPager = (ViewPager)findViewById(R.id.viewPager);
         final ActivityMenuPagerAdapter adapter = new ActivityMenuPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), selectedShopInfoData);

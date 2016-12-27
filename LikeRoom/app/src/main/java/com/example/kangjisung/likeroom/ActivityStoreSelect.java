@@ -5,12 +5,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.FragmentNotice.NoticeRecyclerViewAdapter;
+import com.example.kangjisung.likeroom.NetworkManager.HttpCommunicationProcess;
 
 public class ActivityStoreSelect extends AppCompatActivity {
 
@@ -19,6 +21,7 @@ public class ActivityStoreSelect extends AppCompatActivity {
     RecyclerView registeredStoreList;
     NoticeRecyclerViewAdapter registeredStoreListViewAdapter;
     RecyclerView.LayoutManager recyclerViewLayoutManager;
+    HttpCommunicationProcess httpCommunicationProcess;
     StoreAddDialog mStoreAddDialog;
 
     //맨처음에 매장선택해서 들어가는 부분.
@@ -39,23 +42,38 @@ public class ActivityStoreSelect extends AppCompatActivity {
         registeredStoreList.setAdapter(registeredStoreListViewAdapter);
         registeredStoreList.setLayoutManager(recyclerViewLayoutManager);
 
-        registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), "테스트 매장 이름",
-                "테스트 매장 주소", "테스트 매장 번호");
+        registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), "파리바게트 고덕리엔파크점",
+                "서울특별시 강동구 상일동 75-2", "02-426-8758", "N/A", "N/A", 37.5537472, 127.1716884);
 
-        registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), "가나다라",
-                "마바사", "아자차카");
+        registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), "뚜레쥬르 상일세종점",
+                "서울특별시 강동구 상일동 67-2", "02-441-7833", "N/A", "N/A", 37.5509792, 127.1738538);
 
+        httpCommunicationProcess = new HttpCommunicationProcess(getApplicationContext());
+        try {
+            String internetConnectionTest = httpCommunicationProcess.execute("http://lamb.kangnam.ac.kr").get();
+            if(internetConnectionTest == null) {
+                Snackbar.make(this.findViewById(android.R.id.content), getString(R.string.internetConnectionFail), Snackbar.LENGTH_LONG).show();
+            }
+            Log.d(getString(R.string.app_name), "internetConnectionTest: " + internetConnectionTest);
+        }
+        catch (Exception err) {
+            Log.d(getString(R.string.app_name), "Error in onCreate: " + err.getMessage());
+        }
 
         btnRegisterNewStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mStoreAddDialog = new StoreAddDialog(ActivityStoreSelect.this,
-                        "[다이얼로그 제목]", // 제목
-                        "다이얼로그 내용 표시하기", // 내용
-                        leftListener, // 왼쪽 버튼 이벤트
-                        rightListener); // 오른쪽 버튼 이벤트
-                mStoreAddDialog.show();
-
+                try {
+                    mStoreAddDialog = new StoreAddDialog(ActivityStoreSelect.this,
+                            "[다이얼로그 제목]", // 제목
+                            "다이얼로그 내용 표시하기", // 내용
+                            leftListener, // 왼쪽 버튼 이벤트
+                            rightListener); // 오른쪽 버튼 이벤트
+                    mStoreAddDialog.show();
+                }
+                catch (Exception err) {
+                    Log.d(getString(R.string.app_name), "Error in setOnClickListener: " + err.getMessage());
+                }
             }
         });
 

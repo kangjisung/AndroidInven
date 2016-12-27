@@ -19,6 +19,15 @@ import com.example.kangjisung.likeroom.R;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import static com.example.kangjisung.likeroom.DefineManager.selectedShopInfoDataKey;
+import static com.example.kangjisung.likeroom.DefineManager.shopAddressSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.shopCloseTimeSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.shopLatitudeSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.shopLongtitudedSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.shopNameSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.shopOpenTimeSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.shopPhoneNumberSavedPoint;
+
 // 공지사항리스트에 관한 부분이다.
 // 레이아웃에서는 layout_notice_recycler_view에서 확인할 수 있다.
 // 지금은 어플에서 공지사항을 클릭했을 때 알림창이 뜨는 정도로 구현되어있으며
@@ -131,9 +140,14 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                     public void onClick(View view) {
                         //Snackbar.make(view, context.getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
                         Intent showDetailTargetStore = new Intent(context, ActivityMenu.class);
-                        showDetailTargetStore.putExtra("shopName", noticeRecyclerViewItem.GetStoreName());
-                        showDetailTargetStore.putExtra("shopAddress", noticeRecyclerViewItem.GetStoreAddress());
-                        showDetailTargetStore.putExtra("shopPhoneNumber", noticeRecyclerViewItem.GetStorePhoneNumber());
+                        showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopNameSavedPoint], noticeRecyclerViewItem.GetStoreName());
+                        showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopAddressSavedPoint], noticeRecyclerViewItem.GetStoreAddress());
+                        showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopPhoneNumberSavedPoint], noticeRecyclerViewItem.GetStorePhoneNumber());
+                        showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopOpenTimeSavedPoint], noticeRecyclerViewItem.GetStoreOpenTime());
+                        showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopCloseTimeSavedPoint], noticeRecyclerViewItem.GetStoreCloseTime());
+                        showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopLatitudeSavedPoint], "" + noticeRecyclerViewItem.GetStoreLatitude());
+                        showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopLongtitudedSavedPoint], "" + noticeRecyclerViewItem.GetStoreLongtitude());
+                        //Log.d("LikeRoom", "la: " + noticeRecyclerViewItem.GetStoreLatitude() + " lo: " + noticeRecyclerViewItem.GetStoreLongtitude());
                         context.startActivity(showDetailTargetStore);
                     }
                 });
@@ -158,13 +172,19 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
         noticeListViewItemRecycler.add(addItemList);
     }
 
-    public void addItem(Drawable imgOfStore, String storeName, String storeAddress, String storePhoneNumber) {
+    public void addItem(Drawable imgOfStore, String storeName, String storeAddress, String storePhoneNumber, String storeOpenTime,
+                        String storeCloseTime, Double storeLatitude, Double storeLongtitude) {
         NoticeRecyclerViewItem newItemWillAddToList = new NoticeRecyclerViewItem();
 
+        //Log.d("LikeRoom","la: " + storeLatitude + " lo: " + storeLongtitude);
         newItemWillAddToList.SetStoreImage(imgOfStore);
         newItemWillAddToList.SetStoreName(storeName);
         newItemWillAddToList.SetStoreAddress(storeAddress);
         newItemWillAddToList.SetStorePhoneNumber(storePhoneNumber);
+        newItemWillAddToList.SetStoreOpenTime(storeOpenTime);
+        newItemWillAddToList.SetStoreCloseTime(storeCloseTime);
+        newItemWillAddToList.SetStoreLatitude(storeLatitude);
+        newItemWillAddToList.SetStoreLongtitude(storeLongtitude);
 
         noticeListViewItemRecycler.add(newItemWillAddToList);
     }

@@ -26,6 +26,7 @@ public class ActivityMenuPagerAdapter extends FragmentStatePagerAdapter
         super(fm);
         this.mNumOfTabs = NumOfTabs;
         this.selectedShopInfoData = selectedShopInfoData;
+
     }
 
     @Override
@@ -33,6 +34,7 @@ public class ActivityMenuPagerAdapter extends FragmentStatePagerAdapter
     {
         Bundle dataTransferManager = new Bundle();
         dataTransferManager.putStringArray("shopInfoData", selectedShopInfoData);
+        //Log.d("LikeRoom", Arrays.toString(selectedShopInfoData));
         switch (position) {
             case 0:
                 FragmentStampMain shopStampManager = new FragmentStampMain();
