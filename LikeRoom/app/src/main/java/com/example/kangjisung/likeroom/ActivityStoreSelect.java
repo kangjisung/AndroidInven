@@ -50,11 +50,11 @@ public class ActivityStoreSelect extends AppCompatActivity {
 
         httpCommunicationProcess = new HttpCommunicationProcess(getApplicationContext());
         try {
-            String test = httpCommunicationProcess.execute("http://lamb.kangnam.ac.kr").get().toString();
-            /*if(test.equals(null)) {
-                Snackbar.make()
-            }*/
-            Log.d(getString(R.string.app_name), "test: " + test);
+            String internetConnectionTest = httpCommunicationProcess.execute("http://lamb.kangnam.ac.kr").get();
+            if(internetConnectionTest == null) {
+                Snackbar.make(this.findViewById(android.R.id.content), getString(R.string.internetConnectionFail), Snackbar.LENGTH_LONG).show();
+            }
+            Log.d(getString(R.string.app_name), "internetConnectionTest: " + internetConnectionTest);
         }
         catch (Exception err) {
             Log.d(getString(R.string.app_name), "Error in onCreate: " + err.getMessage());

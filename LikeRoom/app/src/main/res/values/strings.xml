@@ -26,6 +26,7 @@
 
     <!-- 개발 중-->
     <string name="emailLoadFail">본 앱을 이용하려면 구글 계정이 필요로 합니다</string>
+    <string name="internetConnectionFail">빵집에 도달하는데 어려움을 겪고 있습니다</string>
     <string name="positiveButtonMessage">확인</string>
     <string name="featureLoadFail">기능 준비중</string>
 </resources>
