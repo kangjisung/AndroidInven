@@ -13,6 +13,10 @@
     <string name="addNewStore">신규 추가</string>
     <string name="selectStore">매장 선택</string>
 
+    <!-- 새로운 매장 등록 화면-->
+    <string name="addNewStoreTitle">제목</string>
+    <string name="addNewStoreContent">내용</string>
+
     <!-- 스탬프 화면-->
     <string name="menu_stamp_string">스탬프</string>
     <string name="showSpecialStamp">특수 스탬프 카드 보기</string>

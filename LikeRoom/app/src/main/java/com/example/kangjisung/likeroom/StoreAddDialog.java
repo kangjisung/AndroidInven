@@ -1,14 +1,13 @@
 package com.example.kangjisung.likeroom;
 
-        import android.app.Dialog;
-        import android.content.Context;
-        import android.os.Bundle;
-        import android.view.View;
-        import android.view.WindowManager;
-        import android.widget.Button;
-        import android.widget.TextView;
-
-        import com.example.kangjisung.likeroom.R;
+import android.app.Dialog;
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class StoreAddDialog extends Dialog
 {
@@ -22,6 +21,7 @@ public class StoreAddDialog extends Dialog
     private View.OnClickListener mLeftClickListener;
     private View.OnClickListener mRightClickListener;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,16 +32,20 @@ public class StoreAddDialog extends Dialog
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
-        setContentView(R.layout.store_add_dialog);
+        View addNewStoreDialogView = View.inflate(getContext(), R.layout.store_add_dialog, null);
+        setContentView(addNewStoreDialogView);
+        //setContentView(R.layout.store_add_dialog);
 
-        mTitleView = (TextView) findViewById(R.id.txt_title);
-        mContentView = (TextView) findViewById(R.id.txt_content);
-        mLeftButton = (Button) findViewById(R.id.btn_left);
-        mRightButton = (Button) findViewById(R.id.btn_right);
+        mTitleView = (TextView) addNewStoreDialogView.findViewById(R.id.txt_title);
+        mContentView = (TextView) addNewStoreDialogView.findViewById(R.id.txt_content);
+        mLeftButton = (Button) addNewStoreDialogView.findViewById(R.id.btn_left);
+        mRightButton = (Button) addNewStoreDialogView.findViewById(R.id.btn_right);
 
         // 제목과 내용을 생성자에서 셋팅한다.
-        mTitleView.setText(mTitle);
-        mContentView.setText(mContent);
+        // null값을 가지는거에 셋팅을하려 하여 에러가 남
+        Log.d(getContext().getString(R.string.app_name), "title: " + mTitleView + " content: " + mContentView);
+        //mTitleView.setText(getContext().getString(R.string.addNewStoreTitle));
+        //mContentView.setText(getContext().getString(R.string.addNewStoreContent));
 
         // 클릭 이벤트 셋팅
         if (mLeftClickListener != null && mRightClickListener != null) {

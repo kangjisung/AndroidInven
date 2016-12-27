@@ -63,13 +63,17 @@ public class ActivityStoreSelect extends AppCompatActivity {
         btnRegisterNewStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mStoreAddDialog = new StoreAddDialog(ActivityStoreSelect.this,
-                        "[다이얼로그 제목]", // 제목
-                        "다이얼로그 내용 표시하기", // 내용
-                        leftListener, // 왼쪽 버튼 이벤트
-                        rightListener); // 오른쪽 버튼 이벤트
-                mStoreAddDialog.show();
-
+                try {
+                    mStoreAddDialog = new StoreAddDialog(ActivityStoreSelect.this,
+                            "[다이얼로그 제목]", // 제목
+                            "다이얼로그 내용 표시하기", // 내용
+                            leftListener, // 왼쪽 버튼 이벤트
+                            rightListener); // 오른쪽 버튼 이벤트
+                    mStoreAddDialog.show();
+                }
+                catch (Exception err) {
+                    Log.d(getString(R.string.app_name), "Error in setOnClickListener: " + err.getMessage());
+                }
             }
         });
 
