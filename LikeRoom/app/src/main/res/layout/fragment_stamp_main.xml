@@ -17,15 +17,15 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/stamp_store_title_background"
-        android:layout_marginBottom="20dp"
-        android:layout_height="110dp">
+        android:layout_height="110dp"
+        android:layout_alignParentTop="true">
 
         <TextView
             android:text="@string/loadingStoreName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtShopName"
-            android:textSize="40sp"
+            android:textSize="36sp"
             android:layout_marginLeft="30dp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="15dp"
@@ -39,11 +39,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/txtShopPhoneNumber"
             android:layout_marginLeft="35dp"
-            android:textSize="20sp"
+            android:textSize="23sp"
             android:layout_marginBottom="15dp"
             android:textColor="@color/clrTextColorMediumDark"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:text="@string/loadingCustomerName"
@@ -63,10 +64,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="130dp"
+        android:layout_marginBottom="130dp">
 
         <Button
-            android:text="@string/showSpecialStamp"
+            android:text="특수 스탬프 카드 보기"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnShowSpecialStamp"
@@ -77,7 +80,116 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_mask"
+            android:textColor="@color/clrTextColorDeepDark" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="80dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <Button
+                    android:text="1"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button3"
+                    android:layout_weight="0"
+                    android:layout_width="40dp"
+                    android:layout_gravity="center_vertical" />
+
+                <android.support.design.widget.TabLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/tabLayout">
+
+                </android.support.design.widget.TabLayout>
+
+                <Button
+                    android:text="2"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button2"
+                    android:layout_weight="0"
+                    android:layout_gravity="center_vertical" />
+
+            </LinearLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:background="#FFFFFF"
+                android:layout_marginTop="60dp">
+            </android.support.v4.view.ViewPager>
+
+        </RelativeLayout>
     </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="100dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/presence_invisible"
+                    android:id="@+id/imageView"
+                    android:layout_marginLeft="30dp"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:text="스탬프 유의사항"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView2"
+                    android:textSize="20sp"
+                    android:textColor="@color/clrTextColorMediumDark"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="65dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/presence_invisible"
+                    android:id="@+id/imageView2"
+                    android:layout_marginLeft="30dp"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:text="스탬프 유의사항"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView3"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/clrTextColorMediumDark"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="65dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

@@ -11,9 +11,9 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.kangjisung.likeroom.SQLiteDatabaseControl.LocalHostDatabaseManager;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
-import com.example.kangjisung.likeroom.SQLiteDatabaseControl.LocalHostDatabaseManager;
 import com.example.kangjisung.likeroom.User.MileageManage.mileage;
 import com.example.kangjisung.likeroom.User.listView.ListViewAdapter;
 import com.example.kangjisung.likeroom.User.listView.ListViewItem;

@@ -5,21 +5,23 @@
     android:layout_height="80dp"
     android:layout_marginTop="15dp"
     android:background="@color/White"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:padding="10dp">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imgShopIcon"
-        android:layout_marginLeft="20dp"
         android:background="@mipmap/shop"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0" />
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:layout_weight="1">
 
         <TextView
             android:text="@string/loadingStoreName"
@@ -44,10 +46,10 @@
 
     <TextView
         android:text="@string/loadingStorePhoneNumber"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtShopPhoneNumber"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:textSize="18sp"
         android:layout_gravity="center_vertical"
         android:gravity="center_horizontal"
