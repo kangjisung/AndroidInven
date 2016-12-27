@@ -45,7 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/btnRegisterNewStore"
-                android:background="@drawable/button_mask" />
+                android:background="@drawable/button_mask"
+                android:onClick="onClickView" />
 
             <ImageView
                 android:layout_height="wrap_content"

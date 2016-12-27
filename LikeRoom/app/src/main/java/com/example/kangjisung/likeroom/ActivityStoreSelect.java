@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.FragmentNotice.NoticeRecyclerViewAdapter;
 
@@ -18,6 +19,7 @@ public class ActivityStoreSelect extends AppCompatActivity {
     RecyclerView registeredStoreList;
     NoticeRecyclerViewAdapter registeredStoreListViewAdapter;
     RecyclerView.LayoutManager recyclerViewLayoutManager;
+    StoreAddDialog mStoreAddDialog;
 
     //맨처음에 매장선택해서 들어가는 부분.
     //레이아웃에서는 activity_store_select로 디자인되어 있다.
@@ -47,10 +49,16 @@ public class ActivityStoreSelect extends AppCompatActivity {
         btnRegisterNewStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
-                //새로 등록할 매장 선택 팝업
+                mStoreAddDialog = new StoreAddDialog(ActivityStoreSelect.this,
+                        "[다이얼로그 제목]", // 제목
+                        "다이얼로그 내용 표시하기", // 내용
+                        leftListener, // 왼쪽 버튼 이벤트
+                        rightListener); // 오른쪽 버튼 이벤트
+                mStoreAddDialog.show();
+
             }
         });
+
 
         /*eachStoreListItemSample.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,4 +70,21 @@ public class ActivityStoreSelect extends AppCompatActivity {
             }
         });*/
     }
+
+
+    private View.OnClickListener leftListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Toast.makeText(getApplicationContext(), "왼쪽버튼 클릭",
+                    Toast.LENGTH_SHORT).show();
+            mStoreAddDialog.dismiss();
+        }
+    };
+
+    private View.OnClickListener rightListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Toast.makeText(getApplicationContext(), "오른쪽버튼 클릭",
+                    Toast.LENGTH_SHORT).show();
+        }
+    };
+
 }
