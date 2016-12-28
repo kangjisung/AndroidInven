@@ -46,19 +46,19 @@ public class NoticeReadDialog extends Dialog
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
-        View addNewStoreDialogView = View.inflate(getContext(), R.layout.notice_read_dialog, null);
-        setContentView(addNewStoreDialogView);
+        View noticeListDialogView = View.inflate(getContext(), R.layout.notice_read_dialog, null);
+        setContentView(noticeListDialogView);
         //setContentView(R.layout.store_add_dialog);
 
-        txtNoticeTitle = (TextView) addNewStoreDialogView.findViewById(R.id.txtNoticeTitle);
-        txtNoticeBody = (TextView) addNewStoreDialogView.findViewById(R.id.txtNoticeBody);
-        txtNoticeDate = (TextView) addNewStoreDialogView.findViewById(R.id.txtNoticeDate);
+        txtNoticeTitle = (TextView) noticeListDialogView.findViewById(R.id.txtNoticeTitle);
+        txtNoticeBody = (TextView) noticeListDialogView.findViewById(R.id.txtNoticeBody);
+        txtNoticeDate = (TextView) noticeListDialogView.findViewById(R.id.txtNoticeDate);
         Log.d(getContext().getString(R.string.app_name), "title: " + txtNoticeTitle + " body: " + txtNoticeBody + " date: " + txtNoticeDate);
         txtNoticeTitle.setText(mTitle);
         txtNoticeBody.setText(mContent);
         txtNoticeDate.setText(readableDate);
 
-        mLeftButton = (Button) addNewStoreDialogView.findViewById(R.id.button_back);
+        mLeftButton = (Button) noticeListDialogView.findViewById(R.id.button_back);
 
         Log.d(getContext().getString(R.string.app_name), "lbtn: " + mLeftButton);
 
