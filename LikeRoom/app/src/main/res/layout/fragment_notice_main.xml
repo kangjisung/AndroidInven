@@ -40,4 +40,18 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:text="임시 - 공지사항 보기"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonTempRead"
+            android:layout_weight="1" />
+    </LinearLayout>
+
 </RelativeLayout>

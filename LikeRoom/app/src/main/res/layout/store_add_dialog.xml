@@ -6,35 +6,76 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:background="@android:color/darker_gray"
+        android:background="@drawable/layout_background"
         android:orientation="vertical"
         android:layout_width="300dp"
-        android:layout_height="450dp">
+        android:layout_height="450dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
-        <Button
-            android:layout_height="wrap_content"
-            android:id="@+id/button"
-            android:background="@mipmap/ic_launcher"
-            android:layout_width="50dp" />
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dip"
-            android:gravity="center"
-            android:orientation="horizontal" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
 
             <Button
-                android:id="@+id/btn_left"
-                android:layout_width="150dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:id="@+id/button4"
+                android:background="@mipmap/icon_check"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:text="매장목록"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="확인" />
+                android:id="@+id/textView4"
+                android:layout_centerInParent="true"
+                android:textSize="23sp"
+                android:textColor="@color/clrTextColorDeepDark" />
 
             <Button
-                android:id="@+id/btn_right"
-                android:layout_width="150dp"
+                android:id="@+id/button"
+                android:background="@mipmap/icon_back"
+
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_width="45dp"
+                android:layout_height="40dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="65dp"
+            android:background="@drawable/search_bar"
+            android:layout_height="35dp">
+
+            <EditText
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="취소" />
-        </LinearLayout>
+                android:inputType="textPersonName"
+                android:text="매장명 검색"
+                android:ems="10"
+                android:id="@+id/editText"
+                android:layout_centerInParent="true"
+                android:textColor="@color/clrTextColorMediumDark"
+                android:gravity="center_vertical|center"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="120dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></LinearLayout>
+        </ScrollView>
+
     </RelativeLayout>
 </LinearLayout>
