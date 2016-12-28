@@ -1,0 +1,195 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.kangjisung.likeroom.FragmentStamp.FragmentStampMain"
+    android:background="@color/White">
+
+    <!-- TODO: Update blank fragment layout -->
+<!--점주앱에서 포인트적립이 메인페이지라면 고객앱에서는 이 페이지가 메인페이지이다.
+    적립된 스탬프를 확인할 수 있는 페이지의 디자인이다.
+    여기에서 버튼 밑에 viewPager로 스탬프가 들어가야하는데...나에게는 너무나 어렵...-->
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/stamp_store_title_background"
+        android:layout_height="110dp"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:text="@string/loadingStoreName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtShopName"
+            android:textSize="36sp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/clrTextColorDeepDark"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:text="@string/loadingStorePhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtShopPhoneNumber"
+            android:layout_marginLeft="35dp"
+            android:textSize="23sp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/clrTextColorMediumDark"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:text="@string/loadingCustomerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtCustomerName"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="15dp"
+            android:gravity="right"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/clrTextColorDeepDark"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="130dp"
+        android:layout_marginBottom="130dp">
+
+        <Button
+            android:text="특수 스탬프 카드 보기"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnShowSpecialStamp"
+            android:textSize="24sp"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_mask"
+            android:textColor="@color/clrTextColorDeepDark" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="80dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <Button
+                    android:text="1"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button3"
+                    android:layout_weight="0"
+                    android:layout_width="40dp"
+                    android:layout_gravity="center_vertical" />
+
+                <android.support.design.widget.TabLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/tabLayout">
+
+                </android.support.design.widget.TabLayout>
+
+                <Button
+                    android:text="2"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button2"
+                    android:layout_weight="0"
+                    android:layout_gravity="center_vertical" />
+
+            </LinearLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:background="#FFFFFF"
+                android:layout_marginTop="60dp">
+            </android.support.v4.view.ViewPager>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="100dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/presence_invisible"
+                    android:id="@+id/imageView"
+                    android:layout_marginLeft="30dp"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:text="스탬프 유의사항"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView2"
+                    android:textSize="20sp"
+                    android:textColor="@color/clrTextColorMediumDark"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="65dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/presence_invisible"
+                    android:id="@+id/imageView2"
+                    android:layout_marginLeft="30dp"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:text="스탬프 유의사항"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView3"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/clrTextColorMediumDark"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="65dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

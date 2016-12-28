@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--버튼을 클릭하면 살짝 음영이 들어가보이는 효과를 디자인.-->
+    <item android:state_pressed="false">
+        <shape android:shape="rectangle">
+            <solid android:color="#00000000" />
+        </shape>
+    </item>
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#08000000" />
+        </shape>
+    </item>
+</selector>

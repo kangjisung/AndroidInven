@@ -1,0 +1,41 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.kangjisung.likeroom.MainActivity">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+</menu>
+
+
+<!--
+저작권:
+creative commons
+-->
+<!--
+mipmap 아이콘 설명
+ic_launcher -> 쓸 아이콘이 없으면 여기저기 썼다. 지금은 layout_notice_recyler_view에서만 쓰였다.
+icon_calendar -> layout_notice_recycler_view에 사용. 달력아이콘
+icon_menu_item , icon_menu_point, icon_menu_user
+              -> 순서대로 하단 3개의 탭아이콘. 점주앱을 바탕으로 디자인되었기 때문에(제품관리,고객관리,포인트)
+                고객앱에서는 수정이 필요하다(스탬프,공지사항,매장정보)
+                코드에서는 ActivityMenu에서 사용된다.
+                (*추가: 어플로 실행시켜보면 공지사항리스트에서 공지사항을 구분해주는 아이콘으로 사용되었다.
+                나중에 다른 아이콘으로 바꿀 것이지만 일단은 NoticeRecyclerViewAdapter에서도 쓰인다.)
+
+icon_new_window -> 고객앱에서 안쓴다.(점주앱에서 제품수정시 사용되는 아이콘)
+icon_search-> 검색아이콘으로, 아직은 사용되지 않지만 나중에 activity_store_select에서 '신규추가' 누르면 나오는
+              매장추가 팝업에서 사용되어야 할 것.(난 아직 매장추가팝업을 만들지 않았다.)
+icon_setting-> 환경설정아이콘. activity_menu에서 쓰인다.
+
+icon_sort_asc, icon_sort_des -> 정렬시 사용되는 아이콘인데 고객앱에서는 안 쓰인다.
+icon_test01, icon_test02 -> 말그대로 테스트. 안쓰인다.
+menu_list_text_line -> fragment_notice_main에서 쓰인다.
+plus-> activity_store_select에서 쓰인다.
+rounded_corner -> 이게 제일 많이 쓰이는 건데 drawable에 layout_rounded_page에서 쓰인다.
+search_background -> 고객앱에서 안 쓰인다.
+shop -> 일단 activity_store_select에서 쓰이는데 나중에 바꿀 거다. 아이콘이 안예뻐서..
+
+-->
