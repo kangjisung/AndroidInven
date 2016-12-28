@@ -28,7 +28,7 @@
                 android:layout_centerVertical="true" />
 
             <TextView
-                android:text="매장목록"
+                android:text="@string/addNewStorePopUpTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView4"
@@ -53,6 +53,7 @@
             android:layout_height="35dp">
 
             <SearchView
+                android:id="@+id/searchNewStore"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="4dp"
@@ -69,7 +70,14 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></LinearLayout>
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="fill_parent"
+                    android:id="@+id/listOfStoreWitchIsRegisteredByServer"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="190dp" />
+            </LinearLayout>
         </ScrollView>
 
     </RelativeLayout>

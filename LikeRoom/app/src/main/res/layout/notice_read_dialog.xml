@@ -31,7 +31,7 @@
                 android:gravity="center"
                 android:textColor="@android:color/black"
                 android:textSize="28dp"
-                android:text="공지사항"
+                android:text="@string/menu_notice_string"
                 android:layout_centerVertical="true" />
         </RelativeLayout>
 
@@ -62,10 +62,10 @@
                 android:layout_marginRight="5dp">
 
                 <TextView
-                    android:text="제목"
+                    android:text="@string/loadingNoticeTitle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/textView11"
+                    android:id="@+id/txtNoticeTitle"
                     android:textColor="@color/clrTextColorMediumDark"
                     android:textSize="24dp"
                     android:layout_gravity="center_vertical"
@@ -94,10 +94,10 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:text="내용"
+                    android:text="@string/loadingNoticeBody"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView12"
+                    android:id="@+id/txtNoticeBody"
                     android:textSize="24dp"
                     android:textColor="@color/clrTextColorMediumDark"
                     android:layout_marginLeft="10dp"
@@ -124,10 +124,10 @@
                 android:layout_height="30dp" />
 
             <TextView
-                android:text="2016/12/25 일~ 2016/12/26 월"
+                android:text="@string/loadingNoticeDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView13"
+                android:id="@+id/txtNoticeDate"
                 android:layout_marginLeft="65dp"
                 android:layout_centerVertical="true"
                 android:textSize="17dp"
