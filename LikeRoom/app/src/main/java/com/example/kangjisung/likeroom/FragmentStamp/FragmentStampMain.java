@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.DefineManager;
 import com.example.kangjisung.likeroom.R;
@@ -21,11 +22,12 @@ public class FragmentStampMain extends Fragment {
     //스탬프 현황 레이아웃을 그려야할 것
     //또한 스탬프 사용시 팝업도 띄워야 함
     //스탬프 레이아웃에서 선택된 매장에서 현제 나의 스탬프 상황을 봄
+
     View stampLayout;
     Button btnShowSpecialStamp;
     String[] selectedShopInfoData;
     TextView txtShopPhoneNumber, txtShopName;
-
+    StampUseDialog stampUseDialog;
     TabLayout tabLayout;
     //나중에 갯수 수정
     int numOfStamp = 18;
@@ -51,6 +53,18 @@ public class FragmentStampMain extends Fragment {
             }
         });
 
+        Button buttontest = (Button)stampLayout.findViewById(R.id.buttontest);
+        buttontest.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View view)
+            {
+                stampUseDialog = new StampUseDialog(getActivity(),
+                        "[다이얼로그 제목]", // 제목
+                        leftListener,
+                        rightListener); // 오른쪽 버튼 이벤트
+                stampUseDialog.show();
+            }
+        });
 
 
         /*
@@ -83,6 +97,21 @@ public class FragmentStampMain extends Fragment {
         */
         return stampLayout;
     }
+
+    private View.OnClickListener leftListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Toast.makeText(getContext(), "왼쪽버튼 클릭",
+                    Toast.LENGTH_SHORT).show();
+            stampUseDialog.dismiss();
+        }
+    };
+
+    private View.OnClickListener rightListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Toast.makeText(getContext(), "오른쪽버튼 클릭",
+                    Toast.LENGTH_SHORT).show();
+        }
+    };
 
     public void tabLayoutInitialize(TabLayout tabLayout, int numOfPage)
     {
