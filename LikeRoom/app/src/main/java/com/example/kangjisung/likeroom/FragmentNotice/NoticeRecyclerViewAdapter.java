@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -147,7 +148,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                         showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopCloseTimeSavedPoint], noticeRecyclerViewItem.GetStoreCloseTime());
                         showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopLatitudeSavedPoint], "" + noticeRecyclerViewItem.GetStoreLatitude());
                         showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopLongtitudedSavedPoint], "" + noticeRecyclerViewItem.GetStoreLongtitude());
-                        //Log.d("LikeRoom", "la: " + noticeRecyclerViewItem.GetStoreLatitude() + " lo: " + noticeRecyclerViewItem.GetStoreLongtitude());
+                        Log.d("LikeRoom", "la: " + noticeRecyclerViewItem.GetStoreLatitude() + " lo: " + noticeRecyclerViewItem.GetStoreLongtitude());
                         context.startActivity(showDetailTargetStore);
                     }
                 });

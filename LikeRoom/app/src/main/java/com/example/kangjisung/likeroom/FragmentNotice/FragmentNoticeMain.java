@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.example.kangjisung.likeroom.DefineManager;
 import com.example.kangjisung.likeroom.R;
 
+import java.util.GregorianCalendar;
+
 public class FragmentNoticeMain extends Fragment {
 //스탬프,공지사항,매장정보 중 공지사항 부분.
     private View view;
@@ -39,9 +41,10 @@ public class FragmentNoticeMain extends Fragment {
         noticeRecyclerView.setAdapter(mAdapter);
         noticeRecyclerView.setLayoutManager(mLayoutManager);
         txtStoreName.setText(selectedShopInfoData[DefineManager.shopNameSavedPoint]);
+        //new GregorianCalendar();
 
-        /*mAdapter.addItem("제목1", "내용1", new GregorianCalendar(2016, 1, 1), new GregorianCalendar(2016, 12, 30), 1);
-        mAdapter.addItem("제목2", "내용2", new GregorianCalendar(2015, 1, 1), new GregorianCalendar(2015, 12, 30), 2);
+        mAdapter.addItem("제목1", "내용1", new GregorianCalendar(2016, 1, 1), new GregorianCalendar(2016, 12, 30), 1);
+        /*mAdapter.addItem("제목2", "내용2", new GregorianCalendar(2015, 1, 1), new GregorianCalendar(2015, 12, 30), 2);
         mAdapter.addItem("제목3", "내용3", new GregorianCalendar(2014, 1, 1), new GregorianCalendar(2014, 12, 30), 3);*/
 
 
