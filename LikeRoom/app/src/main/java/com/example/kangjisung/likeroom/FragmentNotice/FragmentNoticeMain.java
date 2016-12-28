@@ -12,10 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kangjisung.likeroom.ActivityStoreSelect;
 import com.example.kangjisung.likeroom.DefineManager;
 import com.example.kangjisung.likeroom.R;
-import com.example.kangjisung.likeroom.StoreAddDialog;
 
 import java.util.GregorianCalendar;
 
@@ -61,6 +59,7 @@ public class FragmentNoticeMain extends Fragment {
                 noticeReadDialog.show();
             }
         });
+        buttonTempRead.setVisibility(View.INVISIBLE);
         mAdapter.addItem("제목1", "내용1", new GregorianCalendar(2016, 1, 1), new GregorianCalendar(2016, 12, 30), 1);
         /*mAdapter.addItem("제목2", "내용2", new GregorianCalendar(2015, 1, 1), new GregorianCalendar(2015, 12, 30), 2);
         mAdapter.addItem("제목3", "내용3", new GregorianCalendar(2014, 1, 1), new GregorianCalendar(2014, 12, 30), 3);*/

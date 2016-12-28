@@ -3,7 +3,6 @@ package com.example.kangjisung.likeroom.FragmentNotice;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -103,12 +102,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
             case showNoticeList:
                 holder.textViewTitle.setText(noticeRecyclerViewItem.getTitle());
                 holder.textViewBody.setText(noticeRecyclerViewItem.getBody());
-                String textDate = String.valueOf(noticeRecyclerViewItem.getStartDate().get(Calendar.YEAR)) + "/"
-                        + String.valueOf(noticeRecyclerViewItem.getStartDate().get(Calendar.MONTH)+1) + "/"
-                        + String.valueOf(noticeRecyclerViewItem.getStartDate().get(Calendar.DAY_OF_MONTH)) + "/ - "
-                        + String.valueOf(noticeRecyclerViewItem.getEndDate().get(Calendar.YEAR)) + "/"
-                        + String.valueOf(noticeRecyclerViewItem.getEndDate().get(Calendar.MONTH)+1) + "/"
-                        + String.valueOf(noticeRecyclerViewItem.getEndDate().get(Calendar.DAY_OF_MONTH));
+                String textDate = GetNoticeReadableDate(noticeRecyclerViewItem);
                 holder.txtNoticeDate.setText(textDate);
                 switch (noticeRecyclerViewItem.getType()) {
                     default:
@@ -125,8 +119,11 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                 holder.btnEachNoticeItem.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
                         //SingleToast.show(context, noticeRecyclerViewItem.getTitle().toString() + " 항목을 눌렀습니다", Toast.LENGTH_SHORT);
-                        Snackbar.make(v, noticeRecyclerViewItem.getTitle().toString(), Snackbar.LENGTH_SHORT).show();
+                        //Snackbar.make(v, noticeRecyclerViewItem.getTitle().toString(), Snackbar.LENGTH_SHORT).show();
                         //공지사항을 눌렀을 시 세부 내용을 출력하는 팝업을 구현해야함
+                        NoticeReadDialog noticeReadDialog = new NoticeReadDialog(context, noticeRecyclerViewItem.getTitle(),
+                                noticeRecyclerViewItem.getBody(), GetNoticeReadableDate(noticeRecyclerViewItem));
+                        noticeReadDialog.show();
                     }
                 });
                 break;
@@ -154,6 +151,15 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                 });
                 break;
         }
+    }
+
+    public String GetNoticeReadableDate(NoticeRecyclerViewItem noticeRecyclerViewItem) {
+        return String.valueOf(noticeRecyclerViewItem.getStartDate().get(Calendar.YEAR)) + "/"
+                + String.valueOf(noticeRecyclerViewItem.getStartDate().get(Calendar.MONTH)+1) + "/"
+                + String.valueOf(noticeRecyclerViewItem.getStartDate().get(Calendar.DAY_OF_MONTH)) + "/ - "
+                + String.valueOf(noticeRecyclerViewItem.getEndDate().get(Calendar.YEAR)) + "/"
+                + String.valueOf(noticeRecyclerViewItem.getEndDate().get(Calendar.MONTH)+1) + "/"
+                + String.valueOf(noticeRecyclerViewItem.getEndDate().get(Calendar.DAY_OF_MONTH));
     }
 
     @Override
