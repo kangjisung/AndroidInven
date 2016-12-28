@@ -15,24 +15,24 @@
         android:layout_width="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/stamp_store_title_background"
         android:layout_alignParentTop="true"
-        android:layout_height="100dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:paddingTop="3dp"
+        android:paddingBottom="10dp"
+        android:layout_height="90dp">
 
         <TextView
             android:text="@string/loadingStoreName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtShopName"
-            android:textSize="34sp"
             android:layout_marginLeft="30dp"
             android:textColor="@color/clrTextColorDeepDark"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="2dp" />
+            android:layout_marginTop="8dp"
+            android:textSize="28dp" />
 
         <TextView
             android:text="@string/loadingStorePhoneNumber"
@@ -40,12 +40,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/txtShopPhoneNumber"
             android:layout_marginLeft="35dp"
-            android:textSize="22sp"
             android:textColor="@color/clrTextColorMediumDark"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
             android:textStyle="normal|bold"
-            android:layout_marginBottom="2dp" />
+            android:layout_marginBottom="5dp"
+            android:textSize="20dp"
+            android:layout_alignParentBottom="true" />
 
         <TextView
             android:text="@string/loadingCustomerName"
@@ -53,21 +53,21 @@
             android:layout_height="wrap_content"
             android:id="@+id/txtCustomerName"
             android:layout_weight="1"
-            android:textSize="20sp"
+            android:textSize="18dp"
             android:layout_gravity="bottom"
             android:gravity="right"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="10dp"
             android:textColor="@color/clrTextColorDeepDark"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="3dp" />
+            android:layout_marginBottom="5dp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="130dp"
-        android:layout_marginBottom="110dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="70dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
@@ -76,7 +76,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnShowSpecialStamp"
-            android:textSize="24sp"
             android:gravity="center_horizontal"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -85,22 +84,23 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:background="@drawable/button_mask"
-            android:textColor="@color/clrTextColorDeepDark" />
+            android:textColor="@color/clrTextColorDeepDark"
+            android:textSize="20dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="60dp">
+            android:layout_marginTop="50dp"
+            android:layout_alignParentBottom="false">
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
                 android:paddingLeft="15dp"
-                android:paddingRight="15dp">
+                android:paddingRight="15dp"
+                android:layout_height="25dp">
 
                 <Button
-                    android:text="1"
                     android:id="@+id/button3"
                     android:layout_weight="0"
                     android:layout_gravity="center_vertical"
@@ -117,7 +117,6 @@
                 </android.support.design.widget.TabLayout>
 
                 <Button
-                    android:text="2"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:id="@+id/button2"
@@ -128,12 +127,20 @@
 
             </LinearLayout>
 
+            <Button
+                android:text="Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttontest"
+                android:layout_alignParentBottom="false"
+                android:layout_centerInParent="true" />
+
             <android.support.v4.view.ViewPager
                 android:id="@+id/viewPager"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:background="#FFFFFF"
-                android:layout_marginTop="60dp">
+                android:layout_marginTop="40dp">
             </android.support.v4.view.ViewPager>
 
         </RelativeLayout>
@@ -142,8 +149,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_height="100dp"
-        android:paddingTop="10dp">
+        android:layout_height="60dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -167,16 +173,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView2"
-                    android:textSize="20sp"
                     android:textColor="@color/clrTextColorMediumDark"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="65dp" />
+                    android:layout_marginLeft="65dp"
+                    android:textSize="18dp" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="5dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -193,7 +199,7 @@
                     android:id="@+id/textView3"
                     android:layout_centerVertical="true"
                     android:textColor="@color/clrTextColorMediumDark"
-                    android:textSize="20sp"
+                    android:textSize="18dp"
                     android:layout_marginLeft="65dp" />
             </RelativeLayout>
 

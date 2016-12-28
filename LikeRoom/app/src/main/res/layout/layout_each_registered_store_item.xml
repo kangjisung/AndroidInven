@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtShopName"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:textColor="@color/clrTextColorDeepDark"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="8dp" />
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtShopAddress"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:textColor="@color/clrTextColorMediumDark"
             android:layout_marginLeft="20dp" />
 
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtShopPhoneNumber"
         android:layout_weight="0"
-        android:textSize="18sp"
+        android:textSize="18dp"
         android:layout_gravity="center_vertical"
         android:gravity="center_horizontal"
         android:textColor="@color/clrTextColorMediumDark" />

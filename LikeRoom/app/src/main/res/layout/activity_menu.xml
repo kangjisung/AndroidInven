@@ -39,7 +39,7 @@
                 android:id="@+id/textViewTitle"
                 android:gravity="center_vertical|center_horizontal"
                 android:layout_width="match_parent"
-                android:textSize="22sp"
+                android:textSize="22dp"
                 android:textColor="@color/clrTextColorDeepDark"
                 android:layout_centerInParent="true" />
         </RelativeLayout>

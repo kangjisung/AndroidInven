@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/txtSelectStore"
             style="@android:style/Widget.TextView"
-            android:textSize="35sp"
+            android:textSize="35dp"
             android:layout_marginBottom="30dp"
             android:layout_gravity="center_vertical|center_horizontal"
             android:gravity="center_vertical|center_horizontal"
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtAddNewStore"
-                android:textSize="20sp"
+                android:textSize="20dp"
                 android:layout_centerVertical="true"
                 android:paddingLeft="100dp"
                 android:textColor="@color/clrTextColorDeepDark" />

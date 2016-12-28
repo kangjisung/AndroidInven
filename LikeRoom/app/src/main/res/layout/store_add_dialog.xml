@@ -22,7 +22,7 @@
             <Button
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:id="@+id/button4"
+                android:id="@+id/button_ok"
                 android:background="@mipmap/icon_check"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true" />
@@ -33,11 +33,11 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView4"
                 android:layout_centerInParent="true"
-                android:textSize="23sp"
+                android:textSize="23dp"
                 android:textColor="@color/clrTextColorDeepDark" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_back"
                 android:background="@mipmap/icon_back"
 
                 android:layout_centerVertical="true"
@@ -52,18 +52,13 @@
             android:background="@drawable/search_bar"
             android:layout_height="35dp">
 
-            <EditText
-                android:layout_width="wrap_content"
+            <SearchView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:text="매장명 검색"
-                android:ems="10"
-                android:id="@+id/editText"
-                android:layout_centerInParent="true"
-                android:textColor="@color/clrTextColorMediumDark"
-                android:gravity="center_vertical|center"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp" />
+                android:paddingTop="4dp"
+                android:paddingBottom="5dp"
+                android:layout_marginLeft="40dp" />
+
         </RelativeLayout>
 
         <ScrollView

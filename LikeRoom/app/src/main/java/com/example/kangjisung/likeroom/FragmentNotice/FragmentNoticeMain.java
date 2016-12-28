@@ -41,7 +41,7 @@ public class FragmentNoticeMain extends Fragment {
         noticeRecyclerView = (RecyclerView) view.findViewById((R.id.recyclerView));
         hamburgerMenu = (ImageView) view.findViewById(R.id.hamburgerMenu);
 
-        hamburgerMenu.setVisibility(View.INVISIBLE);
+        hamburgerMenu.setVisibility(View.VISIBLE);
         selectedShopInfoData = getArguments().getStringArray("shopInfoData");
 
         noticeRecyclerView.setAdapter(mAdapter);
