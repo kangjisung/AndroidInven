@@ -119,16 +119,16 @@
                 app:srcCompat="@mipmap/icon_time"
                 android:id="@+id/imageView9"
                 android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="22dp"
-                android:layout_centerVertical="true" />
+                android:layout_marginLeft="15dp"
+                android:layout_centerVertical="true"
+                android:layout_height="30dp" />
 
             <TextView
                 android:text="2016/12/25 일~ 2016/12/26 월"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView13"
-                android:layout_marginLeft="75dp"
+                android:layout_marginLeft="65dp"
                 android:layout_centerVertical="true"
                 android:textSize="17sp"
                 android:textColor="@color/clrTextColorMediumDark" />
