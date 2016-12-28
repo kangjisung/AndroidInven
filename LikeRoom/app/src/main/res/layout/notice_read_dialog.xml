@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:background="@android:color/background_light"
+        android:orientation="vertical"
+        android:layout_width="350dp"
+        android:layout_height="450dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+            <Button
+                android:id="@+id/button_back"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/icon_back"
+                android:layout_marginLeft="20dp"
+                android:layout_height="40dp"
+                android:layout_width="45dp" />
+
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="28sp"
+                android:text="공지사항"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            app:srcCompat="@color/Gray"
+            android:id="@+id/imageView4"
+            android:layout_height="1dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/icon_menu_item"
+                android:id="@+id/imageView5"
+                android:layout_marginLeft="10dp" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="80dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/test01"
+                android:layout_marginRight="5dp">
+
+                <TextView
+                    android:text="제목"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView11"
+                    android:textColor="@color/clrTextColorMediumDark"
+                    android:textSize="24sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp" />
+            </ScrollView>
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@color/Gray"
+            android:id="@+id/imageView6" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/test01"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="내용"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView12"
+                    android:textSize="24sp"
+                    android:textColor="@color/clrTextColorMediumDark"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp" />
+            </ScrollView>
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:srcCompat="@color/Gray"
+            android:id="@+id/imageView8" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <ImageView
+                app:srcCompat="@mipmap/icon_time"
+                android:id="@+id/imageView9"
+                android:layout_width="35dp"
+                android:layout_marginLeft="15dp"
+                android:layout_centerVertical="true"
+                android:layout_height="30dp" />
+
+            <TextView
+                android:text="2016/12/25 일~ 2016/12/26 월"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView13"
+                android:layout_marginLeft="65dp"
+                android:layout_centerVertical="true"
+                android:textSize="17sp"
+                android:textColor="@color/clrTextColorMediumDark" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

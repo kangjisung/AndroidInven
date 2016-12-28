@@ -17,21 +17,22 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/stamp_store_title_background"
-        android:layout_height="110dp"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:layout_height="100dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
 
         <TextView
             android:text="@string/loadingStoreName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtShopName"
-            android:textSize="36sp"
+            android:textSize="34sp"
             android:layout_marginLeft="30dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="15dp"
             android:textColor="@color/clrTextColorDeepDark"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true" />
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="2dp" />
 
         <TextView
             android:text="@string/loadingStorePhoneNumber"
@@ -39,12 +40,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/txtShopPhoneNumber"
             android:layout_marginLeft="35dp"
-            android:textSize="23sp"
-            android:layout_marginBottom="15dp"
+            android:textSize="22sp"
             android:textColor="@color/clrTextColorMediumDark"
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
-            android:textStyle="normal|bold" />
+            android:textStyle="normal|bold"
+            android:layout_marginBottom="2dp" />
 
         <TextView
             android:text="@string/loadingCustomerName"
@@ -54,19 +55,21 @@
             android:layout_weight="1"
             android:textSize="20sp"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="15dp"
             android:gravity="right"
             android:layout_marginRight="20dp"
             android:textColor="@color/clrTextColorDeepDark"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="3dp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="130dp"
-        android:layout_marginBottom="130dp">
+        android:layout_marginBottom="110dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
         <Button
             android:text="특수 스탬프 카드 보기"
@@ -81,27 +84,29 @@
             android:paddingBottom="10dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp"
             android:background="@drawable/button_mask"
             android:textColor="@color/clrTextColorDeepDark" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="80dp">
+            android:layout_marginTop="60dp">
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="60dp">
+                android:layout_height="60dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
 
                 <Button
                     android:text="1"
-                    android:layout_height="wrap_content"
                     android:id="@+id/button3"
                     android:layout_weight="0"
-                    android:layout_width="40dp"
-                    android:layout_gravity="center_vertical" />
+                    android:layout_gravity="center_vertical"
+                    android:background="@mipmap/icon_back"
+                    android:layout_height="40dp"
+                    android:layout_width="40dp" />
 
                 <android.support.design.widget.TabLayout
                     android:layout_width="match_parent"
@@ -114,10 +119,12 @@
                 <Button
                     android:text="2"
                     android:layout_width="40dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:id="@+id/button2"
                     android:layout_weight="0"
-                    android:layout_gravity="center_vertical" />
+                    android:layout_gravity="center_vertical"
+                    android:background="@mipmap/icon_back"
+                    android:rotation="180" />
 
             </LinearLayout>
 
@@ -135,7 +142,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_height="100dp">
+        android:layout_height="100dp"
+        android:paddingTop="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"

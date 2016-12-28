@@ -11,30 +11,30 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
         android:background="@color/test01"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_height="110dp">
 
         <RelativeLayout
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_width="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="20dp">
+            android:layout_marginLeft="25dp"
+            android:layout_marginBottom="8dp">
 
             <Button
                 android:id="@+id/callButtonMask"
                 android:background="@drawable/button_mask"
-                android:layout_width="60dp"
-                android:layout_height="60dp" />
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
 
             <ImageView
                 app:srcCompat="@mipmap/icon_call"
                 android:id="@+id/btnCallButton"
-                android:layout_width="60dp"
-                android:layout_height="60dp" />
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
         </RelativeLayout>
 
         <LinearLayout
@@ -44,29 +44,29 @@
             android:layout_centerInParent="true">
 
             <TextView
-                android:text="@string/loadingStoreName"
+                android:text="매장이름"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/storeName"
-                android:textSize="36sp"
+                android:textSize="33sp"
                 android:textColor="@color/clrTextColorDeepDark"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_horizontal"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="12dp" />
 
             <TextView
                 android:text="@string/loadingStorePhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtStorePhone"
-                android:textColor="@color/clrTextColorMediumDark"
+                android:textColor="@color/Gray"
                 android:textSize="22sp"
                 android:gravity="center_horizontal"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
-            android:text="@string/loadingStoreVarious"
+            android:text="매장구분"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/storeCategory"
@@ -76,7 +76,15 @@
             android:textSize="18sp"
             android:textColor="@color/clrTextColorMediumDark"
             android:textStyle="bold" />
+
     </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:srcCompat="@color/Gray"
+        android:id="@+id/imageView7"
+        android:layout_marginTop="110dp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -101,19 +109,22 @@
                 class="com.google.android.gms.maps.SupportMapFragment"
                 android:name="com.example.kangjisung.likeroom.FragmentInfo.FragmentInfoMain"
                 android:layout_gravity="center"
-                />
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     app:srcCompat="@mipmap/icon_map"
                     android:id="@+id/mapIcon"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="21dp" />
+                    android:layout_marginLeft="21dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp" />
 
                 <TextView
                     android:text="@string/loadingStoreAddress"
@@ -121,7 +132,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/storeLocation"
                     android:textColor="@color/clrTextColorMediumDark"
-                    android:textSize="25sp"
+                    android:textSize="22sp"
                     android:layout_alignParentRight="false"
                     android:layout_centerInParent="false"
                     android:layout_alignParentLeft="true"
@@ -132,21 +143,21 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="8dp">
 
                 <ImageView
                     app:srcCompat="@mipmap/icon_time"
                     android:id="@+id/timeIcon"
-                    android:layout_marginLeft="25dp"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp" />
+                    android:layout_marginLeft="24dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
 
                 <TextView
                     android:text="@string/loadingStoreOpenAndCloseTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/txtStoreManageTime"
-                    android:textSize="25sp"
+                    android:textSize="22sp"
                     android:textColor="@color/clrTextColorMediumDark"
                     android:layout_centerInParent="false"
                     android:layout_marginLeft="80dp"

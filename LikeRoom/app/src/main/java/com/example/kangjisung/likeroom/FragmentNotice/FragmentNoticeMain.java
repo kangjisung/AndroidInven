@@ -7,11 +7,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.kangjisung.likeroom.ActivityStoreSelect;
 import com.example.kangjisung.likeroom.DefineManager;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.StoreAddDialog;
 
 import java.util.GregorianCalendar;
 
@@ -24,6 +28,8 @@ public class FragmentNoticeMain extends Fragment {
     String[] selectedShopInfoData;
     TextView txtStoreName;
     ImageView hamburgerMenu;
+
+    private NoticeReadDialog noticeReadDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,6 +49,18 @@ public class FragmentNoticeMain extends Fragment {
         txtStoreName.setText(selectedShopInfoData[DefineManager.shopNameSavedPoint]);
         //new GregorianCalendar();
 
+        
+        Button buttonTempRead = (Button)view.findViewById(R.id.buttonTempRead);
+        buttonTempRead.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View view)
+            {
+                noticeReadDialog = new NoticeReadDialog(getActivity(),
+                        "[다이얼로그 제목]", // 제목
+                        leftListener); // 오른쪽 버튼 이벤트
+                noticeReadDialog.show();
+            }
+        });
         mAdapter.addItem("제목1", "내용1", new GregorianCalendar(2016, 1, 1), new GregorianCalendar(2016, 12, 30), 1);
         /*mAdapter.addItem("제목2", "내용2", new GregorianCalendar(2015, 1, 1), new GregorianCalendar(2015, 12, 30), 2);
         mAdapter.addItem("제목3", "내용3", new GregorianCalendar(2014, 1, 1), new GregorianCalendar(2014, 12, 30), 3);*/
@@ -50,4 +68,11 @@ public class FragmentNoticeMain extends Fragment {
 
         return view;
     }
+
+    private View.OnClickListener leftListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Toast.makeText(getActivity(), "왼쪽버튼 클릭", Toast.LENGTH_SHORT).show();
+            noticeReadDialog.dismiss();
+        }
+    };
 }
