@@ -1,20 +1,20 @@
-
 package com.example.kangjisung.likeroom.SQLiteDatabaseControl;
 
-        import android.content.Context;
-        import android.database.DatabaseErrorHandler;
-        import android.database.sqlite.SQLiteDatabase;
-        import android.database.sqlite.SQLiteOpenHelper;
-        import android.util.Log;
+import android.content.Context;
+import android.database.DatabaseErrorHandler;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
-        import java.io.File;
-        import java.io.FileOutputStream;
-        import java.io.InputStream;
-        import java.io.OutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * Created by stories2 on 2016. 11. 25..
  */
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     String logCatTag = "ex13", dbPath;
     Context context;

@@ -1,11 +1,10 @@
 package com.example.kangjisung.likeroom.SQLiteDatabaseControl;
 
-        import android.content.Context;
-        import android.database.DatabaseErrorHandler;
-        import android.database.sqlite.SQLiteDatabase;
-        import android.database.sqlite.SQLiteOpenHelper;
-        import android.util.Log;
-
+import android.content.Context;
+import android.database.DatabaseErrorHandler;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by stories2 on 2016. 11. 27..
