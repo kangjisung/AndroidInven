@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.ActivityMenu;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.StoreAddDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,6 +34,7 @@ import static com.example.kangjisung.likeroom.DefineManager.shopLongtitudedSaved
 import static com.example.kangjisung.likeroom.DefineManager.shopNameSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.shopOpenTimeSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.shopPhoneNumberSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.showUnRegisteredStoreList;
 
 // 공지사항리스트에 관한 부분이다.
 // 레이아웃에서는 layout_notice_recycler_view에서 확인할 수 있다.
@@ -46,6 +49,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
     private ArrayList<NoticeRecyclerViewItem> noticeListViewItemRecycler = new ArrayList<NoticeRecyclerViewItem>();
     private Context context;
     Activity activity;
+    Button acceptButtonEnableControl;
 
     public static class NoticeRecyclerViewHolder extends RecyclerView.ViewHolder {
 
@@ -77,6 +81,14 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                     txtShopPhoneNumber = (TextView) view.findViewById(R.id.txtShopPhoneNumber);
                     layoutEachStoreItem = (LinearLayout) view.findViewById(R.id.layoutEachStoreItem);
                     break;
+                case showUnRegisteredStoreList:
+                    imgShopIcon = (ImageView) view.findViewById(R.id.imgShopIcon);
+                    txtShopName = (TextView) view.findViewById(R.id.txtShopName);
+                    txtShopAddress = (TextView) view.findViewById(R.id.txtShopAddress);
+                    txtShopPhoneNumber = (TextView) view.findViewById(R.id.txtShopPhoneNumber);
+                    layoutEachStoreItem = (LinearLayout) view.findViewById(R.id.layoutEachStoreItem);
+                    break;
+
             }
         }
     }
@@ -92,6 +104,12 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
         this.context = context;
     }
 
+    public NoticeRecyclerViewAdapter(int modeOfRecyclerView, Context context, Button acceptButtonEnableControl) {
+        this.modeOfRecyclerView = modeOfRecyclerView;
+        this.context = context;
+        this.acceptButtonEnableControl = acceptButtonEnableControl;
+    }
+
     public NoticeRecyclerViewAdapter.NoticeRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = null;
         switch (modeOfRecyclerView) {
@@ -101,10 +119,17 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
             case showStoreList:
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_each_registered_store_item, parent, false);
                 break;
+            case showUnRegisteredStoreList:
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_each_registered_store_item, parent, false);
+                break;
         }
         NoticeRecyclerViewAdapter.NoticeRecyclerViewHolder vh = new NoticeRecyclerViewAdapter.NoticeRecyclerViewHolder(v);
         context = parent.getContext();
         return vh;
+    }
+
+    public void ChangeListMode(int modeOfRecyclerView) {
+        this.modeOfRecyclerView = modeOfRecyclerView;
     }
 
     @Override
@@ -162,6 +187,32 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                         //context.startActivity(showDetailTargetStore);
                         activity.startActivityForResult(showDetailTargetStore, isStoreListNeedsRefresh);
                         //Log.d("LikeRoom", "can u see me?");
+                    }
+                });
+                break;
+            case showUnRegisteredStoreList:
+                holder.imgShopIcon.setImageDrawable(noticeRecyclerViewItem.GetStoreImage());
+                holder.txtShopName.setText(noticeRecyclerViewItem.GetStoreName());
+                holder.txtShopPhoneNumber.setText(noticeRecyclerViewItem.GetStorePhoneNumber());
+                holder.txtShopAddress.setText(noticeRecyclerViewItem.GetStoreAddress());
+
+                holder.layoutEachStoreItem.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(StoreAddDialog.selectedWantRegisterNewStoreId == null) {
+                            Snackbar.make(view, noticeRecyclerViewItem.GetStoreName() + " " + context.getString(R.string.willRegisterNewStore),
+                                    Snackbar.LENGTH_LONG).show();
+                            StoreAddDialog.selectedWantRegisterNewStoreId = noticeRecyclerViewItem.GetStoreId();
+                            acceptButtonEnableControl.setEnabled(true);
+                        }
+                        else {
+                            Snackbar.make(view, noticeRecyclerViewItem.GetStoreName() + " " + context.getString(R.string.cancelRegisterNewStore),
+                                    Snackbar.LENGTH_LONG).show();
+                            StoreAddDialog.selectedWantRegisterNewStoreId = null;
+                            acceptButtonEnableControl.setEnabled(false);
+                        }
+                        //Snackbar.make(view, context.getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
+                        //StoreAddDialog.selectedWantRegisterNewStoreId = noticeRecyclerViewItem.GetStoreId();
                     }
                 });
                 break;
@@ -233,5 +284,12 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
         newItemWillAddToList.SetStoreLongtitude(storeLongtitude);
 
         noticeListViewItemRecycler.add(newItemWillAddToList);
+    }
+
+    public void DeleteAllItems() {
+        int i;
+        for(i = noticeListViewItemRecycler.size() - 1; i >= 0; i -= 1) {
+            noticeListViewItemRecycler.remove(i);
+        }
     }
 }

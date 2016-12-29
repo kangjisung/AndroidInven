@@ -16,7 +16,6 @@ import com.example.kangjisung.likeroom.DefineManager;
 import com.example.kangjisung.likeroom.PermissionManager.AndroidVersionController;
 import com.example.kangjisung.likeroom.PermissionManager.PhoneCallBridge;
 import com.example.kangjisung.likeroom.R;
-import com.example.kangjisung.likeroom.SQLiteDatabaseControl.SimpleDatabaseTest;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -39,7 +38,7 @@ public class FragmentInfoMain extends Fragment implements OnMapReadyCallback{
     String[] selectedShopInfoData;
     Button btnDeleteThisStore;
     LatLng targetLocationInfo;
-    SimpleDatabaseTest simpleDatabaseTest;
+    //SimpleDatabaseTest simpleDatabaseTest;
 //매장정보에 관한 부분이다. 아마 지도 등 CouponTan에서 만들어진 부분들을 여기로 옮겨올 수 있을 듯하다.
     //지도, 사진, 주소등이 필요
     @Override
@@ -55,7 +54,7 @@ public class FragmentInfoMain extends Fragment implements OnMapReadyCallback{
         txtStoreManageTime = (TextView) registeredStoreInfoView.findViewById(R.id.txtStoreManageTime);
 
         phoneCallBridge = new PhoneCallBridge(getActivity());
-        simpleDatabaseTest = new SimpleDatabaseTest();
+        //simpleDatabaseTest = new SimpleDatabaseTest();
 
         selectedShopInfoData = getArguments().getStringArray("shopInfoData");
         registeredStorePhoneNumber = selectedShopInfoData[DefineManager.shopPhoneNumberSavedPoint];
@@ -103,10 +102,12 @@ public class FragmentInfoMain extends Fragment implements OnMapReadyCallback{
             @Override
             public void onClick(View view) {
                 //Snackbar.make(view, getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
-                simpleDatabaseTest.DeleteSelectedShop(Integer.parseInt(selectedShopInfoData[shopIdSavedPoint]));
+                //simpleDatabaseTest.DeleteSelectedShop(Integer.parseInt(selectedShopInfoData[shopIdSavedPoint]));
+
                 Intent storeDetailViewInfoTab = new Intent();
                 storeDetailViewInfoTab.putExtra("deleteTargetStoreId", selectedShopInfoData[shopIdSavedPoint]);
-                getActivity().setResult(Activity.RESULT_OK);
+                //getActivity().setResult(Activity.RESULT_OK);
+                getActivity().setResult(Activity.RESULT_OK, storeDetailViewInfoTab);
                 getActivity().finish();
             }
         });
