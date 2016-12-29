@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.ActivityMenu;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.StoreAddDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
     private ArrayList<NoticeRecyclerViewItem> noticeListViewItemRecycler = new ArrayList<NoticeRecyclerViewItem>();
     private Context context;
     Activity activity;
+    Button acceptButtonEnableControl;
 
     public static class NoticeRecyclerViewHolder extends RecyclerView.ViewHolder {
 
@@ -100,6 +102,12 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
     public NoticeRecyclerViewAdapter(int modeOfRecyclerView, Context context) {
         this.modeOfRecyclerView = modeOfRecyclerView;
         this.context = context;
+    }
+
+    public NoticeRecyclerViewAdapter(int modeOfRecyclerView, Context context, Button acceptButtonEnableControl) {
+        this.modeOfRecyclerView = modeOfRecyclerView;
+        this.context = context;
+        this.acceptButtonEnableControl = acceptButtonEnableControl;
     }
 
     public NoticeRecyclerViewAdapter.NoticeRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -191,7 +199,20 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                 holder.layoutEachStoreItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Snackbar.make(view, context.getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
+                        if(StoreAddDialog.selectedWantRegisterNewStoreId == null) {
+                            Snackbar.make(view, noticeRecyclerViewItem.GetStoreName() + " " + context.getString(R.string.willRegisterNewStore),
+                                    Snackbar.LENGTH_LONG).show();
+                            StoreAddDialog.selectedWantRegisterNewStoreId = noticeRecyclerViewItem.GetStoreId();
+                            acceptButtonEnableControl.setEnabled(true);
+                        }
+                        else {
+                            Snackbar.make(view, noticeRecyclerViewItem.GetStoreName() + " " + context.getString(R.string.cancelRegisterNewStore),
+                                    Snackbar.LENGTH_LONG).show();
+                            StoreAddDialog.selectedWantRegisterNewStoreId = null;
+                            acceptButtonEnableControl.setEnabled(false);
+                        }
+                        //Snackbar.make(view, context.getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
+                        //StoreAddDialog.selectedWantRegisterNewStoreId = noticeRecyclerViewItem.GetStoreId();
                     }
                 });
                 break;

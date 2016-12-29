@@ -17,6 +17,8 @@
     <string name="addNewStoreTitle">제목</string>
     <string name="addNewStoreContent">내용</string>
     <string name="addNewStorePopUpTitle">매장목록</string>
+    <string name="willRegisterNewStore">(이)가 새로 추가됩니다</string>
+    <string name="cancelRegisterNewStore"> 선택을 최소합니다</string>
 
     <!-- 스탬프 화면-->
     <string name="menu_stamp_string">스탬프</string>

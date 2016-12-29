@@ -26,8 +26,9 @@ import static com.example.kangjisung.likeroom.DefineManager.databaseShopNameSave
 import static com.example.kangjisung.likeroom.DefineManager.databaseShopOpenTimeSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.databaseShopPhoneNumberSavedPoint;
 
-public class StoreAddDialog extends Dialog
-{
+public class StoreAddDialog extends Dialog {
+
+    public static String selectedWantRegisterNewStoreId;
     private Button mLeftButton;
     private Button mRightButton;
     SearchView searchNewStore;
@@ -60,10 +61,14 @@ public class StoreAddDialog extends Dialog
         listOfStoreWitchIsRegisteredByServer = (RecyclerView) addNewStoreDialogView.findViewById(R.id.listOfStoreWitchIsRegisteredByServer);
 
         recyclerViewLayoutManager = new LinearLayoutManager(getContext());
-        registeredStoreListViewAdapter = new NoticeRecyclerViewAdapter(DefineManager.showStoreList, getContext());
+        registeredStoreListViewAdapter = new NoticeRecyclerViewAdapter(DefineManager.showStoreList, getContext(), mRightButton);
+
         registeredStoreListViewAdapter.ChangeListMode(DefineManager.showUnRegisteredStoreList);
         listOfStoreWitchIsRegisteredByServer.setAdapter(registeredStoreListViewAdapter);
         listOfStoreWitchIsRegisteredByServer.setLayoutManager(recyclerViewLayoutManager);
+        mRightButton.setEnabled(false);
+
+        selectedWantRegisterNewStoreId = null;
 
         // 클릭 이벤트 셋팅
         if (mLeftClickListener != null && mRightClickListener != null) {
