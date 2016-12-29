@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.R;
 
-public class StampPage extends Fragment
+public class StampPage extends android.support.v4.app.Fragment
 {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";

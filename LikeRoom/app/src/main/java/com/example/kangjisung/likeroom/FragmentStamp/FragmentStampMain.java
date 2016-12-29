@@ -1,18 +1,26 @@
 package com.example.kangjisung.likeroom.FragmentStamp;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.DefineManager;
 import com.example.kangjisung.likeroom.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FragmentStampMain extends Fragment {
     //스탬프 현황 레이아웃을 그려야할 것
@@ -27,6 +35,8 @@ public class FragmentStampMain extends Fragment {
     TabLayout tabLayout;
     //나중에 갯수 수정
     int numOfStamp = 18;
+    StampPagerAdapter pagerAdapter;
+    ViewPager pager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,13 +72,11 @@ public class FragmentStampMain extends Fragment {
             }
         });
 
-
         /*
         tabLayout = (TabLayout)stampLayout.findViewById(R.id.tabLayout);
 
-
         final ViewPager viewPager = (ViewPager)stampLayout.findViewById(R.id.viewPager);
-        final StampPagerAdapter mAdapter = new StampPagerAdapter(getFragmentManager(), tabLayout.getTabCount());
+        final StampPagerAdapter mAdapter = new StampPagerAdapter(getFragmentManager(), numOfStamp);
         tabLayoutInitialize(tabLayout, mAdapter.getCount());
         viewPager.setAdapter(mAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -89,10 +97,80 @@ public class FragmentStampMain extends Fragment {
 
             }
         });
-        tabLayout.getTabAt(0).select();
         */
+
+        // 스탬프 목록 띄우기
+        pagerAdapter = new StampPagerAdapter();
+        pager = (ViewPager)stampLayout.findViewById(R.id.viewPager);
+        pager.setAdapter (pagerAdapter);
+
+
+        // Create an initial view to display; must be a subclass of FrameLayout.
+        LayoutInflater inflater1 = getActivity().getLayoutInflater();
+        FrameLayout v0 = (FrameLayout)inflater1.inflate (R.layout.stamp_page, null);
+        pagerAdapter.addView (v0, 0);
+        pagerAdapter.addView (v0, 1);
+        pagerAdapter.addView (v0, 2);
+        pagerAdapter.notifyDataSetChanged();
+
+        tabLayout = (TabLayout)stampLayout.findViewById(R.id.tabLayout);
+        pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayoutInitialize(tabLayout, pagerAdapter.getCount());
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                tab.getIcon().setColorFilter(ContextCompat.getColor(getActivity(), R.color.clrMenuIconSelected), PorterDuff.Mode.SRC_IN);
+                //pager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                tab.getIcon().setColorFilter(ContextCompat.getColor(getActivity(), R.color.clrMenuIcon), PorterDuff.Mode.SRC_IN);
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        tabLayout.getTabAt(0).select();
+
         return stampLayout;
     }
+
+    public void addView (View newPage)
+    {
+        int pageIndex = pagerAdapter.addView (newPage);
+        // You might want to make "newPage" the currently displayed page:
+        pager.setCurrentItem (pageIndex, true);
+    }
+
+    //-----------------------------------------------------------------------------
+    // Here's what the app should do to remove a view from the ViewPager.
+    public void removeView (View defunctPage)
+    {
+        int pageIndex = pagerAdapter.removeView (pager, defunctPage);
+        // You might want to choose what page to display, if the current page was "defunctPage".
+        if (pageIndex == pagerAdapter.getCount())
+            pageIndex--;
+        pager.setCurrentItem (pageIndex);
+    }
+
+    //-----------------------------------------------------------------------------
+    // Here's what the app should do to get the currently displayed page.
+    public View getCurrentPage ()
+    {
+        return pagerAdapter.getView (pager.getCurrentItem());
+    }
+
+    //-----------------------------------------------------------------------------
+    // Here's what the app should do to set the currently displayed page.  "pageToShow" must
+    // currently be in the adapter, or this will crash.
+    public void setCurrentPage (View pageToShow)
+    {
+        pager.setCurrentItem (pagerAdapter.getItemPosition (pageToShow), true);
+    }
+
 
     private View.OnClickListener leftListener = new View.OnClickListener() {
         public void onClick(View v) {
