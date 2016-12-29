@@ -62,6 +62,15 @@ public class SimpleDatabaseTest {
         return registeredToMe;
     }
 
+    public void AddSelectedShop(int targetStoreId) {
+        for(String[] indexOfStoreInfo: allRegisteredStoreInfo) {
+            if(indexOfStoreInfo[storeIdSavedPoint].equals("" + targetStoreId)) {
+                indexOfStoreInfo[isStoreRegisteredToMe] = "0";
+                return;
+            }
+        }
+    }
+
     public void DeleteSelectedShop(int targetStoreId) {
         Log.d("LikeRoom", "delete order accepted");
         for(String[] indexOfStoreInfo: allRegisteredStoreInfo) {
