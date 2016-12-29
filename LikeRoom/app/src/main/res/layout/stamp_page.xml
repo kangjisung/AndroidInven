@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Black">
@@ -8,12 +8,16 @@
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewTemp1" />
+        android:id="@+id/textViewTemp1"
+        android:textColor="@color/White"
+        android:textSize="30dp" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textViewTemp2"
-        android:layout_marginTop="30dp" />
-</RelativeLayout>
+        android:layout_marginTop="30dp"
+        android:textColor="@color/White"
+        android:textSize="30dp" />
+</FrameLayout>
