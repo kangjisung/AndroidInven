@@ -17,6 +17,7 @@ public class SimpleDatabaseTest {
     String[][] eachStoreNoticeInfo = new String[][]{
         {"" + 1, "" + 1, "hello world", "this is test", "2015 2 1", "2016 1 30"},
         {"" + 1, "" + 2, "hi", "can u see me?", "2016 2 22", "2017 8 19"},
+        {"" + 1, "" + 2, "max length test aaaaaaaaaaaaaaaaaaaaa", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "2016 2 22", "2017 8 19"},
         {"" + 2, "" + 3, "test", "test notice", "2016 1 1", "2017 1 1"},
         {"" + 3, "" + 4, "콜로세움 공지", "빵 안팔아", "0080 1 1", "9999 1 1"},
     };
@@ -30,10 +31,10 @@ public class SimpleDatabaseTest {
         return null;
     }
 
-    public ArrayList<String[]> GetSelectedStoreNoticeInfo(int targetStoreNumber, int length) {
+    public ArrayList<String[]> GetSelectedStoreNoticeInfo(int targetStoreId, int length) {
         ArrayList<String[]> selectedStoreNoticeData = new ArrayList<String[]>();
         for (String[] indexOfStoreNotice: eachStoreNoticeInfo) {
-            if(indexOfStoreNotice[storeIdSavedPoint].equals("" + targetStoreNumber)) {
+            if(indexOfStoreNotice[storeIdSavedPoint].equals("" + targetStoreId)) {
                 selectedStoreNoticeData.add(indexOfStoreNotice);
             }
         };
@@ -48,5 +49,13 @@ public class SimpleDatabaseTest {
             }
         }
         return registeredToMe;
+    }
+
+    public void DeleteSelectedShop(int targetStoreId) {
+        for(String[] indexOfStoreInfo: allRegisteredStoreInfo) {
+            if(indexOfStoreInfo[storeIdSavedPoint].equals("" + targetStoreId)) {
+                indexOfStoreInfo[isStoreRegisteredToMe] = "1";
+            }
+        }
     }
 }

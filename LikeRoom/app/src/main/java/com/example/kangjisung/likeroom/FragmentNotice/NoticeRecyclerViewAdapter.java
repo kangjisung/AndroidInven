@@ -1,5 +1,6 @@
 package com.example.kangjisung.likeroom.FragmentNotice;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
+import static com.example.kangjisung.likeroom.DefineManager.isStoreListNeedsRefresh;
 import static com.example.kangjisung.likeroom.DefineManager.selectedShopInfoDataKey;
 import static com.example.kangjisung.likeroom.DefineManager.shopAddressSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.shopCloseTimeSavedPoint;
@@ -43,6 +45,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
     //1 : 매장 리스트뷰
     private ArrayList<NoticeRecyclerViewItem> noticeListViewItemRecycler = new ArrayList<NoticeRecyclerViewItem>();
     private Context context;
+    Activity activity;
 
     public static class NoticeRecyclerViewHolder extends RecyclerView.ViewHolder {
 
@@ -76,6 +79,12 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                     break;
             }
         }
+    }
+
+    public NoticeRecyclerViewAdapter(int modeOfRecyclerView, Activity activity) {
+        this.modeOfRecyclerView = modeOfRecyclerView;
+        this.context = activity.getApplicationContext();
+        this.activity = activity;
     }
 
     public NoticeRecyclerViewAdapter(int modeOfRecyclerView, Context context) {
@@ -150,7 +159,9 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                         showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopLongtitudedSavedPoint], "" + noticeRecyclerViewItem.GetStoreLongtitude());
                         showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopIdSavedPoint], noticeRecyclerViewItem.GetStoreId());
                         Log.d("LikeRoom", "la: " + noticeRecyclerViewItem.GetStoreLatitude() + " lo: " + noticeRecyclerViewItem.GetStoreLongtitude());
-                        context.startActivity(showDetailTargetStore);
+                        //context.startActivity(showDetailTargetStore);
+                        activity.startActivityForResult(showDetailTargetStore, isStoreListNeedsRefresh);
+                        //Log.d("LikeRoom", "can u see me?");
                     }
                 });
                 break;

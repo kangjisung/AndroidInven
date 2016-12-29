@@ -31,7 +31,9 @@
                 android:textColor="@color/Black"
                 android:textStyle="bold"
                 android:singleLine="true"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:maxLength="20"
+                />
 
             <TextView
                 android:text="내용을 입력하세요"
@@ -39,7 +41,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textViewBody"
                 android:textColor="@color/Black"
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                android:maxLength="20"
+                />
         </LinearLayout>
 
         <RelativeLayout
