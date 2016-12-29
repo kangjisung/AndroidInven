@@ -68,6 +68,10 @@ public class StoreAddDialog extends Dialog {
         mRightButton.setEnabled(false);
 
         selectedWantRegisterNewStoreId = null;
+        ArrayList<String[]> unRegisteredAndSearchingSimillarStoreList = simpleDatabaseTest.GetSimillarStoreInfoSearched("");
+        unRegisteredStoreListViewAdapter.DeleteAllItems();
+        LoadStoreWhichIsImFinding(unRegisteredAndSearchingSimillarStoreList, unRegisteredStoreListViewAdapter);
+        unRegisteredStoreListViewAdapter.notifyDataSetChanged();
 
         // 클릭 이벤트 셋팅
         if (mLeftClickListener != null && mRightClickListener != null) {
