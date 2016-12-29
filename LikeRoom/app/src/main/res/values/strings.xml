@@ -16,15 +16,25 @@
     <!-- 새로운 매장 등록 화면-->
     <string name="addNewStoreTitle">제목</string>
     <string name="addNewStoreContent">내용</string>
+    <string name="addNewStorePopUpTitle">매장목록</string>
 
     <!-- 스탬프 화면-->
     <string name="menu_stamp_string">스탬프</string>
     <string name="showSpecialStamp">특수 스탬프 카드 보기</string>
     <string name="loadingStorePhoneNumber">매장 전화번호</string>
     <string name="loadingCustomerName">고객님</string>
+    <string name="useStampTitle">스탬프 사용</string>
+    <string name="useStampName">스탬프 이름</string>
+    <string name="stampDuration">사용기한(시작)~\n사용기한(마감)</string>
+    <string name="stampNoticeInfo">직원에게 보여주세요</string>
+    <string name="stampWarning">사용한 이후에는 취소가 불가합니다</string>
+    <string name="btnUseStamp">사용</string>
     <!-- 공지사항 화면-->
     <string name="menu_notice_string">공지사항</string>
     <string name="loadingStoreName">매장 이름</string>
+    <string name="loadingNoticeTitle">제목</string>
+    <string name="loadingNoticeBody">내용</string>
+    <string name="loadingNoticeDate">유효 날짜</string>
     <!-- 매장 정보 화면-->
     <string name="menu_info_string">매장 정보</string>
     <string name="loadingStoreVarious">매장 구분</string>

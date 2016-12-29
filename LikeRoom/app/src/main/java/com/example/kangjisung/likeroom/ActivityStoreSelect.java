@@ -92,8 +92,8 @@ public class ActivityStoreSelect extends AppCompatActivity {
 
     private View.OnClickListener leftListener = new View.OnClickListener() {
         public void onClick(View v) {
-            Toast.makeText(getApplicationContext(), "왼쪽버튼 클릭",
-                    Toast.LENGTH_SHORT).show();
+            /*Toast.makeText(getApplicationContext(), "왼쪽버튼 클릭",
+                    Toast.LENGTH_SHORT).show();*/
             mStoreAddDialog.dismiss();
         }
     };

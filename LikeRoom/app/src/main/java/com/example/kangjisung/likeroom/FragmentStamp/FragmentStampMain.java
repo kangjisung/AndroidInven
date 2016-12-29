@@ -1,19 +1,15 @@
 package com.example.kangjisung.likeroom.FragmentStamp;
 
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.DefineManager;
 import com.example.kangjisung.likeroom.R;
@@ -100,16 +96,20 @@ public class FragmentStampMain extends Fragment {
 
     private View.OnClickListener leftListener = new View.OnClickListener() {
         public void onClick(View v) {
-            Toast.makeText(getContext(), "왼쪽버튼 클릭",
-                    Toast.LENGTH_SHORT).show();
+            /*Toast.makeText(getContext(), "왼쪽버튼 클릭",
+                    Toast.LENGTH_SHORT).show();*/
+            //pop up close button
             stampUseDialog.dismiss();
         }
     };
 
     private View.OnClickListener rightListener = new View.OnClickListener() {
         public void onClick(View v) {
-            Toast.makeText(getContext(), "오른쪽버튼 클릭",
-                    Toast.LENGTH_SHORT).show();
+            /*Toast.makeText(getContext(), "오른쪽버튼 클릭",
+                    Toast.LENGTH_SHORT).show();*/
+            //stamp use button
+            Snackbar.make(v, getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
+            Log.d(getString(R.string.app_name), "use btn clicked");
         }
     };
 

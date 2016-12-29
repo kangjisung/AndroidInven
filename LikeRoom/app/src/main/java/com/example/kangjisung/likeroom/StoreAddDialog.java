@@ -3,16 +3,18 @@ package com.example.kangjisung.likeroom;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class StoreAddDialog extends Dialog
 {
     private Button mLeftButton;
     private Button mRightButton;
+    SearchView searchNewStore;
 
     private View.OnClickListener mLeftClickListener;
     private View.OnClickListener mRightClickListener;
@@ -34,17 +36,39 @@ public class StoreAddDialog extends Dialog
 
         mLeftButton = (Button) addNewStoreDialogView.findViewById(R.id.button_back);
         mRightButton = (Button) addNewStoreDialogView.findViewById(R.id.button_ok);
+        searchNewStore = (SearchView) addNewStoreDialogView.findViewById(R.id.searchNewStore);
 
         // 클릭 이벤트 셋팅
         if (mLeftClickListener != null && mRightClickListener != null) {
             mLeftButton.setOnClickListener(mLeftClickListener);
-            mRightButton.setOnClickListener(mRightClickListener);
+            //mRightButton.setOnClickListener(mRightClickListener);
         } else if (mLeftClickListener != null
                 && mRightClickListener == null) {
             mLeftButton.setOnClickListener(mLeftClickListener);
         } else {
 
         }
+
+        mRightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, getContext().getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
+        searchNewStore.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.d(getContext().getString(R.string.app_name), "type: " + newText);
+                return true;
+            }
+        });
     }
 
     // 클릭버튼이 하나일때 생성자 함수로 클릭이벤트를 받는다.

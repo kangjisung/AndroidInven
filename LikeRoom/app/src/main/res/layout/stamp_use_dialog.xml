@@ -35,7 +35,7 @@
                 android:layout_width="40dp" />
 
             <TextView
-                android:text="스탬프 사용"
+                android:text="@string/useStampTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView5"
@@ -76,10 +76,10 @@
                         android:layout_height="75dp" />
 
                     <TextView
-                        android:text="스탬프 이름"
+                        android:text="@string/useStampName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView9"
+                        android:id="@+id/txtStampName"
                         android:layout_centerInParent="false"
                         android:layout_centerVertical="false"
                         android:layout_centerHorizontal="false"
@@ -89,10 +89,10 @@
                         android:layout_marginLeft="90dp" />
 
                     <TextView
-                        android:text="사용기한(시작)~\n사용기한(마감)"
+                        android:text="@string/stampDuration"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView8"
+                        android:id="@+id/txtStampDuration"
                         android:layout_centerVertical="false"
                         android:layout_centerHorizontal="false"
                         android:layout_alignParentBottom="true"
@@ -105,14 +105,14 @@
                         android:text="Switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/switch1"
+                        android:id="@+id/switchLockUnlockCoupon"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true" />
 
                 </RelativeLayout>
 
                 <TextView
-                    android:text="직원에게 보여주세요"
+                    android:text="@string/stampNoticeInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView7"
@@ -130,7 +130,7 @@
             android:layout_height="80dp">
 
             <TextView
-                android:text="사용한 이후에는 취소가 불가합니다"
+                android:text="@string/stampWarning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView10"
@@ -142,7 +142,7 @@
                 android:layout_marginTop="2dp" />
 
             <Button
-                android:text="사용"
+                android:text="@string/btnUseStamp"
                 android:id="@+id/button_use"
                 android:layout_centerInParent="false"
                 android:layout_centerVertical="false"

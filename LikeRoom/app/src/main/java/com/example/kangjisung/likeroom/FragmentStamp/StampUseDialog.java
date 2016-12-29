@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import com.example.kangjisung.likeroom.R;
 
@@ -14,6 +16,7 @@ public class StampUseDialog extends Dialog
 {
     private Button mLeftButton;
     private Button mRightButton;
+    Switch switchLockUnlockCoupon;
 
     private String mTitle;
     private String mContent;
@@ -38,12 +41,23 @@ public class StampUseDialog extends Dialog
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
-        View addNewStoreDialogView = View.inflate(getContext(), R.layout.stamp_use_dialog, null);
-        setContentView(addNewStoreDialogView);
+        View useStampDialogView = View.inflate(getContext(), R.layout.stamp_use_dialog, null);
+        setContentView(useStampDialogView);
         //setContentView(R.layout.store_add_dialog);
 
-        mLeftButton = (Button) addNewStoreDialogView.findViewById(R.id.button_back);
-        mRightButton = (Button) addNewStoreDialogView.findViewById(R.id.button_use);
+        mLeftButton = (Button) useStampDialogView.findViewById(R.id.button_back);
+        mRightButton = (Button) useStampDialogView.findViewById(R.id.button_use);
+        switchLockUnlockCoupon = (Switch) useStampDialogView.findViewById(R.id.switchLockUnlockCoupon);
+
+        mRightButton.setEnabled(false);//blocking user cant use stamp at first
+
+        switchLockUnlockCoupon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Log.d(getContext().getString(R.string.app_name), "status: " + b);
+                mRightButton.setEnabled(b);
+            }
+        });
 
         // 클릭 이벤트 셋팅
         mLeftButton.setOnClickListener(mLeftClickListener);
