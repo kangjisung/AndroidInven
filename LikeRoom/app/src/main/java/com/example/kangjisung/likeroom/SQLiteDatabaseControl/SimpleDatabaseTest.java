@@ -1,6 +1,9 @@
 package com.example.kangjisung.likeroom.SQLiteDatabaseControl;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by stories2 on 2016. 12. 29..
@@ -42,9 +45,13 @@ public class SimpleDatabaseTest {
     }
 
     public ArrayList<String[]> GetStoreWhichIRegistered() {
+        for(String[] test: allRegisteredStoreInfo) {
+            Log.d("LikeRoom", "get: " + Arrays.toString(test));
+        }
         ArrayList<String[]> registeredToMe = new ArrayList<String[]>();
         for(String[] indexOfStoreInfo: allRegisteredStoreInfo) {
             if(indexOfStoreInfo[isStoreRegisteredToMe].equals("0")) {
+                Log.d("LikeRoom", "get registered store: " + Arrays.toString(indexOfStoreInfo));
                 registeredToMe.add(indexOfStoreInfo);
             }
         }
@@ -52,10 +59,15 @@ public class SimpleDatabaseTest {
     }
 
     public void DeleteSelectedShop(int targetStoreId) {
+        Log.d("LikeRoom", "delete order accepted");
         for(String[] indexOfStoreInfo: allRegisteredStoreInfo) {
             if(indexOfStoreInfo[storeIdSavedPoint].equals("" + targetStoreId)) {
                 indexOfStoreInfo[isStoreRegisteredToMe] = "1";
+                Log.d("LikeRoom", "deleted " + targetStoreId);
             }
+        }
+        for(String[] test: allRegisteredStoreInfo) {
+            Log.d("LikeRoom", "del: " + Arrays.toString(test));
         }
     }
 }

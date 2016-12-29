@@ -107,6 +107,10 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
         return vh;
     }
 
+    public void ChangeListMode(int modeOfRecyclerView) {
+        this.modeOfRecyclerView = modeOfRecyclerView;
+    }
+
     @Override
     public void onBindViewHolder(NoticeRecyclerViewHolder holder, int position) {
         final NoticeRecyclerViewItem noticeRecyclerViewItem = noticeListViewItemRecycler.get(position);
@@ -233,5 +237,12 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
         newItemWillAddToList.SetStoreLongtitude(storeLongtitude);
 
         noticeListViewItemRecycler.add(newItemWillAddToList);
+    }
+
+    public void DeleteAllItems() {
+        int i;
+        for(i = noticeListViewItemRecycler.size() - 1; i >= 0; i -= 1) {
+            noticeListViewItemRecycler.remove(i);
+        }
     }
 }

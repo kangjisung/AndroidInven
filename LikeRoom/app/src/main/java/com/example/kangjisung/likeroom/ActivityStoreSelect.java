@@ -17,6 +17,7 @@ import com.example.kangjisung.likeroom.NetworkManager.HttpCommunicationProcess;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.SimpleDatabaseTest;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static com.example.kangjisung.likeroom.DefineManager.databaseShopAddressSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.databaseShopCloseTimeSavedPoint;
@@ -48,6 +49,14 @@ public class ActivityStoreSelect extends AppCompatActivity {
             if(resultCode == RESULT_OK) {
                 Log.d(getString(R.string.app_name), "resultCode: ok");
                 Log.d(getString(R.string.app_name), "is data null: " + data + " data: " + data.getStringExtra("deleteTargetStoreId"));
+                simpleDatabaseTest.DeleteSelectedShop(Integer.parseInt(data.getStringExtra("deleteTargetStoreId")));
+                registeredStoreListViewAdapter.DeleteAllItems();
+                registeredStoreListViewAdapter.notifyDataSetChanged();
+                storeWhichIRegistered = simpleDatabaseTest.GetStoreWhichIRegistered();
+                Log.d(getString(R.string.app_name), Arrays.toString(storeWhichIRegistered.toArray()));
+                registeredStoreListViewAdapter.ChangeListMode(DefineManager.showStoreList);
+                LoadIRegisteredStoreList(storeWhichIRegistered, registeredStoreListViewAdapter);
+                registeredStoreListViewAdapter.notifyDataSetChanged();
             }
             else {
                 Log.d(getString(R.string.app_name), "resultCode: fail");
@@ -76,17 +85,7 @@ public class ActivityStoreSelect extends AppCompatActivity {
 
         storeWhichIRegistered = simpleDatabaseTest.GetStoreWhichIRegistered();
 
-        int i;
-        for(i = 0; i < storeWhichIRegistered.size(); i += 1) {
-            String[] storeInfo = storeWhichIRegistered.get(i);
-            registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop),storeInfo[databaseShopIdSavedPoint],
-                    storeInfo[databaseShopNameSavedPoint], storeInfo[databaseShopAddressSavedPoint],
-                    storeInfo[databaseShopPhoneNumberSavedPoint], storeInfo[databaseShopOpenTimeSavedPoint],
-                    storeInfo[databaseShopCloseTimeSavedPoint], Double.parseDouble(storeInfo[databaseShopLatitudeSavedPoint]),
-                    Double.parseDouble(storeInfo[databaseShopLongtitudedSavedPoint]));
-        }
-
-
+        LoadIRegisteredStoreList(storeWhichIRegistered, registeredStoreListViewAdapter);
 
 /*
         registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), "고덕리엔파크점",
@@ -135,6 +134,18 @@ public class ActivityStoreSelect extends AppCompatActivity {
                 startActivity(showDetailTargetStore);
             }
         });*/
+    }
+
+    public void LoadIRegisteredStoreList(ArrayList<String[]> storeWhichIRegistered, NoticeRecyclerViewAdapter registeredStoreListViewAdapter) {
+        int i;
+        for(i = 0; i < storeWhichIRegistered.size(); i += 1) {
+            String[] storeInfo = storeWhichIRegistered.get(i);
+            registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop),storeInfo[databaseShopIdSavedPoint],
+                    storeInfo[databaseShopNameSavedPoint], storeInfo[databaseShopAddressSavedPoint],
+                    storeInfo[databaseShopPhoneNumberSavedPoint], storeInfo[databaseShopOpenTimeSavedPoint],
+                    storeInfo[databaseShopCloseTimeSavedPoint], Double.parseDouble(storeInfo[databaseShopLatitudeSavedPoint]),
+                    Double.parseDouble(storeInfo[databaseShopLongtitudedSavedPoint]));
+        }
     }
 
 
