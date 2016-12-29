@@ -104,9 +104,11 @@ public class FragmentInfoMain extends Fragment implements OnMapReadyCallback{
             public void onClick(View view) {
                 //Snackbar.make(view, getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
                 simpleDatabaseTest.DeleteSelectedShop(Integer.parseInt(selectedShopInfoData[shopIdSavedPoint]));
+
                 Intent storeDetailViewInfoTab = new Intent();
                 storeDetailViewInfoTab.putExtra("deleteTargetStoreId", selectedShopInfoData[shopIdSavedPoint]);
-                getActivity().setResult(Activity.RESULT_OK);
+                //getActivity().setResult(Activity.RESULT_OK);
+                getActivity().setResult(Activity.RESULT_OK, storeDetailViewInfoTab);
                 getActivity().finish();
             }
         });

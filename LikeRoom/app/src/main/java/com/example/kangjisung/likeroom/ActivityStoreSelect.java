@@ -47,7 +47,7 @@ public class ActivityStoreSelect extends AppCompatActivity {
         if(requestCode == isStoreListNeedsRefresh) {
             if(resultCode == RESULT_OK) {
                 Log.d(getString(R.string.app_name), "resultCode: ok");
-                Log.d(getString(R.string.app_name), data.getExtras().getString("deleteTargetStoreId"));
+                Log.d(getString(R.string.app_name), "is data null: " + data + " data: " + data.getStringExtra("deleteTargetStoreId"));
             }
             else {
                 Log.d(getString(R.string.app_name), "resultCode: fail");
