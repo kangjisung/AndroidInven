@@ -13,6 +13,18 @@ import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.FragmentNotice.NoticeRecyclerViewAdapter;
 import com.example.kangjisung.likeroom.NetworkManager.HttpCommunicationProcess;
+import com.example.kangjisung.likeroom.SQLiteDatabaseControl.SimpleDatabaseTest;
+
+import java.util.ArrayList;
+
+import static com.example.kangjisung.likeroom.DefineManager.databaseShopAddressSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.databaseShopCloseTimeSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.databaseShopIdSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.databaseShopLatitudeSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.databaseShopLongtitudedSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.databaseShopNameSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.databaseShopOpenTimeSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.databaseShopPhoneNumberSavedPoint;
 
 public class ActivityStoreSelect extends AppCompatActivity {
 
@@ -23,6 +35,8 @@ public class ActivityStoreSelect extends AppCompatActivity {
     RecyclerView.LayoutManager recyclerViewLayoutManager;
     HttpCommunicationProcess httpCommunicationProcess;
     StoreAddDialog mStoreAddDialog;
+    SimpleDatabaseTest simpleDatabaseTest;
+    ArrayList<String[]> storeWhichIRegistered;
 
     //맨처음에 매장선택해서 들어가는 부분.
     //레이아웃에서는 activity_store_select로 디자인되어 있다.
@@ -34,6 +48,7 @@ public class ActivityStoreSelect extends AppCompatActivity {
 
         registeredStoreListViewAdapter = new NoticeRecyclerViewAdapter(DefineManager.showStoreList, getApplicationContext());
         recyclerViewLayoutManager = new LinearLayoutManager(this);
+        simpleDatabaseTest = new SimpleDatabaseTest();
 
         btnRegisterNewStore = (Button)findViewById(R.id.btnRegisterNewStore);
         //eachStoreListItemSample = (LinearLayout) findViewById(R.id.eachStoreListItemSample);
@@ -42,11 +57,24 @@ public class ActivityStoreSelect extends AppCompatActivity {
         registeredStoreList.setAdapter(registeredStoreListViewAdapter);
         registeredStoreList.setLayoutManager(recyclerViewLayoutManager);
 
+        storeWhichIRegistered = simpleDatabaseTest.GetStoreWhichIRegistered();
+
+        int i;
+        for(i = 0; i < storeWhichIRegistered.size(); i += 1) {
+            String[] storeInfo = storeWhichIRegistered.get(i);
+            registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop),storeInfo[databaseShopIdSavedPoint],
+                    storeInfo[databaseShopNameSavedPoint], storeInfo[databaseShopAddressSavedPoint],
+                    storeInfo[databaseShopPhoneNumberSavedPoint], storeInfo[databaseShopOpenTimeSavedPoint],
+                    storeInfo[databaseShopCloseTimeSavedPoint], Double.parseDouble(storeInfo[databaseShopLatitudeSavedPoint]),
+                    Double.parseDouble(storeInfo[databaseShopLongtitudedSavedPoint]));
+        }
+/*
         registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), "고덕리엔파크점",
                 "서울특별시 강동구 상일동 75-2", "02-426-8758", "N/A", "N/A", 37.5537472, 127.1716884);
 
         registeredStoreListViewAdapter.addItem(getResources().getDrawable(R.mipmap.shop), "상일세종점",
-                "서울특별시 강동구 상일동 67-2", "02-441-7833", "N/A", "N/A", 37.5509792, 127.1738538);
+                "서울특별시 강동구 상일동 67-2", "02-441-7833", "N/A", "N/A", 37.5509792, 127.1738538);*/
+
 
         httpCommunicationProcess = new HttpCommunicationProcess(getApplicationContext());
         try {

@@ -14,8 +14,15 @@ import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.DefineManager;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.SQLiteDatabaseControl.SimpleDatabaseTest;
 
-import java.util.GregorianCalendar;
+import java.util.ArrayList;
+
+import static com.example.kangjisung.likeroom.DefineManager.noticeBodySavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.noticeCloseDateSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.noticeStartDateSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.noticeTitleSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.shopIdSavedPoint;
 
 public class FragmentNoticeMain extends Fragment {
 //스탬프,공지사항,매장정보 중 공지사항 부분.
@@ -26,6 +33,8 @@ public class FragmentNoticeMain extends Fragment {
     String[] selectedShopInfoData;
     TextView txtStoreName;
     ImageView hamburgerMenu;
+    ArrayList<String[]> noticeDataList;
+    SimpleDatabaseTest simpleDatabaseTest;
 
     private NoticeReadDialog noticeReadDialog;
 
@@ -35,6 +44,8 @@ public class FragmentNoticeMain extends Fragment {
 
         mAdapter = new NoticeRecyclerViewAdapter(DefineManager.showNoticeList, getActivity().getApplicationContext());
         mLayoutManager = new LinearLayoutManager(getActivity());
+        simpleDatabaseTest = new SimpleDatabaseTest();
+
         txtStoreName = (TextView) view.findViewById(R.id.txtStoreName);
         noticeRecyclerView = (RecyclerView) view.findViewById((R.id.recyclerView));
         hamburgerMenu = (ImageView) view.findViewById(R.id.hamburgerMenu);
@@ -60,8 +71,17 @@ public class FragmentNoticeMain extends Fragment {
             }
         });
         buttonTempRead.setVisibility(View.INVISIBLE);
-        mAdapter.addItem("제목1", "내용1", new GregorianCalendar(2016, 1, 1), new GregorianCalendar(2016, 12, 30), 1);
-        /*mAdapter.addItem("제목2", "내용2", new GregorianCalendar(2015, 1, 1), new GregorianCalendar(2015, 12, 30), 2);
+
+        noticeDataList = simpleDatabaseTest.GetSelectedStoreNoticeInfo(Integer.parseInt(selectedShopInfoData[shopIdSavedPoint]), 2);
+
+        int i;
+        for(i = 0; i < noticeDataList.size(); i += 1) {
+            String[] noticeData = noticeDataList.get(i);
+            mAdapter.addItem(noticeData[noticeTitleSavedPoint], noticeData[noticeBodySavedPoint], noticeData[noticeStartDateSavedPoint],
+                    noticeData[noticeCloseDateSavedPoint], 1);
+        }
+        /*mAdapter.addItem("제목1", "내용1", new GregorianCalendar(2016, 1, 1), new GregorianCalendar(2016, 12, 30), 1);
+        mAdapter.addItem("제목2", "내용2", new GregorianCalendar(2015, 1, 1), new GregorianCalendar(2015, 12, 30), 2);
         mAdapter.addItem("제목3", "내용3", new GregorianCalendar(2014, 1, 1), new GregorianCalendar(2014, 12, 30), 3);*/
 
 

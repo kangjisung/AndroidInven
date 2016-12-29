@@ -16,12 +16,15 @@ import android.widget.TextView;
 import com.example.kangjisung.likeroom.ActivityMenu;
 import com.example.kangjisung.likeroom.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 import static com.example.kangjisung.likeroom.DefineManager.selectedShopInfoDataKey;
 import static com.example.kangjisung.likeroom.DefineManager.shopAddressSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.shopCloseTimeSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.shopIdSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.shopLatitudeSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.shopLongtitudedSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.shopNameSavedPoint;
@@ -145,6 +148,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                         showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopCloseTimeSavedPoint], noticeRecyclerViewItem.GetStoreCloseTime());
                         showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopLatitudeSavedPoint], "" + noticeRecyclerViewItem.GetStoreLatitude());
                         showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopLongtitudedSavedPoint], "" + noticeRecyclerViewItem.GetStoreLongtitude());
+                        showDetailTargetStore.putExtra(selectedShopInfoDataKey[shopIdSavedPoint], noticeRecyclerViewItem.GetStoreId());
                         Log.d("LikeRoom", "la: " + noticeRecyclerViewItem.GetStoreLatitude() + " lo: " + noticeRecyclerViewItem.GetStoreLongtitude());
                         context.startActivity(showDetailTargetStore);
                     }
@@ -154,6 +158,8 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
     }
 
     public String GetNoticeReadableDate(NoticeRecyclerViewItem noticeRecyclerViewItem) {
+        if(noticeRecyclerViewItem == null)
+            return null;
         return String.valueOf(noticeRecyclerViewItem.getStartDate().get(Calendar.YEAR)) + "/"
                 + String.valueOf(noticeRecyclerViewItem.getStartDate().get(Calendar.MONTH)+1) + "/"
                 + String.valueOf(noticeRecyclerViewItem.getStartDate().get(Calendar.DAY_OF_MONTH)) + "/ - "
@@ -179,12 +185,34 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
         noticeListViewItemRecycler.add(addItemList);
     }
 
-    public void addItem(Drawable imgOfStore, String storeName, String storeAddress, String storePhoneNumber, String storeOpenTime,
+    public void addItem(String addTitle, String addBody, String addStartDate, String addEndDate, int addType) {
+        NoticeRecyclerViewItem addItemList = new NoticeRecyclerViewItem();
+        SimpleDateFormat noticeDateFormat = new SimpleDateFormat("yyyy MM dd", Locale.KOREA);
+        Calendar addStartDateCalendar = Calendar.getInstance(), addEndDateCalendar = Calendar.getInstance();
+        try {
+            addStartDateCalendar.setTime(noticeDateFormat.parse(addStartDate));
+            addEndDateCalendar.setTime(noticeDateFormat.parse(addEndDate));
+        }
+        catch(Exception err) {
+            Log.d(context.getString(R.string.app_name), "Error in addItem: " + err.getMessage());
+        }
+
+        addItemList.setTitle(addTitle);
+        addItemList.setBody(addBody);
+        addItemList.setStartDate(addStartDateCalendar);
+        addItemList.setEndDate(addEndDateCalendar);
+        addItemList.setType(addType);
+
+        noticeListViewItemRecycler.add(addItemList);
+    }
+
+    public void addItem(Drawable imgOfStore, String storeId, String storeName, String storeAddress, String storePhoneNumber, String storeOpenTime,
                         String storeCloseTime, Double storeLatitude, Double storeLongtitude) {
         NoticeRecyclerViewItem newItemWillAddToList = new NoticeRecyclerViewItem();
 
         //Log.d("LikeRoom","la: " + storeLatitude + " lo: " + storeLongtitude);
         newItemWillAddToList.SetStoreImage(imgOfStore);
+        newItemWillAddToList.SetStoreId(storeId);
         newItemWillAddToList.SetStoreName(storeName);
         newItemWillAddToList.SetStoreAddress(storeAddress);
         newItemWillAddToList.SetStorePhoneNumber(storePhoneNumber);
