@@ -4,11 +4,27 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.widget.SearchView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.SearchView;
+
+import com.example.kangjisung.likeroom.FragmentNotice.NoticeRecyclerViewAdapter;
+import com.example.kangjisung.likeroom.SQLiteDatabaseControl.SimpleDatabaseTest;
+
+import java.util.ArrayList;
+
+import static com.example.kangjisung.likeroom.DefineManager.databaseShopAddressSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.databaseShopCloseTimeSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.databaseShopIdSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.databaseShopLatitudeSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.databaseShopLongtitudedSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.databaseShopNameSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.databaseShopOpenTimeSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.databaseShopPhoneNumberSavedPoint;
 
 public class StoreAddDialog extends Dialog
 {
@@ -19,6 +35,10 @@ public class StoreAddDialog extends Dialog
     private View.OnClickListener mLeftClickListener;
     private View.OnClickListener mRightClickListener;
 
+    SimpleDatabaseTest simpleDatabaseTest;
+    RecyclerView listOfStoreWitchIsRegisteredByServer;
+    NoticeRecyclerViewAdapter registeredStoreListViewAdapter;
+    RecyclerView.LayoutManager recyclerViewLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +57,13 @@ public class StoreAddDialog extends Dialog
         mLeftButton = (Button) addNewStoreDialogView.findViewById(R.id.button_back);
         mRightButton = (Button) addNewStoreDialogView.findViewById(R.id.button_ok);
         searchNewStore = (SearchView) addNewStoreDialogView.findViewById(R.id.searchNewStore);
+        listOfStoreWitchIsRegisteredByServer = (RecyclerView) addNewStoreDialogView.findViewById(R.id.listOfStoreWitchIsRegisteredByServer);
+
+        recyclerViewLayoutManager = new LinearLayoutManager(getContext());
+        registeredStoreListViewAdapter = new NoticeRecyclerViewAdapter(DefineManager.showStoreList, getContext());
+        registeredStoreListViewAdapter.ChangeListMode(DefineManager.showUnRegisteredStoreList);
+        listOfStoreWitchIsRegisteredByServer.setAdapter(registeredStoreListViewAdapter);
+        listOfStoreWitchIsRegisteredByServer.setLayoutManager(recyclerViewLayoutManager);
 
         // 클릭 이벤트 셋팅
         if (mLeftClickListener != null && mRightClickListener != null) {
@@ -66,9 +93,25 @@ public class StoreAddDialog extends Dialog
             @Override
             public boolean onQueryTextChange(String newText) {
                 Log.d(getContext().getString(R.string.app_name), "type: " + newText);
+                ArrayList<String[]> unRegisteredAndSearchingSimillarStoreList = simpleDatabaseTest.GetSimillarStoreInfoSearched(newText);
+                registeredStoreListViewAdapter.DeleteAllItems();
+                LoadStoreWhichIsImFinding(unRegisteredAndSearchingSimillarStoreList, registeredStoreListViewAdapter);
+                registeredStoreListViewAdapter.notifyDataSetChanged();
                 return true;
             }
         });
+    }
+
+    public void LoadStoreWhichIsImFinding(ArrayList<String[]> storeWhichIRegistered, NoticeRecyclerViewAdapter registeredStoreListViewAdapter) {
+        int i;
+        for(i = 0; i < storeWhichIRegistered.size(); i += 1) {
+            String[] storeInfo = storeWhichIRegistered.get(i);
+            registeredStoreListViewAdapter.addItem(getContext().getResources().getDrawable(R.mipmap.shop),storeInfo[databaseShopIdSavedPoint],
+                    storeInfo[databaseShopNameSavedPoint], storeInfo[databaseShopAddressSavedPoint],
+                    storeInfo[databaseShopPhoneNumberSavedPoint], storeInfo[databaseShopOpenTimeSavedPoint],
+                    storeInfo[databaseShopCloseTimeSavedPoint], Double.parseDouble(storeInfo[databaseShopLatitudeSavedPoint]),
+                    Double.parseDouble(storeInfo[databaseShopLongtitudedSavedPoint]));
+        }
     }
 
     // 클릭버튼이 하나일때 생성자 함수로 클릭이벤트를 받는다.
@@ -82,5 +125,13 @@ public class StoreAddDialog extends Dialog
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
         this.mLeftClickListener = leftListener;
         this.mRightClickListener = rightListener;
+    }
+
+    public StoreAddDialog(Context context, String title, String content, View.OnClickListener leftListener,
+                          View.OnClickListener rightListener, SimpleDatabaseTest simpleDatabaseTest) {
+        super(context, android.R.style.Theme_Translucent_NoTitleBar);
+        this.mLeftClickListener = leftListener;
+        this.mRightClickListener = rightListener;
+        this.simpleDatabaseTest = simpleDatabaseTest;
     }
 }
