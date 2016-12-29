@@ -15,7 +15,7 @@ public class NoticeRecyclerViewItem
     private Calendar endDate;
     private int type;
 
-    String storeName, storeAddress, storePhoneNumber, storeOpenTime, storeCloseTime;
+    String storeId, storeName, storeAddress, storePhoneNumber, storeOpenTime, storeCloseTime;
     Drawable imgOfStore;
     Double storeLatitude, storeLongtitude;
 
@@ -24,6 +24,9 @@ public class NoticeRecyclerViewItem
     public void setStartDate(Calendar _startDate) {startDate = _startDate;}
     public void setEndDate(Calendar _endDate) {endDate = _endDate;}
     public void setType(int _type) {type = _type;}
+    void SetStoreId(String storeId) {
+        this.storeId = storeId;
+    }
     void SetStoreName(String storeName) {
         this.storeName = storeName;
     }
@@ -54,6 +57,9 @@ public class NoticeRecyclerViewItem
     public Calendar getStartDate() {return this.startDate;}
     public Calendar getEndDate() {return this.endDate;}
     public int getType() {return this.type;}
+    String GetStoreId() {
+        return storeId;
+    }
     String GetStoreName() {
         return storeName;
     }
