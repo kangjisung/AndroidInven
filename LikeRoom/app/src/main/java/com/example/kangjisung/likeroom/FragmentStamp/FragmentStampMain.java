@@ -1,5 +1,6 @@
 package com.example.kangjisung.likeroom.FragmentStamp;
 
+import android.app.TabActivity;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -29,12 +31,14 @@ public class FragmentStampMain extends Fragment {
 
     View stampLayout;
     Button btnShowSpecialStamp;
+    Button buttonStampLeft;
+    Button buttonStampRight;
     String[] selectedShopInfoData;
     TextView txtShopPhoneNumber, txtShopName;
     StampUseDialog stampUseDialog;
     TabLayout tabLayout;
     //나중에 갯수 수정
-    int numOfStamp = 18;
+    int numOfStamp = 28;
     StampPagerAdapter pagerAdapter;
     ViewPager pager;
 
@@ -72,46 +76,10 @@ public class FragmentStampMain extends Fragment {
             }
         });
 
-        /*
-        tabLayout = (TabLayout)stampLayout.findViewById(R.id.tabLayout);
-
-        final ViewPager viewPager = (ViewPager)stampLayout.findViewById(R.id.viewPager);
-        final StampPagerAdapter mAdapter = new StampPagerAdapter(getFragmentManager(), numOfStamp);
-        tabLayoutInitialize(tabLayout, mAdapter.getCount());
-        viewPager.setAdapter(mAdapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                tab.getIcon().setColorFilter(ContextCompat.getColor(getActivity(), R.color.clrMenuIconSelected), PorterDuff.Mode.SRC_IN);
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-                tab.getIcon().setColorFilter(ContextCompat.getColor(getActivity(), R.color.clrMenuIcon), PorterDuff.Mode.SRC_IN);
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-        */
-
         // 스탬프 목록 띄우기
-        pagerAdapter = new StampPagerAdapter();
         pager = (ViewPager)stampLayout.findViewById(R.id.viewPager);
-        pager.setAdapter (pagerAdapter);
-
-
-        // Create an initial view to display; must be a subclass of FrameLayout.
-        LayoutInflater inflater1 = getActivity().getLayoutInflater();
-        FrameLayout v0 = (FrameLayout)inflater1.inflate (R.layout.stamp_page, null);
-        pagerAdapter.addView (v0, 0);
-        pagerAdapter.addView (v0, 1);
-        pagerAdapter.addView (v0, 2);
-        pagerAdapter.notifyDataSetChanged();
+        pagerAdapter = new StampPagerAdapter(getActivity().getApplicationContext(), numOfStamp);
+        pager.setAdapter(pagerAdapter);
 
         tabLayout = (TabLayout)stampLayout.findViewById(R.id.tabLayout);
         pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -120,7 +88,7 @@ public class FragmentStampMain extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 tab.getIcon().setColorFilter(ContextCompat.getColor(getActivity(), R.color.clrMenuIconSelected), PorterDuff.Mode.SRC_IN);
-                //pager.setCurrentItem(tab.getPosition());
+                pager.setCurrentItem(tab.getPosition());
             }
 
             @Override
@@ -135,42 +103,29 @@ public class FragmentStampMain extends Fragment {
         });
         tabLayout.getTabAt(0).select();
 
+        buttonStampLeft = (Button)stampLayout.findViewById(R.id.button_stamp_left);
+        buttonStampLeft.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                int nowTab = tabLayout.getSelectedTabPosition();
+                if(nowTab > 0){
+                    pager.setCurrentItem(nowTab-1);
+                }
+            }
+        });
+        buttonStampRight = (Button)stampLayout.findViewById(R.id.button_stamp_right);
+        buttonStampRight.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                int nowTab = tabLayout.getSelectedTabPosition();
+                if(nowTab < tabLayout.getTabCount()-1){
+                    pager.setCurrentItem(nowTab+1);
+                }
+            }
+        });
+
         return stampLayout;
     }
-
-    public void addView (View newPage)
-    {
-        int pageIndex = pagerAdapter.addView (newPage);
-        // You might want to make "newPage" the currently displayed page:
-        pager.setCurrentItem (pageIndex, true);
-    }
-
-    //-----------------------------------------------------------------------------
-    // Here's what the app should do to remove a view from the ViewPager.
-    public void removeView (View defunctPage)
-    {
-        int pageIndex = pagerAdapter.removeView (pager, defunctPage);
-        // You might want to choose what page to display, if the current page was "defunctPage".
-        if (pageIndex == pagerAdapter.getCount())
-            pageIndex--;
-        pager.setCurrentItem (pageIndex);
-    }
-
-    //-----------------------------------------------------------------------------
-    // Here's what the app should do to get the currently displayed page.
-    public View getCurrentPage ()
-    {
-        return pagerAdapter.getView (pager.getCurrentItem());
-    }
-
-    //-----------------------------------------------------------------------------
-    // Here's what the app should do to set the currently displayed page.  "pageToShow" must
-    // currently be in the adapter, or this will crash.
-    public void setCurrentPage (View pageToShow)
-    {
-        pager.setCurrentItem (pagerAdapter.getItemPosition (pageToShow), true);
-    }
-
 
     private View.OnClickListener leftListener = new View.OnClickListener() {
         public void onClick(View v) {
@@ -197,6 +152,4 @@ public class FragmentStampMain extends Fragment {
             tabLayout.addTab(tabLayout.newTab().setIcon(R.mipmap.icon_menu_point));
         }
     }
-
-    /* 이벤트 코드는 여기서 */
 }

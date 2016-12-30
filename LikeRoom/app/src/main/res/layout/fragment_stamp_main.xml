@@ -101,7 +101,7 @@
                 android:layout_height="25dp">
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/button_stamp_left"
                     android:layout_weight="0"
                     android:layout_gravity="center_vertical"
                     android:background="@mipmap/icon_back"
@@ -112,14 +112,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:id="@+id/tabLayout">
+                    android:id="@+id/tabLayout"
+                    android:clickable="false">
 
                 </android.support.design.widget.TabLayout>
 
                 <Button
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/button2"
+                    android:id="@+id/button_stamp_right"
                     android:layout_weight="0"
                     android:layout_gravity="center_vertical"
                     android:background="@mipmap/icon_back"

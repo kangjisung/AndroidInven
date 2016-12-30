@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.kangjisung.likeroom.CustomClass.NoScrollViewPager;
+
 import java.util.Arrays;
 
 import static com.example.kangjisung.likeroom.DefineManager.selectedShopInfoDataKey;
@@ -63,9 +65,11 @@ public class ActivityMenu extends AppCompatActivity
         }
         Log.d(getString(R.string.app_name), Arrays.toString(selectedShopInfoData));
 
-        final ViewPager viewPager = (ViewPager)findViewById(R.id.viewPager);
+        final NoScrollViewPager viewPager = (NoScrollViewPager)findViewById(R.id.viewPager);
         final ActivityMenuPagerAdapter adapter = new ActivityMenuPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), selectedShopInfoData);
         viewPager.setAdapter(adapter);
+        viewPager.setPagingDisabled();
+        viewPager.setOffscreenPageLimit(3);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
