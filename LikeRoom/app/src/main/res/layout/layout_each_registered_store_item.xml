@@ -9,19 +9,17 @@
     android:padding="10dp">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/imgShopIcon"
         android:background="@mipmap/shop"
         android:layout_gravity="center_vertical"
-        android:layout_weight="0" />
+        android:layout_weight="0"
+        android:layout_width="55dp"
+        android:layout_height="50dp" />
 
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:layout_weight="1">
+        android:layout_weight="0">
 
         <TextView
             android:text="@string/loadingStoreName"
@@ -30,8 +28,28 @@
             android:id="@+id/txtShopName"
             android:textSize="20dp"
             android:textColor="@color/clrTextColorDeepDark"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginLeft="15dp"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="false"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:text="@string/loadingStorePhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtShopPhoneNumber"
+            android:layout_weight="0"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            android:textColor="@color/Gray"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:textSize="16dp" />
 
         <TextView
             android:text="@string/loadingStoreAddress"
@@ -40,19 +58,11 @@
             android:id="@+id/txtShopAddress"
             android:textSize="14dp"
             android:textColor="@color/clrTextColorMediumDark"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="15dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="3dp" />
 
-    </LinearLayout>
-
-    <TextView
-        android:text="@string/loadingStorePhoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtShopPhoneNumber"
-        android:layout_weight="0"
-        android:textSize="18dp"
-        android:layout_gravity="center_vertical"
-        android:gravity="center_horizontal"
-        android:textColor="@color/clrTextColorMediumDark" />
+    </RelativeLayout>
 
 </LinearLayout>
