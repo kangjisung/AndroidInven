@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="이름"
+        android:ems="10"
+        android:id="@+id/StoreName" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="주소"
+        android:ems="10"
+        android:id="@+id/StoreAddress" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="전화번호"
+        android:ems="10"
+        android:id="@+id/StorePhone" />
+
+    <Button
+        android:text="등록"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/StoreAddBtn" />
+</LinearLayout>
