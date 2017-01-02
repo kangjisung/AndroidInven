@@ -28,15 +28,21 @@ public class Graph2 extends Fragment {
 
         chart.setTouchEnabled(false);
         chart.setDoubleTapToZoomEnabled(false);
-
         chart.getAxisLeft().setDrawGridLines(false);
         chart.getXAxis().setDrawGridLines(false);
+        chart.getAxisLeft().setDrawLabels(false);
+        chart.getAxisRight().setDrawLabels(false);
+
+        chart.setDrawGridBackground(false);
 
         chart2.setTouchEnabled(false);
         chart2.setDoubleTapToZoomEnabled(false);
 
         chart2.getAxisLeft().setDrawGridLines(false);
         chart2.getXAxis().setDrawGridLines(false);
+
+        chart2.getAxisLeft().setDrawLabels(false);
+        chart2.getAxisRight().setDrawLabels(false);
 
         ArrayList<String> x1 = new ArrayList<>();
         ArrayList<String> x2 = new ArrayList<>();
@@ -83,11 +89,13 @@ public class Graph2 extends Fragment {
         LineDataSet lineDataSet1 = new LineDataSet(y1,"요일별그래프");
         lineDataSet1.setDrawCircles(false);
         lineDataSet1.setColor(Color.BLUE);
+        lineDataSet1.setDrawValues(false);
         //lineDataSet1.setDrawCubic(true);
 
         LineDataSet lineDataSet2 = new LineDataSet(y2,"월별그래프");
         lineDataSet2.setDrawCircles(false);
         lineDataSet2.setColor(Color.RED);
+        lineDataSet2.setDrawValues(false);
 
         lineDataSets1.add(lineDataSet1);
         lineDataSets2.add(lineDataSet2);

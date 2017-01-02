@@ -1,16 +1,20 @@
 package com.example.kangjisung.likeroom.inventory.statistics;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
-import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
-import com.example.kangjisung.likeroom.SQLiteDatabaseControl.LocalHostDatabaseManager;
+import com.example.kangjisung.likeroom.User.listView.ListViewItem;
 import com.example.kangjisung.likeroom.inventory.InvenList.InvenAdapter;
+import com.example.kangjisung.likeroom.inventory.InvenList.InvenListViewItem;
+import com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.Graph.Graph1;
+import com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.InvenActivity;
 
 import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
@@ -41,6 +45,23 @@ public class InvenView extends AppCompatActivity {
             }
             else if(DBstring[cnt]==null) break;
         }
+
+        final Intent mil = new Intent(this, InvenActivity.class); ///마일리지창
+        Blistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
+                InvenListViewItem item = (InvenListViewItem) parent.getItemAtPosition(position) ;
+
+                String nameStr = item.getBname() ;
+                mil.putExtra("name", nameStr);
+
+                //get TextView's Text.
+                startActivity(mil);
+                Toast.makeText(getApplicationContext(), "클릭.", Toast.LENGTH_SHORT).show();
+
+                // TODO : use strText
+            }
+        }) ;
     }
 
 }

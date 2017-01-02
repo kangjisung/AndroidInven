@@ -46,9 +46,7 @@ public class ProductAdd extends Activity {
 ///////////////////////완료버튼
         complete.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-
                 new ClientDataBase("insert into `제품정보` (`이름`,`원가`,`판매가`,`잔존가`,`등록일`,`사용여부`) values (\""+array[0]+"\","+array[1]+","+array[2]+","+array[3]+",(select date('now')),\"true\");",2,0,getApplicationContext());
-
             }
         });
 //////////////////////이전버튼

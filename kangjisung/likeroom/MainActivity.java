@@ -1,5 +1,6 @@
 package com.example.kangjisung.likeroom;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -8,7 +9,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
+import com.example.kangjisung.likeroom.User.UserManage.Usermanage;
+import com.example.kangjisung.likeroom.inventory.calc;
 import com.example.kangjisung.likeroom.inventory.sales.salesVolume;
+import com.example.kangjisung.likeroom.inventory.statistics.InvenView;
 
 import static com.example.kangjisung.likeroom.R.id.StoreAddress;
 import static com.example.kangjisung.likeroom.R.id.StoreName;
@@ -19,12 +23,15 @@ import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBa
 public class MainActivity extends ActionBarActivity{
 
     String PriNum;
+    public static Context con;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new ClientDataBase("select `매장번호` from `매장`;",1,1,getApplicationContext());
+        con=getApplicationContext();
+        //calc c=calc.getInstance();
+        /*new ClientDataBase("select `매장번호` from `매장`;",1,1,getApplicationContext());
         int cnt=0;
         while(true) {
             if (DBstring[cnt] != null) {
@@ -33,11 +40,11 @@ public class MainActivity extends ActionBarActivity{
             }
             else if(DBstring[cnt]==null) break;
         }
-        /*if(PriNum==null) {
+        if(PriNum==null) {
             Intent StoreAdd = new Intent(this, StoreAdd.class);
             startActivity(StoreAdd);
         }*/
-        Intent StoreAdd = new Intent(this, StoreAdd.class);
+        Intent StoreAdd = new Intent(this, InvenView.class);
         startActivity(StoreAdd);
 
     }

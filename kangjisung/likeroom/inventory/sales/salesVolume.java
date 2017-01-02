@@ -1,16 +1,24 @@
 package com.example.kangjisung.likeroom.inventory.sales;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.LocalHostDatabaseManager;
+import com.example.kangjisung.likeroom.User.MileageManage.mileage;
+import com.example.kangjisung.likeroom.User.listView.ListViewItem;
 import com.example.kangjisung.likeroom.inventory.InvenList.InvenAdapter;
+import com.example.kangjisung.likeroom.inventory.InvenList.InvenListViewItem;
+import com.example.kangjisung.likeroom.inventory.statistics.InvenView;
 
 import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
@@ -42,6 +50,7 @@ public class salesVolume extends AppCompatActivity {
             }
             else if(DBstring[cnt]==null) break;
         }
+
 
     }
 

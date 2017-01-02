@@ -8,6 +8,7 @@ public class ListViewItem {
 
     private String nameStr ;
     private String phoneStr ;
+    private String pointStr;
 
 
     public void setTitle(String title) {
@@ -16,6 +17,7 @@ public class ListViewItem {
     public void setDesc(String desc) {
         phoneStr = desc ;
     }
+    public void setpoint(String point){pointStr=point;}
 
     public String getTitle() {
         return this.nameStr ;
@@ -23,4 +25,5 @@ public class ListViewItem {
     public String getDesc() {
         return this.phoneStr ;
     }
+    public String getpoint(){return this.pointStr;}
 }
