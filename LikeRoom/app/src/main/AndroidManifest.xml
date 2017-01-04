@@ -37,7 +37,9 @@
             >
         </activity>
         <activity android:name=".ActivityStoreSelect"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            >
+
         </activity>
         <meta-data
             android:name="com.google.android.gms.version"

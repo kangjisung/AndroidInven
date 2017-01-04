@@ -63,6 +63,8 @@ public class FragmentStampMain extends Fragment {
             }
         });
 
+
+
         Button buttontest = (Button)stampLayout.findViewById(R.id.buttontest);
         buttontest.setOnClickListener(new Button.OnClickListener(){
             @Override
