@@ -19,7 +19,7 @@
             android:textColor="@color/clrTextColorDeepDark"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="7dp"
+            android:layout_marginBottom="10dp"
             android:textSize="27dp" />
 
         <ImageView
@@ -40,7 +40,7 @@
             android:layout_marginBottom="3dp" />
 
         <TextView
-            android:text="Q"
+            android:text="Q."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView8"
@@ -50,6 +50,7 @@
 
     </LinearLayout>
 
+<<<<<<< HEAD
     <Button
         android:text="가격정보"
         android:layout_width="wrap_content"
@@ -62,6 +63,8 @@
         android:layout_marginRight="10dp"
         android:layout_height="35dp" />
 
+=======
+>>>>>>> origin/customer-app-layout-design
     <ImageView
         android:layout_width="match_parent"
         app:srcCompat="@drawable/icon_menu_item_selected"
@@ -78,83 +81,9 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_marginTop="430dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:paddingTop="5dp">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="10dp">
-
-            <TextView
-                android:text="낙관"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView11"
-                android:textColor="@color/clrTextColorDeepDark"
-                android:layout_gravity="center_horizontal"
-                android:textSize="28dp" />
-
-            <ImageView
-                android:layout_height="2dp"
-                app:srcCompat="@color/Gray"
-                android:id="@+id/imageView12"
-                android:layout_width="match_parent"
-                android:layout_marginTop="2dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="10dp">
-
-            <TextView
-                android:text="예상"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView12"
-                android:textColor="@color/clrTextColorDeepDark"
-                android:layout_gravity="center_horizontal"
-                android:textSize="28dp" />
-
-            <ImageView
-                android:layout_height="2dp"
-                app:srcCompat="@color/Gray"
-                android:id="@+id/imageView13"
-                android:layout_width="match_parent"
-                android:layout_marginTop="2dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="30dp">
-
-            <TextView
-                android:text="비관"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView13"
-                android:textColor="@color/clrTextColorDeepDark"
-                android:layout_gravity="center_horizontal"
-                android:textSize="28dp" />
-
-            <ImageView
-                android:layout_height="2dp"
-                app:srcCompat="@color/Gray"
-                android:id="@+id/imageView14"
-                android:layout_width="match_parent"
-                android:layout_marginTop="2dp" />
-        </LinearLayout>
-
-    </LinearLayout>
+        android:layout_marginTop="430dp"
+        android:layout_height="60dp"></LinearLayout>
 
     <Button
         android:text="변경하기"
@@ -163,12 +92,12 @@
         android:id="@+id/button3"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="20dp" />
 
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_height="30dp">
+        android:layout_height="20dp">
 
     </android.support.design.widget.TabLayout>
 
