@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:layout_width="300dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/popup_title_height">
+
+            <Button
+                android:id="@+id/button_back"
+                android:background="@mipmap/icon_left_arrow"
+                style="@style/LikeRoomTheme.Button.EmptyBackground"
+                android:layout_weight="0"
+                android:layout_gravity="center"
+                android:layout_width="45dp"
+                android:layout_height="45dp" />
+
+            <TextView
+                android:text="고객 등록"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                style="@android:style/TextAppearance.DeviceDefault.Medium"
+                android:textAlignment="center"
+                android:layout_marginEnd="50dp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/popup_title_height">
+
+            <RelativeLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:id="@+id/imageView_emblem">
+
+                <include
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    layout="@layout/include_emblem" />
+
+                <ImageView
+                    android:background="@mipmap/icon_floating_add"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:id="@+id/layout_input"
+                android:layout_below="@+id/imageView_emblem"
+                android:layout_margin="10dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp">
+
+                    <TextView
+                        android:text="이름"
+                        android:layout_height="wrap_content"
+                        style="@style/LikeRoomTheme.TextView.UserAdd"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0"
+                        android:layout_width="80dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:text="Name"
+                        android:ems="10"
+                        android:id="@+id/editTextName"
+                        style="@style/LikeRoomTheme.EditText"
+                        android:background="@drawable/theme_textedit"
+                        android:textSize="20dp"
+                        android:layout_weight="1"
+                        android:padding="3dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:layout_marginStart="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp">
+
+                    <TextView
+                        android:text="전화번호"
+                        android:layout_height="wrap_content"
+                        style="@style/LikeRoomTheme.TextView.UserAdd"
+                        android:layout_weight="0"
+                        android:layout_width="80dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:ems="10"
+                        android:id="@+id/editTextPhone"
+                        style="@style/LikeRoomTheme.EditText"
+                        android:background="@drawable/theme_textedit"
+                        android:textSize="20dp"
+                        android:layout_weight="1"
+                        android:padding="3dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:layout_marginStart="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="생년월일"
+                        android:layout_height="wrap_content"
+                        style="@style/LikeRoomTheme.TextView.UserAdd"
+                        android:layout_weight="0"
+                        android:layout_width="80dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="date"
+                        android:ems="10"
+                        android:id="@+id/editTextBirthday"
+                        style="@style/LikeRoomTheme.EditText"
+                        android:background="@drawable/theme_textedit"
+                        android:textSize="20dp"
+                        android:layout_weight="1"
+                        android:padding="3dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:layout_marginStart="10dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:text="완료"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_ok"
+                android:layout_alignParentBottom="false"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/layout_input" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

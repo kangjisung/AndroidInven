@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:layout_width="300dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <Button
+                android:id="@+id/button_back"
+                android:background="@mipmap/icon_left_arrow"
+                style="@style/LikeRoomTheme.Button.EmptyBackground"
+                android:layout_weight="0"
+                android:layout_gravity="center"
+                android:layout_width="45dp"
+                android:layout_height="45dp" />
+
+            <TextView
+                android:text="스탬프 발송"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                style="@android:style/TextAppearance.DeviceDefault.Medium"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/button_ok"
+                android:background="@mipmap/icon_check"
+                style="@style/LikeRoomTheme.Button.EmptyBackground"
+                android:layout_weight="0"
+                android:layout_gravity="center"
+                android:layout_width="45dp"
+                android:layout_height="45dp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp">
+
+            <ViewFlipper
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp">
+
+                    <TextView
+                        android:text="TextView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView4"
+                        android:textColor="@color/black"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+                    <TextView
+                        android:text="TextView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView6"
+                        android:textColor="@color/black"/>
+
+                </RelativeLayout>
+
+            </ViewFlipper>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

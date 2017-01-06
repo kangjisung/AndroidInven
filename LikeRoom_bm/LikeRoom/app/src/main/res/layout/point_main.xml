@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout_search">
+
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/include_member_search" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout_first">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/search_background" />
+
+        <ImageView
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:layout_width="270dp" />
+
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="false"
+            android:layout_centerInParent="true"
+            android:layout_width="220dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/point_main_searchbar"
+                android:layout_centerVertical="true" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:textColor="@color/gray120"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:textSize="14sp"
+                android:ems="10"
+                android:layout_centerVertical="true"
+                android:layout_height="30dp"
+                android:layout_width="match_parent"
+                android:padding="0dp"
+                android:inputType="text"
+                android:background="@color/white"
+                android:layout_marginEnd="5dp"
+                android:text="내용"
+                style="@style/LikeRoomTheme.EditText" />
+
+            <TextView
+                android:text="이름 또는 전화번호로 검색"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/textView2"
+                android:layout_marginStart="40dp"
+                android:textColor="@color/gray200"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:gravity="center_vertical"
+                android:layout_marginEnd="5dp"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:text="포인트 적립창 보기"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonTempSave"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="스탬프 발송창 보기"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_temp_stamp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

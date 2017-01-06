@@ -1,0 +1,72 @@
+<resources>
+    <style name="LikeRoomTheme" parent="Theme.AppCompat.NoActionBar">
+    </style>
+    <style name="LikeRoomTheme_BreadTheme" parent="@style/LikeRoomTheme">
+        <item name="theme_color_L3">#FEFAE9</item>
+        <item name="theme_color_L2">#FFF7DA</item>
+        <item name="theme_color_L1">#fff4cb</item>
+        <item name="theme_color_N">#dcd1a7</item>
+        <item name="theme_color_D1">#cfbe7c</item>
+        <item name="theme_color_D2">#ae9949</item>
+        <item name="theme_color_D3">#514E3F</item>
+        <item name="theme_color_type1">#f86f8d</item>
+        <item name="theme_color_type2">#e88f2c</item>
+    </style>
+    <style name="LikeRoomTheme_OceanTheme" parent="@style/LikeRoomTheme">
+        <item name="theme_color_L3">#E9F5FE</item>
+        <item name="theme_color_L2">#d2ecff</item>
+        <item name="theme_color_L1">#9fd7ff</item>
+        <item name="theme_color_N">#62b2d6</item>
+        <item name="theme_color_D1">#4194b7</item>
+        <item name="theme_color_D2">#1e7296</item>
+        <item name="theme_color_D3">#084660</item>
+        <item name="theme_color_type1">#bf6ff5</item>
+        <item name="theme_color_type2">#43d0ff</item>
+    </style>
+    <style name="LikeRoomTheme_StrawBerryTheme" parent="@style/LikeRoomTheme">
+        <item name="theme_color_L3">#ffe5ea</item>
+        <item name="theme_color_L2">#efb4c0</item>
+        <item name="theme_color_L1">#ef97a9</item>
+        <item name="theme_color_N">#e2768c</item>
+        <item name="theme_color_D1">#d75b74</item>
+        <item name="theme_color_D2">#c23451</item>
+        <item name="theme_color_D3">#a40727</item>
+        <item name="theme_color_type1">#8ad968</item>
+        <item name="theme_color_type2">#ff4c64</item>
+    </style>
+
+    <style name="LikeRoomTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="LikeRoomTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="LikeRoomTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="LikeRoomTheme.EditText" parent="@android:style/Widget.EditText">
+        <item name="android:ems">256</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="LikeRoomTheme.Button.EmptyBackground" parent="@style/LikeRoomTheme">
+        <item name="android:text"></item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="LikeRoomTheme.Button.UserSearch" parent="@android:style/Widget.Button">
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="LikeRoomTheme.Button.PointSave" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/button_point_save</item>
+        <item name="android:textSize">24dp</item>
+    </style>
+
+    <style name="LikeRoomTheme.TextView.UserAdd" parent="@android:style/TextAppearance.DeviceDefault.Medium">
+        <item name="android:textColor">#333333</item>
+    </style>
+</resources>

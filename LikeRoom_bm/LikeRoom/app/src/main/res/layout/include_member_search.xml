@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="?attr/theme_color_L3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:padding="10dp"
+        android:layout_height="100dp"
+        android:id="@+id/layout_searchbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/user_searchbar"
+            android:layout_height="35dp">
+
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="@mipmap/icon_search"
+                android:backgroundTint="@color/gray120"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:id="@+id/editText_search"
+                android:layout_marginStart="35dp"
+                android:textColor="@color/clrTextColorDeepDark"
+                style="@style/LikeRoomTheme.EditText"
+                android:maxLines="1"
+                android:layout_marginBottom="3dp"
+                android:textSize="20dp" />
+
+            <TextView
+                android:text="이름 또는 전화번호로 검색"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/textView_search"
+                android:layout_marginStart="35dp"
+                android:textColor="@color/gray200"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="3dp"
+                android:textSize="18dp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginEnd="2dp"
+                android:id="@+id/layout_sort_by_name">
+
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    layout="@layout/include_sort_button" />
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                android:id="@+id/layout_sort_by_phone">
+
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    layout="@layout/include_sort_button" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="2dp"
+                android:id="@+id/layout_sort_by_point">
+
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    layout="@layout/include_sort_button" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="100dp"
+        android:id="@+id/layout_search_result"
+        android:background="@drawable/user_searchbar_result"
+        android:layout_height="45dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <CheckBox
+            android:id="@+id/checkBoxStampAll"
+            android:textColor="@color/black"
+            android:button="@null"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/user_checkbox"
+            android:layout_weight="0"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:text="검색 내용"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewSearchResult"
+            android:textColor="@color/clrTextColorDeepDark"
+            android:textSize="17sp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView"
+        android:layout_below="@+id/layout_search_result" />
+
+</RelativeLayout>
