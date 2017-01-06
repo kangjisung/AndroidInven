@@ -120,7 +120,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_each_registered_store_item, parent, false);
                 break;
             case showUnRegisteredStoreList:
-                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_each_registered_store_item, parent, false);
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_store_recycler_view, parent, false);
                 break;
         }
         NoticeRecyclerViewAdapter.NoticeRecyclerViewHolder vh = new NoticeRecyclerViewAdapter.NoticeRecyclerViewHolder(v);
@@ -191,7 +191,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                 });
                 break;
             case showUnRegisteredStoreList:
-                holder.imgShopIcon.setImageDrawable(noticeRecyclerViewItem.GetStoreImage());
+                //holder.imgShopIcon.setImageDrawable(noticeRecyclerViewItem.GetStoreImage());
                 holder.txtShopName.setText(noticeRecyclerViewItem.GetStoreName());
                 holder.txtShopPhoneNumber.setText(noticeRecyclerViewItem.GetStorePhoneNumber());
                 holder.txtShopAddress.setText(noticeRecyclerViewItem.GetStoreAddress());

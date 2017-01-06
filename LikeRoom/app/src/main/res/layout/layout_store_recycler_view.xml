@@ -2,6 +2,7 @@
 <!--공지사항 리스트의 디자인. 나중에 아이콘 수정이 이루어질 것이다.-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutEachStoreItem"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="120dp"
