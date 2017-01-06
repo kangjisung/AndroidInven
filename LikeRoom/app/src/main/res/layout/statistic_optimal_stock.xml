@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/stamp_store_title_background">
+
+        <TextView
+            android:text="빵 이름"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6"
+            android:textColor="@color/clrTextColorDeepDark"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="27dp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            app:srcCompat="@color/Gray"
+            android:id="@+id/imageView11" />
+
+        <TextView
+            android:text="오늘의 최적재고량"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView9"
+            android:textColor="@color/Black"
+            android:textSize="23dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="3dp" />
+
+        <TextView
+            android:text="Q."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView8"
+            android:textColor="@color/Gray"
+            android:textSize="40dp"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        app:srcCompat="@drawable/icon_menu_item_selected"
+        android:id="@+id/imageView10"
+        android:layout_marginTop="150dp"
+        android:layout_height="230dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="380dp"
+        android:layout_height="50dp">
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="430dp"
+        android:layout_height="60dp"></LinearLayout>
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp" />
+
+    <android.support.design.widget.TabLayout
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="20dp">
+
+    </android.support.design.widget.TabLayout>
+
+</RelativeLayout>
