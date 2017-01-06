@@ -4,8 +4,11 @@ import android.content.Context;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.AppCompatImageView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.R;
@@ -20,8 +23,10 @@ public class StampPagerAdapter extends PagerAdapter
 {
     private LayoutInflater mInflater;
     private ArrayList<Integer> stampNumList;
+    private ArrayList<RelativeLayout> stampListInPage = new ArrayList<>();
     private int numOfStamp;
     private int numOfPage;
+    private Context context;
 
     public StampPagerAdapter(Context c, int _numOfStamp){
         super();
@@ -29,6 +34,7 @@ public class StampPagerAdapter extends PagerAdapter
         numOfStamp = _numOfStamp;
         numOfPage = (numOfStamp > 0)? ((numOfStamp - 1) / 10 + 1):(1);
         stampNumList = new ArrayList<Integer>();
+        context = c;
 
         int nowStamp;
 
@@ -51,17 +57,34 @@ public class StampPagerAdapter extends PagerAdapter
 
     @Override
     public Object instantiateItem(View pager, int position) {
-        View v = null;
-        v = mInflater.inflate(R.layout.stamp_page, null);
+        View view = mInflater.inflate(R.layout.stamp_page, null);
 
+        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_1));
+        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_2));
+        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_3));
+        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_4));
+        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_5));
+        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_6));
+        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_7));
+        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_8));
+        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_9));
+        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_10));
+
+        for(int p=stampNumList.get(position)-1; p>=0; p--){
+            RelativeLayout nowLayout = stampListInPage.get(p);
+            nowLayout.setVisibility(View.GONE);
+        }
+
+        /*
         TextView v1 = (TextView)v.findViewById(R.id.textViewTemp1);
         TextView v2 = (TextView)v.findViewById(R.id.textViewTemp2);
         v1.setText("페이지 번호 : " + position);
         v2.setText("이 페이지의 스탬프 갯수 : " + stampNumList.get(position));
+        */
 
-        ((ViewPager)pager).addView(v, 0);
+        ((ViewPager)pager).addView(view, 0);
 
-        return v;
+        return view;
     }
 
     @Override

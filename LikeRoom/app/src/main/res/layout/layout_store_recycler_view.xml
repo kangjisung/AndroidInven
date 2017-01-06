@@ -4,89 +4,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:background="#FFF4C5"
-    android:layout_marginBottom="2dp">
+    android:background="@color/White"
+    android:layout_marginBottom="2dp"
+    android:padding="10dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="10dp"
-        android:paddingBottom="0dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+    <TextView
+        android:text="매장 이름"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtShopName"
+        android:textColor="@color/clrTextColorDeepDark"
+        android:textSize="28dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false" />
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="38dp">
+    <TextView
+        android:text="매장주소"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtShopAddress"
+        android:textColor="@color/clrTextColorMediumDark"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
+        android:textSize="23dp"
+        android:layout_marginTop="40dp" />
 
-            <TextView
-                android:text="제목을 입력하십시오"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textViewTitle"
-                android:textColor="@color/Black"
-                android:textStyle="bold"
-                android:singleLine="true"
-                android:textSize="20dp" />
+    <TextView
+        android:text="매장 전화번호"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtShopPhoneNumber"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/Gray"
+        android:textSize="20dp" />
 
-            <TextView
-                android:text="내용을 입력하세요"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textViewBody"
-                android:textColor="@color/Black"
-                android:textSize="18dp" />
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="38dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:id="@+id/imgSeperateWithLine"
-                android:background="@color/Black" />
-
-            <ImageView
-                android:layout_height="25dp"
-                app:srcCompat="@mipmap/icon_calendar"
-                android:id="@+id/imgCalendarShowNoticeDate"
-                android:layout_centerHorizontal="false"
-                android:layout_centerInParent="false"
-                android:layout_alignParentBottom="false"
-                android:layout_width="25dp"
-                android:layout_centerVertical="true" />
-
-            <TextView
-                android:text="날짜"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtNoticeDate"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="false"
-                android:layout_marginLeft="40dp"
-                android:textColor="@color/clrTextColorDeepDark"
-                android:textSize="18dp" />
-
-            <ImageView
-                android:id="@+id/imgNoticeType"
-                android:layout_alignParentRight="true"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@mipmap/ic_launcher" />
-        </RelativeLayout>
-
-    </RelativeLayout>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/btnEachNoticeItem"
-        android:background="@drawable/button_mask" />
 </RelativeLayout>

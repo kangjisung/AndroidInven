@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/stamp_layout">
+
+    <android.support.v7.widget.AppCompatImageView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_circle"
+        app:backgroundTint="#c23451" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/icon_bread"
+        app:backgroundTint="@color/White"
+        android:layout_margin="5dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_circle_press" />
+
+</RelativeLayout>
