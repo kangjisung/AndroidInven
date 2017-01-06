@@ -54,7 +54,7 @@
         android:text="가격정보"
         android:layout_width="wrap_content"
         android:id="@+id/button4"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="130dp"
         android:layout_alignParentRight="true"
         android:background="@color/White"
         android:textColor="@color/Black"
@@ -157,7 +157,7 @@
     </LinearLayout>
 
     <Button
-        android:text="Button"
+        android:text="변경하기"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button3"
