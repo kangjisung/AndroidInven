@@ -40,7 +40,7 @@
             android:gravity="center_horizontal">
 
             <Button
-                android:id="@+id/btn_left"
+                android:id="@+id/btnCancel"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="@string/deleteCancel"
@@ -48,7 +48,7 @@
                 android:background="@drawable/button_mask" />
 
             <Button
-                android:id="@+id/btn_right"
+                android:id="@+id/btnAccept"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="@string/deleteAccept"
