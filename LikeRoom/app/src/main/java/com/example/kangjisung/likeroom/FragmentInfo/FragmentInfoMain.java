@@ -1,9 +1,7 @@
 package com.example.kangjisung.likeroom.FragmentInfo;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +14,7 @@ import com.example.kangjisung.likeroom.DefineManager;
 import com.example.kangjisung.likeroom.PermissionManager.AndroidVersionController;
 import com.example.kangjisung.likeroom.PermissionManager.PhoneCallBridge;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.StoreDeleteCheckDialog;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -28,7 +27,7 @@ import static com.example.kangjisung.likeroom.DefineManager.androidVersionLollip
 import static com.example.kangjisung.likeroom.DefineManager.googleMapCameraZoomScale;
 import static com.example.kangjisung.likeroom.DefineManager.shopIdSavedPoint;
 
-public class FragmentInfoMain extends Fragment implements OnMapReadyCallback{
+public class FragmentInfoMain extends DialogFragment implements OnMapReadyCallback{
 
     SupportMapFragment googleMapFragment;
     ImageView btnCallButton;
@@ -38,6 +37,7 @@ public class FragmentInfoMain extends Fragment implements OnMapReadyCallback{
     String[] selectedShopInfoData;
     Button btnDeleteThisStore;
     LatLng targetLocationInfo;
+    StoreDeleteCheckDialog storeDeleteCheckDialog;
     //SimpleDatabaseTest simpleDatabaseTest;
 //매장정보에 관한 부분이다. 아마 지도 등 CouponTan에서 만들어진 부분들을 여기로 옮겨올 수 있을 듯하다.
     //지도, 사진, 주소등이 필요
@@ -104,11 +104,8 @@ public class FragmentInfoMain extends Fragment implements OnMapReadyCallback{
                 //Snackbar.make(view, getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
                 //simpleDatabaseTest.DeleteSelectedShop(Integer.parseInt(selectedShopInfoData[shopIdSavedPoint]));
 
-                Intent storeDetailViewInfoTab = new Intent();
-                storeDetailViewInfoTab.putExtra("deleteTargetStoreId", selectedShopInfoData[shopIdSavedPoint]);
-                //getActivity().setResult(Activity.RESULT_OK);
-                getActivity().setResult(Activity.RESULT_OK, storeDetailViewInfoTab);
-                getActivity().finish();
+                storeDeleteCheckDialog = new StoreDeleteCheckDialog(getActivity(), getActivity(), selectedShopInfoData[shopIdSavedPoint]);
+                storeDeleteCheckDialog.show();
             }
         });
 
