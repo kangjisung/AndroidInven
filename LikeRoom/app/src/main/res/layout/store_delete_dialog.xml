@@ -19,7 +19,7 @@
             android:gravity="center"
             android:textColor="@android:color/black"
             android:textSize="23dp"
-            android:text="매장 삭제"
+            android:text="@string/deleteStoreTitle"
             android:layout_marginTop="20dp" />
 
         <TextView
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/common_google_signin_btn_text_light_default"
             android:textSize="18dp"
-            android:text="정말로 삭제하시겠습니까?\n(삭제된 기록은 복구되지 않습니다.)"
+            android:text="@string/deleteStorePopupBody"
             android:layout_marginTop="20dp"
             android:gravity="center" />
 
@@ -43,7 +43,7 @@
                 android:id="@+id/btn_left"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="아니오"
+                android:text="@string/deleteCancel"
                 android:textColor="@color/common_google_signin_btn_text_light_default"
                 android:background="@drawable/button_mask" />
 
@@ -51,7 +51,7 @@
                 android:id="@+id/btn_right"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="예"
+                android:text="@string/deleteAccept"
                 android:textColor="@color/Red"
                 android:background="@drawable/button_mask" />
         </LinearLayout>
