@@ -24,7 +24,7 @@ public class DefineManager {
 
             isStoreListNeedsRefresh = 0;
 
-    public final static boolean isDebugMode = true;
+    public final static boolean isDebugMode = false;
 
     public final static float googleMapCameraZoomScale = 17;
 
