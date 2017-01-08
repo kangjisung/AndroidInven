@@ -22,11 +22,15 @@ public class DefineManager {
             noticeShopIdSavedPoint = 0, noticeIdSavedPoint = 1, noticeTitleSavedPoint = 2,
             noticeBodySavedPoint = 3, noticeStartDateSavedPoint = 4, noticeCloseDateSavedPoint = 5,
 
-            isStoreListNeedsRefresh = 0
-            ;
+            isStoreListNeedsRefresh = 0;
+
+    public final static boolean isDebugMode = false;
+
     public final static float googleMapCameraZoomScale = 17;
 
     public final static String[] selectedShopInfoDataKey = {
             "shopName", "shopAddress", "shopPhoneNumber", "shopLatitude", "shopLongtitude", "shopOpenTime", "shopCloseTime", "shopId"
     };
+
+    public final static String customerDatabaseName = "CustomerDatabase.db";
 }

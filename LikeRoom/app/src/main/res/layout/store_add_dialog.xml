@@ -3,7 +3,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    >
 
     <RelativeLayout
         android:background="@drawable/layout_background"
@@ -17,7 +18,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="40dp">
 
             <Button
                 android:layout_width="45dp"
@@ -48,16 +49,16 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/search_bar"
+            android:id="@+id/search_bar"
             android:layout_height="35dp">
+
 
             <SearchView
                 android:id="@+id/searchNewStore"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="4dp"
-                android:paddingBottom="5dp"
                 android:layout_marginLeft="40dp" />
 
         </RelativeLayout>
@@ -65,18 +66,18 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="120dp">
+            android:layout_marginTop="90dp">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="fill_parent"
                     android:id="@+id/listOfStoreWitchIsRegisteredByServer"
-                    android:layout_marginTop="20dp"
-                    android:layout_height="190dp" />
+                    android:layout_marginTop="10dp"
+                    android:layout_height="300dp" />
             </LinearLayout>
         </ScrollView>
 

@@ -1,8 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/Black">
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_centerInParent="true"
+        android:background="@color/White"
+        android:layout_height="130dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/shape_empty_stamp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:id="@+id/layout_stamp_1">
+
+                    <include
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        layout="@layout/include_stamp_normal" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/shape_empty_stamp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:id="@+id/layout_stamp_2">
+
+                    <include
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        layout="@layout/include_stamp_normal" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/shape_empty_stamp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:id="@+id/layout_stamp_3">
+
+                    <include
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        layout="@layout/include_stamp_normal" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/shape_empty_stamp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:id="@+id/layout_stamp_4">
+
+                    <include
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        layout="@layout/include_stamp_normal" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/shape_empty_stamp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:id="@+id/layout_stamp_5">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_circle"
+                        app:backgroundTint="#c23451"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/White"
+                        android:textStyle="bold"
+                        android:layout_centerInParent="true"
+                        android:text="사용" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_circle_press"
+                        android:layout_weight="1"
+                        android:id="@+id/button_use_1" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/shape_empty_stamp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:id="@+id/layout_stamp_6">
+
+                    <include
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        layout="@layout/include_stamp_normal" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/shape_empty_stamp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:id="@+id/layout_stamp_7">
+
+                    <include
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        layout="@layout/include_stamp_normal" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/shape_empty_stamp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:id="@+id/layout_stamp_8">
+
+                    <include
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        layout="@layout/include_stamp_normal" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/shape_empty_stamp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:id="@+id/layout_stamp_9">
+
+                    <include
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        layout="@layout/include_stamp_normal" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/shape_empty_stamp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:id="@+id/layout_stamp_10">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_circle"
+                        app:backgroundTint="#c23451"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/White"
+                        android:textStyle="bold"
+                        android:layout_centerInParent="true"
+                        android:text="사용" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_circle_press"
+                        android:layout_weight="1"
+                        android:id="@+id/button_use_2" />
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:text="TextView"
@@ -20,4 +225,4 @@
         android:layout_marginTop="30dp"
         android:textColor="@color/White"
         android:textSize="30dp" />
-</FrameLayout>
+</RelativeLayout>

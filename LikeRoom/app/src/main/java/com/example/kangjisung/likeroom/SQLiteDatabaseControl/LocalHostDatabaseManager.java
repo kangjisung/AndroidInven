@@ -6,6 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.kangjisung.likeroom.R;
+
+
 /**
  * Created by stories2 on 2016. 11. 27..
  */
@@ -13,11 +16,15 @@ import android.util.Log;
 public class LocalHostDatabaseManager extends SQLiteOpenHelper {
     String savedDatabasePath, savedDatabaseName, logCatTag = "ex13";
     SQLiteDatabase sqLiteDatabase;
+    Context context;
+
     public LocalHostDatabaseManager(Context context, String databaseSavedPath, String databaseName) {
         super(context, databaseName, null, 1);
-
+        this.context = context;
         this.savedDatabasePath = databaseSavedPath;
         this.savedDatabaseName = databaseName;
+
+        logCatTag = context.getString(R.string.app_name);
     }
     public LocalHostDatabaseManager(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
