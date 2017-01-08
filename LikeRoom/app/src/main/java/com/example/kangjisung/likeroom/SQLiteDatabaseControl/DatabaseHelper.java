@@ -1,34 +1,48 @@
 
 package com.example.kangjisung.likeroom.SQLiteDatabaseControl;
 
-        import android.content.Context;
-        import android.database.DatabaseErrorHandler;
-        import android.database.sqlite.SQLiteDatabase;
-        import android.database.sqlite.SQLiteOpenHelper;
-        import android.util.Log;
+import android.content.Context;
+import android.database.DatabaseErrorHandler;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
-        import java.io.File;
-        import java.io.FileOutputStream;
-        import java.io.InputStream;
-        import java.io.OutputStream;
+import com.example.kangjisung.likeroom.R;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import static com.example.kangjisung.likeroom.DefineManager.isDebugMode;
 
 /**
  * Created by stories2 on 2016. 11. 25..
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
+
     String logCatTag = "ex13", dbPath;
     Context context;
+
     public DatabaseHelper(Context context, String dbName) {
         super(context, dbName, null, 1);
 
         this.context = context;
         this.dbPath = this.context.getApplicationInfo().dataDir + "/databases/";
+
+        logCatTag = context.getString(R.string.app_name);
+
         try {
-            if(!IsTargetFileAlreadyExist(dbPath, dbName)) {
+            if(isDebugMode) {
                 CopyTargetFileToSomethingPath(dbPath, dbName);
             }
             else {
-                Log.d(logCatTag, "already Exist Target File: " + dbPath + dbName);
+                if(!IsTargetFileAlreadyExist(dbPath, dbName)) {
+                    CopyTargetFileToSomethingPath(dbPath, dbName);
+                }
+                else {
+                    Log.d(logCatTag, "already Exist Target File: " + dbPath + dbName);
+                }
             }
         }
         catch (Exception err) {
@@ -51,9 +65,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             OutputStream fileOutputStream = new FileOutputStream(copyPathDirection + targetFileName);
             byte[] fileCopyBufferMemory = new byte[1];
             int fileBufferLength, fileSizeCounter = 0;
+            Log.d(logCatTag, "Begin Copying Database");
             while((fileBufferLength = fileInputStream.read(fileCopyBufferMemory)) > 0) {
                 fileOutputStream.write(fileCopyBufferMemory, 0, fileBufferLength);
                 fileSizeCounter += fileBufferLength;
+                //Log.d(logCatTag, ".");
             }
             fileOutputStream.flush();
             fileInputStream.close();
