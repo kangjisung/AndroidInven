@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.example.kangjisung.likeroom.PermissionManager.AndroidVersionController;
 import com.example.kangjisung.likeroom.PermissionManager.UserAccountCrawler;
+import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.apache.http.HttpResponse;
@@ -21,6 +22,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.InputStream;
 
+import static com.example.kangjisung.likeroom.DefineManager.customerDatabaseName;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -28,6 +31,7 @@ public class MainActivity extends ActionBarActivity {
     private Runnable mRunnable;
     UserAccountCrawler userAccountCrawler;
     String userAccountInfo;
+    DatabaseHelper databaseHelper;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -40,11 +44,13 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         userAccountCrawler = new UserAccountCrawler(this);
+        databaseHelper = new DatabaseHelper(getApplicationContext(), customerDatabaseName);
+        final AlertDialog.Builder alertNoticeBuilder = new AlertDialog.Builder(this);
+
         userAccountInfo = userAccountCrawler.CheckPermissionGranted();
 
         Log.d(getString(R.string.app_name), "crawled account info: " + userAccountInfo);
 
-        final AlertDialog.Builder alertNoticeBuilder = new AlertDialog.Builder(this);
         alertNoticeBuilder.setMessage(getString(R.string.emailLoadFail));
         alertNoticeBuilder.setPositiveButton(getString(R.string.positiveButtonMessage),
                 new DialogInterface.OnClickListener() {

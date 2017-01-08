@@ -1,10 +1,12 @@
 package com.example.kangjisung.likeroom.SQLiteDatabaseControl;
 
-        import android.content.Context;
-        import android.database.DatabaseErrorHandler;
-        import android.database.sqlite.SQLiteDatabase;
-        import android.database.sqlite.SQLiteOpenHelper;
-        import android.util.Log;
+import android.content.Context;
+import android.database.DatabaseErrorHandler;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import com.example.kangjisung.likeroom.R;
 
 
 /**
@@ -14,11 +16,15 @@ package com.example.kangjisung.likeroom.SQLiteDatabaseControl;
 public class LocalHostDatabaseManager extends SQLiteOpenHelper {
     String savedDatabasePath, savedDatabaseName, logCatTag = "ex13";
     SQLiteDatabase sqLiteDatabase;
+    Context context;
+
     public LocalHostDatabaseManager(Context context, String databaseSavedPath, String databaseName) {
         super(context, databaseName, null, 1);
-
+        this.context = context;
         this.savedDatabasePath = databaseSavedPath;
         this.savedDatabaseName = databaseName;
+
+        logCatTag = context.getString(R.string.app_name);
     }
     public LocalHostDatabaseManager(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
