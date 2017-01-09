@@ -28,7 +28,7 @@ public class Usermanage extends AppCompatActivity {
         adapter = new ListViewAdapter() ;
         listview.setAdapter(adapter);
         //////////////////////////검색하여 데이터 넣기
-        new ClientDataBase("select `회원정보`.`이름`,`회원정보`.`전화번호`,`포인트`.`포인트` from `회원정보` join `포인트` on `회원정보`.`고유회원등록번호`= `포인트`.`고유회원등록번호`;",1,3,getApplicationContext());
+        new ClientDataBase("select `회원정보`.`이름`,`회원정보`.`전화번호`,`포인트`.`포인트` from `회원정보` join `포인트` on `회원정보`.`고유회원등록번호`= `포인트`.`고유회원등록번호` order by `회원정보`.`이름` desc;",1,3,getApplicationContext());
         int cnt=0;
         while(true) {
             if (DBstring[cnt] != null) {

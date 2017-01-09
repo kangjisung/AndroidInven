@@ -40,7 +40,7 @@ public class ClientDataBase{
                }
            }
        }
-       else if(i==2){
+       else if(i==2||i==3){
            sqLiteDatabase.execSQL(SQL);
        }
 

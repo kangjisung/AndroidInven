@@ -9,6 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
+import com.example.kangjisung.likeroom.User.MileageManage.Usermileage;
+import com.example.kangjisung.likeroom.User.MileageManage.mileage;
+import com.example.kangjisung.likeroom.User.UserManage.UserAdd;
 import com.example.kangjisung.likeroom.User.UserManage.Usermanage;
 import com.example.kangjisung.likeroom.inventory.calc;
 import com.example.kangjisung.likeroom.inventory.sales.salesVolume;
@@ -44,7 +47,7 @@ public class MainActivity extends ActionBarActivity{
             Intent StoreAdd = new Intent(this, StoreAdd.class);
             startActivity(StoreAdd);
         }*/
-        Intent StoreAdd = new Intent(this, InvenView.class);
+        Intent StoreAdd = new Intent(this, UserAdd.class);
         startActivity(StoreAdd);
 
     }
