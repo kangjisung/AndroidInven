@@ -38,7 +38,7 @@ public class FragmentStampMain extends Fragment {
     StampUseDialog stampUseDialog;
     TabLayout tabLayout;
     //나중에 갯수 수정
-    int numOfStamp = 28;
+    int numOfStamp = 35;
     StampPagerAdapter pagerAdapter;
     ViewPager pager;
 
@@ -63,24 +63,9 @@ public class FragmentStampMain extends Fragment {
             }
         });
 
-
-
-        Button buttontest = (Button)stampLayout.findViewById(R.id.buttontest);
-        buttontest.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View view)
-            {
-                stampUseDialog = new StampUseDialog(getActivity(),
-                        "[다이얼로그 제목]", // 제목
-                        leftListener,
-                        rightListener); // 오른쪽 버튼 이벤트
-                stampUseDialog.show();
-            }
-        });
-
         // 스탬프 목록 띄우기
         pager = (ViewPager)stampLayout.findViewById(R.id.viewPager);
-        pagerAdapter = new StampPagerAdapter(getActivity().getApplicationContext(), numOfStamp);
+        pagerAdapter = new StampPagerAdapter(getActivity(), numOfStamp);
         pager.setAdapter(pagerAdapter);
 
         tabLayout = (TabLayout)stampLayout.findViewById(R.id.tabLayout);
@@ -128,6 +113,13 @@ public class FragmentStampMain extends Fragment {
 
         return stampLayout;
     }
+
+    public Button.OnClickListener openUseDialogListener = new Button.OnClickListener() {
+        @Override
+        public void onClick(View onClickView){
+
+        }
+    };
 
     private View.OnClickListener leftListener = new View.OnClickListener() {
         public void onClick(View v) {

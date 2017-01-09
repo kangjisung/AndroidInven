@@ -9,7 +9,7 @@
     android:background="@color/White"
     android:paddingLeft="20dp"
     android:paddingRight="10dp"
-    android:layout_marginBottom="5dp">
+    android:layout_marginBottom="10dp">
 
     <TextView
         android:text="매장 이름"
@@ -29,7 +29,7 @@
         android:layout_centerHorizontal="false"
         android:layout_centerVertical="false"
         android:textSize="23dp"
-        android:layout_marginTop="7dp" />
+        android:layout_marginTop="6dp" />
 
     <TextView
         android:text="매장 전화번호"
@@ -40,6 +40,6 @@
         android:layout_centerHorizontal="true"
         android:textColor="@color/Gray"
         android:textSize="20dp"
-        android:layout_marginTop="7dp" />
+        android:layout_marginTop="6dp" />
 
 </LinearLayout>

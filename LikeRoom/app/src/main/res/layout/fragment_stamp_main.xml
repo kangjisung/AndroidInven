@@ -13,12 +13,12 @@
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_marginTop="5dp"
         android:background="@drawable/stamp_store_title_background"
         android:layout_alignParentTop="true"
         android:paddingTop="3dp"
         android:paddingBottom="10dp"
-        android:layout_height="90dp">
+        android:layout_height="90dp"
+        android:id="@+id/stamp_name_phone">
 
         <TextView
             android:text="@string/loadingStoreName"
@@ -64,7 +64,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp">
+        android:layout_below="@+id/stamp_name_phone"
+        android:layout_marginTop="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -91,7 +92,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="60dp"
                 android:layout_alignParentBottom="false">
 
                 <LinearLayout
@@ -135,24 +136,17 @@
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
                 android:background="@drawable/stamp_viewpager_background"
-                android:layout_marginTop="90dp"
-                android:layout_height="300dp">
+                android:layout_marginTop="95dp"
+                android:layout_height="180dp">
 
             </android.support.v4.view.ViewPager>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="400dp">
-
-                <Button
-                    android:text="Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/buttontest"
-                    android:layout_alignParentBottom="false"
-                    android:layout_centerInParent="true" />
+                android:layout_below="@+id/viewPager"
+                android:layout_marginTop="15dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -163,7 +157,7 @@
                         android:layout_height="wrap_content"
                         app:srcCompat="@android:drawable/presence_invisible"
                         android:id="@+id/imageView"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_centerVertical="true" />
 
                     <TextView
@@ -173,7 +167,7 @@
                         android:id="@+id/textView2"
                         android:textColor="@color/clrTextColorMediumDark"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="65dp"
+                        android:layout_marginLeft="45dp"
                         android:textSize="18dp" />
                 </RelativeLayout>
 
@@ -187,7 +181,7 @@
                         android:layout_height="wrap_content"
                         app:srcCompat="@android:drawable/presence_invisible"
                         android:id="@+id/imageView2"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_centerVertical="true" />
 
                     <TextView
@@ -198,7 +192,7 @@
                         android:layout_centerVertical="true"
                         android:textColor="@color/clrTextColorMediumDark"
                         android:textSize="18dp"
-                        android:layout_marginLeft="65dp" />
+                        android:layout_marginLeft="45dp" />
                 </RelativeLayout>
 
             </LinearLayout>

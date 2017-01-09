@@ -79,8 +79,8 @@
             android:layout_width="fill_parent"
             android:layout_below="@+id/newStoreAddLayout"
             android:id="@+id/registeredStoreList"
-            android:layout_marginTop="20dp"
-            android:layout_height="190dp" />
+            android:layout_marginTop="15dp"
+            android:layout_height="230dp" />
 
     </LinearLayout>
 </RelativeLayout>
