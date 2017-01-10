@@ -147,7 +147,7 @@ public class FragmentStampMain extends Fragment {
         for (int i = 0; i < numOfPage; i++) {
             TabLayout.Tab tab = tabLayout.newTab();
             View view = getActivity().getLayoutInflater().inflate(R.layout.include_tabitem, null);
-            view.findViewById(R.id.icon).setBackground(ContextCompat.getDrawable(getActivity(), R.mipmap.icon_menu_point));
+            view.findViewById(R.id.icon).setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.shape_circle));
             view.findViewById(R.id.icon).getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.gray200), PorterDuff.Mode.SRC_IN);
             tab.setCustomView(view);
             tabLayout.addTab(tab);
