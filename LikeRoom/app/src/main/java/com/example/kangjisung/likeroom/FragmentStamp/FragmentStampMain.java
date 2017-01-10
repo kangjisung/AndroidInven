@@ -74,15 +74,15 @@ public class FragmentStampMain extends Fragment {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                LinearLayout view = (LinearLayout)tabLayout.getTabAt(tab.getPosition()).getCustomView();
-                view.findViewById(R.id.icon).getBackground().setColorFilter(ContextCompat.getColor(view.getContext(), R.color.black), PorterDuff.Mode.SRC_IN);
+                tab.getCustomView().findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
+                tab.getCustomView().findViewById(R.id.icon_unselected).setVisibility(View.INVISIBLE);
                 pager.setCurrentItem(tab.getPosition());
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                LinearLayout view = (LinearLayout)tabLayout.getTabAt(tab.getPosition()).getCustomView();
-                view.findViewById(R.id.icon).getBackground().setColorFilter(ContextCompat.getColor(view.getContext(), R.color.gray200), PorterDuff.Mode.SRC_IN);
+                tab.getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
+                tab.getCustomView().findViewById(R.id.icon_unselected).setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -146,10 +146,8 @@ public class FragmentStampMain extends Fragment {
     {
         for (int i = 0; i < numOfPage; i++) {
             TabLayout.Tab tab = tabLayout.newTab();
-            View view = getActivity().getLayoutInflater().inflate(R.layout.include_tabitem, null);
-            view.findViewById(R.id.icon).setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.shape_circle));
-            view.findViewById(R.id.icon).getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.gray200), PorterDuff.Mode.SRC_IN);
-            tab.setCustomView(view);
+            tab.setCustomView(R.layout.include_tabitem_circle);
+            tab.getCustomView().findViewById((i==0)?(R.id.icon_unselected):(R.id.icon_selected)).setVisibility(View.INVISIBLE);
             tabLayout.addTab(tab);
         }
     }

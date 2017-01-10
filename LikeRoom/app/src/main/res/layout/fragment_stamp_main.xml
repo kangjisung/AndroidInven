@@ -95,40 +95,33 @@
                 android:layout_marginTop="60dp"
                 android:layout_alignParentBottom="false">
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:layout_height="25dp">
+                <Button
+                    android:id="@+id/button_stamp_left"
+                    android:background="@mipmap/icon_back"
+                    android:layout_height="40dp"
+                    android:layout_width="40dp"
+                    android:layout_centerVertical="true" />
 
-                    <Button
-                        android:id="@+id/button_stamp_left"
-                        android:layout_weight="0"
-                        android:layout_gravity="center_vertical"
-                        android:background="@mipmap/icon_back"
-                        android:layout_height="40dp"
-                        android:layout_width="40dp" />
+                <android.support.design.widget.TabLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tabLayout"
+                    android:clickable="false"
+                    app:tabIndicatorHeight="0dp"
+                    android:layout_centerInParent="true"
+                    app:tabPaddingEnd="5dp"
+                    app:tabPaddingStart="5dp">
 
-                    <android.support.design.widget.TabLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:id="@+id/tabLayout"
-                        android:clickable="false">
+                </android.support.design.widget.TabLayout>
 
-                    </android.support.design.widget.TabLayout>
-
-                    <Button
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:id="@+id/button_stamp_right"
-                        android:layout_weight="0"
-                        android:layout_gravity="center_vertical"
-                        android:background="@mipmap/icon_back"
-                        android:rotation="180" />
-
-                </LinearLayout>
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/button_stamp_right"
+                    android:background="@mipmap/icon_back"
+                    android:rotation="180"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true" />
 
             </RelativeLayout>
 

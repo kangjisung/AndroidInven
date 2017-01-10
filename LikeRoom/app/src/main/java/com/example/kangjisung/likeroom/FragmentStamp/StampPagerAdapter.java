@@ -17,9 +17,6 @@ import com.example.kangjisung.likeroom.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * PagerAdapter
- */
 public class StampPagerAdapter extends PagerAdapter
 {
     private LayoutInflater mInflater;
@@ -39,7 +36,7 @@ public class StampPagerAdapter extends PagerAdapter
 
         int nowStamp;
 
-        for(int p = 0; p< numOfPage; p++)
+        for(int p = 0; p < numOfPage; p++)
         {
             if((p + 1) * 10 < numOfStamp){
                 nowStamp = 10;
