@@ -71,16 +71,18 @@ public class FragmentStampMain extends Fragment {
         tabLayout = (TabLayout)stampLayout.findViewById(R.id.tabLayout);
         pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayoutInitialize(tabLayout, pagerAdapter.getCount());
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                tab.getIcon().setColorFilter(ContextCompat.getColor(getActivity(), R.color.clrMenuIconSelected), PorterDuff.Mode.SRC_IN);
+                LinearLayout view = (LinearLayout)tabLayout.getTabAt(tab.getPosition()).getCustomView();
+                view.findViewById(R.id.icon).getBackground().setColorFilter(ContextCompat.getColor(view.getContext(), R.color.black), PorterDuff.Mode.SRC_IN);
                 pager.setCurrentItem(tab.getPosition());
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                tab.getIcon().setColorFilter(ContextCompat.getColor(getActivity(), R.color.clrMenuIcon), PorterDuff.Mode.SRC_IN);
+                LinearLayout view = (LinearLayout)tabLayout.getTabAt(tab.getPosition()).getCustomView();
+                view.findViewById(R.id.icon).getBackground().setColorFilter(ContextCompat.getColor(view.getContext(), R.color.gray200), PorterDuff.Mode.SRC_IN);
             }
 
             @Override
@@ -143,7 +145,12 @@ public class FragmentStampMain extends Fragment {
     public void tabLayoutInitialize(TabLayout tabLayout, int numOfPage)
     {
         for (int i = 0; i < numOfPage; i++) {
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.mipmap.icon_menu_point));
+            TabLayout.Tab tab = tabLayout.newTab();
+            View view = getActivity().getLayoutInflater().inflate(R.layout.include_tabitem, null);
+            view.findViewById(R.id.icon).setBackground(ContextCompat.getDrawable(getActivity(), R.mipmap.icon_menu_point));
+            view.findViewById(R.id.icon).getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.gray200), PorterDuff.Mode.SRC_IN);
+            tab.setCustomView(view);
+            tabLayout.addTab(tab);
         }
     }
 }
