@@ -8,8 +8,8 @@
     <RelativeLayout
         android:layout_centerInParent="true"
         android:background="@color/White"
-        android:layout_height="130dp"
-        android:layout_width="340dp">
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
         <LinearLayout
             android:orientation="vertical"

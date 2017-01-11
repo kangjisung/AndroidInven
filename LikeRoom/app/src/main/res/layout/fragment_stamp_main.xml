@@ -5,7 +5,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.kangjisung.likeroom.FragmentStamp.FragmentStampMain"
     android:background="@color/White"
-    android:padding="15dp">
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp">
 
     <!-- TODO: Update blank fragment layout -->
 <!--점주앱에서 포인트적립이 메인페이지라면 고객앱에서는 이 페이지가 메인페이지이다.
@@ -27,7 +30,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
 
             <TextView
                 android:text="@string/loadingStoreName"
@@ -75,76 +80,111 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp">
-
-            <Button
-                android:text="특수 스탬프 카드 보기"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnShowSpecialStamp"
-                android:gravity="center_horizontal"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/button_mask"
-                android:textColor="@color/clrTextColorDeepDark"
-                android:textSize="20dp" />
+            android:paddingTop="15dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="60dp"
-                android:layout_alignParentBottom="false">
+                android:id="@+id/layout_card"
+                android:background="@android:drawable/dialog_holo_light_frame">
 
-                <Button
-                    android:id="@+id/button_stamp_left"
-                    android:background="@mipmap/icon_back"
-                    android:layout_height="40dp"
-                    android:layout_width="40dp"
-                    android:layout_centerVertical="true" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@drawable/stamp_box_background">
 
-                <android.support.design.widget.TabLayout
-                    android:layout_width="wrap_content"
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_height="25dp"
+                        android:background="@drawable/shape_circle"
+                        android:layout_centerInParent="true"
+                        app:backgroundTint="@color/gray240"
+                        android:layout_width="200dp" />
+
+                    <Button
+                        android:text="특수 스탬프 카드 보기"
+                        android:layout_width="match_parent"
+                        android:id="@+id/btnShowSpecialStamp"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/button_mask"
+                        android:textColor="@color/Black"
+                        android:textSize="20dp"
+                        android:layout_height="match_parent"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/tabLayout"
-                    android:clickable="false"
-                    app:tabIndicatorHeight="0dp"
-                    android:layout_centerInParent="true"
-                    app:tabPaddingEnd="5dp"
-                    app:tabPaddingStart="5dp">
+                    android:id="@+id/wrap_stamp"
+                    android:background="@drawable/stamp_box_background"
+                    android:layout_marginTop="52dp">
 
-                </android.support.design.widget.TabLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="false"
+                        android:id="@+id/button_left_right"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp">
 
-                <Button
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:id="@+id/button_stamp_right"
-                    android:background="@mipmap/icon_back"
-                    android:rotation="180"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true" />
+                        <Button
+                            android:id="@+id/button_stamp_left"
+                            android:background="@mipmap/icon_back"
+                            android:layout_height="40dp"
+                            android:layout_width="40dp"
+                            android:layout_centerVertical="true" />
 
+                        <android.support.design.widget.TabLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/tabLayout"
+                            android:clickable="false"
+                            app:tabIndicatorHeight="0dp"
+                            android:layout_centerInParent="true"
+                            app:tabPaddingEnd="5dp"
+                            app:tabPaddingStart="5dp">
+
+                        </android.support.design.widget.TabLayout>
+
+                        <Button
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/button_stamp_right"
+                            android:background="@mipmap/icon_back"
+                            android:rotation="180"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true" />
+
+                    </RelativeLayout>
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_below="@+id/button_left_right"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="5dp"
+                        android:paddingBottom="18dp"
+                        android:paddingTop="18dp"
+                        android:layout_height="150dp">
+
+                    </android.support.v4.view.ViewPager>
+
+                </RelativeLayout>
             </RelativeLayout>
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:background="@drawable/stamp_viewpager_background"
-                android:layout_marginTop="95dp"
-                android:layout_height="180dp">
-
-            </android.support.v4.view.ViewPager>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_below="@+id/viewPager"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/layout_card">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
