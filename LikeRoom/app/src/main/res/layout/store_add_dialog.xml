@@ -7,7 +7,6 @@
     >
 
     <RelativeLayout
-        android:background="@drawable/layout_background"
         android:orientation="vertical"
         android:layout_width="300dp"
         android:layout_height="450dp"

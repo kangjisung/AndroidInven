@@ -1,4 +1,4 @@
-package com.example.kangjisung.likeroom.CustomClass;
+package com.example.kangjisung.likeroom.Util;
 
 import android.content.Context;
 import android.widget.Toast;

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.kangjisung.likeroom.FragmentStamp.FragmentStampMain"
-    android:background="@color/White">
+    android:background="@color/White"
+    android:padding="15dp">
 
     <!-- TODO: Update blank fragment layout -->
 <!--점주앱에서 포인트적립이 메인페이지라면 고객앱에서는 이 페이지가 메인페이지이다.
@@ -13,58 +14,62 @@
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:background="@drawable/stamp_store_title_background"
+        android:background="?attr/theme_color_L3"
         android:layout_alignParentTop="true"
-        android:paddingTop="3dp"
-        android:paddingBottom="10dp"
         android:layout_height="90dp"
-        android:id="@+id/stamp_name_phone">
+        android:id="@+id/layout_title">
 
-        <TextView
-            android:text="@string/loadingStoreName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtShopName"
-            android:layout_marginLeft="30dp"
-            android:textColor="@color/clrTextColorDeepDark"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="8dp"
-            android:textSize="28dp" />
-
-        <TextView
-            android:text="@string/loadingStorePhoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtShopPhoneNumber"
-            android:layout_marginLeft="35dp"
-            android:textColor="@color/clrTextColorMediumDark"
-            android:layout_alignParentLeft="true"
-            android:textStyle="normal|bold"
-            android:layout_marginBottom="5dp"
-            android:textSize="20dp"
-            android:layout_alignParentBottom="true" />
-
-        <TextView
-            android:text="@string/loadingCustomerName"
+        <include
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtCustomerName"
-            android:layout_weight="1"
-            android:textSize="18dp"
-            android:layout_gravity="bottom"
-            android:gravity="right"
-            android:layout_marginRight="10dp"
-            android:textColor="@color/clrTextColorDeepDark"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="5dp" />
+            layout="@layout/include_rounded_page" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <TextView
+                android:text="@string/loadingStoreName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtShopName"
+                android:textColor="#CC000000"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:textSize="28dp" />
+
+            <TextView
+                android:text="@string/loadingStorePhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtShopPhoneNumber"
+                android:textColor="?attr/theme_color_D2"
+                android:layout_alignParentLeft="true"
+                android:textStyle="normal|bold"
+                android:textSize="20dp"
+                android:layout_alignParentBottom="true" />
+
+            <TextView
+                android:text="@string/loadingCustomerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtCustomerName"
+                android:layout_weight="1"
+                android:textSize="18dp"
+                android:layout_gravity="bottom"
+                android:gravity="right"
+                android:textColor="?attr/theme_color_D3"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/stamp_name_phone"
+        android:layout_below="@+id/layout_title"
         android:layout_marginTop="5dp">
 
         <RelativeLayout

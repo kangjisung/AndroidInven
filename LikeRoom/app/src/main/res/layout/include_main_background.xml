@@ -12,7 +12,7 @@
     <View
         android:layout_width="@dimen/background_border_radius"
         android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:rotation="180"
         android:background="@drawable/shape_gradient_border_x" />
 
