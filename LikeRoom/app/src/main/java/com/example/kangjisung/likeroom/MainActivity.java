@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import com.example.kangjisung.likeroom.PermissionManager.AndroidVersionController;
 import com.example.kangjisung.likeroom.PermissionManager.UserAccountCrawler;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
+import com.example.kangjisung.likeroom.SQLiteDatabaseControl.SimpleDatabaseTest;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.apache.http.HttpResponse;
@@ -46,6 +47,8 @@ public class MainActivity extends ActionBarActivity {
         userAccountCrawler = new UserAccountCrawler(this);
         databaseHelper = new DatabaseHelper(getApplicationContext(), customerDatabaseName);
         final AlertDialog.Builder alertNoticeBuilder = new AlertDialog.Builder(this);
+
+        SimpleDatabaseTest simpleDatabaseTest = new SimpleDatabaseTest(getApplicationContext());
 
         userAccountInfo = userAccountCrawler.CheckPermissionGranted();
 
