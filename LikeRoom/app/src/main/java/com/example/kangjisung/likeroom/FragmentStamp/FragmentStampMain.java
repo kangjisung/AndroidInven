@@ -38,7 +38,7 @@ public class FragmentStampMain extends Fragment {
     StampUseDialog stampUseDialog;
     TabLayout tabLayout;
     //나중에 갯수 수정
-    int numOfStamp = 28;
+    int numOfStamp = 35;
     StampPagerAdapter pagerAdapter;
     ViewPager pager;
 
@@ -63,39 +63,26 @@ public class FragmentStampMain extends Fragment {
             }
         });
 
-
-
-        Button buttontest = (Button)stampLayout.findViewById(R.id.buttontest);
-        buttontest.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View view)
-            {
-                stampUseDialog = new StampUseDialog(getActivity(),
-                        "[다이얼로그 제목]", // 제목
-                        leftListener,
-                        rightListener); // 오른쪽 버튼 이벤트
-                stampUseDialog.show();
-            }
-        });
-
         // 스탬프 목록 띄우기
         pager = (ViewPager)stampLayout.findViewById(R.id.viewPager);
-        pagerAdapter = new StampPagerAdapter(getActivity().getApplicationContext(), numOfStamp);
+        pagerAdapter = new StampPagerAdapter(getActivity(), numOfStamp);
         pager.setAdapter(pagerAdapter);
 
         tabLayout = (TabLayout)stampLayout.findViewById(R.id.tabLayout);
         pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayoutInitialize(tabLayout, pagerAdapter.getCount());
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                tab.getIcon().setColorFilter(ContextCompat.getColor(getActivity(), R.color.clrMenuIconSelected), PorterDuff.Mode.SRC_IN);
+                tab.getCustomView().findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
+                tab.getCustomView().findViewById(R.id.icon_unselected).setVisibility(View.INVISIBLE);
                 pager.setCurrentItem(tab.getPosition());
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                tab.getIcon().setColorFilter(ContextCompat.getColor(getActivity(), R.color.clrMenuIcon), PorterDuff.Mode.SRC_IN);
+                tab.getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
+                tab.getCustomView().findViewById(R.id.icon_unselected).setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -129,6 +116,13 @@ public class FragmentStampMain extends Fragment {
         return stampLayout;
     }
 
+    public Button.OnClickListener openUseDialogListener = new Button.OnClickListener() {
+        @Override
+        public void onClick(View onClickView){
+
+        }
+    };
+
     private View.OnClickListener leftListener = new View.OnClickListener() {
         public void onClick(View v) {
             /*Toast.makeText(getContext(), "왼쪽버튼 클릭",
@@ -151,7 +145,10 @@ public class FragmentStampMain extends Fragment {
     public void tabLayoutInitialize(TabLayout tabLayout, int numOfPage)
     {
         for (int i = 0; i < numOfPage; i++) {
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.mipmap.icon_menu_point));
+            TabLayout.Tab tab = tabLayout.newTab();
+            tab.setCustomView(R.layout.include_tabitem_circle);
+            tab.getCustomView().findViewById((i==0)?(R.id.icon_unselected):(R.id.icon_selected)).setVisibility(View.INVISIBLE);
+            tabLayout.addTab(tab);
         }
     }
 }

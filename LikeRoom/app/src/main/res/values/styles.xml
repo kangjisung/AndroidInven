@@ -1,11 +1,38 @@
 <resources>
-
-    <!-- Base application theme. -->
     <style name="LikeRoomTheme" parent="Theme.AppCompat.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="LikeRoomTheme_BreadTheme" parent="@style/LikeRoomTheme">
+        <item name="theme_color_L3">#FEFAE9</item>
+        <item name="theme_color_L2">#FFF7DA</item>
+        <item name="theme_color_L1">#fff4cb</item>
+        <item name="theme_color_N">#dcd1a7</item>
+        <item name="theme_color_D1">#cfbe7c</item>
+        <item name="theme_color_D2">#ae9949</item>
+        <item name="theme_color_D3">#514E3F</item>
+        <item name="theme_color_type1">#f86f8d</item>
+        <item name="theme_color_type2">#e88f2c</item>
+    </style>
+    <style name="LikeRoomTheme_OceanTheme" parent="@style/LikeRoomTheme">
+        <item name="theme_color_L3">#E9F5FE</item>
+        <item name="theme_color_L2">#d2ecff</item>
+        <item name="theme_color_L1">#9fd7ff</item>
+        <item name="theme_color_N">#62b2d6</item>
+        <item name="theme_color_D1">#4194b7</item>
+        <item name="theme_color_D2">#1e7296</item>
+        <item name="theme_color_D3">#084660</item>
+        <item name="theme_color_type1">#bf6ff5</item>
+        <item name="theme_color_type2">#43d0ff</item>
+    </style>
+    <style name="LikeRoomTheme_StrawBerryTheme" parent="@style/LikeRoomTheme">
+        <item name="theme_color_L3">#ffe5ea</item>
+        <item name="theme_color_L2">#efb4c0</item>
+        <item name="theme_color_L1">#ef97a9</item>
+        <item name="theme_color_N">#e2768c</item>
+        <item name="theme_color_D1">#d75b74</item>
+        <item name="theme_color_D2">#c23451</item>
+        <item name="theme_color_D3">#a40727</item>
+        <item name="theme_color_type1">#8ad968</item>
+        <item name="theme_color_type2">#ff4c64</item>
     </style>
 
     <style name="LikeRoomTheme.NoActionBar">

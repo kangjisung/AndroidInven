@@ -2,11 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/layout_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:theme="@style/LikeRoomTheme">
-<!--어플에서 사용되는 테두리부분이 디자인되어 있다고 보면 된다.-->
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/include_main_background" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,7 +43,7 @@
                 android:id="@+id/textViewTitle"
                 android:gravity="center_vertical|center_horizontal"
                 android:layout_width="match_parent"
-                android:textSize="22dp"
+                android:textSize="22sp"
                 android:textColor="@color/clrTextColorDeepDark"
                 android:layout_centerInParent="true" />
         </RelativeLayout>
@@ -51,24 +55,17 @@
             android:layout_marginLeft="@dimen/menu_side_margin"
             android:layout_marginRight="@dimen/menu_side_margin">
 
-            <com.example.kangjisung.likeroom.CustomClass.NoScrollViewPager
+            <com.example.kangjisung.likeroom.Util.NoScrollViewPager
                 android:id="@+id/viewPager"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:background="#FFFFFF">
-            </com.example.kangjisung.likeroom.CustomClass.NoScrollViewPager>
+            </com.example.kangjisung.likeroom.Util.NoScrollViewPager>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/layout_rounded_page" />
-
-            <!--
             <include
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                layout="@layout/_include_rounded_page" />
-            -->
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/include_rounded_page" />
         </RelativeLayout>
 
         <android.support.design.widget.TabLayout
@@ -78,23 +75,6 @@
             android:layout_height="@dimen/menu_bottom_margin"
             android:fadingEdge="horizontal|vertical"
             app:tabIndicatorHeight="0dp">
-
-            <!--
-            <android.support.design.widget.TabItem
-                android:icon="@drawable/selector_menu_item"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-
-            <android.support.design.widget.TabItem
-                android:icon="@drawable/selector_menu_user"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-
-            <android.support.design.widget.TabItem
-                android:icon="@drawable/icon_test02"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-                -->
 
         </android.support.design.widget.TabLayout>
     </LinearLayout>

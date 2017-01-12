@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_width="350dp"
         android:layout_centerInParent="true"
         android:background="@color/White"
-        android:layout_height="130dp">
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
         <LinearLayout
             android:orientation="vertical"
@@ -24,9 +25,9 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@mipmap/shape_empty_stamp"
+                    android:background="@drawable/stamp_empty"
                     android:layout_weight="1"
-                    android:layout_margin="5dp"
+                    android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_1">
 
                     <include
@@ -38,9 +39,9 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@mipmap/shape_empty_stamp"
+                    android:background="@drawable/stamp_empty"
                     android:layout_weight="1"
-                    android:layout_margin="5dp"
+                    android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_2">
 
                     <include
@@ -52,9 +53,9 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@mipmap/shape_empty_stamp"
+                    android:background="@drawable/stamp_empty"
                     android:layout_weight="1"
-                    android:layout_margin="5dp"
+                    android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_3">
 
                     <include
@@ -66,9 +67,9 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@mipmap/shape_empty_stamp"
+                    android:background="@drawable/stamp_empty"
                     android:layout_weight="1"
-                    android:layout_margin="5dp"
+                    android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_4">
 
                     <include
@@ -80,32 +81,15 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@mipmap/shape_empty_stamp"
+                    android:background="@drawable/stamp_empty"
                     android:layout_weight="1"
-                    android:layout_margin="5dp"
+                    android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_5">
 
-                    <android.support.v7.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/shape_circle"
-                        app:backgroundTint="#c23451"
-                        android:layout_weight="1" />
-
-                    <TextView
+                    <include
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/White"
-                        android:textStyle="bold"
-                        android:layout_centerInParent="true"
-                        android:text="사용" />
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/shape_circle_press"
-                        android:layout_weight="1"
-                        android:id="@+id/button_use_1" />
+                        layout="@layout/include_stamp_use" />
 
                 </RelativeLayout>
 
@@ -120,9 +104,9 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@mipmap/shape_empty_stamp"
+                    android:background="@drawable/stamp_empty"
                     android:layout_weight="1"
-                    android:layout_margin="5dp"
+                    android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_6">
 
                     <include
@@ -134,9 +118,9 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@mipmap/shape_empty_stamp"
+                    android:background="@drawable/stamp_empty"
                     android:layout_weight="1"
-                    android:layout_margin="5dp"
+                    android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_7">
 
                     <include
@@ -148,9 +132,9 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@mipmap/shape_empty_stamp"
+                    android:background="@drawable/stamp_empty"
                     android:layout_weight="1"
-                    android:layout_margin="5dp"
+                    android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_8">
 
                     <include
@@ -163,9 +147,9 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@mipmap/shape_empty_stamp"
+                    android:background="@drawable/stamp_empty"
                     android:layout_weight="1"
-                    android:layout_margin="5dp"
+                    android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_9">
 
                     <include
@@ -177,52 +161,18 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@mipmap/shape_empty_stamp"
+                    android:background="@drawable/stamp_empty"
                     android:layout_weight="1"
-                    android:layout_margin="5dp"
+                    android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_10">
 
-                    <android.support.v7.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/shape_circle"
-                        app:backgroundTint="#c23451"
-                        android:layout_weight="1" />
-
-                    <TextView
+                    <include
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/White"
-                        android:textStyle="bold"
-                        android:layout_centerInParent="true"
-                        android:text="사용" />
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/shape_circle_press"
-                        android:layout_weight="1"
-                        android:id="@+id/button_use_2" />
-
+                        layout="@layout/include_stamp_use" />
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewTemp1"
-        android:textColor="@color/White"
-        android:textSize="30dp" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewTemp2"
-        android:layout_marginTop="30dp"
-        android:textColor="@color/White"
-        android:textSize="30dp" />
 </RelativeLayout>

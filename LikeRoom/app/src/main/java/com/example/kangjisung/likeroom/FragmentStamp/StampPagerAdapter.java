@@ -2,6 +2,7 @@ package com.example.kangjisung.likeroom.FragmentStamp;
 
 import android.content.Context;
 import android.os.Parcelable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatImageView;
@@ -16,14 +17,11 @@ import com.example.kangjisung.likeroom.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * PagerAdapter
- */
 public class StampPagerAdapter extends PagerAdapter
 {
     private LayoutInflater mInflater;
     private ArrayList<Integer> stampNumList;
-    private ArrayList<RelativeLayout> stampListInPage = new ArrayList<>();
+
     private int numOfStamp;
     private int numOfPage;
     private Context context;
@@ -38,7 +36,7 @@ public class StampPagerAdapter extends PagerAdapter
 
         int nowStamp;
 
-        for(int p = 0; p< numOfPage; p++)
+        for(int p = 0; p < numOfPage; p++)
         {
             if((p + 1) * 10 < numOfStamp){
                 nowStamp = 10;
@@ -57,7 +55,9 @@ public class StampPagerAdapter extends PagerAdapter
 
     @Override
     public Object instantiateItem(View pager, int position) {
-        View view = mInflater.inflate(R.layout.stamp_page, null);
+        final View view = mInflater.inflate(R.layout.stamp_page, null);
+
+        ArrayList<RelativeLayout> stampListInPage = new ArrayList<>();
 
         stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_1));
         stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_2));
@@ -70,19 +70,42 @@ public class StampPagerAdapter extends PagerAdapter
         stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_9));
         stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_10));
 
-        for(int p=stampNumList.get(position)-1; p>=0; p--){
+        for(int p=9; p>stampNumList.get(position)-1; p--) {
             RelativeLayout nowLayout = stampListInPage.get(p);
-            nowLayout.setVisibility(View.GONE);
+            RelativeLayout childLayout = (RelativeLayout) nowLayout.findViewById(R.id.stamp_layout);
+            if (p == 4 || p == 9) {
+                AppCompatImageView viewOff = (AppCompatImageView) childLayout.findViewById(R.id.view_off);
+                viewOff.setVisibility(View.VISIBLE);
+            } else {
+                childLayout.setVisibility(View.GONE);
+            }
+        }
+        if(10 <= stampNumList.get(position)){
+            RelativeLayout nowLayout = stampListInPage.get(9);
+            RelativeLayout childLayout = (RelativeLayout) nowLayout.findViewById(R.id.stamp_layout);
+            Button button = (Button)childLayout.findViewById(R.id.button);
+            button.setOnClickListener(new Button.OnClickListener(){
+                @Override
+                public void onClick(View onClickView){
+                    StampUseDialog stampUseDialog = new StampUseDialog(context);
+                    stampUseDialog.show();
+                }
+            });
+        }
+        if(5 <= stampNumList.get(position)){
+            RelativeLayout nowLayout = stampListInPage.get(4);
+            RelativeLayout childLayout = (RelativeLayout) nowLayout.findViewById(R.id.stamp_layout);
+            Button button = (Button)childLayout.findViewById(R.id.button);
+            button.setOnClickListener(new Button.OnClickListener(){
+                @Override
+                public void onClick(View onClickView){
+                    StampUseDialog stampUseDialog = new StampUseDialog(context);
+                    stampUseDialog.show();
+                }
+            });
         }
 
-        /*
-        TextView v1 = (TextView)v.findViewById(R.id.textViewTemp1);
-        TextView v2 = (TextView)v.findViewById(R.id.textViewTemp2);
-        v1.setText("페이지 번호 : " + position);
-        v2.setText("이 페이지의 스탬프 갯수 : " + stampNumList.get(position));
-        */
-
-        ((ViewPager)pager).addView(view, 0);
+        ((ViewPager)pager).addView (view);
 
         return view;
     }

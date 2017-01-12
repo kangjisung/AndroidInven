@@ -70,6 +70,7 @@ public class ActivityStoreSelect extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.setTheme(R.style.LikeRoomTheme_StrawBerryTheme);
         setContentView(R.layout.activity_store_select);
 
         registeredStoreListViewAdapter = new NoticeRecyclerViewAdapter(DefineManager.showStoreList, this);

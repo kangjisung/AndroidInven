@@ -24,6 +24,10 @@ public class StampUseDialog extends Dialog
     private View.OnClickListener mLeftClickListener;
     private View.OnClickListener mRightClickListener;
 
+    public StampUseDialog(Context context) {
+        super(context, android.R.style.Theme_Translucent_NoTitleBar);
+    }
+
     public StampUseDialog(Context context, String title, View.OnClickListener singleListener, View.OnClickListener useListener) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
         this.mTitle = title;
@@ -60,7 +64,17 @@ public class StampUseDialog extends Dialog
         });
 
         // 클릭 이벤트 셋팅
-        mLeftButton.setOnClickListener(mLeftClickListener);
-        mRightButton.setOnClickListener(mRightClickListener);
+        mLeftButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View onClickView){
+                cancel();
+            }
+        });
+        mRightButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View onClickView){
+                dismiss();
+            }
+        });
     }
 }

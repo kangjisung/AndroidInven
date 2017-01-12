@@ -11,18 +11,28 @@
         android:layout_height="match_parent"
         android:layout_margin="3dp">
 
-        <android.support.v7.widget.AppCompatImageView
-            android:layout_width="match_parent"
+        <android.support.v7.widget.AppCompatImageView android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/shape_circle"
-            app:backgroundTint="?attr/theme_color_D2" />
+            app:backgroundTint="#c23451"
+            android:id="@+id/view_on" />
 
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@mipmap/icon_bread"
-            app:backgroundTint="@color/White"
-            android:layout_margin="5dp" />
+            android:background="@drawable/shape_circle"
+            app:backgroundTint="@color/gray200"
+            android:id="@+id/view_off"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/White"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"
+            android:text="사용"
+            android:id="@+id/view_text" />
     </RelativeLayout>
 
     <Button
