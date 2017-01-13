@@ -124,10 +124,58 @@
                     android:background="@drawable/stamp_box_background"
                     android:layout_marginTop="52dp">
 
-                    <include
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        layout="@layout/include_stamp_card" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="false"
+                        android:id="@+id/button_left_right"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp">
+
+                        <Button
+                            android:id="@+id/button_stamp_left"
+                            android:background="@mipmap/icon_back"
+                            android:layout_height="40dp"
+                            android:layout_width="40dp"
+                            android:layout_centerVertical="true" />
+
+                        <android.support.design.widget.TabLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/tabLayout"
+                            android:clickable="false"
+                            app:tabIndicatorHeight="0dp"
+                            android:layout_centerInParent="true"
+                            app:tabPaddingEnd="5dp"
+                            app:tabPaddingStart="5dp">
+
+                        </android.support.design.widget.TabLayout>
+
+                        <Button
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/button_stamp_right"
+                            android:background="@mipmap/icon_back"
+                            android:rotation="180"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true" />
+
+                    </RelativeLayout>
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_below="@+id/button_left_right"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="5dp"
+                        android:paddingBottom="18dp"
+                        android:paddingTop="18dp"
+                        android:layout_height="150dp">
+
+                    </android.support.v4.view.ViewPager>
+
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -135,13 +183,60 @@
                     android:layout_height="match_parent"
                     android:id="@+id/layout_event"
                     android:background="@drawable/stamp_box_background"
-                    android:layout_marginTop="52dp"
-                    android:visibility="invisible">
+                    android:layout_marginTop="52dp">
 
-                    <include
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        layout="@layout/include_stamp_card" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="false"
+                        android:id="@+id/button_left_right"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp">
+
+                        <Button
+                            android:id="@+id/button_stamp_left"
+                            android:background="@mipmap/icon_back"
+                            android:layout_height="40dp"
+                            android:layout_width="40dp"
+                            android:layout_centerVertical="true" />
+
+                        <android.support.design.widget.TabLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/tabLayout"
+                            android:clickable="false"
+                            app:tabIndicatorHeight="0dp"
+                            android:layout_centerInParent="true"
+                            app:tabPaddingEnd="5dp"
+                            app:tabPaddingStart="5dp">
+
+                        </android.support.design.widget.TabLayout>
+
+                        <Button
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/button_stamp_right"
+                            android:background="@mipmap/icon_back"
+                            android:rotation="180"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true" />
+
+                    </RelativeLayout>
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_below="@+id/button_left_right"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="5dp"
+                        android:paddingBottom="18dp"
+                        android:paddingTop="18dp"
+                        android:layout_height="150dp">
+
+                    </android.support.v4.view.ViewPager>
+
                 </RelativeLayout>
             </RelativeLayout>
 
