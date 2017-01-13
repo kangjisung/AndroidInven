@@ -9,30 +9,35 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
+import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
 import com.example.kangjisung.likeroom.User.MileageManage.Usermileage;
 import com.example.kangjisung.likeroom.User.MileageManage.mileage;
 import com.example.kangjisung.likeroom.User.UserManage.UserAdd;
 import com.example.kangjisung.likeroom.User.UserManage.Usermanage;
 import com.example.kangjisung.likeroom.inventory.calc;
 import com.example.kangjisung.likeroom.inventory.sales.salesVolume;
+import com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.InvenActivity;
 import com.example.kangjisung.likeroom.inventory.statistics.InvenView;
 
 import static com.example.kangjisung.likeroom.R.id.StoreAddress;
 import static com.example.kangjisung.likeroom.R.id.StoreName;
 import static com.example.kangjisung.likeroom.R.id.StorePhone;
 import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
+import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.testDatabaseName;
 
 
 public class MainActivity extends ActionBarActivity{
 
     String PriNum;
     public static Context con;
+    DatabaseHelper databaseHelperTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         con=getApplicationContext();
+        databaseHelperTest = new DatabaseHelper(getApplicationContext(), testDatabaseName);
         //calc c=calc.getInstance();
         /*new ClientDataBase("select `매장번호` from `매장`;",1,1,getApplicationContext());
         int cnt=0;
@@ -47,7 +52,7 @@ public class MainActivity extends ActionBarActivity{
             Intent StoreAdd = new Intent(this, StoreAdd.class);
             startActivity(StoreAdd);
         }*/
-        Intent StoreAdd = new Intent(this, UserAdd.class);
+        Intent StoreAdd = new Intent(this, salesVolume.class);
         startActivity(StoreAdd);
 
     }

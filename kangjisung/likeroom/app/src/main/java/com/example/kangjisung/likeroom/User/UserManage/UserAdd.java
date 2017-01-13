@@ -1,15 +1,15 @@
 package com.example.kangjisung.likeroom.User.UserManage;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
-
-import static com.example.kangjisung.likeroom.R.id.StoreName;
 
 /**
  * Created by kangjisung on 2016-12-30.
@@ -30,7 +30,8 @@ public class UserAdd extends Activity{
 
         User_add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                new ClientDataBase("insert into `회원정보` (`이름`,`주소`,`전화번호`,`생년월일`,`이메일`) values(\"" + UserAddName.getText().toString() + "\",\""+UserAddress.getText().toString()+"\",\""+UserAddPhone.getText().toString()+"\",\""+UserAddBirth.getText().toString()+"\",\""+UserAdd_Email.getText().toString()+"\");", 2, 0, getApplicationContext());
+                new ClientDataBase("insert into `회원정보` (`이름`,`전화번호`,`생년월일`,`이메일`) values(\"" + UserAddName.getText().toString() + "\",\""+UserAddPhone.getText().toString()+"\",\""+UserAddBirth.getText().toString()+"\",\""+UserAdd_Email.getText().toString()+"\");", 2, 0, getApplicationContext());
+                Toast.makeText(getApplicationContext(), "클릭.", Toast.LENGTH_SHORT).show();
             }
         });
     }

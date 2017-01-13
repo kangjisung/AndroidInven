@@ -1,6 +1,7 @@
 package com.example.kangjisung.likeroom.User.MileageManage;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -34,6 +35,11 @@ public class mileage extends Activity {
     int i;
     double Per=0.1;  //퍼센트
     HttpCommunicationProcess httpCommunicationProcess;
+
+    static DatabaseHelper databaseHelperTest;
+    static LocalHostDatabaseManager localHostDatabaseManager;
+    static String testDatabaseName = "ShopkeeperDatabase.db";
+    static SQLiteDatabase sqLiteDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +87,7 @@ public class mileage extends Activity {
                 new ClientDataBase("select `포인트`,`고유회원등록번호` from `포인트` where `고유회원등록번호`=(select `고유회원등록번호` from `회원정보` where `이름`=\"" + name + "\");;",1,2,getApplicationContext()); //포인트 있는지 검색
                 PriNum=Integer.parseInt(DBstring[1]);
                 if(DBstring[0]==null){//////////////////없다면 insert
-                    new ClientDataBase("insert into `포인트` (`고유회원등록번호`,`포인트`,`포인트갱신날짜`) values ((select `고유회원등록번호` from `회원정보` where `이름`=\""+name+"\","+point+",(select date('now')));",2,0,getApplicationContext());
+                    new ClientDataBase("insert into `포인트` (`고유회원등록번호`,`포인트`,`포인트갱신날짜`) values ((select `고유회원등록번호` from `회원정보` where `이름`=\""+name+"\"),"+point+",(select date('now')));",2,0,getApplicationContext());
                 }
                 else {////////////////있으면 계산해서 update
                     sum=point+Integer.parseInt(DBstring[0]);

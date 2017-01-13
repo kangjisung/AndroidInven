@@ -20,6 +20,7 @@
         <activity android:name=".inventory.sales.salesVolume" />
         <activity android:name=".inventory.statistics.InvenView" />
         <activity android:name=".StoreAdd"/>
+        <activity android:name=".User.UserManage.UserAdd"/>
         <activity android:name=".inventory.statistics.ChangeStat.InvenActivity" />
         <activity android:name=".inventory.statistics.ChangeStat.StatActivity" />
         <activity android:name=".User.UserManage.Usermanage"/>

@@ -1,6 +1,6 @@
 package com.example.kangjisung.likeroom.inventory;
 
-/**
+/*
  * Created by kangjisung on 2016-11-21.
  */
 
@@ -18,10 +18,10 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
+import static android.R.attr.order;
 import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 import static java.lang.Math.sqrt;
 
-//calc 상위 클래스가 있고,하위에 1.예상판매량, 2.통계, 3.최적재고&예상매출 하위클래스 있다.
 public class calc extends MainActivity {
 
     String name;  //제품이름
@@ -35,113 +35,33 @@ public class calc extends MainActivity {
 
     public static calc mInstance = null;
 
-    public int Q, c, p, s, min, max; //Q최적재고량, c원가(DB), p판매가(DB), s잔존가(가치)(DB), min최소예상판매량(DB), max최대예상판매량(DB)
-    public int tSeason, tWeek, tMonth, tDay, tYear; //tSeason총분기수,tWeek총주수 tmonth총월수, tDay총일수,tYear총년수
-    public int[] DailySale, WeeklySale, MonthlySale, SeasonalSale, YearlySale; //DS일별판매량,WS주별판매평균, MS월별판매량 SS분기별판매량 YS일년판매량
-    //-->이것도 db있으면, DS만 필요할 듯....
-    public int[] dAvg, monAvg, sAvg, yAvg; //dAvg요일별판매량누적평균(dAvg[tDay%7] monAvg월별판매량누적평균 sAvg분기별판매량누적평균 yAvg연별판매량누적평균
-    public double m, v, FM, FD; //m전체평균판매량(DB), v표준편차, FD예상평균판매량, FM최종평균
-    public double[] FD_Array;
-    public int[] monthDay = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    public int currentMonth;
-    public int popUpResult;
-    public int[] Recent100_Sale, Recent100_FD, Recent16_WeekSale;
+    //1.db only ----->기존에 있던 제품 정보(순수하게 db로부터 받아오기만 하면 됨)
+    public int c, p, s; //c원가(DB), p판매가(DB), s잔존가(가치)(DB)
+    //2.db + Android ----->db로 부터 받아온 데이터를 안드로이드에서 가공해 얻은 정보
+    public int tWeek, tMonth, tDay; // tDay현재까지 총일수, tWeek총주수, tmonth총월수
+    public int curDay,curMonth;//현재 요일, 현재 월(이건 db 개입x// 순수안드로이드)
+    public double [] dAvg, monAvg; //dAvg요일별판매량총평균, monAvg월별판매량총평균
+    public double m;//m전체평균판매량
+    //1,2정보만으로 계산한 Q(최적재고량)값을 Q목록에 띄운다.이를 수정하고 싶은 User가 수정버튼을 눌러 Q값 결정에 사용되는 값(FD,min,max)를 변경->3.
+    //3.db + Android + User -----> 모든 정보를 다 합쳐 얻는 최종결론
+    public int FD, min, max; //FD예측판매량, min, max최소최대예상판매량 (min max: db의 한달판매량의 min,max가 default+ graph1에서 사용자가 이 값 변경가능)
+    public double v, FM; //v표준편차, FM최종평균
+
+
+    public int Q;//Q최적재고량
+
+
+    //4.그래프를 그리기 위해 생성해야하는 정보
+    public int[] Recent100_Sale, Recent100_FD;//최근 100일간의 판매량과 예측판매량(User입력한것 only)(Graph1-(2))
+    public int[] Recent16_WeekSale; //최근 16주의 각 주 판매량 평균(Graph2)
+
     public boolean isChange = false;
 
-    public calc() {
-        long tmp;
-
-        sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
-        curDate = new Date();
-        curDateTemp=new Date();
-        strCurTime = sdf.format(curDate);
-        cal = Calendar.getInstance();
-        currentMonth = cal.get(Calendar.MONTH);
-
-        //////////////////////tDay,tWeek,tMonth,tSeason, tYear
-        new ClientDataBase("select `등록일` from `매장`;", 1, 1, MainActivity.con); ///////////CurDateTemp 구하기
-        int cnt = 0;
-        String startDate;
-        try {
-            startDate=DBstring[cnt];
-            curDateTemp = sdf.parse(startDate);  //불러온 스트링값 데이터 형으로 변환
-        } catch (ParseException e1) {
-            e1.printStackTrace();
-        }
-
-        lCurTime = curDate.getTime();
-        lCurTimeTemp = curDateTemp.getTime();
-        tmp = lCurTime - lCurTimeTemp;
-        tDay = (int) (tmp / (24 * 60 * 60 * 1000));
-        tWeek = (tDay + 6) / 7;
-        tMonth =(int) ((tDay / 365.254) * 12);
-        tSeason = (tMonth + 2) / 3;
-        tYear = (int) ((tDay + 364) / 365.254);
-
-        //////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////TEST CODE////////////////////////////////////////
-        //////////////////////////////////////////////////////////////////////////////
-
-       /*p=300;
-        c=100;
-        s=50;
-        min=44;
-        max=111;
-        tWeek=16;
-        Q=88;
-        FD=99;
-        Recent100_Sale=new int[14];
-        Recent100_FD=new int[14];
-        Recent16_WeekSale=new int[16];
-        WeeklySale=new int[16];
-        dAvg=new int[7];
-        monAvg=new int[12];
-        Random random=new Random();
-        for(int i=0; i<14; i++) Recent100_Sale[i]=random.nextInt(100);
-        for(int i=0; i<14; i++) Recent100_FD[i]=random.nextInt(100);
-        for(int i=0; i<16; i++) WeeklySale[i]=random.nextInt(100);
-        for(int i=0; i<16; i++) Recent16_WeekSale[i]=WeeklySale[i];
-        for(int i=0; i<7; i++) dAvg[i]=random.nextInt(100);
-        for(int i=0; i<12; i++) monAvg[i]=random.nextInt(100);*/
-
-        //////////////////////////////////////////////////////////////////////////////
-        //////////////////////////////////////////////////////////////////////////////
-        //////////////////////////////////////////////////////////////////////////////
-    }
-
-    public static calc getInstance() {
-        if (calc.mInstance == null) {
-            calc.mInstance = new calc();
-            return calc.mInstance;
-        } else return calc.mInstance;
-    }
-
-    public void setName(String nam) {
-        name = nam;
-    }
-
-    public void InitCalc() {
+    public calc(String name) {
+        this.name=name;
         int cnt;
-        new ClientDataBase("select `판매량` from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\"" + name + "\");", 1, 1, MainActivity.con);
-        cnt = 0;
-        while (true) {
-            if (DBstring[cnt] != null) {
-                popUpResult = Integer.parseInt(DBstring[cnt]);
-                cnt++;
-            } else if (DBstring[cnt] == null) break;
-        }
-
-        /////////////////////////////////////////////최적재고량
-        new ClientDataBase("select `최적재고량` from `최적재고량` where `날짜`=\"" + strCurTime + "\"and `제품코드` =(select `제품코드` from `제품정보` where `이름`=\"" + name + "\");", 1, 1, MainActivity.con);
-        cnt = 0;
-        while (true) {
-            if (DBstring[cnt] != null) {
-                Q = Integer.parseInt(DBstring[cnt]);
-                cnt++;
-            } else if (DBstring[cnt] == null) break;
-        }
-
-        //////////////////////////////////////////원가,판매가,잔존가
+        //1. db 불러오기
+//        int c, p, s; //c원가(DB), p판매가(DB), s잔존가(가치)(DB) db에서 불러와 저장하는 코드필요!
         new ClientDataBase("select `원가`,`판매가`,`잔존가` from `제품정보` where `이름`=\"" + name + "\";", 1, 3, MainActivity.con);
         cnt = 0;
         while (true) {
@@ -152,9 +72,68 @@ public class calc extends MainActivity {
                 cnt += 3;
             } else if (DBstring[cnt] == null) break;
         }
+        //2. db 불러오기 + Android 계산
+//        int tWeek, tMonth, tDay; // tDay현재까지 총일수, tWeek총주수, tmonth총월수
+//        int curDay, curMonth;//현재 요일, 현재 월(이건 db 개입x// 순수안드로이드)
+//        double[] dAvg, monAvg; //dAvg요일별판매량총평균, monAvg월별판매량총평균
+//        double m;//m전체평균판매량
+
+        /////int tWeek, tMonth, tDay; //매장등록 이후 지금까지 총 일수,주수,월수 구하기
+        long tmp;
+        curDate = new Date();//curDate는 현재날짜로 자동설정 되는 것임?
+        curDateTemp = new Date();
+        /////////CurDateTemp
+        new ClientDataBase("select `등록일` from `매장`;", 1, 1, MainActivity.con);
+        cnt = 0;
+        String startDate;
+        try {
+            startDate = DBstring[cnt];
+            curDateTemp = sdf.parse(startDate);  //불러온 스트링값 데이터 형으로 변환
+        } catch (ParseException e1) {
+            e1.printStackTrace();
+        }
+        lCurTime = curDate.getTime();
+        lCurTimeTemp = curDateTemp.getTime();
+        tmp = lCurTime - lCurTimeTemp;
+        tDay = (int) (tmp / (24 * 60 * 60 * 1000));
+        tWeek = (tDay + 6) / 7;
+        tMonth = (int) ((tDay / 365.254) * 12);
+
+        //////curDay,curMonth 구하기
+        cal = Calendar.getInstance();
+        sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+        curMonth = cal.get(Calendar.MONTH)+1; //안드로이드로부터 현재 월 받음
+        curDay = cal.get(Calendar.DAY_OF_WEEK); //안드로이드로부터 현재 요일 받는 코드 필요
+        strCurTime = sdf.format(curDate);
+
+        //////dAvg[7], monAvg[12] 구하기 //dAvg요일별판매량총평균, monAvg월별판매량총평균 구하기
+        new ClientDataBase("select avg(`판매량`),`요일` from `제품판매량` group by `요일`",1,2, MainActivity.con);
+        cnt = 0;
+        while (true) {
+            if (DBstring[cnt] != null) {
+                dAvg[Integer.parseInt(DBstring[cnt+1])]=Double.parseDouble(DBstring[cnt]);
+                cnt += 2;
+            } else if (DBstring[cnt] == null) break;
+        }
+        new ClientDataBase("select avg(`판매량`),`월` from `제품판매량` group by `월`",1,2, MainActivity.con);
+        cnt = 0;
+        while (true) {
+            if (DBstring[cnt] != null) {
+                monAvg[Integer.parseInt(DBstring[cnt+1])]=Double.parseDouble(DBstring[cnt]);
+                cnt += 2;
+            } else if (DBstring[cnt] == null) break;
+        }
+        //case문을 이용해 db에서 해당 요일에 속하는 날의 판매량을 불러와 평균내서 dAvg()에 저장(처음에 db에 저장할 때부터 0~6 숫자로 요일을 저장하는 것도 좋을 듯
+        //for(d=0;d<7;d++){case (db-판매량의 요일==d)-->불러와서 그 값들의 평균을 dAvg[d]에 저장}
+        //monAvg도 마찬가지for(m=0;m<7;m++){case (db-판매량의 월==ㅡm-->불러와서 그 값들의 평균을 monAvg[m]에 저장}
+
+        //////m 구하기 //m전체평균판매량
+        new ClientDataBase("select avg(`판매량`) from `제품판매량`",1,1, MainActivity.con);
+        m=Double.parseDouble(DBstring[0]);
+        //db의 판매량 column의 총평균을 m에 저장
 
         ////////////////////////////////////////////최소예상판매량, 최대예상판매량
-        new ClientDataBase("select Min(`예상판매량`),Max(`예상판매량`) from `제품판매량` where `날짜`>\"" + cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) - 2) + "-" + cal.get(Calendar.DATE) + "\";", 1, 2, MainActivity.con);
+        new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>\"" + cal.get(Calendar.YEAR) + "\" and `월`>\"" + cal.get(Calendar.MONTH) + "\" and `일`>\"" + cal.get(Calendar.DATE) + "\";", 1, 2, MainActivity.con);
         cnt = 0;
         while (true) {
             if (DBstring[cnt] != null) {
@@ -164,143 +143,53 @@ public class calc extends MainActivity {
             } else if (DBstring[cnt] == null) break;
         }
 
-        //////////////////////////////////////////////dAvg입력,monAvg입력
-        new ClientDataBase("select `날짜`,`판매량` from `제품판매량`;", 1, 2, MainActivity.con);
-        String strWeek = null; //날짜 스트링형
-        Date DateWeek = null;  //날짜 데이터 형
-        int WeekdateAvg[] = new int[8];  //요일 판매량 평균계산용
-        int MonthdateAvg[] = new int[13];  //달 판매량 평균계산용
-        sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);     ///simpleDateformat  (E는 요일,M은 달)   밑에 방법말고 해도됨.
-        dAvg = new int[7];
-        monAvg = new int[12];
-        cnt = 0;
-        while (true) {
-            if (DBstring[cnt] != null) {
-                strWeek = DBstring[cnt];
-                try {
-                    DateWeek = sdf.parse(strWeek);  //불러온 스트링값 데이터 형으로 변환
-                } catch (ParseException e1) {
-                    e1.printStackTrace();
-                }
-                cal.setTime(DateWeek);  //불러온 날짜값으로 캘린더 변환
-                int nMonth = cal.get(Calendar.MONTH);
-                MonthdateAvg[nMonth] += Integer.parseInt(DBstring[cnt + 1]);
-                ///불러온 날짜 값으로 요일구분후 판매량 입력
-                int nWeek = cal.get(Calendar.DAY_OF_WEEK);
-                WeekdateAvg[nWeek] += Integer.parseInt(DBstring[cnt + 1]);
-                cnt += 2;
-            } else if (DBstring[cnt] == null) {
-                //판매량 평균낸후 dAvg에 입력
-                cnt = (cnt / 2) - 1;
-                for (int i = 1; i <= 7; i++) {
-                    if (WeekdateAvg[i] != 0)
-                        dAvg[i] = (int) (WeekdateAvg[i] / cnt);
-                }
-            }
-            for (int i = 1; i <= 12; i++) {
-                if (MonthdateAvg[i] != 0)
-                    monAvg[i] = (int) (MonthdateAvg[i] / cnt);
-            }
-            break;
-        }
-        /////////////////////////////////////////////////////////////
-        dailyUpdate();
-        weeklyUpdate();
-        monthlyUpdate();
-        seasonalUpdate();
-        yearlyUpdate();
+        v = (max - min) / 6; //표준편차
+        FM = (min + max + (4 * FD)) / 6; //최종평균계산
+        FD = (int)(calcT().predict(tDay)*(dAvg[curDay]/m)*(monAvg[curMonth]/m))+1; //예상판매량=추세*요일지수*월별지수
     }
 
-    //판매량 입력하고나서
-    void dailyUpdate() {
-        DailySale=new int[tDay+1];
-        FD_Array=new double[tDay+1];
-            DailySale[tDay] = popUpResult;//메인에서 입력받은 판매량
-            FD_Array[tDay] = FD;
-            int[] Recent100_Sale;
-            if(tDay<=100){
-                Recent100_Sale=new int[tDay+1];
-                Recent100_FD=new int[tDay+1];
-                for(int i=1; i<=tDay+1; i++) Recent100_Sale[i]=DailySale[i];
-                for(int i=1; i<=tDay+1; i++) Recent100_FD[i]=DailySale[i];
-            }
-            else{
-                Recent100_Sale=new int[101];
-                Recent100_FD=new int[101];
-                for(int i=1; i<=100; i++) Recent100_Sale[i]=DailySale[tDay-100+i];
-                for(int i=1; i<=100; i++) Recent100_FD[i]=DailySale[tDay-100+i];
-            }
-            m = (m * (tDay - 1) + DailySale[tDay]) / DailySale[tDay];
-        /*new ClientDataBase("select avg(`판매량`) from `제품판매량`;",1,1,getApplicationContext());
-        int cnt=0;
-        while(true) {
+    public static calc getInstance() {
+        if (calc.mInstance!=null) return calc.mInstance;
+        return null;
+    }
+
+    public static calc RefreshClass(String name){
+        calc.mInstance=new calc(name);
+        return calc.mInstance;
+    }
+
+    ////////////////////매일 데이터값 받아오기
+    void graphdata() {
+        Recent100_Sale=new int[102];
+        Recent100_FD=new int[102];
+        Recent16_WeekSale = new int[17];
+
+        //최근 사용자가 "FD를 변경한"날짜에 해당하는 FD와 Sale만 불러와야
+        new ClientDataBase("select `판매량` from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\" order by `년` desc, `월` desc,`일` desc limit 100",1,1,MainActivity.con);
+        int cnt = 0;
+        while (true) {
             if (DBstring[cnt] != null) {
-                m=Integer.parseInt(DBstring[cnt]);
-                cnt+=1;
-            }
-            else if(DBstring[cnt]==null) break;
+                Recent100_Sale[cnt+1]=Integer.parseInt(DBstring[cnt]);
+                cnt++;
+            } else if (DBstring[cnt] == null) break;
         }
-        new ClientDataBase("select `판매량` from `제품판매량` where `날짜`="+(cal.get(Calendar.DATE)-100)+" ;",1,1,getApplicationContext());
-        cnt=0;
-        while(true) {
-            if (DBstring[cnt] != null) {
-                Recent100_Sale[cnt]=Integer.parseInt(DBstring[cnt]);
-                cnt+=1;
-            }
-            else if(DBstring[cnt]==null) break;
-        }
-        new ClientDataBase("select `예상판매량` from `제품판매량` where `날짜`="+(cal.get(Calendar.DATE)-100)+" ;",1,1,getApplicationContext());
-        cnt=0;
-        while(true) {
-            if (DBstring[cnt] != null) {
-                Recent100_FD[cnt]=Integer.parseInt(DBstring[cnt]);
-                cnt+=1;
-            }
-            else if(DBstring[cnt]==null) break;
-        }*/
+        Recent100_Sale[cnt]=-1;
+        Recent100_Sale=;
+        Recent100_FD=;
+
+        Recent16_WeekSale = ;
+
 
         //최적재고량 산출-->main화면의 숫자 바꿔준다.
     }
-
-    //요일별평균판매량(매주 한번 실행) update 일요일 자정
-    void weeklyUpdate() {
-        WeeklySale=new int[tDay+1];
-        for (int k = tDay - 6; k <= tDay; k++) {
-            WeeklySale[tWeek] += DailySale[k];
-        }
-        dAvg[tWeek] = (dAvg[tWeek - 1] * (tWeek - 1) + WeeklySale[tWeek]) / tWeek;
-    }
-
-    //월별평균판매량(매월 한번 실행) update
-    void monthlyUpdate() {
-        MonthlySale=new int[tDay+1];
-        for (int k = tDay - monthDay[currentMonth] + 1; k <= tDay; k++) {
-            MonthlySale[tMonth] += DailySale[k];
-        }
-        monAvg[tMonth] = (monAvg[tMonth - 1] * (tMonth - 1) + MonthlySale[tMonth]) / tMonth;
-    }
-
-    void seasonalUpdate() {
-        //분기별평균판매량(매시즌(3개월)말에 한번 실행) update
-        sAvg=new int[tSeason+1];
-        sAvg[tSeason] = (sAvg[tSeason - 1] * (tSeason - 1) + MonthlySale[tMonth] + MonthlySale[tMonth - 1] + MonthlySale[tMonth - 2]) / tSeason;
-    }
-
-    void yearlyUpdate() {
-        //연별평균판매량(매년 1월1일 0시 한번 실행) update
-        yAvg=new int[tYear+1];
-        yAvg[tYear] = (yAvg[tYear - 1] * (tYear - 1) + SeasonalSale[tSeason] + SeasonalSale[tSeason - 1] + SeasonalSale[tSeason - 2] + SeasonalSale[tSeason - 3]) / tYear;
-    }
-
-    /////////////////////////////////////////////////////최적재고량 계산 (메인화면과 3.최적재고&예상매출 화면에 필요)
-    public void calcQ(int productCode) {
-        v = (max - min) / 6; //표준편차
-        FM = (min + max + (4 * FD)) / 6; //최종평균계산
-        FD = (int)(calcT().predict(tDay)*calcD(tDay,DailySale,m)*calcMonth(tMonth,monAvg,m))+1; //예상판매량=추세*요일지수*월별지수
+    /////////////////////////////////////////////////////최적재고량 계산
+    //////////////////////////////////////판매량 넣을때 실행
+    public void calcQ() {
+        cal = Calendar.getInstance();
         Q = (int) (FM + ((v / 2) * (sqrt((p - c) / (c - s)) - sqrt((c - s) / (p - c))))) + 1; //최적재고량 계산
-        new ClientDataBase("insert into `최적재고량` (`제품코드`,`최적재고량`,`날짜`) values ("+productCode+","+Q+",(select date('now')));",2,0,MainActivity.con);
+        new ClientDataBase("insert into `최적재고량` (`제품코드`,`최적재고량`,`날짜`) values ((select `제품코드` from `제품정보` where `이름`=\""+name+"\"),"+Q+",\"" + cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) +1) + "-" + (cal.get(Calendar.DATE)+1) + "\");",2,0,MainActivity.con);
     }
-
+    ////////////////////////////////////////////그래프용 calc2
     public int calcQ2(){
         v = (max - min) / 6; //표준편차
         FM = (min + max + (4 * FD)) / 6; //최종평균계산
@@ -311,27 +200,10 @@ public class calc extends MainActivity {
     public LinearRegression calcT() {
         int [] x = new int[tWeek];
 
-        if(tWeek<16){
-            Recent16_WeekSale=new int[tWeek];
-            for(int i=0; i<tWeek; i++) Recent16_WeekSale[i]=WeeklySale[i];
-        }
-        else{
-            Recent16_WeekSale=new int[16];
-            for(int i=0; i<16; i++) Recent16_WeekSale[i]=WeeklySale[i];
-        }
         for(int i=0; i<16; i++) x[i]=i;
 
         LinearRegression LR = new LinearRegression(x,Recent16_WeekSale);
-        //return LR.predict(tDay);
         return LR;
-    }
-    ////////////////요일지수
-    double calcD(int tDay,int[] DailySale, double m){
-        return dAvg[tDay%7]/m;
-    }
-    ///////////////////////////////////////월별지수: 월판매량/전체평균(m)
-    double calcMonth(int tMonth, int[] monAvg, double m) {
-        return monAvg[tMonth%12]/m;
     }
 
     //////////////////////////////////////구비재고량을 입력받아 그에따른 예상이익을 출력
@@ -424,3 +296,148 @@ public class calc extends MainActivity {
         }
     }
 }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void InitCalc() {
+        int cnt;
+        new ClientDataBase("select `판매량` from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\"" + name + "\");", 1, 1, MainActivity.con);
+        cnt = 0;
+        while (true) {
+            if (DBstring[cnt] != null) {
+                dail = Integer.parseInt(DBstring[cnt]);
+                cnt++;
+            } else if (DBstring[cnt] == null) break;
+        }
+
+        /////////////////////////////////////////////최적재고량
+        new ClientDataBase("select `최적재고량` from `최적재고량` where `날짜`=\"" + strCurTime + "\"and `제품코드` =(select `제품코드` from `제품정보` where `이름`=\"" + name + "\");", 1, 1, MainActivity.con);
+        cnt = 0;
+        while (true) {
+            if (DBstring[cnt] != null) {
+                Q = Integer.parseInt(DBstring[cnt]);
+                cnt++;
+            } else if (DBstring[cnt] == null) break;
+        }
+
+        //////////////////////////////////////////원가,판매가,잔존가
+        new ClientDataBase("select `원가`,`판매가`,`잔존가` from `제품정보` where `이름`=\"" + name + "\";", 1, 3, MainActivity.con);
+        cnt = 0;
+        while (true) {
+            if (DBstring[cnt] != null) {
+                c = Integer.parseInt(DBstring[cnt]);
+                p = Integer.parseInt(DBstring[cnt + 1]);
+                s = Integer.parseInt(DBstring[cnt + 2]);
+                cnt += 3;
+            } else if (DBstring[cnt] == null) break;
+        }
+
+
+
+        //////////////////////////////////////////////dAvg입력,monAvg입력
+        new ClientDataBase("select `날짜`,`판매량` from `제품판매량`;", 1, 2, MainActivity.con);
+        String strWeek = null; //날짜 스트링형
+        Date DateWeek = null;  //날짜 데이터 형
+        int WeekdateAvg[] = new int[8];  //요일 판매량 평균계산용
+        int MonthdateAvg[] = new int[13];  //달 판매량 평균계산용
+        int WeekdateCnt[]=new int[8];  //요일 판매량 전체갯수 용
+        int MonthdateCnt[]=new int[13];  //달 판매량 전체갯수 용
+        sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);     ///simpleDateformat  (E는 요일,M은 달)   밑에 방법말고 해도됨.
+        dAvg = new double[7];
+        monAvg = new double[12];
+        cnt = 0;
+        //달별,요일별 db배열에 넣기
+        while (true) {
+            if (DBstring[cnt] != null) {
+                strWeek = DBstring[cnt];
+                try {
+                    DateWeek = sdf.parse(strWeek);  //불러온 스트링값 데이터 형으로 변환
+                } catch (ParseException e1) {
+                    e1.printStackTrace();
+                }
+                cal.setTime(DateWeek);  //불러온 날짜값으로 캘린더 변환
+                int nMonth = cal.get(Calendar.MONTH)+1;
+                MonthdateAvg[nMonth] += Integer.parseInt(DBstring[cnt + 1]);
+                MonthdateCnt[nMonth]+=1;
+                ///불러온 날짜 값으로 요일구분후 판매량 입력
+                int nWeek = cal.get(Calendar.DAY_OF_WEEK);
+                WeekdateAvg[nWeek] += Integer.parseInt(DBstring[cnt + 1]);
+                WeekdateCnt[nWeek]+=1;
+                cnt += 2;
+            } else if (DBstring[cnt] == null) {
+                ///////판매량 요일 평균낸후 dAvg에 입력
+                for (int i = 1; i <= 7; i++) {
+                    if (WeekdateAvg[i] != 0)
+                        dAvg[i] = (int) (WeekdateAvg[i] / WeekdateCnt[i]);
+                }
+            }
+            ///////판매량 달 평균낸후 monAvg에 입력
+            for (int i = 1; i <= 12; i++) {
+                if (MonthdateAvg[i] != 0)
+                    monAvg[i] = (int) (MonthdateAvg[i] / MonthdateCnt[i]);
+            }
+            break;
+        }
+        /////////////////////////////////////////////////////////////
+
+    }
+
+  /*new ClientDataBase("select avg(`판매량`) from `제품판매량`;",1,1,getApplicationContext());
+        int cnt=0;
+        while(true) {
+            if (DBstring[cnt] != null) {
+                m=Integer.parseInt(DBstring[cnt]);
+                cnt+=1;
+            }
+            else if(DBstring[cnt]==null) break;
+        }
+        new ClientDataBase("select `판매량` from `제품판매량` where `날짜`="+(cal.get(Calendar.DATE)-100)+" ;",1,1,getApplicationContext());
+        cnt=0;
+        while(true) {
+            if (DBstring[cnt] != null) {
+                Recent100_Sale[cnt]=Integer.parseInt(DBstring[cnt]);
+                cnt+=1;
+            }
+            else if(DBstring[cnt]==null) break;
+        }
+        new ClientDataBase("select `예상판매량` from `제품판매량` where `날짜`="+(cal.get(Calendar.DATE)-100)+" ;",1,1,getApplicationContext());
+        cnt=0;
+        while(true) {
+            if (DBstring[cnt] != null) {
+                Recent100_FD[cnt]=Integer.parseInt(DBstring[cnt]);
+                cnt+=1;
+            }
+            else if(DBstring[cnt]==null) break;
+        }*/
+
+//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////TEST CODE////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+       /*p=300;
+        c=100;
+        s=50;
+        min=44;
+        max=111;
+        tWeek=16;
+        Q=88;
+        FD=99;
+        Recent100_Sale=new int[14];
+        Recent100_FD=new int[14];
+        Recent16_WeekSale=new int[16];
+        WeeklySale=new int[16];
+        dAvg=new int[7];
+        monAvg=new int[12];
+        Random random=new Random();
+        for(int i=0; i<14; i++) Recent100_Sale[i]=random.nextInt(100);
+        for(int i=0; i<14; i++) Recent100_FD[i]=random.nextInt(100);
+        for(int i=0; i<16; i++) WeeklySale[i]=random.nextInt(100);
+        for(int i=0; i<16; i++) Recent16_WeekSale[i]=WeeklySale[i];
+        for(int i=0; i<7; i++) dAvg[i]=random.nextInt(100);
+        for(int i=0; i<12; i++) monAvg[i]=random.nextInt(100);*/
+
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//        tSeason = (tMonth + 2) / 3;
+//        tYear = (int) ((tDay + 364) / 365.254);
+//yAvg연별판매량총평균(현재는 없으나 나중에 update가능->graph2에도 반영가능)
