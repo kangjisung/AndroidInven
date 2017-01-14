@@ -15,6 +15,7 @@ import com.example.kangjisung.likeroom.inventory.InvenList.InvenAdapter;
 import com.example.kangjisung.likeroom.inventory.InvenList.InvenListViewItem;
 import com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.Graph.Graph1;
 import com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.InvenActivity;
+import com.example.kangjisung.likeroom.inventory.calc;
 
 import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
@@ -36,7 +37,7 @@ public class InvenView extends AppCompatActivity {
         ivAdapter = new InvenAdapter();
         Blistview.setAdapter(ivAdapter);
         //제품 이름,날짜,최적재고량 불러오기
-        new ClientDataBase("select `제품정보`.`이름`,`최적재고량`.`날짜`,`최적재고량`.`최적재고량` from `제품정보` join `최적재고량` on `제품정보`.`제품코드`= `최적재고량`.`제품코드`;",1,3,getApplicationContext());
+        new ClientDataBase("select `제품정보`.`이름`,`제품판매량`.`년`,`제품판매량`.`월`,`제품판매량`.`일`,`제품판매량`.`최적재고량` from `제품정보` join `제품판매량` on `제품정보`.`제품코드`= `제품판매량`.`제품코드` group by `제품판매량`.`제품코드` order by `년` desc, `월` desc,`일` desc;",1,5,getApplicationContext());
         int cnt=0;
         while(true){
             if(DBstring[cnt]!=null) {
@@ -52,8 +53,10 @@ public class InvenView extends AppCompatActivity {
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                 InvenListViewItem item = (InvenListViewItem) parent.getItemAtPosition(position) ;
 
-                String nameStr = item.getBname() ;
-                mil.putExtra("name", nameStr);
+                calc.RefreshClass(item.getBname());
+
+                //String nameStr = item.getBname() ;
+                //mil.putExtra("name", nameStr);
 
                 //get TextView's Text.
                 startActivity(mil);

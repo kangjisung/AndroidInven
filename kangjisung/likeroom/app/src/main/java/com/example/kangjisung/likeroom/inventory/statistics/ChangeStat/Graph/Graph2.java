@@ -56,7 +56,7 @@ public class Graph2 extends Fragment {
         float tmp=0;
         int count = 7;
 
-        for(int i=0; i<c.dAvg.length; i++) y1.add(new Entry(c.dAvg[i],i));
+        for(int i=0; i<c.dAvg.length; i++) y1.add(new Entry((float)c.dAvg[i],i));
         x1.add(0,"월");
         x1.add(1,"화");
         x1.add(2,"수");
@@ -67,7 +67,7 @@ public class Graph2 extends Fragment {
 
         for(int i=0; i<7; i++) label1[i]=x1.get(i).toString();
 
-        for(int i=0; i<c.monAvg.length; i++) y2.add(new Entry(c.monAvg[i],i));
+        for(int i=0; i<c.monAvg.length; i++) y2.add(new Entry((float)c.monAvg[i],i));
         x2.add(0,"1월");
         x2.add(1,"2월");
         x2.add(2,"3월");

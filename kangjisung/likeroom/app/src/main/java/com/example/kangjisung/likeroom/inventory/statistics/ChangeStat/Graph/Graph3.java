@@ -70,14 +70,14 @@ public class Graph3 extends Fragment {
         ArrayList<Entry> y = new ArrayList<>();
         String[] label = new String[7];
 
-        for(int i=0; i<c.dAvg.length; i++) y.add(new Entry(c.dAvg[i],i));
-        x.add(0,"월");
-        x.add(1,"화");
-        x.add(2,"수");
-        x.add(3,"목");
-        x.add(4,"금");
-        x.add(5,"토");
-        x.add(6,"일");
+        for(int i=1; i<c.dAvg.length; i++) y.add(new Entry((float)c.dAvg[i],i));
+        x.add(0,"일");
+        x.add(1,"월");
+        x.add(2,"화");
+        x.add(3,"수");
+        x.add(4,"목");
+        x.add(5,"금");
+        x.add(6,"토");
 
         for(int i=0; i<7; i++) label[i]=x.get(i).toString();
 
@@ -99,7 +99,7 @@ public class Graph3 extends Fragment {
         ArrayList<Entry> y = new ArrayList<>();
         String[] label = new String[12];
 
-        for(int i=0; i<c.monAvg.length; i++) y.add(new Entry(c.monAvg[i],i));
+        for(int i=1; i<c.monAvg.length; i++) y.add(new Entry((float)c.monAvg[i],i));
         x.add(0,"1월");
         x.add(1,"2월");
         x.add(2,"3월");
@@ -141,9 +141,10 @@ public class Graph3 extends Fragment {
 
         String[] label = new String[c.Recent16_WeekSale.length];
         for(int i=0; i<c.Recent16_WeekSale.length; i++){
+            if(c.Recent16_WeekSale[i]==-1) break;
             y1.add(new Entry(c.Recent16_WeekSale[i],i));
             y2.add(new Entry((float)LinearRegressionFunc(i),i));
-            x.add(i,""+i+"주");
+            x.add(i,""+(i+1)+"주");
             label[i]=x.get(i).toString();
         }
 

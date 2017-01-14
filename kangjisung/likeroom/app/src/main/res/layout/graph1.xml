@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:inputType="textPersonName"
         android:text="빵이름"
-        android:textAlignment="center"
-        android:ems="10"
+        android:gravity="center"
+        android:textSize="30dp"
         android:id="@+id/bdName"
         android:layout_gravity="center"/>
 

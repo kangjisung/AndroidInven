@@ -27,7 +27,8 @@ public class salesVolume extends AppCompatActivity {
 
     ListView Blistview ;
     InvenAdapter ivAdapter;
-    calc c;
+    Calendar cal;
+    //calc c;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,15 +38,18 @@ public class salesVolume extends AppCompatActivity {
 
         ivAdapter = new InvenAdapter();
         Blistview.setAdapter(ivAdapter);
-        c = calc.getInstance();
+        cal=Calendar.getInstance();
+        //c = calc.getInstance();
 
         //제품 이름,날짜,판매량 불러오기
-        new ClientDataBase("select `제품정보`.`이름`,`제품판매량`.`날짜`,`제품판매량`.`판매량` from `제품정보` join `제품판매량` on `제품정보`.`제품코드`= `제품판매량`.`제품코드` where `제품판매량`.`날짜`=\"" + c.cal.get(Calendar.YEAR) + "-" + (c.cal.get(Calendar.MONTH)+1) + "-" + (c.cal.get(Calendar.DATE)-1) + "\";",1,3,getApplicationContext());
+        new ClientDataBase("select `제품정보`.`이름`,`제품판매량`.`년`,`제품판매량`.`월`,`제품판매량`.`일`,`제품판매량`.`판매량` from `제품정보` join `제품판매량` on `제품정보`.`제품코드`= `제품판매량`.`제품코드` group by `제품판매량`.`제품코드` order by `년` desc, `월` desc,`일` desc;",1,5,getApplicationContext());
         int cnt=0;
+        String date;
         while(true){
             if(DBstring[cnt]!=null) {
-                ivAdapter.addItem(DBstring[cnt], DBstring[cnt + 1], DBstring[cnt + 2]);
-                cnt += 3;
+                date=""+DBstring[cnt+1]+"-"+DBstring[cnt+2]+"-"+DBstring[cnt+3]+"";
+                ivAdapter.addItem(DBstring[cnt], date, DBstring[cnt + 4]);
+                cnt += 5;
             }
             else if(DBstring[cnt]==null) break;
         }
@@ -57,8 +61,9 @@ public class salesVolume extends AppCompatActivity {
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                 InvenListViewItem item = (InvenListViewItem) parent.getItemAtPosition(position) ;
 
-                String nameStr = item.getBname() ;
-                mil.putExtra("name", nameStr);
+                calc.RefreshClass(item.getBname());
+                //String nameStr = item.getBname() ;
+                //mil.putExtra("name", nameStr);
 
                 //get TextView's Text.
                 startActivity(mil);

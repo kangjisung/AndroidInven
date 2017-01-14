@@ -17,7 +17,7 @@ public class ClientDataBase{
     static LocalHostDatabaseManager localHostDatabaseManager;
     public static String testDatabaseName = "ShopkeeperDatabase.db";
     static SQLiteDatabase sqLiteDatabase;
-    public static String DBstring[]=new String[30];
+    public static String DBstring[]=new String[150];
     Context context;
     int ii=0;
 
@@ -43,6 +43,18 @@ public class ClientDataBase{
        else if(i==2||i==3){
            sqLiteDatabase.execSQL(SQL);
        }
+       /*else if(i==3)
+       {
+           while(DBstring[ii]!=null) {
+               DBstring[ii]=null;
+               ii++;
+           }
+           if(i==3){
+               Cursor c = sqLiteDatabase.rawQuery(SQL,null);
+               if(DBstring[0]!=null){
+               }
+           }
+       }*/
 
        sqLiteDatabase.close(); /////db 종료
     }

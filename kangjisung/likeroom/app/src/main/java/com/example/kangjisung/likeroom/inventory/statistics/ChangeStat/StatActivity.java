@@ -61,6 +61,7 @@ public class StatActivity extends AppCompatActivity {
 
         String[] label = new String[c.Recent100_Sale.length];
         for (int i = 0; i < c.Recent100_Sale.length; i++) {
+            if(c.Recent100_Sale[i]==-1) break;
             y1.add(new Entry(c.Recent100_Sale[i], i));
             y2.add(new Entry(c.Recent100_FD[i], i));
             SumD += c.Recent100_Sale[i];
@@ -135,6 +136,7 @@ public class StatActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "변경되었습니다.", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(StatActivity.this, InvenActivity.class));
                     overridePendingTransition(R.anim.anim_slide_in_top, R.anim.anim_slide_out_bottom);
+                    c.updateFD();
                     finish();
                 }
                 else Toast.makeText(getApplicationContext(), "이미 변경되었습니다.", Toast.LENGTH_SHORT).show();

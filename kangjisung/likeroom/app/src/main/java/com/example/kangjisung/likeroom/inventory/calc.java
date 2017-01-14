@@ -5,6 +5,7 @@ package com.example.kangjisung.likeroom.inventory;
  */
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.example.kangjisung.likeroom.MainActivity;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
@@ -18,13 +19,12 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
-import static android.R.attr.order;
 import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 import static java.lang.Math.sqrt;
 
 public class calc extends MainActivity {
 
-    String name;  //제품이름
+    public String name;  //제품이름
     Date curDate; //오늘날짜
     Date curDateTemp;  //날짜계산용
     DateFormat sdf;  //데이터 포멧용
@@ -58,8 +58,11 @@ public class calc extends MainActivity {
     public boolean isChange = false;
 
     public calc(String name) {
-        this.name=name;
         int cnt;
+        this.name=name;
+
+        graphdata();
+
         //1. db 불러오기
 //        int c, p, s; //c원가(DB), p판매가(DB), s잔존가(가치)(DB) db에서 불러와 저장하는 코드필요!
         new ClientDataBase("select `원가`,`판매가`,`잔존가` from `제품정보` where `이름`=\"" + name + "\";", 1, 3, MainActivity.con);
@@ -79,6 +82,7 @@ public class calc extends MainActivity {
 //        double m;//m전체평균판매량
 
         /////int tWeek, tMonth, tDay; //매장등록 이후 지금까지 총 일수,주수,월수 구하기
+        sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
         long tmp;
         curDate = new Date();//curDate는 현재날짜로 자동설정 되는 것임?
         curDateTemp = new Date();
@@ -101,12 +105,15 @@ public class calc extends MainActivity {
 
         //////curDay,curMonth 구하기
         cal = Calendar.getInstance();
-        sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
         curMonth = cal.get(Calendar.MONTH)+1; //안드로이드로부터 현재 월 받음
         curDay = cal.get(Calendar.DAY_OF_WEEK); //안드로이드로부터 현재 요일 받는 코드 필요
         strCurTime = sdf.format(curDate);
 
-        //////dAvg[7], monAvg[12] 구하기 //dAvg요일별판매량총평균, monAvg월별판매량총평균 구하기
+        dAvg = new double[8];
+        monAvg = new double[13];
+
+                //////dAvg[7], monAvg[12] 구하기 //dAvg요일별판매량총평균, monAvg월별판매량총평균 구하기
+        //select AVG(`판매량`) from `제품판매량` where `
         new ClientDataBase("select avg(`판매량`),`요일` from `제품판매량` group by `요일`",1,2, MainActivity.con);
         cnt = 0;
         while (true) {
@@ -123,17 +130,21 @@ public class calc extends MainActivity {
                 cnt += 2;
             } else if (DBstring[cnt] == null) break;
         }
+
         //case문을 이용해 db에서 해당 요일에 속하는 날의 판매량을 불러와 평균내서 dAvg()에 저장(처음에 db에 저장할 때부터 0~6 숫자로 요일을 저장하는 것도 좋을 듯
         //for(d=0;d<7;d++){case (db-판매량의 요일==d)-->불러와서 그 값들의 평균을 dAvg[d]에 저장}
         //monAvg도 마찬가지for(m=0;m<7;m++){case (db-판매량의 월==ㅡm-->불러와서 그 값들의 평균을 monAvg[m]에 저장}
 
         //////m 구하기 //m전체평균판매량
         new ClientDataBase("select avg(`판매량`) from `제품판매량`",1,1, MainActivity.con);
-        m=Double.parseDouble(DBstring[0]);
+        cnt = 0;
+        m=Double.parseDouble(DBstring[cnt]);
+
         //db의 판매량 column의 총평균을 m에 저장
 
         ////////////////////////////////////////////최소예상판매량, 최대예상판매량
-        new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>\"" + cal.get(Calendar.YEAR) + "\" and `월`>\"" + cal.get(Calendar.MONTH) + "\" and `일`>\"" + cal.get(Calendar.DATE) + "\";", 1, 2, MainActivity.con);
+        //new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>\"" + cal.get(Calendar.YEAR) + "\" and `월`>\"" + cal.get(Calendar.MONTH) + "\" and `일`>\"" + cal.get(Calendar.DATE) + "\";", 1, 2, MainActivity.con);
+        new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>=2016 and `월`>9 and `일`>1;", 1, 2, MainActivity.con);
         cnt = 0;
         while (true) {
             if (DBstring[cnt] != null) {
@@ -144,8 +155,8 @@ public class calc extends MainActivity {
         }
 
         v = (max - min) / 6; //표준편차
-        FM = (min + max + (4 * FD)) / 6; //최종평균계산
         FD = (int)(calcT().predict(tDay)*(dAvg[curDay]/m)*(monAvg[curMonth]/m))+1; //예상판매량=추세*요일지수*월별지수
+        FM = (min + max + (4 * FD)) / 6; //최종평균계산
     }
 
     public static calc getInstance() {
@@ -159,25 +170,33 @@ public class calc extends MainActivity {
     }
 
     ////////////////////매일 데이터값 받아오기
-    void graphdata() {
-        Recent100_Sale=new int[102];
-        Recent100_FD=new int[102];
-        Recent16_WeekSale = new int[17];
+    public void graphdata() {
+        Recent100_Sale=new int[101];
+        Recent100_FD=new int[101];
+        Recent16_WeekSale = new int[16];
 
         //최근 사용자가 "FD를 변경한"날짜에 해당하는 FD와 Sale만 불러와야
-        new ClientDataBase("select `판매량` from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\" order by `년` desc, `월` desc,`일` desc limit 100",1,1,MainActivity.con);
+        new ClientDataBase("select `판매량`,`예상판매량` from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\") and `변경유무`=\"true\" order by `년` desc, `월` desc,`일` desc limit 100",1,2,MainActivity.con);
         int cnt = 0;
         while (true) {
             if (DBstring[cnt] != null) {
-                Recent100_Sale[cnt+1]=Integer.parseInt(DBstring[cnt]);
+                Recent100_Sale[(cnt+2)/2]=Integer.parseInt(DBstring[cnt]);
+                Recent100_FD[(cnt+2)/2]=Integer.parseInt(DBstring[cnt+1]);
+                cnt+=2;
+            } else if (DBstring[cnt] == null) break;
+        }
+        if(cnt<101) Recent100_Sale[cnt]=-1;
+        if(cnt<101) Recent100_FD[cnt]=-1;
+        /////////////////////////////////////////////최근 16주차 평균
+        new ClientDataBase("select avg(`판매량`) from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\") and `몇주차`>(select max(`몇주차`) from `제품판매량`)-16 group by `몇주차`",1,1,MainActivity.con);
+        cnt = 0;
+        while (true) {
+            if (DBstring[cnt] != null) {
+                Recent16_WeekSale[cnt]=(int)Double.parseDouble(DBstring[cnt]);
                 cnt++;
             } else if (DBstring[cnt] == null) break;
         }
-        Recent100_Sale[cnt]=-1;
-        Recent100_Sale=;
-        Recent100_FD=;
-
-        Recent16_WeekSale = ;
+        if(cnt<16) Recent16_WeekSale[cnt]=-1;
 
 
         //최적재고량 산출-->main화면의 숫자 바꿔준다.
@@ -198,9 +217,9 @@ public class calc extends MainActivity {
 
     ////////////////////////////////////////////////////////////주별평균으로 추세계산
     public LinearRegression calcT() {
-        int [] x = new int[tWeek];
+        int [] x = new int[Recent16_WeekSale.length];
 
-        for(int i=0; i<16; i++) x[i]=i;
+        for(int i=0; i<Recent16_WeekSale.length; i++) x[i]=i;
 
         LinearRegression LR = new LinearRegression(x,Recent16_WeekSale);
         return LR;
@@ -209,6 +228,22 @@ public class calc extends MainActivity {
     //////////////////////////////////////구비재고량을 입력받아 그에따른 예상이익을 출력
     public int calcProfit(int Q){ //Q개만큼 구비시 예상 이익 --> graph3에 표시
         return -1*(int)(-(p-s)*FM+(c-s)*Q+(p-s)*((Math.sqrt(v*v+(Q-FM)*(Q-FM))-(Q-FM))/2));
+    }
+/////////////////FD업데이트(예상판매량)
+    public void updateFD(){
+        new ClientDataBase("select `예상판매량` from `제품판매량`where `년`=\""+cal.get(Calendar.YEAR)+"\" and `월`=\""+(cal.get(Calendar.MONTH)+1)+"\" and `일`=\""+cal.get(Calendar.DATE)+"\"",1,1,MainActivity.con);
+        if(DBstring[0]!=null)
+            new ClientDataBase("update `제품판매량` set `예상판매량`=\""+FD+"\" where `년`=\""+cal.get(Calendar.YEAR)+"\" and `월`=\""+(cal.get(Calendar.MONTH)+1)+"\" and `일`=\""+cal.get(Calendar.DATE)+"\"",3,0,MainActivity.con);
+        else
+            new ClientDataBase("insert into `제품판매량` (`제품코드`,`예상판매량`,`년`,`월`,`일`) values ((select `제품코드` from `제품정보` where `이름`=\""+name+"\"),"+FD+",\"" + cal.get(Calendar.YEAR) + "\",\"" + (cal.get(Calendar.MONTH) +1) + "\",\"" + (cal.get(Calendar.DATE)+1) + "\");",2,0,MainActivity.con);
+}
+    ///////////////////Q업데이트(최적재고량)
+    public void updateQ(){
+        new ClientDataBase("select `최적재고량` from `최적재고량` where `년`=\""+cal.get(Calendar.YEAR)+"\" and `월`=\""+(cal.get(Calendar.MONTH)+1)+"\" and `일`=\""+cal.get(Calendar.DATE)+"\"",1,1,MainActivity.con);
+        if(DBstring[0]!=null)
+            new ClientDataBase("update `최적재고량` set `최적재고량`=\""+Q+"\" where `년`=\""+cal.get(Calendar.YEAR)+"\" and `월`=\""+(cal.get(Calendar.MONTH)+1)+"\" and `일`=\""+cal.get(Calendar.DATE)+"\"",3,0,MainActivity.con);
+        else
+            new ClientDataBase("insert into `최적재고량` (`제품코드`,`최적재고량`,`날짜`) values ((select `제품코드` from `제품정보` where `이름`=\""+name+"\"),"+Q+",\"" + cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) +1) + "-" + cal.get(Calendar.DATE) + "\");",2,0,MainActivity.con);
     }
 
     public class LinearRegression {
@@ -296,6 +331,7 @@ public class calc extends MainActivity {
         }
     }
 }
+    /*
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void InitCalc() {
         int cnt;

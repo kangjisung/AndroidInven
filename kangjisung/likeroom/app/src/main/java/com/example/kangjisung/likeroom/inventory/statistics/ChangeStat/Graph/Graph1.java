@@ -17,8 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.inventory.calc;
 import com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.InvenActivity;
 import com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.StatActivity;
@@ -27,6 +29,8 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+
+import org.w3c.dom.Text;
 
 import io.apptik.widget.MultiSlider;
 
@@ -46,6 +50,8 @@ public class Graph1 extends Fragment implements View.OnClickListener{
         multiSlider=(MultiSlider)view.findViewById(R.id.graph1_multiSlider);
         chart=(ImageView)view.findViewById(R.id.chart1);
 
+        TextView tv_bdname = (TextView)view.findViewById(R.id.bdName);
+
         editText = (EditText)view.findViewById(R.id.editText3);
         Button showStatBtn = (Button)view.findViewById(R.id.showStatBtn);
         Button changeBtn = (Button)view.findViewById(R.id.graph1_changeBtn);
@@ -60,6 +66,8 @@ public class Graph1 extends Fragment implements View.OnClickListener{
 
         c = calc.getInstance();
         editText.setText(String.valueOf(c.calcQ2()));
+
+        tv_bdname.setText(c.name);
 
         //////비관, 예상, 낙관 초기화/////
         et1.setText(String.valueOf(c.min));                 //비관
@@ -122,6 +130,8 @@ public class Graph1 extends Fragment implements View.OnClickListener{
                         RefreshGraph(c.min,(int)c.FD,c.max,true);
                         Toast.makeText(super.getContext(),"변경되었습니다",Toast.LENGTH_SHORT).show();
                     }
+                    c.updateFD();//FD변경
+                    c.updateQ();//Q변경
                 }
                 break;
             case R.id.button3:
