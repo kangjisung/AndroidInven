@@ -37,17 +37,17 @@ public class ActivityMenuPagerAdapter extends FragmentStatePagerAdapter
         //Log.d("LikeRoom", Arrays.toString(selectedShopInfoData));
         switch (position) {
             case 0:
-                FragmentStampMain shopStampManager = new FragmentStampMain();
-                shopStampManager.setArguments(dataTransferManager);
-                return shopStampManager;
+                FragmentInfoMain shopInfoManager = new FragmentInfoMain();
+                shopInfoManager.setArguments(dataTransferManager);
+                return shopInfoManager;
             case 1:
                 FragmentNoticeMain shopNoticeManager = new FragmentNoticeMain();
                 shopNoticeManager.setArguments(dataTransferManager);
                 return shopNoticeManager;
             case 2:
-                FragmentInfoMain shopInfoManager = new FragmentInfoMain();
-                shopInfoManager.setArguments(dataTransferManager);
-                return shopInfoManager;
+                FragmentStampMain shopStampManager = new FragmentStampMain();
+                shopStampManager.setArguments(dataTransferManager);
+                return shopStampManager;
             default:
                 return null;
         }

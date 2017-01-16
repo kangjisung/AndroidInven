@@ -29,6 +29,7 @@ public class FragmentStampMain extends Fragment {
     TabLayout tabLayout;
     //나중에 갯수 수정
     int numOfStamp = 35;
+    String cardMode = "NORMAL";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,8 +47,20 @@ public class FragmentStampMain extends Fragment {
         //쿠폰<->스탬프 레이아웃을 전환하면서 나의 쿠폰과 스탬프 상태를 봄
         btnShowSpecialStamp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
+            public void onClick(View onClickView) {
+                Button button = (Button)stampLayout.findViewById(R.id.btnShowSpecialStamp);
+                if(cardMode == "NORMAL"){
+                    stampLayout.findViewById(R.id.layout_normal).setVisibility(View.INVISIBLE);
+                    stampLayout.findViewById(R.id.layout_event).setVisibility(View.VISIBLE);
+                    cardMode = "EVENT";
+                    button.setText("포인트 스탬프 카드 보기");
+                }
+                else if(cardMode == "EVENT"){
+                    stampLayout.findViewById(R.id.layout_normal).setVisibility(View.VISIBLE);
+                    stampLayout.findViewById(R.id.layout_event).setVisibility(View.INVISIBLE);
+                    cardMode = "NORMAL";
+                    button.setText("이벤트 스탬프 카드 보기");
+                }
             }
         });
 
@@ -69,13 +82,15 @@ public class FragmentStampMain extends Fragment {
             default:
             case "NORMAL":
                 layout = (RelativeLayout)stampLayout.findViewById(R.id.layout_normal);
+                numOfStamp = 35;
+                pagerAdapter = new StampPagerAdapter(getActivity(), numOfStamp);
                 break;
             case "EVENT":
                 layout = (RelativeLayout)stampLayout.findViewById(R.id.layout_event);
+                pagerAdapter = new StampPagerAdapter(getActivity());
                 break;
         }
-        viewPager = (ViewPager)layout.findViewById(R.id.layout_normal).findViewById(R.id.viewPager);
-        pagerAdapter = new StampPagerAdapter(getActivity(), numOfStamp, mode);
+        viewPager = (ViewPager)layout.findViewById(R.id.viewPager);
         viewPager.setAdapter(pagerAdapter);
 
         tabLayout = (TabLayout)layout.findViewById(R.id.tabLayout);

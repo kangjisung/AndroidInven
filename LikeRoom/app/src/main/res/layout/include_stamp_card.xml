@@ -12,16 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="false"
-        android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp">
 
         <Button
             android:id="@+id/button_stamp_left"
             android:background="@mipmap/icon_back"
-            android:layout_height="40dp"
             android:layout_width="40dp"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:layout_height="35dp" />
 
         <android.support.design.widget.TabLayout
             android:layout_width="wrap_content"
@@ -36,12 +35,12 @@
 
         <Button
             android:layout_width="40dp"
-            android:layout_height="40dp"
             android:id="@+id/button_stamp_right"
             android:background="@mipmap/icon_back"
             android:rotation="180"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:layout_height="35dp" />
 
     </RelativeLayout>
 
@@ -51,10 +50,8 @@
         android:layout_marginBottom="15dp"
         android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp"
-        android:paddingBottom="18dp"
-        android:paddingTop="18dp"
         android:layout_height="150dp"
-        android:layout_marginTop="75dp">
+        android:layout_marginTop="60dp">
 
     </android.support.v4.view.ViewPager>
 

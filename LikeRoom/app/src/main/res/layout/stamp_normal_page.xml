@@ -20,13 +20,14 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/stamp_icon_size"
+                    android:layout_height="@dimen/stamp_icon_size"
                     android:background="@drawable/stamp_empty"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_1">
 
@@ -37,10 +38,10 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/stamp_icon_size"
+                    android:layout_height="@dimen/stamp_icon_size"
                     android:background="@drawable/stamp_empty"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_2">
 
@@ -51,10 +52,10 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/stamp_icon_size"
+                    android:layout_height="@dimen/stamp_icon_size"
                     android:background="@drawable/stamp_empty"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_3">
 
@@ -65,10 +66,10 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/stamp_icon_size"
+                    android:layout_height="@dimen/stamp_icon_size"
                     android:background="@drawable/stamp_empty"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_4">
 
@@ -79,10 +80,10 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/stamp_icon_size"
+                    android:layout_height="@dimen/stamp_icon_size"
                     android:background="@drawable/stamp_empty"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_5">
 
@@ -99,13 +100,14 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/stamp_icon_size"
+                    android:layout_height="@dimen/stamp_icon_size"
                     android:background="@drawable/stamp_empty"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_6">
 
@@ -116,10 +118,10 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/stamp_icon_size"
+                    android:layout_height="@dimen/stamp_icon_size"
                     android:background="@drawable/stamp_empty"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_7">
 
@@ -130,10 +132,10 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/stamp_icon_size"
+                    android:layout_height="@dimen/stamp_icon_size"
                     android:background="@drawable/stamp_empty"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_8">
 
@@ -145,10 +147,10 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/stamp_icon_size"
+                    android:layout_height="@dimen/stamp_icon_size"
                     android:background="@drawable/stamp_empty"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_9">
 
@@ -159,10 +161,10 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/stamp_icon_size"
+                    android:layout_height="@dimen/stamp_icon_size"
                     android:background="@drawable/stamp_empty"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:layout_margin="2dp"
                     android:id="@+id/layout_stamp_10">
 
