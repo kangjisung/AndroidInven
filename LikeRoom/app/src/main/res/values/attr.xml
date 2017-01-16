@@ -7,6 +7,7 @@
     <attr name="theme_color_D1" format="reference|color" />
     <attr name="theme_color_D2" format="reference|color" />
     <attr name="theme_color_D3" format="reference|color" />
+    <attr name="theme_color_D4" format="reference|color" />
     <attr name="theme_color_type1" format="reference|color" />
     <attr name="theme_color_type2" format="reference|color" />
 </resources>

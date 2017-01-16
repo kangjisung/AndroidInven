@@ -47,6 +47,9 @@ public class ActivityMenu extends AppCompatActivity
     private TabLayout tabLayout;
     private TextView textViewTitle;
 
+    private int selectedTabColor;
+    private int unselectedTabColor;
+
     final int firstShowTabPageNumber = 0;
 
     @Override
@@ -55,6 +58,8 @@ public class ActivityMenu extends AppCompatActivity
         super.onCreate(savedInstanceState);
         this.setTheme(R.style.LikeRoomTheme_StrawBerryTheme);
         setContentView(R.layout.activity_menu);
+        selectedTabColor = ContextCompat.getColor(this, R.color.gray80);
+        unselectedTabColor = ContextCompat.getColor(this, R.color.gray160);
 
         tabLayout = (TabLayout)findViewById(R.id.tabLayout);
         imageViewSetting = (ImageView)findViewById(R.id.imageViewSetting);
@@ -80,7 +85,7 @@ public class ActivityMenu extends AppCompatActivity
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 LinearLayout view = (LinearLayout)tabLayout.getTabAt(tab.getPosition()).getCustomView();
-                view.findViewById(R.id.icon).getBackground().setColorFilter(ColorTheme.getThemeColorRGB(view.getContext(), R.attr.theme_color_D3), PorterDuff.Mode.SRC_IN);
+                view.findViewById(R.id.icon).getBackground().setColorFilter(selectedTabColor, PorterDuff.Mode.SRC_IN);
                 textViewTitle.setText(tabStringResIds[tab.getPosition()]);
                 viewPager.setCurrentItem(tab.getPosition());
             }
@@ -88,7 +93,7 @@ public class ActivityMenu extends AppCompatActivity
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
                 LinearLayout view = (LinearLayout)tabLayout.getTabAt(tab.getPosition()).getCustomView();
-                view.findViewById(R.id.icon).getBackground().setColorFilter(ColorTheme.getThemeColorRGB(view.getContext(), R.attr.theme_color_D1), PorterDuff.Mode.SRC_IN);
+                view.findViewById(R.id.icon).getBackground().setColorFilter(unselectedTabColor, PorterDuff.Mode.SRC_IN);
             }
 
             @Override
@@ -96,7 +101,8 @@ public class ActivityMenu extends AppCompatActivity
 
             }
         });
-        tabLayout.getTabAt(firstShowTabPageNumber).select();
+        tabLayout.getTabAt(2
+        ).select();
 
         imageViewSetting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,9 +116,9 @@ public class ActivityMenu extends AppCompatActivity
     public void tabLayoutInitialize(TabLayout tabLayout)
     {
         int[] tabMipmapResIds = {
-                R.mipmap.icon_menu_tab1,
+                R.mipmap.icon_menu_tab3,
                 R.mipmap.icon_menu_tab2,
-                R.mipmap.icon_menu_tab3
+                R.mipmap.icon_menu_tab1
         };
 
         for (int i = 0; i < tabMipmapResIds.length; i++)
@@ -127,18 +133,12 @@ public class ActivityMenu extends AppCompatActivity
 
     public void colorInitialize()
     {
-        // 둥근 모서리 색상 변경
-        RelativeLayout layoutCorner = (RelativeLayout)findViewById(R.id.layout_corner);
-        ((AppCompatImageView)layoutCorner.findViewById(R.id.corner_lt)).setSupportBackgroundTintList(ColorStateList.valueOf(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_N)));
-        ((AppCompatImageView)layoutCorner.findViewById(R.id.corner_lb)).setSupportBackgroundTintList(ColorStateList.valueOf(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_N)));
-        ((AppCompatImageView)layoutCorner.findViewById(R.id.corner_rt)).setSupportBackgroundTintList(ColorStateList.valueOf(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_N)));
-        ((AppCompatImageView)layoutCorner.findViewById(R.id.corner_rb)).setSupportBackgroundTintList(ColorStateList.valueOf(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_N)));
-
-        // 탭 아이콘 색상 변경
-        tabLayout.getTabAt(0).getCustomView().findViewById(R.id.icon).getBackground().setColorFilter(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_D3), PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(1).getCustomView().findViewById(R.id.icon).getBackground().setColorFilter(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_D1), PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(2).getCustomView().findViewById(R.id.icon).getBackground().setColorFilter(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_D1), PorterDuff.Mode.SRC_IN);
-
-        imageViewSetting.setColorFilter(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_D3), PorterDuff.Mode.SRC_IN);
+        LinearLayout view;
+        view = (LinearLayout)tabLayout.getTabAt(0).getCustomView();
+        view.findViewById(R.id.icon).getBackground().setColorFilter(selectedTabColor, PorterDuff.Mode.SRC_IN);
+        view = (LinearLayout)tabLayout.getTabAt(1).getCustomView();
+        view.findViewById(R.id.icon).getBackground().setColorFilter(unselectedTabColor, PorterDuff.Mode.SRC_IN);
+        view = (LinearLayout)tabLayout.getTabAt(2).getCustomView();
+        view.findViewById(R.id.icon).getBackground().setColorFilter(unselectedTabColor, PorterDuff.Mode.SRC_IN);
     }
 }

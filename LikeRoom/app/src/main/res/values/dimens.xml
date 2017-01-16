@@ -12,4 +12,6 @@
     <dimen name="menu_top_margin">60dp</dimen>
     <dimen name="menu_bottom_margin">60dp</dimen>
     <dimen name="menu_side_margin">15dp</dimen>
+
+    <dimen name="stamp_icon_size">60dp</dimen>
 </resources>

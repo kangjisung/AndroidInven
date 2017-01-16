@@ -24,14 +24,15 @@ public class StampPagerAdapter extends PagerAdapter
     private Context context;
     private String mode;
 
-    public StampPagerAdapter(Context c, int _numOfStamp, String mode){
+    // "NORMAL MODE"
+    public StampPagerAdapter(Context context, int _numOfStamp){
         super();
-        mInflater = LayoutInflater.from(c);
+        mInflater = LayoutInflater.from(context);
         numOfStamp = _numOfStamp;
         numOfPage = (numOfStamp > 0)? ((numOfStamp - 1) / 10 + 1):(1);
         stampNumList = new ArrayList<Integer>();
-        context = c;
-        this.mode = mode;
+        this.context = context;
+        mode = "NORMAL";
 
         int nowStamp;
 
@@ -47,6 +48,14 @@ public class StampPagerAdapter extends PagerAdapter
         }
     }
 
+    public StampPagerAdapter(Context context){
+        super();
+        mInflater = LayoutInflater.from(context);
+        this.context = context;
+        numOfPage = 2;
+        mode = "EVENT";
+    }
+
     @Override
     public int getCount() {
         return numOfPage;
@@ -54,55 +63,72 @@ public class StampPagerAdapter extends PagerAdapter
 
     @Override
     public Object instantiateItem(View pager, int position) {
-        final View view = mInflater.inflate(R.layout.stamp_normal_page, null);
+        View view;
 
-        ArrayList<RelativeLayout> stampListInPage = new ArrayList<>();
+        if(mode == "NORMAL")
+        {
+            view = mInflater.inflate(R.layout.stamp_normal_page, null);
 
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_1));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_2));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_3));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_4));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_5));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_6));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_7));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_8));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_9));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_10));
+            ArrayList<RelativeLayout> stampListInPage = new ArrayList<>();
 
-        for(int p=9; p>stampNumList.get(position)-1; p--) {
-            RelativeLayout nowLayout = stampListInPage.get(p);
-            RelativeLayout childLayout = (RelativeLayout) nowLayout.findViewById(R.id.stamp_layout);
-            if (p == 4 || p == 9) {
-                AppCompatImageView viewOff = (AppCompatImageView) childLayout.findViewById(R.id.view_off);
-                viewOff.setVisibility(View.VISIBLE);
-            } else {
-                childLayout.setVisibility(View.GONE);
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_1));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_2));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_3));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_4));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_5));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_6));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_7));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_8));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_9));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_10));
+
+            for(int p=9; p>stampNumList.get(position)-1; p--) {
+                RelativeLayout nowLayout = stampListInPage.get(p);
+                RelativeLayout childLayout = (RelativeLayout) nowLayout.findViewById(R.id.stamp_layout);
+                if (p == 4 || p == 9) {
+                    AppCompatImageView viewOff = (AppCompatImageView) childLayout.findViewById(R.id.view_off);
+                    viewOff.setVisibility(View.VISIBLE);
+                } else {
+                    childLayout.setVisibility(View.GONE);
+                }
+            }
+            if(10 <= stampNumList.get(position)){
+                RelativeLayout nowLayout = stampListInPage.get(9);
+                RelativeLayout childLayout = (RelativeLayout) nowLayout.findViewById(R.id.stamp_layout);
+                Button button = (Button)childLayout.findViewById(R.id.button);
+                button.setOnClickListener(new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View onClickView){
+                        StampUseDialog stampUseDialog = new StampUseDialog(context);
+                        stampUseDialog.show();
+                    }
+                });
+            }
+            if(5 <= stampNumList.get(position)){
+                RelativeLayout nowLayout = stampListInPage.get(4);
+                RelativeLayout childLayout = (RelativeLayout) nowLayout.findViewById(R.id.stamp_layout);
+                Button button = (Button)childLayout.findViewById(R.id.button);
+                button.setOnClickListener(new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View onClickView){
+                        StampUseDialog stampUseDialog = new StampUseDialog(context);
+                        stampUseDialog.show();
+                    }
+                });
             }
         }
-        if(10 <= stampNumList.get(position)){
-            RelativeLayout nowLayout = stampListInPage.get(9);
-            RelativeLayout childLayout = (RelativeLayout) nowLayout.findViewById(R.id.stamp_layout);
-            Button button = (Button)childLayout.findViewById(R.id.button);
-            button.setOnClickListener(new Button.OnClickListener(){
-                @Override
-                public void onClick(View onClickView){
-                    StampUseDialog stampUseDialog = new StampUseDialog(context);
-                    stampUseDialog.show();
-                }
-            });
+        else{
+            view = mInflater.inflate(R.layout.stamp_event_page, null);
+
+            RelativeLayout nowLayout, childLayout;
+            nowLayout = (RelativeLayout)view.findViewById(R.id.layout_stamp_2);
+            nowLayout.findViewById(R.id.stamp_layout).setVisibility(View.GONE);
+            nowLayout = (RelativeLayout)view.findViewById(R.id.layout_stamp_3);
+            nowLayout.findViewById(R.id.stamp_layout).setVisibility(View.GONE);
+            nowLayout = (RelativeLayout)view.findViewById(R.id.layout_stamp_4);
+            nowLayout.findViewById(R.id.stamp_layout).setVisibility(View.GONE);
         }
-        if(5 <= stampNumList.get(position)){
-            RelativeLayout nowLayout = stampListInPage.get(4);
-            RelativeLayout childLayout = (RelativeLayout) nowLayout.findViewById(R.id.stamp_layout);
-            Button button = (Button)childLayout.findViewById(R.id.button);
-            button.setOnClickListener(new Button.OnClickListener(){
-                @Override
-                public void onClick(View onClickView){
-                    StampUseDialog stampUseDialog = new StampUseDialog(context);
-                    stampUseDialog.show();
-                }
-            });
-        }
+
 
         ((ViewPager)pager).addView (view);
 

@@ -80,13 +80,28 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="15dp">
+            android:paddingTop="20dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/layout_card"
-                android:background="@android:drawable/dialog_holo_light_frame">
+                android:id="@+id/layout_card">
+
+                <ImageView
+                    android:layout_width="5dp"
+                    app:srcCompat="@color/LightGray"
+                    android:id="@+id/imageView13"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentStart="false" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:id="@+id/imageView12"
+                    android:layout_below="@+id/layout_card"
+                    android:background="@color/babypink"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="5dp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -101,7 +116,7 @@
                         android:layout_width="200dp" />
 
                     <Button
-                        android:text="특수 스탬프 카드 보기"
+                        android:text="이벤트 스탬프 카드 보기"
                         android:layout_width="match_parent"
                         android:id="@+id/btnShowSpecialStamp"
                         android:gravity="center_horizontal"
@@ -136,12 +151,15 @@
                     android:id="@+id/layout_event"
                     android:background="@drawable/stamp_box_background"
                     android:layout_marginTop="52dp"
-                    android:visibility="invisible">
+                    android:visibility="invisible"
+                    android:layout_marginBottom="5dp">
 
                     <include
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        layout="@layout/include_stamp_card" />
+                        layout="@layout/include_stamp_card"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true" />
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -178,7 +196,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="10dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
