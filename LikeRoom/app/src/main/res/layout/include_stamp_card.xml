@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_normal"
+    android:background="@drawable/stamp_box_background"
+    android:layout_marginTop="52dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="false"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <Button
+            android:id="@+id/button_stamp_left"
+            android:background="@mipmap/icon_back"
+            android:layout_height="40dp"
+            android:layout_width="40dp"
+            android:layout_centerVertical="true" />
+
+        <android.support.design.widget.TabLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/tabLayout"
+            android:clickable="false"
+            app:tabIndicatorHeight="0dp"
+            android:layout_centerInParent="true"
+            app:tabPaddingEnd="5dp"
+            app:tabPaddingStart="5dp">
+        </android.support.design.widget.TabLayout>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/button_stamp_right"
+            android:background="@mipmap/icon_back"
+            android:rotation="180"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:paddingBottom="18dp"
+        android:paddingTop="18dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="75dp">
+
+    </android.support.v4.view.ViewPager>
+
+</RelativeLayout>

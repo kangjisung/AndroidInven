@@ -2,7 +2,6 @@ package com.example.kangjisung.likeroom.FragmentStamp;
 
 import android.content.Context;
 import android.os.Parcelable;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatImageView;
@@ -10,12 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class StampPagerAdapter extends PagerAdapter
 {
@@ -25,14 +22,16 @@ public class StampPagerAdapter extends PagerAdapter
     private int numOfStamp;
     private int numOfPage;
     private Context context;
+    private String mode;
 
-    public StampPagerAdapter(Context c, int _numOfStamp){
+    public StampPagerAdapter(Context c, int _numOfStamp, String mode){
         super();
         mInflater = LayoutInflater.from(c);
         numOfStamp = _numOfStamp;
         numOfPage = (numOfStamp > 0)? ((numOfStamp - 1) / 10 + 1):(1);
         stampNumList = new ArrayList<Integer>();
         context = c;
+        this.mode = mode;
 
         int nowStamp;
 
@@ -55,7 +54,7 @@ public class StampPagerAdapter extends PagerAdapter
 
     @Override
     public Object instantiateItem(View pager, int position) {
-        final View view = mInflater.inflate(R.layout.stamp_page, null);
+        final View view = mInflater.inflate(R.layout.stamp_normal_page, null);
 
         ArrayList<RelativeLayout> stampListInPage = new ArrayList<>();
 
