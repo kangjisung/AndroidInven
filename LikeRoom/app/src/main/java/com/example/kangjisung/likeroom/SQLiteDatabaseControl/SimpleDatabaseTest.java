@@ -34,11 +34,11 @@ public class SimpleDatabaseTest {
             {"" + 3, "전화로 세운 건물", "콜로세움", "000000000", "08:30", "15:30", "" + 41.8902102, "" + 12.4922309, "" + 1},*/
     };
     String[][] eachStoreNoticeInfo = new String[][]{
-     /* {"" + 1, "" + 1, "hello world", "this is test", "2015 2 1", "2016 1 30"},
+     {"" + 1, "" + 1, "hello world", "this is test", "2015 2 1", "2016 1 30"},
         {"" + 1, "" + 2, "hi", "can u see me?", "2016 2 22", "2017 8 19"},
         {"" + 1, "" + 2, "max length test aaaaaaaaaaaaaaaaaaaaa", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "2016 2 22", "2017 8 19"},
         {"" + 2, "" + 3, "test", "test notice", "2016 1 1", "2017 1 1"},
-        {"" + 3, "" + 4, "콜로세움 공지", "빵 안팔아", "0080 1 1", "9999 1 1"},*/
+        {"" + 3, "" + 4, "콜로세움 공지", "빵 안팔아", "0080 1 1", "9999 1 1"},
     };
 
     public SimpleDatabaseTest() {
@@ -58,13 +58,19 @@ public class SimpleDatabaseTest {
     }
     // all에 한 열 그거를 전체를 다 인덱스에 대입 인덱스에 store번지값을 비교를해서(타겟스토어 넘버:찾고자 하는 스토어) 넘버 맞으면 리턴을한다.
     public String[] GetSelectedStoreInfo(int targetStoreNumber) {
-        this.context = context;
         localHostDatabaseManager = new LocalHostDatabaseManager(context, context.getApplicationInfo().dataDir+ "/databases/", customerDatabaseName);
         sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
-        Cursor sqlResult = sqLiteDatabase.rawQuery("select * from '매장';", null);
-
+        Cursor sqlResult = sqLiteDatabase.rawQuery("select * from `매장공지` where `매장번호`=targetStoreId;", null);
+        int i=0;
         while(sqlResult.moveToNext()){
-            String st
+            allRegisteredStoreInfo[i][0] = sqlResult.getString(sqlResult.getColumnIndex("제목"));
+            allRegisteredStoreInfo[i][1] = sqlResult.getString(sqlResult.getColumnIndex("내용"));
+            allRegisteredStoreInfo[i][2] = sqlResult.getString(sqlResult.getColumnIndex("공지시작날짜"));
+            allRegisteredStoreInfo[i][3] = sqlResult.getString(sqlResult.getColumnIndex("공지마감날짜"));
+            allRegisteredStoreInfo[i][4] = sqlResult.getString(sqlResult.getColumnIndex("삭제"));
+            allRegisteredStoreInfo[i][5] = sqlResult.getString(sqlResult.getColumnIndex("매장공지이미저장경로"));
+            allRegisteredStoreInfo[i][5] = sqlResult.getString(sqlResult.getColumnIndex("읽음여부"));
+            i++;
         }
 
         for (String[] indexOfStoreInfo: allRegisteredStoreInfo) {
