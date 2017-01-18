@@ -17,8 +17,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtShopName"
         android:textColor="@color/clrTextColorDeepDark"
-        android:textSize="28dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:textSize="25dp" />
 
     <TextView
         android:text="매장주소"
@@ -28,8 +28,8 @@
         android:textColor="@color/clrTextColorMediumDark"
         android:layout_centerHorizontal="false"
         android:layout_centerVertical="false"
-        android:textSize="23dp"
-        android:layout_marginTop="6dp" />
+        android:layout_marginTop="10dp"
+        android:textSize="20dp" />
 
     <TextView
         android:text="매장 전화번호"
@@ -39,7 +39,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:textColor="@color/Gray"
-        android:textSize="20dp"
-        android:layout_marginTop="6dp" />
+        android:layout_marginTop="10dp"
+        android:textSize="17dp" />
 
 </LinearLayout>

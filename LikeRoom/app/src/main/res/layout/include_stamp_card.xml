@@ -2,9 +2,9 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layout_normal"
     android:background="@drawable/stamp_box_background"
     android:layout_marginTop="52dp">
 
@@ -30,7 +30,9 @@
             app:tabIndicatorHeight="0dp"
             android:layout_centerInParent="true"
             app:tabPaddingEnd="5dp"
-            app:tabPaddingStart="5dp">
+            app:tabPaddingStart="5dp"
+            app:tabIndicatorColor="?android:attr/textColorSearchUrl"
+            app:tabSelectedTextColor="?android:attr/textColorLinkInverse">
         </android.support.design.widget.TabLayout>
 
         <Button

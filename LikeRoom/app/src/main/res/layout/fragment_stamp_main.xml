@@ -73,93 +73,89 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/layout_title"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="25dp">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="20dp">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/layout_card">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_card"
+                android:layout_centerHorizontal="true">
 
                 <ImageView
-                    android:layout_width="5dp"
-                    app:srcCompat="@color/LightGray"
-                    android:id="@+id/imageView13"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentStart="false" />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:id="@+id/imageView12"
-                    android:layout_below="@+id/layout_card"
-                    android:background="@color/babypink"
-                    android:layout_alignParentBottom="true"
-                    android:layout_height="5dp" />
+                    android:layout_width="400dp"
+                    android:background="?attr/theme_color_L2"
+                    android:layout_height="280dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="5dp" />
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:background="@drawable/stamp_box_background">
+                    android:layout_height="280dp"
+                    android:layout_width="400dp"
+                    android:layout_marginEnd="5dp">
 
-                    <android.support.v7.widget.AppCompatImageView
-                        android:layout_height="25dp"
-                        android:background="@drawable/shape_circle"
-                        android:layout_centerInParent="true"
-                        app:backgroundTint="@color/gray240"
-                        android:layout_width="200dp" />
-
-                    <Button
-                        android:text="이벤트 스탬프 카드 보기"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:id="@+id/btnShowSpecialStamp"
-                        android:gravity="center_horizontal"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="15dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:background="@drawable/button_mask"
-                        android:textColor="@color/Black"
-                        android:textSize="20dp"
+                        android:layout_height="55dp"
+                        android:background="@drawable/stamp_box_background">
+
+                        <android.support.v7.widget.AppCompatImageView
+                            android:layout_height="25dp"
+                            android:background="@drawable/shape_circle"
+                            android:layout_centerInParent="true"
+                            app:backgroundTint="@color/gray240"
+                            android:layout_width="200dp" />
+
+                        <Button
+                            android:text="이벤트 스탬프 카드 보기"
+                            android:layout_width="match_parent"
+                            android:id="@+id/btnShowSpecialStamp"
+                            android:gravity="center_horizontal"
+                            android:paddingTop="15dp"
+                            android:paddingBottom="15dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/button_mask"
+                            android:textColor="@color/Black"
+                            android:textSize="20dp"
+                            android:layout_height="match_parent"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textStyle="bold" />
+                        android:id="@+id/layout_normal"
+                        android:background="@drawable/stamp_box_background"
+                        android:layout_marginTop="53dp">
 
-                </RelativeLayout>
+                        <include
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            layout="@layout/include_stamp_card" />
+                    </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/layout_normal"
-                    android:background="@drawable/stamp_box_background"
-                    android:layout_marginTop="52dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/layout_event"
+                        android:background="@drawable/stamp_box_background"
+                        android:layout_marginTop="53dp"
+                        android:visibility="invisible">
 
-                    <include
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        layout="@layout/include_stamp_card" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/layout_event"
-                    android:background="@drawable/stamp_box_background"
-                    android:layout_marginTop="52dp"
-                    android:visibility="invisible"
-                    android:layout_marginBottom="5dp">
-
-                    <include
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        layout="@layout/include_stamp_card"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentStart="true" />
+                        <include
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            layout="@layout/include_stamp_card"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentStart="true" />
+                    </RelativeLayout>
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -167,7 +163,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="15dp"
                 android:layout_below="@+id/layout_card">
 
                 <RelativeLayout
