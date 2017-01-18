@@ -81,6 +81,7 @@ public class LocalListviewActivity extends AppCompatActivity implements View.OnC
 	@Override
 	public void onClick(View view) {
 		if(view==fab3) {
+			///////////////////////////////////////////////////공지사항 리스트뷰 띄우기
 			System.out.println("fab3 clicked");
 			Intent toy = new Intent(getApplicationContext(), noticeListView.class);
 			startActivity(toy);

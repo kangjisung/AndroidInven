@@ -34,7 +34,7 @@ public class DatePickerDialog extends Dialog {
 
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                msg  = String.format("%d - %d - %d", year, month + 1, dayOfMonth);
+                msg  = String.format("%d-%d-%d", year, month + 1, dayOfMonth);
                 cancel();
             }
         });

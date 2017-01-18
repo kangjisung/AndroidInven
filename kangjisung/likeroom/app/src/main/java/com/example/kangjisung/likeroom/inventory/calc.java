@@ -21,7 +21,7 @@ import java.util.Random;
 
 import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 import static java.lang.Math.sqrt;
-
+////////////////////////////////////////////////계산기
 public class calc extends MainActivity {
 
     public String name;  //제품이름
@@ -239,9 +239,9 @@ public class calc extends MainActivity {
 }
     ///////////////////Q업데이트(최적재고량)
     public void updateQ(){
-        new ClientDataBase("select `최적재고량` from `최적재고량` where `년`=\""+cal.get(Calendar.YEAR)+"\" and `월`=\""+(cal.get(Calendar.MONTH)+1)+"\" and `일`=\""+cal.get(Calendar.DATE)+"\"",1,1,MainActivity.con);
+        new ClientDataBase("select `최적재고량` from `최적재고량` where `날짜`=\""+cal.get(Calendar.YEAR)+"\"-\""+(cal.get(Calendar.MONTH)+1)+"\"-\""+cal.get(Calendar.DATE)+"\"",1,1,MainActivity.con);
         if(DBstring[0]!=null)
-            new ClientDataBase("update `최적재고량` set `최적재고량`=\""+Q+"\" where `년`=\""+cal.get(Calendar.YEAR)+"\" and `월`=\""+(cal.get(Calendar.MONTH)+1)+"\" and `일`=\""+cal.get(Calendar.DATE)+"\"",3,0,MainActivity.con);
+            new ClientDataBase("update `최적재고량` set `최적재고량`=\""+Q+"\" where `날짜`=\""+cal.get(Calendar.YEAR)+"\"-\""+(cal.get(Calendar.MONTH)+1)+"\"-\""+cal.get(Calendar.DATE)+"\"",3,0,MainActivity.con);
         else
             new ClientDataBase("insert into `최적재고량` (`제품코드`,`최적재고량`,`날짜`) values ((select `제품코드` from `제품정보` where `이름`=\""+name+"\"),"+Q+",\"" + cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) +1) + "-" + cal.get(Calendar.DATE) + "\");",2,0,MainActivity.con);
     }

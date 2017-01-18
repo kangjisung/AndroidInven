@@ -37,17 +37,18 @@ public class InvenView extends AppCompatActivity {
         ivAdapter = new InvenAdapter();
         Blistview.setAdapter(ivAdapter);
         //제품 이름,날짜,최적재고량 불러오기
-        new ClientDataBase("select `제품정보`.`이름`,`제품판매량`.`년`,`제품판매량`.`월`,`제품판매량`.`일`,`제품판매량`.`최적재고량` from `제품정보` join `제품판매량` on `제품정보`.`제품코드`= `제품판매량`.`제품코드` group by `제품판매량`.`제품코드` order by `년` desc, `월` desc,`일` desc;",1,5,getApplicationContext());
+        new ClientDataBase("select `제품정보`.`이름`,`최적재고량`.`날짜`,`최적재고량`.`최적재고량` from `제품정보` join `최적재고량` on `제품정보`.`제품코드`= `최적재고량`.`제품코드` group by `제품판매량`.`제품코드` order by `년` desc, `월` desc,`일` desc;",1,3,getApplicationContext());
         int cnt=0;
         while(true){
             if(DBstring[cnt]!=null) {
-                ivAdapter.addItem(DBstring[cnt], DBstring[cnt + 1], DBstring[cnt + 2]);
+
+                ivAdapter.addItem(DBstring[cnt],DBstring[cnt+1],DBstring[cnt+2]);
                 cnt += 3;
             }
             else if(DBstring[cnt]==null) break;
         }
 
-        final Intent mil = new Intent(this, InvenActivity.class); ///마일리지창
+        final Intent mil = new Intent(this, InvenActivity.class);
         Blistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {

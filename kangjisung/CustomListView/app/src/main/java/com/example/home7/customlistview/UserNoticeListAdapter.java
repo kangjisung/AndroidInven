@@ -1,6 +1,7 @@
 package com.example.home7.customlistview;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +17,19 @@ import com.example.locallistview.R;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static android.media.CamcorderProfile.get;
+import static com.example.locallistview.R.id.imageViewType;
+import static com.example.locallistview.R.id.textViewBody;
+import static com.example.locallistview.R.id.textViewDate;
+import static com.example.locallistview.R.id.textViewTitle;
+
 /**
  * Created by kangjisung on 2017-01-16.
  */
 
 public class UserNoticeListAdapter extends BaseAdapter {
     private ArrayList<UserNoticeListItem> userNoticeList;
+    private int clickPosition = 0;
 
     UserNoticeListAdapter() {
         super();
@@ -54,12 +62,12 @@ public class UserNoticeListAdapter extends BaseAdapter {
 
         textViewTitle.setText(userNoticeItem.getTitle());
         textViewBody.setText(userNoticeItem.getBody());
-        String textDate = String.valueOf(userNoticeItem.getStartDate().getYear()) + "/"
-                + String.valueOf(userNoticeItem.getStartDate().getMonth())+ "/"
-                + String.valueOf(userNoticeItem.getStartDate().getDay()) + "/ - "
-                + String.valueOf(userNoticeItem.getEndDate().getYear()) + "/"
-                + String.valueOf(userNoticeItem.getEndDate().getMonth()) + "/"
-                + String.valueOf(userNoticeItem.getEndDate().getDay());
+        String textDate = String.valueOf(userNoticeItem.getStartDate().getYear()+1900) + "-"
+                + String.valueOf(userNoticeItem.getStartDate().getMonth()+1)+ "-"
+                + String.valueOf(userNoticeItem.getStartDate().getDate()) + " ~~ "
+                + String.valueOf(userNoticeItem.getEndDate().getYear()+1900) + "-"
+                + String.valueOf(userNoticeItem.getEndDate().getMonth()+1) + "-"
+                + String.valueOf(userNoticeItem.getEndDate().getDate());
         textViewDate.setText(textDate);
         switch(userNoticeItem.getType()){
             default:
@@ -76,9 +84,22 @@ public class UserNoticeListAdapter extends BaseAdapter {
 
         //buttonClick.getBackground().setColorFilter(ContextCompat.getColor(context, R.color.clrMenuIcon), PorterDuff.Mode.SRC_IN);
         buttonClick.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                UserAddDialog userAddDialog = new UserAddDialog(userNoticeItem.getTitle(),userNoticeItem.getBody(),userNoticeItem.getStartDate(),userNoticeItem.getEndDate(),userNoticeItem.getType(),context);
+            public void onClick(View onClickView) {
+                clickPosition = position;
+                final UserAddDialog userAddDialog = new UserAddDialog(userNoticeItem.getTitle(),userNoticeItem.getBody(),userNoticeItem.getStartDate(),userNoticeItem.getEndDate(),userNoticeItem.getType(),context);
                 userAddDialog.show();
+                userAddDialog.setOnDismissListener(new DialogInterface.OnDismissListener(){
+                    @Override
+                    public void onDismiss(DialogInterface dialog){
+                        UserNoticeListItem modifyData = userAddDialog.ppp();
+                        userNoticeList.get(clickPosition).setTitle(modifyData.getTitle());
+                        userNoticeList.get(clickPosition).setBody(modifyData.getBody());
+                        userNoticeList.get(clickPosition).setStartDate(modifyData.getStartDate());
+                        userNoticeList.get(clickPosition).setEndDate(modifyData.getEndDate());
+                        userNoticeList.get(clickPosition).setType(modifyData.getType());
+                        notifyDataSetChanged();
+                    }
+                });
             }
         });
 

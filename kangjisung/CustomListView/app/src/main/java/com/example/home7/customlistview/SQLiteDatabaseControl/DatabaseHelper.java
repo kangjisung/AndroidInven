@@ -16,7 +16,7 @@ import java.io.OutputStream;
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    final boolean isDebugMode = true;
+    final boolean isDebugMode = false;
     String logCatTag = "ex13", dbPath;
     Context context;
     public DatabaseHelper(Context context, String dbName) {

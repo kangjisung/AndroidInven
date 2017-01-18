@@ -87,7 +87,7 @@
                                 android:layout_weight="0"
                                 android:background="@mipmap/icon_notice1_notification"
                                 android:textOff=" "
-                                android:textOn="1"
+                                android:textOn=" "
                                 android:layout_marginEnd="10dp"
                                 android:layout_marginStart="10dp"
                                 android:layout_width="55dp"
@@ -99,7 +99,7 @@
                                 android:layout_weight="0"
                                 android:background="@mipmap/icon_notice2_event"
                                 android:textOff=" "
-                                android:textOn="2"
+                                android:textOn=" "
                                 android:layout_marginEnd="10dp"
                                 android:layout_marginStart="10dp"
                                 android:layout_width="55dp"
@@ -111,7 +111,7 @@
                                 android:layout_weight="0"
                                 android:background="@mipmap/icon_notice3_newproduct"
                                 android:textOff=" "
-                                android:textOn="3"
+                                android:textOn=" "
                                 android:layout_marginEnd="10dp"
                                 android:layout_marginStart="10dp"
                                 android:layout_width="55dp"
@@ -268,17 +268,6 @@
                                 android:layout_height="35dp" />
 
                             <TextView
-                                android:text="종료"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="0"
-                                android:textColor="@color/Black"
-
-                                android:layout_centerVertical="true"
-                                android:textSize="18dp"
-                                tools:ignore="ObsoleteLayoutParam" />
-
-                            <TextView
                                 android:text="2016/12/26 월"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -291,6 +280,19 @@
                                 android:background="@color/LightGray"
                                 android:textAlignment="center"
                                 android:padding="5dp" />
+
+                            <TextView
+                                android:text="종료"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0"
+                                android:textColor="@color/Black"
+
+                                android:textSize="18dp"
+                                tools:ignore="ObsoleteLayoutParam"
+                                android:layout_marginStart="45dp"
+                                android:layout_centerVertical="true"
+                                android:layout_toEndOf="@+id/imageView" />
 
                         </RelativeLayout>
 

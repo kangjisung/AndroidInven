@@ -85,6 +85,7 @@ public class EditDialog extends Activity implements View.OnClickListener {
             //뒤로가기 버튼을 눌렀을때 현재 액티비티를 끄고 바로 전 화면으로 돌아간다
             case R.id.button_ok: {
                 int noticeNum=1;
+                /////////noticeNum은 공지사항 종류
                 if(alram.isChecked())
                     noticeNum=1;
                 else if(eventbox.isChecked())

@@ -36,11 +36,6 @@ public class mileage extends Activity {
     double Per=0.1;  //퍼센트
     HttpCommunicationProcess httpCommunicationProcess;
 
-    static DatabaseHelper databaseHelperTest;
-    static LocalHostDatabaseManager localHostDatabaseManager;
-    static String testDatabaseName = "ShopkeeperDatabase.db";
-    static SQLiteDatabase sqLiteDatabase;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

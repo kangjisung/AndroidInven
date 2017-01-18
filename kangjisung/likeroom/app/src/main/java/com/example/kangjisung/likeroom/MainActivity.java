@@ -52,7 +52,7 @@ public class MainActivity extends ActionBarActivity{
             Intent StoreAdd = new Intent(this, StoreAdd.class);
             startActivity(StoreAdd);
         }*/
-        Intent StoreAdd = new Intent(this, salesVolume.class);
+        Intent StoreAdd = new Intent(this, InvenView.class);
         startActivity(StoreAdd);
 
     }
