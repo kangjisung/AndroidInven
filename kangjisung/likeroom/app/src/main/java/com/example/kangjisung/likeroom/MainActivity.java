@@ -28,7 +28,7 @@ import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBa
 
 public class MainActivity extends ActionBarActivity{
 
-    String PriNum;
+    public static String PriNum;
     public static Context con;
     DatabaseHelper databaseHelperTest;
 

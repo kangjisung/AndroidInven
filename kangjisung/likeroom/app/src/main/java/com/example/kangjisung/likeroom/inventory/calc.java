@@ -92,7 +92,7 @@ public class calc extends MainActivity {
         String startDate;
         try {
             startDate = DBstring[cnt];
-            curDateTemp = sdf.parse(startDate);  //불러온 스트링값 데이터 형으로 변환
+            curDateTemp = sdf.parse(startDate);  //불러온 스트링값 데이트 형으로 변환
         } catch (ParseException e1) {
             e1.printStackTrace();
         }

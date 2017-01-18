@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/edit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    >
+   <RelativeLayout
+        android:layout_width="385dp"
+        android:layout_height="512dp">
+        <TextView
+            android:text="INFO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtView1" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="44dp"
+            android:id="@+id/imgBtn1" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:id="@+id/imgBtn2"
+            android:layout_alignTop="@+id/imgBtn1"
+            android:layout_toRightOf="@+id/imgBtn1"
+            android:layout_toEndOf="@+id/imgBtn1"
+            android:layout_marginLeft="33dp"
+            android:layout_marginStart="33dp" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:id="@+id/imgBtn3"
+            android:layout_alignTop="@+id/imgBtn2"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="41dp"
+            android:layout_marginStart="41dp"
+            android:text="EVENT"
+            android:id="@+id/txtView2"
+            android:layout_alignTop="@+id/imgBtn3"
+            android:layout_toRightOf="@+id/imgBtn3"
+            android:layout_toEndOf="@+id/imgBtn3" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/imgBtn1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="32dp"
+            android:id="@+id/txtView3"
+            android:text="제목"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/txtView3"
+            android:layout_alignBottom="@+id/txtView3"
+            android:layout_toRightOf="@+id/txtView3"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:id="@+id/TitleTxt1" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:text="내용"
+            android:layout_below="@+id/txtView3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="29dp"
+            android:id="@+id/textView2" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:id="@+id/bodyTxt1"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/textView2"
+            android:layout_alignEnd="@+id/textView2" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:id="@+id/DateBtn1"
+            android:layout_below="@+id/bodyTxt1"
+            android:layout_toRightOf="@+id/bodyTxt1"
+            android:layout_toEndOf="@+id/bodyTxt1"
+            android:layout_marginTop="88dp" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/DateBtn1"
+            android:layout_alignLeft="@+id/DateBtn1"
+            android:layout_alignStart="@+id/DateBtn1"
+            android:id="@+id/DateBtn2" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:text="종료"
+            android:layout_below="@+id/DateBtn1"
+            android:layout_toRightOf="@+id/DateBtn1"
+            android:layout_toEndOf="@+id/DateBtn1"
+            android:id="@+id/textView4" />
+
+        <CheckBox
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/DateBtn2"
+            android:layout_alignLeft="@+id/DateBtn2"
+            android:layout_alignStart="@+id/DateBtn2"
+            android:layout_marginTop="22dp"
+            android:id="@+id/checkBox" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기간 종료 시 자동 삭제"
+            android:layout_alignBaseline="@+id/checkBox"
+            android:layout_alignBottom="@+id/checkBox"
+            android:layout_toRightOf="@+id/DateBtn2"
+            android:layout_toEndOf="@+id/DateBtn2"
+            android:id="@+id/textView5" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:text="시작"
+            android:id="@+id/txtDate1"
+            android:layout_above="@+id/textView4"
+            android:layout_toRightOf="@+id/DateBtn1"
+            android:layout_toEndOf="@+id/DateBtn1" />
+
+   </RelativeLayout>
+</ScrollView>
