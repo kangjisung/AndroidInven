@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.kangjisung.likeroom.FragmentNotice.NoticeRecyclerViewAdapter;
 import com.example.kangjisung.likeroom.NetworkManager.HttpCommunicationProcess;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.SimpleDatabaseTest;
+import com.example.kangjisung.likeroom.Util.ColorTheme;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,7 +71,7 @@ public class ActivityStoreSelect extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setTheme(R.style.LikeRoomTheme_StrawBerryTheme);
+        this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_store_select);
 
         registeredStoreListViewAdapter = new NoticeRecyclerViewAdapter(DefineManager.showStoreList, this);

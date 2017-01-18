@@ -25,8 +25,7 @@ public class FragmentStampMain extends Fragment {
     Button btnShowSpecialStamp;
     String[] selectedShopInfoData;
     TextView txtShopPhoneNumber, txtShopName;
-    StampUseDialog stampUseDialog;
-    TabLayout tabLayout;
+
     //나중에 갯수 수정
     int numOfStamp = 35;
     String cardMode = "NORMAL";
@@ -73,10 +72,11 @@ public class FragmentStampMain extends Fragment {
     public void initializeLayout(String mode)
     {
         RelativeLayout layout;
-        final ViewPager viewPager;
         StampPagerAdapter pagerAdapter;
         Button buttonStampLeft;
         Button buttonStampRight;
+        final ViewPager viewPager;
+        final TabLayout tabLayout;
 
         switch(mode){
             default:
@@ -95,6 +95,7 @@ public class FragmentStampMain extends Fragment {
 
         tabLayout = (TabLayout)layout.findViewById(R.id.tabLayout);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        viewPager.setOffscreenPageLimit(pagerAdapter.getCount());
         tabLayoutInitialize(tabLayout, pagerAdapter.getCount());
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

@@ -31,7 +31,7 @@
             android:textColor="@color/clrTextColorDeepDark" />
 
         <RelativeLayout
-            android:background="@color/LightGray"
+            android:background="@color/gray240"
             android:id="@+id/newStoreAddLayout"
             android:layout_width="340dp"
             android:layout_height="85dp">
@@ -58,10 +58,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtAddNewStore"
-                android:textSize="20dp"
                 android:layout_centerVertical="true"
                 android:paddingLeft="100dp"
-                android:textColor="@color/clrTextColorDeepDark" />
+                android:textColor="@color/clrTextColorDeepDark"
+                android:textSize="25dp" />
         </RelativeLayout>
 
         <!--<include

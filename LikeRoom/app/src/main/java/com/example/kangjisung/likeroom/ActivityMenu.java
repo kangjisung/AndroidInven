@@ -56,7 +56,7 @@ public class ActivityMenu extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        this.setTheme(R.style.LikeRoomTheme_StrawBerryTheme);
+        this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_menu);
         selectedTabColor = ContextCompat.getColor(this, R.color.gray80);
         unselectedTabColor = ContextCompat.getColor(this, R.color.gray160);
