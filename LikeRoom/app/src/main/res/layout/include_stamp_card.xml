@@ -30,9 +30,7 @@
             app:tabIndicatorHeight="0dp"
             android:layout_centerInParent="true"
             app:tabPaddingEnd="5dp"
-            app:tabPaddingStart="5dp"
-            app:tabIndicatorColor="?android:attr/textColorSearchUrl"
-            app:tabSelectedTextColor="?android:attr/textColorLinkInverse">
+            app:tabPaddingStart="5dp">
         </android.support.design.widget.TabLayout>
 
         <Button
