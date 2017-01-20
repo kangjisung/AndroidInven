@@ -10,6 +10,10 @@ import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
+import com.example.kangjisung.likeroom.server.HttpCommunicationProcess;
+
+import static android.R.attr.level;
+import static com.example.kangjisung.likeroom.MainActivity.PriNum;
 
 /**
  * Created by kangjisung on 2016-12-30.
@@ -18,6 +22,8 @@ import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 public class UserAdd extends Activity{
     Button User_add;
     EditText UserAddName,UserAddress,UserAddPhone,UserAdd_Email,UserAddBirth;
+    HttpCommunicationProcess httpCommunicationProcess;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_add);
@@ -31,6 +37,8 @@ public class UserAdd extends Activity{
         User_add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 new ClientDataBase("insert into `회원정보` (`이름`,`전화번호`,`생년월일`,`이메일`) values(\"" + UserAddName.getText().toString() + "\",\""+UserAddPhone.getText().toString()+"\",\""+UserAddBirth.getText().toString()+"\",\""+UserAdd_Email.getText().toString()+"\");", 2, 0, getApplicationContext());
+                httpCommunicationProcess=new HttpCommunicationProcess(getApplicationContext());
+                httpCommunicationProcess.execute("http://lamb.kangnam.ac.kr:4200/Smoothie/2/InsertNewCustomerInfo/?name=" + UserAddName.getText().toString() + "&phone="+UserAddPhone.getText().toString()+"&email="+UserAdd_Email.getText().toString()+"&birthday="+UserAddBirth.getText().toString()+";");
                 Toast.makeText(getApplicationContext(), "클릭.", Toast.LENGTH_SHORT).show();
             }
         });

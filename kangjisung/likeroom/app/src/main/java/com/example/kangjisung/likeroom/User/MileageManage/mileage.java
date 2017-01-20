@@ -88,8 +88,9 @@ public class mileage extends Activity {
                     sum=point+Integer.parseInt(DBstring[0]);
                     new ClientDataBase("UPDATE `포인트` SET `포인트`="+sum+", `포인트갱신날짜`=(select date('now')) WHERE `고유회원등록번호`=(select `고유회원등록번호` from `회원정보` where `이름`=\"" + name + "\");", 3, 0, getApplicationContext());
                 }
+                //서버에 데이터 넣기
                 httpCommunicationProcess=new HttpCommunicationProcess(getApplicationContext());
-                httpCommunicationProcess.execute("http://lamb.kangnam.ac.kr:4200/Smoothie/2/CustomerMileageUpdate?id="+PriNum+"&mileage="+point+"");
+                httpCommunicationProcess.execute("http://lamb.kangnam.ac.kr:4200/Smoothie/2/InsertMileageLog/?customerAndStoreRegisteredId="+PriNum+"&mileageSize="+point+"&changeDate=2017-01-20");
                 Toast.makeText(getApplicationContext(), name+"에게"+point+"빵이 적립되었습니다.", Toast.LENGTH_SHORT).show();
                 finish();
             }

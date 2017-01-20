@@ -39,7 +39,8 @@ public class MainActivity extends ActionBarActivity{
         con=getApplicationContext();
         databaseHelperTest = new DatabaseHelper(getApplicationContext(), testDatabaseName);
         //calc c=calc.getInstance();
-        /*new ClientDataBase("select `매장번호` from `매장`;",1,1,getApplicationContext());
+        //////매장이 클라이언트 디비에 있는지 검사
+        new ClientDataBase("select `매장번호` from `매장`;",1,1,getApplicationContext());
         int cnt=0;
         while(true) {
             if (DBstring[cnt] != null) {
@@ -51,8 +52,8 @@ public class MainActivity extends ActionBarActivity{
         if(PriNum==null) {
             Intent StoreAdd = new Intent(this, StoreAdd.class);
             startActivity(StoreAdd);
-        }*/
-        Intent StoreAdd = new Intent(this, InvenView.class);
+        }
+        Intent StoreAdd = new Intent(this, StoreAdd.class);
         startActivity(StoreAdd);
 
     }

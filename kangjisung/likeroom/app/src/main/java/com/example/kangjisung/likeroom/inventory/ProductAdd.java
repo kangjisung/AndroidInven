@@ -11,12 +11,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kangjisung.likeroom.MainActivity;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.LocalHostDatabaseManager;
+import com.example.kangjisung.likeroom.server.HttpCommunicationProcess;
 
 import static android.R.attr.name;
+import static com.example.kangjisung.likeroom.MainActivity.PriNum;
+import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 //import static com.example.kangjisung.likeroom.inventory.calc.v;
 
 /////////////////////////////////////////재품추가 클래스
@@ -28,6 +32,7 @@ public class ProductAdd extends Activity {
     Button before, after; //버튼
     ImageButton complete; //완료버튼
     String array[]; //입력값 배열
+    HttpCommunicationProcess httpCommunicationProcess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,10 @@ public class ProductAdd extends Activity {
         complete.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 new ClientDataBase("insert into `제품정보` (`이름`,`원가`,`판매가`,`잔존가`,`등록일`,`사용여부`) values (\""+array[0]+"\","+array[1]+","+array[2]+","+array[3]+",(select date('now')),\"true\");",2,0,getApplicationContext());
+                new ClientDataBase("select `제품코드` from `제품정보` where`이름`=\""+array[0]+"\";",1,1,getApplicationContext());
+                    int ProDuctCode=Integer.parseInt(DBstring[0]);
+                httpCommunicationProcess=new HttpCommunicationProcess(getApplicationContext());
+                httpCommunicationProcess.execute("http://lamb.kangnam.ac.kr:4200/Smoothie/2/InsertNewProductName/?shopId="+ MainActivity.PriNum+"&productId="+ProDuctCode+"&productName="+array[0]+"&primeCost="+array[1]+"&cellCost="+array[2]+"&remainCost="+array[3]+";");
             }
         });
 //////////////////////이전버튼
