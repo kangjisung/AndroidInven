@@ -28,7 +28,7 @@
             android:layout_marginBottom="30dp"
             android:layout_gravity="center_vertical|center_horizontal"
             android:gravity="center_vertical|center_horizontal"
-            android:textColor="@color/clrTextColorDeepDark" />
+            android:textColor="?attr/theme_color_type1" />
 
         <RelativeLayout
             android:background="@color/gray240"

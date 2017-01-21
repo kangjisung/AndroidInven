@@ -1,5 +1,6 @@
 package com.example.kangjisung.likeroom;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -101,14 +102,13 @@ public class ActivityMenu extends AppCompatActivity
 
             }
         });
-        tabLayout.getTabAt(2
-        ).select();
+        tabLayout.getTabAt(2).select();
 
         imageViewSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
-                //환경설정으로 넘어가는 화면을 구현해야함
+                Intent intent = new Intent(getApplicationContext(), ActivitySetting.class);
+                startActivity(intent);
             }
         });
     }
