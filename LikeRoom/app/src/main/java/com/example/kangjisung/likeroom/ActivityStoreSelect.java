@@ -76,7 +76,7 @@ public class ActivityStoreSelect extends AppCompatActivity {
 
         registeredStoreListViewAdapter = new NoticeRecyclerViewAdapter(DefineManager.showStoreList, this);
         recyclerViewLayoutManager = new LinearLayoutManager(this);
-        simpleDatabaseTest = new SimpleDatabaseTest();
+        simpleDatabaseTest = new SimpleDatabaseTest(getApplicationContext());
 
         btnRegisterNewStore = (Button)findViewById(R.id.btnRegisterNewStore);
         //eachStoreListItemSample = (LinearLayout) findViewById(R.id.eachStoreListItemSample);
