@@ -44,7 +44,7 @@ public class FragmentNoticeMain extends Fragment {
 
         mAdapter = new NoticeRecyclerViewAdapter(DefineManager.showNoticeList, getActivity().getApplicationContext());
         mLayoutManager = new LinearLayoutManager(getActivity());
-        simpleDatabaseTest = new SimpleDatabaseTest();
+        simpleDatabaseTest = new SimpleDatabaseTest(getContext());
 
         txtStoreName = (TextView) view.findViewById(R.id.txtStoreName);
         noticeRecyclerView = (RecyclerView) view.findViewById((R.id.recyclerView));

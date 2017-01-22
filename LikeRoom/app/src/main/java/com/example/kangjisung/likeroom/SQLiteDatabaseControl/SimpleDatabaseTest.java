@@ -8,7 +8,6 @@ import android.util.Log;
 import com.example.kangjisung.likeroom.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static com.example.kangjisung.likeroom.DefineManager.customerDatabaseName;
 import static com.example.kangjisung.likeroom.DefineManager.databaseShopAddressSavedPoint;
@@ -24,6 +23,7 @@ public class SimpleDatabaseTest {
     Context context;
     LocalHostDatabaseManager localHostDatabaseManager;
     SQLiteDatabase sqLiteDatabase;
+    String databaseSavedPath;
 
     //테스트
     String[][] allRegisteredStoreInfo = new String[][]{
@@ -45,7 +45,8 @@ public class SimpleDatabaseTest {
 
     public SimpleDatabaseTest(Context context) {
         this.context = context;
-        localHostDatabaseManager = new LocalHostDatabaseManager(context, context.getApplicationInfo().dataDir + "/databases/", customerDatabaseName);
+        databaseSavedPath = context.getApplicationInfo().dataDir + "/databases/";
+        localHostDatabaseManager = new LocalHostDatabaseManager(context, databaseSavedPath, customerDatabaseName);
         sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
         Cursor sqlResult = sqLiteDatabase.rawQuery("select * from `매장`;", null);
         while(sqlResult.moveToNext()) {
@@ -57,7 +58,7 @@ public class SimpleDatabaseTest {
     }
     // all에 한 열 그거를 전체를 다 인덱스에 대입 인덱스에 store번지값을 비교를해서(타겟스토어 넘버:찾고자 하는 스토어) 넘버 맞으면 리턴을한다.
     public String[] GetSelectedStoreInfo(int targetStoreNumber) {
-        localHostDatabaseManager = new LocalHostDatabaseManager(context, context.getApplicationInfo().dataDir+ "/databases/", customerDatabaseName);
+        localHostDatabaseManager = new LocalHostDatabaseManager(context, databaseSavedPath, customerDatabaseName);
         sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
         Cursor sqlResult = sqLiteDatabase.rawQuery("select * from `매장공지` where `매장번호`=" + targetStoreNumber + ";", null);
         int i=0;
@@ -90,40 +91,80 @@ public class SimpleDatabaseTest {
 
     public ArrayList<String[]> GetSelectedStoreNoticeInfo(int targetStoreId, int length) {
         ArrayList<String[]> selectedStoreNoticeData = new ArrayList<String[]>();
+        localHostDatabaseManager = new LocalHostDatabaseManager(context, databaseSavedPath, customerDatabaseName);
+        sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
+        Cursor sqlResult = sqLiteDatabase.rawQuery("select `매장번호`, `공지번호`, `제목`, `내용`, `공지시작날짜`, `공지마감날짜` from `매장공지` where `매장번호` = " + targetStoreId + ";", null);
+        while(sqlResult.moveToNext()) {
+            String[] dataTemp = new String[]{
+                                            sqlResult.getString(sqlResult.getColumnIndex("매장번호")), sqlResult.getString(sqlResult.getColumnIndex("공지번호")),
+                                            sqlResult.getString(sqlResult.getColumnIndex("제목")), sqlResult.getString(sqlResult.getColumnIndex("내용")),
+                                            sqlResult.getString(sqlResult.getColumnIndex("공지시작날짜")), sqlResult.getString(sqlResult.getColumnIndex("공지마감날짜"))
+                                            };
+            selectedStoreNoticeData.add(dataTemp);
+        }
+        sqLiteDatabase.close();
+        return selectedStoreNoticeData;
+        /*
         for (String[] indexOfStoreNotice: eachStoreNoticeInfo) {
             if(indexOfStoreNotice[storeIdSavedPoint].equals("" + targetStoreId)) {
                 selectedStoreNoticeData.add(indexOfStoreNotice);
             }
         };
-        return selectedStoreNoticeData;
+        return selectedStoreNoticeData;*/
     }
 
     public ArrayList<String[]> GetStoreWhichIRegistered() {
-        for(String[] test: allRegisteredStoreInfo) {
+        ArrayList<String[]> registeredToMe = new ArrayList<String[]>();
+        localHostDatabaseManager = new LocalHostDatabaseManager(context, databaseSavedPath, customerDatabaseName);
+        sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
+        Cursor sqlResult = sqLiteDatabase.rawQuery("select `매장번호`, `이름`, `주소`, `전화번호`, `매장개장시간`, `매장마감시간`, `위도`, `경도`, `회원탈퇴여부` from `매장` where `회원탈퇴여부` = 0;", null);
+
+        while(sqlResult.moveToNext()){
+            String[] dataTemp = new String[] {sqlResult.getString(sqlResult.getColumnIndex("매장번호")), sqlResult.getString(sqlResult.getColumnIndex("이름")),
+                    sqlResult.getString(sqlResult.getColumnIndex("주소")), sqlResult.getString(sqlResult.getColumnIndex("전화번호")),
+                    sqlResult.getString(sqlResult.getColumnIndex("매장개장시간")), sqlResult.getString(sqlResult.getColumnIndex("매장마감시간")),
+                    sqlResult.getString(sqlResult.getColumnIndex("위도")), sqlResult.getString(sqlResult.getColumnIndex("경도")),
+                    sqlResult.getString(sqlResult.getColumnIndex("회원탈퇴여부"))};
+            registeredToMe.add(dataTemp);
+        }
+        sqLiteDatabase.close();
+        return registeredToMe;
+        /*for(String[] test: allRegisteredStoreInfo) {
             Log.d("LikeRoom", "get: " + Arrays.toString(test));
         }
-        ArrayList<String[]> registeredToMe = new ArrayList<String[]>();
         for(String[] indexOfStoreInfo: allRegisteredStoreInfo) {
             if(indexOfStoreInfo[isStoreRegisteredToMe].equals("0")) {
                 Log.d("LikeRoom", "get registered store: " + Arrays.toString(indexOfStoreInfo));
                 registeredToMe.add(indexOfStoreInfo);
             }
         }
-        return registeredToMe;
+        return registeredToMe;*/
     }
 
     public void AddSelectedShop(int targetStoreId) {
-        for(String[] indexOfStoreInfo: allRegisteredStoreInfo) {
+
+        localHostDatabaseManager = new LocalHostDatabaseManager(context, databaseSavedPath, customerDatabaseName);
+        sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
+        sqLiteDatabase.execSQL("update `매장` set `회원탈퇴여부` = 0 where `매장번호` = " + targetStoreId);
+
+        sqLiteDatabase.close();
+        return ;
+        /*for(String[] indexOfStoreInfo: allRegisteredStoreInfo) {
             if(indexOfStoreInfo[storeIdSavedPoint].equals("" + targetStoreId)) {
                 indexOfStoreInfo[isStoreRegisteredToMe] = "0";
                 return;
             }
-        }
+        }*/
     }
 
     public void DeleteSelectedShop(int targetStoreId) {
         Log.d("LikeRoom", "delete order accepted");
-        for(String[] indexOfStoreInfo: allRegisteredStoreInfo) {
+        localHostDatabaseManager = new LocalHostDatabaseManager(context, databaseSavedPath, customerDatabaseName);
+        sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
+        sqLiteDatabase.execSQL("update `매장` set `회원탈퇴여부` = 1 where `매장번호` = " + targetStoreId);
+
+        sqLiteDatabase.close();
+        /*for(String[] indexOfStoreInfo: allRegisteredStoreInfo) {
             if(indexOfStoreInfo[storeIdSavedPoint].equals("" + targetStoreId)) {
                 indexOfStoreInfo[isStoreRegisteredToMe] = "1";
                 Log.d("LikeRoom", "deleted " + targetStoreId);
@@ -131,13 +172,13 @@ public class SimpleDatabaseTest {
         }
         for(String[] test: allRegisteredStoreInfo) {
             Log.d("LikeRoom", "del: " + Arrays.toString(test));
-        }
+        }*/
     }
 
     public ArrayList<String[]> GetNotRegisteredStoreList() {
         ArrayList<String[]> notRegisteredStoreList = new ArrayList<String[]>();
 
-        localHostDatabaseManager = new LocalHostDatabaseManager(context, context.getApplicationInfo().dataDir + "/databases/", customerDatabaseName);
+        localHostDatabaseManager = new LocalHostDatabaseManager(context, databaseSavedPath, customerDatabaseName);
         sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
         Cursor sqlResult = sqLiteDatabase.rawQuery("select `매장번호`, `이름`, `주소`, `전화번호`, `매장개장시간`, `매장마감시간`, `위도`, `경도`, `회원탈퇴여부` from `매장` where `회원탈퇴여부` = 1;", null);
 
