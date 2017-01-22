@@ -1,20 +1,74 @@
 <resources>
+    <!--        <item name="theme_color_L3">#ffe5ea</item>-->
+    <style name="LikeRoomTheme" parent="Theme.AppCompat.NoActionBar">
+    </style>
+    <style name="LikeRoomTheme_BreadTheme" parent="@style/LikeRoomTheme">
+        <item name="theme_color_L3">#FEFAE9</item>
+        <item name="theme_color_L2">#FFF7DA</item>
+        <item name="theme_color_L1">#fff4cb</item>
+        <item name="theme_color_N">#dcd1a7</item>
+        <item name="theme_color_D1">#cfbe7c</item>
+        <item name="theme_color_D2">#ae9949</item>
+        <item name="theme_color_D3">#635f49</item>
+        <item name="theme_color_D4">#46432f</item>
+        <item name="theme_color_type1">#514e3f</item>
+        <item name="theme_color_type2">#e88f2c</item>
+    </style>
+    <style name="LikeRoomTheme_OceanTheme" parent="@style/LikeRoomTheme">
+        <item name="theme_color_L3">#E9F5FE</item>
+        <item name="theme_color_L2">#d2ecff</item>
+        <item name="theme_color_L1">#9fd7ff</item>
+        <item name="theme_color_N">#62b2d6</item>
+        <item name="theme_color_D1">#4194b7</item>
+        <item name="theme_color_D2">#1e7296</item>
+        <item name="theme_color_D3">#084660</item>
+        <item name="theme_color_D4">#032736</item>
+        <item name="theme_color_type1">#514e3f</item>
+        <item name="theme_color_type2">#43d0ff</item>
+    </style>
+    <style name="LikeRoomTheme_StrawBerryTheme" parent="@style/LikeRoomTheme">
+        <item name="theme_color_L3">#fffbea</item>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="theme_color_L2">#efb4c0</item>
+        <item name="theme_color_L1">#ef97a9</item>
+        <item name="theme_color_N">#e2768c</item>
+        <item name="theme_color_D1">#d75b74</item>
+        <item name="theme_color_D2">#c23451</item>
+        <item name="theme_color_D3">#a40727</item>
+        <item name="theme_color_D4">#5c0315</item>
+        <item name="theme_color_type1">#514e3f</item>
+        <item name="theme_color_type2">#ff4c64</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="LikeRoomTheme_StrawBerryTheme2" parent="@style/LikeRoomTheme">
+        <item name="theme_color_L3">#fffbea</item>
+        <item name="theme_color_L2">#efb4c0</item>
+        <item name="theme_color_L1">#ef97a9</item>
+        <item name="theme_color_N">#ffeeee</item>
+        <item name="theme_color_D1">#d75b74</item>
+        <item name="theme_color_D2">#c23451</item>
+        <item name="theme_color_D3">#a40727</item>
+        <item name="theme_color_D4">#5c0315</item>
+        <item name="theme_color_type1">#f73636</item>
+        <item name="theme_color_type2">#ff4c64</item>
+    </style>
+
+    <style name="LikeRoomTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="LikeRoomTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="LikeRoomTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="LikeRoomTheme.EmptyBackgroundButton" parent="@android:style/Widget.Button">
+        <item name="android:text"></item>
+        <item name="android:background">@color/Transparency</item>
+    </style>
+
+    <style name="LikeRoomTheme.EditText" parent="@android:style/Widget.EditText">
+        <item name="android:ems">256</item>
+        <item name="android:padding">0dp</item>
+    </style>
 </resources>

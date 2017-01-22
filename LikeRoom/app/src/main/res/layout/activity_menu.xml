@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/activity_menu"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.kangjisung.likeroom.ActivityMenu"
-    android:background="@drawable/shape_gradientborder"
-    android:orientation="vertical">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:theme="@style/LikeRoomTheme">
 
-    <TextView
-        android:text="@string/mainactivity_string"
-        android:layout_height="30dp"
-        android:id="@+id/textViewMainString1"
-        android:gravity="center_vertical|center_horizontal"
-        android:layout_marginBottom="15dp"
-        android:layout_weight="0"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.example.kangjisung.likeroom.ActivityMenu"
@@ -26,58 +16,40 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/menu_top_margin"
-            android:layout_weight="0">
+            android:layout_weight="0"
+            android:background="?attr/theme_color_D4">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/icon_setting"
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/imageViewSetting"
-                android:layout_centerInParent="false"
-                android:layout_centerHorizontal="false"
                 android:adjustViewBounds="true"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
                 android:layout_marginEnd="20dp"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:background="@mipmap/icon_setting"
+                android:layout_centerVertical="true"
+                app:backgroundTint="@color/white"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
 
             <TextView
                 android:text="@string/mainactivity_string"
                 android:layout_height="wrap_content"
                 android:id="@+id/textViewTitle"
                 android:gravity="center_vertical|center_horizontal"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:textSize="22dp"
-                android:textColor="@color/clrTextColorDeepDark"
-                android:layout_centerInParent="true" />
+                android:textColor="@color/white"
+                android:layout_centerInParent="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="15dp" />
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <com.example.kangjisung.likeroom.Util.NoScrollViewPager
+            android:id="@+id/viewPager"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginLeft="@dimen/menu_side_margin"
-            android:layout_marginRight="@dimen/menu_side_margin">
-
-            <com.example.kangjisung.likeroom.CustomClass.NoScrollViewPager
-                android:id="@+id/viewPager"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:background="#FFFFFF">
-            </com.example.kangjisung.likeroom.CustomClass.NoScrollViewPager>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/layout_rounded_page" />
-
-            <!--
-            <include
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                layout="@layout/_include_rounded_page" />
-            -->
-        </RelativeLayout>
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_weight="1">
+        </com.example.kangjisung.likeroom.Util.NoScrollViewPager>
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabLayout"
@@ -85,24 +57,15 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/menu_bottom_margin"
             android:fadingEdge="horizontal|vertical"
-            app:tabIndicatorHeight="0dp">
+            app:tabIndicatorHeight="3dp"
+            android:background="@drawable/menu_background"
+            app:tabIndicatorColor="@color/gray80"
+            android:rotation="180"
+            app:tabPaddingStart="0dp"
+            app:tabPaddingEnd="0dp"
+            app:tabPaddingTop="0dp"
+            app:tabPaddingBottom="0dp">
 
-            <!--
-            <android.support.design.widget.TabItem
-                android:icon="@drawable/selector_menu_item"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-
-            <android.support.design.widget.TabItem
-                android:icon="@drawable/selector_menu_user"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-
-            <android.support.design.widget.TabItem
-                android:icon="@drawable/icon_test02"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-                -->
 
         </android.support.design.widget.TabLayout>
     </LinearLayout>

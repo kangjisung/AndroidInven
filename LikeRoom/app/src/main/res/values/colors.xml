@@ -3,6 +3,7 @@
 <resources>
     <color name="test01">#fffbee</color>
     <color name="test02">#2ecc71</color>
+    <color name="babypink">#fdd0cc</color>
     <color name="colorPrimary">#3f51b5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>

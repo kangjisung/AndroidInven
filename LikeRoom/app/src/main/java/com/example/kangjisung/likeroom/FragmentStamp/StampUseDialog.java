@@ -2,6 +2,7 @@ package com.example.kangjisung.likeroom.FragmentStamp;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.Util.ColorTheme;
 
 public class StampUseDialog extends Dialog
 {
@@ -23,6 +25,12 @@ public class StampUseDialog extends Dialog
 
     private View.OnClickListener mLeftClickListener;
     private View.OnClickListener mRightClickListener;
+
+
+
+    public StampUseDialog(Context context) {
+        super(context, android.R.style.Theme_Translucent_NoTitleBar);
+    }
 
     public StampUseDialog(Context context, String title, View.OnClickListener singleListener, View.OnClickListener useListener) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
@@ -54,13 +62,34 @@ public class StampUseDialog extends Dialog
         switchLockUnlockCoupon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Log.d(getContext().getString(R.string.app_name), "status: " + b);
+            if(switchLockUnlockCoupon.isChecked()==true) {
+                mRightButton.setBackgroundColor(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D3));
+            }
+                else {
+                mRightButton.setBackgroundColor(Color.GRAY);
+            }
+
+               Log.d(getContext().getString(R.string.app_name), "status: " + b);
                 mRightButton.setEnabled(b);
             }
         });
 
         // 클릭 이벤트 셋팅
-        mLeftButton.setOnClickListener(mLeftClickListener);
-        mRightButton.setOnClickListener(mRightClickListener);
+        mLeftButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View onClickView){
+                cancel();
+            }
+        });
+        mRightButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View onClickView){
+                dismiss();
+            }
+        });
     }
+
+
+
+
 }

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_centerInParent="true"
+        android:background="@color/White"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <RelativeLayout
+                    android:background="@drawable/stamp_empty"
+                    android:layout_weight="0"
+                    android:layout_margin="2dp"
+                    android:id="@+id/layout_stamp_1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="@dimen/stamp_icon_size"
+                    android:layout_width="@dimen/stamp_icon_size">
+
+                    <include
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        layout="@layout/include_stamp_event" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_stamp_1"
+                    android:textColor="@color/Black"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:textSize="20dp"
+                    android:layout_marginEnd="8dp" />
+
+                <RelativeLayout
+                    android:background="@drawable/stamp_empty"
+                    android:layout_weight="0"
+                    android:layout_margin="2dp"
+                    android:id="@+id/layout_stamp_2"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="@dimen/stamp_icon_size"
+                    android:layout_width="@dimen/stamp_icon_size">
+
+                    <include
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        layout="@layout/include_stamp_event" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_stamp_2"
+                    android:textColor="@color/Black"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:textSize="20dp"
+                    android:layout_marginEnd="8dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <RelativeLayout
+                    android:background="@drawable/stamp_empty"
+                    android:layout_weight="0"
+                    android:layout_margin="2dp"
+                    android:id="@+id/layout_stamp_3"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="@dimen/stamp_icon_size"
+                    android:layout_width="@dimen/stamp_icon_size">
+
+                    <include
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        layout="@layout/include_stamp_event" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_stamp3"
+                    android:textColor="@color/Black"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:textSize="20dp"
+                    android:layout_marginEnd="8dp" />
+
+                <RelativeLayout
+                    android:background="@drawable/stamp_empty"
+                    android:layout_weight="0"
+                    android:layout_margin="2dp"
+                    android:id="@+id/layout_stamp_4"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="@dimen/stamp_icon_size"
+                    android:layout_width="@dimen/stamp_icon_size">
+
+                    <include
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        layout="@layout/include_stamp_event" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_stamp_4"
+                    android:textColor="@color/Black"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:textSize="20dp"
+                    android:layout_marginEnd="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

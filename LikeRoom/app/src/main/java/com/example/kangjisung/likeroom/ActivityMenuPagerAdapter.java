@@ -17,14 +17,16 @@ public class ActivityMenuPagerAdapter extends FragmentStatePagerAdapter {
     {
         switch (position) {
             case 0:
-                FragmentItemMain tab1 = new FragmentItemMain();
-                return tab1;
+                FragmentInfoMain shopInfoManager = new FragmentInfoMain();
+                shopInfoManager.setArguments(dataTransferManager);
+                return shopInfoManager;
             case 1:
                 FragmentPointMain tab2 = new FragmentPointMain();
                 return tab2;
             case 2:
-                FragmentUserMain tab3 = new FragmentUserMain();
-                return tab3;
+                FragmentStampMain shopStampManager = new FragmentStampMain();
+                shopStampManager.setArguments(dataTransferManager);
+                return shopStampManager;
             default:
                 return null;
         }

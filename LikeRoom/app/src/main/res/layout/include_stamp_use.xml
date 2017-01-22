@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/stamp_layout">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="3dp">
+
+        <android.support.v7.widget.AppCompatImageView android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_circle"
+            app:backgroundTint="?attr/theme_color_D2"
+            android:id="@+id/view_on" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_circle"
+            app:backgroundTint="@color/gray200"
+            android:id="@+id/view_off"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/White"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"
+            android:text="사용"
+            android:id="@+id/view_text" />
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_circle_press"
+        android:id="@+id/button" />
+
+</RelativeLayout>

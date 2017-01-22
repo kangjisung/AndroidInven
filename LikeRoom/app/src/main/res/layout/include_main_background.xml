@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/theme_color_N">
+
+    <View
+        android:layout_width="@dimen/background_border_radius"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_gradient_border_x" />
+
+    <View
+        android:layout_width="@dimen/background_border_radius"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:rotation="180"
+        android:background="@drawable/shape_gradient_border_x" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/background_border_radius"
+        android:background="@drawable/shape_gradient_border_y"
+        android:layout_alignParentTop="true"
+        android:rotation="180" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/background_border_radius"
+        android:background="@drawable/shape_gradient_border_y"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

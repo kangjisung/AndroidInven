@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--매장선택하는 부분. 밑에뜨는 빵집리스트들은 리스트로 나중에 수정해야 한다고 들었다.-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_store_select"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.kangjisung.likeroom.ActivityStoreSelect"
+    tools:context="com.example.kangjisung.likeroom.ActivityStoreSelect">
 
-    android:background="@drawable/layout_background"
-    >
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/include_main_background" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -32,10 +28,10 @@
             android:layout_marginBottom="30dp"
             android:layout_gravity="center_vertical|center_horizontal"
             android:gravity="center_vertical|center_horizontal"
-            android:textColor="@color/clrTextColorDeepDark" />
+            android:textColor="?attr/theme_color_type1" />
 
         <RelativeLayout
-            android:background="@color/LightGray"
+            android:background="@color/gray240"
             android:id="@+id/newStoreAddLayout"
             android:layout_width="340dp"
             android:layout_height="85dp">
@@ -62,10 +58,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtAddNewStore"
-                android:textSize="20dp"
                 android:layout_centerVertical="true"
                 android:paddingLeft="100dp"
-                android:textColor="@color/clrTextColorDeepDark" />
+                android:textColor="@color/clrTextColorDeepDark"
+                android:textSize="25dp" />
         </RelativeLayout>
 
         <!--<include
@@ -79,8 +75,8 @@
             android:layout_width="fill_parent"
             android:layout_below="@+id/newStoreAddLayout"
             android:id="@+id/registeredStoreList"
-            android:layout_marginTop="20dp"
-            android:layout_height="190dp" />
+            android:layout_marginTop="15dp"
+            android:layout_height="230dp" />
 
     </LinearLayout>
 </RelativeLayout>

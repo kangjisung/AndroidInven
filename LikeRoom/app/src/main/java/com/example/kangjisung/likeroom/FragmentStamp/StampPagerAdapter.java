@@ -9,36 +9,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
-/**
- * PagerAdapter
- */
 public class StampPagerAdapter extends PagerAdapter
 {
     private LayoutInflater mInflater;
     private ArrayList<Integer> stampNumList;
-    private ArrayList<RelativeLayout> stampListInPage = new ArrayList<>();
+
     private int numOfStamp;
     private int numOfPage;
     private Context context;
+    private String mode;
 
-    public StampPagerAdapter(Context c, int _numOfStamp){
+    // "NORMAL MODE"
+    public StampPagerAdapter(Context context, int _numOfStamp){
         super();
-        mInflater = LayoutInflater.from(c);
+        mInflater = LayoutInflater.from(context);
         numOfStamp = _numOfStamp;
         numOfPage = (numOfStamp > 0)? ((numOfStamp - 1) / 10 + 1):(1);
         stampNumList = new ArrayList<Integer>();
-        context = c;
+        this.context = context;
+        mode = "NORMAL";
 
         int nowStamp;
 
-        for(int p = 0; p< numOfPage; p++)
+        for(int p = 0; p < numOfPage; p++)
         {
             if((p + 1) * 10 < numOfStamp){
                 nowStamp = 10;
@@ -50,6 +48,14 @@ public class StampPagerAdapter extends PagerAdapter
         }
     }
 
+    public StampPagerAdapter(Context context){
+        super();
+        mInflater = LayoutInflater.from(context);
+        this.context = context;
+        numOfPage = 2;
+        mode = "EVENT";
+    }
+
     @Override
     public int getCount() {
         return numOfPage;
@@ -57,32 +63,74 @@ public class StampPagerAdapter extends PagerAdapter
 
     @Override
     public Object instantiateItem(View pager, int position) {
-        View view = mInflater.inflate(R.layout.stamp_page, null);
+        View view;
 
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_1));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_2));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_3));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_4));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_5));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_6));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_7));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_8));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_9));
-        stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_10));
+        if(mode == "NORMAL")
+        {
+            view = mInflater.inflate(R.layout.stamp_normal_page, null);
 
-        for(int p=stampNumList.get(position)-1; p>=0; p--){
-            RelativeLayout nowLayout = stampListInPage.get(p);
-            nowLayout.setVisibility(View.GONE);
+            ArrayList<RelativeLayout> stampListInPage = new ArrayList<>();
+
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_1));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_2));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_3));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_4));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_5));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_6));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_7));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_8));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_9));
+            stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_10));
+
+            for(int p=9; p>stampNumList.get(position)-1; p--) {
+                RelativeLayout nowLayout = stampListInPage.get(p);
+                RelativeLayout childLayout = (RelativeLayout) nowLayout.findViewById(R.id.stamp_layout);
+                if (p == 4 || p == 9) {
+                    AppCompatImageView viewOff = (AppCompatImageView) childLayout.findViewById(R.id.view_off);
+                    viewOff.setVisibility(View.VISIBLE);
+                } else {
+                    childLayout.setVisibility(View.GONE);
+                }
+            }
+            if(10 <= stampNumList.get(position)){
+                RelativeLayout nowLayout = stampListInPage.get(9);
+                RelativeLayout childLayout = (RelativeLayout) nowLayout.findViewById(R.id.stamp_layout);
+                Button button = (Button)childLayout.findViewById(R.id.button);
+                button.setOnClickListener(new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View onClickView){
+                        StampUseDialog stampUseDialog = new StampUseDialog(context);
+                        stampUseDialog.show();
+                    }
+                });
+            }
+            if(5 <= stampNumList.get(position)){
+                RelativeLayout nowLayout = stampListInPage.get(4);
+                RelativeLayout childLayout = (RelativeLayout) nowLayout.findViewById(R.id.stamp_layout);
+                Button button = (Button)childLayout.findViewById(R.id.button);
+                button.setOnClickListener(new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View onClickView){
+                        StampUseDialog stampUseDialog = new StampUseDialog(context);
+                        stampUseDialog.show();
+                    }
+                });
+            }
+        }
+        else{
+            view = mInflater.inflate(R.layout.stamp_event_page, null);
+
+            RelativeLayout nowLayout, childLayout;
+            nowLayout = (RelativeLayout)view.findViewById(R.id.layout_stamp_2);
+            nowLayout.findViewById(R.id.stamp_layout).setVisibility(View.GONE);
+            nowLayout = (RelativeLayout)view.findViewById(R.id.layout_stamp_3);
+            nowLayout.findViewById(R.id.stamp_layout).setVisibility(View.GONE);
+            nowLayout = (RelativeLayout)view.findViewById(R.id.layout_stamp_4);
+            nowLayout.findViewById(R.id.stamp_layout).setVisibility(View.GONE);
         }
 
-        /*
-        TextView v1 = (TextView)v.findViewById(R.id.textViewTemp1);
-        TextView v2 = (TextView)v.findViewById(R.id.textViewTemp2);
-        v1.setText("페이지 번호 : " + position);
-        v2.setText("이 페이지의 스탬프 갯수 : " + stampNumList.get(position));
-        */
 
-        ((ViewPager)pager).addView(view, 0);
+        ((ViewPager)pager).addView (view);
 
         return view;
     }

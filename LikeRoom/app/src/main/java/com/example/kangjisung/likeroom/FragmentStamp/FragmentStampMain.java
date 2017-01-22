@@ -1,28 +1,20 @@
 package com.example.kangjisung.likeroom.FragmentStamp;
 
-import android.app.TabActivity;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.DefineManager;
 import com.example.kangjisung.likeroom.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class FragmentStampMain extends Fragment {
     //스탬프 현황 레이아웃을 그려야할 것
@@ -31,16 +23,12 @@ public class FragmentStampMain extends Fragment {
 
     View stampLayout;
     Button btnShowSpecialStamp;
-    Button buttonStampLeft;
-    Button buttonStampRight;
     String[] selectedShopInfoData;
     TextView txtShopPhoneNumber, txtShopName;
-    StampUseDialog stampUseDialog;
-    TabLayout tabLayout;
+
     //나중에 갯수 수정
-    int numOfStamp = 28;
-    StampPagerAdapter pagerAdapter;
-    ViewPager pager;
+    int numOfStamp = 35;
+    String cardMode = "NORMAL";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,100 +46,105 @@ public class FragmentStampMain extends Fragment {
         //쿠폰<->스탬프 레이아웃을 전환하면서 나의 쿠폰과 스탬프 상태를 봄
         btnShowSpecialStamp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
+            public void onClick(View onClickView) {
+                Button button = (Button)stampLayout.findViewById(R.id.btnShowSpecialStamp);
+                if(cardMode == "NORMAL"){
+                    stampLayout.findViewById(R.id.layout_normal).setVisibility(View.INVISIBLE);
+                    stampLayout.findViewById(R.id.layout_event).setVisibility(View.VISIBLE);
+                    cardMode = "EVENT";
+                    button.setText("포인트 스탬프 카드 보기");
+                }
+                else if(cardMode == "EVENT"){
+                    stampLayout.findViewById(R.id.layout_normal).setVisibility(View.VISIBLE);
+                    stampLayout.findViewById(R.id.layout_event).setVisibility(View.INVISIBLE);
+                    cardMode = "NORMAL";
+                    button.setText("이벤트 스탬프 카드 보기");
+                }
             }
         });
 
+        initializeLayout("NORMAL");
+        initializeLayout("EVENT");
 
+        return stampLayout;
+    }
 
-        Button buttontest = (Button)stampLayout.findViewById(R.id.buttontest);
-        buttontest.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View view)
-            {
-                stampUseDialog = new StampUseDialog(getActivity(),
-                        "[다이얼로그 제목]", // 제목
-                        leftListener,
-                        rightListener); // 오른쪽 버튼 이벤트
-                stampUseDialog.show();
-            }
-        });
+    public void initializeLayout(String mode)
+    {
+        RelativeLayout layout;
+        StampPagerAdapter pagerAdapter;
+        Button buttonStampLeft;
+        Button buttonStampRight;
+        final ViewPager viewPager;
+        final TabLayout tabLayout;
 
-        // 스탬프 목록 띄우기
-        pager = (ViewPager)stampLayout.findViewById(R.id.viewPager);
-        pagerAdapter = new StampPagerAdapter(getActivity().getApplicationContext(), numOfStamp);
-        pager.setAdapter(pagerAdapter);
+        switch(mode){
+            default:
+            case "NORMAL":
+                layout = (RelativeLayout)stampLayout.findViewById(R.id.layout_normal);
+                numOfStamp = 35;
+                pagerAdapter = new StampPagerAdapter(getActivity(), numOfStamp);
+                break;
+            case "EVENT":
+                layout = (RelativeLayout)stampLayout.findViewById(R.id.layout_event);
+                pagerAdapter = new StampPagerAdapter(getActivity());
+                break;
+        }
+        viewPager = (ViewPager)layout.findViewById(R.id.viewPager);
+        viewPager.setAdapter(pagerAdapter);
 
-        tabLayout = (TabLayout)stampLayout.findViewById(R.id.tabLayout);
-        pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout = (TabLayout)layout.findViewById(R.id.tabLayout);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        viewPager.setOffscreenPageLimit(pagerAdapter.getCount());
         tabLayoutInitialize(tabLayout, pagerAdapter.getCount());
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                tab.getIcon().setColorFilter(ContextCompat.getColor(getActivity(), R.color.clrMenuIconSelected), PorterDuff.Mode.SRC_IN);
-                pager.setCurrentItem(tab.getPosition());
+                tab.getCustomView().findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
+                tab.getCustomView().findViewById(R.id.icon_unselected).setVisibility(View.INVISIBLE);
+                viewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                tab.getIcon().setColorFilter(ContextCompat.getColor(getActivity(), R.color.clrMenuIcon), PorterDuff.Mode.SRC_IN);
+                tab.getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
+                tab.getCustomView().findViewById(R.id.icon_unselected).setVisibility(View.VISIBLE);
             }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
+            public void onTabReselected(TabLayout.Tab tab) {}
         });
         tabLayout.getTabAt(0).select();
 
-        buttonStampLeft = (Button)stampLayout.findViewById(R.id.button_stamp_left);
+        buttonStampLeft = (Button)layout.findViewById(R.id.button_stamp_left);
         buttonStampLeft.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View view){
                 int nowTab = tabLayout.getSelectedTabPosition();
                 if(nowTab > 0){
-                    pager.setCurrentItem(nowTab-1);
+                    viewPager.setCurrentItem(nowTab-1);
                 }
             }
         });
-        buttonStampRight = (Button)stampLayout.findViewById(R.id.button_stamp_right);
+        buttonStampRight = (Button)layout.findViewById(R.id.button_stamp_right);
         buttonStampRight.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View view){
                 int nowTab = tabLayout.getSelectedTabPosition();
                 if(nowTab < tabLayout.getTabCount()-1){
-                    pager.setCurrentItem(nowTab+1);
+                    viewPager.setCurrentItem(nowTab+1);
                 }
             }
         });
-
-        return stampLayout;
     }
-
-    private View.OnClickListener leftListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            /*Toast.makeText(getContext(), "왼쪽버튼 클릭",
-                    Toast.LENGTH_SHORT).show();*/
-            //pop up close button
-            stampUseDialog.dismiss();
-        }
-    };
-
-    private View.OnClickListener rightListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            /*Toast.makeText(getContext(), "오른쪽버튼 클릭",
-                    Toast.LENGTH_SHORT).show();*/
-            //stamp use button
-            Snackbar.make(v, getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
-            Log.d(getString(R.string.app_name), "use btn clicked");
-        }
-    };
 
     public void tabLayoutInitialize(TabLayout tabLayout, int numOfPage)
     {
         for (int i = 0; i < numOfPage; i++) {
-            tabLayout.addTab(tabLayout.newTab().setIcon(R.mipmap.icon_menu_point));
+            TabLayout.Tab tab = tabLayout.newTab();
+            tab.setCustomView(R.layout.include_tabitem_circle);
+            tab.getCustomView().findViewById((i==0)?(R.id.icon_unselected):(R.id.icon_selected)).setVisibility(View.INVISIBLE);
+            tabLayout.addTab(tab);
         }
     }
 }

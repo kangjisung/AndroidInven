@@ -6,21 +6,29 @@
     android:layout_height="match_parent"
     android:id="@+id/stamp_layout">
 
-    <android.support.v7.widget.AppCompatImageView android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/shape_circle"
-        app:backgroundTint="#c23451" />
-
-    <android.support.v7.widget.AppCompatImageView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/icon_bread"
-        app:backgroundTint="@color/White"
-        android:layout_margin="5dp" />
+        android:layout_margin="3dp">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_circle"
+            app:backgroundTint="?attr/theme_color_D2" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/icon_bread"
+            app:backgroundTint="@color/White"
+            android:layout_margin="5dp" />
+    </RelativeLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/shape_circle_press" />
+        android:background="@drawable/shape_circle_press"
+        android:id="@+id/button" />
 
 </RelativeLayout>

@@ -9,12 +9,19 @@
     <!--매장정보부분. 내가 주말동안 디자인할 부분이다!-->
     <!-- TODO: Update blank fragment layout -->
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:srcCompat="@color/Gray"
+        android:id="@+id/imageView7"
+        android:layout_marginTop="100dp" />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="@color/test01"
+        android:background="?attr/theme_color_L3"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_height="100dp">
+        android:layout_alignParentStart="true">
 
         <RelativeLayout
             android:layout_height="wrap_content"
@@ -59,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtStorePhone"
-                android:textColor="@color/Gray"
+                android:textColor="?attr/theme_color_D2"
                 android:gravity="center_horizontal"
                 android:textStyle="bold"
                 android:textSize="20dp" />
@@ -71,20 +78,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/storeCategory"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="45dp"
             android:layout_marginRight="20dp"
-            android:textColor="@color/clrTextColorMediumDark"
+            android:textColor="?attr/theme_color_D3"
             android:textStyle="bold"
             android:textSize="14dp" />
 
     </RelativeLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        app:srcCompat="@color/Gray"
-        android:id="@+id/imageView7"
-        android:layout_marginTop="100dp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -131,19 +131,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/storeLocation"
-                    android:textColor="@color/clrTextColorMediumDark"
+                    android:textColor="@color/clrTextColorDeepDark"
                     android:layout_alignParentRight="false"
                     android:layout_centerInParent="false"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="80dp"
+                    android:layout_marginLeft="65dp"
                     android:layout_centerVertical="true"
-                    android:textSize="18dp" />
+                    android:textSize="20dp" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="10dp">
 
                 <ImageView
                     app:srcCompat="@mipmap/icon_time"
@@ -157,12 +157,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/txtStoreManageTime"
-                    android:textColor="@color/clrTextColorMediumDark"
+                    android:textColor="@color/clrTextColorDeepDark"
                     android:layout_centerInParent="false"
-                    android:layout_marginLeft="80dp"
+                    android:layout_marginLeft="65dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:textSize="18dp" />
+                    android:textSize="20dp" />
 
             </RelativeLayout>
 
@@ -170,8 +170,8 @@
                 android:layout_width="match_parent"
                 app:srcCompat="@color/Gray"
                 android:id="@+id/lineSplit"
-                android:layout_height="2dp"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:layout_height="1dp" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -181,15 +181,15 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
                 app:srcCompat="@color/Gray"
-                android:id="@+id/line" />
+                android:id="@+id/line"
+                android:layout_height="1dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_alignParentBottom="true"
-                android:layout_height="match_parent"
-                android:background="@color/test01">
+                android:background="?attr/theme_color_L3"
+                android:layout_height="50dp">
 
                 <ImageView
                     android:layout_width="30dp"
@@ -209,7 +209,7 @@
                     android:textColor="@color/clrTextColorDeepDark"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
-                    android:textSize="18dp" />
+                    android:textSize="22dp" />
 
             </RelativeLayout>
 

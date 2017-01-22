@@ -34,12 +34,13 @@
         </activity>
         <activity
             android:name=".ActivityMenu"
-            android:windowSoftInputMode="adjustPan"
-            >
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+        <activity
+            android:name=".ActivitySetting">
         </activity>
         <activity android:name=".ActivityStoreSelect"
-            android:windowSoftInputMode="adjustPan|adjustResize"
-            >
+            android:windowSoftInputMode="adjustPan|adjustResize">
 
         </activity>
         <meta-data

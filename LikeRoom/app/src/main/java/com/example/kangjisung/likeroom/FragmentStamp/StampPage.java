@@ -23,15 +23,15 @@ public class StampPage extends android.support.v4.app.Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.stamp_page, container, false);
+        View view = inflater.inflate(R.layout.stamp_normal_page, container, false);
 
         Log.v("Test","Param1 : "+mParam1 + " Param2 :"+mParam2);
 
-        textViewTemp1 = (TextView)view.findViewById(R.id.textViewTemp1);
+        /*textViewTemp1 = (TextView)view.findViewById(R.id.textViewTemp1);
         textViewTemp2 = (TextView)view.findViewById(R.id.textViewTemp2);
 
         textViewTemp1.setText(String.valueOf(mParam1));
-        textViewTemp2.setText(String.valueOf(mParam2));
+        textViewTemp2.setText(String.valueOf(mParam2));*/
 
         return view;
     }
