@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_background"
+        android:background="@drawable/shape_rectangle_rad_15dp"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:text="쿠폰명을 입력하십시오"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray80"
+                android:layout_gravity="center"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/editText2"
+                style="@style/LikeRoomTheme.EditText"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp" />
+
+            <TextView
+                android:text="사용 기한을 입력하십시오"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray80"
+                android:layout_gravity="center"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/editText5"
+                style="@style/LikeRoomTheme.EditText"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
