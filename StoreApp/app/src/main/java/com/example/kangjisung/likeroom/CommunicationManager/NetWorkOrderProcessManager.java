@@ -10,7 +10,7 @@ public class NetWorkOrderProcessManager {
     public NetWorkOrderProcessManager() {
         NetworkModule networkModule = new NetworkModule();
         try {
-            Log.d("test", "Result: " + networkModule.execute("test").get());
+            Log.d("test", "Result: " + networkModule.execute("http://lamb.kangnam.ac.kr").get());
         }
         catch (Exception err) {
             Log.d("test", "Result: Fail");
