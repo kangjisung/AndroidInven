@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.kangjisung.likeroom.CommunicationManager.NetWorkOrderProcessManager;
 import com.example.kangjisung.likeroom.FragmentProduct.ProductListItem;
 import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity
         this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_main);
         databaseHelperTest = new DatabaseHelper(getApplicationContext(), ClientDataBase.testDatabaseName);
+
+        NetWorkOrderProcessManager netWorkOrderProcessManager = new NetWorkOrderProcessManager();
 
         mRunnable = new Runnable() {
             @Override
