@@ -1,6 +1,10 @@
 package com.example.kangjisung.likeroom;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.test.espresso.core.deps.guava.escape.CharEscaper;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,12 +30,43 @@ public class ActivitySetting extends AppCompatActivity
         settingLayout = (LinearLayout)findViewById(R.id.layout_setting);
         settingFontSize = (Button)findViewById(R.id.buttonSettingFontSize);
 
+
         settingFontSize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CharSequence colors[] = new CharSequence[] {"1","2","3","4"};
+            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                builder.setTitle("1");
+                builder.setItems(colors, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.show();
+
+
 
             }
+
         });
+
+
+
+
+        /*
+        CharSequence colors[] = new CharSequence[] {"red", "green", "blue", "black"};
+
+AlertDialog.Builder builder = new AlertDialog.Builder(this);
+builder.setTitle("Pick a color");
+builder.setItems(colors, new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        // the user clicked on colors[which]
+    }
+});
+builder.show();
+         */
     }
 
 }
