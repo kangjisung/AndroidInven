@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity
         databaseHelperTest = new DatabaseHelper(getApplicationContext(), ClientDataBase.testDatabaseName);
 
         NetWorkOrderProcessManager netWorkOrderProcessManager = new NetWorkOrderProcessManager();
+        netWorkOrderProcessManager.LoadAllStoreInfo();
 
         mRunnable = new Runnable() {
             @Override

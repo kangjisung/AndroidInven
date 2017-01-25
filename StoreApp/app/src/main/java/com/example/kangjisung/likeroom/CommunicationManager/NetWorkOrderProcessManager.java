@@ -7,13 +7,27 @@ import android.util.Log;
  */
 
 public class NetWorkOrderProcessManager {
+    NetworkModule networkModule;
+
+    String hostName = "lamb.kangnam.ac.kr:8000";
+
     public NetWorkOrderProcessManager() {
-        NetworkModule networkModule = new NetworkModule();
+        networkModule = new NetworkModule();
         try {
-            Log.d("test", "Result: " + networkModule.execute("http://lamb.kangnam.ac.kr").get());
+            Log.d("test", "Result: " + networkModule.execute("http://" + hostName).get());
         }
         catch (Exception err) {
             Log.d("test", "Result: Fail");
+        }
+    }
+
+    public void LoadAllStoreInfo(){
+        networkModule = new NetworkModule();
+        try {
+            Log.d("test", networkModule.execute("http://" + hostName + "/LoadAllStoreInfo/").get());
+        }
+        catch (Exception err) {
+            Log.d("test", "Error in LoadAllStoreInfo: " + err.getMessage());
         }
     }
 }
