@@ -31,7 +31,7 @@ public class NetworkModule extends AsyncTask<String, Void, String>{
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        Log.d(logCatTag, "post: " + s);
+        //Log.d(logCatTag, "post: " + s);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class NetworkModule extends AsyncTask<String, Void, String>{
 
     @Override
     protected String doInBackground(String... strings) {
-        Log.d(logCatTag, "back: " + strings[0]);
+        //Log.d(logCatTag, "back: " + strings[0]);
 
         return GetServerMessage(CommunicationWithServer(strings[0]));
     }
