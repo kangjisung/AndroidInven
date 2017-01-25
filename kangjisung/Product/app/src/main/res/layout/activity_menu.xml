@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        layout="@layout/include_background" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.kangjisung.likeroom.ActivityMenu"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_top_margin"
+            android:layout_weight="0">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/icon_setting"
+                android:id="@+id/imageViewSetting"
+                android:layout_centerInParent="false"
+                android:layout_centerHorizontal="false"
+                android:adjustViewBounds="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:text="@string/mainactivity_string"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewTitle"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_width="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/clrTextColorDeepDark"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/menu_side_margin"
+            android:layout_marginRight="@dimen/menu_side_margin">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent"
+                android:background="#FFFFFF">
+            </android.support.v4.view.ViewPager>
+
+            <include
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                layout="@layout/include_rounded_page" />
+        </RelativeLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_weight="0"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_bottom_margin"
+            android:fadingEdge="horizontal|vertical"
+            app:tabIndicatorHeight="0dp">
+
+            <!--
+            <android.support.design.widget.TabItem
+                android:icon="@drawable/selector_menu_item"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+            <android.support.design.widget.TabItem
+                android:icon="@drawable/selector_menu_user"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+            <android.support.design.widget.TabItem
+                android:icon="@drawable/icon_test02"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+                -->
+
+        </android.support.design.widget.TabLayout>
+    </LinearLayout>
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:paddingRight="20dp"
+        android:paddingBottom="70dp"
+        fab:menu_animationDelayPerItem="0"
+        fab:menu_colorNormal="@color/floating_nomal"
+        fab:menu_colorPressed="@color/floating_press"
+        fab:menu_colorRipple="@color/floating_ripple"
+        fab:menu_fab_hide_animation="@anim/hide_to_bottom"
+        fab:menu_fab_show_animation="@anim/show_from_bottom"
+        fab:menu_icon="@mipmap/icon_menu_item"
+        fab:menu_labels_hideAnimation="@anim/jump_to_down"
+        fab:menu_labels_showAnimation="@anim/jump_from_down"
+        app:menu_labels_style="@style/MyLabelsStyle"
+        app:menu_labels_paddingBottom="20dp"
+        app:menu_labels_paddingTop="20dp"
+        app:menu_backgroundColor="#55000000"
+        fab:menu_shadowColor="#444">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_sort"
+            style="@style/MenuButtonsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            fab:fab_colorDisabled="@color/floating_menu_disable"
+            fab:fab_colorNormal="@color/floating_menu_nomal"
+            fab:fab_colorPressed="@color/floating_menu_press"
+            fab:fab_colorRipple="@color/floating_menu_ripple"
+            app:fab_label="                                                                                정렬                                      " />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_add_product"
+            style="@style/MenuButtonsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            fab:fab_colorDisabled="@color/floating_menu_disable"
+            fab:fab_colorNormal="@color/floating_menu_nomal"
+            fab:fab_colorPressed="@color/floating_menu_press"
+            fab:fab_colorRipple="@color/floating_menu_ripple"
+            app:fab_label="                                                                          새 제품 추가                             " />
+
+    </com.github.clans.fab.FloatingActionMenu>
+</RelativeLayout>
