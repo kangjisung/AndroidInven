@@ -20,6 +20,7 @@
         <activity
             android:name=".ActivityMenu"
             android:windowSoftInputMode="adjustPan"></activity>
+        <Dialog android:name="com.example.kangjisung.likeroom.Util.CalendarDialog" android:theme="@android:style/Theme.Dialog" />
     </application>
 
 </manifest>

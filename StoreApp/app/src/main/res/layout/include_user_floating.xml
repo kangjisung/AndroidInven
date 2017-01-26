@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="#ef4946"
-            app:fab_colorPressed="#ef4946"
+            app:fab_colorPressed="#f57977"
             android:src="@mipmap/icon_reject_white"
             android:layout_gravity="bottom|start"
             android:layout_marginStart="10dp"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/icon_check_white"
             app:fab_colorNormal="#55b12e"
-            app:fab_colorPressed="#55b12e"
+            app:fab_colorPressed="#88d767"
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp" />

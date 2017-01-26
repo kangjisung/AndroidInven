@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button_back"
-        android:background="@mipmap/icon_arrow_left"
+        android:id="@+id/button_dialog_back"
+        android:background="@drawable/drawable_arrow_left"
         style="@style/LikeRoomTheme.Button.EmptyBackground"
         android:layout_marginStart="10dp"
         android:layout_width="30dp"
@@ -24,7 +25,7 @@
         android:layout_centerInParent="true" />
 
     <Button
-        android:id="@+id/button_ok"
+        android:id="@+id/button_dialog_ok"
         style="@style/LikeRoomTheme.Button.EmptyBackground"
         android:layout_marginEnd="10dp"
         android:background="@mipmap/icon_check"

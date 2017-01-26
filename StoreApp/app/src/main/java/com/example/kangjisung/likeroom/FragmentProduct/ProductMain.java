@@ -1,5 +1,6 @@
 package com.example.kangjisung.likeroom.FragmentProduct;
 
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,9 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.Util.NoScrollViewPager;
 import com.example.kangjisung.likeroom.Util.FirstPageFragmentListener;
+import com.github.clans.fab.FloatingActionMenu;
 
 public class ProductMain extends Fragment implements View.OnClickListener {
     private ImageButton btnSellToday;
@@ -20,6 +23,9 @@ public class ProductMain extends Fragment implements View.OnClickListener {
     private TextView tvFragmentItemMain;
     private TextView tvFragmentItemMainDate;
     static public FirstPageFragmentListener firstPageListener;
+    ProductAddDialog productAddDialog;
+    private FloatingActionMenu famMenu;
+
     public ProductMain() {
     }
     public ProductMain(FirstPageFragmentListener listener) {
@@ -45,8 +51,12 @@ public class ProductMain extends Fragment implements View.OnClickListener {
         btnMuchStore.setOnClickListener(this);
         btnSellToday.setOnClickListener(this);
         //////////////////
-        return rootView;
 
+        famMenu = (FloatingActionMenu) rootView.findViewById(R.id.menu);
+        rootView.findViewById(R.id.fab_add_product).setOnClickListener(onFabClickListener);
+        rootView.findViewById(R.id.fab_sort).setOnClickListener(onFabClickListener);
+
+        return rootView;
     }
 
     @Override
@@ -88,5 +98,27 @@ public class ProductMain extends Fragment implements View.OnClickListener {
         return fragmentItemMain;
     }
 
+    private View.OnClickListener onFabClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                default:
+                case R.id.fab_add_product:
+                    famMenu.close(true);
+                    productAddDialog = new ProductAddDialog(getContext());
+                    productAddDialog.show();
+                    productAddDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            // TODO : 새 제품 추가 다이얼로그에서 완료 버튼 클릭 시 동작 삽입
+                        }
+                    });
+                    break;
+                case R.id.fab_sort:
+                    // TODO : 정렬 버튼 클릭 시 동작 삽입
+                    break;
+            }
+        }
+    };
     /* 이벤트 코드는 여기서 */
 }
