@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.kangjisung.likeroom.CommunicationManager.NetWorkOrderProcessManager;
 import com.example.kangjisung.likeroom.FragmentProduct.ProductListItem;
 import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
@@ -27,8 +28,11 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         databaseHelperTest = new DatabaseHelper(getApplicationContext(), ClientDataBase.testDatabaseName);
 
-        Handler mHandler = new Handler();
-        mHandler.postDelayed(new Runnable() {
+        NetWorkOrderProcessManager netWorkOrderProcessManager = new NetWorkOrderProcessManager();
+        netWorkOrderProcessManager.LoadAllStoreInfo();
+
+        mRunnable = new Runnable() {
+            @Override
             public void run() {
                 CheckTypesTask task = new CheckTypesTask();
                 task.execute();
