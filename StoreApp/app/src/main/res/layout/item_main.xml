@@ -92,5 +92,13 @@
 
     </LinearLayout>
 
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout_floating">
+        <include layout="@layout/include_product_floating" />
+
+    </android.support.design.widget.CoordinatorLayout>
+
 
 </RelativeLayout>

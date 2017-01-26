@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kangjisung.likeroom">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,6 +22,7 @@
         <activity
             android:name=".ActivityMenu"
             android:windowSoftInputMode="adjustPan"></activity>
+        <Dialog android:name="com.example.kangjisung.likeroom.Util.CalendarDialog" android:theme="@android:style/Theme.Dialog" />
     </application>
 
 </manifest>

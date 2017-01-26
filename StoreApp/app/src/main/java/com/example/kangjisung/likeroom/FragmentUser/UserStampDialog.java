@@ -15,14 +15,19 @@ import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.R;
 
+import java.util.ArrayList;
+
 public class UserStampDialog extends Dialog
 {
     TabLayout tabLayout;
     ViewPager viewPager;
     UserStampDialogPagerAdapter pagerAdapter;
+    ArrayList<UserMainListItem> addItemList;
 
-    public UserStampDialog(Context context) {
+    public UserStampDialog(ArrayList<UserMainListItem> addItemList, Context context) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
+
+        this.addItemList = addItemList;
     }
 
     @Override
@@ -41,7 +46,7 @@ public class UserStampDialog extends Dialog
         tabLayout = (TabLayout)findViewById(R.id.tabLayout);
         viewPager = (ViewPager)findViewById(R.id.viewPager);
 
-        pagerAdapter = new UserStampDialogPagerAdapter(getContext(), 3);
+        pagerAdapter = new UserStampDialogPagerAdapter(getContext(), 3, addItemList.size());
         viewPager.setAdapter(pagerAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         viewPager.setOffscreenPageLimit(3);
@@ -71,13 +76,21 @@ public class UserStampDialog extends Dialog
         AppCompatImageView imageViewEmblem = (AppCompatImageView)findViewById(R.id.imageView_stamp);
         imageViewEmblem.setBackgroundResource(pagerAdapter.getSelectedItem());
         imageViewEmblem.setSupportBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.white)));
+
+        Button mOKButton = (Button)findViewById(R.id.button_ok_down);
+        mOKButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View onClickView){
+                dismiss();
+            }
+        });
     }
 
     private void initializeDialogTitleBar()
     {
         TextView mTextViewTitle = (TextView)findViewById(R.id.textView_title);
-        Button mBackButton = (Button)findViewById(R.id.button_back);
-        Button mOKButton = (Button)findViewById(R.id.button_ok);
+        Button mBackButton = (Button)findViewById(R.id.button_dialog_back);
+        Button mOKButton = (Button)findViewById(R.id.button_dialog_ok);
         mOKButton.setVisibility(View.GONE);
 
         mTextViewTitle.setText("스탬프 발송");
@@ -85,12 +98,6 @@ public class UserStampDialog extends Dialog
             @Override
             public void onClick(View onClickView){
                 cancel();
-            }
-        });
-        mOKButton.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View onClickView){
-
             }
         });
     }
