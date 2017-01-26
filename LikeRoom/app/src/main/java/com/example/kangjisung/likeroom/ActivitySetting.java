@@ -1,14 +1,9 @@
 package com.example.kangjisung.likeroom;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.test.espresso.core.deps.guava.escape.CharEscaper;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -35,12 +30,12 @@ public class ActivitySetting extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 CharSequence colors[] = new CharSequence[] {"1","2","3","4"};
-            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+            AlertDialog.Builder builder = new AlertDialog.Builder(ActivitySetting.this);
                 builder.setTitle("1");
                 builder.setItems(colors, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        dialog.dismiss();
                     }
                 });
                 builder.show();
