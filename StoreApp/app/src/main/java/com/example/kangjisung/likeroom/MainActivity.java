@@ -30,10 +30,10 @@ public class MainActivity extends AppCompatActivity
 
         NetWorkOrderProcessManager netWorkOrderProcessManager = new NetWorkOrderProcessManager();
         netWorkOrderProcessManager.LoadAllStoreInfo();
-
-        mRunnable = new Runnable() {
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
             @Override
-            public void run() {
+            public void run(){
                 CheckTypesTask task = new CheckTypesTask();
                 task.execute();
             }
