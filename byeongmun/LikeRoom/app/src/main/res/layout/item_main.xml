@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:id="@+id/relative"
+    android:background="#fff7da">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/fragment_item_main_linear_layout_bottom_line"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btn_fragment_item_main_sell_today"
+                android:layout_width="45dp"
+                android:background="@mipmap/enable_sell_today"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="47.5dp"
+                android:layout_marginRight="47.5dp"
+                android:layout_marginTop="20dp"
+                android:layout_height="match_parent" />
+
+            <RelativeLayout
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/gray80"></RelativeLayout>
+
+            <ImageButton
+                android:id="@+id/btn_fragment_item_main_store_match"
+                android:background="@mipmap/disable_store_much"
+                android:layout_width="47dp"
+                android:layout_marginBottom="40dp"
+                android:layout_marginLeft="37dp"
+                android:layout_marginRight="37dp"
+                android:layout_marginTop="22dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_horizontal"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:src="@mipmap/calender"
+                android:padding="8dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/tv_fragment_item_main_date"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="2016/12/5"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tv_fragment_item_main"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="월 일일판매량"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <com.example.kangjisung.likeroom.Util.NoScrollViewPager
+            android:id="@+id/vp_fragment_item_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.example.kangjisung.likeroom.Util.NoScrollViewPager>
+
+    </LinearLayout>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout_floating">
+        <include layout="@layout/include_product_floating" />
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+</RelativeLayout>

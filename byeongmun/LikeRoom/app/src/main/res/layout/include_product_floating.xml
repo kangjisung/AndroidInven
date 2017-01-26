@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/tools">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.github.clans.fab.FloatingActionMenu
+            android:id="@+id/menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp"
+            fab:menu_labels_ellipsize="end"
+            fab:menu_labels_singleLine="true"
+            fab:menu_labels_colorNormal="@color/transparent"
+            fab:menu_labels_showShadow="false"
+            fab:menu_backgroundColor="@color/alpha200"
+            fab:menu_icon="@mipmap/icon_floating_hamburger"
+            fab:menu_colorNormal="?attr/theme_color_type1"
+            fab:menu_colorPressed="@color/gray160"
+            fab:menu_fab_label="">
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_add_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_floating_add"
+                fab:fab_colorNormal="?attr/theme_color_type1"
+                fab:fab_colorPressed="@color/gray160"
+                fab:fab_label="새 제품 추가" />
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_floating_stamp"
+                fab:fab_colorNormal="?attr/theme_color_type1"
+                fab:fab_colorPressed="@color/gray160"
+                fab:fab_label="정렬" />
+
+        </com.github.clans.fab.FloatingActionMenu>
+
+    </FrameLayout>
+</android.support.design.widget.CoordinatorLayout>

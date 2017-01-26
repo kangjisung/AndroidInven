@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:background="@drawable/dialog_background"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:layout_width="330dp">
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            layout="@layout/include_dialog_title" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <RelativeLayout
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:id="@+id/layout_emblem">
+
+                    <include
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        layout="@layout/include_emblem" />
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:background="@mipmap/icon_bread"
+                        app:backgroundTint="@color/white"
+                        android:layout_height="40dp"
+                        android:layout_width="40dp"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:id="@+id/layout_info"
+                    android:layout_below="@+id/layout_emblem"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="홍길동"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textview_name"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:text="010-1234-5678"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textview_phone"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:layout_marginTop="30dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/layout_inputbox"
+                    android:layout_below="@+id/layout_info"
+                    android:padding="10dp"
+                    android:animateLayoutChanges="true"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="판매가격"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FF514E3F"
+                        android:textSize="18dp"
+                        android:layout_marginTop="10dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/editTextValue"
+                        android:background="@drawable/theme_textedit"
+                        android:layout_alignParentEnd="true"
+                        android:text="25 000"
+                        style="@style/LikeRoomTheme.EditText"
+                        android:textAlignment="textEnd"
+                        android:textSize="30dp"
+                        android:layout_marginStart="100dp"
+                        android:padding="3dp"
+                        android:paddingEnd="10dp"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="50dp"
+                        android:background="?attr/theme_color_L3"
+                        android:padding="5dp"
+                        android:layout_height="180dp">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_marginBottom="3dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginTop="3dp">
+
+                            <Button
+                                android:text="1"
+                                android:id="@+id/buttonNum1"
+                                style="@style/LikeRoomTheme.Button.PointSave"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginEnd="3dp"
+                                android:layout_marginStart="3dp" />
+
+                            <Button
+                                android:text="2"
+                                android:layout_width="match_parent"
+                                android:id="@+id/buttonNum2"
+                                style="@style/LikeRoomTheme.Button.PointSave"
+                                android:layout_marginEnd="3dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_marginStart="3dp" />
+
+                            <Button
+                                android:text="3"
+                                android:layout_width="match_parent"
+                                android:id="@+id/buttonNum3"
+                                style="@style/LikeRoomTheme.Button.PointSave"
+                                android:layout_marginEnd="3dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_marginStart="3dp" />
+
+                            <Button
+                                android:text="←"
+                                android:layout_width="match_parent"
+                                android:id="@+id/buttonNumDel"
+                                style="@style/LikeRoomTheme.Button.PointSave"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="3dp"
+                                android:layout_marginStart="3dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="3dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="3dp">
+
+                            <Button
+                                android:text="4"
+                                android:id="@+id/buttonNum4"
+                                style="@style/LikeRoomTheme.Button.PointSave"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="3dp"
+                                android:layout_marginStart="3dp" />
+
+                            <Button
+                                android:text="5"
+                                android:layout_width="match_parent"
+                                android:id="@+id/buttonNum5"
+                                style="@style/LikeRoomTheme.Button.PointSave"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="3dp"
+                                android:layout_marginStart="3dp" />
+
+                            <Button
+                                android:text="6"
+                                android:layout_width="match_parent"
+                                android:id="@+id/buttonNum6"
+                                style="@style/LikeRoomTheme.Button.PointSave"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="3dp"
+                                android:layout_marginStart="3dp" />
+
+                            <Button
+                                android:text="00"
+                                android:layout_width="match_parent"
+                                android:id="@+id/buttonNum00"
+                                style="@style/LikeRoomTheme.Button.PointSave"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="3dp"
+                                android:layout_marginStart="3dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp">
+
+                            <Button
+                                android:text="7"
+                                android:id="@+id/buttonNum7"
+                                style="@style/LikeRoomTheme.Button.PointSave"
+                                android:layout_width="match_parent"
+                                app:layout_columnWeight="1"
+                                app:layout_rowWeight="1"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="3dp"
+                                android:layout_marginStart="3dp" />
+
+                            <Button
+                                android:text="8"
+                                android:layout_width="match_parent"
+                                android:id="@+id/buttonNum8"
+                                style="@style/LikeRoomTheme.Button.PointSave"
+                                app:layout_columnWeight="1"
+                                app:layout_rowWeight="1"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="3dp"
+                                android:layout_marginStart="3dp" />
+
+                            <Button
+                                android:text="9"
+                                android:layout_width="match_parent"
+                                android:id="@+id/buttonNum9"
+                                style="@style/LikeRoomTheme.Button.PointSave"
+                                app:layout_columnWeight="1"
+                                app:layout_rowWeight="1"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="3dp"
+                                android:layout_marginStart="3dp" />
+
+                            <Button
+                                android:text="0"
+                                android:layout_width="match_parent"
+                                android:id="@+id/buttonNum0"
+                                style="@style/LikeRoomTheme.Button.PointSave"
+                                app:layout_columnWeight="1"
+                                app:layout_rowWeight="1"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="3dp"
+                                android:layout_marginStart="3dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:text="150P 적립 : 200 → 350"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textview_guide"
+                    android:layout_below="@+id/layout_inputbox"
+                    android:textColor="#FF8E886F"
+                    android:textSize="18dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp" />
+
+                <Button
+                    android:text="다음"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button_ok"
+                    android:layout_alignParentBottom="false"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/textview_guide"
+                    android:layout_marginTop="10dp" />
+
+            </RelativeLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+</RelativeLayout>
