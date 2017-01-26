@@ -39,8 +39,6 @@ public class PointMain extends Fragment
         buttonTempStamp.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                userStampDialog = new UserStampDialog(getActivity()); // 오른쪽 버튼 이벤트
-                userStampDialog.show();
             }
         });
 

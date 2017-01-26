@@ -49,8 +49,8 @@ public class PointSaveDialog extends Dialog {
 
         setContentView(R.layout.point_save_dialog);
 
-        mBackButton = (Button)findViewById(R.id.button_back);
-        mOKButton = (Button)findViewById(R.id.button_ok);
+        mBackButton = (Button)findViewById(R.id.button_dialog_back);
+        mOKButton = (Button)findViewById(R.id.button_dialog_ok);
         final RelativeLayout layoutInputBox = (RelativeLayout)findViewById(R.id.layout_inputbox);
 
         mBackIdentifyClickListener = new View.OnClickListener() {

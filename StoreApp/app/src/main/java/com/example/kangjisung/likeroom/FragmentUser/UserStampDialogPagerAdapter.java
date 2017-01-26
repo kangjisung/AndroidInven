@@ -3,10 +3,6 @@ package com.example.kangjisung.likeroom.FragmentUser;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.ClipDrawable;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.os.Parcelable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
@@ -14,12 +10,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatImageView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
@@ -30,7 +24,8 @@ public class UserStampDialogPagerAdapter extends PagerAdapter
 {
     private LayoutInflater mInflater;
     private Context context;
-    private int pageCount;
+    private int countPage;
+    private int countMember;
     private View selectedView;
 
     private UserStampListAdapter mAdapter;
@@ -39,11 +34,12 @@ public class UserStampDialogPagerAdapter extends PagerAdapter
     private ArrayList<Integer> userStampListItem;
     private int selectedItem = 0;
 
-    UserStampDialogPagerAdapter(Context context, int numOfPage){
+    UserStampDialogPagerAdapter(Context context, int countPage, int countMember){
         super();
         mInflater = LayoutInflater.from(context);
         this.context = context;
-        this.pageCount = numOfPage;
+        this.countPage = countPage;
+        this.countMember = countMember;
 
         userStampListItem = new ArrayList<Integer>() ;
         userStampListItem.add(R.mipmap.icon_menu_item);
@@ -54,7 +50,7 @@ public class UserStampDialogPagerAdapter extends PagerAdapter
 
     @Override
     public int getCount(){
-        return pageCount;
+        return countPage;
     }
 
     public int getSelectedItem(){
@@ -96,6 +92,7 @@ public class UserStampDialogPagerAdapter extends PagerAdapter
             case 2:
                 view = mInflater.inflate(R.layout.user_stamp_dialog_page3, null);
                 view.findViewById(R.id.layout_background).getBackground().setColorFilter(ColorTheme.getThemeColorRGB(context, R.attr.theme_color_L3), PorterDuff.Mode.SRC_IN);
+                ((TextView)view.findViewById(R.id.textView_total_member)).setText(String.valueOf(countMember));
                 break;
         }
 
