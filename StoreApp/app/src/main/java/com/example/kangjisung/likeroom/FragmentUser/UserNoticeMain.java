@@ -44,6 +44,7 @@ public class UserNoticeMain extends Fragment
     }
 
     public void listViewHeightSet(BaseAdapter listAdapter, ListView listView){
+        /*
         int totalHeight = 0;
         for (int i = 0; i < listAdapter.getCount(); i++){
             View listItem = listAdapter.getView(i, null, listView);
@@ -52,7 +53,8 @@ public class UserNoticeMain extends Fragment
         }
 
         ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount()));
         listView.setLayoutParams(params);
+        */
     }
 }
