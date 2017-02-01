@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_mileage"
+    android:layout_width="400dip"
+    android:layout_height="300dip"
+    android:background="#FFFFFF"
+    android:layout_centerInParent="true"
+    tools:context="com.example.kangjisung.likeroom.User.MileageManage.mileage">
+
+    <TextView
+        android:text="TextView"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_marginTop="45dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="2"
+        android:layout_height="70dp"
+        android:id="@+id/Num2"
+        android:layout_width="70dp"
+        android:layout_below="@+id/NumView"
+        android:layout_toEndOf="@+id/textView" />
+
+    <Button
+        android:text="3"
+        android:layout_height="70dp"
+        android:id="@+id/Num3"
+        android:layout_width="70dp"
+        android:layout_below="@+id/NumView"
+        android:layout_alignStart="@+id/Num9" />
+
+    <Button
+        android:text="1"
+        android:layout_height="70dp"
+        android:id="@+id/Num1"
+        android:layout_width="70dp"
+        android:layout_above="@+id/Num4"
+        android:layout_toStartOf="@+id/Num2" />
+
+    <Button
+        android:text="4"
+        android:layout_height="70dp"
+        android:id="@+id/Num4"
+        android:layout_width="70dp"
+        android:layout_below="@+id/Num2"
+        android:layout_toStartOf="@+id/Num2" />
+
+    <Button
+        android:text="7"
+        android:layout_height="70dp"
+        android:id="@+id/Num7"
+        android:layout_width="70dp"
+        android:layout_below="@+id/Num4"
+        android:layout_alignStart="@+id/Num4" />
+
+    <Button
+        android:text="8"
+        android:layout_height="70dp"
+        android:id="@+id/Num8"
+        android:layout_width="70dp"
+        android:layout_below="@+id/Num5"
+        android:layout_alignStart="@+id/Num5" />
+
+    <Button
+        android:text="6"
+        android:layout_height="70dp"
+        android:id="@+id/Num6"
+        android:layout_width="70dp"
+        android:layout_below="@+id/Num3"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="9"
+        android:layout_height="70dp"
+        android:id="@+id/Num9"
+        android:layout_width="70dp"
+        android:layout_below="@+id/Num6"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/NumView"
+        android:layout_alignBaseline="@+id/textView"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignEnd="@+id/Num0" />
+
+    <Button
+        android:text="5"
+        android:layout_height="70dp"
+        android:id="@+id/Num5"
+        android:layout_width="70dp"
+        android:layout_below="@+id/Num2"
+        android:layout_toEndOf="@+id/Num4" />
+
+    <Button
+        android:text="적립"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/PlusBtn"
+        android:layout_alignBottom="@+id/Num9"
+        android:layout_alignStart="@+id/Num10" />
+
+    <Button
+        android:text="00"
+        android:layout_height="70dp"
+        android:id="@+id/Num10"
+        android:layout_width="70dp"
+        android:layout_below="@+id/NumView"
+        android:layout_toEndOf="@+id/Num3"
+        android:layout_marginStart="12dp" />
+
+    <Button
+        android:text="0"
+        android:layout_height="70dp"
+        android:id="@+id/Num0"
+        android:layout_width="70dp"
+        android:layout_below="@+id/Num10"
+        android:layout_alignStart="@+id/Num10"
+        android:layout_marginStart="6dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/btn_dialog"
+        android:id="@+id/BtnClose"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/Num0"
+        android:layout_marginStart="42dp" />
+</RelativeLayout>
