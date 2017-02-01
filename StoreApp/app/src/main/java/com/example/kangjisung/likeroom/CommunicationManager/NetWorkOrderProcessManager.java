@@ -29,19 +29,28 @@ public class NetWorkOrderProcessManager {
     public void LoadAllStoreInfo(){
         networkModule = new NetworkModule();
         String responseRawData = null;
-        int i;
+        int i = 0;
         try {
             responseRawData = networkModule.execute("http://" + hostName + apiName + "/LoadAllStoreInfo/").get();
             Log.d(logCatTag, responseRawData);
             //JSONArray serverResponseArrayData = new JSONArray("{'test':1}");
             JSONObject jsonObject = new JSONObject(responseRawData);
             //Log.d(logCatTag, "test: " + jsonObject.getJSONObject("0"));
-            JSONObject indexOfZeroStoreInfoData = jsonObject.getJSONObject("0");
-            Log.d(logCatTag, "매장 번호: " + indexOfZeroStoreInfoData.getString("매장번호"));
             /*for(i = 0; i < serverResponseArrayData.length(); i += 1){
                 JSONObject eachObjectData = serverResponseArrayData.getJSONObject(i);
                 Log.d(logCatTag, "store id : " + eachObjectData);
             }*/
+            while(true) {
+                try {
+                    JSONObject indexOfZeroStoreInfoData = jsonObject.getJSONObject("" + i);
+                    Log.d(logCatTag, "매장 번호: " + indexOfZeroStoreInfoData.getString("매장번호"));
+                    i += 1;
+                }
+                catch (Exception err) {
+                    Log.d(logCatTag, "Error in find json object: " + err.getMessage());
+                    break;
+                }
+            }
         }
         catch (Exception err) {
             Log.d(logCatTag, "Error in LoadAllStoreInfo: " + err.getMessage());
