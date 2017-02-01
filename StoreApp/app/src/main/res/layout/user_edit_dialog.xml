@@ -126,7 +126,7 @@
                             android:layout_weight="0"
                             android:layout_width="80dp" />
 
-                        <TextView
+                        <EditText
                             android:text="날짜"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

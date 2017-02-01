@@ -27,14 +27,14 @@ public class UserAddDialog extends Dialog
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
-        setContentView(R.layout.user_add_dialog);
+        setContentView(R.layout.user_edit_dialog);
 
         Button mOKButton = (Button)findViewById(R.id.button_ok);
         Button mBackButton = (Button)findViewById(R.id.button_back);
 
         final EditText UserAddName = (EditText)findViewById(R.id.editText_name);
         final EditText UserAddPhone = (EditText)findViewById(R.id.editText_phone);
-        final EditText UserAddBirth = (EditText)findViewById(R.id.editText_birthday);
+        final EditText UserAddBirth = (EditText)findViewById(R.id.textView_birth);
 
         mOKButton.setOnClickListener(new Button.OnClickListener(){
             @Override
