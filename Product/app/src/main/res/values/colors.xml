@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3f51b5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- Basic Color -->
+    <color name="Transparency">#00000000</color>
+    <color name="Black">#000000</color>
+    <color name="Red">#ff0000</color>
+    <color name="Gray">#aaaaaa</color>
+    <color name="LightGray">#dfdfdf</color>
+    <color name="White">#ffffff</color>
+
+    <!-- Theme Color -->
+    <color name="clrTextColorDeepDark">#514e3f</color>
+    <color name="clrTextColorMediumDark">#8e886f</color>
+
+    <color name="clrMenuIcon">#B7AF8F</color>
+    <color name="clrMenuIconSelected">#8e886f</color>
+    <color name="clrBackground">#CCC39F</color>
+    <color name="clrBackgroundLight">#fefae9</color>
+
+    <!-- Test Color -->
+    <color name="test01">#777777</color>
+    <color name="test02">#999999</color>
+    <color name="floating_nomal">#795548</color>
+    <color name="floating_press">#775346</color>
+    <color name="floating_ripple">#593528</color>
+    <color name="floating_menu_nomal">#6F767F</color>
+    <color name="floating_menu_press">#6D747D</color>
+    <color name="floating_menu_ripple">#4F565F</color>
+    <color name="floating_menu_disable">#8F969F</color>
+    <color name="white">#ffffff</color>
+</resources>
