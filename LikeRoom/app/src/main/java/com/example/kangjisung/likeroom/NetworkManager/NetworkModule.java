@@ -87,6 +87,30 @@ public class NetworkModule {
         }
     }
 
+    public void GetStoreAndCustomerRegisteredInfo(int customerId) {
+        httpCommunicationProcess = new HttpCommunicationProcess();
+        String responseRawData = null;
+        try {
+            responseRawData = httpCommunicationProcess.execute("http://" + hostName + apiName + "/GetStoreAndCustomerRegisteredInfo/?customerId=" + customerId).get();
+            Log.d(logCatTag, responseRawData);
+            JSONObject jsonObject = new JSONObject(responseRawData);
+            try{
+                if(jsonObject.isNull("Result")) {
+                    Log.d(logCatTag, "ok");
+                }
+                else {
+                    Log.d(logCatTag, "fail");
+                }
+            }
+            catch (Exception err) {
+                Log.d(logCatTag, "Error in GetStoreAndCustomerRegisteredInfo: " + err.getMessage());
+            }
+        }
+        catch (Exception err) {
+            Log.d(logCatTag, "Error in GetStoreAndCustomerRegisteredInfo: " + err.getMessage());
+        }
+    }
+
     public void InsertNewCustomerInfo(String customerName){
         httpCommunicationProcess=new HttpCommunicationProcess();
         String responseRawDate=null;
