@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.kangjisung.likeroom.FragmentUser.ListView.UserMainListItem;
 import com.example.kangjisung.likeroom.R;
 
 import java.util.ArrayList;

@@ -4,13 +4,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-public class ProductMainPagerAdapter extends FragmentStatePagerAdapter
-{
-    public ProductMainPagerAdapter(FragmentManager fm) {
-        super(fm);
-    }
+public class ProductMainPagerAdapter extends FragmentStatePagerAdapter {
 
-    @Override
+        public ProductMainPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
     public Fragment getItem(int position)
     {
         switch (position) {

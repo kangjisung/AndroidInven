@@ -9,12 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.kangjisung.likeroom.FragmentProduct.ListView.FragmentSortRecyclerViewAdapter;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.Util.FirstPageFragmentListener;
-
-/**
- *Modify by SeungEui on 2016-01-03
- */
 
 public class FragmentSort extends Fragment implements View.OnClickListener{
     static public FirstPageFragmentListener firstPageListener;
@@ -69,7 +66,7 @@ public class FragmentSort extends Fragment implements View.OnClickListener{
             //ProductObjManager.sortByModifyMuchStore();
         }
         else if(view==btRegister){
-            ProductObjManager.sortByRegister();
+            ProductObjManager.sortByModifySellToday();
         }
     }
 }
