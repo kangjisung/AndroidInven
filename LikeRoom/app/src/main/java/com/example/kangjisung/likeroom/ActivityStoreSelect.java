@@ -97,7 +97,7 @@ public class ActivityStoreSelect extends AppCompatActivity {
                 "서울특별시 강동구 상일동 67-2", "02-441-7833", "N/A", "N/A", 37.5509792, 127.1738538);*/
 
 
-        httpCommunicationProcess = new HttpCommunicationProcess(getApplicationContext());
+        httpCommunicationProcess = new HttpCommunicationProcess();
         try {
             String internetConnectionTest = httpCommunicationProcess.execute("http://lamb.kangnam.ac.kr").get();
             if(internetConnectionTest == null) {

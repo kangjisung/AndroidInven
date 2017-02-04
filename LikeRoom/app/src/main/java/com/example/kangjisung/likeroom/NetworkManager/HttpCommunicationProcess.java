@@ -1,10 +1,6 @@
 package com.example.kangjisung.likeroom.NetworkManager;
 
-import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
-
-import com.example.kangjisung.likeroom.R;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -19,11 +15,11 @@ import java.io.InputStream;
  */
 
 public class HttpCommunicationProcess extends AsyncTask<String, Integer, String> {
-    Context context;
+    //Context context;
 
-    public HttpCommunicationProcess(Context context) {
+    public HttpCommunicationProcess() {
         super();
-        this.context = context;
+        //this.context = context;
     }
 
     @Override
@@ -34,7 +30,7 @@ public class HttpCommunicationProcess extends AsyncTask<String, Integer, String>
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        Log.d(context.getString(R.string.app_name), "onPostExecuteResult: " + s);
+        //Log.d(context.getString(R.string.app_name), "onPostExecuteResult: " + s);
     }
 
     @Override
@@ -54,7 +50,7 @@ public class HttpCommunicationProcess extends AsyncTask<String, Integer, String>
 
     @Override
     protected String doInBackground(String... strings) {
-        Log.d(context.getString(R.string.app_name), "doInBackground: " + strings[0]);
+        //Log.d(context.getString(R.string.app_name), "doInBackground: " + strings[0]);
         try{
             HttpClient httpClient = new DefaultHttpClient();
             HttpResponse httpResponse = httpClient.execute(new HttpGet(strings[0]));
@@ -62,7 +58,7 @@ public class HttpCommunicationProcess extends AsyncTask<String, Integer, String>
             return ConvertInputStreamToString(inputStreamContent);
         }
         catch (Exception err) {
-            Log.d(context.getString(R.string.app_name), "Error in doInBackground: " + err.getMessage());
+            //Log.d(context.getString(R.string.app_name), "Error in doInBackground: " + err.getMessage());
         }
         return null;
     }
@@ -81,7 +77,7 @@ public class HttpCommunicationProcess extends AsyncTask<String, Integer, String>
             convertedString = new String(byteArrayOutputStreamBuffer.toByteArray());
         }
         catch (Exception err) {
-            Log.d(context.getString(R.string.app_name), "Error in ConvertInputStreamToString: " + err.getMessage());
+            //Log.d(context.getString(R.string.app_name), "Error in ConvertInputStreamToString: " + err.getMessage());
         }
         return convertedString;
     }
