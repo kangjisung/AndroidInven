@@ -47,13 +47,12 @@ public class NetworkModule {
             Log.d(logCatTag, "Error in LoadAllStoreInfo: " + err.getMessage());
         }
     }
-
-    public void InsertNewCustomerInfo(String customerName){
+////내 정보 등록
+    public void InsertNewCustomerInfo(String customerName,String customerPhone,String customerEmail,String customerBirth){
         httpCommunicationProcess=new HttpCommunicationProcess();
         String responseRawDate=null;
         try{
-            responseRawDate=httpCommunicationProcess.execute("http://"+hostName+apiName+"/InsertNewCustomerInfo/?name="+customerName+"").get();
-            ///?name=<고객 이름>&phone=<고객의 전화번호>&email=<고객의 이메일 주소>&birthday=<고객의 생일>&countryCode=<고객이 살고 있는 나라 >&level=<고객의 등급>&updateInfoDate=<마지막 정보 수정 날짜>&androidSDKLevel=<고객이 사용중인 디바이스 안드로이드 api 레벨>&deviceName=<고객이 사용중인 디바이스 이름>
+            responseRawDate=httpCommunicationProcess.execute("http://"+hostName+apiName+"/InsertNewCustomerInfo/?name="+customerName+"&phone="+customerPhone+"&email="+customerEmail+"&birthday="+customerBirth+"").get();
             Log.d(logCatTag,responseRawDate);
             JSONObject jsonObject=new JSONObject(responseRawDate);
             if(jsonObject.getString("Result").equals("OK")){
