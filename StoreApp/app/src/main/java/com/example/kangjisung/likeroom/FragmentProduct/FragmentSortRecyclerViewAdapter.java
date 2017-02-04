@@ -48,7 +48,7 @@ public class FragmentSortRecyclerViewAdapter extends RecyclerView.Adapter<Fragme
     public ViewHolder onCreateViewHolder(ViewGroup parent,
                                          int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_fragment_much_store_recycler_view, parent, false);
+                .inflate(R.layout.product_much_store_listitem, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }

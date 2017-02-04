@@ -48,7 +48,7 @@ public class FragmentMuchStoreRecyclerViewAdapter extends RecyclerView.Adapter<F
     public ViewHolder onCreateViewHolder(ViewGroup parent,
                                          int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_fragment_much_store_recycler_view, parent, false);
+                .inflate(R.layout.product_much_store_listitem, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -65,12 +65,14 @@ public class FragmentMuchStoreRecyclerViewAdapter extends RecyclerView.Adapter<F
 
             }
         });
+        /*
         if(ProductObjManager.productInfos.get(position).isStar()) {
             holder.ivIsStar.setBackgroundResource(R.drawable.user_listview_background_star);
         }
         else{
             holder.ivIsStar.setBackgroundResource(R.drawable.user_listview_background);
         }
+        */
 
     }
 
