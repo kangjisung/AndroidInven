@@ -11,7 +11,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:id="@+id/layout_select">
+        android:id="@+id/layout_select"
+        android:background="?attr/theme_color_L3">
 
         <View
             android:layout_height="match_parent"
