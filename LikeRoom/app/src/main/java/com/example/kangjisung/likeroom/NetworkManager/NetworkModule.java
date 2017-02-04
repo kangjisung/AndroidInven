@@ -68,6 +68,25 @@ public class NetworkModule {
         }
     }
 
+    public void DelMemberFromStore(int uniqueRegisteredId) {
+        httpCommunicationProcess = new HttpCommunicationProcess();
+        String responseRawData = null;
+        try {
+            responseRawData = httpCommunicationProcess.execute("http://" + hostName + apiName + "/DelMemberFromStore/?customerAndStoreRegisteredId=" + uniqueRegisteredId).get();
+            Log.d(logCatTag, responseRawData);
+            JSONObject jsonObject = new JSONObject(responseRawData);
+            if(jsonObject.getString("Result").equals("Ok")) {
+                Log.d(logCatTag, "ok");
+            }
+            else {
+                Log.d(logCatTag, "fail");
+            }
+        }
+        catch (Exception err) {
+            Log.d(logCatTag, "Error in DelMemberFromStore: " + err.getMessage());
+        }
+    }
+
     public void InsertNewCustomerInfo(String customerName){
         httpCommunicationProcess=new HttpCommunicationProcess();
         String responseRawDate=null;

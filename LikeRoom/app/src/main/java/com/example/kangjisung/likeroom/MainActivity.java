@@ -50,7 +50,8 @@ public class MainActivity extends ActionBarActivity {
 
         NetworkModule networkModule=new NetworkModule();
         //networkModule.InsertNewCustomerInfo("강지성");
-        networkModule.AddToStoreAsNewMember(1, 1);
+        //networkModule.AddToStoreAsNewMember(1, 1);
+        //networkModule.DelMemberFromStore(1);
 
         //SimpleDatabaseTest simpleDatabaseTest = new SimpleDatabaseTest(getApplicationContext());
 
