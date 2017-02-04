@@ -1,6 +1,7 @@
 package com.example.kangjisung.likeroom;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBa
 public class MainActivity extends AppCompatActivity
 {
     static DatabaseHelper databaseHelperTest;
+    public static Context con;
 
     ArrayList<ProductSellTodayListItem> sellTodayArrayList = new ArrayList<>();
     ArrayList<ProductMuchStoreListItem> muchStoreArrayList = new ArrayList<>();
