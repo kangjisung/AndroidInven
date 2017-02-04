@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity
                 CheckTypesTask task = new CheckTypesTask();
                 task.execute();
             }
-        }, 1500);
+        }, 500);
     }
 
     // 로딩창 구현
@@ -60,13 +60,15 @@ public class MainActivity extends AppCompatActivity
         {
             //////////////////////////////////////////요기서, 제품 정보 배열 추가.
             ProductObjManager.add(new ProductListItem("소보로빵", true, new Date(2011,10,20), new Date(2000,2,3), new Date(2010,12,30), 100, 200));
-            ProductObjManager.add(new ProductListItem("정성욱", false, new Date(2012,10,20), new Date(2020,2,3), new Date(2002,12,30), 100, 200));
-            ProductObjManager.add(new ProductListItem("오연오", false, new Date(2013,10,20), new Date(2030,2,3), new Date(2004,12,30), 100, 200));
-            ProductObjManager.add(new ProductListItem("박정현", true, new Date(2014,10,20), new Date(2040,2,3), new Date(2020,12,30), 100, 200));
-            ProductObjManager.add(new ProductListItem("김진성", false, new Date(2012,9,20), new Date(2050,2,3), new Date(2015,12,30), 100, 200));
+            ProductObjManager.add(new ProductListItem("바게트빵", false, new Date(2012,9,20), new Date(2050,2,3), new Date(2015,12,30), 100, 200));
+            ProductObjManager.add(new ProductListItem("맛있는빵", false, new Date(2012,9,20), new Date(2050,2,3), new Date(2015,12,30), 100, 200));
+            ProductObjManager.add(new ProductListItem("크림빵", false, new Date(2012,10,20), new Date(2020,2,3), new Date(2002,12,30), 100, 200));
+            ProductObjManager.add(new ProductListItem("케익", false, new Date(2013,10,20), new Date(2030,2,3), new Date(2004,12,30), 100, 200));
+            ProductObjManager.add(new ProductListItem("우유", true, new Date(2014,10,20), new Date(2040,2,3), new Date(2020,12,30), 100, 200));
+            ProductObjManager.add(new ProductListItem("사탕", false, new Date(2012,9,20), new Date(2050,2,3), new Date(2015,12,30), 100, 200));
             ProductObjManager.context=getApplicationContext();
 
-            SystemClock.sleep(1000);
+            SystemClock.sleep(500);
 
             return null;
         }
