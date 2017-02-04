@@ -79,7 +79,7 @@ public class NetworkModule {
             Log.d(logCatTag,"Error in LoadCustomerInfo: "+err.getMessage());
         }
     }
-    //////쿠폰 사용기능
+    /*//////쿠폰 사용기능
     public void UseTargetCoupon(String customerAndStoreId,String updateDate,String couponId){
         httpCommunicationProcess=new HttpCommunicationProcess();
         String responseRawDate=null;
@@ -94,8 +94,19 @@ public class NetworkModule {
         }catch (Exception err){
             Log.d(logCatTag,"Error in UseTargetCoupon: "+err.getMessage());
         }
-
+    }*/
+    /////공지 리스트
+    public void ShowTargetStoreNoticeList(String shopId){
+        httpCommunicationProcess=new HttpCommunicationProcess();
+        String responseRawDate=null;
+        try{
+            responseRawDate=httpCommunicationProcess.execute("http://"+hostName+apiName+"/ShowTargetStoreNoticeList/?shopId="+shopId+"").get();
+            Log.d(logCatTag,responseRawDate);
+        }catch (Exception err){
+            Log.d(logCatTag,"Error in ShowTargetStoreNoticeList: "+err.getMessage());
+        }
     }
+
 
 
 }
