@@ -70,7 +70,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/button6"
+                android:id="@+id/buttonSettingTheme"
                 android:background="@drawable/button_mask" />
 
             <TextView
@@ -110,7 +110,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/button7"
+                android:id="@+id/buttonSettingHelp"
                 android:background="@drawable/button_mask" />
 
             <TextView
@@ -150,7 +150,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/button8"
+                android:id="@+id/buttonSettingAsk"
                 android:background="@drawable/button_mask" />
 
             <TextView
@@ -190,7 +190,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/button9"
+                android:id="@+id/buttonSettingPro"
                 android:background="@drawable/button_mask" />
 
             <TextView

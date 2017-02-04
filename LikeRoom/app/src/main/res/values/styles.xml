@@ -71,4 +71,8 @@
         <item name="android:ems">256</item>
         <item name="android:padding">0dp</item>
     </style>
+
+    <style name="SettingAlertDialog" parent="android:Theme.Dialog">
+        <item name="android:textSize">20dp</item>
+    </style>
 </resources>
