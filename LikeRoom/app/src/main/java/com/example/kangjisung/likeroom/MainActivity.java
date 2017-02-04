@@ -49,7 +49,8 @@ public class MainActivity extends ActionBarActivity {
         final AlertDialog.Builder alertNoticeBuilder = new AlertDialog.Builder(this);
 
         NetworkModule networkModule=new NetworkModule();
-        networkModule.InsertNewCustomerInfo("강지성");
+        //networkModule.InsertNewCustomerInfo("강지성");
+        networkModule.AddToStoreAsNewMember(1, 1);
 
         //SimpleDatabaseTest simpleDatabaseTest = new SimpleDatabaseTest(getApplicationContext());
 

@@ -48,6 +48,26 @@ public class NetworkModule {
         }
     }
 
+    public void AddToStoreAsNewMember(int customerId, int targetStoreId) {
+        httpCommunicationProcess = new HttpCommunicationProcess();
+        String responseRawData = null;
+        try {
+            responseRawData = httpCommunicationProcess.execute("http://" + hostName + apiName + "/AddToStoreAsNewMember/?customerId=" + customerId
+                                                                + "&storeId=" + targetStoreId).get();
+            Log.d(logCatTag, responseRawData);
+            JSONObject jsonObject = new JSONObject(responseRawData);
+            if(jsonObject.getString("Result").equals("Ok")) {
+                Log.d(logCatTag, "ok");
+            }
+            else{
+                Log.d(logCatTag, "fail");
+            }
+        }
+        catch (Exception err) {
+            Log.d(logCatTag, "Error in AddToStoreAsNewMember: " + err.getMessage());
+        }
+    }
+
     public void InsertNewCustomerInfo(String customerName){
         httpCommunicationProcess=new HttpCommunicationProcess();
         String responseRawDate=null;
