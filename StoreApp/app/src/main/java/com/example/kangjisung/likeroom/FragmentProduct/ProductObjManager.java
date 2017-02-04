@@ -3,6 +3,8 @@ package com.example.kangjisung.likeroom.FragmentProduct;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 
+import com.example.kangjisung.likeroom.FragmentProduct.ListView.FragmentSortRecyclerViewAdapter;
+import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
 import com.example.kangjisung.likeroom.Util.SharedPreferenceManager;
 
 import java.text.SimpleDateFormat;
@@ -10,10 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-
-/**
- * Created by user on 2016-12-30.
- */
 
 public class ProductObjManager {
     public static ArrayList<ProductListItem> productInfos = new ArrayList<ProductListItem>();
@@ -25,9 +23,8 @@ public class ProductObjManager {
 
     }
     public static void add(ProductListItem productInfo){
-        productInfo.getSellTodayDate().setYear(productInfo.getSellTodayDate().getYear()-1900);
-        productInfo.getRegisteredDate().setYear(productInfo.getRegisteredDate().getYear()-1900);
-        productInfo.getMuchStoreDate().setYear(productInfo.getMuchStoreDate().getYear()-1900);
+        productInfo.getSellTodayDate().setYear(productInfo.getSellTodayDate().getYear());
+        productInfo.getMuchStoreDate().setYear(productInfo.getMuchStoreDate().getYear());
         productInfos.add(productInfo);
         notifyChanged();
     }
@@ -35,9 +32,8 @@ public class ProductObjManager {
         return productInfos.get(position);
     }
     public static void modify(ProductListItem productInfo, int position){
-        productInfo.getSellTodayDate().setYear(productInfo.getSellTodayDate().getYear()-1900);
-        productInfo.getRegisteredDate().setYear(productInfo.getRegisteredDate().getYear()-1900);
-        productInfo.getMuchStoreDate().setYear(productInfo.getMuchStoreDate().getYear()-1900);
+        productInfo.getSellTodayDate().setYear(productInfo.getSellTodayDate().getYear());
+        productInfo.getMuchStoreDate().setYear(productInfo.getMuchStoreDate().getYear());
         productInfos.set(position,productInfo);
         notifyChanged();
     }
@@ -63,10 +59,10 @@ public class ProductObjManager {
                 sortByNameDesc();
                 break;
             case 2:
-                sortByRegisterAsc();
+                sortByModifySelltodayAsc();
                 break;
             case 3:
-                sortByRegisterDesc();
+                sortByModifySelltodayDesc();
                 break;
             case 4:
                 sortByModifySelltodayAsc();
@@ -93,18 +89,6 @@ public class ProductObjManager {
         else{
             sortByNameAsc();
             sharedPreferenceManager.putInt("product_sort",0,context);
-        }
-        notifyChanged();
-    }
-    public static void sortByRegister(){
-        if(sharedPreferenceManager.getInt("product_sort",context)==2){
-            sortByRegisterDesc();
-            sharedPreferenceManager.putInt("product_sort",3,context);
-
-        }
-        else{
-            sortByRegisterAsc();
-            sharedPreferenceManager.putInt("product_sort",2,context);
         }
         notifyChanged();
     }
@@ -140,14 +124,6 @@ public class ProductObjManager {
         Collections.sort(productInfos,new NameDescCompare());
         notifyChanged();
     }
-    public static void sortByRegisterAsc(){
-        Collections.sort(productInfos,new RegisterAscCompare());
-        notifyChanged();
-    }
-    public static void sortByRegisterDesc(){
-        Collections.sort(productInfos,new RegisterDescCompare());
-        notifyChanged();
-    }
     public static void sortByModifySelltodayAsc(){
         Collections.sort(productInfos,new ModifySellTodayAscCompare());
         notifyChanged();
@@ -176,20 +152,6 @@ public class ProductObjManager {
         public int compare(ProductListItem arg0, ProductListItem arg1) {
             // TODO Auto-generated method stub
             return arg1.getName().compareTo(arg0.getName());
-        }
-    }
-    static class RegisterAscCompare implements Comparator<ProductListItem> {
-        @Override
-        public int compare(ProductListItem arg0, ProductListItem arg1) {
-            // TODO Auto-generated method stub
-            return arg0.getRegisteredDate().compareTo(arg1.getRegisteredDate());
-        }
-    }
-    static class RegisterDescCompare implements Comparator<ProductListItem> {
-        @Override
-        public int compare(ProductListItem arg0, ProductListItem arg1) {
-            // TODO Auto-generated method stub
-            return arg1.getRegisteredDate().compareTo(arg0.getRegisteredDate());
         }
     }
     static class ModifyMuchStoreAscCompare implements Comparator<ProductListItem> {

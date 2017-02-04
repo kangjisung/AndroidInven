@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.kangjisung.likeroom.FragmentProduct.ListView.FragmentMuchStoreRecyclerViewAdapter;
 import com.example.kangjisung.likeroom.R;
 
 public class FragmentMuchStore extends Fragment {
@@ -16,7 +17,6 @@ public class FragmentMuchStore extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     boolean flag=true;
     int sortingStatus;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_much_store, container, false);

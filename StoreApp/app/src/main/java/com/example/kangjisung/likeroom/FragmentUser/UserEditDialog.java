@@ -1,6 +1,5 @@
 package com.example.kangjisung.likeroom.FragmentUser;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -11,11 +10,10 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.kangjisung.likeroom.FragmentUser.ListView.UserMainListItem;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
-import com.example.kangjisung.likeroom.Util.CalendarDialog;
 
 import java.util.Calendar;
 
