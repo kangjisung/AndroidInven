@@ -111,6 +111,26 @@ public class NetworkModule {
         }
     }
 
+    public void InsertMileageLog(int uniqueRegisteredId, int mileageSize) {
+        httpCommunicationProcess = new HttpCommunicationProcess();
+        String responseRawData = null;
+        try {
+            responseRawData = httpCommunicationProcess.execute("http://" + hostName + apiName + "/InsertMileageLog/?customerAndStoreRegisteredId=" + uniqueRegisteredId +
+                                                                "&mileageSize=" + mileageSize + "&changeDate=0000-00-00").get();
+            Log.d(logCatTag, responseRawData);
+            JSONObject jsonObject = new JSONObject(responseRawData);
+            if(jsonObject.getString("Result").equals("Ok")) {
+                Log.d(logCatTag, "ok");
+            }
+            else {
+                Log.d(logCatTag, "fail");
+            }
+        }
+        catch (Exception err) {
+            Log.d(logCatTag, "Error in InsertMileageLog: " + err.getMessage());
+        }
+    }
+
     public void InsertNewCustomerInfo(String customerName){
         httpCommunicationProcess=new HttpCommunicationProcess();
         String responseRawDate=null;

@@ -52,7 +52,8 @@ public class MainActivity extends ActionBarActivity {
         //networkModule.InsertNewCustomerInfo("강지성");
         //networkModule.AddToStoreAsNewMember(1, 1);
         //networkModule.DelMemberFromStore(1);
-        networkModule.GetStoreAndCustomerRegisteredInfo(1);
+        //networkModule.GetStoreAndCustomerRegisteredInfo(1);
+        networkModule.InsertMileageLog(1, 200);
 
         //SimpleDatabaseTest simpleDatabaseTest = new SimpleDatabaseTest(getApplicationContext());
 
