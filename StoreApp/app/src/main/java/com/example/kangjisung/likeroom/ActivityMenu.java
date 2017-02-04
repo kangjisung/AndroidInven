@@ -20,9 +20,9 @@ import com.example.kangjisung.likeroom.Util.NoScrollViewPager;
 public class ActivityMenu extends AppCompatActivity
 {
     private int[] tabStringResIds = {
-            R.string.menu_item_string,
+            R.string.menu_point_string,
             R.string.menu_user_string,
-            R.string.menu_point_string
+            R.string.menu_item_string
     };
     private TabLayout tabLayout;
     private TextView textViewTitle;

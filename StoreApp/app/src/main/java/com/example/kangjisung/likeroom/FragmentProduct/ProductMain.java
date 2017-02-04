@@ -8,6 +8,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -17,8 +18,8 @@ import com.example.kangjisung.likeroom.Util.FirstPageFragmentListener;
 import com.github.clans.fab.FloatingActionMenu;
 
 public class ProductMain extends Fragment implements View.OnClickListener {
-    private ImageButton btnSellToday;
-    private ImageButton btnMuchStore;
+    private Button btnSellToday;
+    private Button btnMuchStore;
     public static NoScrollViewPager noScrollViewPager;
     private TextView tvFragmentItemMain;
     private TextView tvFragmentItemMainDate;
@@ -35,11 +36,14 @@ public class ProductMain extends Fragment implements View.OnClickListener {
     @Override
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View rootView=inflater.inflate(R.layout.item_main, container, false);
+        final View rootView=inflater.inflate(R.layout.product_main, container, false);
 
         ///////init///////
-        btnSellToday=(ImageButton)rootView.findViewById(R.id.btn_fragment_item_main_sell_today);
-        btnMuchStore=(ImageButton)rootView.findViewById(R.id.btn_fragment_item_main_store_match);
+        btnSellToday=(Button)rootView.findViewById(R.id.btn_fragment_item_main_sell_today);
+        btnMuchStore=(Button)rootView.findViewById(R.id.btn_fragment_item_main_store_match);
+        btnSellToday.setOnClickListener(onClickSelectButton);
+        btnMuchStore.setOnClickListener(onClickSelectButton);
+
         noScrollViewPager=(NoScrollViewPager) rootView.findViewById(R.id.vp_fragment_item_main);
         tvFragmentItemMain=(TextView)rootView.findViewById(R.id.tv_fragment_item_main);
         tvFragmentItemMainDate=(TextView)rootView.findViewById(R.id.tv_fragment_item_main_date);
@@ -58,6 +62,14 @@ public class ProductMain extends Fragment implements View.OnClickListener {
 
         return rootView;
     }
+
+    public Button.OnClickListener onClickSelectButton = new Button.OnClickListener() {
+        @Override
+        public void onClick(View onClickView) {
+            switch(onClickView.getId()){
+            }
+        }
+    };
 
     @Override
     public void onClick(View view) {
