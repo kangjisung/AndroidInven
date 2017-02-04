@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">LikeRoom</string>
+    <string name="action_settings">Settings</string>
+    <string name="mainactivity_string">메인화면</string>
+
+    <string name="menu_item_string">제품 정보</string>
+    <string name="menu_user_string">고객 정보</string>
+    <string name="menu_point_string">포인트 적립</string>
+
+    <string name="hello_blank_fragment_item">제품 정보</string>
+    <string name="hello_blank_fragment_user">고객 정보</string>
+    <string name="hello_blank_fragment_point">포인트 적립</string>
+
+    <string name="sort_fab_fragment_item_main">정렬</string>
+    <string name="new_item_add_fab_fragment_item_main">새 제품 추가</string>
+</resources>

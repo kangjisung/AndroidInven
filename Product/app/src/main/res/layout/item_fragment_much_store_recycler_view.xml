@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:layout_height="65dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp"
+        android:id="@+id/star"
+        android:background="@drawable/user_listview_background_star">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="70dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="65dp"
+                android:layout_weight="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="이름"
+                    android:id="@+id/tv_name"
+                    android:textColor="#000000"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="폰번호"
+                    android:id="@+id/tv_added_date"
+                    android:textSize="16sp"
+                    android:textColor="#666666"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <TextView
+                android:text="포인트"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_number"
+                android:layout_weight="5"
+                android:layout_width="match_parent"
+                android:textColor="@color/clrTextColorDeepDark"
+                android:gravity="center_vertical"
+                android:textAlignment="viewEnd"
+                android:textSize="16sp"
+                android:singleLine="true" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/ib_write"
+        android:gravity="center_vertical"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/user_listview_desc_btn"
+        android:layout_centerVertical="true"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginRight="4dp" />
+
+</RelativeLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:gravity="left|top"
+        android:drawable="@mipmap/rounded_corner"
+        android:width="@dimen/page_corner_radius"
+        android:height="@dimen/page_corner_radius">
+    </item>
+    <item
+        android:gravity="right|top"
+        android:width="@dimen/page_corner_radius"
+        android:height="@dimen/page_corner_radius">
+        <rotate
+            android:pivotX="50%" android:pivotY="50%"
+            android:fromDegrees="90" android:toDegrees="0">
+            <bitmap android:src="@mipmap/rounded_corner" />
+        </rotate>
+    </item>
+    <item
+        android:gravity="right|bottom"
+        android:width="@dimen/page_corner_radius"
+        android:height="@dimen/page_corner_radius">
+        <rotate
+            android:pivotX="50%" android:pivotY="50%"
+            android:fromDegrees="180" android:toDegrees="90">
+            <bitmap android:src="@mipmap/rounded_corner" />
+        </rotate>
+    </item>
+    <item
+        android:gravity="left|bottom"
+        android:width="@dimen/page_corner_radius"
+        android:height="@dimen/page_corner_radius">
+        <rotate
+            android:pivotX="50%" android:pivotY="50%"
+            android:fromDegrees="270" android:toDegrees="180">
+            <bitmap android:src="@mipmap/rounded_corner" />
+        </rotate>
+    </item>
+</layer-list>
