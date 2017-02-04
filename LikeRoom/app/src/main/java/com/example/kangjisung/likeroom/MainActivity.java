@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
 import com.example.kangjisung.likeroom.PermissionManager.AndroidVersionController;
 import com.example.kangjisung.likeroom.PermissionManager.UserAccountCrawler;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
@@ -46,6 +47,9 @@ public class MainActivity extends ActionBarActivity {
         userAccountCrawler = new UserAccountCrawler(this);
         databaseHelper = new DatabaseHelper(getApplicationContext(), customerDatabaseName);
         final AlertDialog.Builder alertNoticeBuilder = new AlertDialog.Builder(this);
+
+        NetworkModule networkModule=new NetworkModule();
+        networkModule.InsertNewCustomerInfo("강지성");
 
         //SimpleDatabaseTest simpleDatabaseTest = new SimpleDatabaseTest(getApplicationContext());
 
