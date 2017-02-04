@@ -131,6 +131,25 @@ public class NetworkModule {
         }
     }
 
+    public void GetMileageSum(int uniqueRegisteredId) {
+        httpCommunicationProcess = new HttpCommunicationProcess();
+        String responseRawData = null;
+        try {
+            responseRawData = httpCommunicationProcess.execute("http://" + hostName + apiName + "/GetMileageSum/?customerAndStoreRegisteredId=" + uniqueRegisteredId).get();
+            Log.d(logCatTag, responseRawData);
+            JSONObject jsonObject = new JSONObject(responseRawData);
+            if(jsonObject.isNull("Result")) {
+                Log.d(logCatTag, "ok");
+            }
+            else {
+                Log.d(logCatTag, "fail");
+            }
+        }
+        catch (Exception err) {
+            Log.d(logCatTag, "Error in GetMileageSum: " + err.getMessage());
+        }
+    }
+
     public void InsertNewCustomerInfo(String customerName){
         httpCommunicationProcess=new HttpCommunicationProcess();
         String responseRawDate=null;
