@@ -29,7 +29,6 @@ public class FragmentSortRecyclerViewAdapter extends RecyclerView.Adapter<Fragme
             super(view);
             tvName=(TextView)view.findViewById(R.id.tv_name);
             tvAddedDate=(TextView)view.findViewById(R.id.tv_added_date);
-            ivIsStar=(RelativeLayout)view.findViewById(R.id.star);
             ibWrite=(Button)view.findViewById(R.id.ib_write);
             tvNumber=(TextView)view.findViewById(R.id.tv_number);
         }

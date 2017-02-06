@@ -40,7 +40,6 @@ public class ProductMain extends Fragment {
     }
 
     @Override
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = this.rootView = inflater.inflate(R.layout.product_main, container, false);
 

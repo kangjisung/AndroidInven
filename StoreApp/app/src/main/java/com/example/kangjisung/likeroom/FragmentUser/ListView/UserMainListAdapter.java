@@ -27,7 +27,6 @@ import java.util.Comparator;
 
 public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapter.UserRecyclerViewHolder> {
     private ArrayList<UserMainListItem> userMainList;
-    //private ArrayList<Boolean> userMainCheckboxStateList = new ArrayList<Boolean>();
     private Context context;
     private ViewGroup parent;
     private Boolean stampMode = false;
