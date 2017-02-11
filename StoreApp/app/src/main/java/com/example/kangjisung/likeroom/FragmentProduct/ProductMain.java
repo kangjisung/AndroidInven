@@ -40,7 +40,6 @@ public class ProductMain extends Fragment {
     }
 
     @Override
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = this.rootView = inflater.inflate(R.layout.product_main, container, false);
 
@@ -79,7 +78,6 @@ public class ProductMain extends Fragment {
                     noScrollViewPager.setCurrentItem(1,false);
                     tvFragmentItemMain.setText("월 최적재고량");
                     changeSelection(0);
-
                     /*  여기서 날짜 갱신
                     tvFragmentItemMainDate.setText("");
                     */
@@ -99,26 +97,28 @@ public class ProductMain extends Fragment {
 
     public void changeSelection(int selectSwitch)
     {
-        AppCompatImageView acivSellTodayIcon = (AppCompatImageView)rootView.findViewById(R.id.aciv_sell_today_icon);
-        AppCompatImageView acivSellTodayDot = (AppCompatImageView)rootView.findViewById(R.id.aciv_sell_today_dot);
-        AppCompatImageView acivMuchStoreIcon = (AppCompatImageView)rootView.findViewById(R.id.aciv_much_store_icon);
-        AppCompatImageView acivMuchStoreDot = (AppCompatImageView)rootView.findViewById(R.id.aciv_much_store_dot);
+        AppCompatImageView acivSelectIcon, acivSelectDot, acivUnselectIcon, acivUnselectDot;
 
         switch(selectSwitch){
             default:
             case 0:
-                acivSellTodayIcon.getBackground().setColorFilter(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_type1), PorterDuff.Mode.SRC_IN);
-                acivSellTodayDot.getBackground().setColorFilter(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_type1), PorterDuff.Mode.SRC_IN);
-                acivMuchStoreIcon.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.gray200), PorterDuff.Mode.SRC_IN);
-                acivMuchStoreDot.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.transparent), PorterDuff.Mode.SRC_IN);
+                acivSelectIcon = (AppCompatImageView)rootView.findViewById(R.id.aciv_sell_today_icon);
+                acivSelectDot = (AppCompatImageView)rootView.findViewById(R.id.aciv_sell_today_dot);
+                acivUnselectIcon = (AppCompatImageView)rootView.findViewById(R.id.aciv_much_store_icon);
+                acivUnselectDot = (AppCompatImageView)rootView.findViewById(R.id.aciv_much_store_dot);
                 break;
             case 1:
-                acivMuchStoreIcon.getBackground().setColorFilter(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_type1), PorterDuff.Mode.SRC_IN);
-                acivMuchStoreDot.getBackground().setColorFilter(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_type1), PorterDuff.Mode.SRC_IN);
-                acivSellTodayIcon.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.gray200), PorterDuff.Mode.SRC_IN);
-                acivSellTodayDot.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.transparent), PorterDuff.Mode.SRC_IN);
+                acivSelectIcon = (AppCompatImageView)rootView.findViewById(R.id.aciv_much_store_icon);
+                acivSelectDot = (AppCompatImageView)rootView.findViewById(R.id.aciv_much_store_dot);
+                acivUnselectIcon = (AppCompatImageView)rootView.findViewById(R.id.aciv_sell_today_icon);
+                acivUnselectDot = (AppCompatImageView)rootView.findViewById(R.id.aciv_sell_today_dot);
                 break;
         }
+
+        acivSelectIcon.getBackground().setColorFilter(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_type1), PorterDuff.Mode.SRC_IN);
+        acivSelectDot.getBackground().setColorFilter(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_type1), PorterDuff.Mode.SRC_IN);
+        acivUnselectIcon.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.alpha40), PorterDuff.Mode.SRC_IN);
+        acivUnselectDot.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.transparent), PorterDuff.Mode.SRC_IN);
     }
 
     public static float DpToPx(float dp){
@@ -126,6 +126,7 @@ public class ProductMain extends Fragment {
         float px = dp * (metrics.densityDpi / 160f);
         return Math.round(px);
     }
+
     public static ProductMain createInstance(FirstPageFragmentListener listener){
         ProductMain fragmentItemMain=new ProductMain();
         fragmentItemMain.firstPageListener=listener;

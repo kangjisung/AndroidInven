@@ -33,6 +33,7 @@ public class calc extends MainActivity {
     long lCurTime;  //시간계산용
     long lCurTimeTemp;  //시간계산용
 
+
     public static calc mInstance = null;
 
     //1.db only ----->기존에 있던 제품 정보(순수하게 db로부터 받아오기만 하면 됨)

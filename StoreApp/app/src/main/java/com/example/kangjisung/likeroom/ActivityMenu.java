@@ -1,21 +1,34 @@
 package com.example.kangjisung.likeroom;
 
+import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
+import com.example.kangjisung.likeroom.FragmentUser.ListView.UserMainListItem;
+import com.example.kangjisung.likeroom.FragmentUser.UserEditDialog;
+import com.example.kangjisung.likeroom.FragmentUser.UserMain;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.Util.NoScrollViewPager;
+
+import java.util.List;
 
 public class ActivityMenu extends AppCompatActivity
 {
@@ -29,6 +42,8 @@ public class ActivityMenu extends AppCompatActivity
 
     private int selectedTabColor ;
     private int unselectedTabColor;
+
+    private ActivityMenuPagerAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -47,7 +62,7 @@ public class ActivityMenu extends AppCompatActivity
         initializeColor();
 
         final NoScrollViewPager viewPager = (NoScrollViewPager)findViewById(R.id.viewPager);
-        final ActivityMenuPagerAdapter mAdapter = new ActivityMenuPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        mAdapter = new ActivityMenuPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(mAdapter);
         viewPager.setPagingDisabled();
         viewPager.setOffscreenPageLimit(3);
@@ -76,8 +91,22 @@ public class ActivityMenu extends AppCompatActivity
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+    public void onBackPressed()
+    {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setMessage("정말 종료하시겠습니까?");
+        dialog.setPositiveButton("예", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        dialog.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        dialog.show();
+        //super.onBackPressed();
     }
 
     public void tabLayoutInitialize(TabLayout tabLayout)

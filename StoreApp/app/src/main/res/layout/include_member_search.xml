@@ -151,7 +151,7 @@
         android:layout_height="match_parent"
         android:id="@+id/recyclerView"
         android:layout_below="@+id/layout_search_result"
-        android:clipToPadding="false"
-        android:paddingBottom="60dp" />
+        android:paddingBottom="60dp"
+        android:clipToPadding="false" />
 
 </RelativeLayout>

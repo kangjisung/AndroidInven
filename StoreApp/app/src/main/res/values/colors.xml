@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3f51b5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ff4081</color>
 
     <!-- Basic Color -->
     <color name="transparent">#00000000</color>
@@ -39,6 +39,9 @@
     <color name="cyan">#00FFFF</color>
     <color name="purple">#FF00FF</color>
     <color name="yellow">#FFFF00</color>
+
+    <!-- Theme Color -->
+    <color name="ripple_button">#78000000</color>
 
     <!-- Theme Color -->
     <color name="clrTextColorDeepDark">#514e3f</color>

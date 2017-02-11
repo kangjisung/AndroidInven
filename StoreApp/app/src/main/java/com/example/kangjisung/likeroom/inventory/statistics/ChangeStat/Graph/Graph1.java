@@ -30,7 +30,7 @@ public class Graph1 extends Fragment implements View.OnClickListener{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.graph1, container, false);
+        View view= inflater.inflate(R.layout.graph1, container, false);
         mView=view;
 
         multiSlider=(MultiSlider)view.findViewById(R.id.graph1_multiSlider);

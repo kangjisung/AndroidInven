@@ -19,32 +19,33 @@ public class UserNoticeMain extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.user_notice_main, container, false);
+        View fragmentView = inflater.inflate(R.layout.user_notice_main, container, false);
 
         UserNoticeListAdapter mAdapter = new UserNoticeListAdapter();
 
-        ListView listView = (ListView)view.findViewById(R.id.listView);
+        ListView listView = (ListView)fragmentView.findViewById(R.id.listView);
         listView.setAdapter(mAdapter);
 
-        mAdapter.addItem("제목1", "내용1", new GregorianCalendar(2016, 0, 1), new GregorianCalendar(2016, 11, 25), 1);
-        mAdapter.addItem("제목2", "내용2", new GregorianCalendar(2015, 1, 1), new GregorianCalendar(2015, 11, 25), 2);
+        mAdapter.addItem("벨만 포드 알고리즘", "벨만-포드 알고리즘(Bellman-Ford Algorithm)은 최단 경로를 구하는 알고리즘이다.\n" +
+                "가중 유향 그래프에서 적용할 수 있다. 시간 복잡도는 O(VE)이다.\n" +
+                "다익스트라 알고리즘에 비해 느린 시간 복잡도를 가지고 있으나, 음의 가중치에 대한 최단 경로를 구할 수 있다. 단, 음의 사이클은 해당되지 않는다.\n", new GregorianCalendar(2016, 0, 1), new GregorianCalendar(2016, 11, 25), 1);
+        mAdapter.addItem("다익스트라 알고리즘", "There's no such thing like close the fragment, but you can remove the fragment from the stack. To pop the fragment use the following inside button click listener", new GregorianCalendar(2015, 1, 1), new GregorianCalendar(2015, 11, 25), 2);
         mAdapter.addItem("제목3", "내용3", new GregorianCalendar(2014, 2, 1), new GregorianCalendar(2014, 11, 25), 3);
         mAdapter.addItem("제목4", "내용4", new GregorianCalendar(2013, 3, 1), new GregorianCalendar(2013, 11, 25), 1);
 
         listViewHeightSet(mAdapter, listView);
 
-        Button buttonBack = (Button)view.findViewById(R.id.button_back);
+        Button buttonBack = (Button)fragmentView.findViewById(R.id.button_back);
         buttonBack.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View view) {
-                getActivity().onBackPressed();
+                getActivity().getSupportFragmentManager().popBackStack();
             }
         });
 
-        return view;
+        return fragmentView;
     }
 
     public void listViewHeightSet(BaseAdapter listAdapter, ListView listView){
-        /*
         int totalHeight = 0;
         for (int i = 0; i < listAdapter.getCount(); i++){
             View listItem = listAdapter.getView(i, null, listView);
@@ -55,6 +56,5 @@ public class UserNoticeMain extends Fragment
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount()));
         listView.setLayoutParams(params);
-        */
     }
 }

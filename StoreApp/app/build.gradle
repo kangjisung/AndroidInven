@@ -39,8 +39,8 @@ dependencies {
     })
     compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
     compile 'io.apptik.widget:multislider:1.2'
-    //compile project(':json_simple-1.1')
 }
+
 
 repositories {
     maven { url "https://jitpack.io" }

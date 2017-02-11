@@ -39,10 +39,11 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_main);
+        con = getApplicationContext();
         databaseHelperTest = new DatabaseHelper(getApplicationContext(), ClientDataBase.testDatabaseName);
 
-        NetWorkOrderProcessManager netWorkOrderProcessManager = new NetWorkOrderProcessManager();
-        netWorkOrderProcessManager.LoadAllStoreInfo();
+        //NetWorkOrderProcessManager netWorkOrderProcessManager = new NetWorkOrderProcessManager();
+        //netWorkOrderProcessManager.LoadAllStoreInfo();
         Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
             @Override
@@ -73,18 +74,18 @@ public class MainActivity extends AppCompatActivity
         {
             //////////////////////////////////////////요기서, 제품 정보 배열 추가.
             //제품 이름,날짜,판매량 불러오기
-            new ClientDataBase("select `제품정보`.`이름`,`제품판매량`.`년`,`제품판매량`.`월`,`제품판매량`.`일`,`제품판매량`.`판매량` from `제품정보` join `제품판매량` on `제품정보`.`제품코드`= `제품판매량`.`제품코드` group by `제품판매량`.`제품코드`", 1, 5, getApplicationContext());
+            /*new ClientDataBase("select `제품정보`.`이름`,`제품판매량`.`년`,`제품판매량`.`월`,`제품판매량`.`일`,`제품판매량`.`판매량` from `제품정보` join `제품판매량` on `제품정보`.`제품코드`= `제품판매량`.`제품코드` group by `제품판매량`.`제품코드`", 1, 5, getApplicationContext());
             int cnt = 0;
             while (true) {
                 if (DBstring[cnt] != null) {
                     sellTodayArrayList.add(new ProductSellTodayListItem(DBstring[cnt], Integer.parseInt(DBstring[cnt + 1]), Integer.parseInt(DBstring[cnt + 2]), Integer.parseInt(DBstring[cnt + 3]), Integer.parseInt(DBstring[cnt + 4])));
                     cnt += 5;
                 } else if (DBstring[cnt] == null) break;
-            }
+            }*/
             Collections.sort(sellTodayArrayList, new SellNameAscCompare());
 
             new ClientDataBase("select `제품정보`.`이름`,`최적재고량`.`날짜`,`최적재고량`.`최적재고량` from `제품정보` join `최적재고량` on `제품정보`.`제품코드`= `최적재고량`.`제품코드` group by `최적재고량`.`제품코드` having max(`날짜`);", 1, 3, getApplicationContext());
-            cnt = 0;
+            int cnt = 0;
             while (true) {
                 if (DBstring[cnt] != null) {
                     muchStoreArrayList.add(new ProductMuchStoreListItem(DBstring[cnt], DBstring[cnt + 1], Integer.parseInt(DBstring[cnt + 2])));

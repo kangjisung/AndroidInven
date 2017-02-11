@@ -15,9 +15,8 @@ public class ClientDataBase{
     static LocalHostDatabaseManager localHostDatabaseManager;
     public static String testDatabaseName = "ShopkeeperDatabase.db";
     static SQLiteDatabase sqLiteDatabase;
-    public static String DBstring[]=new String[30];
+    public static String DBstring[]=new String[120];
     Context context;
-    int ii=0;
 
     /////////////////db가동
    public ClientDataBase(String SQL, int i, int k, Context context){ ////i=1이면 select문// i=2이면 insert문// i=3이면 update문  k=받아오는인자수
@@ -26,10 +25,7 @@ public class ClientDataBase{
            //databaseHelperTest = new DatabaseHelper(context, testDatabaseName);
            localHostDatabaseManager = new LocalHostDatabaseManager(context, context.getApplicationInfo().dataDir + "/databases/", testDatabaseName);
            sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
-           while(DBstring[ii]!=null) {
-               DBstring[ii]=null;
-               ii++;
-           }
+           DBstring=new String[120];
            if(i==1){
                Cursor c = sqLiteDatabase.rawQuery(SQL,null);
                int cnt=0;

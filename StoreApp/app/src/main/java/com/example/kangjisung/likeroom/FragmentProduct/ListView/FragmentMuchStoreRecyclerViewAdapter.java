@@ -3,7 +3,9 @@ package com.example.kangjisung.likeroom.FragmentProduct.ListView;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.inventory.calc;
 import com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.InvenActivity;
 
 public class FragmentMuchStoreRecyclerViewAdapter extends RecyclerView.Adapter<FragmentMuchStoreRecyclerViewAdapter.ViewHolder> {
@@ -21,7 +24,7 @@ public class FragmentMuchStoreRecyclerViewAdapter extends RecyclerView.Adapter<F
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         // each data item is just a string in this case
         public TextView tvName;
         public TextView tvAddedDate;
@@ -32,9 +35,16 @@ public class FragmentMuchStoreRecyclerViewAdapter extends RecyclerView.Adapter<F
             super(view);
             tvName=(TextView)view.findViewById(R.id.tv_name);
             tvAddedDate=(TextView)view.findViewById(R.id.tv_added_date);
-            ivIsStar=(RelativeLayout)view.findViewById(R.id.star);
             ibWrite=(Button)view.findViewById(R.id.ib_write);
             tvNumber=(TextView)view.findViewById(R.id.tv_number);
+            view.setOnCreateContextMenuListener(this);
+        }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            menu.setHeaderTitle("작업 선택");
+            menu.add(Menu.NONE, 2, Menu.NONE, "수정");
+            menu.add(Menu.NONE, 3, Menu.NONE, "삭제");
         }
     }
 
@@ -63,18 +73,11 @@ public class FragmentMuchStoreRecyclerViewAdapter extends RecyclerView.Adapter<F
         holder.ibWrite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //InvenListViewItem item = (InvenListViewItem) parent.getItemAtPosition(position) ;
-
-                //calc.RefreshClass(item.getBname());
-
-                //String nameStr = item.getBname() ;
-                //mil.putExtra("name", nameStr);
-
-                //get TextView's Text.
+                calc c;
+                c=calc.getInstance();
+                c.RefreshClass(ProductObjManager.get(position).getName());
                 context.startActivity(mil);
                 Toast.makeText(context.getApplicationContext(), "클릭.", Toast.LENGTH_SHORT).show();
-
-                // TODO : use strText
 
             }
         });
