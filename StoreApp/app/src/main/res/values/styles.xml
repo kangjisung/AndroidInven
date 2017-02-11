@@ -1,5 +1,6 @@
 <resources>
-    <style name="LikeRoomTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="LikeRoomTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">?attr/theme_color_type1</item>
     </style>
     <style name="LikeRoomTheme_BreadTheme" parent="@style/LikeRoomTheme">
         <item name="theme_color_L3">#FEFAE9</item>

@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -18,6 +19,7 @@ public class FragmentSellToday extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     public LinearLayout linearLayout;
     int sortingStatus;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView=inflater.inflate(R.layout.fragment_sell_today, container, false);
@@ -41,5 +43,21 @@ public class FragmentSellToday extends Fragment {
         ProductObjManager.addRecyclerView(rvFragmentSellToday,mAdapter);
         sortingStatus=ProductObjManager.sort();
         return rootView;
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item)
+    {
+        switch(item.getItemId()){
+            case 4:
+                // TODO : 수정을 눌렀을 경우
+                break;
+            case 5:
+                // TODO : 삭제를 눌렀을 경우
+                break;
+            default:
+                break;
+        }
+        return super.onContextItemSelected(item);
     }
 }

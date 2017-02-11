@@ -33,7 +33,7 @@ import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBa
 
 public class UserMain extends Fragment
 {
-    private View contentView;
+    private View fragmentView;
     private RecyclerView userRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private UserMainListAdapter mAdapter;
@@ -53,12 +53,12 @@ public class UserMain extends Fragment
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        contentView = inflater.inflate(R.layout.user_main, container, false);
+        fragmentView = inflater.inflate(R.layout.user_main, container, false);
 
-        mAdapter = new UserMainListAdapter(contentView);
+        mAdapter = new UserMainListAdapter(fragmentView);
         mLayoutManager = new LinearLayoutManager(getContext());
 
-        userRecyclerView = (RecyclerView) contentView.findViewById((R.id.recyclerView));
+        userRecyclerView = (RecyclerView) fragmentView.findViewById((R.id.recyclerView));
         userRecyclerView.setAdapter(mAdapter);
         userRecyclerView.setLayoutManager(mLayoutManager);
 
@@ -66,9 +66,9 @@ public class UserMain extends Fragment
         setTextViewSearchResult(false);
         registerForContextMenu(userRecyclerView);
 
-        RelativeLayout layoutSortByName = (RelativeLayout) contentView.findViewById(R.id.layout_sort_by_name);
-        RelativeLayout layoutSortByPhone = (RelativeLayout) contentView.findViewById(R.id.layout_sort_by_phone);
-        RelativeLayout layoutSortByPoint = (RelativeLayout) contentView.findViewById(R.id.layout_sort_by_point);
+        RelativeLayout layoutSortByName = (RelativeLayout) fragmentView.findViewById(R.id.layout_sort_by_name);
+        RelativeLayout layoutSortByPhone = (RelativeLayout) fragmentView.findViewById(R.id.layout_sort_by_phone);
+        RelativeLayout layoutSortByPoint = (RelativeLayout) fragmentView.findViewById(R.id.layout_sort_by_point);
 
         sortStateId = R.id.layout_sort_by_name;
         setSortOn(layoutSortByName, "ASC");
@@ -82,26 +82,26 @@ public class UserMain extends Fragment
         ((TextView)layoutSortByPhone.findViewById(R.id.view_text)).setText(R.string.user_sort_phone);
         ((TextView)layoutSortByPoint.findViewById(R.id.view_text)).setText(R.string.user_sort_point);
 
-        famMenu = (FloatingActionMenu) contentView.findViewById(R.id.menu);
-        contentView.findViewById(R.id.fab_add_user).setOnClickListener(onFabClickListener);
-        contentView.findViewById(R.id.fab_stamp).setOnClickListener(onFabClickListener);
-        contentView.findViewById(R.id.fab_notice).setOnClickListener(onFabClickListener);
-        fabStampOk = (FloatingActionButton) contentView.findViewById(R.id.fab_stamp_ok);
+        famMenu = (FloatingActionMenu) fragmentView.findViewById(R.id.menu);
+        fragmentView.findViewById(R.id.fab_add_user).setOnClickListener(onFabClickListener);
+        fragmentView.findViewById(R.id.fab_stamp).setOnClickListener(onFabClickListener);
+        fragmentView.findViewById(R.id.fab_notice).setOnClickListener(onFabClickListener);
+        fabStampOk = (FloatingActionButton) fragmentView.findViewById(R.id.fab_stamp_ok);
         fabStampOk.setVisibility(View.INVISIBLE);
         fabStampOk.setEnabled(false);
-        fabStampCancel = (FloatingActionButton) contentView.findViewById(R.id.fab_stamp_cancel);
+        fabStampCancel = (FloatingActionButton) fragmentView.findViewById(R.id.fab_stamp_cancel);
         fabStampCancel.setVisibility(View.INVISIBLE);
 
-        layoutStamp = (LinearLayout) contentView.findViewById(R.id.layout_stamp);
+        layoutStamp = (LinearLayout) fragmentView.findViewById(R.id.layout_stamp);
         layoutStamp.setVisibility(View.INVISIBLE);
 
-        checkBoxStampAll = (CheckBox) contentView.findViewById(R.id.checkBoxStampAll);
+        checkBoxStampAll = (CheckBox) fragmentView.findViewById(R.id.checkBoxStampAll);
         checkBoxStampAll.setVisibility(View.GONE);
         checkBoxStampAll.setOnClickListener(new CompoundButton.OnClickListener(){
             @Override
             public void onClick(View onClickView){
                 mAdapter.setCheckAll(checkBoxStampAll.isChecked());
-                mAdapter.setTextViewSearchResult((TextView)contentView.findViewById(R.id.textView_search_result));
+                mAdapter.setTextViewSearchResult((TextView) fragmentView.findViewById(R.id.textView_search_result));
             }
         });
 
@@ -133,7 +133,7 @@ public class UserMain extends Fragment
             }
         });
 
-        EditText editTextSearch = (EditText) contentView.findViewById(R.id.editText_search);
+        EditText editTextSearch = (EditText) fragmentView.findViewById(R.id.editText_search);
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {}
@@ -143,17 +143,17 @@ public class UserMain extends Fragment
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                contentView.findViewById(R.id.textView_search).setVisibility((s.length() == 0)?(View.VISIBLE):(View.INVISIBLE));
+                fragmentView.findViewById(R.id.textView_search).setVisibility((s.length() == 0)?(View.VISIBLE):(View.INVISIBLE));
             }
         });
 
-        return contentView;
+        return fragmentView;
     }
 
     @Override
-    public boolean onContextItemSelected(MenuItem item) {
+    public boolean onContextItemSelected(MenuItem item)
+    {
         switch(item.getItemId()){
-            default:
             case 0:
                 // TODO : 수정을 눌렀을 경우
                 UserMainListItem userItem = mAdapter.getLongClickPosition();
@@ -171,8 +171,9 @@ public class UserMain extends Fragment
             case 1:
                 // TODO : 삭제를 눌렀을 경우
                 break;
+            default:
+                break;
         }
-
         return super.onContextItemSelected(item);
     }
 
@@ -193,7 +194,7 @@ public class UserMain extends Fragment
 
     private void setTextViewSearchResult(boolean StampMode)
     {
-        TextView textViewSearchResult = (TextView)contentView.findViewById(R.id.textView_search_result);
+        TextView textViewSearchResult = (TextView) fragmentView.findViewById(R.id.textView_search_result);
         if(StampMode == false){
             textViewSearchResult.setText("등록된 회원 수 : " + mAdapter.getItemCount());
         }
@@ -233,7 +234,7 @@ public class UserMain extends Fragment
             if (includingLayout != null) {
                 if (sortStateId != includingLayout.getId()) {
                     setSortOn(includingLayout, "ASC");
-                    setSortWhite((RelativeLayout) contentView.findViewById(sortStateId));
+                    setSortWhite((RelativeLayout) fragmentView.findViewById(sortStateId));
                     sortStateId = includingLayout.getId();
                 } else {
                     RelativeLayout parentLayout = (RelativeLayout)onClickView.getParent();

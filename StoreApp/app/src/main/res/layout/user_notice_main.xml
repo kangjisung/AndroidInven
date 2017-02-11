@@ -81,8 +81,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/buttonNewNotice"
-                    style="@style/LikeRoomTheme.Button.EmptyBackground"
-                    android:background="@drawable/shape_rectangle_press" />
+                    android:background="@drawable/button_ripple_rectangle" />
 
                 <View
                     android:layout_width="match_parent"
@@ -98,7 +97,8 @@
                 android:layout_height="match_parent"
                 android:layout_below="@+id/relativeLayout"
                 android:id="@+id/listView"
-                android:scrollbars="none" />
+                android:scrollbars="none"
+                android:divider="@color/transparent" />
         </RelativeLayout>
     </ScrollView>
 

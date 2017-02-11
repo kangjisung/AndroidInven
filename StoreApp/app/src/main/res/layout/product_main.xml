@@ -16,7 +16,7 @@
 
         <View
             android:layout_height="match_parent"
-            android:background="@color/gray200"
+            android:background="@color/alpha40"
             android:layout_width="2dp"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
@@ -103,44 +103,56 @@
                     android:layout_height="match_parent"
                     android:id="@+id/btn_fragment_item_main_store_match"
                     android:background="@color/transparent" />
+
             </RelativeLayout>
         </LinearLayout>
 
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:gravity="center_horizontal"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:layout_below="@+id/layout_select"
-        android:id="@+id/layout_info">
+        android:id="@+id/layout_info"
+        android:layout_below="@+id/layout_select">
 
-        <ImageView
-            android:layout_width="40dp"
-            android:src="@mipmap/calender"
-            android:padding="8dp"
-            android:layout_height="40dp" />
-
-        <TextView
-            android:id="@+id/tv_fragment_item_main_date"
-            android:layout_width="wrap_content"
+        <View
             android:layout_height="match_parent"
-            android:text="2016/12/5"
-            android:gravity="center_vertical"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:background="@color/gray200"
+            android:layout_width="match_parent"
+            android:layout_centerInParent="true" />
 
-        <TextView
-            android:id="@+id/tv_fragment_item_main"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="월 일일판매량"
-            android:gravity="center_vertical"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
-    </LinearLayout>
+            android:gravity="center_horizontal"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:src="@mipmap/calender"
+                android:padding="8dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/tv_fragment_item_main_date"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="2016/12/5"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tv_fragment_item_main"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="월 일일판매량"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+        </LinearLayout>
+    </RelativeLayout>
 
     <com.example.kangjisung.likeroom.Util.NoScrollViewPager
         android:id="@+id/vp_fragment_item_main"
