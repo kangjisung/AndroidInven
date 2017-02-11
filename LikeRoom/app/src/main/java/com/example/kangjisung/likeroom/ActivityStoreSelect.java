@@ -71,7 +71,7 @@ public class ActivityStoreSelect extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setTheme(ColorTheme.getTheme());
+        this.setTheme(ColorTheme.getTheme(ColorTheme.basicTheme));
         setContentView(R.layout.activity_store_select);
 
         registeredStoreListViewAdapter = new NoticeRecyclerViewAdapter(DefineManager.showStoreList, this);
