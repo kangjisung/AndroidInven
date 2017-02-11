@@ -11,7 +11,7 @@ import org.json.JSONObject;
 public class NetworkModule {
     HttpCommunicationProcess httpCommunicationProcess;
 
-    String hostName = "lamb.kangnam.ac.kr:4200", apiName = "/Smoothie/2", logCatTag = "test";
+    String hostName = "stories2.iptime.org:4200", apiName = "/Smoothie/2", logCatTag = "test";
 
     public NetworkModule() {
     }
