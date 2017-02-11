@@ -1,22 +1,17 @@
 package com.example.kangjisung.likeroom;
 
-import android.app.Activity;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.Util.ColorTheme;
-import com.google.android.gms.vision.text.Text;
 
 public class ActivitySetting extends AppCompatActivity
 {
@@ -104,13 +99,24 @@ public class ActivitySetting extends AppCompatActivity
                dlg.setPositiveButton("확인",new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                dlg.setView(null);   //일단은 뷰를 아예 없애서 오류를 막음 T.T....나중에 수정해야함
+                                //dlg.setView(null);   //일단은 뷰를 아예 없애서 오류를 막음 T.T....나중에 수정해야함
                                 dialog.dismiss();
                             }
                         });
 
                 AlertDialog dialog = dlg.create();
                 dialog.show();
+            }
+        });
+        //view closeing하고 다시 열기 전 이미 열려있던 뷰를 제거하지 않아 발생하던 버그를 픽스
+        dlg.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                //Log.d("test","dsmiss");
+                if(helpview != null) {
+                    ViewGroup popUpViewGroup = (ViewGroup)helpview.getParent();
+                    popUpViewGroup.removeView(helpview);
+                }
             }
         });
 
