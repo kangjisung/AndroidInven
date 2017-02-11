@@ -6,7 +6,9 @@ import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -23,7 +25,7 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
 {
     Context context;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         // each data item is just a string in this case
         public TextView tvName;
         public TextView tvAddedDate;
@@ -35,10 +37,18 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
             tvAddedDate=(TextView)view.findViewById(R.id.tv_added_date);
             etInput=(TextView)view.findViewById(R.id.et_input);
             buttonInput = (Button)view.findViewById(R.id.button_input);
+            view.setOnCreateContextMenuListener(this);
+        }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            menu.setHeaderTitle("작업 선택");
+            menu.add(Menu.NONE, 4, Menu.NONE, "수정");
+            menu.add(Menu.NONE, 5, Menu.NONE, "삭제");
         }
     }
 
-    public FragmentSellTodayRecyclerViewAdapter( Context context) {
+    public FragmentSellTodayRecyclerViewAdapter(Context context) {
         this.context=context;
     }
 
@@ -59,7 +69,6 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
         holder.buttonInput.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View onClickView){
-                // LayoutInflater를 통해 위의 custom layout을 AlertDialog에 반영. 이 외에는 거의 동일하다.
                 LayoutInflater inflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
                 View view = inflater.inflate(R.layout.product_sell_today_input, null);
                 final EditText editTextInput = (EditText)view.findViewById(R.id.editText_input);

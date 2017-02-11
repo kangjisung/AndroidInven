@@ -22,4 +22,11 @@
         android:layout_marginBottom="3dp"
         android:layout_marginEnd="3dp" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/button_ripple_circle"
+        android:layout_marginBottom="3dp"
+        android:layout_marginEnd="3dp" />
+
 </RelativeLayout>

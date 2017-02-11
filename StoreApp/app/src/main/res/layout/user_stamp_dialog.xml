@@ -84,7 +84,6 @@
                         android:text="확인"
                         android:id="@+id/button_ok_down"
                         android:layout_below="@+id/layout_tab"
-                        android:background="@drawable/button_basic"
                         android:layout_centerHorizontal="true"
                         android:layout_width="90dp"
                         android:layout_height="40dp"

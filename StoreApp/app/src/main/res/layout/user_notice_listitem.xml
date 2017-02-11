@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="125dp">
@@ -7,89 +8,82 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="8dp"
+        android:layout_marginEnd="5dp">
 
-        android:background="?attr/theme_color_L3"
-        android:layout_marginBottom="5dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="38dp">
+
+            <TextView
+                android:text="제목"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_title"
+                android:textColor="@color/gray120"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:maxLines="1" />
+
+            <TextView
+                android:text="내용"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_body"
+                android:textColor="@color/gray120"
+                android:maxLines="3"
+                android:textSize="14dp" />
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:paddingTop="8dp">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="38dp">
-
-                <TextView
-                    android:text="제목"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textViewTitle"
-                    android:textColor="?attr/theme_color_D4"
-                    android:textStyle="bold"
-                    android:singleLine="true"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:text="내용"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textViewBody"
-                    android:textColor="?attr/theme_color_D4"
-                    android:textSize="16dp" />
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_height="38dp">
-
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_centerVertical="true"
-                    android:background="@mipmap/calender"
-                    app:backgroundTint="?attr/theme_color_D4" />
-
-                <TextView
-                    android:text="날짜"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textViewDate"
-                    android:textColor="?attr/theme_color_D4"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="35dp"
-                    android:textSize="16dp" />
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:id="@+id/imageViewType"
-                    android:background="@mipmap/icon_setting" />
-
-            </RelativeLayout>
-        </RelativeLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/buttonClick"
-            android:background="@drawable/shape_rectangle_press" />
-
-        <View
-            android:layout_width="match_parent"
-            android:background="@drawable/shape_line_gradient"
             android:layout_alignParentBottom="true"
-            android:layout_height="1dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp" />
+            android:layout_height="38dp">
 
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_centerVertical="true"
+                android:background="@mipmap/calender"
+                app:backgroundTint="@color/gray120"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:text="날짜"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_date"
+                android:textColor="@color/gray120"
+                android:layout_centerVertical="true"
+                android:textSize="14dp"
+                android:layout_marginStart="35dp" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/imageView_type"
+                android:background="@mipmap/ic_launcher"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
     </RelativeLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/button_click"
+        android:background="@drawable/button_ripple_rectangle" />
+
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/gray220"
+        android:layout_alignParentBottom="true"
+        android:layout_height="1dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp" />
 
 </RelativeLayout>

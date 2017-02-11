@@ -8,19 +8,26 @@
     android:focusableInTouchMode="true"
     android:id="@+id/relative">
 
+    <com.example.kangjisung.likeroom.Util.NoScrollViewPager
+        android:id="@+id/vp_fragment_item_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout_info">
+    </com.example.kangjisung.likeroom.Util.NoScrollViewPager>
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
         android:id="@+id/layout_select"
-        android:background="?attr/theme_color_L3">
+        android:layout_height="90dp"
+        android:background="?attr/theme_color_L2">
 
         <View
             android:layout_height="match_parent"
-            android:background="@color/gray200"
-            android:layout_width="2dp"
+            android:background="@color/alpha40"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:layout_width="1dp" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -43,10 +50,10 @@
                         android:background="@mipmap/disable_sell_today"
                         app:backgroundTint="@color/gray220"
                         android:layout_centerInParent="true"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
                         android:layout_marginBottom="5dp"
-                        android:id="@+id/aciv_sell_today_icon" />
+                        android:id="@+id/aciv_sell_today_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp" />
 
                     <android.support.v7.widget.AppCompatImageView
                         android:background="@drawable/shape_circle"
@@ -63,7 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/btn_fragment_item_main_sell_today"
-                    android:background="@color/transparent" />
+                    android:background="@drawable/button_ripple_rectangle_rad5" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -82,10 +89,10 @@
                         android:background="@mipmap/disable_store_much"
                         app:backgroundTint="@color/gray220"
                         android:layout_centerInParent="true"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
                         android:layout_marginBottom="5dp"
-                        android:id="@+id/aciv_much_store_icon" />
+                        android:id="@+id/aciv_much_store_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp" />
 
                     <android.support.v7.widget.AppCompatImageView
                         android:background="@drawable/shape_circle"
@@ -102,52 +109,74 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/btn_fragment_item_main_store_match"
-                    android:background="@color/transparent" />
+                    android:background="@drawable/button_ripple_rectangle_rad5" />
+
             </RelativeLayout>
         </LinearLayout>
 
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:gravity="center_horizontal"
-        android:background="@color/white"
-        android:orientation="horizontal"
+        android:id="@+id/layout_info"
         android:layout_below="@+id/layout_select"
-        android:id="@+id/layout_info">
+        android:background="?attr/theme_color_L3">
 
-        <ImageView
-            android:layout_width="40dp"
-            android:src="@mipmap/calender"
-            android:padding="8dp"
-            android:layout_height="40dp" />
-
-        <TextView
-            android:id="@+id/tv_fragment_item_main_date"
-            android:layout_width="wrap_content"
+        <Button
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="2016/12/5"
-            android:gravity="center_vertical"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:id="@+id/button_select_date"
+            android:background="@drawable/button_ripple_rectangle" />
 
-        <TextView
-            android:id="@+id/tv_fragment_item_main"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="월 일일판매량"
-            android:gravity="center_vertical"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
-    </LinearLayout>
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
-    <com.example.kangjisung.likeroom.Util.NoScrollViewPager
-        android:id="@+id/vp_fragment_item_main"
+            <android.support.v7.widget.AppCompatImageView
+                android:background="@mipmap/calender"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="5dp"
+                app:backgroundTint="?attr/theme_color_D4"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+            <TextView
+                android:id="@+id/tv_fragment_item_main_date"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="2016/12/5"
+                android:gravity="center_vertical"
+                android:textColor="?attr/theme_color_D4"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/tv_fragment_item_main"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="월 일일판매량"
+                android:gravity="center_vertical"
+                android:textColor="?attr/theme_color_D4"
+                android:textSize="16dp"
+                android:layout_marginStart="5dp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/layout_info">
-    </com.example.kangjisung.likeroom.Util.NoScrollViewPager>
+        android:layout_below="@+id/layout_info"
+        android:background="@drawable/shape_gradient_border_y"
+        android:rotation="180"
+        android:layout_height="3dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_below="@+id/layout_select"
+        android:background="@drawable/shape_gradient_border_y"
+        android:rotation="180"
+        android:layout_height="3dp" />
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"

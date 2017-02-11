@@ -89,7 +89,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonTempSave"
                 android:layout_weight="1"
-                style="@style/Base.Widget.AppCompat.Button"
                 android:textColor="@color/black" />
 
             <Button
@@ -98,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/button_temp_stamp"
                 android:layout_weight="1"
-                style="@style/Base.Widget.AppCompat.Button"
+                android:background="@drawable/button_ripple_rectangle"
                 android:textColor="@color/black" />
 
         </LinearLayout>

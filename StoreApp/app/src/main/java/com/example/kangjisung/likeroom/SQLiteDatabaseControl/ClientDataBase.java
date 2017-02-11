@@ -26,10 +26,7 @@ public class ClientDataBase{
            //databaseHelperTest = new DatabaseHelper(context, testDatabaseName);
            localHostDatabaseManager = new LocalHostDatabaseManager(context, context.getApplicationInfo().dataDir + "/databases/", testDatabaseName);
            sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
-           while(DBstring[ii]!=null) {
-               DBstring[ii]=null;
-               ii++;
-           }
+           DBstring = new String[30];
            if(i==1){
                Cursor c = sqLiteDatabase.rawQuery(SQL,null);
                int cnt=0;

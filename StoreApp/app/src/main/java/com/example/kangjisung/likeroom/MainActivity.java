@@ -39,8 +39,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         databaseHelperTest = new DatabaseHelper(getApplicationContext(), ClientDataBase.testDatabaseName);
 
+        /*
         NetWorkOrderProcessManager netWorkOrderProcessManager = new NetWorkOrderProcessManager();
         netWorkOrderProcessManager.LoadAllStoreInfo();
+        */
         Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
             @Override

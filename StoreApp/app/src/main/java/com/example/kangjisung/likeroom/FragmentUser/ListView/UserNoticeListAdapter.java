@@ -2,6 +2,8 @@ package com.example.kangjisung.likeroom.FragmentUser.ListView;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
+import android.support.v4.content.ContextCompat;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,11 @@ import java.util.Calendar;
 public class UserNoticeListAdapter extends BaseAdapter
 {
     private ArrayList<UserNoticeListItem> userNoticeList;
+    private int listTypeImage[] = {
+            R.mipmap.icon_notice1_notification,
+            R.mipmap.icon_notice2_event,
+            R.mipmap.icon_notice3_newproduct};
+    private String listTypeText[] = {"알림", "이벤트", "신제품"};
 
     public UserNoticeListAdapter() {
         super();
@@ -44,16 +51,20 @@ public class UserNoticeListAdapter extends BaseAdapter
             convertView = inflater.inflate(R.layout.user_notice_listitem, parent, false);
         }
 
-        TextView textViewTitle = (TextView)convertView.findViewById(R.id.textViewTitle);
-        TextView textViewBody = (TextView)convertView.findViewById(R.id.textViewBody);
-        TextView textViewDate = (TextView)convertView.findViewById(R.id.textViewDate);
-        ImageView imageViewType = (ImageView)convertView.findViewById(R.id.imageViewType);
-        Button buttonClick = (Button)convertView.findViewById(R.id.buttonClick);
+        TextView textViewTitle = (TextView)convertView.findViewById(R.id.textView_title);
+        TextView textViewBody = (TextView)convertView.findViewById(R.id.textView_body);
+        TextView textViewDate = (TextView)convertView.findViewById(R.id.textView_date);
+        ImageView imageViewType = (ImageView)convertView.findViewById(R.id.imageView_type);
+        Button buttonClick = (Button)convertView.findViewById(R.id.button_click);
 
         final UserNoticeListItem userNoticeItem = userNoticeList.get(position);
 
+        String textColor1 = "#" + Integer.toHexString(ColorTheme.getThemeColorRGB(context, R.attr.theme_color_N)).substring(2);
+        String textColor2 = "#" + Integer.toHexString(ContextCompat.getColor(context, R.color.gray120)).substring(2);
         textViewTitle.setText(userNoticeItem.getTitle());
-        textViewBody.setText(userNoticeItem.getBody());
+        String textBody = "<font color = " + textColor1 + ">" + listTypeText[userNoticeItem.getType()-1] + " </font>" +
+                          "<font color = " + textColor2 + ">" + userNoticeItem.getBody() + "</font>";
+        textViewBody.setText(Html.fromHtml(textBody));
         String textDate = String.valueOf(userNoticeItem.getStartDate().get(Calendar.YEAR)) + "/"
                         + String.valueOf(userNoticeItem.getStartDate().get(Calendar.MONTH) + 1) + "/"
                         + String.valueOf(userNoticeItem.getStartDate().get(Calendar.DAY_OF_MONTH)) + " - "
@@ -61,21 +72,9 @@ public class UserNoticeListAdapter extends BaseAdapter
                         + String.valueOf(userNoticeItem.getEndDate().get(Calendar.MONTH) + 1) + "/"
                         + String.valueOf(userNoticeItem.getEndDate().get(Calendar.DAY_OF_MONTH));
         textViewDate.setText(textDate);
-        switch(userNoticeItem.getType()){
-            default:
-            case 1:
-                imageViewType.setBackgroundResource(R.mipmap.icon_notice1_notification);
-                break;
-            case 2:
-                imageViewType.setBackgroundResource(R.mipmap.icon_notice2_event);
-                break;
-            case 3:
-                imageViewType.setBackgroundResource(R.mipmap.icon_notice3_newproduct);
-                break;
-        }
+        imageViewType.setBackgroundResource(listTypeImage[userNoticeItem.getType()-1]);
         imageViewType.getBackground().setColorFilter(ColorTheme.getThemeColorRGB(context, R.attr.theme_color_D2), PorterDuff.Mode.SRC_IN);
 
-        //buttonClick.getBackground().setColorFilter(ContextCompat.getColor(context, R.color.clrMenuIcon), PorterDuff.Mode.SRC_IN);
         buttonClick.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 SingleToast.show(context, String.valueOf(userNoticeItem.getTitle()) + " 항목의 버튼 클릭", Toast.LENGTH_SHORT);

@@ -18,6 +18,6 @@ public class ColorTheme
 
     public static int getTheme()
     {
-        return R.style.LikeRoomTheme_OceanTheme;
+        return R.style.LikeRoomTheme_StrawBerryTheme;
     }
 }

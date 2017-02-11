@@ -7,14 +7,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="2dp"
-        android:background="@color/gray245">
+        android:layout_marginBottom="2dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/layout_background"
-            android:background="@drawable/shape_rectangle_press">
+            android:background="@drawable/button_ripple_rectangle">
 
             <android.support.v7.widget.AppCompatImageView
                 android:layout_marginStart="28dp"
@@ -26,11 +25,11 @@
 
             <View
                 android:layout_width="match_parent"
-                android:background="@drawable/shape_line_gradient"
+                android:background="@color/gray220"
                 android:layout_alignParentBottom="true"
                 android:layout_height="1dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp" />
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp" />
 
         </RelativeLayout>
 
@@ -60,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:text="이름"
                         android:id="@+id/tv_name"
-                        android:textColor="#000000"
+                        android:textColor="@color/gray80"
                         android:gravity="center_vertical"
                         android:layout_weight="1"
                         android:textSize="18dp"
@@ -74,7 +73,7 @@
                         android:text="폰번호"
                         android:id="@+id/tv_added_date"
                         android:textSize="16dp"
-                        android:textColor="#666666"
+                        android:textColor="@color/gray80"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         style="@android:style/TextAppearance.DeviceDefault.Medium"
@@ -88,7 +87,8 @@
                 android:layout_width="80dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
-                android:layout_height="35dp">
+                android:layout_height="35dp"
+                android:layout_marginEnd="10dp">
 
                 <TextView
                     android:layout_height="match_parent"

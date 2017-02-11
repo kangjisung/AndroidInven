@@ -152,7 +152,6 @@
                     android:layout_alignParentBottom="false"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/layout_input"
-                    android:background="@drawable/button_basic"
                     android:textColor="@color/white" />
 
             </RelativeLayout>
