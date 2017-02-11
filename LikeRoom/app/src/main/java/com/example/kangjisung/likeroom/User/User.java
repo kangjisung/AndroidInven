@@ -5,16 +5,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 import android.widget.SearchView;
+import android.widget.Toast;
 
+import com.example.kangjisung.likeroom.SQLiteDatabaseControl.LocalHostDatabaseManager;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
-import com.example.kangjisung.likeroom.SQLiteDatabaseControl.LocalHostDatabaseManager;
 import com.example.kangjisung.likeroom.User.MileageManage.mileage;
 import com.example.kangjisung.likeroom.User.listView.ListViewAdapter;
 import com.example.kangjisung.likeroom.User.listView.ListViewItem;
@@ -34,7 +33,7 @@ public class User extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        scView=(SearchView) findViewById(R.id.searchview);
+        //scView=(SearchView) findViewById(R.id.searchview);
         listview = (ListView) findViewById(R.id.userlist);
 
         /////////////////////////검색 이벤트

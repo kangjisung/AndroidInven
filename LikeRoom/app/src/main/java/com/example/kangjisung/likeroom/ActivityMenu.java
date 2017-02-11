@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -53,21 +54,27 @@ public class ActivityMenu extends AppCompatActivity
     final int firstShowTabPageNumber = 0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-        this.setTheme(ColorTheme.getTheme());
+        this.setTheme(ColorTheme.getTheme(ColorTheme.basicTheme));
         setContentView(R.layout.activity_menu);
         selectedTabColor = ContextCompat.getColor(this, R.color.gray80);
         unselectedTabColor = ContextCompat.getColor(this, R.color.gray160);
 
-        TabLayout tabLayout = (TabLayout)findViewById(R.id.tabLayout);
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.selector_menu_item));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.selector_menu_user));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.selector_menu_point));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        tabLayout.getTabAt(0).getIcon().setColorFilter(getResources().getColor(R.color.clrMenuIconSelected), PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(1).getIcon().setColorFilter(getResources().getColor(R.color.clrMenuIcon), PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(2).getIcon().setColorFilter(getResources().getColor(R.color.clrMenuIcon), PorterDuff.Mode.SRC_IN);
+        tabLayout = (TabLayout)findViewById(R.id.tabLayout);
+        imageViewSetting = (ImageView)findViewById(R.id.imageViewSetting);
+        textViewTitle = (TextView)findViewById(R.id.textViewTitle);
+
+        tabLayoutInitialize(tabLayout);
+        colorInitialize();
+
+        selectedShopInfoData = new String[selectedShopInfoDataKey.length];
+        int i;
+        for(i = 0; i < selectedShopInfoDataKey.length; i += 1) {
+            selectedShopInfoData[i] = getIntent().getStringExtra(selectedShopInfoDataKey[i]);
+        }
+        Log.d(getString(R.string.app_name), Arrays.toString(selectedShopInfoData));
 
         final NoScrollViewPager viewPager = (NoScrollViewPager)findViewById(R.id.viewPager);
         final ActivityMenuPagerAdapter adapter = new ActivityMenuPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), selectedShopInfoData);

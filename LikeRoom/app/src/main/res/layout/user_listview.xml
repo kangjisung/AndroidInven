@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--마일리지 유저검색의 리스트뷰의 보여줄 뷰-->
+<!--점주앱에서 사용된 고객 정보 보는 부분같다. 고객앱에서는 사용한 적이 없다.-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">

@@ -3,215 +3,259 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/White">
+    android:padding="15dp"
+    android:background="?attr/theme_color_L3"
+    android:elevation="1dp">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:id="@+id/layout_setting"
-        android:layout_marginTop="60dp">
+        android:id="@+id/setting"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/stamp_box_background"
+        android:padding="10dp">
 
-        <RelativeLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/settingFontSize"
-            android:layout_weight="1">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                app:srcCompat="@mipmap/icon_setting_fontsize"
-                android:id="@+id/imageView19"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_width="35dp"
-                android:layout_height="35dp" />
-
-            <Button
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/buttonSettingFontSize"
-                android:background="@drawable/button_mask" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp">
 
-            <TextView
-                android:text="글씨크기"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/textViewFontSize"
-                android:textColor="@color/clrTextColorDeepDark"
-                android:padding="15dp"
-                android:textSize="20dp"
-                android:layout_marginLeft="70dp"
-                android:gravity="center_vertical" />
+                <TextView
+                    android:text="설정"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/Gray"
+                    android:gravity="center_vertical"
+                    android:textSize="20dp" />
+            </LinearLayout>
 
             <ImageView
                 android:layout_width="match_parent"
-                app:srcCompat="@color/alpha20"
+                app:srcCompat="@color/Gray"
                 android:id="@+id/imageView13"
-                android:layout_height="1dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="70dp" />
-        </RelativeLayout>
+                android:layout_height="1dp" />
 
-        <RelativeLayout
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_setting"
+               >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/settingFontSize"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        app:srcCompat="@mipmap/icon_setting_fontsize"
+                        android:id="@+id/imageView19"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/buttonSettingFontSize"
+                        android:background="@drawable/button_mask" />
+
+                    <TextView
+                        android:text="글씨크기"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textViewFontSize"
+                        android:textColor="@color/clrTextColorDeepDark"
+                        android:padding="10dp"
+                        android:textSize="20dp"
+                        android:layout_marginLeft="60dp"
+                        android:gravity="center_vertical" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/settingTheme"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        app:srcCompat="@mipmap/icon_setting_theme"
+                        android:id="@+id/imageView20"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/buttonSettingTheme"
+                        android:background="@drawable/button_mask" />
+
+                    <TextView
+                        android:text="테마"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textViewSettingTheme"
+                        android:textColor="@color/clrTextColorDeepDark"
+                        android:padding="10dp"
+                        android:textSize="20dp"
+                        android:layout_marginLeft="60dp"
+                        android:gravity="center_vertical" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/setting"
+        android:layout_marginTop="40dp"
+        android:id="@+id/inform"
+        android:background="@drawable/stamp_box_background"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/settingTheme"
-            android:layout_weight="1">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                app:srcCompat="@mipmap/icon_setting_theme"
-                android:id="@+id/imageView20"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_width="35dp"
-                android:layout_height="35dp" />
-
-            <Button
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/button6"
-                android:background="@drawable/button_mask" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp">
 
-            <TextView
-                android:text="테마"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/textViewSettingTheme"
-                android:textColor="@color/clrTextColorDeepDark"
-                android:padding="15dp"
-                android:textSize="20dp"
-                android:layout_marginLeft="70dp"
-                android:gravity="center_vertical" />
+                <TextView
+                    android:text="정보"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/Gray"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
 
             <ImageView
                 android:layout_width="match_parent"
-                app:srcCompat="@color/alpha20"
-                android:id="@+id/imageView14"
-                android:layout_height="1dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="70dp" />
-        </RelativeLayout>
+                app:srcCompat="@color/Gray"
+                android:id="@+id/imageView25"
+                android:layout_height="1dp" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/settingHelp"
-            android:layout_weight="1">
-
-            <ImageView
-                app:srcCompat="@mipmap/icon_setting_help"
-                android:id="@+id/imageView21"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_width="35dp"
-                android:layout_height="35dp" />
-
-            <Button
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/button7"
-                android:background="@drawable/button_mask" />
+                android:layout_height="50dp"
+                android:id="@+id/settingHelp"
+                android:layout_weight="1">
 
-            <TextView
-                android:text="도움말"
+                <ImageView
+                    app:srcCompat="@mipmap/icon_setting_help"
+                    android:id="@+id/imageView21"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/buttonSettingHelp"
+                    android:background="@drawable/button_mask" />
+
+                <TextView
+                    android:text="도움말"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textViewHelp"
+                    android:textColor="@color/clrTextColorDeepDark"
+                    android:padding="10dp"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="60dp"
+                    android:gravity="center_vertical" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/textViewHelp"
-                android:textColor="@color/clrTextColorDeepDark"
-                android:padding="15dp"
-                android:textSize="20dp"
-                android:layout_marginLeft="70dp"
-                android:gravity="center_vertical" />
+                android:layout_height="50dp"
+                android:id="@+id/settingAsk"
+                android:layout_weight="1">
 
-            <ImageView
+                <ImageView
+                    app:srcCompat="@mipmap/icon_setting_faq"
+                    android:id="@+id/imageView22"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="13dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/buttonSettingAsk"
+                    android:background="@drawable/button_mask" />
+
+                <TextView
+                    android:text="문의하기"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textViewAsk"
+                    android:textColor="@color/clrTextColorDeepDark"
+                    android:padding="10dp"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="60dp"
+                    android:gravity="center_vertical" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                app:srcCompat="@color/alpha20"
-                android:id="@+id/imageView15"
-                android:layout_height="1dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="70dp" />
-        </RelativeLayout>
+                android:layout_height="50dp"
+                android:id="@+id/settingPro"
+                android:layout_weight="1">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/settingAsk"
-            android:layout_weight="1">
+                <ImageView
+                    app:srcCompat="@mipmap/icon_setting_producer"
+                    android:id="@+id/imageView23"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp" />
 
-            <ImageView
-                app:srcCompat="@mipmap/icon_setting_faq"
-                android:id="@+id/imageView22"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="23dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp" />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/buttonSettingPro"
+                    android:background="@drawable/button_mask" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/button8"
-                android:background="@drawable/button_mask" />
+                <TextView
+                    android:text="만든이"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView11"
+                    android:textColor="@color/clrTextColorDeepDark"
+                    android:padding="10dp"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="60dp"
+                    android:gravity="center_vertical" />
 
-            <TextView
-                android:text="문의하기"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/textViewAsk"
-                android:textColor="@color/clrTextColorDeepDark"
-                android:padding="15dp"
-                android:textSize="20dp"
-                android:layout_marginLeft="70dp"
-                android:gravity="center_vertical" />
+            </RelativeLayout>
 
-            <ImageView
-                android:layout_width="match_parent"
-                app:srcCompat="@color/alpha20"
-                android:id="@+id/imageView16"
-                android:layout_height="1dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="70dp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/settingPro"
-            android:layout_weight="1">
-
-            <ImageView
-                app:srcCompat="@mipmap/icon_setting_producer"
-                android:id="@+id/imageView23"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="21dp"
-                android:layout_width="35dp"
-                android:layout_height="35dp" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/button9"
-                android:background="@drawable/button_mask" />
-
-            <TextView
-                android:text="만든이"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/textView11"
-                android:textColor="@color/clrTextColorDeepDark"
-                android:padding="15dp"
-                android:textSize="20dp"
-                android:layout_marginLeft="70dp"
-                android:gravity="center_vertical" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                app:srcCompat="@color/alpha20"
-                android:id="@+id/imageView17"
-                android:layout_height="1dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="70dp" />
-        </RelativeLayout>
-    </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
