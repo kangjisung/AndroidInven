@@ -1,4 +1,4 @@
-package com.example.kangjisung.likeroom.FragmentUser.ListView;
+package com.example.kangjisung.likeroom.FragmentPoint.ListView;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -16,27 +16,26 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kangjisung.likeroom.Util.SingleToast;
 import com.example.kangjisung.likeroom.R;
-
+import com.example.kangjisung.likeroom.Util.SingleToast;
 import com.github.clans.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapter.UserRecyclerViewHolder> {
-    private ArrayList<UserMainListItem> userMainList;
+public class PointMainListAdapter extends RecyclerView.Adapter<PointMainListAdapter.UserRecyclerViewHolder> {
+    private ArrayList<PointMainListItem> userMainList;
     private Context context;
     private ViewGroup parent;
     private Boolean stampMode = false;
 
     private int longClickPosition;
-    public UserMainListItem getLongClickPosition() {return userMainList.get(longClickPosition);}
+    public PointMainListItem getLongClickPosition() {return userMainList.get(longClickPosition);}
     public void setLongClickPosition(int longClickPosition) {this.longClickPosition = longClickPosition;}
 
-    public UserMainListAdapter(View view) {
-        userMainList = new ArrayList<UserMainListItem>();
+    public PointMainListAdapter(View view) {
+        userMainList = new ArrayList<PointMainListItem>();
     }
 
     public static class UserRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
@@ -68,7 +67,7 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
     }
 
     @Override
-    public UserMainListAdapter.UserRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PointMainListAdapter.UserRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_main_listitem, parent, false);
         UserRecyclerViewHolder vh = new UserRecyclerViewHolder(v);
         context = parent.getContext();
@@ -78,7 +77,7 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
 
     @Override
     public void onBindViewHolder(final UserRecyclerViewHolder holder, final int position) {
-        final UserMainListItem userMainItem = userMainList.get(position);
+        final PointMainListItem userMainItem = userMainList.get(position);
 
         holder.textViewName.setText(userMainItem.getName());
         holder.textViewPhone.setText(userMainItem.getPhone());
@@ -164,9 +163,9 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
         notifyDataSetChanged();
     }
 
-    public ArrayList<UserMainListItem> getListItemToStampDialog()
+    public ArrayList<PointMainListItem> getListItemToStampDialog()
     {
-        ArrayList<UserMainListItem> uploadData = new ArrayList<UserMainListItem>();
+        ArrayList<PointMainListItem> uploadData = new ArrayList<PointMainListItem>();
 
         for(int p = 0; p < userMainList.size(); p++){
             if(userMainList.get(p).getCheck() == true){
@@ -184,7 +183,7 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
 
     public void addItem(String addName, String addPhone, String addPoint)
     {
-        UserMainListItem addItemList = new UserMainListItem();
+        PointMainListItem addItemList = new PointMainListItem();
 
         addItemList.setName(addName);
         addItemList.setPhone(addPhone);
@@ -196,9 +195,9 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
 
     public void sort(final String sortMode, final String sortOrder)
     {
-        Collections.sort(userMainList, new Comparator<UserMainListItem>(){
+        Collections.sort(userMainList, new Comparator<PointMainListItem>(){
             @Override
-            public int compare(UserMainListItem obj1, UserMainListItem obj2) {
+            public int compare(PointMainListItem obj1, PointMainListItem obj2) {
                 if(sortMode.equals("NAME")){
                     if(sortOrder.equals("ASC")){
                         return obj1.getName().compareToIgnoreCase(obj2.getName());
