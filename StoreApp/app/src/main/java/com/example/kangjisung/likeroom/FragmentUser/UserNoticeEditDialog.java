@@ -23,11 +23,13 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.FragmentUser.ListView.UserNoticeListItem;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
+import com.example.kangjisung.likeroom.Util.SingleToast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -54,7 +56,7 @@ public class UserNoticeEditDialog extends Dialog
     public UserNoticeEditDialog(Context context) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
 
-        userNoticeItemBeforeModify = new UserNoticeListItem("", "", new Date(), new Date(), 0, 0);
+        userNoticeItemBeforeModify = new UserNoticeListItem(-1, "", "", new Date(), new Date(), new Date(), 0, 0, 0);
         mode = "ADD";
     }
 
@@ -166,30 +168,54 @@ public class UserNoticeEditDialog extends Dialog
                     Date endDate = (new SimpleDateFormat("y년 M월 d일", Locale.KOREA)).parse(mTextViewEnd.getText().toString());
                     String startDateString = (new SimpleDateFormat("y-M-d", Locale.KOREA)).format(startDate);
                     String endDateString = (new SimpleDateFormat("y-M-d", Locale.KOREA)).format(endDate);
+                    String makeDateString = (new SimpleDateFormat("y-M-d HH:mm:ss", Locale.KOREA)).format(userNoticeItemBeforeModify.getMakeDate());
 
-                    // TODO : 적합성 검사 추가
+                    if(endDate.getTime() < startDate.getTime()){
+                        SingleToast.show(getContext(), "시작 날짜가 종료 날짜보다 이후에 있습니다.", Toast.LENGTH_LONG);
+                        return;
+                    }
+                    if(mEditTextTitle.length() == 0){
+                        SingleToast.show(getContext(), "제목을 입력하셔야 합니다.", Toast.LENGTH_LONG);
+                        return;
+                    }
+                    if(mEditTextBody.length() == 0){
+                        SingleToast.show(getContext(), "내용을 입력하셔야 합니다.", Toast.LENGTH_LONG);
+                        return;
+                    }
 
                     if(mode.equals("ADD")) {
                         query = String.format("INSERT INTO `매장공지`" +
-                                " (`제목`, `내용`, `공지 시작 날짜`, `공지 마감 날짜`, `작성시간`, `공지사항종류`)" +
-                                " VALUES (\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", %d);",
+                                " (`제목`, `내용`, `공지시작날짜`, `공지마감날짜`, `작성시간`, `공지사항종류`, `삭제`)" +
+                                " VALUES (\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", %d, %d);",
                                 mEditTextTitle.getText().toString(),
                                 mEditTextBody.getText().toString(),
                                 startDateString,
                                 endDateString,
-                                (new SimpleDateFormat("yyyy-M-d", Locale.KOREA)).format(new Date()),
-                                selectedType);
+                                makeDateString,
+                                selectedType,
+                                0);
                         new ClientDataBase(query, 2, 0, getContext());
                     }
                     else if(mode.equals("MODIFY")) {
+                        query = String.format(Locale.KOREA, "UPDATE `매장공지`" +
+                                " SET `제목` = \"%s\", `내용` = \"%s\", `공지시작날짜` = \"%s\", `공지마감날짜` = \"%s\", `공지사항종류` = %d WHERE `코드` = %d;",
+                                mEditTextTitle.getText().toString(),
+                                mEditTextBody.getText().toString(),
+                                startDateString,
+                                endDateString,
+                                selectedType,
+                                userNoticeItemBeforeModify.getNum());
+
+                        /*
                         query = "UPDATE `매장공지`" +
                                 " SET `제목` = \"" + mEditTextTitle.getText().toString() + "\", " +
                                 "`내용` = \"" + mEditTextBody.getText().toString() + "\", " +
                                 "`공지 시작 날짜` = \"" + startDateString + "\", " +
                                 "`공지 마감 날짜` = \"" + endDateString + "\", " +
                                 "`공지사항종류` = " + selectedType +
-                                " WHERE `제목` = \"" + userNoticeItemBeforeModify.getTitle() + "\"" +
+                                " WHERE `코드` = \"" + userNoticeItemBeforeModify.getTitle() + "\"" +
                                 " AND `내용` = \"" + userNoticeItemBeforeModify.getBody() + "\";";
+                        */
                         new ClientDataBase(query, 3, 0, getContext());
                     }
                 }
@@ -212,6 +238,14 @@ public class UserNoticeEditDialog extends Dialog
         });
 
         initializeDialogTitleBar();
+    }
+
+    private boolean validateDate(Date startDate, Date endDate)
+    {
+        if(endDate.getTime() < startDate.getTime()){
+            return false;
+        }
+        return true;
     }
 
     private Button.OnClickListener onButtonTypeClickListener = new Button.OnClickListener() {
@@ -267,7 +301,7 @@ public class UserNoticeEditDialog extends Dialog
         @Override
         public void onClick(View onClickView) {
             try{
-                final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 M월 d일", Locale.KOREA);
+                final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("y년 M월 d일", Locale.KOREA);
                 final TextView mTextViewDate;
                 switch(onClickView.getId()){
                     default:

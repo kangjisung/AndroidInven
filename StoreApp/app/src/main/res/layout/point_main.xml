@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    android:id="@+id/point_main_layout">
+    android:id="@+id/point_main_layout">`
 
     <include
         android:layout_width="wrap_content"

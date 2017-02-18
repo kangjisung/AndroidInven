@@ -156,6 +156,17 @@ public class UserNoticeListAdapter extends BaseAdapter
         userNoticeList.add(addItemList);
     }
 
+    public void addItem(UserNoticeListItem addListItem)
+    {
+        if(addListItem.getEndDate().getTime() + (1000 * 60 * 60 * 24) < (new Date()).getTime()){
+            addListItem.setClose(1);
+        }
+        else{
+            addListItem.setClose(0);
+        }
+        userNoticeList.add(addListItem);
+    }
+
     public void sort()
     {
         Collections.sort(userNoticeList, new Comparator<UserNoticeListItem>() {

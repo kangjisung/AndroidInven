@@ -3,7 +3,11 @@ package com.example.kangjisung.likeroom.FragmentUser;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -79,35 +83,79 @@ public class UserNoticeMain extends Fragment
     }
 
     private void reloadRecyclerView() {
-        String query = "SELECT `제목`, `내용`, `공지 시작 날짜`, `공지 마감 날짜`,`공지사항종류` FROM `매장공지`;";
-        new ClientDataBase(query, 1, 5, getContext());
+        String query = "SELECT `코드`, `제목`, `내용`, `공지시작날짜`, `공지마감날짜`, `작성시간`, `공지사항종류`, `삭제` FROM `매장공지`;";
+        new ClientDataBase(query, 1, 8, getContext());
         mAdapter = new UserNoticeListAdapter();
 
         int cnt=0;
-        String startDate;
-        String EndDate;
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
-        Date stDate=new Date();
-        Date eDate=new Date();
-        while(true) {
-            if (DBstring[cnt] != null) {
-                startDate=DBstring[cnt+2];
-                EndDate=DBstring[cnt+3];
-                try {
-                    stDate = sdf.parse(startDate);
-                    eDate = sdf.parse(EndDate);
-                } catch (ParseException e1) {
-                    e1.printStackTrace();
-                }
-                mAdapter.addItem(DBstring[cnt], DBstring[cnt + 1], stDate , eDate, Integer.parseInt(DBstring[cnt+4]));
-                cnt += 5;
+
+        DateFormat dateFormat = new SimpleDateFormat("y-M-d", Locale.KOREA);
+        DateFormat dateTimeFormat = new SimpleDateFormat("y-M-d HH:mm:ss", Locale.KOREA);
+        while(DBstring[cnt] != null)
+        {
+            UserNoticeListItem addListItem = new UserNoticeListItem();
+            try {
+                addListItem.setNum(Integer.parseInt(DBstring[cnt]));
+                addListItem.setTitle(DBstring[cnt+1]);
+                addListItem.setBody(DBstring[cnt+2]);
+                addListItem.setStartDate(dateFormat.parse(DBstring[cnt+3]));
+                addListItem.setEndDate(dateFormat.parse(DBstring[cnt+4]));
+                addListItem.setMakeDate(dateTimeFormat.parse(DBstring[cnt+5]));
+                addListItem.setType(Integer.parseInt(DBstring[cnt+6]));
+                addListItem.setDelete(Integer.parseInt(DBstring[cnt+7]));
             }
-            else if(DBstring[cnt]==null) break;
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            if(addListItem.getDelete() == 0) {
+                mAdapter.addItem(addListItem);
+            }
+            //mAdapter.addItem(DBstring[cnt], DBstring[cnt + 1], stDate , eDate, Integer.parseInt(DBstring[cnt+4]));
+            cnt += 8;
         }
         mAdapter.sort();
         listView.setAdapter(mAdapter);
+        registerForContextMenu(listView);
         mAdapter.notifyDataSetChanged();
         listViewHeightSet(mAdapter, listView);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("작업 선택");
+        menu.add(Menu.NONE, 6, Menu.NONE, "삭제");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+        final UserNoticeListItem listItem = (UserNoticeListItem)mAdapter.getItem(info.position);
+        switch(item.getItemId()) {
+            case 6:
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage("선택한 항목을 삭제하시겠습니까?").setCancelable(false).setPositiveButton("확인",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String query = String.format("DELETE FROM `매장공지` WHERE `코드` = %d;", listItem.getNum());
+                            new ClientDataBase(query, 1, 0, getContext());
+                            reloadRecyclerView();
+                        }
+                    }).setNegativeButton("취소",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            return;
+                        }
+                    });
+                AlertDialog alert = builder.create();
+                alert.show();
+
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
     public void listViewHeightSet(BaseAdapter listAdapter, ListView listView){
