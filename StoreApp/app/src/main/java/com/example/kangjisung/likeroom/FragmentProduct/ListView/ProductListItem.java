@@ -14,7 +14,7 @@ public class ProductListItem {
     private int sellToday;
     private int muchStore;
 
-    public ProductListItem(String name, boolean isStar, Date muchStoreDate, Date sellTodayDate, int sellToday, int muchStore) {
+    public ProductListItem(String name, boolean isStar, Date muchStoreDate, Date sellTodayDate,int sellToday, int muchStore) {
         this.name = name;
         this.isStar = isStar;
         this.muchStoreDate = muchStoreDate;
