@@ -10,7 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
+//0218import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
 import com.example.kangjisung.likeroom.PermissionManager.AndroidVersionController;
 import com.example.kangjisung.likeroom.PermissionManager.UserAccountCrawler;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
@@ -48,13 +48,13 @@ public class MainActivity extends ActionBarActivity {
         databaseHelper = new DatabaseHelper(getApplicationContext(), customerDatabaseName);
         final AlertDialog.Builder alertNoticeBuilder = new AlertDialog.Builder(this);
 
-        NetworkModule networkModule=new NetworkModule();
+        ////0218 NetworkModule networkModule=new NetworkModule();
         //networkModule.InsertNewCustomerInfo("강지성");
         //networkModule.AddToStoreAsNewMember(1, 1);
         //networkModule.DelMemberFromStore(1);
         //networkModule.GetStoreAndCustomerRegisteredInfo(1);
         //networkModule.InsertMileageLog(1, 200);
-        networkModule.GetMileageSum(1);
+       ////0218  networkModule.GetMileageSum(1);
 
         //SimpleDatabaseTest simpleDatabaseTest = new SimpleDatabaseTest(getApplicationContext());
 

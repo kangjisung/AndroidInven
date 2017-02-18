@@ -96,18 +96,20 @@ public class ActivitySetting extends AppCompatActivity
         settingHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               dlg.setPositiveButton("확인",new DialogInterface.OnClickListener() {
+              /* dlg.setPositiveButton("확인",new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                //dlg.setView(null);   //일단은 뷰를 아예 없애서 오류를 막음 T.T....나중에 수정해야함
                                 dialog.dismiss();
                             }
                         });
-
+*/
                 AlertDialog dialog = dlg.create();
                 dialog.show();
+
             }
+
         });
+
         //view closeing하고 다시 열기 전 이미 열려있던 뷰를 제거하지 않아 발생하던 버그를 픽스
         dlg.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override

@@ -8,6 +8,7 @@ import org.json.JSONObject;
  * Created by stories2 on 2017. 2. 4..
  */
 
+/*****
 public class NetworkModule {
     HttpCommunicationProcess httpCommunicationProcess;
 
@@ -42,6 +43,8 @@ public class NetworkModule {
                 JSONObject eachObjectData = serverResponseArrayData.getJSONObject(i);
                 Log.d(logCatTag, "store id : " + eachObjectData);
             }*/
+
+/*****
         }
         catch (Exception err) {
             Log.d(logCatTag, "Error in LoadAllStoreInfo: " + err.getMessage());
@@ -183,6 +186,8 @@ public class NetworkModule {
         }
     }
     /*//////쿠폰 사용기능
+
+/*****
     public void UseTargetCoupon(String customerAndStoreId,String updateDate,String couponId){
         httpCommunicationProcess=new HttpCommunicationProcess();
         String responseRawDate=null;
@@ -199,6 +204,8 @@ public class NetworkModule {
         }
     }*/
     /////공지 리스트
+
+/*****
     public void ShowTargetStoreNoticeList(String shopId){
         httpCommunicationProcess=new HttpCommunicationProcess();
         String responseRawDate=null;
@@ -213,3 +220,4 @@ public class NetworkModule {
 
 
 }
+*/
