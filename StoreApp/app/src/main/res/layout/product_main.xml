@@ -139,26 +139,26 @@
                 android:background="@mipmap/calender"
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="5dp"
-                app:backgroundTint="?attr/theme_color_D4"
-                android:layout_width="25dp"
-                android:layout_height="25dp" />
+                app:backgroundTint="?attr/theme_color_D3"
+                android:layout_width="22dp"
+                android:layout_height="22dp" />
 
             <TextView
                 android:id="@+id/tv_fragment_item_main_date"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="2016/12/5"
+                android:text="[날짜]"
                 android:gravity="center_vertical"
-                android:textColor="?attr/theme_color_D4"
+                android:textColor="?attr/theme_color_D3"
                 android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/tv_fragment_item_main"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="월 일일판매량"
+                android:text="[탭 이름]"
                 android:gravity="center_vertical"
-                android:textColor="?attr/theme_color_D4"
+                android:textColor="?attr/theme_color_D3"
                 android:textSize="16dp"
                 android:layout_marginStart="5dp" />
         </LinearLayout>

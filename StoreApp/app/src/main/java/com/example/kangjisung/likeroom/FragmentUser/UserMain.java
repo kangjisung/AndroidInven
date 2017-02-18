@@ -186,7 +186,6 @@ public class UserMain extends Fragment
             cnt += 3;
         }
         mAdapter.notifyDataSetChanged();
-
     }
 
     private void setTextViewSearchResult(boolean StampMode)

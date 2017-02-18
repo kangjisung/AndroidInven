@@ -148,7 +148,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView_search_result"
-            android:textColor="@color/clrTextColorDeepDark"
+            android:textColor="?attr/theme_color_D3"
             android:textSize="16dp"
             android:layout_weight="1"
             android:layout_gravity="center_vertical" />

@@ -1,39 +1,72 @@
 package com.example.kangjisung.likeroom.FragmentUser;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.kangjisung.likeroom.FragmentUser.ListView.UserNoticeListAdapter;
+import com.example.kangjisung.likeroom.FragmentUser.ListView.UserNoticeListItem;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
+
+import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
 public class UserNoticeMain extends Fragment
 {
+    UserNoticeListAdapter mAdapter;
+    ListView listView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View fragmentView = inflater.inflate(R.layout.user_notice_main, container, false);
 
-        UserNoticeListAdapter mAdapter = new UserNoticeListAdapter();
+        listView = (ListView)fragmentView.findViewById(R.id.listView);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long l_position) {
+                UserNoticeEditDialog userNoticeEditDialog = new UserNoticeEditDialog((UserNoticeListItem)mAdapter.getItem(position), getContext());
+                userNoticeEditDialog.show();
+                userNoticeEditDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        reloadRecyclerView();
+                    }
+                });
+            }
+        });
 
-        ListView listView = (ListView)fragmentView.findViewById(R.id.listView);
-        listView.setAdapter(mAdapter);
+        Button mButtonNew = (Button) fragmentView.findViewById(R.id.btn_new);
+        mButtonNew.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View onClickView){
+                UserNoticeEditDialog userNoticeEditDialog = new UserNoticeEditDialog(getContext());
+                userNoticeEditDialog.show();
+                userNoticeEditDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        reloadRecyclerView();
+                    }
+                });
+            }
+        });
 
-        mAdapter.addItem("벨만 포드 알고리즘", "벨만-포드 알고리즘(Bellman-Ford Algorithm)은 최단 경로를 구하는 알고리즘이다.\n" +
-                "가중 유향 그래프에서 적용할 수 있다. 시간 복잡도는 O(VE)이다.\n" +
-                "다익스트라 알고리즘에 비해 느린 시간 복잡도를 가지고 있으나, 음의 가중치에 대한 최단 경로를 구할 수 있다. 단, 음의 사이클은 해당되지 않는다.\n", new GregorianCalendar(2016, 0, 1), new GregorianCalendar(2016, 11, 25), 1);
-        mAdapter.addItem("다익스트라 알고리즘", "There's no such thing like close the fragment, but you can remove the fragment from the stack. To pop the fragment use the following inside button click listener", new GregorianCalendar(2015, 1, 1), new GregorianCalendar(2015, 11, 25), 2);
-        mAdapter.addItem("제목3", "내용3", new GregorianCalendar(2014, 2, 1), new GregorianCalendar(2014, 11, 25), 3);
-        mAdapter.addItem("제목4", "내용4", new GregorianCalendar(2013, 3, 1), new GregorianCalendar(2013, 11, 25), 1);
-
-        listViewHeightSet(mAdapter, listView);
+        reloadRecyclerView();
 
         Button buttonBack = (Button)fragmentView.findViewById(R.id.button_back);
         buttonBack.setOnClickListener(new Button.OnClickListener(){
@@ -43,6 +76,38 @@ public class UserNoticeMain extends Fragment
         });
 
         return fragmentView;
+    }
+
+    private void reloadRecyclerView() {
+        String query = "SELECT `제목`, `내용`, `공지 시작 날짜`, `공지 마감 날짜`,`공지사항종류` FROM `매장공지`;";
+        new ClientDataBase(query, 1, 5, getContext());
+        mAdapter = new UserNoticeListAdapter();
+
+        int cnt=0;
+        String startDate;
+        String EndDate;
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+        Date stDate=new Date();
+        Date eDate=new Date();
+        while(true) {
+            if (DBstring[cnt] != null) {
+                startDate=DBstring[cnt+2];
+                EndDate=DBstring[cnt+3];
+                try {
+                    stDate = sdf.parse(startDate);
+                    eDate = sdf.parse(EndDate);
+                } catch (ParseException e1) {
+                    e1.printStackTrace();
+                }
+                mAdapter.addItem(DBstring[cnt], DBstring[cnt + 1], stDate , eDate, Integer.parseInt(DBstring[cnt+4]));
+                cnt += 5;
+            }
+            else if(DBstring[cnt]==null) break;
+        }
+        mAdapter.sort();
+        listView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
+        listViewHeightSet(mAdapter, listView);
     }
 
     public void listViewHeightSet(BaseAdapter listAdapter, ListView listView){

@@ -20,21 +20,19 @@
             android:layout_weight="0"
             android:background="?attr/theme_color_D4">
 
-            <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/imageViewSetting"
-                android:adjustViewBounds="true"
-                android:layout_marginEnd="20dp"
-                android:layout_alignParentEnd="true"
-                android:background="@mipmap/icon_setting"
-                android:layout_centerVertical="true"
-                app:backgroundTint="@color/white"
+            <Button
                 android:layout_width="25dp"
-                android:layout_height="25dp" />
+                android:layout_height="25dp"
+                android:id="@+id/button_setting"
+                android:background="@drawable/drawable_setting"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="20dp" />
 
             <TextView
                 android:text="@string/mainactivity_string"
                 android:layout_height="wrap_content"
-                android:id="@+id/textViewTitle"
+                android:id="@+id/textView_title"
                 android:gravity="center_vertical|center_horizontal"
                 android:layout_width="wrap_content"
                 android:textSize="22dp"

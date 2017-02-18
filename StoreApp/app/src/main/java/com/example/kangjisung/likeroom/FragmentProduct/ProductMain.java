@@ -75,18 +75,18 @@ public class ProductMain extends Fragment {
         btnMuchStore.setOnClickListener(onClickSelectButton);
         btnSellToday.setOnClickListener(onClickSelectButton);
         //////////////////
-        changeSelection(1);
+        changeSelection(0);
 
-        SimpleDateFormat timeStampFormat = new SimpleDateFormat("yyyy-M-d");
         nowDate = Calendar.getInstance();
-        tvFragmentItemMainDate.setText(timeStampFormat.format(nowDate.getTime()));
+        tvFragmentItemMain.setText("일일판매량");
+        tvFragmentItemMainDate.setText((new SimpleDateFormat("yyyy년 M월 d일", Locale.KOREA)).format(nowDate.getTime()));
         buttonSelectDate = (Button) rootView.findViewById(R.id.button_select_date);
         buttonSelectDate.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View onClickView){
                 LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
                 View view = inflater.inflate(R.layout.layout_date, null);
-                final CalendarView calendarView = (CalendarView)view.findViewById(R.id.calendarView);
+                CalendarView calendarView = (CalendarView)view.findViewById(R.id.calendarView);
                 selectDate = nowDate;
                 long nowDateToLong = selectDate.getTimeInMillis();
                 calendarView.setDate(nowDateToLong, true, true);
@@ -101,8 +101,7 @@ public class ProductMain extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         nowDate = selectDate;
-                        SimpleDateFormat timeStampFormat = new SimpleDateFormat("yyyy-M-d");
-                        tvFragmentItemMainDate.setText(timeStampFormat.format(nowDate.getTime()));
+                        tvFragmentItemMainDate.setText((new SimpleDateFormat("yyyy년 M월 d일", Locale.KOREA)).format(nowDate.getTime()));
                         dialog.dismiss();
                     }
                 });
