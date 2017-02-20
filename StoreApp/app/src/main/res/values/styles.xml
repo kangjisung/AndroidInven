@@ -1,10 +1,24 @@
 <resources>
     <style name="LikeRoomTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
+    </style>
+    <style name="LikeRoomTheme_StrawBerryTheme" parent="@style/LikeRoomTheme">
+        <item name="theme_color_L4">#fff4f6</item>
+        <item name="theme_color_L3">#ffe5ea</item>
+        <item name="theme_color_L2">#efb4c0</item>
+        <item name="theme_color_L1">#ef97a9</item>
+        <item name="theme_color_N" >#e2768c</item>
+        <item name="theme_color_D1">#d75b74</item>
+        <item name="theme_color_D2">#c23451</item>
+        <item name="theme_color_D3">#a40727</item>
+        <item name="theme_color_D4">#5c0315</item>
+        <item name="theme_color_type1">#8ad968</item>
+        <item name="theme_color_type2">#ff4c64</item>
         <item name="colorAccent">?attr/theme_color_type1</item>
 
     </style>
     <style name="LikeRoomTheme_BreadTheme" parent="@style/LikeRoomTheme">
+        <item name="theme_color_L4">#fffdf6</item>
         <item name="theme_color_L3">#FEFAE9</item>
         <item name="theme_color_L2">#FFF7DA</item>
         <item name="theme_color_L1">#fff4cb</item>
@@ -16,12 +30,29 @@
         <item name="theme_color_type1">#f86f8d</item>
         <item name="theme_color_type2">#e88f2c</item>
         <item name="colorAccent">?attr/theme_color_type1</item>
+
+    </style>
+    <style name="LikeRoomTheme_MintTheme" parent="@style/LikeRoomTheme">
+        <item name="theme_color_L4">#f5fff1</item>
+        <item name="theme_color_L3">#e5ffda</item>
+        <item name="theme_color_L2">#c3eab4</item>
+        <item name="theme_color_L1">#99d281</item>
+        <item name="theme_color_N" >#79be5c</item>
+        <item name="theme_color_D1">#60ab41</item>
+        <item name="theme_color_D2">#498f2c</item>
+        <item name="theme_color_D3">#347c16</item>
+        <item name="theme_color_D4">#1f5907</item>
+        <item name="theme_color_type1">#e4b164</item>
+        <item name="theme_color_type2">#88ec74</item>
+        <item name="colorAccent">?attr/theme_color_type1</item>
+
     </style>
     <style name="LikeRoomTheme_OceanTheme" parent="@style/LikeRoomTheme">
+        <item name="theme_color_L4">#f5fbff</item>
         <item name="theme_color_L3">#E9F5FE</item>
         <item name="theme_color_L2">#d2ecff</item>
         <item name="theme_color_L1">#9fd7ff</item>
-        <item name="theme_color_N">#62b2d6</item>
+        <item name="theme_color_N" >#62b2d6</item>
         <item name="theme_color_D1">#4194b7</item>
         <item name="theme_color_D2">#1e7296</item>
         <item name="theme_color_D3">#084660</item>
@@ -30,17 +61,34 @@
         <item name="theme_color_type2">#43d0ff</item>
         <item name="colorAccent">?attr/theme_color_type1</item>
     </style>
-    <style name="LikeRoomTheme_StrawBerryTheme" parent="@style/LikeRoomTheme">
-        <item name="theme_color_L3">#ffe5ea</item>
-        <item name="theme_color_L2">#efb4c0</item>
-        <item name="theme_color_L1">#ef97a9</item>
-        <item name="theme_color_N">#e2768c</item>
-        <item name="theme_color_D1">#d75b74</item>
-        <item name="theme_color_D2">#c23451</item>
-        <item name="theme_color_D3">#a40727</item>
-        <item name="theme_color_D4">#5c0315</item>
-        <item name="theme_color_type1">#8ad968</item>
-        <item name="theme_color_type2">#ff4c64</item>
+
+    <style name="LikeRoomTheme_GrapeTheme" parent="@style/LikeRoomTheme">
+        <item name="theme_color_L4">#fbf1ff</item>
+        <item name="theme_color_L3">#f7e1ff</item>
+        <item name="theme_color_L2">#d3a8e2</item>
+        <item name="theme_color_L1">#cc89e4</item>
+        <item name="theme_color_N" >#be6eda</item>
+        <item name="theme_color_D1">#ab52ca</item>
+        <item name="theme_color_D2">#9b38be</item>
+        <item name="theme_color_D3">#761c96</item>
+        <item name="theme_color_D4">#641181</item>
+        <item name="theme_color_type1">#ffa95d</item>
+        <item name="theme_color_type2">#db74ff</item>
+        <item name="colorAccent">?attr/theme_color_type1</item>
+    </style>
+    <style name="LikeRoomTheme_DarkTheme" parent="@style/LikeRoomTheme">
+        <item name="theme_color_L4">#f2f2f2</item>
+        <item name="theme_color_L3">#e1e1e1</item>
+        <item name="theme_color_L2">#c4c4c4</item>
+        <item name="theme_color_L1">#ababab</item>
+        <item name="theme_color_N" >#939393</item>
+        <item name="theme_color_D1">#767676</item>
+        <item name="theme_color_D2">#6e6e6e</item>
+        <item name="theme_color_D3">#515151</item>
+        <item name="theme_color_D4">#303030</item>
+        <item name="theme_color_type1">#48f1dd</item>
+        <item name="theme_color_type2">#a4a4a4</item>
+
         <item name="colorAccent">?attr/theme_color_type1</item>
     </style>
 

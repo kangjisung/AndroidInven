@@ -26,4 +26,8 @@
     <string name="hello_blank_fragment_item">제품 정보</string>
     <string name="hello_blank_fragment_user">고객 정보</string>
     <string name="hello_blank_fragment_point">포인트 적립</string>
+
+    <string name="user_notice_type_1">알림</string>
+    <string name="user_notice_type_2">신제품</string>
+    <string name="user_notice_type_3">이벤트</string>
 </resources>

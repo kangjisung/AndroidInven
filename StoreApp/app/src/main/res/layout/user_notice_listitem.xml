@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="125dp">
+    android:layout_height="125dp"
+    android:descendantFocusability="blocksDescendants"
+    android:id="@+id/layout_root">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -10,7 +13,10 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:paddingTop="8dp"
-        android:layout_marginEnd="5dp">
+
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/button_ripple_rectangle">
+
 
         <LinearLayout
             android:orientation="vertical"
@@ -18,15 +24,35 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="38dp">
 
-            <TextView
-                android:text="제목"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView_title"
-                android:textColor="@color/gray120"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:maxLines="1" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="제목"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_title"
+                    android:textColor="@color/gray120"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:maxLines="1"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:text="종류"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_type"
+                    android:textColor="?attr/theme_color_N"
+                    android:textSize="14dp"
+                    android:layout_weight="0"
+                    android:layout_marginStart="5dp" />
+
+            </LinearLayout>
+
 
             <TextView
                 android:text="내용"
@@ -37,6 +63,7 @@
                 android:maxLines="3"
                 android:textSize="14dp" />
         </LinearLayout>
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -50,32 +77,122 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp" />
 
-            <TextView
-                android:text="날짜"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView_date"
-                android:textColor="@color/gray120"
+                android:layout_marginStart="25dp"
                 android:layout_centerVertical="true"
-                android:textSize="14dp"
-                android:layout_marginStart="35dp" />
+                android:gravity="center_vertical">
 
-            <ImageView
+                <TextView
+                    android:text="년"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_start_year"
+                    android:layout_weight="1"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:text="/"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:text="월"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_start_month"
+                    android:layout_weight="1"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:text="/"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:text="일 ~ "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_start_day"
+                    android:layout_weight="1"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:text="년"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_end_year"
+                    android:layout_weight="1"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:text="/"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:text="월"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_end_month"
+                    android:layout_weight="1"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:text="/"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:text="일"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_end_day"
+                    android:layout_weight="1"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:text="(종료됨)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_close"
+                    android:layout_weight="1"
+                    android:textSize="14dp"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/red" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.AppCompatImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_centerVertical="true"
                 android:id="@+id/imageView_type"
                 android:background="@mipmap/ic_launcher"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                app:backgroundTint="?attr/theme_color_D2" />
 
         </RelativeLayout>
     </RelativeLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/button_click"
-        android:background="@drawable/button_ripple_rectangle" />
 
     <View
         android:layout_width="match_parent"

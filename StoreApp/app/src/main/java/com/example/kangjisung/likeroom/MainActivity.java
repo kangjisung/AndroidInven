@@ -1,4 +1,4 @@
-package com.example.kangjisung.likeroom;
+﻿package com.example.kangjisung.likeroom;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -42,8 +42,12 @@ public class MainActivity extends AppCompatActivity
         con = getApplicationContext();
         databaseHelperTest = new DatabaseHelper(getApplicationContext(), ClientDataBase.testDatabaseName);
 
-        //NetWorkOrderProcessManager netWorkOrderProcessManager = new NetWorkOrderProcessManager();
-        //netWorkOrderProcessManager.LoadAllStoreInfo();
+
+        /*
+        NetWorkOrderProcessManager netWorkOrderProcessManager = new NetWorkOrderProcessManager();
+        netWorkOrderProcessManager.LoadAllStoreInfo();
+        */
+
         Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
             @Override

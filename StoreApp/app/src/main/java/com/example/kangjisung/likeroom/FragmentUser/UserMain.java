@@ -1,4 +1,4 @@
-package com.example.kangjisung.likeroom.FragmentUser;
+﻿package com.example.kangjisung.likeroom.FragmentUser;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -92,8 +92,6 @@ public class UserMain extends Fragment
         fabStampCancel = (FloatingActionButton) fragmentView.findViewById(R.id.fab_stamp_cancel);
         fabStampCancel.setVisibility(View.INVISIBLE);
 
-        layoutStamp = (LinearLayout) fragmentView.findViewById(R.id.layout_stamp);
-        layoutStamp.setVisibility(View.INVISIBLE);
 
         checkBoxStampAll = (CheckBox) fragmentView.findViewById(R.id.checkBoxStampAll);
         checkBoxStampAll.setVisibility(View.GONE);
@@ -189,7 +187,6 @@ public class UserMain extends Fragment
             cnt += 3;
         }
         mAdapter.notifyDataSetChanged();
-
     }
 
     private void setTextViewSearchResult(boolean StampMode)

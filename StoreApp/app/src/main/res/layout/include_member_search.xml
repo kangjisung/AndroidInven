@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,9 +7,17 @@
     android:orientation="vertical"
     android:background="@color/white">
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView"
+        android:layout_below="@+id/layout_search_result"
+        android:paddingBottom="60dp"
+        android:clipToPadding="false" />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="?attr/theme_color_L3"
+        android:background="?attr/theme_color_L2"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:padding="10dp"
@@ -117,10 +125,11 @@
         android:layout_width="match_parent"
         android:layout_marginTop="100dp"
         android:id="@+id/layout_search_result"
-        android:background="@drawable/user_searchbar_result"
+        android:background="?attr/theme_color_L3"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:layout_height="40dp">
+        android:layout_height="35dp"
+        android:paddingTop="1dp">
 
         <CheckBox
             android:id="@+id/checkBoxStampAll"
@@ -139,19 +148,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView_search_result"
-            android:textColor="@color/clrTextColorDeepDark"
-            android:textSize="17sp"
+            android:textColor="?attr/theme_color_D3"
+            android:textSize="16dp"
             android:layout_weight="1"
             android:layout_gravity="center_vertical" />
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recyclerView"
         android:layout_below="@+id/layout_search_result"
-        android:paddingBottom="60dp"
-        android:clipToPadding="false" />
+
+        android:background="@drawable/shape_gradient_border_y"
+        android:layout_height="3dp"
+        android:rotation="180" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_below="@+id/layout_searchbar"
+        android:background="@drawable/shape_gradient_border_y"
+        android:layout_height="3dp"
+        android:rotation="180" />
+
 
 </RelativeLayout>

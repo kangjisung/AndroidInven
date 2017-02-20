@@ -21,9 +21,9 @@
         </activity>
         <activity
             android:name=".ActivityMenu"
-            android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name="com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.InvenActivity"/>
-        <activity android:name="com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.StatActivity"/>
+
+            android:windowSoftInputMode="adjustPan" />
+
         <Dialog android:name="com.example.kangjisung.likeroom.Util.CalendarDialog" android:theme="@android:style/Theme.Dialog" />
     </application>
 

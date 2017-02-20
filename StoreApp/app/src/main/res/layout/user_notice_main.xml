@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -49,8 +49,7 @@
                 android:layout_height="90dp"
                 android:background="@color/gray240"
                 android:layout_alignParentStart="true"
-                android:id="@+id/relativeLayout"
-                android:layout_marginBottom="5dp">
+                android:id="@+id/relativeLayout">
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -80,7 +79,9 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/buttonNewNotice"
+
+                    android:id="@+id/btn_new"
+
                     android:background="@drawable/button_ripple_rectangle" />
 
                 <View
