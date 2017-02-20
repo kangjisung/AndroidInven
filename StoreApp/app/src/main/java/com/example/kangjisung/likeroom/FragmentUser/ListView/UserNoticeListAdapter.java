@@ -1,4 +1,4 @@
-﻿package com.example.kangjisung.likeroom.FragmentUser.ListView;
+package com.example.kangjisung.likeroom.FragmentUser.ListView;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -81,7 +81,7 @@ public class UserNoticeListAdapter extends BaseAdapter
         String textColor2 = "#" + Integer.toHexString(ContextCompat.getColor(context, R.color.gray120)).substring(2);
         textViewTitle.setText(userNoticeItem.getTitle());
         String textBody = "<font color = " + textColor1 + ">" + /*listTypeText[userNoticeItem.getType()]*/ " </font>" +
-                          "<font color = " + textColor2 + ">" + userNoticeItem.getBody() + "</font>";
+                "<font color = " + textColor2 + ">" + userNoticeItem.getBody() + "</font>";
         textBody = textBody.replace("\n", "<br>");
         textViewBody.setText(Html.fromHtml(textBody));
         mTextViewType.setText(listTypeText[userNoticeItem.getType()]);

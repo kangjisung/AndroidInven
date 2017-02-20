@@ -1,4 +1,4 @@
-﻿package com.example.kangjisung.likeroom.SQLiteDatabaseControl;
+package com.example.kangjisung.likeroom.SQLiteDatabaseControl;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -21,32 +21,32 @@ public class ClientDataBase{
     Context context;
 
     /////////////////db가동
-   public ClientDataBase(String SQL, int i, int k, Context context){ ////i=1이면 select문// i=2이면 insert문// i=3이면 update문  k=받아오는인자수
-       try{
-           this.context = context;
-           //databaseHelperTest = new DatabaseHelper(context, testDatabaseName);
-           localHostDatabaseManager = new LocalHostDatabaseManager(context, context.getApplicationInfo().dataDir + "/databases/", testDatabaseName);
-           sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
+    public ClientDataBase(String SQL, int i, int k, Context context){ ////i=1이면 select문// i=2이면 insert문// i=3이면 update문  k=받아오는인자수
+        try{
+            this.context = context;
+            //databaseHelperTest = new DatabaseHelper(context, testDatabaseName);
+            localHostDatabaseManager = new LocalHostDatabaseManager(context, context.getApplicationInfo().dataDir + "/databases/", testDatabaseName);
+            sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
 
-           DBstring = new String[150];
+            DBstring = new String[150];
 
-           if(i==1){
-               Cursor c = sqLiteDatabase.rawQuery(SQL,null);
-               int cnt=0;
-               while(c.moveToNext()){
-                   for(int j=0;j<k;j++) {
-                       DBstring[cnt++] = c.getString(j);
-                   }
-               }
-           }
-           else if(i==2||i==3){
-               sqLiteDatabase.execSQL(SQL);
-           }
+            if(i==1){
+                Cursor c = sqLiteDatabase.rawQuery(SQL,null);
+                int cnt=0;
+                while(c.moveToNext()){
+                    for(int j=0;j<k;j++) {
+                        DBstring[cnt++] = c.getString(j);
+                    }
+                }
+            }
+            else if(i==2||i==3){
+                sqLiteDatabase.execSQL(SQL);
+            }
 
-           sqLiteDatabase.close(); /////db 종료
-       }
-       catch(Exception e){
-           Log.d("ACAC", e.getMessage());
-       }
+            sqLiteDatabase.close(); /////db 종료
+        }
+        catch(Exception e){
+            Log.d("ACAC", e.getMessage());
+        }
     }
 }
