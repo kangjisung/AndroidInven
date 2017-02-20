@@ -1,6 +1,7 @@
 package com.example.kangjisung.likeroom.FragmentProduct.ListView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -10,9 +11,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.inventory.calc;
+import com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.InvenActivity;
 
 public class FragmentMuchStoreRecyclerViewAdapter extends RecyclerView.Adapter<FragmentMuchStoreRecyclerViewAdapter.ViewHolder> {
 
@@ -65,9 +69,15 @@ public class FragmentMuchStoreRecyclerViewAdapter extends RecyclerView.Adapter<F
         holder.tvName.setText(ProductObjManager.get(position).getName());
         holder.tvAddedDate.setText(ProductObjManager.date2String(ProductObjManager.get(position).getMuchStoreDate()));
         holder.tvNumber.setText(ProductObjManager.get(position).getMuchStore()+"");
+        final Intent mil = new Intent(context, InvenActivity.class);
         holder.ibWrite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                calc c;
+                c=calc.getInstance();
+                c.RefreshClass(ProductObjManager.get(position).getName());
+                context.startActivity(mil);
+                Toast.makeText(context.getApplicationContext(), "클릭.", Toast.LENGTH_SHORT).show();
 
             }
         });
