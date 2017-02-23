@@ -1,4 +1,4 @@
-package com.example.kangjisung.likeroom;
+﻿package com.example.kangjisung.likeroom;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.kangjisung.likeroom.CommunicationManager.NetWorkOrderProcessManager;
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductMuchStoreListItem;
 import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
@@ -33,7 +32,8 @@ public class MainActivity extends AppCompatActivity
 
     ArrayList<ProductSellTodayListItem> sellTodayArrayList = new ArrayList<>();
     ArrayList<ProductMuchStoreListItem> muchStoreArrayList = new ArrayList<>();
-
+    //networkmodule 예제
+    //networkModule.InsertNewCustomerInfo("강지성");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

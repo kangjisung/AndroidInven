@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.FragmentUser.ListView.UserMainListItem;
+import com.example.kangjisung.likeroom.NetworkManager.HttpCommunicationProcess;
+import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 
@@ -21,6 +23,7 @@ public class UserEditDialog extends Dialog {
     private String mode;
     private UserMainListItem modifyItem;
     private int dismissMessage;
+
 
     UserEditDialog(Context context) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
@@ -53,7 +56,11 @@ public class UserEditDialog extends Dialog {
         final EditText UserAddPhone = (EditText)findViewById(R.id.editText_phone);
         final TextView UserAddBirth = (TextView)findViewById(R.id.textView_birth);
 
+
         if(mode == "ADD") {
+            NetworkModule networkModule=new NetworkModule();
+            String email="email";//이메일추가하기기
+            networkModule.InsertNewCustomerInfo(UserAddName.getText().toString(),UserAddPhone.getText().toString(),email,UserAddBirth.getText().toString());
             mOKButton.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View view) {
