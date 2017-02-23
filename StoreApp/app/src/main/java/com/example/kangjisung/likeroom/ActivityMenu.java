@@ -55,7 +55,7 @@ public class ActivityMenu extends AppCompatActivity
         unselectedTabColor = ContextCompat.getColor(this, R.color.gray160);
 
         tabLayout = (TabLayout)findViewById(R.id.tabLayout);
-        textViewTitle = (TextView)findViewById(R.id.textViewTitle);
+        textViewTitle = (TextView)findViewById(R.id.textView_title);
         textViewTitle.setText("포인트 적립");
 
         tabLayoutInitialize(tabLayout);

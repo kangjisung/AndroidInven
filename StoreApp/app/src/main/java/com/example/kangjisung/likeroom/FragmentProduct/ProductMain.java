@@ -7,12 +7,16 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -22,6 +26,14 @@ import com.example.kangjisung.likeroom.Util.NoScrollViewPager;
 import com.example.kangjisung.likeroom.Util.FirstPageFragmentListener;
 import com.github.clans.fab.FloatingActionMenu;
 
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+
 public class ProductMain extends Fragment {
     private Button btnSellToday;
     private Button btnMuchStore;
@@ -30,8 +42,11 @@ public class ProductMain extends Fragment {
     private TextView tvFragmentItemMainDate;
     static public FirstPageFragmentListener firstPageListener;
     private ProductAddDialog productAddDialog;
+    private Button buttonSelectDate;
     private FloatingActionMenu famMenu;
     private View rootView;
+    private Calendar nowDate;
+    private Calendar selectDate;
 
     public ProductMain() {
     }
@@ -60,7 +75,48 @@ public class ProductMain extends Fragment {
         btnMuchStore.setOnClickListener(onClickSelectButton);
         btnSellToday.setOnClickListener(onClickSelectButton);
         //////////////////
-        changeSelection(1);
+        changeSelection(0);
+
+        nowDate = Calendar.getInstance();
+        tvFragmentItemMain.setText("일일판매량");
+        tvFragmentItemMainDate.setText((new SimpleDateFormat("yyyy년 M월 d일", Locale.KOREA)).format(nowDate.getTime()));
+        buttonSelectDate = (Button) rootView.findViewById(R.id.button_select_date);
+        buttonSelectDate.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View onClickView){
+                LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
+                View view = inflater.inflate(R.layout.layout_date, null);
+                CalendarView calendarView = (CalendarView)view.findViewById(R.id.calendarView);
+                selectDate = nowDate;
+                long nowDateToLong = selectDate.getTimeInMillis();
+                calendarView.setDate(nowDateToLong, true, true);
+                calendarView.setOnDateChangeListener( new CalendarView.OnDateChangeListener() {
+                    public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                        selectDate = new GregorianCalendar( year, month, dayOfMonth );
+                    }
+                });
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setView(view);
+                builder.setPositiveButton("네", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        nowDate = selectDate;
+                        tvFragmentItemMainDate.setText((new SimpleDateFormat("yyyy년 M월 d일", Locale.KOREA)).format(nowDate.getTime()));
+                        dialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                //dialog.setTitle(ProductObjManager.get(position).getName());
+                //dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+                dialog.show();
+            }
+        });
 
         famMenu = (FloatingActionMenu) rootView.findViewById(R.id.menu);
         rootView.findViewById(R.id.fab_add_product).setOnClickListener(onFabClickListener);
@@ -75,16 +131,16 @@ public class ProductMain extends Fragment {
             switch(onClickView.getId()){
                 default:
                 case R.id.btn_fragment_item_main_sell_today:
-                    noScrollViewPager.setCurrentItem(1,false);
-                    tvFragmentItemMain.setText("월 최적재고량");
+                    noScrollViewPager.setCurrentItem(0,false);
+                    tvFragmentItemMain.setText("일일판매량");
                     changeSelection(0);
                     /*  여기서 날짜 갱신
                     tvFragmentItemMainDate.setText("");
                     */
                     break;
                 case R.id.btn_fragment_item_main_store_match:
-                    noScrollViewPager.setCurrentItem(0,false);
-                    tvFragmentItemMain.setText("월 일일판매량");
+                    noScrollViewPager.setCurrentItem(1,false);
+                    tvFragmentItemMain.setText("최적재고량");
                     changeSelection(1);
 
                     /*    여기서 날짜 갱신
@@ -115,16 +171,10 @@ public class ProductMain extends Fragment {
                 break;
         }
 
-        acivSelectIcon.getBackground().setColorFilter(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_type1), PorterDuff.Mode.SRC_IN);
-        acivSelectDot.getBackground().setColorFilter(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_type1), PorterDuff.Mode.SRC_IN);
+        acivSelectIcon.getBackground().setColorFilter(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D3), PorterDuff.Mode.SRC_IN);
+        acivSelectDot.getBackground().setColorFilter(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D3), PorterDuff.Mode.SRC_IN);
         acivUnselectIcon.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.alpha40), PorterDuff.Mode.SRC_IN);
         acivUnselectDot.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.transparent), PorterDuff.Mode.SRC_IN);
-    }
-
-    public static float DpToPx(float dp){
-        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
-        float px = dp * (metrics.densityDpi / 160f);
-        return Math.round(px);
     }
 
     public static ProductMain createInstance(FirstPageFragmentListener listener){

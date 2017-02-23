@@ -40,7 +40,7 @@ public class FragmentSellToday extends Fragment {
                     FragmentMuchStore.rvFragmentMuchStore.scrollBy(0,dy);
             }
         });
-        ProductObjManager.addRecyclerView(rvFragmentSellToday,mAdapter);
+        ProductObjManager.addRecyclerView(rvFragmentSellToday, mAdapter);
         sortingStatus=ProductObjManager.sort();
         return rootView;
     }

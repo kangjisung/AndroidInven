@@ -15,34 +15,38 @@ public class ClientDataBase{
     static LocalHostDatabaseManager localHostDatabaseManager;
     public static String testDatabaseName = "ShopkeeperDatabase.db";
     static SQLiteDatabase sqLiteDatabase;
-    public static String DBstring[]=new String[120];
+
+    public static String DBstring[];
+
     Context context;
 
     /////////////////db가동
-   public ClientDataBase(String SQL, int i, int k, Context context){ ////i=1이면 select문// i=2이면 insert문// i=3이면 update문  k=받아오는인자수
-       try{
-           this.context = context;
-           //databaseHelperTest = new DatabaseHelper(context, testDatabaseName);
-           localHostDatabaseManager = new LocalHostDatabaseManager(context, context.getApplicationInfo().dataDir + "/databases/", testDatabaseName);
-           sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
-           DBstring=new String[120];
-           if(i==1){
-               Cursor c = sqLiteDatabase.rawQuery(SQL,null);
-               int cnt=0;
-               while(c.moveToNext()){
-                   for(int j=0;j<k;j++) {
-                       DBstring[cnt++] = c.getString(j);
-                   }
-               }
-           }
-           else if(i==2){
-               sqLiteDatabase.execSQL(SQL);
-           }
+    public ClientDataBase(String SQL, int i, int k, Context context){ ////i=1이면 select문// i=2이면 insert문// i=3이면 update문  k=받아오는인자수
+        try{
+            this.context = context;
+            //databaseHelperTest = new DatabaseHelper(context, testDatabaseName);
+            localHostDatabaseManager = new LocalHostDatabaseManager(context, context.getApplicationInfo().dataDir + "/databases/", testDatabaseName);
+            sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
 
-           sqLiteDatabase.close(); /////db 종료
-       }
-       catch(Exception e){
-           Log.d("ACAC", e.getMessage());
-       }
+            DBstring = new String[150];
+
+            if(i==1){
+                Cursor c = sqLiteDatabase.rawQuery(SQL,null);
+                int cnt=0;
+                while(c.moveToNext()){
+                    for(int j=0;j<k;j++) {
+                        DBstring[cnt++] = c.getString(j);
+                    }
+                }
+            }
+            else if(i==2||i==3){
+                sqLiteDatabase.execSQL(SQL);
+            }
+
+            sqLiteDatabase.close(); /////db 종료
+        }
+        catch(Exception e){
+            Log.d("ACAC", e.getMessage());
+        }
     }
 }
