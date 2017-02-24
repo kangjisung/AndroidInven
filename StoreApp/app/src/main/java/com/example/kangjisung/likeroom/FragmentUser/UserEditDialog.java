@@ -58,9 +58,6 @@ public class UserEditDialog extends Dialog {
 
 
         if(mode == "ADD") {
-            NetworkModule networkModule=new NetworkModule();
-            String email="email";//이메일추가하기기
-            networkModule.InsertNewCustomerInfo(UserAddName.getText().toString(),UserAddPhone.getText().toString(),email,UserAddBirth.getText().toString());
             mOKButton.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View view) {

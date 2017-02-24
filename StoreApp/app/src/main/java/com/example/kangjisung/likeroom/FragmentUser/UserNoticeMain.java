@@ -18,6 +18,7 @@ import android.widget.ListView;
 
 import com.example.kangjisung.likeroom.FragmentUser.ListView.UserNoticeListAdapter;
 import com.example.kangjisung.likeroom.FragmentUser.ListView.UserNoticeListItem;
+import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 
@@ -28,12 +29,15 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import static com.example.kangjisung.likeroom.MainActivity.PriNum;
 import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
 public class UserNoticeMain extends Fragment
 {
     UserNoticeListAdapter mAdapter;
     ListView listView;
+
+    public int noticeNum;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -98,6 +102,7 @@ public class UserNoticeMain extends Fragment
             UserNoticeListItem addListItem = new UserNoticeListItem();
             try {
                 addListItem.setNum(Integer.parseInt(DBstring[cnt]));
+                noticeNum=Integer.parseInt(DBstring[cnt]);
                 addListItem.setTitle(DBstring[cnt+1]);
                 addListItem.setBody(DBstring[cnt+2]);
                 addListItem.setStartDate(dateFormat.parse(DBstring[cnt+3]));
@@ -140,6 +145,9 @@ public class UserNoticeMain extends Fragment
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                //공지 삭제
+                                    NetworkModule networkModule = new NetworkModule();
+                                    networkModule.DelStoreNoticeInfo(Integer.parseInt(PriNum), noticeNum);
                                 String query = String.format("DELETE FROM `매장공지` WHERE `코드` = %d;", listItem.getNum());
                                 new ClientDataBase(query, 1, 0, getContext());
                                 reloadRecyclerView();
