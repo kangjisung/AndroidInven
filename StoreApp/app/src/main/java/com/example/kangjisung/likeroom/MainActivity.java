@@ -11,8 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductMuchStoreListItem;
-import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductSellTodayListItem;
+import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
@@ -25,8 +25,7 @@ import java.util.Date;
 
 import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
-public class MainActivity extends AppCompatActivity
-{
+public class MainActivity extends AppCompatActivity {
     static DatabaseHelper databaseHelperTest;
     public static Context con;
 
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run(){
-                CheckTypesTask task = new CheckTypesTask();
+                MainActivity.CheckTypesTask task = new MainActivity.CheckTypesTask();
                 task.execute();
             }
         }, 500);

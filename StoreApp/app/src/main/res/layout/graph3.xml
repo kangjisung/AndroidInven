@@ -1,62 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    tools:context="com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.Graph.Graph2">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:id="@+id/layout_back"
+        android:layout_marginTop="-60dp"
+        android:layout_marginStart="-722dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_centerHorizontal="true"
-            android:text="그래프"
-            android:textSize="30dp"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="2000dp"
+            android:layout_marginBottom="-1000dp"
+            android:layout_marginTop="-1000dp"
+            android:layout_centerInParent="true">
 
-        <RadioGroup
-            android:id="@+id/graph3_radiogroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:checkedButton="@+id/graph3_radio1"
-            android:orientation="vertical" >
+            <android.support.v7.widget.AppCompatImageView
+                android:background="@drawable/shape_circle"
+                app:backgroundTint="?attr/theme_color_D3"
+                android:layout_height="1000dp"
+                android:layout_width="1000dp"
+                android:layout_marginEnd="-500dp"
+                android:layout_marginStart="-500dp"
+                android:layout_centerInParent="true"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="50dp" />
 
-            <RadioButton
-                android:id="@id/graph3_radio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="요일별" />
-
-            <RadioButton
-                android:id="@+id/graph3_radio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="월별" />
-
-            <RadioButton
-                android:id="@+id/graph3_radio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="최근14일" />
-        </RadioGroup>
+            <android.support.v7.widget.AppCompatImageView
+                android:background="@drawable/shape_circle"
+                app:backgroundTint="@color/gray245"
+                android:layout_height="1000dp"
+                android:layout_width="1000dp"
+                android:layout_marginEnd="-500dp"
+                android:layout_marginStart="-500dp"
+                android:layout_centerInParent="true"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp" />
+        </LinearLayout>
 
     </RelativeLayout>
 
-
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/graph3"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="10dp">
 
-</LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_weight="0"
+                android:layout_height="60dp"
+                android:background="?attr/theme_color_L4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="그래프"
+                    android:textSize="26dp"
+                    android:layout_centerHorizontal="false"
+                    android:layout_centerInParent="true"
+                    android:textColor="?attr/theme_color_D2" />
+
+            </RelativeLayout>
+
+            <android.support.design.widget.TabLayout
+                android:layout_width="match_parent"
+                android:layout_weight="0"
+                android:background="?attr/theme_color_L3"
+                android:layout_height="40dp"
+                app:tabSelectedTextColor="?attr/theme_color_D2">
+
+                <android.support.design.widget.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="요일별" />
+
+                <android.support.design.widget.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="월별" />
+
+                <android.support.design.widget.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="최근 14일" />
+            </android.support.design.widget.TabLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_weight="0"
+                android:background="?attr/theme_color_L3"
+                android:layout_height="40dp"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:background="@drawable/shape_rectangle_rad_5dp"
+                        app:backgroundTint="?attr/theme_color_N"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:text="요일별"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/button2"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_ripple_rectangle_rad5"
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:background="@drawable/shape_rectangle_rad_5dp"
+                        app:backgroundTint="?attr/theme_color_N"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:text="월별"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/button4"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_ripple_rectangle_rad5"
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:background="@drawable/shape_rectangle_rad_5dp"
+                        app:backgroundTint="?attr/theme_color_N"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:text="최근14일"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/button5"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_ripple_rectangle_rad5"
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <View
+                    android:background="@mipmap/bakeries"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="-60dp"
+                    android:alpha="0.3"
+                    android:layout_width="450dp"
+                    android:layout_height="250dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="-160dp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/graph3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp" />
+
+                <RadioGroup
+                    android:id="@+id/graph3_radiogroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:checkedButton="@+id/graph3_radio1"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <RadioButton
+                        android:id="@id/graph3_radio1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="요일별" />
+
+                    <RadioButton
+                        android:id="@+id/graph3_radio2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="월별" />
+
+                    <RadioButton
+                        android:id="@+id/graph3_radio3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="최근14일" />
+                </RadioGroup>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>

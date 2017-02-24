@@ -5,6 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.Util.ColorTheme;
 
 public class InvenActivity extends AppCompatActivity {
     ViewPager viewPager;
@@ -13,6 +14,7 @@ public class InvenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_inven);
 
         //Intent mil = getIntent(); ////user클래스에서 눌렀던 사용자의 이름을 가져옴
