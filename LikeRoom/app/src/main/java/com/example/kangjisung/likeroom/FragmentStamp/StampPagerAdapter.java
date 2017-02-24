@@ -1,14 +1,18 @@
 package com.example.kangjisung.likeroom.FragmentStamp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatImageView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.R;
 
@@ -18,6 +22,7 @@ public class StampPagerAdapter extends PagerAdapter
 {
     private LayoutInflater mInflater;
     private ArrayList<Integer> stampNumList;
+    private ArrayList<RelativeLayout> stampListInPage;
 
     private int numOfStamp;
     private int numOfPage;
@@ -69,7 +74,7 @@ public class StampPagerAdapter extends PagerAdapter
         {
             view = mInflater.inflate(R.layout.stamp_normal_page, null);
 
-            ArrayList<RelativeLayout> stampListInPage = new ArrayList<>();
+            stampListInPage = new ArrayList<>();
 
             stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_1));
             stampListInPage.add((RelativeLayout)view.findViewById(R.id.layout_stamp_2));
@@ -128,7 +133,6 @@ public class StampPagerAdapter extends PagerAdapter
             nowLayout = (RelativeLayout)view.findViewById(R.id.layout_stamp_4);
             nowLayout.findViewById(R.id.stamp_layout).setVisibility(View.GONE);
         }
-
 
         ((ViewPager)pager).addView (view);
 

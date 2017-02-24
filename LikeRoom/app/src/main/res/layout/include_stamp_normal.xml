@@ -21,8 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@mipmap/icon_bread"
-            app:backgroundTint="@color/White"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/White" />
     </RelativeLayout>
 
     <Button
