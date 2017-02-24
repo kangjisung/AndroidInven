@@ -70,6 +70,7 @@ public class UserNoticeMain extends Fragment
             }
         });
 
+
         reloadRecyclerView();
 
         Button buttonBack = (Button)fragmentView.findViewById(R.id.button_back);
@@ -80,6 +81,7 @@ public class UserNoticeMain extends Fragment
         });
 
         return fragmentView;
+
     }
 
     private void reloadRecyclerView() {
@@ -135,20 +137,20 @@ public class UserNoticeMain extends Fragment
             case 6:
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setMessage("선택한 항목을 삭제하시겠습니까?").setCancelable(false).setPositiveButton("확인",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            String query = String.format("DELETE FROM `매장공지` WHERE `코드` = %d;", listItem.getNum());
-                            new ClientDataBase(query, 1, 0, getContext());
-                            reloadRecyclerView();
-                        }
-                    }).setNegativeButton("취소",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            return;
-                        }
-                    });
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String query = String.format("DELETE FROM `매장공지` WHERE `코드` = %d;", listItem.getNum());
+                                new ClientDataBase(query, 1, 0, getContext());
+                                reloadRecyclerView();
+                            }
+                        }).setNegativeButton("취소",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                return;
+                            }
+                        });
                 AlertDialog alert = builder.create();
                 alert.show();
 
@@ -156,6 +158,7 @@ public class UserNoticeMain extends Fragment
             default:
                 return super.onContextItemSelected(item);
         }
+
     }
 
     public void listViewHeightSet(BaseAdapter listAdapter, ListView listView){

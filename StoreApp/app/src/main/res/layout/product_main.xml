@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -24,6 +24,7 @@
         <View
             android:layout_height="match_parent"
             android:background="@color/alpha40"
+
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -109,7 +110,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/btn_fragment_item_main_store_match"
+
                     android:background="@drawable/button_ripple_rectangle_rad5" />
+
 
             </RelativeLayout>
         </LinearLayout>
@@ -120,6 +123,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:id="@+id/layout_info"
+
         android:layout_below="@+id/layout_select"
         android:background="?attr/theme_color_L3">
 
@@ -129,10 +133,12 @@
             android:id="@+id/button_select_date"
             android:background="@drawable/button_ripple_rectangle" />
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
+
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatImageView
@@ -147,20 +153,24 @@
                 android:id="@+id/tv_fragment_item_main_date"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+
                 android:text="[날짜]"
                 android:gravity="center_vertical"
                 android:textColor="?attr/theme_color_D3"
                 android:textSize="16dp" />
 
+
             <TextView
                 android:id="@+id/tv_fragment_item_main"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+
                 android:text="[탭 이름]"
                 android:gravity="center_vertical"
                 android:textColor="?attr/theme_color_D3"
                 android:textSize="16dp"
                 android:layout_marginStart="5dp" />
+
         </LinearLayout>
     </RelativeLayout>
 

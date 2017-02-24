@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,14 +13,17 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:paddingTop="8dp"
+
         android:layout_marginEnd="5dp"
         android:background="@drawable/button_ripple_rectangle">
+
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="38dp">
+
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -50,6 +53,7 @@
 
             </LinearLayout>
 
+
             <TextView
                 android:text="내용"
                 android:layout_width="match_parent"
@@ -59,6 +63,7 @@
                 android:maxLines="3"
                 android:textSize="14dp" />
         </LinearLayout>
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -187,6 +192,7 @@
 
         </RelativeLayout>
     </RelativeLayout>
+
 
     <View
         android:layout_width="match_parent"

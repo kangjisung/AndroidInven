@@ -1,5 +1,6 @@
 <resources>
     <style name="LikeRoomTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
     </style>
     <style name="LikeRoomTheme_StrawBerryTheme" parent="@style/LikeRoomTheme">
         <item name="theme_color_L4">#fff4f6</item>
@@ -14,6 +15,7 @@
         <item name="theme_color_type1">#8ad968</item>
         <item name="theme_color_type2">#ff4c64</item>
         <item name="colorAccent">?attr/theme_color_type1</item>
+
     </style>
     <style name="LikeRoomTheme_BreadTheme" parent="@style/LikeRoomTheme">
         <item name="theme_color_L4">#fffdf6</item>
@@ -28,6 +30,7 @@
         <item name="theme_color_type1">#f86f8d</item>
         <item name="theme_color_type2">#e88f2c</item>
         <item name="colorAccent">?attr/theme_color_type1</item>
+
     </style>
     <style name="LikeRoomTheme_MintTheme" parent="@style/LikeRoomTheme">
         <item name="theme_color_L4">#f5fff1</item>
@@ -42,6 +45,7 @@
         <item name="theme_color_type1">#e4b164</item>
         <item name="theme_color_type2">#88ec74</item>
         <item name="colorAccent">?attr/theme_color_type1</item>
+
     </style>
     <style name="LikeRoomTheme_OceanTheme" parent="@style/LikeRoomTheme">
         <item name="theme_color_L4">#f5fbff</item>
@@ -57,6 +61,7 @@
         <item name="theme_color_type2">#43d0ff</item>
         <item name="colorAccent">?attr/theme_color_type1</item>
     </style>
+
     <style name="LikeRoomTheme_GrapeTheme" parent="@style/LikeRoomTheme">
         <item name="theme_color_L4">#fbf1ff</item>
         <item name="theme_color_L3">#f7e1ff</item>
@@ -83,6 +88,7 @@
         <item name="theme_color_D4">#303030</item>
         <item name="theme_color_type1">#48f1dd</item>
         <item name="theme_color_type2">#a4a4a4</item>
+
         <item name="colorAccent">?attr/theme_color_type1</item>
     </style>
 

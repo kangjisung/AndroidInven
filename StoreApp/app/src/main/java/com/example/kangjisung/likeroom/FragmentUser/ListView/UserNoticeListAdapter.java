@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.PorterDuff;
 import android.support.v4.content.ContextCompat;
+
 import android.support.v7.widget.AppCompatImageView;
+
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,12 +33,16 @@ import java.util.Date;
 public class UserNoticeListAdapter extends BaseAdapter
 {
     private ArrayList<UserNoticeListItem> userNoticeList;
+
     private int clickPosition = 0;
+
     private int listTypeImage[] = {
             R.mipmap.icon_notice1_notification,
             R.mipmap.icon_notice2_event,
             R.mipmap.icon_notice3_newproduct};
+
     private String listTypeText[] = {"알림", "신제품", "이벤트"};
+
 
     public UserNoticeListAdapter() {
         super();
@@ -57,6 +63,7 @@ public class UserNoticeListAdapter extends BaseAdapter
 
         TextView textViewTitle = (TextView)convertView.findViewById(R.id.textView_title);
         TextView textViewBody = (TextView)convertView.findViewById(R.id.textView_body);
+
         TextView mTextViewType = (TextView)convertView.findViewById(R.id.textView_type);
         TextView mTextViewClose = (TextView)convertView.findViewById(R.id.tv_close);
         AppCompatImageView imageViewType = (AppCompatImageView)convertView.findViewById(R.id.imageView_type);
@@ -74,7 +81,7 @@ public class UserNoticeListAdapter extends BaseAdapter
         String textColor2 = "#" + Integer.toHexString(ContextCompat.getColor(context, R.color.gray120)).substring(2);
         textViewTitle.setText(userNoticeItem.getTitle());
         String textBody = "<font color = " + textColor1 + ">" + /*listTypeText[userNoticeItem.getType()]*/ " </font>" +
-                          "<font color = " + textColor2 + ">" + userNoticeItem.getBody() + "</font>";
+                "<font color = " + textColor2 + ">" + userNoticeItem.getBody() + "</font>";
         textBody = textBody.replace("\n", "<br>");
         textViewBody.setText(Html.fromHtml(textBody));
         mTextViewType.setText(listTypeText[userNoticeItem.getType()]);
@@ -89,6 +96,7 @@ public class UserNoticeListAdapter extends BaseAdapter
         //imageViewType.getBackground().setColorFilter(ColorTheme.getThemeColorRGB(context, R.attr.theme_color_D2), PorterDuff.Mode.SRC_IN);
 
         /*
+
         buttonClick.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 clickPosition = position;

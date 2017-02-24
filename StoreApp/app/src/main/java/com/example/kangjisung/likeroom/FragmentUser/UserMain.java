@@ -92,6 +92,7 @@ public class UserMain extends Fragment
         fabStampCancel = (FloatingActionButton) fragmentView.findViewById(R.id.fab_stamp_cancel);
         fabStampCancel.setVisibility(View.INVISIBLE);
 
+
         checkBoxStampAll = (CheckBox) fragmentView.findViewById(R.id.checkBoxStampAll);
         checkBoxStampAll.setVisibility(View.GONE);
         checkBoxStampAll.setOnClickListener(new CompoundButton.OnClickListener(){
@@ -176,7 +177,7 @@ public class UserMain extends Fragment
 
     private void reloadRecyclerView() {
         String query = "SELECT `회원정보`.`이름`,`회원정보`.`전화번호`, `포인트`.`포인트` FROM `회원정보` " +
-                       "LEFT JOIN `포인트` ON `회원정보`.`고유회원등록번호`= `포인트`.`고유회원등록번호`;";
+                "LEFT JOIN `포인트` ON `회원정보`.`고유회원등록번호`= `포인트`.`고유회원등록번호`;";
 
         new ClientDataBase(query, 1, 3, getContext());
         int cnt=0;

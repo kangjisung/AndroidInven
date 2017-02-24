@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -158,6 +158,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_below="@+id/layout_search_result"
+
         android:background="@drawable/shape_gradient_border_y"
         android:layout_height="3dp"
         android:rotation="180" />
@@ -168,5 +169,6 @@
         android:background="@drawable/shape_gradient_border_y"
         android:layout_height="3dp"
         android:rotation="180" />
+
 
 </RelativeLayout>
