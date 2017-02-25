@@ -2,13 +2,13 @@ package com.example.kangjisung.likeroom;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.Util.ColorTheme;
@@ -36,8 +36,14 @@ public class ActivitySetting extends AppCompatActivity
         settingFontSize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(),"기능 준비중입니다",Toast.LENGTH_LONG);
-                toast.show();
+                Snackbar.make(v, "기능 준비중입니다", 20000).setAction("확인", new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+
+                    }
+                }).show();
             }
         });
 
@@ -74,7 +80,7 @@ public class ActivitySetting extends AppCompatActivity
                 builder.show();
             }
             });
-
+/*
         //도움말-> 팝업 창 하나만 띄울지, 새로운 창으로 바꿔서 많은 양을 담을지 고민중. 일단 팝업창 하나만 띄움
         //현재 문제되는 부분: 글씨 크기,색상을 변경하려고 하면 view를 띄워야 하는데
         //도움말을 여러번 누르게 되면 view가 여러번 뜨게 되므로 오류가 발생한다.
@@ -93,34 +99,34 @@ public class ActivitySetting extends AppCompatActivity
                 "재고관리기능과 고객관리 기능을 제공합니다\n");
 
         final AlertDialog.Builder dlg = new AlertDialog.Builder(ActivitySetting.this);
-        dlg.setView(helpview);
+        dlg.setView(helpview);*/
 
-        settingHelp.setOnClickListener(new View.OnClickListener() {
+        final HelpDialog helpDialog = new HelpDialog(ActivitySetting.this);
+
+        /*settingHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              /* 일단 안씀 dlg.setPositiveButton("확인",new DialogInterface.OnClickListener() {
+               일단 안씀 dlg.setPositiveButton("확인",new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
                             }
                         });
-*/
 
-                AlertDialog dialog = dlg.create();
-                dialog.show();
-
+                Log.d("test", "clicked");
+                helpDialog.show();
 
             }
 
-        });
-
+        });*/
         settingHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Log.d("test", "clicked");
+                helpDialog.show();
             }
         });
-
+/*
         //view closeing하고 다시 열기 전 이미 열려있던 뷰를 제거하지 않아 발생하던 버그를 픽스
 
         dlg.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -133,7 +139,7 @@ public class ActivitySetting extends AppCompatActivity
                 }
             }
         });
-
+*/
         //문의하기-> 디자인을 새로 만들어야 할 것 같은데 아직 디자인 구현 안된상태.
         settingAsk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,10 +151,26 @@ public class ActivitySetting extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which) {
                         switch(which) {
                             case 0 :
-                                Toast.makeText(ActivitySetting.this,"문의하기",Toast.LENGTH_LONG).show();
+                                //Toast.makeText(ActivitySetting.this,"문의하기",Toast.LENGTH_LONG).show();
+                                Snackbar.make(settingAsk, "기능 준비중입니다", 20000).setAction("확인", new View.OnClickListener()
+                                {
+                                    @Override
+                                    public void onClick(View v)
+                                    {
+
+                                    }
+                                }).show();
                                 break;
                             case 1:
-                                Toast.makeText(ActivitySetting.this,"문의확인",Toast.LENGTH_LONG).show();
+                                //Toast.makeText(ActivitySetting.this,"문의확인",Toast.LENGTH_LONG).show();
+                                Snackbar.make(settingAsk, "기능 준비중입니다", 20000).setAction("확인", new View.OnClickListener()
+                                {
+                                    @Override
+                                    public void onClick(View v)
+                                    {
+
+                                    }
+                                }).show();
                                 break;
                         }
                         dialog.dismiss();
@@ -158,19 +180,21 @@ public class ActivitySetting extends AppCompatActivity
             }
         });
 
+        final ProDialog proDialog = new ProDialog(ActivitySetting.this);
 
         //만든이. 2월4일 구현완료 -> 추후에 들어가는 내용만! 바꾸면 된다.
         settingPro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder dlg = new AlertDialog.Builder(ActivitySetting.this);
+                /*AlertDialog.Builder dlg = new AlertDialog.Builder(ActivitySetting.this);
                 dlg.setTitle("만든이");
                 dlg.setMessage(
                         "대건 9인"
                 );
 
                 dlg.setPositiveButton("확인", null);
-                dlg.show();
+                dlg.show();*/
+                proDialog.show();
             }
         });
 
