@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,36 +49,18 @@ public class FragmentStampMain extends Fragment {
         btnShowSpecialStamp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View onClickView) {
-
                 Button button = (Button)stampLayout.findViewById(R.id.btnShowSpecialStamp);
                 if(cardMode == "NORMAL"){
-
-                    Snackbar.make(stampLayout, "기능 준비중입니다", 20000).setAction("확인", new View.OnClickListener()
-                    {
-                        @Override
-                        public void onClick(View v)
-                        {
-                            //할거
-                        }
-                    }).show();
-
-
-                    /*
-                    일단 특수 스탬프 구성 다 될 때까지 잠깐 막아둘 것
                     stampLayout.findViewById(R.id.layout_normal).setVisibility(View.INVISIBLE);
                     stampLayout.findViewById(R.id.layout_event).setVisibility(View.VISIBLE);
                     cardMode = "EVENT";
                     button.setText("포인트 스탬프 카드 보기");
-                    */
                 }
                 else if(cardMode == "EVENT"){
-
-
                     stampLayout.findViewById(R.id.layout_normal).setVisibility(View.VISIBLE);
                     stampLayout.findViewById(R.id.layout_event).setVisibility(View.INVISIBLE);
                     cardMode = "NORMAL";
                     button.setText("이벤트 스탬프 카드 보기");
-
                 }
             }
         });
