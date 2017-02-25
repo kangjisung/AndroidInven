@@ -14,6 +14,7 @@ import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
 import com.example.kangjisung.likeroom.PermissionManager.AndroidVersionController;
 import com.example.kangjisung.likeroom.PermissionManager.UserAccountCrawler;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
+import com.example.kangjisung.likeroom.SQLiteDatabaseControl.SynchronizedLocalAndServerDatabase;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.apache.http.HttpResponse;
@@ -24,6 +25,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.io.InputStream;
 
 import static com.example.kangjisung.likeroom.DefineManager.customerDatabaseName;
+
+//0218import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -38,6 +41,7 @@ public class MainActivity extends ActionBarActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    SynchronizedLocalAndServerDatabase synchronizedLocalAndServerDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +53,16 @@ public class MainActivity extends ActionBarActivity {
         final AlertDialog.Builder alertNoticeBuilder = new AlertDialog.Builder(this);
 
         NetworkModule networkModule=new NetworkModule();
+        //networkModule.LoadAllStoreInfo();
         //networkModule.InsertNewCustomerInfo("강지성");
         //networkModule.AddToStoreAsNewMember(1, 1);
         //networkModule.DelMemberFromStore(1);
         //networkModule.GetStoreAndCustomerRegisteredInfo(1);
         //networkModule.InsertMileageLog(1, 200);
-        networkModule.GetMileageSum(1);
+       ////0218  networkModule.GetMileageSum(1);
+
+        synchronizedLocalAndServerDatabase = new SynchronizedLocalAndServerDatabase(getApplicationContext(), networkModule);
+        synchronizedLocalAndServerDatabase.SettingAllStoreDataFromServer();
 
         //SimpleDatabaseTest simpleDatabaseTest = new SimpleDatabaseTest(getApplicationContext());
 

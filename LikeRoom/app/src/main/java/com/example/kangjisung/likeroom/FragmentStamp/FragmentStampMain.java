@@ -1,11 +1,12 @@
 package com.example.kangjisung.likeroom.FragmentStamp;
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,10 +50,18 @@ public class FragmentStampMain extends Fragment {
             public void onClick(View onClickView) {
                 Button button = (Button)stampLayout.findViewById(R.id.btnShowSpecialStamp);
                 if(cardMode == "NORMAL"){
-                    stampLayout.findViewById(R.id.layout_normal).setVisibility(View.INVISIBLE);
+                    /*stampLayout.findViewById(R.id.layout_normal).setVisibility(View.INVISIBLE);
                     stampLayout.findViewById(R.id.layout_event).setVisibility(View.VISIBLE);
                     cardMode = "EVENT";
-                    button.setText("포인트 스탬프 카드 보기");
+                    button.setText("포인트 스탬프 카드 보기");*/
+                    Snackbar.make(stampLayout, "기능 준비중입니다", 20000).setAction("확인", new View.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(View v)
+                        {
+
+                        }
+                    }).show();
                 }
                 else if(cardMode == "EVENT"){
                     stampLayout.findViewById(R.id.layout_normal).setVisibility(View.VISIBLE);
@@ -63,9 +72,8 @@ public class FragmentStampMain extends Fragment {
             }
         });
 
-        initializeLayout("NORMAL");
-        initializeLayout("EVENT");
-
+        CheckTypesTask task = new CheckTypesTask();
+        task.execute();
         return stampLayout;
     }
 
@@ -145,6 +153,38 @@ public class FragmentStampMain extends Fragment {
             tab.setCustomView(R.layout.include_tabitem_circle);
             tab.getCustomView().findViewById((i==0)?(R.id.icon_unselected):(R.id.icon_selected)).setVisibility(View.INVISIBLE);
             tabLayout.addTab(tab);
+        }
+    }
+
+    private class CheckTypesTask extends AsyncTask<Void, Void, Void>
+    {
+        ProgressDialog asyncDialog = new ProgressDialog(getActivity());
+
+        @Override
+        protected void onPreExecute() {
+            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            asyncDialog.setMessage("로딩중입니다..");
+
+            // show dialog
+            asyncDialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0)
+        {
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+
+
+            initializeLayout("NORMAL");
+            initializeLayout("EVENT");
+
+            asyncDialog.dismiss();
+            super.onPostExecute(result);
         }
     }
 }
