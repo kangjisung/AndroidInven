@@ -4,6 +4,8 @@ import android.util.Log;
 
 import org.json.JSONObject;
 
+import static android.R.attr.name;
+
 /**
  * Created by stories2 on 2017. 2. 4..
  */
@@ -25,22 +27,6 @@ public class NetworkModule {
         }
     }
 
-    //고객정보 추가
-    public void InsertNewCustomerInfo(String customerName, String customerPhone, String customerEmail, String customerBirth) {//유저이름,폰번호,이메일,생일
-        httpCommunicationProcess = new HttpCommunicationProcess();
-        String responseRawDate = null;
-        try {
-            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/InsertNewCustomerInfo/?name=" + customerName + "&phone=" + customerPhone + "&email=" + customerEmail + "&birthday=" + customerBirth + "").get();
-            Log.d(logCatTag, responseRawDate);
-            JSONObject jsonObject = new JSONObject(responseRawDate);
-            if (jsonObject.getString("Result").equals("OK")) {
-                Log.d(logCatTag, "ok");
-            } else Log.d(logCatTag, jsonObject.getString("Result"));
-
-        } catch (Exception err) {
-            Log.d(logCatTag, "Error in InsertNewCustomerInfo: " + err.getMessage());
-        }
-    }
     //매장에 고객추가
     public void AddToStoreAsNewMember(int customerId, int storeId) {//유저아이디,매장아이디
         httpCommunicationProcess = new HttpCommunicationProcess();
@@ -91,11 +77,11 @@ public class NetworkModule {
         }
     }
     //제품등록
-    public void InsertNewProductName(int shopId, String productName, int primeCost,int cellCost, int remainCost) { //샵 아이디,이름,원가,판매가,잔존가
+    public void InsertNewProductName(int shopId,int productId, String productName, int primeCost,int cellCost, int remainCost) { //샵 아이디,이름,원가,판매가,잔존가
         httpCommunicationProcess = new HttpCommunicationProcess();
         String responseRawDate = null;
         try {
-            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/InsertNewProductName/?shopId=" + shopId + "&productName=" + productName + "&primeCost=" + primeCost +"&cellCost="+cellCost+"&remainCost"+remainCost+"").get();
+            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/InsertNewProductName/?shopId=" + shopId +"&productId" +productId+ "&productName=" + productName + "&primeCost=" + primeCost +"&cellCost="+cellCost+"&remainCost"+remainCost+"").get();
             Log.d(logCatTag, responseRawDate);
             JSONObject jsonObject = new JSONObject(responseRawDate);
             if (jsonObject.getString("Result").equals("OK")) {
@@ -211,6 +197,39 @@ public class NetworkModule {
         String responseRawDate = null;
         try {
             responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/InsertNewStoreInfoData/?storeId="+storeId+"address=" + address +"&name="+name+"&phone="+phone+"&updateInfoDate="+updateInfoDate+"").get();
+            Log.d(logCatTag, responseRawDate);
+            JSONObject jsonObject = new JSONObject(responseRawDate);
+            if (jsonObject.getString("Result").equals("OK")) {
+                Log.d(logCatTag, "ok");
+            } else Log.d(logCatTag, jsonObject.getString("Result"));
+
+        } catch (Exception err) {
+            Log.d(logCatTag, "Error in UpdateStoreInfoData: " + err.getMessage());
+        }
+    }
+
+    //최적재고량 넣기
+    public void InsertProductOptimalStock(int productCode,int optimalStock, String date) { //제품번호, 최적재고량, 계산한 날짜
+        httpCommunicationProcess = new HttpCommunicationProcess();
+        String responseRawDate = null;
+        try {
+            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/InsertProductOptimalStock/?productCode="+productCode+"optimalStock=" + optimalStock +"&date="+date+"").get();
+            Log.d(logCatTag, responseRawDate);
+            JSONObject jsonObject = new JSONObject(responseRawDate);
+            if (jsonObject.getString("Result").equals("OK")) {
+                Log.d(logCatTag, "ok");
+            } else Log.d(logCatTag, jsonObject.getString("Result"));
+
+        } catch (Exception err) {
+            Log.d(logCatTag, "Error in UpdateStoreInfoData: " + err.getMessage());
+        }
+    }
+    //예상판매량 넣기
+    public void InsertSalesVolume(int productCode,int salesVolume, String date,int projectedSales) { //제품번호, 판매량, 날짜, 예상 판매량
+        httpCommunicationProcess = new HttpCommunicationProcess();
+        String responseRawDate = null;
+        try {
+            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/InsertSalesVolume/?productCode="+productCode+"salesVolume=" + salesVolume +"&date="+date+"&projectedSales"+projectedSales+"").get();
             Log.d(logCatTag, responseRawDate);
             JSONObject jsonObject = new JSONObject(responseRawDate);
             if (jsonObject.getString("Result").equals("OK")) {

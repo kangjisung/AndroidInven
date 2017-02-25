@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity
 {
     static DatabaseHelper databaseHelperTest;
     public static Context con;
+    public static String PriNum;
 
     ArrayList<ProductSellTodayListItem> sellTodayArrayList = new ArrayList<>();
     ArrayList<ProductMuchStoreListItem> muchStoreArrayList = new ArrayList<>();
@@ -68,9 +69,25 @@ public class MainActivity extends AppCompatActivity
             asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             asyncDialog.setMessage("로딩중입니다..");
 
-            // show dialog
-            asyncDialog.show();
-            super.onPreExecute();
+            //////매장이 클라이언트 디비에 있는지 검사
+            new ClientDataBase("select `매장번호` from `매장`;",1,1,getApplicationContext());
+            int cnt=0;
+            while(true) {
+                if (DBstring[cnt] != null) {
+                    PriNum=DBstring[cnt];
+                    cnt++;
+                }
+                else if(DBstring[cnt]==null) break;
+            }
+            if(PriNum==null) {
+                //Intent StoreAdd = new Intent(this, StoreAdd.class);
+                //startActivity(StoreAdd);
+            }
+            else {
+                // show dialog
+                asyncDialog.show();
+                super.onPreExecute();
+            }
         }
 
         @Override
