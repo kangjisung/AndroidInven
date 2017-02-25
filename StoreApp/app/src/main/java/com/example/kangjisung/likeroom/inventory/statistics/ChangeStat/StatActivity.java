@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.inventory.calc;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -31,6 +32,7 @@ public class StatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_stat);
 
         TextView graph1_txt1 = (TextView) findViewById(R.id.graph1_txt1);
