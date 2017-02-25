@@ -1,6 +1,5 @@
 package com.example.kangjisung.likeroom;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -12,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kangjisung.likeroom.FragmentStamp.StampUseDialog;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
 
 public class ActivitySetting extends AppCompatActivity
@@ -114,6 +112,13 @@ public class ActivitySetting extends AppCompatActivity
 
             }
 
+        });
+
+        settingHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
         });
 
         //view closeing하고 다시 열기 전 이미 열려있던 뷰를 제거하지 않아 발생하던 버그를 픽스
