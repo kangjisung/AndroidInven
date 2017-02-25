@@ -4,18 +4,15 @@ import android.util.Log;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by stories2 on 2017. 2. 4..
  */
 
-
+/*****
 public class NetworkModule {
     HttpCommunicationProcess httpCommunicationProcess;
 
-    String hostName = "lamb.kangnam.ac.kr:4200", apiName = "/Smoothie/2", logCatTag = "test";
+    String hostName = "stories2.iptime.org:4200", apiName = "/Smoothie/2", logCatTag = "test";
 
     public NetworkModule() {
     }
@@ -30,11 +27,9 @@ public class NetworkModule {
         }
     }
 
-    public List<String[]> LoadAllStoreInfo(){
+    public void LoadAllStoreInfo(){
         httpCommunicationProcess = new HttpCommunicationProcess();
         String responseRawData = null;
-        String[] eachStoreInfoData = new String[8];
-        List<String[]> allStoreInfoData = new ArrayList<String[]>();
         int i;
         try {
             responseRawData = httpCommunicationProcess.execute("http://" + hostName + apiName + "/LoadAllStoreInfo/").get();
@@ -42,42 +37,18 @@ public class NetworkModule {
             //JSONArray serverResponseArrayData = new JSONArray("{'test':1}");
             JSONObject jsonObject = new JSONObject(responseRawData);
             //Log.d(logCatTag, "test: " + jsonObject.getJSONObject("0"));
-            int indexOfStoreNumber = 0;
-            while(true) {
-                if(jsonObject.isNull("" + indexOfStoreNumber)) {
-                    break;
-                }
-                JSONObject indexOfZeroStoreInfoData = jsonObject.getJSONObject("" + indexOfStoreNumber);
-                allStoreInfoData.add(new String[]{
-                        indexOfZeroStoreInfoData.getString("매장번호"),
-                        indexOfZeroStoreInfoData.getString("주소"),
-                        indexOfZeroStoreInfoData.getString("위도"),
-                        indexOfZeroStoreInfoData.getString("경도"),
-                        indexOfZeroStoreInfoData.getString("이름"),
-                        indexOfZeroStoreInfoData.getString("전화번호"),
-                        indexOfZeroStoreInfoData.getString("매장 개장 시간"),
-                        indexOfZeroStoreInfoData.getString("매장 마감 시간")
-                });
-                Log.d(logCatTag, "매장 번호: " + indexOfZeroStoreInfoData.getString("매장번호") +
-                        "\n전화번호: " + indexOfZeroStoreInfoData.getString("전화번호") +
-                        "\n국가코드: " + indexOfZeroStoreInfoData.getString("국가코드") +
-                        "\n정보 변경 날짜: " + indexOfZeroStoreInfoData.getString("정보 변경 날짜") +
-                        "\n경도: " + indexOfZeroStoreInfoData.getString("경도") +
-                        "\n위도: " + indexOfZeroStoreInfoData.getString("위도") +
-                        "\n매장 마감 시간: " + indexOfZeroStoreInfoData.getString("매장 마감 시간") +
-                        "\n소개글: " + indexOfZeroStoreInfoData.getString("소개글") +
-                        "\n매장 개장 시간: " + indexOfZeroStoreInfoData.getString("매장 개장 시간") +
-                        "\n서비스 탈퇴 여부: " + indexOfZeroStoreInfoData.getString("서비스 탈퇴 여부") +
-                        "\n주소: " + indexOfZeroStoreInfoData.getString("주소") +
-                        "\n이름: " + indexOfZeroStoreInfoData.getString("이름") +
-                        "\n서비스 가입 날짜: " + indexOfZeroStoreInfoData.getString("서비스 가입 날짜"));
-                indexOfStoreNumber = indexOfStoreNumber + 1;
-            }
+            JSONObject indexOfZeroStoreInfoData = jsonObject.getJSONObject("0");
+            Log.d(logCatTag, "매장 번호: " + indexOfZeroStoreInfoData.getString("매장번호"));
+            /*for(i = 0; i < serverResponseArrayData.length(); i += 1){
+                JSONObject eachObjectData = serverResponseArrayData.getJSONObject(i);
+                Log.d(logCatTag, "store id : " + eachObjectData);
+            }*/
+
+/*****
         }
         catch (Exception err) {
             Log.d(logCatTag, "Error in LoadAllStoreInfo: " + err.getMessage());
         }
-        return allStoreInfoData;
     }
 
     public void AddToStoreAsNewMember(int customerId, int targetStoreId) {
@@ -214,9 +185,9 @@ public class NetworkModule {
             Log.d(logCatTag,"Error in LoadCustomerInfo: "+err.getMessage());
         }
     }
-    /////쿠폰 사용기능
+    /*//////쿠폰 사용기능
 
-
+/*****
     public void UseTargetCoupon(String customerAndStoreId,String updateDate,String couponId){
         httpCommunicationProcess=new HttpCommunicationProcess();
         String responseRawDate=null;
@@ -231,10 +202,10 @@ public class NetworkModule {
         }catch (Exception err){
             Log.d(logCatTag,"Error in UseTargetCoupon: "+err.getMessage());
         }
-    }
+    }*/
     /////공지 리스트
 
-
+/*****
     public void ShowTargetStoreNoticeList(String shopId){
         httpCommunicationProcess=new HttpCommunicationProcess();
         String responseRawDate=null;
@@ -249,3 +220,4 @@ public class NetworkModule {
 
 
 }
+*/

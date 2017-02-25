@@ -8,7 +8,6 @@ import android.util.Log;
 import com.example.kangjisung.likeroom.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static com.example.kangjisung.likeroom.DefineManager.customerDatabaseName;
 import static com.example.kangjisung.likeroom.DefineManager.databaseShopAddressSavedPoint;
@@ -215,34 +214,5 @@ public class SimpleDatabaseTest {
             }
         }
         return resultOfSearchedStoreList;
-    }
-
-    public void SetAllStoreInfoData(List<String[]> allStoreData) {
-        try {
-            localHostDatabaseManager = new LocalHostDatabaseManager(context, databaseSavedPath, customerDatabaseName);
-            sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
-
-            for(String[] eachStoreInfoData: allStoreData) {
-                if(eachStoreInfoData[2].equals("null")) {
-                    eachStoreInfoData[2] = "0";
-                }
-                if(eachStoreInfoData[3].equals("null")) {
-                    eachStoreInfoData[3] = "0";
-                }
-                String eachStoreInsertQuery = "insert into `매장` (`매장번호`, `주소`, `위도`, `경도`, `이름`, `전화번호`, `매장개장시간`, `매장마감시간`) select " +
-                        eachStoreInfoData[0] + " as `매장번호`, '" + eachStoreInfoData[1] + "' as `주소`, " +
-                        eachStoreInfoData[2] + " as `위도`, " + eachStoreInfoData[3] + " as `경도`, '" +
-                        eachStoreInfoData[4] + "' as `이름`, '" + eachStoreInfoData[5] + "' as `전화번호`, '" +
-                        eachStoreInfoData[6] + "' as `매장개장시간`, '" + eachStoreInfoData[7] + "' as `매장마감시간` " +
-                        "where not exists (select " + eachStoreInfoData[0] + " from " +
-                        "`매장` where `매장번호` = " + eachStoreInfoData[0] + ");";
-                Log.d("test", eachStoreInsertQuery);
-                sqLiteDatabase.execSQL(eachStoreInsertQuery);
-            }
-            sqLiteDatabase.close();
-        }
-        catch (Exception err) {
-            Log.d("test", "Error in SetAllStoreInfoData: " + err.getMessage());
-        }
     }
 }
