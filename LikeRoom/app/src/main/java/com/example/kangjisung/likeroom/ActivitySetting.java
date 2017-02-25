@@ -1,5 +1,6 @@
 package com.example.kangjisung.likeroom;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kangjisung.likeroom.FragmentStamp.StampUseDialog;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
 
 public class ActivitySetting extends AppCompatActivity
@@ -36,7 +38,8 @@ public class ActivitySetting extends AppCompatActivity
         settingFontSize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast toast = Toast.makeText(getApplicationContext(),"기능 준비중입니다",Toast.LENGTH_LONG);
+                toast.show();
             }
         });
 
@@ -93,22 +96,28 @@ public class ActivitySetting extends AppCompatActivity
 
         final AlertDialog.Builder dlg = new AlertDialog.Builder(ActivitySetting.this);
         dlg.setView(helpview);
+
         settingHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               dlg.setPositiveButton("확인",new DialogInterface.OnClickListener() {
+              /* 일단 안씀 dlg.setPositiveButton("확인",new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                //dlg.setView(null);   //일단은 뷰를 아예 없애서 오류를 막음 T.T....나중에 수정해야함
                                 dialog.dismiss();
                             }
                         });
+*/
 
                 AlertDialog dialog = dlg.create();
                 dialog.show();
+
+
             }
+
         });
+
         //view closeing하고 다시 열기 전 이미 열려있던 뷰를 제거하지 않아 발생하던 버그를 픽스
+
         dlg.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialogInterface) {
@@ -119,7 +128,6 @@ public class ActivitySetting extends AppCompatActivity
                 }
             }
         });
-
 
         //문의하기-> 디자인을 새로 만들어야 할 것 같은데 아직 디자인 구현 안된상태.
         settingAsk.setOnClickListener(new View.OnClickListener() {

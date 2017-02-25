@@ -1,5 +1,7 @@
 package com.example.kangjisung.likeroom.FragmentStamp;
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -63,9 +65,8 @@ public class FragmentStampMain extends Fragment {
             }
         });
 
-        initializeLayout("NORMAL");
-        initializeLayout("EVENT");
-
+        CheckTypesTask task = new CheckTypesTask();
+        task.execute();
         return stampLayout;
     }
 
@@ -145,6 +146,38 @@ public class FragmentStampMain extends Fragment {
             tab.setCustomView(R.layout.include_tabitem_circle);
             tab.getCustomView().findViewById((i==0)?(R.id.icon_unselected):(R.id.icon_selected)).setVisibility(View.INVISIBLE);
             tabLayout.addTab(tab);
+        }
+    }
+
+    private class CheckTypesTask extends AsyncTask<Void, Void, Void>
+    {
+        ProgressDialog asyncDialog = new ProgressDialog(getActivity());
+
+        @Override
+        protected void onPreExecute() {
+            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            asyncDialog.setMessage("로딩중입니다..");
+
+            // show dialog
+            asyncDialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0)
+        {
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+
+
+            initializeLayout("NORMAL");
+            initializeLayout("EVENT");
+
+            asyncDialog.dismiss();
+            super.onPostExecute(result);
         }
     }
 }

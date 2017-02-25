@@ -44,8 +44,7 @@
 
     </RelativeLayout>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_marginBottom="15dp"
         android:layout_marginEnd="5dp"
@@ -53,6 +52,23 @@
         android:layout_height="150dp"
         android:layout_marginTop="60dp">
 
-    </android.support.v4.view.ViewPager>
+        <TextView
+            android:text="Loading..."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView12"
+            android:textColor="?attr/theme_color_D4"
+            android:textSize="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent">
+
+        </android.support.v4.view.ViewPager>
+    </RelativeLayout>
 
 </RelativeLayout>
