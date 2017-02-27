@@ -25,6 +25,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.io.InputStream;
 
 import static com.example.kangjisung.likeroom.DefineManager.customerDatabaseName;
+import static com.example.kangjisung.likeroom.DefineManager.synchronizedLocalAndServerDatabase;
 
 //0218import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
 
@@ -41,7 +42,6 @@ public class MainActivity extends ActionBarActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
-    SynchronizedLocalAndServerDatabase synchronizedLocalAndServerDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
