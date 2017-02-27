@@ -17,6 +17,8 @@ import android.widget.TextView;
 import com.example.kangjisung.likeroom.DefineManager;
 import com.example.kangjisung.likeroom.R;
 
+import static com.example.kangjisung.likeroom.DefineManager.synchronizedLocalAndServerDatabase;
+
 public class FragmentStampMain extends Fragment {
     //스탬프 현황 레이아웃을 그려야할 것
     //또한 스탬프 사용시 팝업도 띄워야 함
@@ -26,6 +28,7 @@ public class FragmentStampMain extends Fragment {
     Button btnShowSpecialStamp;
     String[] selectedShopInfoData;
     TextView txtShopPhoneNumber, txtShopName;
+    StampPagerAdapter pagerAdapter;
 
     //나중에 갯수 수정
     int numOfStamp = 35;
@@ -43,6 +46,14 @@ public class FragmentStampMain extends Fragment {
 
         txtShopName.setText(selectedShopInfoData[DefineManager.shopNameSavedPoint]);
         txtShopPhoneNumber.setText(selectedShopInfoData[DefineManager.shopPhoneNumberSavedPoint]);
+
+        numOfStamp = synchronizedLocalAndServerDatabase.GetMileageStatusFromTargetStore(1);
+        if(numOfStamp < 0) {
+            numOfStamp = 0;
+        }
+        else {
+            numOfStamp = numOfStamp / 200;
+        }
 
         //쿠폰<->스탬프 레이아웃을 전환하면서 나의 쿠폰과 스탬프 상태를 봄
         btnShowSpecialStamp.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +82,14 @@ public class FragmentStampMain extends Fragment {
                 }
             }
         });
+        View p = stampLayout.findViewById(R.id.textView2);
+        p.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numOfStamp = 48;
+                initializeLayout("NORMAL");
+            }
+        });
 
         CheckTypesTask task = new CheckTypesTask();
         task.execute();
@@ -80,7 +99,6 @@ public class FragmentStampMain extends Fragment {
     public void initializeLayout(String mode)
     {
         RelativeLayout layout;
-        StampPagerAdapter pagerAdapter;
         Button buttonStampLeft;
         Button buttonStampRight;
         final ViewPager viewPager;
@@ -90,7 +108,6 @@ public class FragmentStampMain extends Fragment {
             default:
             case "NORMAL":
                 layout = (RelativeLayout)stampLayout.findViewById(R.id.layout_normal);
-                numOfStamp = 35;
                 pagerAdapter = new StampPagerAdapter(getActivity(), numOfStamp);
                 break;
             case "EVENT":
@@ -102,6 +119,7 @@ public class FragmentStampMain extends Fragment {
         viewPager.setAdapter(pagerAdapter);
 
         tabLayout = (TabLayout)layout.findViewById(R.id.tabLayout);
+        tabLayout.removeAllTabs();
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         viewPager.setOffscreenPageLimit(pagerAdapter.getCount());
         tabLayoutInitialize(tabLayout, pagerAdapter.getCount());

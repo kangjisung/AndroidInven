@@ -1,6 +1,8 @@
 
 package com.example.kangjisung.likeroom;
 
+import com.example.kangjisung.likeroom.SQLiteDatabaseControl.SynchronizedLocalAndServerDatabase;
+
 /**
  * Created by stories2 on 2016. 12. 25..
  */
@@ -33,4 +35,6 @@ public class DefineManager {
     };
 
     public final static String customerDatabaseName = "CustomerDatabase.db";
+
+    public static SynchronizedLocalAndServerDatabase synchronizedLocalAndServerDatabase;
 }

@@ -25,6 +25,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.io.InputStream;
 
 import static com.example.kangjisung.likeroom.DefineManager.customerDatabaseName;
+import static com.example.kangjisung.likeroom.DefineManager.synchronizedLocalAndServerDatabase;
 
 //0218import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
 
@@ -41,7 +42,6 @@ public class MainActivity extends ActionBarActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
-    SynchronizedLocalAndServerDatabase synchronizedLocalAndServerDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +67,8 @@ public class MainActivity extends ActionBarActivity {
         //SimpleDatabaseTest simpleDatabaseTest = new SimpleDatabaseTest(getApplicationContext());
 
         userAccountInfo = userAccountCrawler.CheckPermissionGranted();
+        synchronizedLocalAndServerDatabase.RegisterMyInfoToServer("customer", "N/A", userAccountInfo, "0000-00-00");
+        synchronizedLocalAndServerDatabase.RegisterCustomerToStore();
 
         Log.d(getString(R.string.app_name), "crawled account info: " + userAccountInfo);
 
