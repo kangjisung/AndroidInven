@@ -249,15 +249,39 @@ public class NetworkModule {
     /////공지 리스트
 
 
-    public void ShowTargetStoreNoticeList(String shopId){
+    public List<String[]> ShowTargetStoreNoticeList(String shopId){
         httpCommunicationProcess=new HttpCommunicationProcess();
-        String responseRawDate=null;
+        String responseRawData=null;
+        List<String[]> storeNoticeList = null;
+        String[] eachStoreNoticeData;
         try{
-            responseRawDate=httpCommunicationProcess.execute("http://"+hostName+apiName+"/ShowTargetStoreNoticeList/?shopId="+shopId+"").get();
-            Log.d(logCatTag,responseRawDate);
+            responseRawData=httpCommunicationProcess.execute("http://"+hostName+apiName+"/ShowTargetStoreNoticeList/?shopId="+shopId+"").get();
+
+            Log.d("test", responseRawData);
+            JSONObject jsonObject = new JSONObject(responseRawData);
+            //Log.d(logCatTag, "test: " + jsonObject.getJSONObject("0"));
+            int indexOfStoreNumber = 0;
+            storeNoticeList = new ArrayList<String[]>();
+            while(true) {
+                if (jsonObject.isNull("" + indexOfStoreNumber)) {
+                    break;
+                }
+                eachStoreNoticeData = new String[6];
+                JSONObject indexOfNoticeData = jsonObject.getJSONObject("" + indexOfStoreNumber);
+                eachStoreNoticeData[0] = indexOfNoticeData.getString("매장번호");
+                eachStoreNoticeData[1] = indexOfNoticeData.getString("공지번호");
+                eachStoreNoticeData[2] = indexOfNoticeData.getString("제목");
+                eachStoreNoticeData[3] = indexOfNoticeData.getString("내용");
+                eachStoreNoticeData[4] = indexOfNoticeData.getString("공지 시작 날짜");
+                eachStoreNoticeData[5] = indexOfNoticeData.getString("공지 마감 날짜");
+                storeNoticeList.add(eachStoreNoticeData);
+                indexOfStoreNumber = indexOfStoreNumber + 1;
+            }
+            Log.d(logCatTag,"notice: " + responseRawData);
         }catch (Exception err){
             Log.d(logCatTag,"Error in ShowTargetStoreNoticeList: "+err.getMessage());
         }
+        return storeNoticeList;
     }
 
 

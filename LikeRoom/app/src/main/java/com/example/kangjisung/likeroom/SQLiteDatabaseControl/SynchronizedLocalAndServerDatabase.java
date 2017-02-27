@@ -43,4 +43,12 @@ public class SynchronizedLocalAndServerDatabase extends Thread{
     public int GetMileageStatusFromTargetStore(int storeId) {
         return networkModule.GetMileageSum(1);
     }
+
+    public void UseMileageFromTargetStore(int uniqueRegisteredId, int mileageSize) {
+        networkModule.InsertMileageLog(uniqueRegisteredId, mileageSize);
+    }
+
+    public void GetStoreNoticeFromServer(String shopId) {
+        simpleDatabaseTest.SaveStoreNoticeData(networkModule.ShowTargetStoreNoticeList(shopId));
+    }
 }
