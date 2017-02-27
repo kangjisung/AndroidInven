@@ -17,6 +17,8 @@ import android.widget.TextView;
 import com.example.kangjisung.likeroom.DefineManager;
 import com.example.kangjisung.likeroom.R;
 
+import static com.example.kangjisung.likeroom.DefineManager.synchronizedLocalAndServerDatabase;
+
 public class FragmentStampMain extends Fragment {
     //스탬프 현황 레이아웃을 그려야할 것
     //또한 스탬프 사용시 팝업도 띄워야 함
@@ -44,6 +46,14 @@ public class FragmentStampMain extends Fragment {
 
         txtShopName.setText(selectedShopInfoData[DefineManager.shopNameSavedPoint]);
         txtShopPhoneNumber.setText(selectedShopInfoData[DefineManager.shopPhoneNumberSavedPoint]);
+
+        numOfStamp = synchronizedLocalAndServerDatabase.GetMileageStatusFromTargetStore(1);
+        if(numOfStamp < 0) {
+            numOfStamp = 0;
+        }
+        else {
+            numOfStamp = numOfStamp / 200;
+        }
 
         //쿠폰<->스탬프 레이아웃을 전환하면서 나의 쿠폰과 스탬프 상태를 봄
         btnShowSpecialStamp.setOnClickListener(new View.OnClickListener() {

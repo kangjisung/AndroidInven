@@ -163,7 +163,7 @@ public class NetworkModule {
         }
     }
 
-    public void GetMileageSum(int uniqueRegisteredId) {
+    public int GetMileageSum(int uniqueRegisteredId) {
         httpCommunicationProcess = new HttpCommunicationProcess();
         String responseRawData = null;
         try {
@@ -172,6 +172,7 @@ public class NetworkModule {
             JSONObject jsonObject = new JSONObject(responseRawData);
             if(jsonObject.isNull("Result")) {
                 Log.d(logCatTag, "ok");
+                return Integer.parseInt(jsonObject.getString("마일리지 량"));
             }
             else {
                 Log.d(logCatTag, "fail");
@@ -180,6 +181,7 @@ public class NetworkModule {
         catch (Exception err) {
             Log.d(logCatTag, "Error in GetMileageSum: " + err.getMessage());
         }
+        return -1;
     }
 
     ////내 정보 등록

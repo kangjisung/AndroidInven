@@ -39,4 +39,8 @@ public class SynchronizedLocalAndServerDatabase extends Thread{
             networkModule.AddToStoreAsNewMember(Integer.parseInt(customerInfo[0]), Integer.parseInt(eachStoreRegistered[0]));
         }
     }
+
+    public int GetMileageStatusFromTargetStore(int storeId) {
+        return networkModule.GetMileageSum(1);
+    }
 }
