@@ -245,4 +245,22 @@ public class SimpleDatabaseTest {
             Log.d("test", "Error in SetAllStoreInfoData: " + err.getMessage());
         }
     }
+
+    public void InsertCustomerInfo(String[] customerInfo) {
+        try {
+            localHostDatabaseManager = new LocalHostDatabaseManager(context, databaseSavedPath, customerDatabaseName);
+            sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
+
+            String customerInfoInsertQuery = "insert into `회원정보` (`회원번호`, `이름`, `전화번호`, `이메일`, `생년월일`) select " +
+                    customerInfo[0] + " as `회원번호`, '" + customerInfo[1] + "' as `이름`, '" + customerInfo[2] +
+                    "' as `전화번호`, '" + customerInfo[3] + "' as `이메일`, '" + customerInfo[4] +
+                    "' as `생년월일` where not exists (select " + customerInfo[0] + " from `회원정보` where `회원번호` = " + customerInfo[0] + ");";
+            sqLiteDatabase.execSQL(customerInfoInsertQuery);
+
+            sqLiteDatabase.close();
+        }
+        catch (Exception err) {
+            Log.d("test", "Error in InsertCustomerInfo: " + err.getMessage());
+        }
+    }
 }

@@ -24,4 +24,9 @@ public class SynchronizedLocalAndServerDatabase extends Thread{
         //simpleDatabaseTest.SetAllStoreInfoData();
         simpleDatabaseTest.SetAllStoreInfoData(networkModule.LoadAllStoreInfo());
     }
+
+    public void RegisterMyInfoToServer(String customerName, String customerPhone, String customerEmail, String customerBirth) {
+        networkModule.InsertNewCustomerInfo(customerName, customerPhone, customerEmail, customerBirth);
+        simpleDatabaseTest.InsertCustomerInfo(networkModule.LoadCustomerInfo(customerEmail));
+    }
 }

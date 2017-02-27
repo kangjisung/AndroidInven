@@ -2,7 +2,6 @@ package com.example.kangjisung.likeroom;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -97,7 +96,7 @@ public class ActivityStoreSelect extends AppCompatActivity {
                 "서울특별시 강동구 상일동 67-2", "02-441-7833", "N/A", "N/A", 37.5509792, 127.1738538);*/
 
 
-        httpCommunicationProcess = new HttpCommunicationProcess();
+        /*httpCommunicationProcess = new HttpCommunicationProcess();
         try {
             String internetConnectionTest = httpCommunicationProcess.execute("http://lamb.kangnam.ac.kr").get();
             if(internetConnectionTest == null) {
@@ -107,7 +106,7 @@ public class ActivityStoreSelect extends AppCompatActivity {
         }
         catch (Exception err) {
             Log.d(getString(R.string.app_name), "Error in onCreate: " + err.getMessage());
-        }
+        }*/
 
         btnRegisterNewStore.setOnClickListener(new View.OnClickListener() {
             @Override
