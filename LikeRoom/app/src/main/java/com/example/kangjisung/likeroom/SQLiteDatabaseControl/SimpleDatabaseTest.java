@@ -8,6 +8,7 @@ import android.util.Log;
 import com.example.kangjisung.likeroom.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.example.kangjisung.likeroom.DefineManager.customerDatabaseName;
@@ -262,5 +263,31 @@ public class SimpleDatabaseTest {
         catch (Exception err) {
             Log.d("test", "Error in InsertCustomerInfo: " + err.getMessage());
         }
+    }
+
+    public String[] GetCustomerInfo() {
+        String[] customerInfo = null;
+        try {
+            localHostDatabaseManager = new LocalHostDatabaseManager(context, databaseSavedPath, customerDatabaseName);
+            sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
+
+            String gettingCustomerInfoQuery = "select * from `회원정보` limit 1;";
+            Cursor sqlResult = sqLiteDatabase.rawQuery(gettingCustomerInfoQuery, null);
+
+            //sqlResult.getString(sqlResult.getColumnIndex(
+            sqlResult.moveToFirst();
+            customerInfo = new String[5];
+            customerInfo[0] = sqlResult.getString(sqlResult.getColumnIndex("회원번호"));
+            customerInfo[1] = sqlResult.getString(sqlResult.getColumnIndex("이름"));
+            customerInfo[2] = sqlResult.getString(sqlResult.getColumnIndex("전화번호"));
+            customerInfo[3] = sqlResult.getString(sqlResult.getColumnIndex("이메일"));
+            customerInfo[4] = sqlResult.getString(sqlResult.getColumnIndex("삭제"));
+            Log.d("test", "customer info: " + Arrays.toString(customerInfo));
+            sqLiteDatabase.close();
+        }
+        catch (Exception err) {
+            Log.d("test", "Error in GetCustomerInfo: " + err.getMessage());
+        }
+        return customerInfo;
     }
 }
