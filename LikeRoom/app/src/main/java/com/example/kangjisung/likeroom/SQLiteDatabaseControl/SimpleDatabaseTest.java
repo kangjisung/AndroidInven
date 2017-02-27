@@ -290,4 +290,25 @@ public class SimpleDatabaseTest {
         }
         return customerInfo;
     }
+
+    public void SaveStoreNoticeData(List<String[]> storeNoticeData) {
+        try {
+            localHostDatabaseManager = new LocalHostDatabaseManager(context, databaseSavedPath, customerDatabaseName);
+            sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
+
+            for(String[] eachNoticeData : storeNoticeData) {
+                Log.d(context.getString(R.string.app_name), "Save notice: " + Arrays.toString(eachNoticeData));
+                sqLiteDatabase.execSQL("insert into `매장공지` (`매장번호`, `공지번호`, `제목`, `내용`, `공지시작날짜`, `공지마감날짜`) select "+
+                        eachNoticeData[0] + " as `매장번호`, " + eachNoticeData[1] + " as `공지번호`, '" + eachNoticeData[2] +
+                        "' as `제목`, '" + eachNoticeData[3] + "' as `내용`, '" + eachNoticeData[4] + "' as `공지시작날짜`, '" +
+                        eachNoticeData[5] + "' as `공지마감날짜` where not exists (select " + eachNoticeData[1] +
+                        " from `매장공지` where `공지번호` = " + eachNoticeData[1] + ");");
+            }
+
+            sqLiteDatabase.close();
+        }
+        catch (Exception err) {
+            Log.d("test", "Error in SaveStoreNoticeData: " + err.getMessage());
+        }
+    }
 }

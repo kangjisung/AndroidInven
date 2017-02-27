@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +18,14 @@ import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.SimpleDatabaseTest;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static com.example.kangjisung.likeroom.DefineManager.noticeBodySavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.noticeCloseDateSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.noticeStartDateSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.noticeTitleSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.shopIdSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.synchronizedLocalAndServerDatabase;
 
 public class FragmentNoticeMain extends Fragment {
 //스탬프,공지사항,매장정보 중 공지사항 부분.
@@ -74,11 +77,19 @@ public class FragmentNoticeMain extends Fragment {
 
         noticeDataList = simpleDatabaseTest.GetSelectedStoreNoticeInfo(Integer.parseInt(selectedShopInfoData[shopIdSavedPoint]), 2);
 
+        synchronizedLocalAndServerDatabase.GetStoreNoticeFromServer(selectedShopInfoData[shopIdSavedPoint]);
+
         int i;
         for(i = 0; i < noticeDataList.size(); i += 1) {
             String[] noticeData = noticeDataList.get(i);
-            mAdapter.addItem(noticeData[noticeTitleSavedPoint], noticeData[noticeBodySavedPoint], noticeData[noticeStartDateSavedPoint],
-                    noticeData[noticeCloseDateSavedPoint], 1);
+            try{
+                Log.d(getContext().getString(R.string.app_name), "notice data: " + Arrays.toString(noticeData));
+                mAdapter.addItem(noticeData[noticeTitleSavedPoint], noticeData[noticeBodySavedPoint], noticeData[noticeStartDateSavedPoint],
+                        noticeData[noticeCloseDateSavedPoint], 1);
+            }
+            catch (Exception err) {
+                Log.d(getContext().getString(R.string.app_name), "Error in AddNoticeItem: " + err.getMessage());
+            }
         }
         /*mAdapter.addItem("제목1", "내용1", new GregorianCalendar(2016, 1, 1), new GregorianCalendar(2016, 12, 30), 1);
         mAdapter.addItem("제목2", "내용2", new GregorianCalendar(2015, 1, 1), new GregorianCalendar(2015, 12, 30), 2);
