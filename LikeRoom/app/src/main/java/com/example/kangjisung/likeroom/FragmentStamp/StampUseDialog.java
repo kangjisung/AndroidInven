@@ -14,6 +14,8 @@ import android.widget.Switch;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
 
+import static com.example.kangjisung.likeroom.DefineManager.synchronizedLocalAndServerDatabase;
+
 public class StampUseDialog extends Dialog
 {
     private Button mLeftButton;
@@ -84,6 +86,7 @@ public class StampUseDialog extends Dialog
         mRightButton.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View onClickView){
+                synchronizedLocalAndServerDatabase.UseMileageFromTargetStore(1, -1000);
                 dismiss();
             }
         });
