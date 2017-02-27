@@ -163,7 +163,7 @@ public class NetworkModule {
         }
     }
 
-    public void GetMileageSum(int uniqueRegisteredId) {
+    public int GetMileageSum(int uniqueRegisteredId) {
         httpCommunicationProcess = new HttpCommunicationProcess();
         String responseRawData = null;
         try {
@@ -172,6 +172,7 @@ public class NetworkModule {
             JSONObject jsonObject = new JSONObject(responseRawData);
             if(jsonObject.isNull("Result")) {
                 Log.d(logCatTag, "ok");
+                return Integer.parseInt(jsonObject.getString("마일리지 량"));
             }
             else {
                 Log.d(logCatTag, "fail");
@@ -180,6 +181,7 @@ public class NetworkModule {
         catch (Exception err) {
             Log.d(logCatTag, "Error in GetMileageSum: " + err.getMessage());
         }
+        return -1;
     }
 
     ////내 정보 등록
@@ -200,7 +202,8 @@ public class NetworkModule {
         }
     }
     ///////////내 고유코드 받기
-    public void LoadCustomerInfo(String customerEmail){
+    public String[] LoadCustomerInfo(String customerEmail){
+        String[] customerInfo = null;
         httpCommunicationProcess=new HttpCommunicationProcess();
         String responseRawDate=null;
         String uniCode=null;//고유코드
@@ -208,11 +211,22 @@ public class NetworkModule {
             responseRawDate=httpCommunicationProcess.execute("http://"+hostName+apiName+"/LoadCustomerInfo/?email="+customerEmail+"").get();
             Log.d(logCatTag,responseRawDate);
             JSONObject jsonObject=new JSONObject(responseRawDate);
-            uniCode=jsonObject.getString("회원번호");
-            Log.d(logCatTag,uniCode);
+            if(!jsonObject.isNull("회원번호")){
+                customerInfo = new String[5];
+                customerInfo[0] = jsonObject.getString("회원번호");
+                customerInfo[1] = jsonObject.getString("이름");
+                customerInfo[2] = jsonObject.getString("전화번호");
+                customerInfo[3] = jsonObject.getString("이메일");
+                customerInfo[4] = jsonObject.getString("생일");
+                Log.d(logCatTag, "customer info received successfully");
+            }
+            else {
+                return customerInfo;
+            }
         }catch (Exception err){
             Log.d(logCatTag,"Error in LoadCustomerInfo: "+err.getMessage());
         }
+        return customerInfo;
     }
     /////쿠폰 사용기능
 
