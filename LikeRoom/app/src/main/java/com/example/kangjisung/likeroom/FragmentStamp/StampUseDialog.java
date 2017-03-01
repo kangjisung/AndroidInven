@@ -92,7 +92,7 @@ public class StampUseDialog extends Dialog
         mRightButton.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View onClickView){
-                synchronizedLocalAndServerDatabase.UseMileageFromTargetStore(1, -1000);
+                synchronizedLocalAndServerDatabase.UseMileageFromTargetStore(1, -mileageUseage);
                 dismiss();
             }
         });

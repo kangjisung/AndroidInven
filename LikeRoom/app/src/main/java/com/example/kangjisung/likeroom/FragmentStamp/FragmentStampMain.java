@@ -87,8 +87,8 @@ public class FragmentStampMain extends Fragment {
         p.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                numOfStamp = 48;
-                initializeLayout("NORMAL");
+                //numOfStamp = 48;
+                //initializeLayout("NORMAL");
             }
         });
 
