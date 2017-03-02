@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -88,7 +89,7 @@ public class UserNoticeEditDialog extends Dialog
             public void onClick(View v) {
                 Context contextThemeWrapper = new ContextThemeWrapper(getContext(), ColorTheme.getTheme());
                 LayoutInflater localInflater = getLayoutInflater().cloneInContext(contextThemeWrapper);
-                View view = localInflater.inflate(R.layout.alertdialog_multiline_edit, null);
+                View view = localInflater.inflate(R.layout.alert_multiline_edit, null);
                 final EditText editTextInput = (EditText)view.findViewById(R.id.editText);
                 editTextInput.setText(mEditTextBody.getText());
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -197,25 +198,14 @@ public class UserNoticeEditDialog extends Dialog
                         new ClientDataBase(query, 2, 0, getContext());
                     }
                     else if(mode.equals("MODIFY")) {
-                        query = String.format(Locale.KOREA, "UPDATE `매장공지`" +
-                                " SET `제목` = \"%s\", `내용` = \"%s\", `공지시작날짜` = \"%s\", `공지마감날짜` = \"%s\", `공지사항종류` = %d WHERE `코드` = %d;",
+                        query = String.format("UPDATE `매장공지`" +
+                                " SET `제목` = \"%s\", `내용` = \"%s\", `공지시작날짜` = \"%s\", `공지마감날짜` = \"%s\", `공지사항종류` = %d WHERE `코드` = %d;" + "",
                                 mEditTextTitle.getText().toString(),
                                 mEditTextBody.getText().toString(),
                                 startDateString,
                                 endDateString,
                                 selectedType,
                                 userNoticeItemBeforeModify.getNum());
-
-                        /*
-                        query = "UPDATE `매장공지`" +
-                                " SET `제목` = \"" + mEditTextTitle.getText().toString() + "\", " +
-                                "`내용` = \"" + mEditTextBody.getText().toString() + "\", " +
-                                "`공지 시작 날짜` = \"" + startDateString + "\", " +
-                                "`공지 마감 날짜` = \"" + endDateString + "\", " +
-                                "`공지사항종류` = " + selectedType +
-                                " WHERE `코드` = \"" + userNoticeItemBeforeModify.getTitle() + "\"" +
-                                " AND `내용` = \"" + userNoticeItemBeforeModify.getBody() + "\";";
-                        */
                         new ClientDataBase(query, 3, 0, getContext());
                     }
                 }
@@ -317,16 +307,21 @@ public class UserNoticeEditDialog extends Dialog
 
                 Context contextThemeWrapper = new ContextThemeWrapper(getContext(), ColorTheme.getTheme());
                 LayoutInflater localInflater = getLayoutInflater().cloneInContext(contextThemeWrapper);
-                View view = localInflater.inflate(R.layout.layout_date, null);
+                View view = localInflater.inflate(R.layout.alert_calendar, null);
+                DatePicker mDatePicker = (DatePicker) view.findViewById(R.id.calendarView);
                 selectedDate = nowDate;
-                long nowDateToLong = selectedDate.getTimeInMillis();
-                CalendarView calendarView = (CalendarView)view.findViewById(R.id.calendarView);
-                calendarView.setDate(nowDateToLong, true, true);
-                calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-                    public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                        selectedDate = new GregorianCalendar( year, month, dayOfMonth );
+
+                int year = selectedDate.get(Calendar.YEAR);
+                int month = selectedDate.get(Calendar.MONTH);
+                int day = selectedDate.get(Calendar.DAY_OF_MONTH);
+
+                mDatePicker.init(year, month, day, new DatePicker.OnDateChangedListener() {
+                    @Override
+                    public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        selectedDate = new GregorianCalendar(year, monthOfYear, dayOfMonth);
                     }
                 });
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setView(view);
                 builder.setPositiveButton("네", new DialogInterface.OnClickListener() {

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
@@ -37,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ColorTheme.initTheme(this);
         this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_main);
         con = getApplicationContext();
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... arg0)
         {
-            Date today=new Date();
+            Date today = new Date();
             //////////////////////////////////////////요기서, 제품 정보 배열 추가.(최근 데이터[오늘x])
             new ClientDataBase("select `제품정보`.`이름`,`최적재고량`.`날짜`,`최적재고량`.`최적재고량` from `제품정보` join `최적재고량` on `제품정보`.`제품코드`= `최적재고량`.`제품코드` group by `최적재고량`.`제품코드` having max(`날짜`);", 1, 3, getApplicationContext());
             int cnt = 0;
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
             }
             ProductObjManager.context=getApplicationContext();
 
-            SystemClock.sleep(500);
+            //SystemClock.sleep(500);
 
             return null;
         }
@@ -144,8 +144,8 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             asyncDialog.dismiss();
             super.onPostExecute(result);
-            Intent intent = new Intent(getApplicationContext(), ActivityMenu.class);
-            startActivity(intent);
+
+            startActivity(new Intent(getApplicationContext(), ActivityStoreAdd.class));
 
             finish();
         }

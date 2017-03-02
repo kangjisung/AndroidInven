@@ -15,23 +15,23 @@
         <item name="theme_color_type1">#8ad968</item>
         <item name="theme_color_type2">#ff4c64</item>
         <item name="colorAccent">?attr/theme_color_type1</item>
-
     </style>
+
     <style name="LikeRoomTheme_BreadTheme" parent="@style/LikeRoomTheme">
-        <item name="theme_color_L4">#fffdf6</item>
-        <item name="theme_color_L3">#FEFAE9</item>
-        <item name="theme_color_L2">#FFF7DA</item>
-        <item name="theme_color_L1">#fff4cb</item>
-        <item name="theme_color_N">#dcd1a7</item>
-        <item name="theme_color_D1">#cfbe7c</item>
-        <item name="theme_color_D2">#ae9949</item>
-        <item name="theme_color_D3">#635f49</item>
-        <item name="theme_color_D4">#46432f</item>
+        <item name="theme_color_L4">#f7ebd9</item>
+        <item name="theme_color_L3">#f1e1c9</item>
+        <item name="theme_color_L2">#e4d0b1</item>
+        <item name="theme_color_L1">#dcc39a</item>
+        <item name="theme_color_N" >#caad80</item>
+        <item name="theme_color_D1">#bc9b68</item>
+        <item name="theme_color_D2">#a7854f</item>
+        <item name="theme_color_D3">#997235</item>
+        <item name="theme_color_D4">#664819</item>
         <item name="theme_color_type1">#f86f8d</item>
         <item name="theme_color_type2">#e88f2c</item>
         <item name="colorAccent">?attr/theme_color_type1</item>
-
     </style>
+
     <style name="LikeRoomTheme_MintTheme" parent="@style/LikeRoomTheme">
         <item name="theme_color_L4">#f5fff1</item>
         <item name="theme_color_L3">#e5ffda</item>
@@ -45,18 +45,18 @@
         <item name="theme_color_type1">#e4b164</item>
         <item name="theme_color_type2">#88ec74</item>
         <item name="colorAccent">?attr/theme_color_type1</item>
-
     </style>
+
     <style name="LikeRoomTheme_OceanTheme" parent="@style/LikeRoomTheme">
-        <item name="theme_color_L4">#f5fbff</item>
-        <item name="theme_color_L3">#E9F5FE</item>
-        <item name="theme_color_L2">#d2ecff</item>
-        <item name="theme_color_L1">#9fd7ff</item>
-        <item name="theme_color_N" >#62b2d6</item>
-        <item name="theme_color_D1">#4194b7</item>
-        <item name="theme_color_D2">#1e7296</item>
-        <item name="theme_color_D3">#084660</item>
-        <item name="theme_color_D4">#032736</item>
+        <item name="theme_color_L4">#f2faff</item>
+        <item name="theme_color_L3">#e9f5fe</item>
+        <item name="theme_color_L2">#c6e6fd</item>
+        <item name="theme_color_L1">#93d0fc</item>
+        <item name="theme_color_N" >#5597bf</item>
+        <item name="theme_color_D1">#4695b6</item>
+        <item name="theme_color_D2">#307694</item>
+        <item name="theme_color_D3">#185b78</item>
+        <item name="theme_color_D4">#084660</item>
         <item name="theme_color_type1">#bf6ff5</item>
         <item name="theme_color_type2">#43d0ff</item>
         <item name="colorAccent">?attr/theme_color_type1</item>
@@ -64,9 +64,9 @@
 
     <style name="LikeRoomTheme_GrapeTheme" parent="@style/LikeRoomTheme">
         <item name="theme_color_L4">#fbf1ff</item>
-        <item name="theme_color_L3">#f7e1ff</item>
-        <item name="theme_color_L2">#d3a8e2</item>
-        <item name="theme_color_L1">#cc89e4</item>
+        <item name="theme_color_L3">#f8e4ff</item>
+        <item name="theme_color_L2">#e6c1f2</item>
+        <item name="theme_color_L1">#d797ed</item>
         <item name="theme_color_N" >#be6eda</item>
         <item name="theme_color_D1">#ab52ca</item>
         <item name="theme_color_D2">#9b38be</item>
@@ -88,7 +88,6 @@
         <item name="theme_color_D4">#303030</item>
         <item name="theme_color_type1">#48f1dd</item>
         <item name="theme_color_type2">#a4a4a4</item>
-
         <item name="colorAccent">?attr/theme_color_type1</item>
     </style>
 
@@ -125,5 +124,9 @@
 
     <style name="LikeRoomTheme.TextView.UserAdd" parent="@android:style/TextAppearance.DeviceDefault.Medium">
         <item name="android:textColor">#333333</item>
+    </style>
+
+    <style name="LikeRoomTheme.Tab.TabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">16dp</item>
     </style>
 </resources>

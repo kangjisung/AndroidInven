@@ -15,6 +15,12 @@
             android:layout_height="60dp"
             android:background="?attr/theme_color_D2" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/shape_gradient_border_y"
+            android:rotation="180" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -55,11 +61,12 @@
                             android:textSize="16dp" />
 
                         <TextView
-                            android:text="171,264 원"
+                            android:text="!num"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
-                            android:textSize="36dp" />
+                            android:textSize="36dp"
+                            android:id="@+id/tv_title_q" />
 
                     </LinearLayout>
 
@@ -119,11 +126,12 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="250"
+                                    android:text="!num"
                                     android:textColor="@color/gray160"
                                     android:layout_gravity="center_horizontal"
-                                    android:textSize="30dp"
-                                    android:layout_marginTop="-6dp" />
+                                    android:layout_marginTop="-6dp"
+                                    android:id="@+id/tv_cost"
+                                    android:textSize="26dp" />
 
                             </LinearLayout>
 
@@ -153,11 +161,12 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="350"
+                                    android:text="!num"
                                     android:textColor="@color/gray160"
                                     android:layout_gravity="center_horizontal"
-                                    android:textSize="30dp"
-                                    android:layout_marginTop="-6dp" />
+                                    android:layout_marginTop="-6dp"
+                                    android:id="@+id/tv_price"
+                                    android:textSize="26dp" />
 
                             </LinearLayout>
                         </LinearLayout>
@@ -188,7 +197,7 @@
                                     android:layout_height="wrap_content">
 
                                     <android.support.v7.widget.AppCompatImageView
-                                        android:background="@mipmap/icon_good"
+                                        android:background="@mipmap/icon_star"
                                         app:backgroundTint="?attr/theme_color_N"
                                         android:layout_width="15dp"
                                         android:layout_height="15dp"
@@ -210,20 +219,22 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="12개"
+                                    android:text="!num"
                                     android:textColor="?attr/theme_color_N"
-                                    android:textSize="20dp" />
+                                    android:textSize="20dp"
+                                    android:id="@+id/tv_optinum_q" />
 
                             </LinearLayout>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="15,625 원"
+                                android:text="!num"
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
                                 android:textColor="?attr/theme_color_N"
-                                android:textSize="30dp" />
+                                android:textSize="30dp"
+                                android:id="@+id/tv_optinum_v" />
 
                         </RelativeLayout>
 
@@ -253,7 +264,7 @@
                                     android:layout_height="wrap_content">
 
                                     <android.support.v7.widget.AppCompatImageView
-                                        android:background="@mipmap/icon_bread"
+                                        android:background="@mipmap/icon_select"
                                         app:backgroundTint="@color/gray140"
                                         android:layout_width="15dp"
                                         android:layout_height="15dp"
@@ -275,54 +286,27 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="16개"
+                                    android:text="!num"
                                     android:textColor="@color/gray140"
-                                    android:textSize="20dp" />
+                                    android:textSize="20dp"
+                                    android:id="@+id/tv_select_q" />
 
                             </LinearLayout>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="17,425 원"
+                                android:text="!num"
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
                                 android:textColor="@color/gray140"
-                                android:textSize="30dp" />
+                                android:textSize="30dp"
+                                android:id="@+id/tv_select_v" />
 
                         </RelativeLayout>
 
 
                     </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:id="@+id/graph4_txt1"
-                        android:text="0\n0"
-                        android:textSize="30dp"
-                        android:gravity="center"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textSize="30dp"
-                        android:id="@+id/graph4_tv2"
-                        android:text="최적"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="30dp"
-                        android:id="@+id/graph4_tv1"
-                        android:text="0"
-                        android:visibility="gone" />
 
                 </RelativeLayout>
 
@@ -338,7 +322,9 @@
                         app:thumbNumber="1"
                         android:layout_marginStart="30dp"
                         android:layout_marginEnd="30dp"
-                        android:layout_centerInParent="true" />
+                        android:layout_centerInParent="true"
+                        app:rangeColor="?attr/theme_color_N"
+                        app:thumbColor="?attr/theme_color_N" />
                 </RelativeLayout>
 
             </LinearLayout>

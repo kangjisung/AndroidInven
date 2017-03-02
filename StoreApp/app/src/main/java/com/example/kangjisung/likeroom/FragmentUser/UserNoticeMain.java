@@ -74,7 +74,6 @@ public class UserNoticeMain extends Fragment
             }
         });
 
-
         reloadRecyclerView();
 
         Button buttonBack = (Button)fragmentView.findViewById(R.id.button_back);
@@ -140,28 +139,24 @@ public class UserNoticeMain extends Fragment
         final UserNoticeListItem listItem = (UserNoticeListItem)mAdapter.getItem(info.position);
         switch(item.getItemId()) {
             case 6:
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setMessage("선택한 항목을 삭제하시겠습니까?").setCancelable(false).setPositiveButton("확인",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //공지 삭제
-                                    NetworkModule networkModule = new NetworkModule();
-                                    networkModule.DelStoreNoticeInfo(Integer.parseInt(PriNum), noticeNum);
-                                String query = String.format("DELETE FROM `매장공지` WHERE `코드` = %d;", listItem.getNum());
-                                new ClientDataBase(query, 1, 0, getContext());
-                                reloadRecyclerView();
-                            }
-                        }).setNegativeButton("취소",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                return;
-                            }
-                        });
-                AlertDialog alert = builder.create();
-                alert.show();
-
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+                dialogBuilder.setMessage("선택한 항목을 삭제하시겠습니까?");
+                dialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String query = String.format("DELETE FROM `매장공지` WHERE `코드` = %d;", listItem.getNum());
+                        new ClientDataBase(query, 1, 0, getContext());
+                        reloadRecyclerView();
+                    }
+                });
+                dialogBuilder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog mAlertDialog = dialogBuilder.create();
+                mAlertDialog.show();
                 return true;
             default:
                 return super.onContextItemSelected(item);

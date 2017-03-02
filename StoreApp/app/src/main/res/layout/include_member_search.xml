@@ -13,7 +13,8 @@
         android:id="@+id/recyclerView"
         android:layout_below="@+id/layout_search_result"
         android:paddingBottom="60dp"
-        android:clipToPadding="false" />
+        android:clipToPadding="false"
+        android:scrollbars="vertical" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -50,10 +51,11 @@
                 android:textSize="20dp"
                 android:padding="0dp"
                 android:layout_marginEnd="15dp"
-                android:background="@color/transparent" />
+                android:background="@color/transparent"
+                android:hint="이름 또는 전화번호로 검색"
+                android:textColorHint="@color/text_hint" />
 
             <TextView
-                android:text="이름 또는 전화번호로 검색"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/textView_search"

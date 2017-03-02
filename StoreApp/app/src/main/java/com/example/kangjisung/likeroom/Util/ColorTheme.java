@@ -8,6 +8,17 @@ import com.example.kangjisung.likeroom.R;
 
 public class ColorTheme
 {
+    public static int theme = 0;
+
+    public static void initTheme(Context context)
+    {
+        SharedPreferenceManager mSharedPreferenceManager = new SharedPreferenceManager();
+        theme = mSharedPreferenceManager.getInt("theme", context);
+        if(theme == 0){
+            theme = R.style.LikeRoomTheme_BreadTheme;
+        }
+    }
+
     public static int getThemeColorRGB(Context context, @AttrRes int attrId) {
         TypedValue styleValue = new TypedValue();
         if (context.getTheme().resolveAttribute(attrId, styleValue, true) == true) {
@@ -18,6 +29,6 @@ public class ColorTheme
 
     public static int getTheme()
     {
-        return R.style.LikeRoomTheme_OceanTheme;
+        return theme;
     }
 }

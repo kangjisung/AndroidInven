@@ -3,9 +3,11 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <CalendarView android:id="@+id/calendarView"
+    <DatePicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
-</RelativeLayout>
+        android:id="@+id/datePicker"
+        android:layout_centerInParent="true"
+        android:calendarViewShown="false" />
 
+</RelativeLayout>

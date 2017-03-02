@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/button_ripple_rectangle">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:scaleType="fitCenter"
-        android:id="@+id/icon"
-        android:layout_gravity="center_horizontal"
-        android:rotation="180"
+    <RelativeLayout
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="18dp" />
-</LinearLayout>
+        android:layout_centerInParent="true">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:scaleType="fitCenter"
+            android:id="@+id/icon_unselected"
+            android:layout_gravity="center_horizontal"
+            android:rotation="180"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/gray160"
+            android:layout_centerInParent="true" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:scaleType="fitCenter"
+            android:id="@+id/icon_selected"
+            android:layout_gravity="center_horizontal"
+            android:rotation="180"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/gray80"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

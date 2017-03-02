@@ -75,15 +75,39 @@ public class Graph1 extends Fragment implements View.OnClickListener{
         multiSlider.setOnThumbValueChangeListener(new MultiSlider.OnThumbValueChangeListener() {
             @Override
             public void onValueChanged(MultiSlider multiSlider, MultiSlider.Thumb thumb, int thumbIndex, int value) {
-                switch(thumbIndex){
-                    case 0:if(value!=c.min) thumb.setValue(c.min);break;
-                    case 1:
-                        if(value==c.min) thumb.setValue(++value);
-                        if(value==c.max) thumb.setValue(--value);
-                        et2.setText(""+value);
-                        RefreshGraph(c.min,value,c.max,false);
+                switch (thumbIndex) {
+                    case 0:
+                        if (value != c.min) thumb.setValue(c.min);
                         break;
-                    case 2:if(value!=c.max) thumb.setValue(c.max);break;
+                    case 1:
+                        if (value == c.min) thumb.setValue(++value);
+                        if (value == c.max) thumb.setValue(--value);
+                        et2.setText("" + value);
+                        //RefreshGraph(c.min, value, c.max, false);
+                        break;
+                    case 2:
+                        if (value != c.max) thumb.setValue(c.max);
+                        break;
+                }
+
+                if (et1.getText().length() == 0 || et2.getText().length() == 0 || et3.getText().length() == 0) {
+                }
+                else {
+                    int v1 = Integer.parseInt(et1.getText().toString());
+                    int v2 = Integer.parseInt(et2.getText().toString());
+                    int v3 = Integer.parseInt(et3.getText().toString());
+
+                    if (!(v1 < v2 && v2 < v3)) {
+
+                    } else {
+                        c.min = v1;
+                        c.FD = v2;
+                        c.max = v3;
+                        editText.setText(String.valueOf(c.calcQ2()));
+                        //RefreshGraph(c.min, (int) c.FD, c.max, true);
+                    }
+                    //c.updateFD();//FD변경
+                    //c.updateQ();//Q변경
                 }
             }
         });

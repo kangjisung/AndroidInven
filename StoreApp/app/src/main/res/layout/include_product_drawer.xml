@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="?attr/theme_color_L2"
+            android:layout_height="50dp">
+
+            <TextView
+                android:text="정렬"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/theme_color_D4"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+
+        <android.support.design.widget.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="?attr/theme_color_L2"
+            android:id="@+id/tabLayout"
+            app:tabTextAppearance="@style/LikeRoomTheme.Tab.TabText"
+            app:tabIndicatorHeight="3dp">
+
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="오름차순" />
+
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="내림차순" />
+
+        </android.support.design.widget.TabLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btn_sort_name"
+                    android:background="@drawable/button_ripple_rectangle" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp">
+
+                    <TextView
+                        android:text="이름 순"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:textColor="@color/gray80"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_sort_name" />
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="20dp"
+                        android:id="@+id/iv_sort_name"
+                        android:layout_weight="1"
+                        android:background="@mipmap/icon_check"
+                        app:backgroundTint="?attr/theme_color_type1"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="5dp"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray200"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btn_add"
+                    android:background="@drawable/button_ripple_rectangle" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp">
+
+                    <TextView
+                        android:text="등록일 순"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:textColor="@color/gray80"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_sort_add" />
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="20dp"
+                        android:id="@+id/iv_sort_add"
+                        android:layout_weight="1"
+                        android:background="@mipmap/icon_check"
+                        app:backgroundTint="?attr/theme_color_type1"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="5dp"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray200"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btn_modify"
+                    android:background="@drawable/button_ripple_rectangle" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp">
+
+                    <TextView
+                        android:text="수정일 순"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:textColor="@color/gray80"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_sort_modify" />
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="20dp"
+                        android:id="@+id/iv_sort_modify"
+                        android:layout_weight="1"
+                        android:background="@mipmap/icon_check"
+                        app:backgroundTint="?attr/theme_color_type1"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="5dp"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

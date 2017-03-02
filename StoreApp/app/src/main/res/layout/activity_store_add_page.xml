@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout_page1"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="@mipmap/icon_bread"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:backgroundTint="?attr/theme_color_L1" />
+
+            <TextView
+                android:text="환영합니다"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="36dp"
+                android:textColor="?attr/theme_color_L3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="?attr/theme_color_L3"
+                android:text="처음 사용자는\n매장 등록을 먼저 하셔야 합니다"
+                android:gravity="center"
+                android:layout_marginTop="40dp"
+                android:layout_height="wrap_content"
+                android:textSize="16dp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:background="?attr/theme_color_L3">
+
+                <Button
+                    android:text="시작하기"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_start"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/button_ripple_rectangle"
+                    android:layout_width="120dp"
+                    android:textSize="20dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout_page2"
+        android:visibility="visible">
+
+        <TextView
+            android:text="매장 등록"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/theme_color_D3"
+            android:textSize="40dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:id="@+id/layout_title"
+            android:visibility="gone">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="@mipmap/icon_bread"
+                app:backgroundTint="?attr/theme_color_L1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:text="매장 등록"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="45dp"
+                android:textColor="?attr/theme_color_L4" />
+
+            <View
+                android:background="?attr/theme_color_D2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_title"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_centerInParent="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:text="매장 이름"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:textColor="?attr/theme_color_L2"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:id="@+id/et_name"
+                    android:background="@color/transparent"
+                    android:textColor="?attr/theme_color_L3"
+                    android:padding="5dp"
+                    android:textSize="18dp"
+                    android:layout_marginTop="20dp"
+                    android:maxLength="12"
+                    android:maxLines="1"
+                    android:textCursorDrawable="?attr/theme_color_N" />
+
+                <View
+                    android:background="?attr/theme_color_L2"
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/et_name"
+                    android:layout_height="1dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:text="주소"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:textColor="?attr/theme_color_L2"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_address"
+                    android:background="@color/transparent"
+                    android:textColor="?attr/theme_color_L3"
+                    android:padding="5dp"
+                    android:textSize="18dp"
+                    android:inputType="textMultiLine"
+                    android:maxLines="3"
+                    android:textCursorDrawable="?attr/theme_color_N"
+                    android:maxLength="36"
+                    android:layout_marginTop="20dp" />
+
+                <View
+                    android:background="?attr/theme_color_L2"
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/et_address"
+                    android:layout_height="1dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:text="전화번호"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:textColor="?attr/theme_color_L2"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_phone"
+                    android:background="@color/transparent"
+                    android:textColor="?attr/theme_color_L3"
+                    android:padding="5dp"
+                    android:textSize="18dp"
+                    android:maxLines="3"
+                    android:textCursorDrawable="?attr/theme_color_N"
+                    android:maxLength="36"
+                    android:layout_marginTop="20dp"
+                    android:inputType="number"
+                    android:numeric="integer" />
+
+                <View
+                    android:background="?attr/theme_color_L2"
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/et_phone"
+                    android:layout_height="1dp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="30dp">
+
+                <CheckBox
+                    android:text="이용 약관에 동의합니다"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cb_agree"
+                    android:layout_weight="1"
+                    android:textColor="?attr/theme_color_L2"
+                    android:textSize="16dp"
+                    android:layout_gravity="center_vertical"
+                    app:buttonTint="?attr/theme_color_L2" />
+
+                <TextView
+                    android:text="보기"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_terms"
+                    android:layout_weight="0"
+                    android:layout_marginStart="10dp"
+                    android:textSize="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="?attr/theme_color_D1" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/theme_color_L3"
+                android:layout_weight="1"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <Button
+                    android:text="완료"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_complete"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/button_ripple_rectangle"
+                    android:layout_width="match_parent"
+                    android:textSize="20dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

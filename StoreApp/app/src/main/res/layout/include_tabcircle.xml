@@ -7,16 +7,16 @@
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/icon_unselected"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
         android:layout_centerInParent="true"
         android:background="@drawable/shape_circle"
-        app:backgroundTint="@color/gray200" />
+        app:backgroundTint="@color/gray200"
+        android:layout_width="12dp"
+        android:layout_height="12dp" />
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/icon_selected"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
         android:layout_centerInParent="true"
         android:background="@drawable/shape_circle"
         app:backgroundTint="@color/gray80" />

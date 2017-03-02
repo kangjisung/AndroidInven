@@ -1,23 +1,23 @@
 package com.example.kangjisung.likeroom.FragmentProduct;
 
+import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
-import android.graphics.Color;
+import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.AppCompatImageView;
-import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.R;
@@ -26,11 +26,8 @@ import com.example.kangjisung.likeroom.Util.NoScrollViewPager;
 import com.example.kangjisung.likeroom.Util.FirstPageFragmentListener;
 import com.github.clans.fab.FloatingActionMenu;
 
-import java.sql.Time;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
@@ -46,7 +43,13 @@ public class ProductMain extends Fragment {
     private FloatingActionMenu famMenu;
     private View rootView;
     private Calendar nowDate;
-    private Calendar selectDate;
+    private Calendar selectedDate;
+    private TabLayout tabLayout;
+
+    // TODO : 정렬 초기값 결정
+    private int tabPosition = 1;
+    private int sortStateImageView = R.id.iv_sort_name;
+    private int sortStateTextView = R.id.tv_sort_name;
 
     public ProductMain() {
     }
@@ -56,7 +59,7 @@ public class ProductMain extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View rootView = this.rootView = inflater.inflate(R.layout.product_main, container, false);
+        rootView = inflater.inflate(R.layout.product_main, container, false);
 
         ///////init///////
         btnSellToday=(Button)rootView.findViewById(R.id.btn_fragment_item_main_sell_today);
@@ -65,8 +68,8 @@ public class ProductMain extends Fragment {
         btnMuchStore.setOnClickListener(onClickSelectButton);
 
         noScrollViewPager=(NoScrollViewPager) rootView.findViewById(R.id.vp_fragment_item_main);
-        tvFragmentItemMain=(TextView)rootView.findViewById(R.id.tv_fragment_item_main);
-        tvFragmentItemMainDate=(TextView)rootView.findViewById(R.id.tv_fragment_item_main_date);
+        tvFragmentItemMain=(TextView) rootView.findViewById(R.id.tv_fragment_item_main);
+        tvFragmentItemMainDate=(TextView) rootView.findViewById(R.id.tv_fragment_item_main_date);
 
         final ProductMainPagerAdapter adapter = new ProductMainPagerAdapter(getFragmentManager());
         noScrollViewPager.setAdapter(adapter);
@@ -84,8 +87,45 @@ public class ProductMain extends Fragment {
         buttonSelectDate.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View onClickView){
+                Context contextThemeWrapper = new ContextThemeWrapper(getContext(), ColorTheme.getTheme());
+                LayoutInflater localInflater = getActivity().getLayoutInflater().cloneInContext(contextThemeWrapper);
+                View view = localInflater.inflate(R.layout.alert_calendar, null);
+                DatePicker mDatePicker = (DatePicker) view.findViewById(R.id.calendarView);
+                selectedDate = nowDate;
+
+                int year = selectedDate.get(Calendar.YEAR);
+                int month = selectedDate.get(Calendar.MONTH);
+                int day = selectedDate.get(Calendar.DAY_OF_MONTH);
+
+                mDatePicker.init(year, month, day, new DatePicker.OnDateChangedListener() {
+                    @Override
+                    public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        selectedDate = new GregorianCalendar(year, monthOfYear, dayOfMonth);
+                    }
+                });
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setView(view);
+                builder.setPositiveButton("네", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        nowDate = selectedDate;
+                        tvFragmentItemMainDate.setText((new SimpleDateFormat("yyyy년 M월 d일", Locale.KOREA)).format(nowDate.getTime()));
+                        dialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+                /*
                 LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
-                View view = inflater.inflate(R.layout.layout_date, null);
+                View view = inflater.inflate(R.layout.alert_calendar, null);
                 CalendarView calendarView = (CalendarView)view.findViewById(R.id.calendarView);
                 selectDate = nowDate;
                 long nowDateToLong = selectDate.getTimeInMillis();
@@ -115,12 +155,40 @@ public class ProductMain extends Fragment {
                 //dialog.setTitle(ProductObjManager.get(position).getName());
                 //dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
                 dialog.show();
+                */
             }
         });
 
-        famMenu = (FloatingActionMenu) rootView.findViewById(R.id.menu);
-        rootView.findViewById(R.id.fab_add_product).setOnClickListener(onFabClickListener);
+        rootView.findViewById(R.id.fab_add).setOnClickListener(onFabClickListener);
         rootView.findViewById(R.id.fab_sort).setOnClickListener(onFabClickListener);
+
+        DrawerLayout layoutDrawer = (DrawerLayout) rootView.findViewById(R.id.layout_product_drawer);
+        layoutDrawer.setScrimColor(ContextCompat.getColor(getContext(), R.color.alpha80));
+        Button mButtonSortName = (Button) layoutDrawer.findViewById(R.id.btn_sort_name);
+        Button mButtonSortAdd = (Button) layoutDrawer.findViewById(R.id.btn_add);
+        Button mButtonSortModify = (Button) layoutDrawer.findViewById(R.id.btn_modify);
+        mButtonSortName.setOnClickListener(onButtonSortClickListener);
+        mButtonSortAdd.setOnClickListener(onButtonSortClickListener);
+        mButtonSortModify.setOnClickListener(onButtonSortClickListener);
+
+        tabLayout = (TabLayout) layoutDrawer.findViewById(R.id.tabLayout);
+        TabLayout.Tab tab = tabLayout.getTabAt(tabPosition);
+        tab.select();
+        tabLayout.setTabTextColors(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D2), ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D4));
+        onSortItem();
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                tabPosition = tab.getPosition();
+                onSortItem();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {}
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {}
+        });
 
         return rootView;
     }
@@ -183,13 +251,61 @@ public class ProductMain extends Fragment {
         return fragmentItemMain;
     }
 
+    private Button.OnClickListener onButtonSortClickListener = new Button.OnClickListener() {
+        @Override
+        public void onClick(View onClickView){
+            rootView.findViewById(sortStateImageView).setVisibility(View.INVISIBLE);
+            ((TextView) rootView.findViewById(sortStateTextView)).setTextColor(ContextCompat.getColor(getContext(), R.color.gray80));
+            switch(onClickView.getId()){
+                case R.id.btn_sort_name:
+                    sortStateImageView = R.id.iv_sort_name;
+                    sortStateTextView = R.id.tv_sort_name;
+                    onSortItem();
+                    break;
+                case R.id.btn_add:
+                    sortStateImageView = R.id.iv_sort_add;
+                    sortStateTextView = R.id.tv_sort_add;
+                    onSortItem();
+                    break;
+                case R.id.btn_modify:
+                    sortStateImageView = R.id.iv_sort_modify;
+                    sortStateTextView = R.id.tv_sort_modify;
+                    onSortItem();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    private void onSortItem()
+    {
+        switch(sortStateImageView){
+            case R.id.iv_sort_name:
+                if(tabPosition == 0){
+                    ProductObjManager.sortByNameAsc();
+                }
+                else{
+                    ProductObjManager.sortByNameDesc();
+                }
+                break;
+            case R.id.iv_sort_add:
+                // TODO ; 여기에 정렬 추가
+                break;
+            case R.id.iv_sort_modify:
+                // TODO : 여기에 정렬 추가
+                break;
+        }
+        rootView.findViewById(sortStateImageView).setVisibility(View.VISIBLE);
+        ((TextView) rootView.findViewById(sortStateTextView)).setTextColor(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_type1));
+    }
+
     private View.OnClickListener onFabClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
                 default:
-                case R.id.fab_add_product:
-                    famMenu.close(true);
+                case R.id.fab_add:
                     productAddDialog = new ProductAddDialog(getContext());
                     productAddDialog.show();
                     productAddDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -200,7 +316,8 @@ public class ProductMain extends Fragment {
                     });
                     break;
                 case R.id.fab_sort:
-                    // TODO : 정렬 버튼 클릭 시 동작 삽입
+                    DrawerLayout drawerLayout = (DrawerLayout) getActivity().findViewById(R.id.layout_product_drawer);
+                    drawerLayout.openDrawer(Gravity.RIGHT);
                     break;
             }
         }

@@ -12,7 +12,7 @@
         android:layout_height="60dp"
         android:layout_weight="1"
         android:id="@+id/layout_body1"
-        android:background="?attr/theme_color_D3">
+        android:background="@color/gray220">
 
         <TextView
             android:layout_width="wrap_content"
@@ -21,8 +21,9 @@
             android:layout_centerHorizontal="true"
             android:text="예측경향 학습 그래프"
             android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
+            android:textColor="@color/gray100"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>
@@ -37,7 +38,7 @@
         android:layout_marginTop="20dp">
 
         <android.support.v7.widget.AppCompatImageView
-            android:background="?android:attr/actionModeShareDrawable"
+            android:background="?attr/actionModeShareDrawable"
             android:layout_weight="1"
             android:layout_gravity="center"
             app:backgroundTint="?attr/theme_color_N"
@@ -144,6 +145,18 @@
                 android:layout_height="match_parent" />
 
             <android.support.v7.widget.AppCompatImageView
+                android:background="@mipmap/icon_sort_asc"
+                app:backgroundTint="?attr/theme_color_L1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="14dp"
+                android:id="@+id/iv_up"
+                android:visibility="invisible" />
+
+            <android.support.v7.widget.AppCompatImageView
                 android:background="@mipmap/icon_sort_desc"
                 app:backgroundTint="?attr/theme_color_L1"
                 android:layout_width="match_parent"
@@ -151,7 +164,18 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginTop="14dp"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:id="@+id/iv_down"
+                android:visibility="invisible" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="@mipmap/icon_equal"
+                app:backgroundTint="?attr/theme_color_L1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="12dp"
+                android:id="@+id/iv_equal"
+                android:visibility="invisible" />
 
         </RelativeLayout>
 
@@ -198,7 +222,8 @@
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/graph1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_margin="10dp" />
     </RelativeLayout>
 
     <LinearLayout
@@ -213,8 +238,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:id="@+id/showInvenBtn"
-            android:onClick="OnBtnClick"
+            android:id="@+id/btn_change_cancel"
             android:layout_weight="1"
             android:background="@drawable/button_ripple_rectangle"
             android:textColor="?attr/theme_color_D3"
@@ -229,10 +253,9 @@
             android:layout_marginBottom="5dp" />
 
         <Button
-            android:id="@+id/graph1_change"
+            android:id="@+id/btn_change_ok"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="OnBtnClick"
             android:text="변경하기"
             android:layout_weight="1"
             android:background="@drawable/button_ripple_rectangle"

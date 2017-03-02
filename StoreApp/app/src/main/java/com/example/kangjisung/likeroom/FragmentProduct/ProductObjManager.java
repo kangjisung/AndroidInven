@@ -96,7 +96,6 @@ public class ProductObjManager {
         if(sharedPreferenceManager.getInt("product_sort",context)==4){
             sortByModifySelltodayDesc();
             sharedPreferenceManager.putInt("product_sort",5,context);
-
         }
         else{
             sortByModifySelltodayAsc();
