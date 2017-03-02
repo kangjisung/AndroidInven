@@ -27,7 +27,7 @@ public class FragmentSortRecyclerViewAdapter extends RecyclerView.Adapter<Fragme
         public TextView tvNumber;
         public ViewHolder(View view) {
             super(view);
-            tvName=(TextView)view.findViewById(R.id.tv_name);
+            tvName=(TextView)view.findViewById(R.id.tv_sort_name);
             tvAddedDate=(TextView)view.findViewById(R.id.tv_added_date);
             ibWrite=(Button)view.findViewById(R.id.ib_write);
             tvNumber=(TextView)view.findViewById(R.id.tv_number);

@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.AppCompatImageView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/shape_rectangle_rad_5dp"
         app:backgroundTint="?attr/theme_color_D3"
         android:id="@+id/view_border" />
 
-    <android.support.v7.widget.AppCompatImageView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/shape_rectangle_rad_4dp"
@@ -20,7 +20,7 @@
         android:layout_margin="1dp"
         android:id="@+id/view_body_white" />
 
-    <android.support.v7.widget.AppCompatImageView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/shape_rectangle_rad_5dp"
@@ -46,7 +46,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1">
 
-            <android.support.v7.widget.AppCompatImageView
+            <ImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:background="@mipmap/icon_sort_asc"
@@ -55,7 +55,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="5dp" />
 
-            <android.support.v7.widget.AppCompatImageView
+            <ImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:background="@mipmap/icon_sort_desc"

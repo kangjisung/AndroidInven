@@ -1,34 +1,21 @@
 package com.example.kangjisung.likeroom;
 
 import android.content.DialogInterface;
-import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatImageView;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
-import com.example.kangjisung.likeroom.FragmentUser.ListView.UserMainListItem;
-import com.example.kangjisung.likeroom.FragmentUser.UserEditDialog;
-import com.example.kangjisung.likeroom.FragmentUser.UserMain;
+import com.example.kangjisung.likeroom.Setting.SettingMain;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.Util.NoScrollViewPager;
-
-import java.util.List;
 
 public class ActivityMenu extends AppCompatActivity
 {
@@ -61,6 +48,14 @@ public class ActivityMenu extends AppCompatActivity
         tabLayoutInitialize(tabLayout);
         initializeColor();
 
+        Button mButtonSetting = (Button) findViewById(R.id.btn_setting);
+        mButtonSetting.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SettingMain.class));
+            }
+        });
+
         final NoScrollViewPager viewPager = (NoScrollViewPager)findViewById(R.id.viewPager);
         mAdapter = new ActivityMenuPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(mAdapter);
@@ -70,16 +65,18 @@ public class ActivityMenu extends AppCompatActivity
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                LinearLayout view = (LinearLayout)tabLayout.getTabAt(tab.getPosition()).getCustomView();
-                view.findViewById(R.id.icon).getBackground().setColorFilter(selectedTabColor, PorterDuff.Mode.SRC_IN);
+                RelativeLayout view = (RelativeLayout)tabLayout.getTabAt(tab.getPosition()).getCustomView();
+                view.findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
+                //view.findViewById(R.id.icon).getBackground().setColorFilter(selectedTabColor, PorterDuff.Mode.SRC_IN);
                 textViewTitle.setText(tabStringResIds[tab.getPosition()]);
                 viewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                LinearLayout view = (LinearLayout)tabLayout.getTabAt(tab.getPosition()).getCustomView();
-                view.findViewById(R.id.icon).getBackground().setColorFilter(unselectedTabColor, PorterDuff.Mode.SRC_IN);
+                RelativeLayout view = (RelativeLayout)tabLayout.getTabAt(tab.getPosition()).getCustomView();
+                view.findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
+                //view.findViewById(R.id.icon).getBackground().setColorFilter(unselectedTabColor, PorterDuff.Mode.SRC_IN);
             }
 
             @Override
@@ -121,7 +118,8 @@ public class ActivityMenu extends AppCompatActivity
         {
             TabLayout.Tab tab = tabLayout.newTab();
             View view = getLayoutInflater().inflate(R.layout.include_tabitem, null);
-            view.findViewById(R.id.icon).setBackground(ContextCompat.getDrawable(this, tabMipmapResIds[i]));
+            view.findViewById(R.id.icon_selected).setBackground(ContextCompat.getDrawable(this, tabMipmapResIds[i]));
+            view.findViewById(R.id.icon_unselected).setBackground(ContextCompat.getDrawable(this, tabMipmapResIds[i]));
             tab.setCustomView(view);
             tabLayout.addTab(tab);
         }
@@ -143,12 +141,24 @@ public class ActivityMenu extends AppCompatActivity
     public void initializeColor()
     {
         LinearLayout view;
+
+        //view = (LinearLayout)tabLayout.getTabAt(0).getCustomView();
+        //view.findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
+        //view = (LinearLayout)tabLayout.getTabAt(1).getCustomView();
+        //.findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
+        tabLayout.getTabAt(0).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
+        tabLayout.getTabAt(1).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
+        tabLayout.getTabAt(2).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
+        //view.findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
+
+        /*
         view = (LinearLayout)tabLayout.getTabAt(0).getCustomView();
         view.findViewById(R.id.icon).getBackground().setColorFilter(selectedTabColor, PorterDuff.Mode.SRC_IN);
         view = (LinearLayout)tabLayout.getTabAt(1).getCustomView();
         view.findViewById(R.id.icon).getBackground().setColorFilter(unselectedTabColor, PorterDuff.Mode.SRC_IN);
         view = (LinearLayout)tabLayout.getTabAt(2).getCustomView();
         view.findViewById(R.id.icon).getBackground().setColorFilter(unselectedTabColor, PorterDuff.Mode.SRC_IN);
+        */
 
         // 둥근 모서리 색상 변경
         /*

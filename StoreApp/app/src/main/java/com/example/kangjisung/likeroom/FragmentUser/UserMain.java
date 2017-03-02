@@ -29,6 +29,10 @@ import com.example.kangjisung.likeroom.R;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
 public class UserMain extends Fragment
@@ -176,15 +180,33 @@ public class UserMain extends Fragment
     }
 
     private void reloadRecyclerView() {
-        String query = "SELECT `회원정보`.`이름`,`회원정보`.`전화번호`, `포인트`.`포인트` FROM `회원정보` " +
-                "LEFT JOIN `포인트` ON `회원정보`.`고유회원등록번호`= `포인트`.`고유회원등록번호`;";
+        String query = "SELECT `회원정보`.`고유회원등록번호`, `회원정보`.`이름`, `회원정보`.`전화번호`, `포인트`.`포인트`, `회원정보`.`생년월일`, `회원정보`.`이메일`, `회원정보`.`삭제`" +
+                "FROM `회원정보` LEFT JOIN `포인트` ON `회원정보`.`고유회원등록번호`= `포인트`.`고유회원등록번호`;";
 
-        new ClientDataBase(query, 1, 3, getContext());
-        int cnt=0;
+        new ClientDataBase(query, 1, 7, getContext());
+        int count = 0;
         mAdapter.clearData();
-        while(DBstring[cnt] != null) {
-            mAdapter.addItem(DBstring[cnt], DBstring[cnt+1], (DBstring[cnt+2]==null)?("0"):(DBstring[cnt+2]));
-            cnt += 3;
+
+        DateFormat dateFormat = new SimpleDateFormat("y-M-d", Locale.KOREA);
+        while(DBstring[count] != null) {
+            UserMainListItem addListItem = new UserMainListItem();
+            try {
+                addListItem.setNum(Integer.parseInt(DBstring[count]));
+                addListItem.setName(DBstring[count+1]);
+                addListItem.setPhone(DBstring[count+2]);
+                addListItem.setPoint((DBstring[count+3]==null)?("0"):(DBstring[count+3]));
+                addListItem.setBirth(dateFormat.parse(DBstring[count+4]));
+                addListItem.setEmail(DBstring[count+5]);
+                addListItem.setDelete(Integer.parseInt(DBstring[count+6]));
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+                continue;
+            }
+            if (addListItem.getDelete() == 0) {
+                mAdapter.addItem(addListItem);
+            }
+            count += 7;
         }
         mAdapter.notifyDataSetChanged();
     }

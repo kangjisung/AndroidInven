@@ -2,9 +2,7 @@ package com.example.kangjisung.likeroom.FragmentProduct.ListView;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -14,11 +12,9 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
-import com.example.kangjisung.likeroom.MainActivity;
 import com.example.kangjisung.likeroom.R;
 
 public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<FragmentSellTodayRecyclerViewAdapter.ViewHolder>
@@ -77,9 +73,14 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
                 builder.setPositiveButton("네", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ProductObjManager.get(position).setSellToday(Integer.parseInt(editTextInput.getText().toString()));
-                        dialog.dismiss();
-                        notifyDataSetChanged();
+                        if(editTextInput.length() > 0) {
+                            ProductObjManager.get(position).setSellToday(Integer.parseInt(editTextInput.getText().toString()));
+                            dialog.dismiss();
+                            notifyDataSetChanged();
+                        }
+                        else{
+                            dialog.dismiss();
+                        }
                     }
                 });
                 builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {

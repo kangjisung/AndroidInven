@@ -23,7 +23,7 @@
             <Button
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:id="@+id/button_setting"
+                android:id="@+id/btn_setting"
                 android:background="@drawable/drawable_setting"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
@@ -60,10 +60,9 @@
             android:background="@drawable/menu_background"
             app:tabIndicatorColor="@color/gray80"
             android:rotation="180"
-            app:tabPaddingStart="0dp"
+            app:tabPadding="0dp"
             app:tabPaddingEnd="0dp"
-            app:tabPaddingTop="0dp"
-            app:tabPaddingBottom="0dp">
+            app:tabPaddingStart="0dp">
 
             <!--
             <android.support.design.widget.TabItem

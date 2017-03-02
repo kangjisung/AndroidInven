@@ -2,63 +2,89 @@ package com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.Graph;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.inventory.calc;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
 public class Graph3 extends Fragment {
 
     double slope,intercept;
-    calc c;
+    calc mCalc;
     LineChart chart;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.graph3, container, false);
+        View rootView = inflater.inflate(R.layout.graph3, container, false);
 
-        c = calc.getInstance();
+        mCalc = calc.getInstance();
 
-        chart = (LineChart)view.findViewById(R.id.graph3);
+        chart = (LineChart)rootView.findViewById(R.id.chart);
+        chart.setDescription("");
+        //chart.setTouchEnabled(false);
+        //chart.setDoubleTapToZoomEnabled(false);
 
-        chart.setTouchEnabled(false);
-        chart.setDoubleTapToZoomEnabled(false);
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setDrawLabels(true);
+        xAxis.setDrawGridLines(true);
 
-        chart.getAxisLeft().setDrawGridLines(false);
-        chart.getXAxis().setDrawGridLines(false);
-        //chart.getXAxis().setDrawLabels(false);
-        chart.getAxisRight().setDrawLabels(false);
-        chart.getAxisRight().setDrawGridLines(false);
-        chart.getAxisLeft().setDrawLabels(false);
-        chart.getAxisLeft().setDrawGridLines(false);
+        YAxis leftAxis = chart.getAxisLeft();
+        leftAxis.setDrawLabels(true);
+        leftAxis.setDrawGridLines(true);
+        leftAxis.setDrawZeroLine(true);
+        leftAxis.setAxisLineWidth(2f);
+        leftAxis.setZeroLineWidth(2f);
 
-        RadioGroup rd = (RadioGroup)view.findViewById(R.id.graph3_radiogroup);
-        rd.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        YAxis rightAxis = chart.getAxisRight();
+        rightAxis.setDrawLabels(false);
+        rightAxis.setDrawGridLines(false);
+
+        TabLayout tabLayout = (TabLayout)rootView.findViewById(R.id.tabLayout);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch(i){
-                    case R.id.graph3_radio1:ShowGraph1();break;
-                    case R.id.graph3_radio2:ShowGraph2();break;
-                    case R.id.graph3_radio3:ShowGraph3();break;
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch(tab.getPosition()){
+                    case 0:
+                        ShowGraph1();
+                        break;
+                    case 1:
+                        ShowGraph2();
+                        break;
+                    case 2:
+                        ShowGraph3();
+                        break;
                 }
             }
-        }); // 라디오버튼을 눌렸을때의 반응
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
         ShowGraph1();
 
-        return view;
+        return rootView;
     }
 
     double LinearRegressionFunc(int i){
@@ -70,7 +96,9 @@ public class Graph3 extends Fragment {
         ArrayList<Entry> y = new ArrayList<>();
         String[] label = new String[7];
 
-        for(int i=1; i<c.dAvg.length; i++) y.add(new Entry((float)c.dAvg[i],i));
+        for(int i = 1; i< mCalc.dAvg.length; i++){
+            y.add(new Entry((float) mCalc.dAvg[i],i));
+        }
         x.add(0,"일");
         x.add(1,"월");
         x.add(2,"화");
@@ -79,19 +107,32 @@ public class Graph3 extends Fragment {
         x.add(5,"금");
         x.add(6,"토");
 
-        for(int i=0; i<7; i++) label[i]=x.get(i).toString();
+        for(int i=0; i<7; i++){
+            label[i]=x.get(i).toString();
+        }
 
         ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
 
         LineDataSet lineDataSet = new LineDataSet(y,"요일별그래프");
-        lineDataSet.setDrawCircles(false);
-        lineDataSet.setColor(Color.GREEN);
-        lineDataSet.setDrawValues(false);
-
+        lineDataSet = setDefaultLineDataSet(lineDataSet);
+        lineDataSet.setColor(ColorTheme.getThemeColorRGB(getActivity(), R.attr.theme_color_N));
         lineDataSets.add(lineDataSet);
 
         chart.setData(new LineData(x,lineDataSets));
         chart.invalidate();
+    }
+
+    LineDataSet setDefaultLineDataSet(LineDataSet lineDataSet) {
+        lineDataSet.setCircleRadius(4f);
+        lineDataSet.setCircleColor(ColorTheme.getThemeColorRGB(getActivity(), R.attr.theme_color_L1));
+        lineDataSet.setValueTextSize(12f);
+        lineDataSet.setValueTextColor(ContextCompat.getColor(getContext(), R.color.gray160));
+        lineDataSet.setLineWidth(2f);
+        lineDataSet.setFillAlpha(65);
+        lineDataSet.setFillColor(ColorTemplate.getHoloBlue());
+        lineDataSet.setHighLightColor(Color.rgb(244, 117, 117));
+
+        return lineDataSet;
     }
 
     void ShowGraph2(){
@@ -99,7 +140,7 @@ public class Graph3 extends Fragment {
         ArrayList<Entry> y = new ArrayList<>();
         String[] label = new String[12];
 
-        for(int i=1; i<c.monAvg.length; i++) y.add(new Entry((float)c.monAvg[i],i));
+        for(int i = 1; i< mCalc.monAvg.length; i++) y.add(new Entry((float) mCalc.monAvg[i],i));
         x.add(0,"1월");
         x.add(1,"2월");
         x.add(2,"3월");
@@ -118,9 +159,8 @@ public class Graph3 extends Fragment {
         ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
 
         LineDataSet lineDataSet = new LineDataSet(y,"월별그래프");
-        lineDataSet.setDrawCircles(false);
-        lineDataSet.setColor(Color.MAGENTA);
-        lineDataSet.setDrawValues(false);
+        lineDataSet = setDefaultLineDataSet(lineDataSet);
+        lineDataSet.setColor(ColorTheme.getThemeColorRGB(getActivity(), R.attr.theme_color_N));
 
         lineDataSets.add(lineDataSet);
 
@@ -129,9 +169,9 @@ public class Graph3 extends Fragment {
     }
 
     void ShowGraph3(){
-        int[] tmp = new int[c.Recent16_WeekSale.length];
-        for(int i=0; i<c.Recent16_WeekSale.length; i++) tmp[i]=i+1;
-        calc.LinearRegression linearRegression = c.calcT();
+        int[] tmp = new int[mCalc.Recent16_WeekSale.length];
+        for(int i = 0; i< mCalc.Recent16_WeekSale.length; i++) tmp[i]=i+1;
+        calc.LinearRegression linearRegression = mCalc.calcT();
         slope = linearRegression.slope();            //"a"x+b
         intercept = linearRegression.intercept();    //ax+"b"
 
@@ -139,10 +179,10 @@ public class Graph3 extends Fragment {
         ArrayList<Entry> y1 = new ArrayList<>();
         ArrayList<Entry> y2 = new ArrayList<>();
 
-        String[] label = new String[c.Recent16_WeekSale.length];
-        for(int i=0; i<c.Recent16_WeekSale.length; i++){
-            if(c.Recent16_WeekSale[i]==-1) break;
-            y1.add(new Entry(c.Recent16_WeekSale[i],i));
+        String[] label = new String[mCalc.Recent16_WeekSale.length];
+        for(int i = 0; i< mCalc.Recent16_WeekSale.length; i++){
+            if(mCalc.Recent16_WeekSale[i]==-1) break;
+            y1.add(new Entry(mCalc.Recent16_WeekSale[i],i));
             y2.add(new Entry((float)LinearRegressionFunc(i),i));
             x.add(i,""+(i+1)+"주");
             label[i]=x.get(i).toString();
@@ -150,16 +190,14 @@ public class Graph3 extends Fragment {
 
         ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
 
-        LineDataSet lineDataSet1 = new LineDataSet(y1,"최근16주그래프");
-        lineDataSet1.setDrawCircles(false);
-        lineDataSet1.setColor(Color.BLUE);
-        lineDataSet1.setDrawValues(false);
+        LineDataSet lineDataSet1 = new LineDataSet(y1, "최근16주그래프");
+        lineDataSet1 = setDefaultLineDataSet(lineDataSet1);
+        lineDataSet1.setColor(ColorTheme.getThemeColorRGB(getActivity(), R.attr.theme_color_N));
         //lineDataSet1.setDrawCubic(true);
 
-        LineDataSet lineDataSet2 = new LineDataSet(y2,"추세그래프");
-        lineDataSet2.setDrawCircles(false);
-        lineDataSet2.setColor(Color.RED);
-        lineDataSet2.setDrawValues(false);
+        LineDataSet lineDataSet2 = new LineDataSet(y2, "추세그래프");
+        lineDataSet2 = setDefaultLineDataSet(lineDataSet2);
+        lineDataSet2.setColor(ColorTheme.getThemeColorRGB(getActivity(), R.attr.theme_color_type1));
 
         lineDataSets.add(lineDataSet1);
         lineDataSets.add(lineDataSet2);
