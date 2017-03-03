@@ -18,35 +18,15 @@ import com.example.kangjisung.likeroom.Util.SharedPreferenceManager;
 
 import java.util.ArrayList;
 
-public class SettingThemeListAdapter extends BaseAdapter {
-    public class ThemeListItem {
-        private int id;
-        private String name;
-        private String color;
-
-        ThemeListItem() {}
-        ThemeListItem(int id, String name, String color)
-        {
-            this.id = id;
-            this.name = name;
-            this.color = color;
-        }
-
-        public void setId(int id) {this.id = id;}
-        public void setName(String name) {this.name = name;}
-        public void setColor(String color) {this.color = color;}
-
-        public int getId() {return id;}
-        public String getName() {return name;}
-        public String getColor() {return color;}
-    };
-
-    private ArrayList<ThemeListItem> mThemeListItem = new ArrayList<ThemeListItem>();
+public class SettingStartListAdapter extends BaseAdapter {
+    private ArrayList<String> mStartListItem = new ArrayList<>();
     private SharedPreferenceManager mSharedPreferenceManager = new SharedPreferenceManager();
     private Context context;
+    private Context appContext;
 
-    public SettingThemeListAdapter() {
+    public SettingStartListAdapter(Context appContext) {
         super();
+        this.appContext = appContext;
     }
 
     @Override
@@ -61,22 +41,26 @@ public class SettingThemeListAdapter extends BaseAdapter {
         RelativeLayout mLayoutTheme = (RelativeLayout) convertView.findViewById(R.id.layout_theme);
         ImageView mImageViewColor = (ImageView) convertView.findViewById(R.id.iv_color);
         ImageView mImageViewSelect = (ImageView) convertView.findViewById(R.id.iv_select);
+        AppCompatImageView mImageViewCheck = (AppCompatImageView) convertView.findViewById(R.id.iv_check);
         TextView mTextViewName = (TextView) convertView.findViewById(R.id.tv_name);
 
-        mImageViewColor.setBackgroundColor(Color.parseColor(mThemeListItem.get(position).getColor()));
-        if (mSharedPreferenceManager.getInt("set_theme", context) == mThemeListItem.get(position).getId()) {
-            mImageViewSelect.setVisibility(View.VISIBLE);
-        } else {
-            mImageViewSelect.setVisibility(View.INVISIBLE);
-        }
-        mTextViewName.setText(mThemeListItem.get(position).getName());
+        mLayoutTheme.setVisibility(View.GONE);
 
+        mTextViewName.setText(mStartListItem.get(position));
+        if(mSharedPreferenceManager.getInt("set_start", context) == position){
+            mTextViewName.setTextColor(ColorTheme.getThemeColorRGB(appContext, R.attr.theme_color_type1));
+            mImageViewCheck.setVisibility(View.VISIBLE);
+        }
+        else{
+            mTextViewName.setTextColor(ContextCompat.getColor(appContext.getApplicationContext(), R.color.gray100));
+            mImageViewCheck.setVisibility(View.INVISIBLE);
+        }
         return convertView;
     }
 
     @Override
     public int getCount() {
-        return mThemeListItem.size();
+        return mStartListItem.size();
     }
 
     @Override
@@ -86,20 +70,10 @@ public class SettingThemeListAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return mThemeListItem.get(position);
+        return mStartListItem.get(position);
     }
 
-    public void addItem(int id, String name, String color){
-        ThemeListItem addListItem = new ThemeListItem();
-
-        addListItem.setId(id);
-        addListItem.setName(name);
-        addListItem.setColor(color);
-
-        mThemeListItem.add(addListItem);
-    }
-
-    public int getThemeId(int position){
-        return mThemeListItem.get(position).getId();
+    public void addItem(String name){
+        mStartListItem.add(name);
     }
 }

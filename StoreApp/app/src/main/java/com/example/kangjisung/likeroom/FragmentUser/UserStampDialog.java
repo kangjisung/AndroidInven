@@ -13,7 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.kangjisung.likeroom.FragmentUser.ListView.UserMainListItem;
+import com.example.kangjisung.likeroom.MemberListItem;
 import com.example.kangjisung.likeroom.R;
 
 import java.util.ArrayList;
@@ -23,9 +23,9 @@ public class UserStampDialog extends Dialog
     TabLayout tabLayout;
     ViewPager viewPager;
     UserStampDialogPagerAdapter pagerAdapter;
-    ArrayList<UserMainListItem> addItemList;
+    ArrayList<MemberListItem> addItemList;
 
-    public UserStampDialog(ArrayList<UserMainListItem> addItemList, Context context) {
+    public UserStampDialog(ArrayList<MemberListItem> addItemList, Context context) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
 
         this.addItemList = addItemList;

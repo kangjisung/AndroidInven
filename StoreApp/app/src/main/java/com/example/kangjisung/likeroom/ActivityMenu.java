@@ -1,13 +1,16 @@
 package com.example.kangjisung.likeroom;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -16,6 +19,8 @@ import android.widget.TextView;
 import com.example.kangjisung.likeroom.Setting.SettingMain;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.Util.NoScrollViewPager;
+import com.example.kangjisung.likeroom.Util.SharedPreferenceManager;
+import com.example.kangjisung.likeroom.Util.Utility;
 
 public class ActivityMenu extends AppCompatActivity
 {
@@ -70,6 +75,7 @@ public class ActivityMenu extends AppCompatActivity
                 //view.findViewById(R.id.icon).getBackground().setColorFilter(selectedTabColor, PorterDuff.Mode.SRC_IN);
                 textViewTitle.setText(tabStringResIds[tab.getPosition()]);
                 viewPager.setCurrentItem(tab.getPosition());
+
             }
 
             @Override
@@ -84,7 +90,8 @@ public class ActivityMenu extends AppCompatActivity
 
             }
         });
-        tabLayout.getTabAt(0).select();
+
+        tabLayout.getTabAt(2 - (new SharedPreferenceManager()).getInt("set_start", this)).select();
     }
 
     @Override

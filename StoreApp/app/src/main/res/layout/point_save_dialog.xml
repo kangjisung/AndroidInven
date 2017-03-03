@@ -18,7 +18,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="60dp">
 
             <RelativeLayout
@@ -61,16 +61,16 @@
                         android:text="홍길동"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textview_name"
-                        android:textColor="@color/black"
+                        android:id="@+id/tv_name"
+                        android:textColor="@color/gray60"
                         android:textSize="20dp" />
 
                     <TextView
                         android:text="010-1234-5678"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textview_phone"
-                        android:textColor="@color/black"
+                        android:id="@+id/tv_phone"
+                        android:textColor="@color/gray60"
                         android:textSize="20dp"
                         android:layout_marginTop="30dp" />
 
@@ -88,27 +88,23 @@
                         android:text="판매가격"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#FF514E3F"
+                        android:textColor="@color/gray100"
                         android:textSize="18dp"
                         android:layout_marginTop="10dp" />
 
-                    <EditText
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"
-                        android:ems="10"
-                        android:id="@+id/editTextValue"
-                        android:background="@drawable/theme_textedit"
+                        android:id="@+id/tv_value"
                         android:layout_alignParentEnd="true"
-                        android:text="25 000"
-                        style="@style/LikeRoomTheme.EditText"
-                        android:textAlignment="textEnd"
                         android:textSize="30dp"
                         android:layout_marginStart="100dp"
-                        android:padding="3dp"
                         android:paddingEnd="10dp"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false" />
+                        android:background="@drawable/theme_textedit"
+                        android:gravity="end"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:textColor="@color/gray60" />
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -128,7 +124,7 @@
 
                             <Button
                                 android:text="1"
-                                android:id="@+id/buttonNum1"
+                                android:id="@+id/btn_1"
                                 style="@style/LikeRoomTheme.Button.PointSave"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -140,7 +136,7 @@
                             <Button
                                 android:text="2"
                                 android:layout_width="match_parent"
-                                android:id="@+id/buttonNum2"
+                                android:id="@+id/btn_2"
                                 style="@style/LikeRoomTheme.Button.PointSave"
                                 android:layout_marginEnd="3dp"
                                 android:layout_height="match_parent"
@@ -150,7 +146,7 @@
                             <Button
                                 android:text="3"
                                 android:layout_width="match_parent"
-                                android:id="@+id/buttonNum3"
+                                android:id="@+id/btn_3"
                                 style="@style/LikeRoomTheme.Button.PointSave"
                                 android:layout_marginEnd="3dp"
                                 android:layout_height="match_parent"
@@ -158,14 +154,15 @@
                                 android:layout_marginStart="3dp" />
 
                             <Button
-                                android:text="←"
+                                android:text="X"
                                 android:layout_width="match_parent"
-                                android:id="@+id/buttonNumDel"
+                                android:id="@+id/btn_cor"
                                 style="@style/LikeRoomTheme.Button.PointSave"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:layout_marginEnd="3dp"
                                 android:layout_marginStart="3dp" />
+
                         </LinearLayout>
 
                         <LinearLayout
@@ -178,7 +175,7 @@
 
                             <Button
                                 android:text="4"
-                                android:id="@+id/buttonNum4"
+                                android:id="@+id/btn_4"
                                 style="@style/LikeRoomTheme.Button.PointSave"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -189,7 +186,7 @@
                             <Button
                                 android:text="5"
                                 android:layout_width="match_parent"
-                                android:id="@+id/buttonNum5"
+                                android:id="@+id/btn_5"
                                 style="@style/LikeRoomTheme.Button.PointSave"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -199,7 +196,7 @@
                             <Button
                                 android:text="6"
                                 android:layout_width="match_parent"
-                                android:id="@+id/buttonNum6"
+                                android:id="@+id/btn_6"
                                 style="@style/LikeRoomTheme.Button.PointSave"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -207,9 +204,9 @@
                                 android:layout_marginStart="3dp" />
 
                             <Button
-                                android:text="00"
+                                android:text="←"
                                 android:layout_width="match_parent"
-                                android:id="@+id/buttonNum00"
+                                android:id="@+id/btn_del"
                                 style="@style/LikeRoomTheme.Button.PointSave"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -228,7 +225,7 @@
 
                             <Button
                                 android:text="7"
-                                android:id="@+id/buttonNum7"
+                                android:id="@+id/btn_7"
                                 style="@style/LikeRoomTheme.Button.PointSave"
                                 android:layout_width="match_parent"
                                 app:layout_columnWeight="1"
@@ -241,7 +238,7 @@
                             <Button
                                 android:text="8"
                                 android:layout_width="match_parent"
-                                android:id="@+id/buttonNum8"
+                                android:id="@+id/btn_8"
                                 style="@style/LikeRoomTheme.Button.PointSave"
                                 app:layout_columnWeight="1"
                                 app:layout_rowWeight="1"
@@ -253,7 +250,7 @@
                             <Button
                                 android:text="9"
                                 android:layout_width="match_parent"
-                                android:id="@+id/buttonNum9"
+                                android:id="@+id/btn_9"
                                 style="@style/LikeRoomTheme.Button.PointSave"
                                 app:layout_columnWeight="1"
                                 app:layout_rowWeight="1"
@@ -265,7 +262,7 @@
                             <Button
                                 android:text="0"
                                 android:layout_width="match_parent"
-                                android:id="@+id/buttonNum0"
+                                android:id="@+id/btn_0"
                                 style="@style/LikeRoomTheme.Button.PointSave"
                                 app:layout_columnWeight="1"
                                 app:layout_rowWeight="1"
@@ -284,22 +281,29 @@
                     android:text="150P 적립 : 200 → 350"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textview_guide"
+                    android:id="@+id/tv_guide"
                     android:layout_below="@+id/layout_inputbox"
-                    android:textColor="#FF8E886F"
+                    android:textColor="?attr/theme_color_type1"
                     android:textSize="18dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp" />
 
-                <Button
-                    android:text="다음"
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/button_ok"
-                    android:layout_alignParentBottom="false"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/textview_guide"
-                    android:layout_marginTop="10dp" />
+                    android:layout_below="@+id/tv_guide"
+                    android:background="?attr/theme_color_L1"
+                    android:layout_marginTop="10dp">
+
+                    <Button
+                        android:text="완료"
+                        android:layout_width="90dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/button_ok"
+                        android:textColor="@color/white"
+                        android:background="@drawable/button_ripple_rectangle" />
+                </RelativeLayout>
 
             </RelativeLayout>
         </ScrollView>
