@@ -1,4 +1,4 @@
-package com.example.kangjisung.likeroom.FragmentUser;
+﻿package com.example.kangjisung.likeroom.FragmentUser;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.FragmentUser.ListView.UserNoticeListItem;
+import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
@@ -37,6 +38,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+
+import static com.example.kangjisung.likeroom.MainActivity.PriNum;
 
 public class UserNoticeEditDialog extends Dialog
 {
@@ -196,6 +199,8 @@ public class UserNoticeEditDialog extends Dialog
                                 selectedType,
                                 0);
                         new ClientDataBase(query, 2, 0, getContext());
+                        NetworkModule networkModule=new NetworkModule();
+                        networkModule.InsertNewStoreNoticeInfo(Integer.parseInt(PriNum),userNoticeItemBeforeModify.getNum(),mEditTextTitle.getText().toString(),mEditTextBody.getText().toString(),startDateString,endDateString,makeDateString);
                     }
                     else if(mode.equals("MODIFY")) {
                         query = String.format("UPDATE `매장공지`" +
@@ -206,7 +211,9 @@ public class UserNoticeEditDialog extends Dialog
                                 endDateString,
                                 selectedType,
                                 userNoticeItemBeforeModify.getNum());
-                        new ClientDataBase(query, 3, 0, getContext());
+new ClientDataBase(query, 3, 0, getContext());
+                        NetworkModule networkModule=new NetworkModule();
+                        networkModule.UpdateStoreNoticeInfo(Integer.parseInt(PriNum),userNoticeItemBeforeModify.getNum(),mEditTextTitle.getText().toString(),mEditTextBody.getText().toString(),startDateString,endDateString);
                     }
                 }
                 catch(Exception ex){
