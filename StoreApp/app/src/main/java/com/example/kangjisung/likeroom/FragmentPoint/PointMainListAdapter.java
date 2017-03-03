@@ -1,41 +1,165 @@
-package com.example.kangjisung.likeroom.FragmentPoint.ListView;
+package com.example.kangjisung.likeroom.FragmentPoint;
 
+import com.example.kangjisung.likeroom.MemberListItem;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.support.v7.widget.RecyclerView;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.RelativeLayout;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.kangjisung.likeroom.R;
-import com.example.kangjisung.likeroom.Util.SingleToast;
-import com.github.clans.fab.FloatingActionButton;
+import com.example.kangjisung.likeroom.Util.Utility;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
+public class PointMainListAdapter extends BaseAdapter implements Filterable
+{
+    private ArrayList<MemberListItem> pointMainList = new ArrayList<>();
+    private ArrayList<MemberListItem> pointMainListToFilter = new ArrayList<>();
+    private ArrayFilter mFilter;
+    private Context context;
+    private PointSaveDialog pointSaveDialog;
+
+    public PointMainListAdapter() {
+        super();
+    }
+
+    public PointMainListAdapter(Context context, ArrayList<MemberListItem> object)
+    {
+        super();
+        this.context = context;
+        pointMainList = object;
+        pointMainListToFilter = object;
+    }
+
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent)
+    {
+        final MemberListItem pointMainItem = pointMainList.get(position);
+
+        if (convertView == null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.point_main_listitem, parent, false);
+        }
+        if (mFilter != null){
+            TextView mTextViewName = (TextView) convertView.findViewById(R.id.tv_name);
+            TextView mTextViewPhone = (TextView) convertView.findViewById(R.id.tv_phone);
+            Button mButtonSelect = (Button) convertView.findViewById(R.id.btn_select);
+            Button mButtonDetail = (Button) convertView.findViewById(R.id.btn_detail);
+
+            mTextViewName.setText(pointMainItem.getName());
+            mTextViewPhone.setText(Utility.convertPhoneNumber(pointMainItem.getPhone()));
+            mButtonSelect.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View onClickView) {
+                    pointSaveDialog = new PointSaveDialog(context, pointMainItem);
+                    pointSaveDialog.show();
+                }
+            });
+            mButtonDetail.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View onClickView) {
+
+                }
+            });
+
+            return convertView;
+        }
+        return null;
+    }
+
+    @Override
+    public int getCount() {
+        return pointMainList.size() ;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return pointMainList.get(position) ;
+    }
+
+    public void addItem(MemberListItem addListItem)
+    {
+        pointMainList.add(addListItem);
+    }
+
+    @Override
+    public Filter getFilter() {
+        if (mFilter == null) {
+            mFilter = new ArrayFilter();
+        }
+        return mFilter;
+    }
+
+    private class ArrayFilter extends Filter {
+        private Object lock;
+
+        @Override
+        protected FilterResults performFiltering(CharSequence prefix) {
+            FilterResults results = new FilterResults();
+
+            if (prefix == null || prefix.length() == 0) {
+                results.values = null;
+                results.count = 0;
+            }
+            else {
+                final String prefixString = prefix.toString().toLowerCase();
+
+                ArrayList<MemberListItem> newValues = new ArrayList<>();
+
+                for (int i = 0; i < pointMainListToFilter.size(); i++) {
+                    String itemName = pointMainListToFilter.get(i).getName();
+                    String itemPhone = pointMainListToFilter.get(i).getPhone();
+                    if (itemName.toLowerCase().contains(prefixString) || itemPhone.toLowerCase().contains(prefixString)) {
+                        newValues.add(pointMainListToFilter.get(i));
+                    }
+                }
+
+                results.values = newValues;
+                results.count = newValues.size();
+            }
+
+            return results;
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results)
+        {
+            if (results.values != null) {
+                pointMainList = (ArrayList<MemberListItem>) results.values;
+            } else {
+                pointMainList = new ArrayList<MemberListItem>();
+            }
+            if (results.count > 0) {
+                notifyDataSetChanged();
+            } else {
+                notifyDataSetInvalidated();
+            }
+        }
+    }
+}
+/*
 public class PointMainListAdapter extends RecyclerView.Adapter<PointMainListAdapter.UserRecyclerViewHolder> {
-    private ArrayList<PointMainListItem> userMainList;
+    private ArrayList<MemberListItem> userMainList;
     private Context context;
     private ViewGroup parent;
     private Boolean stampMode = false;
 
     private int longClickPosition;
-    public PointMainListItem getLongClickPosition() {return userMainList.get(longClickPosition);}
+    public MemberListItem getLongClickPosition() {return userMainList.get(longClickPosition);}
     public void setLongClickPosition(int longClickPosition) {this.longClickPosition = longClickPosition;}
 
     public PointMainListAdapter(View view) {
-        userMainList = new ArrayList<PointMainListItem>();
+        userMainList = new ArrayList<MemberListItem>();
     }
 
     public static class UserRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
@@ -77,7 +201,7 @@ public class PointMainListAdapter extends RecyclerView.Adapter<PointMainListAdap
 
     @Override
     public void onBindViewHolder(final UserRecyclerViewHolder holder, final int position) {
-        final PointMainListItem userMainItem = userMainList.get(position);
+        final MemberListItem userMainItem = userMainList.get(position);
 
         holder.textViewName.setText(userMainItem.getName());
         holder.textViewPhone.setText(userMainItem.getPhone());
@@ -163,9 +287,9 @@ public class PointMainListAdapter extends RecyclerView.Adapter<PointMainListAdap
         notifyDataSetChanged();
     }
 
-    public ArrayList<PointMainListItem> getListItemToStampDialog()
+    public ArrayList<MemberListItem> getListItemToStampDialog()
     {
-        ArrayList<PointMainListItem> uploadData = new ArrayList<PointMainListItem>();
+        ArrayList<MemberListItem> uploadData = new ArrayList<MemberListItem>();
 
         for(int p = 0; p < userMainList.size(); p++){
             if(userMainList.get(p).getCheck() == true){
@@ -183,7 +307,7 @@ public class PointMainListAdapter extends RecyclerView.Adapter<PointMainListAdap
 
     public void addItem(String addName, String addPhone, String addPoint)
     {
-        PointMainListItem addItemList = new PointMainListItem();
+        MemberListItem addItemList = new MemberListItem();
 
         addItemList.setName(addName);
         addItemList.setPhone(addPhone);
@@ -195,9 +319,9 @@ public class PointMainListAdapter extends RecyclerView.Adapter<PointMainListAdap
 
     public void sort(final String sortMode, final String sortOrder)
     {
-        Collections.sort(userMainList, new Comparator<PointMainListItem>(){
+        Collections.sort(userMainList, new Comparator<MemberListItem>(){
             @Override
-            public int compare(PointMainListItem obj1, PointMainListItem obj2) {
+            public int compare(MemberListItem obj1, MemberListItem obj2) {
                 if(sortMode.equals("NAME")){
                     if(sortOrder.equals("ASC")){
                         return obj1.getName().compareToIgnoreCase(obj2.getName());
@@ -241,3 +365,4 @@ public class PointMainListAdapter extends RecyclerView.Adapter<PointMainListAdap
         }
     }
 }
+*/

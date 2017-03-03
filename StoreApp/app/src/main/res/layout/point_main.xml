@@ -6,12 +6,164 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    android:id="@+id/point_main_layout">`
+    android:id="@+id/point_main_layout">
 
-    <include
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/include_member_search" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/theme_color_D3">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="match_parent"
+                android:background="@color/transparent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/theme_color_D3">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="?theme_color_D2"
+                android:rotation="45"
+                android:layout_width="200dp"
+                android:layout_alignParentEnd="true"
+                android:layout_height="30dp"
+                android:layout_marginEnd="-53dp" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="?theme_color_D1"
+                android:rotation="45"
+                android:layout_width="200dp"
+                android:layout_alignParentEnd="true"
+                android:layout_height="30dp"
+                android:layout_marginEnd="-95dp" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="?theme_color_D2"
+                android:rotation="45"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="-53dp" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="?theme_color_D1"
+                android:rotation="45"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="-95dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:background="@mipmap/icon_mileage"
+                    android:layout_weight="1"
+                    app:backgroundTint="?attr/theme_color_D4"
+                    android:alpha="0.5"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+
+                <TextView
+                    android:text="포인트 적립"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:textColor="?attr/theme_color_D4"
+                    android:alpha="0.5"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/layout_search"
+            android:layout_height="45dp">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="?attr/theme_color_L1"
+                android:layout_width="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_height="match_parent"
+                android:alpha="0.5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:background="?theme_color_L2"
+                    android:layout_width="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="match_parent"
+                    android:alpha="0.5" />
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:background="@mipmap/icon_search"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:backgroundTint="?attr/theme_color_D3"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="5dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPersonName"
+                    android:id="@+id/ed_search"
+                    android:hint="이름 또는 전화번호로 검색"
+                    android:background="@color/transparent"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:textColorHint="?attr/theme_color_D3"
+                    android:layout_marginStart="30dp"
+                    android:textColor="?attr/theme_color_L4"
+                    android:textSize="20dp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listView"
+            android:layout_below="@+id/layout_search"
+            android:divider="@color/transparent">
+
+        </ListView>
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@drawable/shape_gradient_border_y"
+            android:rotation="180"
+            android:layout_height="3dp"
+            android:layout_below="@+id/layout_search" />
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@drawable/shape_gradient_border_y"
+            android:rotation="180"
+            android:layout_height="3dp" />
+
+
+    </RelativeLayout>
 
 </RelativeLayout>
 <!--

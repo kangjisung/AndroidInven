@@ -22,7 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.FragmentUser.ListView.UserMainListAdapter;
-import com.example.kangjisung.likeroom.FragmentUser.ListView.UserMainListItem;
+import com.example.kangjisung.likeroom.MemberListItem;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.R;
@@ -158,7 +158,7 @@ public class UserMain extends Fragment
         switch(item.getItemId()){
             case 0:
                 // TODO : 수정을 눌렀을 경우
-                UserMainListItem userItem = mAdapter.getLongClickPosition();
+                MemberListItem userItem = mAdapter.getLongClickPosition();
                 userEditDialog = new UserEditDialog(getContext(), userItem);
                 userEditDialog.show();
                 userEditDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -189,7 +189,7 @@ public class UserMain extends Fragment
 
         DateFormat dateFormat = new SimpleDateFormat("y-M-d", Locale.KOREA);
         while(DBstring[count] != null) {
-            UserMainListItem addListItem = new UserMainListItem();
+            MemberListItem addListItem = new MemberListItem();
             try {
                 addListItem.setNum(Integer.parseInt(DBstring[count]));
                 addListItem.setName(DBstring[count+1]);

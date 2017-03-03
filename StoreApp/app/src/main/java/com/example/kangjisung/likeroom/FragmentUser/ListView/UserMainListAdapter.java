@@ -16,6 +16,7 @@ import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.kangjisung.likeroom.MemberListItem;
 import com.example.kangjisung.likeroom.Util.Utility;
 import com.example.kangjisung.likeroom.R;
 
@@ -28,18 +29,18 @@ import java.util.Comparator;
 import java.util.Locale;
 
 public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapter.UserRecyclerViewHolder> {
-    private ArrayList<UserMainListItem> userMainList;
+    private ArrayList<MemberListItem> userMainList;
     private Context context;
     private ViewGroup parent;
     private Boolean stampMode = false;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("y년 M월 d일", Locale.KOREA);
 
     private int longClickPosition;
-    public UserMainListItem getLongClickPosition() {return userMainList.get(longClickPosition);}
+    public MemberListItem getLongClickPosition() {return userMainList.get(longClickPosition);}
     public void setLongClickPosition(int longClickPosition) {this.longClickPosition = longClickPosition;}
 
     public UserMainListAdapter(View view) {
-        userMainList = new ArrayList<UserMainListItem>();
+        userMainList = new ArrayList<MemberListItem>();
     }
 
     public static class UserRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
@@ -83,17 +84,17 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
 
     @Override
     public void onBindViewHolder(final UserRecyclerViewHolder holder, final int position) {
-        final UserMainListItem userMainItem = userMainList.get(position);
+        final MemberListItem userMainItem = userMainList.get(position);
 
         holder.textViewName.setText(userMainItem.getName());
-        holder.textViewPhone.setText(Utility.convert(userMainItem.getPhone()));
+        holder.textViewPhone.setText(Utility.convertPhoneNumber(userMainItem.getPhone()));
         holder.textViewPoint.setText(userMainItem.getPoint() + " p");
         holder.buttonDescription.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View view) {
                 DrawerLayout drawerLayout = (DrawerLayout) parent.getParent().getParent().getParent().getParent();
                 drawerLayout.openDrawer(Gravity.RIGHT);
                 ((TextView)drawerLayout.findViewById(R.id.tv_drawer_name)).setText(userMainItem.getName());
-                ((TextView)drawerLayout.findViewById(R.id.tv_drawer_phone)).setText(Utility.convert(userMainItem.getPhone()));
+                ((TextView)drawerLayout.findViewById(R.id.tv_drawer_phone)).setText(Utility.convertPhoneNumber(userMainItem.getPhone()));
                 ((TextView)drawerLayout.findViewById(R.id.tv_drawer_point)).setText(userMainItem.getPoint());
                 ((TextView)drawerLayout.findViewById(R.id.tv_drawer_birth)).setText(dateFormat.format(userMainItem.getBirth()));
                 ((TextView)drawerLayout.findViewById(R.id.tv_drawer_email)).setText(userMainItem.getEmail());
@@ -185,9 +186,9 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
         notifyDataSetChanged();
     }
 
-    public ArrayList<UserMainListItem> getListItemToStampDialog()
+    public ArrayList<MemberListItem> getListItemToStampDialog()
     {
-        ArrayList<UserMainListItem> uploadData = new ArrayList<UserMainListItem>();
+        ArrayList<MemberListItem> uploadData = new ArrayList<MemberListItem>();
 
         for(int p = 0; p < userMainList.size(); p++){
             if(userMainList.get(p).getCheck() == true){
@@ -203,16 +204,16 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
         notifyDataSetChanged();
     }
 
-    public void addItem(UserMainListItem addListItem)
+    public void addItem(MemberListItem addListItem)
     {
         userMainList.add(addListItem);
     }
 
     public void sort(final String sortMode, final String sortOrder)
     {
-        Collections.sort(userMainList, new Comparator<UserMainListItem>(){
+        Collections.sort(userMainList, new Comparator<MemberListItem>(){
             @Override
-            public int compare(UserMainListItem obj1, UserMainListItem obj2) {
+            public int compare(MemberListItem obj1, MemberListItem obj2) {
                 if(sortMode.equals("NAME")){
                     if(sortOrder.equals("ASC")){
                         return obj1.getName().compareToIgnoreCase(obj2.getName());
