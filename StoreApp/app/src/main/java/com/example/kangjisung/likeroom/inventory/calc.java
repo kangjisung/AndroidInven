@@ -147,8 +147,8 @@ public class calc extends MainActivity {
         //db의 판매량 column의 총평균을 m에 저장
 
         ////////////////////////////////////////////최소예상판매량, 최대예상판매량
-        //new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>\"" + cal.get(Calendar.YEAR) + "\" and `월`>\"" + cal.get(Calendar.MONTH) + "\" and `일`>\"" + cal.get(Calendar.DATE) + "\";", 1, 2, MainActivity.con);
-        new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>=2016 and `월`>9 and `일`>1;", 1, 2, MainActivity.con);
+        new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>\"" + cal.get(Calendar.YEAR) + "\" and `월`>\"" + cal.get(Calendar.MONTH) + "\" and `일`>\"" + cal.get(Calendar.DATE) + "\";", 1, 2, MainActivity.con);
+        //new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>=2016 and `월`>9 and `일`>1;", 1, 2, MainActivity.con);
         cnt = 0;
         while (true) {
             if (DBstring[cnt] != null) {
@@ -185,6 +185,7 @@ public class calc extends MainActivity {
         while (true) {
             if (DBstring[cnt] != null) {
                 Recent100_Sale[(cnt+2)/2]=Integer.parseInt(DBstring[cnt]);
+                ////if 걸어주기
                 Recent100_FD[(cnt+2)/2]=Integer.parseInt(DBstring[cnt+1]);
                 cnt+=2;
             } else if (DBstring[cnt] == null) break;

@@ -13,7 +13,7 @@ import static android.R.attr.name;
 public class NetworkModule {
     HttpCommunicationProcess httpCommunicationProcess;
 
-    String hostName = "stories2.iptime.org:4200", apiName = "/Smoothie/2", logCatTag = "test";
+    String hostName = "lamb.kangnam.ac.kr:4200", apiName = "/Smoothie/2", logCatTag = "test";
 
     public NetworkModule() {
     }
@@ -126,11 +126,12 @@ public class NetworkModule {
         }
     }
     //공지 업로드
-    public void InsertNewStoreNoticeInfo(int shopId,String noticeTitle,String noticeBody,String noticeStartDate, String noticeStopDate, String noticeLastUpdateDate) { //샵 아이디,공지제목, 공지내용, 공지시작날짜,공지마감날짜,공지마지막편집날짜(날짜date,string정하기)
+    public void InsertNewStoreNoticeInfo(int shopId,int noticeId,String noticeTitle,String noticeBody,String noticeStartDate, String noticeStopDate, String noticeLastUpdateDate) { //샵 아이디,공지번호,공지제목, 공지내용, 공지시작날짜,공지마감날짜,공지마지막편집날짜
         httpCommunicationProcess = new HttpCommunicationProcess();
         String responseRawDate = null;
         try {
-            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/InsertNewProductName/?shopId=" + shopId +"&noticeTitle="+noticeTitle+"&noticeBody"+noticeBody+"&noticeStartDate"+noticeStartDate+"&noticeStopDate"+noticeStopDate+"&noticeLastUpdateDate"+noticeLastUpdateDate+"").get();
+            Log.d("test", "http://" + hostName + apiName + "/InsertNewStoreNoticeInfo/?shopId=" + shopId +"&noticeId="+noticeId+"&noticeTitle="+noticeTitle+"&noticeBody="+noticeBody+"&noticeStartDate="+noticeStartDate+"&noticeStopDate="+noticeStopDate+"&noticeLastUpdateDate="+noticeLastUpdateDate);
+            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/InsertNewStoreNoticeInfo/?shopId=" + shopId +"&noticeId="+noticeId+"&noticeTitle="+noticeTitle+"&noticeBody="+noticeBody+"&noticeStartDate="+noticeStartDate+"&noticeStopDate="+noticeStopDate+"&noticeLastUpdateDate="+noticeLastUpdateDate+"").get();
             Log.d(logCatTag, responseRawDate);
             JSONObject jsonObject = new JSONObject(responseRawDate);
             if (jsonObject.getString("Result").equals("OK")) {
@@ -143,11 +144,11 @@ public class NetworkModule {
     }
 
     //공지업데이트
-    public void UpdateStoreNoticeInfo(int shopId,int noticeId,String noticeTitle,String noticeBody,String noticeStartDate, String noticeStopDate, String noticeLastUpdateDate) { //샵 아이디,공지번호,공지제목, 공지내용, 공지시작날짜,공지마감날짜,공지마지막편집날짜(날짜date,string정하기)
+    public void UpdateStoreNoticeInfo(int shopId,int noticeId,String noticeTitle,String noticeBody,String noticeStartDate, String noticeStopDate) { //샵 아이디,공지번호,공지제목, 공지내용, 공지시작날짜,공지마감날짜
         httpCommunicationProcess = new HttpCommunicationProcess();
         String responseRawDate = null;
         try {
-            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/UpdateStoreNoticeInfo/?shopId=" + shopId +"&noticeId="+noticeId+"&noticeTitle="+noticeTitle+"&noticeBody"+noticeBody+"&noticeStartDate"+noticeStartDate+"&noticeStopDate"+noticeStopDate+"&noticeLastUpdateDate"+noticeLastUpdateDate+"").get();
+            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/UpdateStoreNoticeInfo/?shopId=" + shopId +"&noticeId="+noticeId+"&noticeTitle="+noticeTitle+"&noticeBody="+noticeBody+"&noticeStartDate="+noticeStartDate+"&noticeStopDate="+noticeStopDate+"").get();
             Log.d(logCatTag, responseRawDate);
             JSONObject jsonObject = new JSONObject(responseRawDate);
             if (jsonObject.getString("Result").equals("OK")) {

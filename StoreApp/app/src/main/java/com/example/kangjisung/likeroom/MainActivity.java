@@ -13,6 +13,7 @@ import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductMuchStoreListItem;
 import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductSellTodayListItem;
+import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
@@ -62,6 +63,9 @@ public class MainActivity extends AppCompatActivity
         protected void onPreExecute() {
             asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             asyncDialog.setMessage("로딩중입니다..");
+
+            NetworkModule networkModule=new NetworkModule();
+            //networkModule.InsertNewStoreInfoData("서울시","강지성","01012345678","2017-02-25");
 
             //////매장이 클라이언트 디비에 있는지 검사
             new ClientDataBase("select `매장번호` from `매장`;",1,1,getApplicationContext());
