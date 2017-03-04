@@ -1,4 +1,4 @@
-package com.example.kangjisung.likeroom.FragmentUser.ListView;
+﻿package com.example.kangjisung.likeroom.FragmentUser.ListView;
 
 import android.content.Context;
 import android.support.v4.widget.DrawerLayout;
@@ -16,7 +16,6 @@ import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.kangjisung.likeroom.MemberListItem;
 import com.example.kangjisung.likeroom.Util.Utility;
 import com.example.kangjisung.likeroom.R;
 
@@ -87,14 +86,14 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
         final MemberListItem userMainItem = userMainList.get(position);
 
         holder.textViewName.setText(userMainItem.getName());
-        holder.textViewPhone.setText(Utility.convertPhoneNumber(userMainItem.getPhone()));
+        holder.textViewPhone.setText(Utility.convert(userMainItem.getPhone()));
         holder.textViewPoint.setText(userMainItem.getPoint() + " p");
         holder.buttonDescription.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View view) {
                 DrawerLayout drawerLayout = (DrawerLayout) parent.getParent().getParent().getParent().getParent();
                 drawerLayout.openDrawer(Gravity.RIGHT);
                 ((TextView)drawerLayout.findViewById(R.id.tv_drawer_name)).setText(userMainItem.getName());
-                ((TextView)drawerLayout.findViewById(R.id.tv_drawer_phone)).setText(Utility.convertPhoneNumber(userMainItem.getPhone()));
+                ((TextView)drawerLayout.findViewById(R.id.tv_drawer_phone)).setText(Utility.convert(userMainItem.getPhone()));
                 ((TextView)drawerLayout.findViewById(R.id.tv_drawer_point)).setText(userMainItem.getPoint());
                 ((TextView)drawerLayout.findViewById(R.id.tv_drawer_birth)).setText(dateFormat.format(userMainItem.getBirth()));
                 ((TextView)drawerLayout.findViewById(R.id.tv_drawer_email)).setText(userMainItem.getEmail());
@@ -203,8 +202,7 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
         stampMode = newStampMode;
         notifyDataSetChanged();
     }
-
-    public void addItem(MemberListItem addListItem)
+    public void addItem(UserMainListItem addListItem)
     {
         userMainList.add(addListItem);
     }

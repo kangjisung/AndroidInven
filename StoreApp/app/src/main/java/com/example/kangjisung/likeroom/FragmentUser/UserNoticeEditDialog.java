@@ -189,8 +189,8 @@ public class UserNoticeEditDialog extends Dialog
 
                     if(mode.equals("ADD")) {
                         query = String.format("INSERT INTO `매장공지`" +
-                                " (`제목`, `내용`, `공지시작날짜`, `공지마감날짜`, `작성시간`, `공지사항종류`, `삭제`)" +
-                                " VALUES (\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", %d, %d);",
+                                        " (`제목`, `내용`, `공지시작날짜`, `공지마감날짜`, `작성시간`, `공지사항종류`, `삭제`)" +
+                                        " VALUES (\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", %d, %d);",
                                 mEditTextTitle.getText().toString(),
                                 mEditTextBody.getText().toString(),
                                 startDateString,
@@ -204,14 +204,15 @@ public class UserNoticeEditDialog extends Dialog
                     }
                     else if(mode.equals("MODIFY")) {
                         query = String.format("UPDATE `매장공지`" +
-                                " SET `제목` = \"%s\", `내용` = \"%s\", `공지시작날짜` = \"%s\", `공지마감날짜` = \"%s\", `공지사항종류` = %d WHERE `코드` = %d;" + "",
+                                        " SET `제목` = \"%s\", `내용` = \"%s\", `공지시작날짜` = \"%s\", `공지마감날짜` = \"%s\", `공지사항종류` = %d WHERE `코드` = %d;" + "",
                                 mEditTextTitle.getText().toString(),
                                 mEditTextBody.getText().toString(),
                                 startDateString,
                                 endDateString,
                                 selectedType,
                                 userNoticeItemBeforeModify.getNum());
-new ClientDataBase(query, 3, 0, getContext());
+                        new ClientDataBase(query, 3, 0, getContext());
+
                         NetworkModule networkModule=new NetworkModule();
                         networkModule.UpdateStoreNoticeInfo(Integer.parseInt(PriNum),userNoticeItemBeforeModify.getNum(),mEditTextTitle.getText().toString(),mEditTextBody.getText().toString(),startDateString,endDateString);
                     }

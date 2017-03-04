@@ -1,4 +1,4 @@
-package com.example.kangjisung.likeroom;
+﻿package com.example.kangjisung.likeroom;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,13 +29,6 @@ public class ActivityStoreAdd extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_store_add);
-
-        /*
-        Intent intent = new Intent(getApplicationContext(), ActivityMenu.class);
-        startActivity(intent);
-
-        finish();
-        */
 
         viewPager = (NoScrollViewPager)findViewById(R.id.viewPager);
 

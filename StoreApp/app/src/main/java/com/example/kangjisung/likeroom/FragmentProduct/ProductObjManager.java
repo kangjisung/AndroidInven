@@ -5,13 +5,20 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.FragmentSortRecyclerViewAdapter;
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
+import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductMuchStoreListItem;
+import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductSellTodayListItem;
+import com.example.kangjisung.likeroom.MainActivity;
+import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.Util.SharedPreferenceManager;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+
+import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
 public class ProductObjManager {
     public static ArrayList<ProductListItem> productInfos = new ArrayList<ProductListItem>();
@@ -19,9 +26,58 @@ public class ProductObjManager {
     public static int sortingStatus;
     public static ArrayList<RecyclerViewManager> recyclerViewManagers = new ArrayList<>();
     public static SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager();
-    public ProductObjManager(){
+    public ProductObjManager(){}
 
+    public static ArrayList<ProductSellTodayListItem> sellTodayArrayList = new ArrayList<>();
+    public static ArrayList<ProductMuchStoreListItem> muchStoreArrayList = new ArrayList<>();
+
+    public static void getContext(Context _context)
+    {
+        context = _context;
     }
+    public static void productLoad(Date date){
+        Date today =date;
+        new ClientDataBase("select `제품정보`.`이름`,`제품정보`.`등록일`,`최적재고량`.`최적재고량` from `제품정보` join `최적재고량` on `제품정보`.`제품코드`= `최적재고량`.`제품코드` group by `최적재고량`.`제품코드` having max(`날짜`);", 1, 3, context);
+        int cnt = 0;
+        muchStoreArrayList = new ArrayList<>();
+        while (true) {
+            if (DBstring[cnt] != null) {
+                muchStoreArrayList.add(new ProductMuchStoreListItem(DBstring[cnt], DBstring[cnt + 1], Integer.parseInt(DBstring[cnt + 2])));
+                cnt += 3;
+            } else if (DBstring[cnt] == null) break;
+        }
+
+        //제품 이름,날짜,판매량 불러오기(오늘 데이터)
+        new ClientDataBase("select `제품정보`.`이름`,`제품정보`,`등록일,`제품판매량`.`판매량` from `제품정보` join `제품판매량` on `제품정보`.`제품코드`= `제품판매량`.`제품코드` where `제품판매량`.`년`="+today.getYear()+1900+"and `제품판매량`.`월`="+today.getMonth()+1+"and `제품판매량`.`일`="+today.getDay()+"", 1, 3, context);
+        cnt = 0;
+        sellTodayArrayList = new ArrayList<>();
+        while (true) {
+            if (DBstring[cnt] != null) {
+                sellTodayArrayList.add(new ProductSellTodayListItem(DBstring[cnt], DBstring[cnt + 1], Integer.parseInt(DBstring[cnt + 2])));
+                cnt += 3;
+            } else if (DBstring[cnt] == null){
+                //오늘 판매량이 없을시 muchStoreArrayList크기만큼 sellTodayArrayList에 빈값 넣기(데이터 뿌려줄떄 null이면 에러나서)
+                if(cnt==0){
+                    for(int i=0; i<muchStoreArrayList.size(); i++) sellTodayArrayList.add(new ProductSellTodayListItem(" "," ", 0));
+                }
+                break;
+            }
+        }
+
+        productInfos = new ArrayList<ProductListItem>();
+        for(int i=0; i<sellTodayArrayList.size(); i++){
+            ProductSellTodayListItem sellToday = sellTodayArrayList.get(i);
+            ProductMuchStoreListItem muchStore;
+            if(i<muchStoreArrayList.size()) muchStore = muchStoreArrayList.get(i);
+            else break;
+            try {
+                add(new ProductListItem(muchStore.getName(), false, muchStore.getDate(), new Date(today.getYear()+1900, today.getMonth()+1, today.getDay()),sellToday.getSell(), muchStore.getMuch()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static void add(ProductListItem productInfo){
         productInfo.getSellTodayDate().setYear(productInfo.getSellTodayDate().getYear());
         productInfo.getMuchStoreDate().setYear(productInfo.getMuchStoreDate().getYear());
