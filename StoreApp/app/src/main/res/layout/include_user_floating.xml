@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             app:fab_colorNormal="#ef4946"
             app:fab_colorPressed="#f57977"
-            android:src="@mipmap/icon_reject_white"
+            android:src="@mipmap/fab_reject"
             android:layout_gravity="bottom|start"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp" />

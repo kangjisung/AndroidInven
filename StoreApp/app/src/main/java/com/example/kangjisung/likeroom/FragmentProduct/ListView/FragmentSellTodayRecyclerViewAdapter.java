@@ -2,9 +2,7 @@ package com.example.kangjisung.likeroom.FragmentProduct.ListView;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -14,7 +12,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
@@ -26,7 +23,6 @@ import com.example.kangjisung.likeroom.inventory.calc;
 
 import java.util.Calendar;
 
-import static android.R.attr.name;
 import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
 public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<FragmentSellTodayRecyclerViewAdapter.ViewHolder>
@@ -92,9 +88,8 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
                         //판매량 업데이트
                         new ClientDataBase("update `제품판매량` set `판매량`=\""+Integer.parseInt(editTextInput.getText().toString())+"\" where `년`=\""+cal.get(Calendar.YEAR)+"\" and `월`=\""+(cal.get(Calendar.MONTH)+1)+"\" and `일`=\""+cal.get(Calendar.DATE)+"\"",3,0,MainActivity.con);
                         //판매량 서버넣기
-                        int proDuct;
-                        new ClientDataBase("select `제품코드` from `제품정보` where `이름`="+name+";",1,1,MainActivity.con);
-                        proDuct=Integer.parseInt(DBstring[0]);
+                        new ClientDataBase("select `제품코드` from `제품정보` where `이름`=\""+ProductObjManager.get(position).getName()+"\";",1,1, MainActivity.con);
+                        int proDuct=Integer.parseInt(DBstring[0]);
                         NetworkModule networkModule=new NetworkModule();
                         networkModule.InsertSalesVolume(proDuct,Integer.parseInt(editTextInput.getText().toString()),""+cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) +1) + "-" + (cal.get(Calendar.DATE)+1)+"",c.FD);
 

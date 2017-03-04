@@ -1,6 +1,6 @@
 <!-- API 19 이하에서 실행 -->
 <resources>
-    <string name="app_name">LikeRoom</string>
+    <string name="app_name">점주앱</string>
     <string name="action_settings">Settings</string>
     <string name="mainactivity_string">메인화면</string>
 

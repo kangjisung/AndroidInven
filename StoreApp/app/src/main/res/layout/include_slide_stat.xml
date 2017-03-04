@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:id="@+id/layout_body1"
+        android:background="@color/gray220">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:text="예측경향 학습 그래프"
+            android:textAlignment="center"
+            android:textColor="@color/gray100"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_body2"
+        android:layout_below="@+id/layout_body1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:background="?attr/actionModeShareDrawable"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            app:backgroundTint="?attr/theme_color_N"
+            android:layout_marginBottom="-2dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
+
+        <TextView
+            android:id="@+id/graph1_graphtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="!예측경향"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="?attr/theme_color_N"
+            android:textSize="28dp" />
+
+        <TextView
+            android:id="@+id/graph1_txt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="!예상값 변경 문구"
+            android:layout_gravity="center"
+            android:layout_marginTop="1dp"
+            android:textSize="16dp"
+            android:textColor="@color/gray120" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_below="@+id/layout_body2"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/layout_body3"
+        android:layout_marginTop="15dp">
+
+        <RelativeLayout
+            android:layout_weight="0"
+            android:layout_gravity="center"
+            android:layout_width="55dp"
+            android:layout_height="55dp">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="@drawable/shape_ring_5dp"
+                app:backgroundTint="?attr/theme_color_N"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="@mipmap/icon_good"
+                app:backgroundTint="?attr/theme_color_N"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="12dp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_marginEnd="30dp"
+            android:layout_width="65dp">
+
+            <TextView
+                android:id="@+id/graph1_txt3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="!추천"
+                android:textSize="26dp"
+                android:textColor="?attr/theme_color_N" />
+
+            <TextView
+                android:text="추천예측"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:textSize="12dp"
+                android:textColor="@color/gray120" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_weight="0"
+            android:layout_width="55dp"
+            android:layout_gravity="center"
+            android:layout_height="55dp">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="@drawable/shape_ring_5dp"
+                app:backgroundTint="?attr/theme_color_L1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="@mipmap/icon_sort_asc"
+                app:backgroundTint="?attr/theme_color_L1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="14dp"
+                android:id="@+id/iv_up"
+                android:visibility="invisible" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="@mipmap/icon_sort_desc"
+                app:backgroundTint="?attr/theme_color_L1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/iv_down"
+                android:visibility="invisible" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="@mipmap/icon_equal"
+                app:backgroundTint="?attr/theme_color_L1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="12dp"
+                android:id="@+id/iv_equal"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_width="65dp">
+
+            <TextView
+                android:id="@+id/graph1_txt1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="!현재"
+                android:textSize="26dp"
+                android:textColor="?attr/theme_color_L1" />
+
+            <TextView
+                android:text="현재예측"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:textSize="12dp"
+                android:textColor="@color/gray120" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/layout_body4"
+        android:layout_below="@+id/layout_body3"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="75dp">
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/graph1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="?attr/theme_color_L4">
+
+        <Button
+            android:text="변경취소"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:id="@+id/btn_change_cancel"
+            android:layout_weight="1"
+            android:background="@drawable/button_ripple_rectangle"
+            android:textColor="?attr/theme_color_D3"
+            android:textSize="18dp" />
+
+        <View
+            android:background="?attr/theme_color_L1"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp" />
+
+        <Button
+            android:id="@+id/btn_change_ok"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="변경하기"
+            android:layout_weight="1"
+            android:background="@drawable/button_ripple_rectangle"
+            android:textColor="?attr/theme_color_D3"
+            android:textSize="18dp" />
+
+    </LinearLayout>
+</RelativeLayout>

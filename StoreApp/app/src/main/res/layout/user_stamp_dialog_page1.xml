@@ -29,7 +29,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/gridView"
             android:layout_marginTop="40dp"
-            android:layout_weight="1"
             android:numColumns="3"
             android:layout_gravity="center_horizontal"
             android:horizontalSpacing="10dp"

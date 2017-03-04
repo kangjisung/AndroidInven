@@ -1,21 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.InvenActivity"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
+        xmlns:sothree="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/layout_sliding"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-    </android.support.v4.view.ViewPager>
+        android:gravity="bottom"
+        sothree:umanoPanelHeight="60dp"
+        sothree:umanoShadowHeight="4dp">
 
-</LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_height="60dp"
+                android:id="@+id/layout_title"
+                android:background="?attr/theme_color_D3">
+
+                <TextView
+                    android:text="최적재고량"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="22dp"
+                    android:layout_centerInParent="true" />
+
+                <Button
+                    android:id="@+id/btn_back"
+                    android:background="@mipmap/icon_reject"
+                    android:layout_centerVertical="true"
+                    app:backgroundTint="@color/white"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="10dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:alpha="0.3"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/button_ripple_circle">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btn_next_pager"
+                    android:background="@mipmap/icon_arrow_right_white"
+                    app:backgroundTint="?attr/theme_color_D2"
+                    android:layout_margin="5dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:alpha="0.3"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/button_ripple_circle">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btn_prev_pager"
+                    android:background="@mipmap/icon_arrow_left_white"
+                    app:backgroundTint="?attr/theme_color_D2"
+                    android:layout_margin="5dp"
+                    android:visibility="invisible" />
+
+            </RelativeLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/layout_title"
+                android:background="@color/white" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/include_slide_stat" />
+        </RelativeLayout>
+
+
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+
+
+</RelativeLayout>

@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
 import com.example.kangjisung.likeroom.R;
@@ -74,11 +73,9 @@ public class FragmentMuchStoreRecyclerViewAdapter extends RecyclerView.Adapter<F
             @Override
             public void onClick(View view) {
                 calc c;
-                c=calc.getInstance();
+                c = calc.getInstance();
                 c.RefreshClass(ProductObjManager.get(position).getName());
                 context.startActivity(mil);
-                Toast.makeText(context.getApplicationContext(), "클릭.", Toast.LENGTH_SHORT).show();
-
             }
         });
         /*

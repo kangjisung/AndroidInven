@@ -1,14 +1,13 @@
 package com.example.kangjisung.likeroom.FragmentUser.ListView;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,24 +15,24 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.kangjisung.likeroom.FragmentUser.UserEditDialog;
-import com.example.kangjisung.likeroom.FragmentUser.UserMain;
-import com.example.kangjisung.likeroom.Util.SingleToast;
+import com.example.kangjisung.likeroom.Util.Utility;
 import com.example.kangjisung.likeroom.R;
 
 import com.github.clans.fab.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Locale;
 
 public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapter.UserRecyclerViewHolder> {
     private ArrayList<UserMainListItem> userMainList;
     private Context context;
     private ViewGroup parent;
     private Boolean stampMode = false;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("y년 M월 d일", Locale.KOREA);
 
     private int longClickPosition;
     public UserMainListItem getLongClickPosition() {return userMainList.get(longClickPosition);}
@@ -49,6 +48,7 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
         TextView textViewPoint;
         Button buttonDescription;
         CheckBox checkBoxStamp;
+        AppCompatImageView mImageViewDot;
         View view;
 
         UserRecyclerViewHolder(View view) {
@@ -60,6 +60,7 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
             textViewPoint = (TextView) view.findViewById(R.id.textView_point);
             buttonDescription = (Button) view.findViewById(R.id.button_detail);
             checkBoxStamp = (CheckBox) view.findViewById(R.id.checkBox_stamp);
+            mImageViewDot = (AppCompatImageView) view.findViewById(R.id.iv_dot);
             view.setOnCreateContextMenuListener(this);
         }
 
@@ -85,12 +86,26 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
         final UserMainListItem userMainItem = userMainList.get(position);
 
         holder.textViewName.setText(userMainItem.getName());
-        holder.textViewPhone.setText(userMainItem.getPhone());
+        holder.textViewPhone.setText(Utility.convert(userMainItem.getPhone()));
         holder.textViewPoint.setText(userMainItem.getPoint() + " p");
-        holder.buttonDescription.getBackground().setColorFilter(Color.parseColor("#55000000"), PorterDuff.Mode.SRC_IN);
         holder.buttonDescription.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View view) {
-                SingleToast.show(context, userMainItem.getName() + " 항목의 버튼 클릭", Toast.LENGTH_SHORT);
+                DrawerLayout drawerLayout = (DrawerLayout) parent.getParent().getParent().getParent().getParent();
+                drawerLayout.openDrawer(Gravity.RIGHT);
+                ((TextView)drawerLayout.findViewById(R.id.tv_drawer_name)).setText(userMainItem.getName());
+                ((TextView)drawerLayout.findViewById(R.id.tv_drawer_phone)).setText(Utility.convert(userMainItem.getPhone()));
+                ((TextView)drawerLayout.findViewById(R.id.tv_drawer_point)).setText(userMainItem.getPoint());
+                ((TextView)drawerLayout.findViewById(R.id.tv_drawer_birth)).setText(dateFormat.format(userMainItem.getBirth()));
+                ((TextView)drawerLayout.findViewById(R.id.tv_drawer_email)).setText(userMainItem.getEmail());
+            }
+        });
+
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(stampMode){
+                    holder.checkBoxStamp.callOnClick();
+                }
             }
         });
 
@@ -104,10 +119,12 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
 
         if (stampMode == false) {
             holder.checkBoxStamp.setVisibility(View.GONE);
+            holder.mImageViewDot.setVisibility(View.VISIBLE);
             userMainList.get(position).setCheck(false);
             //userMainCheckboxStateList.set(position, false);
         } else {
             holder.checkBoxStamp.setVisibility(View.VISIBLE);
+            holder.mImageViewDot.setVisibility(View.GONE);
         }
         holder.checkBoxStamp.setChecked(userMainList.get(position).getCheck());
 
@@ -186,16 +203,9 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
         notifyDataSetChanged();
     }
 
-    public void addItem(String addName, String addPhone, String addPoint)
+    public void addItem(UserMainListItem addListItem)
     {
-        UserMainListItem addItemList = new UserMainListItem();
-
-        addItemList.setName(addName);
-        addItemList.setPhone(addPhone);
-        addItemList.setPoint(addPoint);
-        addItemList.setCheck(false);
-
-        userMainList.add(addItemList);
+        userMainList.add(addListItem);
     }
 
     public void sort(final String sortMode, final String sortOrder)

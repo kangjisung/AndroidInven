@@ -97,7 +97,7 @@
                     android:id="@+id/tv_number"
                     android:layout_weight="5"
                     android:layout_width="match_parent"
-                    android:textColor="@color/clrTextColorDeepDark"
+                    android:textColor="?attr/theme_color_D3"
                     android:gravity="center_vertical|end"
                     android:textSize="16dp"
                     android:maxLines="1" />

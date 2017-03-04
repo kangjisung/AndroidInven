@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.inventory.calc;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -31,7 +32,8 @@ public class StatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stat);
+        this.setTheme(ColorTheme.getTheme());
+        //setContentView(R.layout.activity_stat);
 
         TextView graph1_txt1 = (TextView) findViewById(R.id.graph1_txt1);
         TextView graph1_txt2 = (TextView) findViewById(R.id.graph1_txt2);
@@ -83,15 +85,15 @@ public class StatActivity extends AppCompatActivity {
         String str2;
         if (newFD > c.FD){
             str = "과소예측";
-            str2 = "예상값을 높여주세요\n==>";
+            str2 = "예상값을 높여주세요";
         }
         else if (newFD == c.FD){
             str = "같습니다";
-            str2 = "예상값과 같습니다\n==>";
+            str2 = "예상값과 같습니다";
         }
         else{
             str = "과다예측";
-            str2 = "예상값을 낮춰주세요\n==>";
+            str2 = "예상값을 낮춰주세요";
         }
         graph1_graphtxt.setText(str);
         graph1_txt2.setText(str2);
@@ -128,6 +130,7 @@ public class StatActivity extends AppCompatActivity {
     }
 
     public void OnBtnClick(View v) {
+        /*
         switch (v.getId()) {
             case R.id.graph1_change:
                 if (!c.isChange) {
@@ -147,5 +150,6 @@ public class StatActivity extends AppCompatActivity {
                 finish();
                 break;
         }
+        */
     }
 }

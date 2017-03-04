@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/theme_color_L3">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_height="60dp"
+        android:id="@+id/layout_title"
+        android:background="?attr/theme_color_D4">
+
+        <TextView
+            android:text="만든이"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="22dp"
+            android:layout_centerInParent="true" />
+
+        <Button
+            android:id="@+id/btn_back"
+            android:background="@mipmap/icon_arrow_left"
+            android:layout_centerVertical="true"
+            app:backgroundTint="@color/white"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:layout_width="30dp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="@drawable/shape_gradient_border_y"
+        android:layout_below="@+id/layout_title"
+        android:layout_height="3dp"
+        android:rotation="180" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="-3dp"
+            android:layout_marginEnd="-3dp"
+            android:id="@+id/card_1">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/button_ripple_rectangle"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:text="Created by"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray160"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="15dp"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:text="TEAM DAEKUN"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="18dp"
+                        android:textColor="@color/gray100"
+                        android:layout_marginBottom="5dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray220"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/button_ripple_rectangle"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:text="대표"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray160"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="15dp"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:text="대 학빈쌤"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="18dp"
+                        android:textColor="@color/gray100"
+                        android:layout_marginBottom="5dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray220"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/button_ripple_rectangle"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:text="홈페이지"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray160"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="15dp"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:text="www.naver.com"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="18dp"
+                        android:textColor="@color/gray100"
+                        android:layout_marginBottom="5dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+</RelativeLayout>
