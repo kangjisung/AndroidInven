@@ -4,19 +4,25 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.kangjisung.likeroom.FragmentUser.ListView.UserNoticeListItem;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.Util.SharedPreferenceManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 public class SettingThemeListAdapter extends BaseAdapter {
     public class ThemeListItem {
@@ -44,6 +50,7 @@ public class SettingThemeListAdapter extends BaseAdapter {
     private ArrayList<ThemeListItem> mThemeListItem = new ArrayList<ThemeListItem>();
     private SharedPreferenceManager mSharedPreferenceManager = new SharedPreferenceManager();
     private Context context;
+    private int p;
 
     public SettingThemeListAdapter() {
         super();
@@ -55,18 +62,19 @@ public class SettingThemeListAdapter extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.setting_listitem, parent, false);
+            convertView = inflater.inflate(R.layout.setting_theme_listitem, parent, false);
         }
 
-        RelativeLayout mLayoutTheme = (RelativeLayout) convertView.findViewById(R.id.layout_theme);
+
         ImageView mImageViewColor = (ImageView) convertView.findViewById(R.id.iv_color);
         ImageView mImageViewSelect = (ImageView) convertView.findViewById(R.id.iv_select);
         TextView mTextViewName = (TextView) convertView.findViewById(R.id.tv_name);
 
         mImageViewColor.setBackgroundColor(Color.parseColor(mThemeListItem.get(position).getColor()));
-        if (mSharedPreferenceManager.getInt("set_theme", context) == mThemeListItem.get(position).getId()) {
+        if (mSharedPreferenceManager.getInt("theme", context) == mThemeListItem.get(position).getId()) {
             mImageViewSelect.setVisibility(View.VISIBLE);
-        } else {
+        }
+        else {
             mImageViewSelect.setVisibility(View.INVISIBLE);
         }
         mTextViewName.setText(mThemeListItem.get(position).getName());

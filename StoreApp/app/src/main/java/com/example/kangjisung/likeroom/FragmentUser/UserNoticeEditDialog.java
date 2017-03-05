@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.FragmentUser.ListView.UserNoticeListItem;
+import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
@@ -37,6 +38,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+
+import static com.example.kangjisung.likeroom.MainActivity.PriNum;
 
 public class UserNoticeEditDialog extends Dialog
 {
@@ -186,8 +189,8 @@ public class UserNoticeEditDialog extends Dialog
 
                     if(mode.equals("ADD")) {
                         query = String.format("INSERT INTO `매장공지`" +
-                                " (`제목`, `내용`, `공지시작날짜`, `공지마감날짜`, `작성시간`, `공지사항종류`, `삭제`)" +
-                                " VALUES (\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", %d, %d);",
+                                        " (`제목`, `내용`, `공지시작날짜`, `공지마감날짜`, `작성시간`, `공지사항종류`, `삭제`)" +
+                                        " VALUES (\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", %d, %d);",
                                 mEditTextTitle.getText().toString(),
                                 mEditTextBody.getText().toString(),
                                 startDateString,
@@ -196,10 +199,12 @@ public class UserNoticeEditDialog extends Dialog
                                 selectedType,
                                 0);
                         new ClientDataBase(query, 2, 0, getContext());
+                        NetworkModule networkModule=new NetworkModule();
+                        networkModule.InsertNewStoreNoticeInfo(Integer.parseInt(PriNum),userNoticeItemBeforeModify.getNum(),mEditTextTitle.getText().toString(),mEditTextBody.getText().toString(),startDateString,endDateString,makeDateString);
                     }
                     else if(mode.equals("MODIFY")) {
                         query = String.format("UPDATE `매장공지`" +
-                                " SET `제목` = \"%s\", `내용` = \"%s\", `공지시작날짜` = \"%s\", `공지마감날짜` = \"%s\", `공지사항종류` = %d WHERE `코드` = %d;" + "",
+                                        " SET `제목` = \"%s\", `내용` = \"%s\", `공지시작날짜` = \"%s\", `공지마감날짜` = \"%s\", `공지사항종류` = %d WHERE `코드` = %d;" + "",
                                 mEditTextTitle.getText().toString(),
                                 mEditTextBody.getText().toString(),
                                 startDateString,
@@ -207,6 +212,9 @@ public class UserNoticeEditDialog extends Dialog
                                 selectedType,
                                 userNoticeItemBeforeModify.getNum());
                         new ClientDataBase(query, 3, 0, getContext());
+
+                        NetworkModule networkModule=new NetworkModule();
+                        networkModule.UpdateStoreNoticeInfo(Integer.parseInt(PriNum),userNoticeItemBeforeModify.getNum(),mEditTextTitle.getText().toString(),mEditTextBody.getText().toString(),startDateString,endDateString);
                     }
                 }
                 catch(Exception ex){

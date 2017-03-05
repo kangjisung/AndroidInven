@@ -1,6 +1,7 @@
 package com.example.kangjisung.likeroom.NetworkManager;
 
 import android.os.AsyncTask;
+import android.widget.EditText;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -81,5 +82,6 @@ public class HttpCommunicationProcess extends AsyncTask<String, Integer, String>
         }
         return convertedString;
     }
+
 
 }

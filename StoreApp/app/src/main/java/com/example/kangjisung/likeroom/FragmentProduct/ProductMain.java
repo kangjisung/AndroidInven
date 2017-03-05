@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import com.example.kangjisung.likeroom.MainActivity;
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
@@ -114,6 +115,7 @@ public class ProductMain extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         nowDate = selectedDate;
                         tvFragmentItemMainDate.setText((new SimpleDateFormat("yyyy년 M월 d일", Locale.KOREA)).format(nowDate.getTime()));
+                        ProductObjManager.productLoad(nowDate.getTime());
                         dialog.dismiss();
                     }
                 });
