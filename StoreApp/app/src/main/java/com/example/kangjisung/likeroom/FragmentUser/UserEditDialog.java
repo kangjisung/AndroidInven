@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,16 +18,11 @@ import android.widget.Toast;
 import com.example.kangjisung.likeroom.MemberListItem;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
-
-import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.Util.SingleToast;
 import com.example.kangjisung.likeroom.Util.Utility;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class UserEditDialog extends Dialog {
@@ -161,7 +155,7 @@ public class UserEditDialog extends Dialog {
                 return;
             }
             if(mode == "ADD") {
-                String query = "INSERT INTO `회원정보` (`이름`, `전화번호`, `생년월일`) VALUES('"
+                String query = "INSERT INTO 회원정보 (이름, 전화번호, 생년월일) VALUES('"
                         + UserAddName.getText().toString() + "', '"
                         + UserAddPhone.getText().toString() + "', '"
                         + selectedDate + "');";
