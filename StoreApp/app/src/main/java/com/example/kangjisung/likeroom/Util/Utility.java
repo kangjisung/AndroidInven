@@ -1,9 +1,12 @@
 package com.example.kangjisung.likeroom.Util;
 
 import android.content.Context;
+import android.os.IBinder;
 import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
-
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.R;
@@ -16,7 +19,6 @@ public class Utility {
     public static final int MENU_NOTICE_DELETE = 4;
 
     public static String convertPhoneNumber(String rawPhone)
-
     {
         if (rawPhone.length() == 0){
             return rawPhone;
@@ -42,6 +44,10 @@ public class Utility {
             }
         }
         return phone;
+    }
+
+    public static void showKeyboard(Context context) {
+        ((InputMethodManager) (context).getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
 
     public static int convertDpToPixels(float dp, Context context) {

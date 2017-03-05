@@ -203,6 +203,7 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
         stampMode = newStampMode;
         notifyDataSetChanged();
     }
+
     public void addItem(MemberListItem addListItem)
     {
         userMainList.add(addListItem);

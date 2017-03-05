@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -108,6 +108,36 @@
                             android:id="@+id/btn_set_font_size"
                             android:background="@drawable/button_ripple_rectangle"
                             android:clickable="false" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight="1">
+
+                        <android.support.v7.widget.AppCompatImageView
+                            android:layout_centerVertical="true"
+                            android:layout_width="30dp"
+                            android:background="@mipmap/icon_setting_start"
+                            app:backgroundTint="@color/gray100"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="15dp" />
+
+                        <TextView
+                            android:text="시작 화면 설정"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="60dp"
+                            android:layout_centerVertical="true"
+                            android:textSize="18dp"
+                            android:textColor="@color/gray100" />
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/btn_set_start"
+                            android:background="@drawable/button_ripple_rectangle" />
 
                     </RelativeLayout>
 
