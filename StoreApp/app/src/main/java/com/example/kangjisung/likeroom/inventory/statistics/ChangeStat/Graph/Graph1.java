@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.inventory.calc;
-import com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.StatActivity;
 
 import io.apptik.widget.MultiSlider;
 
@@ -39,7 +38,6 @@ public class Graph1 extends Fragment implements View.OnClickListener{
         TextView tv_bdname = (TextView)view.findViewById(R.id.bdName);
 
         editText = (EditText)view.findViewById(R.id.editText3);
-        Button showStatBtn = (Button)view.findViewById(R.id.showStatBtn);
         Button changeBtn = (Button)view.findViewById(R.id.graph1_changeBtn);
         Button button = (Button)view.findViewById(R.id.button3);
 
@@ -47,7 +45,6 @@ public class Graph1 extends Fragment implements View.OnClickListener{
         et2=(EditText)view.findViewById(R.id.SeekBarTxt2);
         et3=(EditText)view.findViewById(R.id.SeekBarTxt3);
 
-        showStatBtn.setOnClickListener(this);
         changeBtn.setOnClickListener(this);
 
         c = calc.getInstance();
@@ -119,11 +116,6 @@ public class Graph1 extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         int id = view.getId();
         switch(id){
-            case R.id.showStatBtn:
-                startActivity(new Intent(super.getActivity(), StatActivity.class));
-                super.getActivity().overridePendingTransition(R.anim.anim_slide_in_bottom, R.anim.anim_slide_out_top);
-                super.getActivity().finish();
-                break;
             case R.id.graph1_changeBtn:
                 if(et1.getText().length()==0 || et2.getText().length()==0 || et3.getText().length()==0) Toast.makeText(super.getContext(),"비관, 예상, 낙관 값을 모두 입력해주세요",Toast.LENGTH_LONG).show();
                 else {

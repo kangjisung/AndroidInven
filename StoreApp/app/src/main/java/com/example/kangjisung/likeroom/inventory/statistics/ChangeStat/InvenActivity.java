@@ -190,7 +190,6 @@ public class InvenActivity extends AppCompatActivity {
         Button mButtonChangeOk = (Button) findViewById(R.id.btn_change_ok);
         layoutSliding = (SlidingUpPanelLayout) findViewById(R.id.layout_sliding);
 
-
         mButtonChangeCancel.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View onClickView) {
@@ -207,8 +206,10 @@ public class InvenActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "변경되었습니다.", Toast.LENGTH_SHORT).show();
                     c.updateFD();
                     layoutSliding.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-                    customAdapter.notifyDataSetChanged();
-                    viewPager.invalidate();
+                    customAdapter = new CustomAdapter(getSupportFragmentManager());
+                    viewPager.setAdapter(customAdapter);
+                    //customAdapter.notifyDataSetChanged();
+                    //viewPager.invalidate();
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "이미 변경되었습니다.", Toast.LENGTH_SHORT).show();

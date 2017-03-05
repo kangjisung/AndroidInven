@@ -20,6 +20,7 @@ import com.example.kangjisung.likeroom.FragmentUser.ListView.UserNoticeListAdapt
 import com.example.kangjisung.likeroom.FragmentUser.ListView.UserNoticeListItem;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
+import com.example.kangjisung.likeroom.Util.Utility;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -125,7 +126,7 @@ public class UserNoticeMain extends Fragment
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.setHeaderTitle("작업 선택");
-        menu.add(Menu.NONE, 6, Menu.NONE, "삭제");
+        menu.add(Menu.NONE, Utility.MENU_NOTICE_DELETE, Menu.NONE, "삭제");
     }
 
     @Override
@@ -133,7 +134,7 @@ public class UserNoticeMain extends Fragment
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
         final UserNoticeListItem listItem = (UserNoticeListItem)mAdapter.getItem(info.position);
         switch(item.getItemId()) {
-            case 6:
+            case Utility.MENU_NOTICE_DELETE:
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
                 dialogBuilder.setMessage("선택한 항목을 삭제하시겠습니까?");
                 dialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {

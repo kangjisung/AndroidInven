@@ -13,10 +13,14 @@ public class MemberListItem {
     private boolean check;
 
     public MemberListItem() {}
-    public MemberListItem(int num, String name, String phone){
+    public MemberListItem(int num, String name, String phone, String point, Date birth, String email, int delete){
         this.num = num;
         this.name = name;
         this.phone = phone;
+        this.point = point;
+        this.birth = birth;
+        this.email = email;
+        this.delete = delete;
     }
     public MemberListItem(int num, String name, String phone, String point, Date birth, String email, int delete, boolean check){
         this.num = num;

@@ -12,38 +12,42 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.kangjisung.likeroom.FragmentProduct.FragmentMuchStore;
+import com.example.kangjisung.likeroom.FragmentProduct.FragmentSort;
+import com.example.kangjisung.likeroom.FragmentProduct.ProductMain;
 import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
+import com.example.kangjisung.likeroom.MemberListItem;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.Util.Utility;
 import com.example.kangjisung.likeroom.inventory.calc;
 import com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.InvenActivity;
 
 public class FragmentMuchStoreRecyclerViewAdapter extends RecyclerView.Adapter<FragmentMuchStoreRecyclerViewAdapter.ViewHolder> {
 
     Context context;
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
+
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
-        // each data item is just a string in this case
         public TextView tvName;
         public TextView tvAddedDate;
         public RelativeLayout ivIsStar;
         public Button ibWrite;
         public TextView tvNumber;
+        public View view;
         public ViewHolder(View view) {
             super(view);
             tvName=(TextView)view.findViewById(R.id.tv_name);
             tvAddedDate=(TextView)view.findViewById(R.id.tv_added_date);
             ibWrite=(Button)view.findViewById(R.id.ib_write);
             tvNumber=(TextView)view.findViewById(R.id.tv_number);
+            this.view = view;
             view.setOnCreateContextMenuListener(this);
         }
 
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             menu.setHeaderTitle("작업 선택");
-            menu.add(Menu.NONE, 2, Menu.NONE, "수정");
-            menu.add(Menu.NONE, 3, Menu.NONE, "삭제");
+            menu.add(Menu.NONE, Utility.MENU_PRODUCT_MODIFY, Menu.NONE, "수정");
+            menu.add(Menu.NONE, Utility.MENU_PRODUCT_DELETE, Menu.NONE, "삭제");
         }
     }
 
@@ -78,6 +82,14 @@ public class FragmentMuchStoreRecyclerViewAdapter extends RecyclerView.Adapter<F
                 context.startActivity(mil);
             }
         });
+        holder.view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                ProductMain.longClickPosition = position;
+                return false;
+            }
+        });
+
         /*
         if(ProductObjManager.productInfos.get(position).isStar()) {
             holder.ivIsStar.setBackgroundResource(R.drawable.user_listview_background_star);

@@ -104,7 +104,8 @@
                         android:gravity="end"
                         android:paddingTop="3dp"
                         android:paddingBottom="3dp"
-                        android:textColor="@color/gray60" />
+                        android:textColor="@color/gray60"
+                        android:text="0" />
 
                     <LinearLayout
                         android:orientation="vertical"

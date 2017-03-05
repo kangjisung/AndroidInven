@@ -1,5 +1,6 @@
 package com.example.kangjisung.likeroom.FragmentProduct;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.FragmentMuchStoreRecyclerViewAdapter;
+import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
+import com.example.kangjisung.likeroom.FragmentUser.UserEditDialog;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.Util.Utility;
 
 public class FragmentMuchStore extends Fragment {
     public static RecyclerView rvFragmentMuchStore;
@@ -38,25 +42,12 @@ public class FragmentMuchStore extends Fragment {
                 }
             }
         });
-        ProductObjManager.addRecyclerView(rvFragmentMuchStore,mAdapter);
+        ProductObjManager.addRecyclerView(rvFragmentMuchStore, mAdapter);
         sortingStatus = ProductObjManager.sort();
 
         return rootView;
     }
 
-    @Override
-    public boolean onContextItemSelected(MenuItem item)
-    {
-        switch(item.getItemId()){
-            case 2:
-                // TODO : 수정을 눌렀을 경우
-                break;
-            case 3:
-                // TODO : 삭제를 눌렀을 경우
-                break;
-            default:
-                break;
-        }
-        return super.onContextItemSelected(item);
-    }
+
+
 }
