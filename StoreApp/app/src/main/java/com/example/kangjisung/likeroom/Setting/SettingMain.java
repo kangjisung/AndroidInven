@@ -1,4 +1,4 @@
-﻿package com.example.kangjisung.likeroom.Setting;
+package com.example.kangjisung.likeroom.Setting;
 
 
 import android.content.Intent;

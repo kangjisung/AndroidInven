@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.example.kangjisung.likeroom.R;
 
 public class Utility {
-    public static String convert(String rawPhone)
+    public static String convertPhoneNumber(String rawPhone)
 
     {
         if (rawPhone.length() == 0){

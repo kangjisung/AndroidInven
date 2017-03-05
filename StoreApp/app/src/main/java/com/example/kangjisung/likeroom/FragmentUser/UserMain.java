@@ -1,4 +1,4 @@
-﻿package com.example.kangjisung.likeroom.FragmentUser;
+package com.example.kangjisung.likeroom.FragmentUser;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -189,7 +189,7 @@ public class UserMain extends Fragment
 
         DateFormat dateFormat = new SimpleDateFormat("y-M-d", Locale.KOREA);
         while(DBstring[count] != null) {
-            UserMainListItem addListItem = new UserMainListItem();
+            MemberListItem addListItem = new MemberListItem();
             try {
                 addListItem.setNum(Integer.parseInt(DBstring[count]));
                 addListItem.setName(DBstring[count+1]);
