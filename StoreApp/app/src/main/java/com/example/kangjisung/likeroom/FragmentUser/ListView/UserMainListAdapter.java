@@ -68,8 +68,8 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             menu.setHeaderTitle("작업 선택");
-            menu.add(Menu.NONE, 0, Menu.NONE, "수정");
-            menu.add(Menu.NONE, 1, Menu.NONE, "삭제");
+            menu.add(Menu.NONE, Utility.MENU_USER_MODIFY, Menu.NONE, "수정");
+            menu.add(Menu.NONE, Utility.MENU_USER_DELETE, Menu.NONE, "삭제");
         }
     }
 

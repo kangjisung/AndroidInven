@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -26,6 +27,7 @@ import com.example.kangjisung.likeroom.MemberListItem;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.Util.Utility;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
@@ -50,6 +52,7 @@ public class UserMain extends Fragment
 
     private UserEditDialog userEditDialog;
     private UserStampDialog userStampDialog;
+    private DrawerLayout mDrawerLayout;
 
     private int sortStateId;
     private String sortStateOrder;
@@ -74,6 +77,30 @@ public class UserMain extends Fragment
         RelativeLayout layoutSortByPhone = (RelativeLayout) fragmentView.findViewById(R.id.layout_sort_by_phone);
         RelativeLayout layoutSortByPoint = (RelativeLayout) fragmentView.findViewById(R.id.layout_sort_by_point);
 
+        mDrawerLayout = (DrawerLayout) fragmentView.findViewById(R.id.layout_drawer);
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener(){
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+            }
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
+
         sortStateId = R.id.layout_sort_by_name;
         setSortOn(layoutSortByName, "ASC");
         setSortWhite(layoutSortByPhone);
@@ -95,7 +122,6 @@ public class UserMain extends Fragment
         fabStampOk.setEnabled(false);
         fabStampCancel = (FloatingActionButton) fragmentView.findViewById(R.id.fab_stamp_cancel);
         fabStampCancel.setVisibility(View.INVISIBLE);
-
 
         checkBoxStampAll = (CheckBox) fragmentView.findViewById(R.id.checkBoxStampAll);
         checkBoxStampAll.setVisibility(View.GONE);
@@ -156,7 +182,7 @@ public class UserMain extends Fragment
     public boolean onContextItemSelected(MenuItem item)
     {
         switch(item.getItemId()){
-            case 0:
+            case Utility.MENU_USER_MODIFY:
                 // TODO : 수정을 눌렀을 경우
                 MemberListItem userItem = mAdapter.getLongClickPosition();
                 userEditDialog = new UserEditDialog(getContext(), userItem);
@@ -170,7 +196,7 @@ public class UserMain extends Fragment
                     }
                 });
                 break;
-            case 1:
+            case Utility.MENU_USER_DELETE:
                 // TODO : 삭제를 눌렀을 경우
                 break;
             default:

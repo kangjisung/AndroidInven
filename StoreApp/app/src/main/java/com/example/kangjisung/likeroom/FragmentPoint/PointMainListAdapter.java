@@ -65,10 +65,12 @@ public class PointMainListAdapter extends BaseAdapter implements Filterable
 
                 }
             });
-
-            return convertView;
+            convertView.setVisibility(View.VISIBLE);
         }
-        return null;
+        else{
+            convertView.setVisibility(View.GONE);
+        }
+        return convertView;
     }
 
     @Override

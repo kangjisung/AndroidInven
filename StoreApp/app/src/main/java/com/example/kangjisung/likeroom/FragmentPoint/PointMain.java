@@ -18,7 +18,10 @@ import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.Util.SharedPreferenceManager;
 import com.example.kangjisung.likeroom.Util.Utility;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
@@ -32,6 +35,34 @@ public class PointMain extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.point_main, container, false);
 
+        String query = "SELECT `회원정보`.`고유회원등록번호`, `회원정보`.`이름`, `회원정보`.`전화번호`, `포인트`.`포인트`, `회원정보`.`생년월일`, `회원정보`.`이메일`, `회원정보`.`삭제`" +
+                "FROM `회원정보` LEFT JOIN `포인트` ON `회원정보`.`고유회원등록번호`= `포인트`.`고유회원등록번호`;";
+
+        new ClientDataBase(query, 1, 7, getContext());
+        int count = 0;
+
+        DateFormat dateFormat = new SimpleDateFormat("y-M-d", Locale.KOREA);
+        ArrayList<MemberListItem> addList = new ArrayList<>();
+        while(DBstring[count] != null) {
+            MemberListItem addListItem = new MemberListItem();
+            try {
+                addListItem.setNum(Integer.parseInt(DBstring[count]));
+                addListItem.setName(DBstring[count+1]);
+                addListItem.setPhone(DBstring[count+2]);
+                addListItem.setPoint((DBstring[count+3]==null)?("0"):(DBstring[count+3]));
+                addListItem.setBirth(dateFormat.parse(DBstring[count+4]));
+                addListItem.setEmail(DBstring[count+5]);
+                addListItem.setDelete(Integer.parseInt(DBstring[count+6]));
+                addList.add(addListItem);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+                continue;
+            }
+            count += 7;
+        }
+        mAdapter = new PointMainListAdapter(getActivity(), addList);
+        /*
         String query = "SELECT `고유회원등록번호`, `이름`, `전화번호` FROM `회원정보` WHERE `삭제` = 0;";
 
         new ClientDataBase(query, 1, 3, getContext());
@@ -43,6 +74,7 @@ public class PointMain extends Fragment
             count += 3;
         }
         mAdapter = new PointMainListAdapter(getActivity(), addList);
+        */
 
         pointListView = (ListView) fragmentView.findViewById((R.id.listView));
         pointListView.setAdapter(mAdapter);

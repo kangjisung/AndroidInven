@@ -4,15 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button_dialog_back"
-        android:background="@drawable/drawable_arrow_left"
-        style="@style/LikeRoomTheme.Button.EmptyBackground"
-        android:layout_marginStart="10dp"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:padding="20dp"
-        android:layout_centerVertical="true" />
+    <RelativeLayout android:layout_height="match_parent"
+        android:layout_width="60dp"
+        android:id="@+id/layout_back">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/drawable_arrow_left"
+            app:backgroundTint="@color/gray200"
+            android:layout_marginTop="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_centerInParent="true" />
+
+        <Button
+            android:id="@+id/button_dialog_back"
+            android:background="@drawable/button_ripple_rectangle_rad5"
+            style="@style/LikeRoomTheme.Button.EmptyBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
 
     <TextView
         android:text="팝업 제목"
@@ -24,14 +36,28 @@
         android:id="@+id/textView_title"
         android:layout_centerInParent="true" />
 
-    <Button
-        android:id="@+id/button_dialog_ok"
-        style="@style/LikeRoomTheme.Button.EmptyBackground"
-        android:layout_marginEnd="10dp"
-        android:background="@mipmap/icon_check"
+    <RelativeLayout
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_width="40dp"
-        android:layout_height="40dp" />
+        android:id="@+id/layout_ok">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:background="@mipmap/icon_check"
+            app:backgroundTint="@color/gray200"
+            android:layout_marginTop="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_centerInParent="true"
+            android:layout_width="35dp"
+            android:layout_height="35dp" />
+
+        <Button
+            android:id="@+id/button_dialog_ok"
+            android:background="@drawable/button_ripple_rectangle_rad5"
+            style="@style/LikeRoomTheme.Button.EmptyBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
 
 </RelativeLayout>

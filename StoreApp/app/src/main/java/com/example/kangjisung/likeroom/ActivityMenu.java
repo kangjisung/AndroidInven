@@ -95,7 +95,7 @@ public class ActivityMenu extends AppCompatActivity
     public void onBackPressed()
     {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setMessage("정말 종료하시겠습니까?");
+        dialog.setMessage("앱을 종료하시겠습니까?");
         dialog.setPositiveButton("예", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 finish();

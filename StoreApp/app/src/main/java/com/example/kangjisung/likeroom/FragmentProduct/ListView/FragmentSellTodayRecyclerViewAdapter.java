@@ -14,6 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.kangjisung.likeroom.FragmentProduct.FragmentSellToday;
+import com.example.kangjisung.likeroom.FragmentProduct.FragmentSort;
+import com.example.kangjisung.likeroom.FragmentProduct.ProductMain;
 import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
 import com.example.kangjisung.likeroom.MainActivity;
 import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
@@ -24,6 +27,7 @@ import com.example.kangjisung.likeroom.inventory.calc;
 import java.util.Calendar;
 
 import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
+import com.example.kangjisung.likeroom.Util.Utility;
 
 public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<FragmentSellTodayRecyclerViewAdapter.ViewHolder>
 {
@@ -37,20 +41,22 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
         public TextView tvAddedDate;
         public TextView etInput;
         public Button buttonInput;
+        public View view;
         public ViewHolder(View view) {
             super(view);
             tvName=(TextView)view.findViewById(R.id.tv_name);
             tvAddedDate=(TextView)view.findViewById(R.id.tv_added_date);
             etInput=(TextView)view.findViewById(R.id.et_input);
             buttonInput = (Button)view.findViewById(R.id.button_input);
+            this.view = view;
             view.setOnCreateContextMenuListener(this);
         }
 
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             menu.setHeaderTitle("작업 선택");
-            menu.add(Menu.NONE, 4, Menu.NONE, "수정");
-            menu.add(Menu.NONE, 5, Menu.NONE, "삭제");
+            menu.add(Menu.NONE, Utility.MENU_PRODUCT_MODIFY, Menu.NONE, "수정");
+            menu.add(Menu.NONE, Utility.MENU_PRODUCT_DELETE, Menu.NONE, "삭제");
         }
     }
 
@@ -107,6 +113,13 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
                 dialog.setTitle(ProductObjManager.get(position).getName());
                 dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
                 dialog.show();
+            }
+        });
+        holder.view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                ProductMain.longClickPosition = position;
+                return false;
             }
         });
         /*

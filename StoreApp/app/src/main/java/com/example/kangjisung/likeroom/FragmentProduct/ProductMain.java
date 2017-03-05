@@ -2,7 +2,6 @@ package com.example.kangjisung.likeroom.FragmentProduct;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -14,6 +13,7 @@ import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.AppCompatImageView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -21,11 +21,13 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.MainActivity;
+import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.Util.NoScrollViewPager;
 import com.example.kangjisung.likeroom.Util.FirstPageFragmentListener;
+import com.example.kangjisung.likeroom.Util.Utility;
 import com.github.clans.fab.FloatingActionMenu;
 
 import java.text.SimpleDateFormat;
@@ -40,7 +42,7 @@ public class ProductMain extends Fragment {
     private TextView tvFragmentItemMain;
     private TextView tvFragmentItemMainDate;
     static public FirstPageFragmentListener firstPageListener;
-    private ProductAddDialog productAddDialog;
+    private ProductEditDialog productAddDialog;
     private Button buttonSelectDate;
     private FloatingActionMenu famMenu;
     private View rootView;
@@ -196,13 +198,57 @@ public class ProductMain extends Fragment {
         return rootView;
     }
 
+    public static int longClickPosition;
+    private ProductEditDialog mProductEditDialog;
+    @Override
+    public boolean onContextItemSelected(MenuItem item)
+    {
+        switch(item.getItemId()){
+            case Utility.MENU_PRODUCT_MODIFY:
+                ProductListItem mProductListItem = ProductObjManager.get(longClickPosition);
+                mProductEditDialog = new ProductEditDialog(getContext(), mProductListItem);
+                mProductEditDialog.show();
+                mProductEditDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        if(((ProductEditDialog)dialog).getDismissMessage() == 1) {
+                            // TODO : 여기서 리스트 갱신
+                        }
+                    }
+                });
+                break;
+            case Utility.MENU_PRODUCT_DELETE:
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+                dialogBuilder.setMessage("선택한 항목을 삭제하시겠습니까?");
+                dialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO : 삭제 쿼리
+                        // TODO : 여기서 리스트 갱신
+                    }
+                });
+                dialogBuilder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog mAlertDialog = dialogBuilder.create();
+                mAlertDialog.show();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+        return super.onContextItemSelected(item);
+    }
+
     public Button.OnClickListener onClickSelectButton = new Button.OnClickListener() {
         @Override
         public void onClick(View onClickView) {
             switch(onClickView.getId()){
                 default:
                 case R.id.btn_fragment_item_main_sell_today:
-                    noScrollViewPager.setCurrentItem(0,false);
+                    noScrollViewPager.setCurrentItem(0, false);
                     tvFragmentItemMain.setText("일일판매량");
                     changeSelection(0);
                     /*  여기서 날짜 갱신
@@ -210,7 +256,7 @@ public class ProductMain extends Fragment {
                     */
                     break;
                 case R.id.btn_fragment_item_main_store_match:
-                    noScrollViewPager.setCurrentItem(1,false);
+                    noScrollViewPager.setCurrentItem(1, false);
                     tvFragmentItemMain.setText("최적재고량");
                     changeSelection(1);
 
@@ -309,7 +355,7 @@ public class ProductMain extends Fragment {
             switch (view.getId()) {
                 default:
                 case R.id.fab_add:
-                    productAddDialog = new ProductAddDialog(getContext());
+                    productAddDialog = new ProductEditDialog(getContext());
                     productAddDialog.show();
                     productAddDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override

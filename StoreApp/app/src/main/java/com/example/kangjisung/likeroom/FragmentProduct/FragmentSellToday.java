@@ -1,5 +1,6 @@
 package com.example.kangjisung.likeroom.FragmentProduct;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.FragmentSellTodayRecyclerViewAdapter;
+import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.Util.Utility;
 
 public class FragmentSellToday extends Fragment {
     public static RecyclerView rvFragmentSellToday;
@@ -22,9 +25,9 @@ public class FragmentSellToday extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView=inflater.inflate(R.layout.fragment_sell_today, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_sell_today, container, false);
 
-        rvFragmentSellToday=(RecyclerView)rootView.findViewById(R.id.rv_fragment_sell_today);
+        rvFragmentSellToday = (RecyclerView) rootView.findViewById(R.id.rv_fragment_sell_today);
         mLayoutManager = new LinearLayoutManager(rootView.getContext());
         rvFragmentSellToday.setLayoutManager(mLayoutManager);
 
@@ -33,31 +36,15 @@ public class FragmentSellToday extends Fragment {
 
         rvFragmentSellToday.setAdapter(mAdapter);
 
-        rvFragmentSellToday.addOnScrollListener(new RecyclerView.OnScrollListener(){
+        rvFragmentSellToday.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if(ProductMain.noScrollViewPager.getCurrentItem()==0)
-                    FragmentMuchStore.rvFragmentMuchStore.scrollBy(0,dy);
+                if (ProductMain.noScrollViewPager.getCurrentItem() == 0)
+                    FragmentMuchStore.rvFragmentMuchStore.scrollBy(0, dy);
             }
         });
         ProductObjManager.addRecyclerView(rvFragmentSellToday, mAdapter);
-        sortingStatus=ProductObjManager.sort();
+        sortingStatus = ProductObjManager.sort();
         return rootView;
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item)
-    {
-        switch(item.getItemId()){
-            case 4:
-                // TODO : 수정을 눌렀을 경우
-                break;
-            case 5:
-                // TODO : 삭제를 눌렀을 경우
-                break;
-            default:
-                break;
-        }
-        return super.onContextItemSelected(item);
     }
 }

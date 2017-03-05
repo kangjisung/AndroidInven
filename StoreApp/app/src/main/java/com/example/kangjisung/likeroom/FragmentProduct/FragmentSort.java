@@ -1,20 +1,26 @@
 package com.example.kangjisung.likeroom.FragmentProduct;
 
+import android.content.DialogInterface;
+import android.media.projection.MediaProjection;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.FragmentSortRecyclerViewAdapter;
+import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
+import com.example.kangjisung.likeroom.FragmentUser.UserEditDialog;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.Util.FirstPageFragmentListener;
+import com.example.kangjisung.likeroom.Util.Utility;
 
 public class FragmentSort extends Fragment implements View.OnClickListener{
-    static public FirstPageFragmentListener firstPageListener;
+    public static FirstPageFragmentListener firstPageListener;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -25,12 +31,14 @@ public class FragmentSort extends Fragment implements View.OnClickListener{
     public FragmentSort(FirstPageFragmentListener listener) {
         firstPageListener=listener;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView=inflater.inflate(R.layout.fragment_sort, container, false);
         recyclerView=(RecyclerView)rootView.findViewById(R.id.recyclerView);
         mLayoutManager = new LinearLayoutManager(rootView.getContext());
         recyclerView.setLayoutManager(mLayoutManager);
+        registerForContextMenu(recyclerView);
 
         mAdapter = new FragmentSortRecyclerViewAdapter(getContext());
 
@@ -48,6 +56,7 @@ public class FragmentSort extends Fragment implements View.OnClickListener{
         btRegister.setOnClickListener(this);
         return rootView;
     }
+
     public static FragmentSort createInstance(FirstPageFragmentListener listener){
         FragmentSort fragmentSort=new FragmentSort();
         fragmentSort.firstPageListener=listener;
