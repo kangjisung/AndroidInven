@@ -15,7 +15,7 @@ import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.kangjisung.likeroom.FragmentUser.Adapter.UserStampListAdapter;
+import com.example.kangjisung.likeroom.FragmentUser.ListView.UserStampListAdapter;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
 

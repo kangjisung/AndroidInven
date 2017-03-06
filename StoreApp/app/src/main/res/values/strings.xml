@@ -1,3 +1,4 @@
+<!-- API 19 이하에서 실행 -->
 <resources>
     <string name="app_name">점주앱</string>
     <string name="action_settings">Settings</string>
@@ -11,24 +12,19 @@
     <string name="menu_notice_string">공지사항</string>
     <string name="menu_info_string">매장 정보</string>
 
-    // 고객 화면
-    //// 플로팅 버튼 문자열
-    <string name="user_fab_menu">메뉴</string>
-    <string name="user_fab_add_user">고객 추가</string>
-    <string name="user_fab_stamp">스탬프 발송</string>
-    <string name="user_fab_notice">공지사항 관리</string>
+    // 플로팅 버튼 문자열
+    <string name="user_fab_menu">Menu</string>
+    <string name="user_fab_add_user">Add an user</string>
+    <string name="user_fab_stamp">Send stamps</string>
+    <string name="user_fab_notice">Manage notice</string>
 
     //// 정렬 버튼 문자열
-    <string name="user_sort_name">이름</string>
-    <string name="user_sort_phone">폰번호</string>
-    <string name="user_sort_point">포인트</string>
+    <string name="user_sort_name">NAME</string>
+    <string name="user_sort_phone">PHONE</string>
+    <string name="user_sort_point">POINT</string>
 
     <string name="hello_blank_fragment_item">제품 정보</string>
     <string name="hello_blank_fragment_user">고객 정보</string>
     <string name="hello_blank_fragment_point">포인트 적립</string>
-
-    <string name="user_notice_type_1">알림</string>
-    <string name="user_notice_type_2">신제품</string>
-    <string name="user_notice_type_3">이벤트</string>
     <string name="title_activity_settings">Settings</string>
 </resources>

@@ -2,7 +2,7 @@ package com.example.kangjisung.likeroom.FragmentProduct;
 
 import android.support.v7.widget.RecyclerView;
 
-import com.example.kangjisung.likeroom.FragmentProduct.Adapter.FragmentSortRecyclerViewAdapter;
+import com.example.kangjisung.likeroom.FragmentProduct.ListView.FragmentSortRecyclerViewAdapter;
 
 public class RecyclerViewManager {
     RecyclerView recyclerView;

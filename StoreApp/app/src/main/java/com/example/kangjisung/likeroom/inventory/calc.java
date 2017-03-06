@@ -4,8 +4,13 @@ package com.example.kangjisung.likeroom.inventory;
  * Created by kangjisung on 2016-11-21.
  */
 
+import android.content.Context;
+import android.content.Intent;
+
 import com.example.kangjisung.likeroom.MainActivity;
+import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
+import com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.InvenActivity;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -13,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 
 import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 import static java.lang.Math.sqrt;
@@ -27,7 +33,6 @@ public class calc extends MainActivity {
     public Calendar cal;  //켈린더
     long lCurTime;  //시간계산용
     long lCurTimeTemp;  //시간계산용
-
 
     public static calc mInstance = null;
 
@@ -48,7 +53,7 @@ public class calc extends MainActivity {
 
 
     //4.그래프를 그리기 위해 생성해야하는 정보
-    public int[] Recent100_Sale, Recent100_FD;//최근 100일간의 판매량과 예측판매량(User입력한것 only)(Fragment1-(2))
+    public int[] Recent100_Sale, Recent100_FD;//최근 100일간의 판매량과 예측판매량(User입력한것 only)(Graph1-(2))
     public int[] Recent16_WeekSale; //최근 16주의 각 주 판매량 평균(Graph2)
 
     public boolean isChange = false;
@@ -95,7 +100,10 @@ public class calc extends MainActivity {
         lCurTime = curDate.getTime();
         lCurTimeTemp = curDateTemp.getTime();
         tmp = lCurTime - lCurTimeTemp;
-        tDay = (int) (tmp / (24 * 60 * 60 * 1000));
+        if(tmp % (24 * 60 * 60 * 1000)==0)
+            tDay = (int) (tmp / (24 * 60 * 60 * 1000));
+        else
+            tDay = (int) (tmp / (24 * 60 * 60 * 1000))+1;
         tWeek = (tDay + 6) / 7;
         tMonth = (int) ((tDay / 365.254) * 12);
 
@@ -139,8 +147,8 @@ public class calc extends MainActivity {
         //db의 판매량 column의 총평균을 m에 저장
 
         ////////////////////////////////////////////최소예상판매량, 최대예상판매량
-        //new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>\"" + cal.get(Calendar.YEAR) + "\" and `월`>\"" + cal.get(Calendar.MONTH) + "\" and `일`>\"" + cal.get(Calendar.DATE) + "\";", 1, 2, MainActivity.con);
-        new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>=2016 and `월`>9 and `일`>1;", 1, 2, MainActivity.con);
+        new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>\"" + cal.get(Calendar.YEAR) + "\" and `월`>\"" + cal.get(Calendar.MONTH) + "\" and `일`>\"" + cal.get(Calendar.DATE) + "\";", 1, 2, MainActivity.con);
+        //new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>=2016 and `월`>9 and `일`>1;", 1, 2, MainActivity.con);
         cnt = 0;
         while (true) {
             if (DBstring[cnt] != null) {
@@ -177,6 +185,7 @@ public class calc extends MainActivity {
         while (true) {
             if (DBstring[cnt] != null) {
                 Recent100_Sale[(cnt+2)/2]=Integer.parseInt(DBstring[cnt]);
+                ////if 걸어주기
                 Recent100_FD[(cnt+2)/2]=Integer.parseInt(DBstring[cnt+1]);
                 cnt+=2;
             } else if (DBstring[cnt] == null) break;
@@ -202,7 +211,14 @@ public class calc extends MainActivity {
     public void calcQ() {
         cal = Calendar.getInstance();
         Q = (int) (FM + ((v / 2) * (sqrt((p - c) / (c - s)) - sqrt((c - s) / (p - c))))) + 1; //최적재고량 계산
+        int proDuct;
+        //제품코드 불러오기
+        new ClientDataBase("select `제품코드` from `제품정보` where `이름`="+name+";",1,1,MainActivity.con);
+        proDuct=Integer.parseInt(DBstring[0]);
         new ClientDataBase("insert into `최적재고량` (`제품코드`,`최적재고량`,`날짜`) values ((select `제품코드` from `제품정보` where `이름`=\""+name+"\"),"+Q+",\"" + cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) +1) + "-" + (cal.get(Calendar.DATE)+1) + "\");",2,0,MainActivity.con);
+        //최적재고량 서버에 넣기
+        NetworkModule networkModule=new NetworkModule();
+        networkModule.InsertProductOptimalStock(proDuct,Q,""+cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) +1) + "-" + (cal.get(Calendar.DATE)+1)+"");
     }
     ////////////////////////////////////////////그래프용 calc2
     public int calcQ2(){
@@ -226,7 +242,9 @@ public class calc extends MainActivity {
         return -1*(int)(-(p-s)*FM+(c-s)*Q+(p-s)*((Math.sqrt(v*v+(Q-FM)*(Q-FM))-(Q-FM))/2));
     }
 /////////////////FD업데이트(예상판매량)
+
     public void updateFD(){
+        cal = Calendar.getInstance();
         new ClientDataBase("select `예상판매량` from `제품판매량`where `년`=\""+cal.get(Calendar.YEAR)+"\" and `월`=\""+(cal.get(Calendar.MONTH)+1)+"\" and `일`=\""+cal.get(Calendar.DATE)+"\"",1,1,MainActivity.con);
         if(DBstring[0]!=null)
             new ClientDataBase("update `제품판매량` set `예상판매량`=\""+FD+"\" where `년`=\""+cal.get(Calendar.YEAR)+"\" and `월`=\""+(cal.get(Calendar.MONTH)+1)+"\" and `일`=\""+cal.get(Calendar.DATE)+"\"",3,0,MainActivity.con);
@@ -238,8 +256,9 @@ public class calc extends MainActivity {
         new ClientDataBase("select `최적재고량` from `최적재고량` where `날짜`=\""+cal.get(Calendar.YEAR)+"\"-\""+(cal.get(Calendar.MONTH)+1)+"\"-\""+cal.get(Calendar.DATE)+"\"",1,1,MainActivity.con);
         if(DBstring[0]!=null)
             new ClientDataBase("update `최적재고량` set `최적재고량`=\""+Q+"\" where `날짜`=\""+cal.get(Calendar.YEAR)+"\"-\""+(cal.get(Calendar.MONTH)+1)+"\"-\""+cal.get(Calendar.DATE)+"\"",3,0,MainActivity.con);
-        else
-            new ClientDataBase("insert into `최적재고량` (`제품코드`,`최적재고량`,`날짜`) values ((select `제품코드` from `제품정보` where `이름`=\""+name+"\"),"+Q+",\"" + cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) +1) + "-" + cal.get(Calendar.DATE) + "\");",2,0,MainActivity.con);
+        else{
+            calcQ();
+        }
     }
 
     public class LinearRegression {

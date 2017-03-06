@@ -19,17 +19,18 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kangjisung.likeroom.ObjectManager.NoticeListItem;
+import com.example.kangjisung.likeroom.FragmentUser.ListView.UserNoticeListItem;
+import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
-import com.example.kangjisung.likeroom.Util.LayoutManager;
 import com.example.kangjisung.likeroom.Util.SingleToast;
 
 import java.text.SimpleDateFormat;
@@ -37,6 +38,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+
+import static com.example.kangjisung.likeroom.MainActivity.PriNum;
 
 public class UserNoticeEditDialog extends Dialog
 {
@@ -48,7 +51,7 @@ public class UserNoticeEditDialog extends Dialog
     private int selectedType;
     private String[] listType = {"알림", "신제품", "이벤트"};
 
-    private NoticeListItem userNoticeItemBeforeModify;
+    private UserNoticeListItem userNoticeItemBeforeModify;
     private String query;
     private String mode;
 
@@ -57,11 +60,11 @@ public class UserNoticeEditDialog extends Dialog
     public UserNoticeEditDialog(Context context) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
 
-        userNoticeItemBeforeModify = new NoticeListItem(-1, "", "", new Date(), new Date(), new Date(), 0, 0, 0);
+        userNoticeItemBeforeModify = new UserNoticeListItem(-1, "", "", new Date(), new Date(), new Date(), 0, 0, 0);
         mode = "ADD";
     }
 
-    public UserNoticeEditDialog(NoticeListItem userNoticeItem, Context context) {
+    public UserNoticeEditDialog(UserNoticeListItem userNoticeItem, Context context) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
 
         userNoticeItemBeforeModify = userNoticeItem;
@@ -153,19 +156,15 @@ public class UserNoticeEditDialog extends Dialog
         mTextViewEnd.setText((new SimpleDateFormat("yyyy년 M월 d일", Locale.KOREA)).format(userNoticeItemBeforeModify.getEndDate().getTime()));
         mTextViewStart.setOnClickListener(onTextViewDateClickListener);
         mTextViewEnd.setOnClickListener(onTextViewDateClickListener);
-        if(mode == "ADD"){
-            LayoutManager.setDialogTitle(findViewById(R.id.layout_title), true, true, "공지사항 추가");
-        }
-        else{
-            LayoutManager.setDialogTitle(findViewById(R.id.layout_title), true, true, "공지사항 수정");
-        }
-        findViewById(R.id.inc_btn_back).setOnClickListener(new Button.OnClickListener(){
+        Button mButtonBack = (Button) findViewById(R.id.button_dialog_back);
+        Button mButtonOk = (Button) findViewById(R.id.button_dialog_ok);
+        mButtonBack.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View onClickView){
                 dismiss();
             }
         });
-        findViewById(R.id.inc_btn_ok).setOnClickListener(new Button.OnClickListener(){
+        mButtonOk.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View onClickView){
                 try{
@@ -190,8 +189,8 @@ public class UserNoticeEditDialog extends Dialog
 
                     if(mode.equals("ADD")) {
                         query = String.format("INSERT INTO `매장공지`" +
-                                " (`제목`, `내용`, `공지시작날짜`, `공지마감날짜`, `작성시간`, `공지사항종류`, `삭제`)" +
-                                " VALUES (\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", %d, %d);",
+                                        " (`제목`, `내용`, `공지시작날짜`, `공지마감날짜`, `작성시간`, `공지사항종류`, `삭제`)" +
+                                        " VALUES (\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", %d, %d);",
                                 mEditTextTitle.getText().toString(),
                                 mEditTextBody.getText().toString(),
                                 startDateString,
@@ -200,10 +199,12 @@ public class UserNoticeEditDialog extends Dialog
                                 selectedType,
                                 0);
                         new ClientDataBase(query, 2, 0, getContext());
+                        NetworkModule networkModule=new NetworkModule();
+                        networkModule.InsertNewStoreNoticeInfo(Integer.parseInt(PriNum),userNoticeItemBeforeModify.getNum(),mEditTextTitle.getText().toString(),mEditTextBody.getText().toString(),startDateString,endDateString,makeDateString);
                     }
                     else if(mode.equals("MODIFY")) {
                         query = String.format("UPDATE `매장공지`" +
-                                " SET `제목` = \"%s\", `내용` = \"%s\", `공지시작날짜` = \"%s\", `공지마감날짜` = \"%s\", `공지사항종류` = %d WHERE `코드` = %d;" + "",
+                                        " SET `제목` = \"%s\", `내용` = \"%s\", `공지시작날짜` = \"%s\", `공지마감날짜` = \"%s\", `공지사항종류` = %d WHERE `코드` = %d;" + "",
                                 mEditTextTitle.getText().toString(),
                                 mEditTextBody.getText().toString(),
                                 startDateString,
@@ -211,6 +212,9 @@ public class UserNoticeEditDialog extends Dialog
                                 selectedType,
                                 userNoticeItemBeforeModify.getNum());
                         new ClientDataBase(query, 3, 0, getContext());
+
+                        NetworkModule networkModule=new NetworkModule();
+                        networkModule.UpdateStoreNoticeInfo(Integer.parseInt(PriNum),userNoticeItemBeforeModify.getNum(),mEditTextTitle.getText().toString(),mEditTextBody.getText().toString(),startDateString,endDateString);
                     }
                 }
                 catch(Exception ex){
@@ -230,6 +234,16 @@ public class UserNoticeEditDialog extends Dialog
                 setButtonType(selectedType, selectedType);
             }
         });
+
+        initializeDialogTitleBar();
+    }
+
+    private boolean validateDate(Date startDate, Date endDate)
+    {
+        if(endDate.getTime() < startDate.getTime()){
+            return false;
+        }
+        return true;
     }
 
     private Button.OnClickListener onButtonTypeClickListener = new Button.OnClickListener() {
@@ -340,4 +354,18 @@ public class UserNoticeEditDialog extends Dialog
             }
         }
     };
+
+    private void initializeDialogTitleBar()
+    {
+        TextView mTextViewTitle = (TextView)findViewById(R.id.textView_title);
+        Button mBackButton = (Button)findViewById(R.id.button_dialog_back);
+        Button mOKButton = (Button)findViewById(R.id.button_dialog_ok);
+
+        if(mode == "ADD"){
+            mTextViewTitle.setText("공지사항 추가");
+        }
+        else{
+            mTextViewTitle.setText("공지사항 수정");
+        }
+    }
 }

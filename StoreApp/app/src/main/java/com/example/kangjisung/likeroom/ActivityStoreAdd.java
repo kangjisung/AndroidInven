@@ -1,12 +1,21 @@
 package com.example.kangjisung.likeroom;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.example.kangjisung.likeroom.FragmentUser.UserStampDialogPagerAdapter;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.Util.NoScrollViewPager;
 
@@ -20,13 +29,6 @@ public class ActivityStoreAdd extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_store_add);
-
-        /*
-        Intent intent = new Intent(getApplicationContext(), ActivityMenu.class);
-        startActivity(intent);
-
-        finish();
-        */
 
         viewPager = (NoScrollViewPager)findViewById(R.id.viewPager);
 

@@ -7,7 +7,6 @@ import android.widget.Button;
 
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
-import com.example.kangjisung.likeroom.Util.LayoutManager;
 
 public class SettingCreatedby extends AppCompatActivity
 {
@@ -18,19 +17,17 @@ public class SettingCreatedby extends AppCompatActivity
         this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.setting_createdby);
 
-        LayoutManager.setActivityTitle(findViewById(R.id.layout_title), true, false, "만든이");
-        findViewById(R.id.inc_btn_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        Button mButtonBack = (Button) findViewById(R.id.btn_back);
+        mButtonBack.setOnClickListener(onButtonSettingClickListener);
     }
 
     Button.OnClickListener onButtonSettingClickListener = new Button.OnClickListener() {
         @Override
         public void onClick(View onClickView) {
             switch(onClickView.getId()){
+                case R.id.btn_back:
+                    finish();
+                    break;
                 default:
                     break;
             }

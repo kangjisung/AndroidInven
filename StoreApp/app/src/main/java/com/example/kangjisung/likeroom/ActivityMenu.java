@@ -1,5 +1,6 @@
 package com.example.kangjisung.likeroom;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -94,7 +95,7 @@ public class ActivityMenu extends AppCompatActivity
     public void onBackPressed()
     {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setMessage("앱을 종료하시겠습니까?");
+        dialog.setMessage("정말 종료하시겠습니까?");
         dialog.setPositiveButton("예", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 finish();
@@ -112,9 +113,9 @@ public class ActivityMenu extends AppCompatActivity
     public void tabLayoutInitialize(TabLayout tabLayout)
     {
         int[] tabMipmapResIds = {
-            R.mipmap.icon_mileage,
-            R.mipmap.icon_menu_user,
-            R.mipmap.icon_menu_item
+                R.mipmap.icon_mileage,
+                R.mipmap.icon_menu_user,
+                R.mipmap.icon_menu_item
         };
 
         for (int i = 0; i < tabMipmapResIds.length; i++)

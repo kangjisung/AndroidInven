@@ -194,23 +194,26 @@
                     android:layout_alignParentEnd="true"
                     android:gravity="center_vertical">
 
-                    <com.github.clans.fab.FloatingActionButton
-                        android:src="@mipmap/fab_sort"
+                    <android.support.design.widget.FloatingActionButton
+                        android:clickable="true"
+                        app:srcCompat="@mipmap/fab_sort"
                         android:id="@+id/fab_sort"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:fab_colorNormal="?attr/theme_color_type1"
-                        app:fab_colorPressed="@color/gray200"
+                        app:elevation="3dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        app:fabSize="mini"
+                        android:layout_weight="1"
                         android:layout_marginStart="15dp" />
 
-                    <com.github.clans.fab.FloatingActionButton
-                        android:src="@mipmap/fab_add_product"
+                    <android.support.design.widget.FloatingActionButton
+                        android:clickable="true"
+                        app:srcCompat="@mipmap/fab_add_product"
                         android:id="@+id/fab_add"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:fab_colorNormal="?attr/theme_color_type1"
-                        app:fab_colorPressed="@color/gray200"
-                        android:layout_margin="8dp" />
+                        app:elevation="3dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        app:fabSize="mini"
+                        android:layout_margin="15dp" />
                 </LinearLayout>
 
             </RelativeLayout>
