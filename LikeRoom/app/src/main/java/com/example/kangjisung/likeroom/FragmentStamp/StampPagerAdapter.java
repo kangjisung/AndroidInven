@@ -1,22 +1,20 @@
 package com.example.kangjisung.likeroom.FragmentStamp;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatImageView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.R;
 
 import java.util.ArrayList;
+
+import static com.example.kangjisung.likeroom.DefineManager.standardMileage;
 
 public class StampPagerAdapter extends PagerAdapter
 {
@@ -67,7 +65,7 @@ public class StampPagerAdapter extends PagerAdapter
     }
 
     @Override
-    public Object instantiateItem(View pager, int position) {
+    public Object instantiateItem(View pager, final int position) {
         View view;
 
         if(mode == "NORMAL")
@@ -104,7 +102,7 @@ public class StampPagerAdapter extends PagerAdapter
                 button.setOnClickListener(new Button.OnClickListener(){
                     @Override
                     public void onClick(View onClickView){
-                        StampUseDialog stampUseDialog = new StampUseDialog(context);
+                        StampUseDialog stampUseDialog = new StampUseDialog(context, (position * 2 + 1) * standardMileage);
                         stampUseDialog.show();
                     }
                 });
@@ -116,7 +114,7 @@ public class StampPagerAdapter extends PagerAdapter
                 button.setOnClickListener(new Button.OnClickListener(){
                     @Override
                     public void onClick(View onClickView){
-                        StampUseDialog stampUseDialog = new StampUseDialog(context);
+                        StampUseDialog stampUseDialog = new StampUseDialog(context, (position * 2 + 1) * standardMileage);
                         stampUseDialog.show();
                     }
                 });

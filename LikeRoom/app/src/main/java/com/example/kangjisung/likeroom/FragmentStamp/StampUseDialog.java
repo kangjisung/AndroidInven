@@ -28,10 +28,16 @@ public class StampUseDialog extends Dialog
     private View.OnClickListener mLeftClickListener;
     private View.OnClickListener mRightClickListener;
 
-
+    int mileageUseage;
 
     public StampUseDialog(Context context) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
+    }
+
+    public StampUseDialog(Context context, int mileageUseage) {
+        super(context, android.R.style.Theme_Translucent_NoTitleBar);
+        Log.d(context.getString(R.string.app_name), "Mileage About to use: " + mileageUseage);
+        this.mileageUseage = mileageUseage;
     }
 
     public StampUseDialog(Context context, String title, View.OnClickListener singleListener, View.OnClickListener useListener) {
@@ -86,7 +92,7 @@ public class StampUseDialog extends Dialog
         mRightButton.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View onClickView){
-                synchronizedLocalAndServerDatabase.UseMileageFromTargetStore(1, -1000);
+                synchronizedLocalAndServerDatabase.UseMileageFromTargetStore(1, -mileageUseage);
                 dismiss();
             }
         });
