@@ -15,7 +15,7 @@ import java.util.List;
 public class NetworkModule {
     HttpCommunicationProcess httpCommunicationProcess;
 
-    String hostName = "lamb.kangnam.ac.kr:4200", apiName = "/Smoothie/2", logCatTag = "test";
+    String hostName = "stories3.iptime.org:4200", apiName = "/Smoothie/2", logCatTag = "test";
 
     public NetworkModule() {
     }
