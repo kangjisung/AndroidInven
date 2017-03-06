@@ -227,6 +227,7 @@ public class UserMain extends Fragment
             }
             catch (Exception e) {
                 e.printStackTrace();
+                count += 7;
                 continue;
             }
             if (addListItem.getDelete() == 0) {

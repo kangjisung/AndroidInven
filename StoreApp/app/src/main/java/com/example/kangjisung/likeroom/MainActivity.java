@@ -12,6 +12,7 @@ import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductMuchStoreListItem;
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductSellTodayListItem;
 import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
+import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
@@ -40,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         con = getApplicationContext();
         databaseHelperTest = new DatabaseHelper(getApplicationContext(), ClientDataBase.testDatabaseName);
-
-
         /*
         NetWorkOrderProcessManager netWorkOrderProcessManager = new NetWorkOrderProcessManager();
         netWorkOrderProcessManager.LoadAllStoreInfo();
@@ -127,9 +126,24 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             asyncDialog.dismiss();
             super.onPostExecute(result);
+            //////매장이 클라이언트 디비에 있는지 검사
+            new ClientDataBase("select `매장번호` from `매장`;",1,1,getApplicationContext());
+            int cnt=0;
+            while(true) {
+                if (DBstring[cnt] != null) {
+                    PriNum=DBstring[cnt];
+                    cnt++;
+                }
+                else if(DBstring[cnt]==null) break;
+            }
+            if(PriNum==null) {
+                startActivity(new Intent(getApplicationContext(), ActivityStoreAdd.class));
+            }
+            else {
+                // show dialog
 
-            startActivity(new Intent(getApplicationContext(), ActivityStoreAdd.class));
-
+                startActivity(new Intent(getApplicationContext(),ActivityMenu.class));
+            }
             finish();
         }
     }

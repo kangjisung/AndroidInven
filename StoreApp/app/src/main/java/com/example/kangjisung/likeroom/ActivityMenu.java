@@ -22,6 +22,7 @@ import com.example.kangjisung.likeroom.Util.NoScrollViewPager;
 import com.example.kangjisung.likeroom.Util.SharedPreferenceManager;
 import com.example.kangjisung.likeroom.Util.Utility;
 
+
 public class ActivityMenu extends AppCompatActivity
 {
     private int[] tabStringResIds = {
@@ -116,9 +117,9 @@ public class ActivityMenu extends AppCompatActivity
     public void tabLayoutInitialize(TabLayout tabLayout)
     {
         int[] tabMipmapResIds = {
-            R.mipmap.icon_mileage,
-            R.mipmap.icon_menu_user,
-            R.mipmap.icon_menu_item
+                R.mipmap.icon_mileage,
+                R.mipmap.icon_menu_user,
+                R.mipmap.icon_menu_item
         };
 
         for (int i = 0; i < tabMipmapResIds.length; i++)

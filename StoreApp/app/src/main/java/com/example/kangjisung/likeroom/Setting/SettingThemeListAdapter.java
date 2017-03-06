@@ -59,6 +59,7 @@ public class SettingThemeListAdapter extends BaseAdapter {
         }
 
         RelativeLayout mLayoutTheme = (RelativeLayout) convertView.findViewById(R.id.layout_theme);
+
         ImageView mImageViewColor = (ImageView) convertView.findViewById(R.id.iv_color);
         ImageView mImageViewSelect = (ImageView) convertView.findViewById(R.id.iv_select);
         TextView mTextViewName = (TextView) convertView.findViewById(R.id.tv_name);

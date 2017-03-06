@@ -48,7 +48,9 @@ public class PointSaveDialog extends Dialog {
 
         TextView mTextViewName = (TextView) findViewById(R.id.tv_name);
         TextView mTextViewPhone = (TextView) findViewById(R.id.tv_phone);
+
         mTextViewGuide = (TextView) findViewById(R.id.tv_guide);
+
         mTextViewValue = (TextView) findViewById(R.id.tv_value);
         mTextViewName.setText(modifyItem.getName());
         mTextViewPhone.setText(Utility.convertPhoneNumber(modifyItem.getPhone()));
@@ -65,6 +67,7 @@ public class PointSaveDialog extends Dialog {
         ((Button) findViewById(R.id.btn_0)).setOnClickListener(onButtonNumberClickListener);
         ((Button) findViewById(R.id.btn_cor)).setOnClickListener(onButtonNumberClickListener);
         ((Button) findViewById(R.id.btn_del)).setOnClickListener(onButtonNumberClickListener);
+
         ((Button) findViewById(R.id.button_ok)).setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View onClickView) {
@@ -74,6 +77,7 @@ public class PointSaveDialog extends Dialog {
 
         initializeDialogTitleBar();
         setPoint();
+
         /*
         final RelativeLayout layoutInputBox = (RelativeLayout)findViewById(R.id.layout_inputbox);
 
@@ -173,6 +177,7 @@ public class PointSaveDialog extends Dialog {
         TextView mTextViewTitle = (TextView)findViewById(R.id.textView_title);
         Button mBackButton = (Button)findViewById(R.id.button_dialog_back);
         Button mOKButton = (Button)findViewById(R.id.button_dialog_ok);
+
         RelativeLayout layoutBack = (RelativeLayout) findViewById(R.id.layout_back);
         RelativeLayout layoutOk = (RelativeLayout) findViewById(R.id.layout_ok);
         layoutOk.setVisibility(View.GONE);

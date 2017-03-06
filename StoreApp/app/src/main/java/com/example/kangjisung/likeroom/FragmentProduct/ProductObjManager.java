@@ -7,11 +7,14 @@ import com.example.kangjisung.likeroom.FragmentProduct.ListView.FragmentSortRecy
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
 import com.example.kangjisung.likeroom.Util.SharedPreferenceManager;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Locale;
 
 public class ProductObjManager {
     public static ArrayList<ProductListItem> productInfos = new ArrayList<ProductListItem>();
@@ -21,6 +24,56 @@ public class ProductObjManager {
     public static SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager();
     public ProductObjManager(){
 
+    public static void getContext(Context _context)
+    {
+        context = _context;
+    }
+    public static void productLoad(Date date){
+        Date today=date;
+        String STtoday="";
+        DateFormat todayformat =new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+        STtoday=todayformat.format(today);
+        //그날의 최적재고량이 없어서 데이터 표시
+        new ClientDataBase("select S.`이름`, S.`등록일`, T.C from (select `제품코드`, `이름`, `등록일` from `제품정보`) S left join (select `제품정보`.`제품코드` AS A, `최적재고량`.`날짜` AS B, `최적재고량` AS C from `제품정보` left join `최적재고량` on `제품정보`.`제품코드`= `최적재고량`.`제품코드` WHERE `최적재고량`.`날짜` = \""+STtoday+"\") T on S.`제품코드` = T.A", 1, 3, context);
+        int cnt = 0;
+        muchStoreArrayList = new ArrayList<>();
+        while (true) {
+            if (DBstring[cnt] != null) {
+                //그날의 최적재고량이 null이면 0으로표시
+                muchStoreArrayList.add(new ProductMuchStoreListItem(DBstring[cnt], DBstring[cnt + 1], (DBstring[cnt + 2]==null)?(0):(Integer.parseInt(DBstring[cnt+2]))));
+                cnt += 3;
+            } else if (DBstring[cnt] == null) break;
+        }
+
+        //제품 이름,날짜,판매량 불러오기(오늘 데이터)
+        new ClientDataBase("select `제품정보`.`이름`,`제품정보`,`등록일,`제품판매량`.`판매량` from `제품정보` join `제품판매량` on `제품정보`.`제품코드`= `제품판매량`.`제품코드` where `제품판매량`.`년`="+today.getYear()+1900+"and `제품판매량`.`월`="+today.getMonth()+1+"and `제품판매량`.`일`="+today.getDay()+"", 1, 3, context);
+        cnt = 0;
+        sellTodayArrayList = new ArrayList<>();
+        while (true) {
+            if (DBstring[cnt] != null) {
+                sellTodayArrayList.add(new ProductSellTodayListItem(DBstring[cnt], DBstring[cnt + 1], Integer.parseInt(DBstring[cnt + 2])));
+                cnt += 3;
+            } else if (DBstring[cnt] == null){
+                //오늘 판매량이 없을시 muchStoreArrayList크기만큼 sellTodayArrayList에 빈값 넣기(데이터 뿌려줄떄 null이면 에러나서)
+                if(cnt==0){
+                    for(int i=0; i<muchStoreArrayList.size(); i++) sellTodayArrayList.add(new ProductSellTodayListItem(" "," ", 0));
+                }
+                break;
+            }
+        }
+
+        productInfos = new ArrayList<ProductListItem>();
+        for(int i=0; i<sellTodayArrayList.size(); i++){
+            ProductSellTodayListItem sellToday = sellTodayArrayList.get(i);
+            ProductMuchStoreListItem muchStore;
+            if(i<muchStoreArrayList.size()) muchStore = muchStoreArrayList.get(i);
+            else break;
+            try {
+                add(new ProductListItem(muchStore.getName(), false, muchStore.getDate(), new Date(today.getYear()+1900, today.getMonth()+1, today.getDay()),sellToday.getSell(), muchStore.getMuch()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
     }
     public static void add(ProductListItem productInfo){
         productInfo.getSellTodayDate().setYear(productInfo.getSellTodayDate().getYear());
