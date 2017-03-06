@@ -15,9 +15,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kangjisung.likeroom.MemberListItem;
+import com.example.kangjisung.likeroom.ObjectManager.MemberListItem;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
+import com.example.kangjisung.likeroom.Util.LayoutManager;
 import com.example.kangjisung.likeroom.Util.SingleToast;
 import com.example.kangjisung.likeroom.Util.Utility;
 
@@ -59,21 +60,28 @@ public class UserEditDialog extends Dialog {
         getWindow().setAttributes(lpWindow);
 
         setContentView(R.layout.user_edit_dialog);
-        initializeDialogTitleBar();
 
-        Button mOKButton = (Button)findViewById(R.id.button_ok);
-        Button mBackButton = (Button)findViewById(R.id.button_dialog_back);
+        if(mode == "ADD"){
+            LayoutManager.setDialogTitle(findViewById(R.id.layout_title), true, false, "고객 추가");
+        }
+        else{
+            LayoutManager.setDialogTitle(findViewById(R.id.layout_title), true, false, "고객 수정");
+        }
+
+        findViewById(R.id.inc_btn_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismissMessage = 0;
+                dismiss();
+            }
+        });
+        findViewById(R.id.btn_ok).setOnClickListener(onClickListenerButtonOk);
 
         UserAddName = (EditText)findViewById(R.id.editText_name);
         UserAddPhone = (EditText)findViewById(R.id.editText_phone);
         UserAddBirth = (TextView)findViewById(R.id.textView_birth);
 
-        mOKButton.setOnClickListener(onClickListenerButtonOk);
-
         if(mode == "ADD") {
-            //NetworkModule networkModule=new NetworkModule();
-            String email="email";//이메일추가하기기
-            //networkModule.InsertNewCustomerInfo(UserAddName.getText().toString(),UserAddPhone.getText().toString(),email,UserAddBirth.getText().toString());
             selectedDate = dateFormat.format(new Date());
             UserAddBirth.setText(selectedDate);
         }
@@ -127,22 +135,6 @@ public class UserEditDialog extends Dialog {
                 catch (Exception e){
                     e.printStackTrace();
                 }
-                /*
-                Calendar c = Calendar.getInstance();
-                int cyear = c.get(Calendar.YEAR);
-                int cmonth = c.get(Calendar.MONTH);
-                int cday = c.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        String date_selected = String.valueOf(year) + "-" + String.valueOf(monthOfYear+1) + "-" + String.valueOf(dayOfMonth);
-                        UserAddBirth.setText(date_selected);
-                    }
-                };
-                DatePickerDialog alert = new DatePickerDialog(getContext(), android.R.style.Theme_Holo_Light_Dialog, mDateSetListener, cyear, cmonth, cday);
-                alert.show();
-                */
             }
         });
     }
@@ -174,28 +166,6 @@ public class UserEditDialog extends Dialog {
             }
         }
     };
-
-    private void initializeDialogTitleBar()
-    {
-        TextView mTextViewTitle = (TextView)findViewById(R.id.textView_title);
-        Button mBackButton = (Button)findViewById(R.id.button_dialog_back);
-        Button mOKButton = (Button)findViewById(R.id.button_dialog_ok);
-        mOKButton.setVisibility(View.GONE);
-
-        if(mode == "ADD"){
-            mTextViewTitle.setText("고객 추가");
-        }
-        else{
-            mTextViewTitle.setText("고객 수정");
-        }
-        mBackButton.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View onClickView){
-                dismissMessage = 0;
-                dismiss();
-            }
-        });
-    }
 
     public int getDismissMessage()
     {

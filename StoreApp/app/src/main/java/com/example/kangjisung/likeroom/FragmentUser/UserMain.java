@@ -22,20 +22,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.kangjisung.likeroom.FragmentUser.ListView.UserMainListAdapter;
-import com.example.kangjisung.likeroom.MemberListItem;
-import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
+import com.example.kangjisung.likeroom.FragmentUser.Adapter.UserMainListAdapter;
+import com.example.kangjisung.likeroom.ObjectManager.MemberListItem;
+import com.example.kangjisung.likeroom.ObjectManager.MemberObjectManager;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.R;
-import com.example.kangjisung.likeroom.Util.Utility;
+import com.example.kangjisung.likeroom.Util.LayoutManager;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-
-import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
 public class UserMain extends Fragment
 {
@@ -62,14 +56,13 @@ public class UserMain extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.user_main, container, false);
 
-        mAdapter = new UserMainListAdapter(fragmentView);
+        mAdapter = new UserMainListAdapter();
         mLayoutManager = new LinearLayoutManager(getContext());
 
         userRecyclerView = (RecyclerView) fragmentView.findViewById((R.id.recyclerView));
         userRecyclerView.setAdapter(mAdapter);
         userRecyclerView.setLayoutManager(mLayoutManager);
 
-        reloadRecyclerView();
         setTextViewSearchResult(false);
         registerForContextMenu(userRecyclerView);
 
@@ -182,7 +175,7 @@ public class UserMain extends Fragment
     public boolean onContextItemSelected(MenuItem item)
     {
         switch(item.getItemId()){
-            case Utility.MENU_USER_MODIFY:
+            case LayoutManager.MENU_USER_MODIFY:
                 // TODO : 수정을 눌렀을 경우
                 MemberListItem userItem = mAdapter.getLongClickPosition();
                 userEditDialog = new UserEditDialog(getContext(), userItem);
@@ -191,12 +184,13 @@ public class UserMain extends Fragment
                     @Override
                     public void onDismiss(DialogInterface dialog) {
                         if(((UserEditDialog)dialog).getDismissMessage() == 1) {
-                            reloadRecyclerView();
+                            MemberObjectManager.load(getContext());
+                            mAdapter.notifyDataSetChanged();
                         }
                     }
                 });
                 break;
-            case Utility.MENU_USER_DELETE:
+            case LayoutManager.MENU_USER_DELETE:
                 // TODO : 삭제를 눌렀을 경우
                 break;
             default:
@@ -206,12 +200,13 @@ public class UserMain extends Fragment
     }
 
     private void reloadRecyclerView() {
+
+        /*
         String query = "SELECT `회원정보`.`고유회원등록번호`, `회원정보`.`이름`, `회원정보`.`전화번호`, `포인트`.`포인트`, `회원정보`.`생년월일`, `회원정보`.`이메일`, `회원정보`.`삭제`" +
                 "FROM `회원정보` LEFT JOIN `포인트` ON `회원정보`.`고유회원등록번호`= `포인트`.`고유회원등록번호`;";
 
         new ClientDataBase(query, 1, 7, getContext());
         int count = 0;
-        mAdapter.clearData();
 
         DateFormat dateFormat = new SimpleDateFormat("y-M-d", Locale.KOREA);
         while(DBstring[count] != null) {
@@ -234,7 +229,8 @@ public class UserMain extends Fragment
             }
             count += 7;
         }
-        mAdapter.notifyDataSetChanged();
+        */
+
     }
 
     private void setTextViewSearchResult(boolean StampMode)
@@ -317,7 +313,8 @@ public class UserMain extends Fragment
                     userEditDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public void onDismiss(DialogInterface dialog) {
-                            reloadRecyclerView();
+                            MemberObjectManager.load(getContext());
+                            mAdapter.notifyDataSetChanged();
                         }
                     });
                     break;

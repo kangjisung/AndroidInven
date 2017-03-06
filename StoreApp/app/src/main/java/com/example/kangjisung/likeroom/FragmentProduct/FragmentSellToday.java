@@ -1,20 +1,17 @@
 package com.example.kangjisung.likeroom.FragmentProduct;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.example.kangjisung.likeroom.FragmentProduct.ListView.FragmentSellTodayRecyclerViewAdapter;
-import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
+import com.example.kangjisung.likeroom.FragmentProduct.Adapter.FragmentSellTodayRecyclerViewAdapter;
+import com.example.kangjisung.likeroom.ObjectManager.ProductObjManager;
 import com.example.kangjisung.likeroom.R;
-import com.example.kangjisung.likeroom.Util.Utility;
 
 public class FragmentSellToday extends Fragment {
     public static RecyclerView rvFragmentSellToday;

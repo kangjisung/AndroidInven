@@ -12,8 +12,9 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.kangjisung.likeroom.MemberListItem;
+import com.example.kangjisung.likeroom.ObjectManager.MemberListItem;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.Util.LayoutManager;
 import com.example.kangjisung.likeroom.Util.Utility;
 
 public class PointSaveDialog extends Dialog {
@@ -28,7 +29,7 @@ public class PointSaveDialog extends Dialog {
     private String strValue = "";
     private int value = 0;
 
-    PointSaveDialog(Context context, MemberListItem object) {
+    public PointSaveDialog(Context context, MemberListItem object) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
 
         this.modifyItem = object;
@@ -45,6 +46,14 @@ public class PointSaveDialog extends Dialog {
         getWindow().setAttributes(lpWindow);
 
         setContentView(R.layout.point_save_dialog);
+
+        LayoutManager.setDialogTitle(findViewById(R.id.layout_title), true, false, "포인트 적립");
+        findViewById(R.id.inc_btn_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
 
         TextView mTextViewName = (TextView) findViewById(R.id.tv_name);
         TextView mTextViewPhone = (TextView) findViewById(R.id.tv_phone);
@@ -72,32 +81,7 @@ public class PointSaveDialog extends Dialog {
             }
         });
 
-        initializeDialogTitleBar();
         setPoint();
-        /*
-        final RelativeLayout layoutInputBox = (RelativeLayout)findViewById(R.id.layout_inputbox);
-
-        mBackIdentifyClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                playInputBoxAnimation(0, layoutInputBoxSize);
-
-                mBackButton.setOnClickListener(mBackClickListener);
-                mOKButton.setOnClickListener(mOKClickListener);
-            }
-        };
-        mOKClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                playInputBoxAnimation(layoutInputBoxSize, 0);
-
-                mBackButton.setOnClickListener(mBackIdentifyClickListener);
-                mOKButton.setOnClickListener(mOKIdentifyClickListener);
-            }
-        };
-        mBackButton.setOnClickListener(mBackClickListener);
-        mOKButton.setOnClickListener(mOKClickListener);
-        */
     }
 
     public Button.OnClickListener onButtonNumberClickListener = new Button.OnClickListener() {
@@ -166,24 +150,6 @@ public class PointSaveDialog extends Dialog {
             nowPoint = Integer.parseInt(modifyItem.getPoint());
         }
         mTextViewGuide.setText(String.format("%,dP 적립 : %,d → %,d", (int)(value * pointRate), nowPoint, nowPoint + (int)(value * pointRate)));
-    }
-
-    private void initializeDialogTitleBar()
-    {
-        TextView mTextViewTitle = (TextView)findViewById(R.id.textView_title);
-        Button mBackButton = (Button)findViewById(R.id.button_dialog_back);
-        Button mOKButton = (Button)findViewById(R.id.button_dialog_ok);
-        RelativeLayout layoutBack = (RelativeLayout) findViewById(R.id.layout_back);
-        RelativeLayout layoutOk = (RelativeLayout) findViewById(R.id.layout_ok);
-        layoutOk.setVisibility(View.GONE);
-
-        mTextViewTitle.setText("포인트 적립");
-        mBackButton.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View onClickView){
-                cancel();
-            }
-        });
     }
 
     private void playInputBoxAnimation(int start, int end) {

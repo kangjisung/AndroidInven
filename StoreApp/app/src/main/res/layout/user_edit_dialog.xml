@@ -16,7 +16,7 @@
         <include
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            layout="@layout/include_dialog_title" />
+            layout="@layout/include_title_dialog" />
 
         <ScrollView
             android:layout_width="wrap_content"
@@ -157,7 +157,7 @@
                         android:text="완료"
                         android:layout_width="90dp"
                         android:layout_height="40dp"
-                        android:id="@+id/button_ok"
+                        android:id="@+id/btn_ok"
                         android:textColor="@color/white"
                         android:background="@drawable/button_ripple_rectangle" />
                 </RelativeLayout>

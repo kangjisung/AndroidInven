@@ -1,22 +1,13 @@
 package com.example.kangjisung.likeroom.Util;
 
 import android.content.Context;
-import android.os.IBinder;
-import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.R;
 
 public class Utility {
-    public static final int MENU_USER_MODIFY = 0;
-    public static final int MENU_USER_DELETE = 1;
-    public static final int MENU_PRODUCT_MODIFY = 2;
-    public static final int MENU_PRODUCT_DELETE = 3;
-    public static final int MENU_NOTICE_DELETE = 4;
 
     public static String convertPhoneNumber(String rawPhone)
     {

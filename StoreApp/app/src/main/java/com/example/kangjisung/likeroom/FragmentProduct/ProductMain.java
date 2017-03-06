@@ -2,7 +2,7 @@ package com.example.kangjisung.likeroom.FragmentProduct;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.PorterDuff;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -20,13 +20,13 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
-import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
+import com.example.kangjisung.likeroom.ObjectManager.ProductListItem;
+import com.example.kangjisung.likeroom.ObjectManager.ProductObjManager;
 import com.example.kangjisung.likeroom.R;
-import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
+import com.example.kangjisung.likeroom.Util.LayoutManager;
 import com.example.kangjisung.likeroom.Util.NoScrollViewPager;
 import com.example.kangjisung.likeroom.Util.FirstPageFragmentListener;
-import com.example.kangjisung.likeroom.Util.Utility;
 import com.github.clans.fab.FloatingActionMenu;
 
 import java.text.SimpleDateFormat;
@@ -202,7 +202,7 @@ public class ProductMain extends Fragment {
     public boolean onContextItemSelected(MenuItem item)
     {
         switch(item.getItemId()){
-            case Utility.MENU_PRODUCT_MODIFY:
+            case LayoutManager.MENU_PRODUCT_MODIFY:
                 ProductListItem mProductListItem = ProductObjManager.get(longClickPosition);
                 mProductEditDialog = new ProductEditDialog(getContext(), mProductListItem);
                 mProductEditDialog.show();
@@ -215,7 +215,7 @@ public class ProductMain extends Fragment {
                     }
                 });
                 break;
-            case Utility.MENU_PRODUCT_DELETE:
+            case LayoutManager.MENU_PRODUCT_DELETE:
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
                 dialogBuilder.setMessage("선택한 항목을 삭제하시겠습니까?");
                 dialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
@@ -286,10 +286,10 @@ public class ProductMain extends Fragment {
                 break;
         }
 
-        acivSelectIcon.getBackground().setColorFilter(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D3), PorterDuff.Mode.SRC_IN);
-        acivSelectDot.getBackground().setColorFilter(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D3), PorterDuff.Mode.SRC_IN);
-        acivUnselectIcon.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.alpha40), PorterDuff.Mode.SRC_IN);
-        acivUnselectDot.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.transparent), PorterDuff.Mode.SRC_IN);
+        acivSelectIcon.setSupportBackgroundTintList(ColorStateList.valueOf(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D3)));
+        acivSelectDot.setSupportBackgroundTintList(ColorStateList.valueOf(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D3)));
+        acivUnselectIcon.setSupportBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.alpha40)));
+        acivUnselectDot.setSupportBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.transparent)));
     }
 
     public static ProductMain createInstance(FirstPageFragmentListener listener){
