@@ -1,5 +1,6 @@
 package com.example.kangjisung.likeroom.FragmentProduct;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.FragmentMuchStoreRecyclerViewAdapter;
+import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
+import com.example.kangjisung.likeroom.FragmentUser.UserEditDialog;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.Util.Utility;
 

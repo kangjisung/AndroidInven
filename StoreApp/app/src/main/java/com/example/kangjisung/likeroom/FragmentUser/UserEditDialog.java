@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.example.kangjisung.likeroom.MemberListItem;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
-import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.Util.SingleToast;
 import com.example.kangjisung.likeroom.Util.Utility;
 

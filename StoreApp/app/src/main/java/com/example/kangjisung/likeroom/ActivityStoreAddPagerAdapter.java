@@ -23,7 +23,6 @@ import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.Util.NoScrollViewPager;
 
 import java.util.ArrayList;
-import static com.example.kangjisung.likeroom.R.id.et_name;
 
 public class ActivityStoreAddPagerAdapter extends PagerAdapter
 {
@@ -50,10 +49,6 @@ public class ActivityStoreAddPagerAdapter extends PagerAdapter
     @Override
     public Object instantiateItem(final View pager, int position) {
         View view = mInflater.inflate(R.layout.activity_store_add_page, null);
-		
-        final EditText etName=(EditText) view.findViewById(R.id.et_name);
-        final EditText etAddress=(EditText)view.findViewById(R.id.et_address);
-        final EditText etPhone=(EditText)view.findViewById(R.id.et_phone);
 
         for(int page = 0; page < countPage; page++) {
             (view.findViewById(pageList[page])).setVisibility((position == page)?(View.VISIBLE):(View.INVISIBLE));
@@ -78,12 +73,6 @@ public class ActivityStoreAddPagerAdapter extends PagerAdapter
                         isConfirm = true;
                         if(isConfirm == true) {
                             // TODO : 여기서 DB에 입력
-
-                            //NetworkModule networkModule=new NetworkModule();
-                            //networkModule.InsertNewStoreInfoData(etName.getText().toString(),etAddress.getText().toString(),etPhone.getText().toString());
-                            new ClientDataBase("insert into `매장` (`주소`,`이름`,`전화번호`) values (\""+etName.getText().toString()+"\",\""+etAddress.getText().toString()+"\",\""+etPhone.getText().toString()+"\");",2,0,context);
-                            Toast.makeText(context, "매장이 등록되었습니다.", Toast.LENGTH_SHORT).show();
-
                             AppCompatActivity activity = (AppCompatActivity) context;
                             Intent intent = new Intent(activity, ActivityMenu.class);
                             activity.startActivity(intent);

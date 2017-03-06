@@ -46,10 +46,8 @@ public class SettingMain extends AppCompatActivity
     Button.OnClickListener onButtonSettingClickListener = new Button.OnClickListener() {
         @Override
         public void onClick(View onClickView) {
-
             ListView mListView;
             AlertDialog.Builder builder;
-
             switch(onClickView.getId()){
                 case R.id.btn_set_start:
                     mListView = new ListView(getBaseContext());
@@ -91,17 +89,13 @@ public class SettingMain extends AppCompatActivity
                     mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                             mSharedPreferenceManager.putInt("set_theme", mAdapter2.getThemeId(position), getApplicationContext());
-
                             SingleToast.show(SettingMain.this, "테마 변경은 앱 재시작 후에 적용됩니다.", Toast.LENGTH_LONG);
                             dialog.cancel();
                         }
                     });
 
-
                     builder = new AlertDialog.Builder(SettingMain.this);
-
                     builder.setView(mListView);
                     builder.setCustomTitle(Utility.getAlertDialogTitle("테마 선택", SettingMain.this));
                     dialog = builder.create();

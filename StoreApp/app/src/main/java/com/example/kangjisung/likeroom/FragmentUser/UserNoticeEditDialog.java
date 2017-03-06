@@ -207,9 +207,6 @@ public class UserNoticeEditDialog extends Dialog
                                 selectedType,
                                 userNoticeItemBeforeModify.getNum());
                         new ClientDataBase(query, 3, 0, getContext());
-
-                        NetworkModule networkModule=new NetworkModule();
-                        networkModule.UpdateStoreNoticeInfo(Integer.parseInt(PriNum),userNoticeItemBeforeModify.getNum(),mEditTextTitle.getText().toString(),mEditTextBody.getText().toString(),startDateString,endDateString);
                     }
                 }
                 catch(Exception ex){
