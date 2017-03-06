@@ -26,7 +26,7 @@
         <activity android:name=".Setting.SettingMain" />
         <activity android:name=".Setting.SettingApplication" />
         <activity android:name=".Setting.SettingCreatedby" />
-        <activity android:name="com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.InvenActivity"/>
+        <activity android:name="com.example.kangjisung.likeroom.inventory.InventoryMain"/>
         <activity android:name="com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.StatActivity"/>
     </application>
 

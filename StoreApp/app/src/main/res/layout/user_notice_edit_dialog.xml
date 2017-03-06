@@ -16,7 +16,7 @@
         <include
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            layout="@layout/include_dialog_title" />
+            layout="@layout/include_title_dialog" />
 
 
 
