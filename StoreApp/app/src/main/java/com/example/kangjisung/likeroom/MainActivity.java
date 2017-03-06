@@ -10,11 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductMuchStoreListItem;
 import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductSellTodayListItem;
-
 import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
-
 import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
-
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
@@ -104,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else {
                 // show dialog
+
                 startActivity(new Intent(getApplicationContext(),ActivityMenu.class));
             }
             finish();

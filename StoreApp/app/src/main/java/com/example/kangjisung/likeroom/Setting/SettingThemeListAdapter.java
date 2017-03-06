@@ -65,6 +65,7 @@ public class SettingThemeListAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.setting_theme_listitem, parent, false);
         }
 
+
         ImageView mImageViewColor = (ImageView) convertView.findViewById(R.id.iv_color);
         ImageView mImageViewSelect = (ImageView) convertView.findViewById(R.id.iv_select);
         TextView mTextViewName = (TextView) convertView.findViewById(R.id.tv_name);

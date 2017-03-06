@@ -1,6 +1,5 @@
 package com.example.kangjisung.likeroom.FragmentUser;
 
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,11 +16,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kangjisung.likeroom.FragmentUser.ListView.UserMainListItem;
-import com.example.kangjisung.likeroom.NetworkManager.HttpCommunicationProcess;
-import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
+import com.example.kangjisung.likeroom.MemberListItem;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
+
 import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.Util.SingleToast;
 import com.example.kangjisung.likeroom.Util.Utility;
@@ -35,7 +33,7 @@ import java.util.Locale;
 
 public class UserEditDialog extends Dialog {
     private String mode;
-    private UserMainListItem modifyItem;
+    private MemberListItem modifyItem;
     private int dismissMessage;
     private String selectedDate;
     private String modifyDate;
@@ -50,7 +48,7 @@ public class UserEditDialog extends Dialog {
         mode = "ADD";
     }
 
-    UserEditDialog(Context context, UserMainListItem modifyItem) {
+    UserEditDialog(Context context, MemberListItem modifyItem) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
         mode = "MODIFY";
         this.modifyItem = modifyItem;

@@ -1,5 +1,6 @@
 package com.example.kangjisung.likeroom;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.example.kangjisung.likeroom.Setting.SettingMain;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.Util.NoScrollViewPager;
+import com.example.kangjisung.likeroom.Util.SharedPreferenceManager;
 
 public class ActivityMenu extends AppCompatActivity
 {
@@ -70,6 +72,7 @@ public class ActivityMenu extends AppCompatActivity
                 //view.findViewById(R.id.icon).getBackground().setColorFilter(selectedTabColor, PorterDuff.Mode.SRC_IN);
                 textViewTitle.setText(tabStringResIds[tab.getPosition()]);
                 viewPager.setCurrentItem(tab.getPosition());
+
             }
 
             @Override
@@ -84,7 +87,8 @@ public class ActivityMenu extends AppCompatActivity
 
             }
         });
-        tabLayout.getTabAt(0).select();
+
+        tabLayout.getTabAt(2 - (new SharedPreferenceManager()).getInt("set_start", this)).select();
     }
 
     @Override
@@ -109,9 +113,9 @@ public class ActivityMenu extends AppCompatActivity
     public void tabLayoutInitialize(TabLayout tabLayout)
     {
         int[] tabMipmapResIds = {
-            R.mipmap.icon_mileage,
-            R.mipmap.icon_menu_user,
-            R.mipmap.icon_menu_item
+                R.mipmap.icon_mileage,
+                R.mipmap.icon_menu_user,
+                R.mipmap.icon_menu_item
         };
 
         for (int i = 0; i < tabMipmapResIds.length; i++)

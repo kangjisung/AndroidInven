@@ -1,5 +1,6 @@
 package com.example.kangjisung.likeroom.Setting;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -38,6 +39,7 @@ public class SettingMain extends AppCompatActivity
     Button.OnClickListener onButtonSettingClickListener = new Button.OnClickListener() {
         @Override
         public void onClick(View onClickView) {
+
             switch(onClickView.getId()){
                 case R.id.btn_set_theme:
                     ListView mListView = new ListView(getApplicationContext());
@@ -56,12 +58,15 @@ public class SettingMain extends AppCompatActivity
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             mSharedPreferenceManager.putInt("theme", mAdapter.getThemeId(position), getApplicationContext());
+
                             SingleToast.show(SettingMain.this, "테마 변경은 앱 재시작 후에 적용됩니다.", Toast.LENGTH_LONG);
                             dialog.cancel();
                         }
                     });
 
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(SettingMain.this);
+
                     builder.setView(mListView);
                     builder.setCustomTitle(Utility.getAlertDialogTitle("테마 선택", SettingMain.this));
                     dialog = builder.create();

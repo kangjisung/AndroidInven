@@ -3,12 +3,14 @@ package com.example.kangjisung.likeroom.Util;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
+
 import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.R;
 
 public class Utility {
-    public static String convert(String rawPhone)
+    public static String convertPhoneNumber(String rawPhone)
+
     {
         if (rawPhone.length() == 0){
             return rawPhone;

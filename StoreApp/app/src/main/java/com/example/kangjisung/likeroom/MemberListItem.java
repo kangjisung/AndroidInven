@@ -1,8 +1,8 @@
-package com.example.kangjisung.likeroom.FragmentUser.ListView;
+package com.example.kangjisung.likeroom;
 
 import java.util.Date;
 
-public class UserMainListItem {
+public class MemberListItem {
     private int num;
     private String name;
     private String phone;
@@ -12,8 +12,13 @@ public class UserMainListItem {
     private int delete;
     private boolean check;
 
-    public UserMainListItem() {}
-    public UserMainListItem(int num, String name, String phone, String point, Date birth, String email, int delete, boolean check){
+    public MemberListItem() {}
+    public MemberListItem(int num, String name, String phone){
+        this.num = num;
+        this.name = name;
+        this.phone = phone;
+    }
+    public MemberListItem(int num, String name, String phone, String point, Date birth, String email, int delete, boolean check){
         this.num = num;
         this.name = name;
         this.phone = phone;

@@ -13,28 +13,27 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.example.kangjisung.likeroom.MemberListItem;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.Util.Utility;
+
+import java.lang.reflect.Member;
 
 public class PointSaveDialog extends Dialog {
-    private String mTitle;
-    private String mContent;
-
-    private Button mBackButton;
-    private Button mOKButton;
+    private TextView mTextViewValue;
     private int layoutInputBoxSize = -1;
+    private int maxLength = 8;
 
-    private View.OnClickListener mBackClickListener;
-    private View.OnClickListener mOKClickListener;
-    private View.OnClickListener mBackIdentifyClickListener;
-    private View.OnClickListener mOKIdentifyClickListener;
+    private MemberListItem modifyItem;
 
-    PointSaveDialog(Context context, String title, String content, View.OnClickListener backListener, View.OnClickListener okListener) {
+    private String strValue = "";
+
+    PointSaveDialog(Context context, MemberListItem object) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
-        this.mTitle = title;
-        this.mContent = content;
-        this.mBackClickListener = backListener;
-        this.mOKIdentifyClickListener = okListener;
+
+        this.modifyItem = object;
     }
 
     @Override
@@ -49,8 +48,28 @@ public class PointSaveDialog extends Dialog {
 
         setContentView(R.layout.point_save_dialog);
 
-        mBackButton = (Button)findViewById(R.id.button_dialog_back);
-        mOKButton = (Button)findViewById(R.id.button_dialog_ok);
+        TextView mTextViewName = (TextView) findViewById(R.id.tv_name);
+        TextView mTextViewPhone = (TextView) findViewById(R.id.tv_phone);
+        mTextViewValue = (TextView) findViewById(R.id.tv_value);
+        mTextViewName.setText(modifyItem.getName());
+        mTextViewPhone.setText(Utility.convertPhoneNumber(modifyItem.getPhone()));
+
+        ((Button) findViewById(R.id.btn_1)).setOnClickListener(onButtonNumberClickListener);
+        ((Button) findViewById(R.id.btn_2)).setOnClickListener(onButtonNumberClickListener);
+        ((Button) findViewById(R.id.btn_3)).setOnClickListener(onButtonNumberClickListener);
+        ((Button) findViewById(R.id.btn_4)).setOnClickListener(onButtonNumberClickListener);
+        ((Button) findViewById(R.id.btn_5)).setOnClickListener(onButtonNumberClickListener);
+        ((Button) findViewById(R.id.btn_6)).setOnClickListener(onButtonNumberClickListener);
+        ((Button) findViewById(R.id.btn_7)).setOnClickListener(onButtonNumberClickListener);
+        ((Button) findViewById(R.id.btn_8)).setOnClickListener(onButtonNumberClickListener);
+        ((Button) findViewById(R.id.btn_9)).setOnClickListener(onButtonNumberClickListener);
+        ((Button) findViewById(R.id.btn_0)).setOnClickListener(onButtonNumberClickListener);
+        ((Button) findViewById(R.id.btn_cor)).setOnClickListener(onButtonNumberClickListener);
+        ((Button) findViewById(R.id.btn_del)).setOnClickListener(onButtonNumberClickListener);
+
+
+        initializeDialogTitleBar();
+        /*
         final RelativeLayout layoutInputBox = (RelativeLayout)findViewById(R.id.layout_inputbox);
 
         mBackIdentifyClickListener = new View.OnClickListener() {
@@ -73,6 +92,79 @@ public class PointSaveDialog extends Dialog {
         };
         mBackButton.setOnClickListener(mBackClickListener);
         mOKButton.setOnClickListener(mOKClickListener);
+        */
+    }
+
+    public Button.OnClickListener onButtonNumberClickListener = new Button.OnClickListener() {
+        @Override
+        public void onClick(View onClickView) {
+            if(strValue.length() < maxLength || onClickView.getId() == R.id.btn_del || onClickView.getId() == R.id.btn_cor) {
+                switch (onClickView.getId()) {
+                    case R.id.btn_1:
+                        strValue = strValue + "1";
+                        break;
+                    case R.id.btn_2:
+                        strValue = strValue + "2";
+                        break;
+                    case R.id.btn_3:
+                        strValue = strValue + "3";
+                        break;
+                    case R.id.btn_4:
+                        strValue = strValue + "4";
+                        break;
+                    case R.id.btn_5:
+                        strValue = strValue + "5";
+                        break;
+                    case R.id.btn_6:
+                        strValue = strValue + "6";
+                        break;
+                    case R.id.btn_7:
+                        strValue = strValue + "7";
+                        break;
+                    case R.id.btn_8:
+                        strValue = strValue + "8";
+                        break;
+                    case R.id.btn_9:
+                        strValue = strValue + "9";
+                        break;
+                    case R.id.btn_0:
+                        if(strValue.length() > 0){
+                            strValue = strValue + "0";
+                        }
+                        break;
+                    case R.id.btn_cor:
+                        strValue = "";
+                        break;
+                    case R.id.btn_del:
+                        if (strValue.length() > 0) {
+                            strValue = strValue.substring(0, strValue.length() - 1);
+                        }
+                        break;
+                }
+                if(strValue.length() > 0) {
+                    mTextViewValue.setText(String.format("%,d", Integer.parseInt(strValue)));
+                }
+                else{
+                    mTextViewValue.setText("");
+                }
+            }
+        }
+    };
+
+    private void initializeDialogTitleBar()
+    {
+        TextView mTextViewTitle = (TextView)findViewById(R.id.textView_title);
+        Button mBackButton = (Button)findViewById(R.id.button_dialog_back);
+        Button mOKButton = (Button)findViewById(R.id.button_dialog_ok);
+        mOKButton.setVisibility(View.GONE);
+
+        mTextViewTitle.setText("포인트 적립");
+        mBackButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View onClickView){
+                cancel();
+            }
+        });
     }
 
     private void playInputBoxAnimation(int start, int end) {
