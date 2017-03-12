@@ -4,33 +4,39 @@ import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.kangjisung.likeroom.MemberListItem;
+import com.example.kangjisung.likeroom.MainActivity;
+import com.example.kangjisung.likeroom.ObjectManager.MemberListItem;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
+import com.example.kangjisung.likeroom.Util.LayoutManager;
 import com.example.kangjisung.likeroom.Util.Utility;
 
-import java.lang.reflect.Member;
+import static android.R.attr.disabledAlpha;
+import static android.R.attr.name;
+import static com.example.kangjisung.likeroom.MainActivity.PriNum;
+import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
 public class PointSaveDialog extends Dialog {
     private TextView mTextViewValue;
+    private TextView mTextViewGuide;
     private int layoutInputBoxSize = -1;
     private int maxLength = 8;
+    private double pointRate = 0.05;
 
     private MemberListItem modifyItem;
 
     private String strValue = "";
+    private int value = 0;
 
-    PointSaveDialog(Context context, MemberListItem object) {
+    public PointSaveDialog(Context context, MemberListItem object) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
 
         this.modifyItem = object;
@@ -48,8 +54,17 @@ public class PointSaveDialog extends Dialog {
 
         setContentView(R.layout.point_save_dialog);
 
-        TextView mTextViewName = (TextView) findViewById(R.id.tv_name);
+        LayoutManager.setDialogTitle(findViewById(R.id.layout_title), true, false, "포인트 적립");
+        findViewById(R.id.inc_btn_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+
+        final TextView mTextViewName = (TextView) findViewById(R.id.tv_name);
         TextView mTextViewPhone = (TextView) findViewById(R.id.tv_phone);
+        mTextViewGuide = (TextView) findViewById(R.id.tv_guide);
         mTextViewValue = (TextView) findViewById(R.id.tv_value);
         mTextViewName.setText(modifyItem.getName());
         mTextViewPhone.setText(Utility.convertPhoneNumber(modifyItem.getPhone()));
@@ -66,33 +81,29 @@ public class PointSaveDialog extends Dialog {
         ((Button) findViewById(R.id.btn_0)).setOnClickListener(onButtonNumberClickListener);
         ((Button) findViewById(R.id.btn_cor)).setOnClickListener(onButtonNumberClickListener);
         ((Button) findViewById(R.id.btn_del)).setOnClickListener(onButtonNumberClickListener);
+        ((Button) findViewById(R.id.button_ok)).setOnClickListener(new Button.OnClickListener() {
 
+            int sum; //디비 포인트 합계
+            int UserPriNum; //고유회원등록번호
+            int point;//현재 포인트
 
-        initializeDialogTitleBar();
-        /*
-        final RelativeLayout layoutInputBox = (RelativeLayout)findViewById(R.id.layout_inputbox);
-
-        mBackIdentifyClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                playInputBoxAnimation(0, layoutInputBoxSize);
-
-                mBackButton.setOnClickListener(mBackClickListener);
-                mOKButton.setOnClickListener(mOKClickListener);
+            public void onClick(View onClickView) {
+                int Plus=(int)(value * pointRate);
+                new ClientDataBase("select `포인트`,`고유회원등록번호` from `포인트` where `고유회원등록번호`=(select `고유회원등록번호` from `회원정보` where `이름`=\"" + mTextViewName.getText().toString() + "\");",1,2, MainActivity.con); //포인트 있는지 검색
+                UserPriNum=Integer.parseInt(DBstring[1]);
+                if(DBstring[0]==null){//////////////////없다면 insert
+                    new ClientDataBase("insert into `포인트` (`고유회원등록번호`,`포인트`,`포인트갱신날짜`) values ((select `고유회원등록번호` from `회원정보` where `이름`=\""+mTextViewName.getText().toString()+"\"),"+point+",(select date('now')));",2,0,MainActivity.con);
+                }
+                else {////////////////있으면 계산해서 update
+                    point=Integer.parseInt(DBstring[0]);
+                    sum=point+Plus;
+                    new ClientDataBase("UPDATE `포인트` SET `포인트`="+sum+", `포인트갱신날짜`=(select date('now')) WHERE `고유회원등록번호`=(select `고유회원등록번호` from `회원정보` where `이름`=\"" + name + "\");", 3, 0, MainActivity.con);
+                }
+                // TODO : 완료 버튼 동작 삽입
             }
-        };
-        mOKClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                playInputBoxAnimation(layoutInputBoxSize, 0);
+        });
 
-                mBackButton.setOnClickListener(mBackIdentifyClickListener);
-                mOKButton.setOnClickListener(mOKIdentifyClickListener);
-            }
-        };
-        mBackButton.setOnClickListener(mBackClickListener);
-        mOKButton.setOnClickListener(mOKClickListener);
-        */
+        setPoint();
     }
 
     public Button.OnClickListener onButtonNumberClickListener = new Button.OnClickListener() {
@@ -142,29 +153,25 @@ public class PointSaveDialog extends Dialog {
                         break;
                 }
                 if(strValue.length() > 0) {
-                    mTextViewValue.setText(String.format("%,d", Integer.parseInt(strValue)));
+                    value = Integer.parseInt(strValue);
+                    mTextViewValue.setText(String.format("%,d", value));
                 }
                 else{
-                    mTextViewValue.setText("");
+                    value = 0;
+                    mTextViewValue.setText("0");
                 }
             }
+           setPoint();
         }
     };
 
-    private void initializeDialogTitleBar()
+    private void setPoint()
     {
-        TextView mTextViewTitle = (TextView)findViewById(R.id.textView_title);
-        Button mBackButton = (Button)findViewById(R.id.button_dialog_back);
-        Button mOKButton = (Button)findViewById(R.id.button_dialog_ok);
-        mOKButton.setVisibility(View.GONE);
-
-        mTextViewTitle.setText("포인트 적립");
-        mBackButton.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View onClickView){
-                cancel();
-            }
-        });
+        int nowPoint = 0;
+        if(modifyItem.getPoint() != "" && modifyItem.getPoint() != null){
+            nowPoint = Integer.parseInt(modifyItem.getPoint());
+        }
+        mTextViewGuide.setText(String.format("%,dP 적립 : %,d → %,d", (int)(value * pointRate), nowPoint, nowPoint + (int)(value * pointRate)));
     }
 
     private void playInputBoxAnimation(int start, int end) {

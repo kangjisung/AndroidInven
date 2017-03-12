@@ -2,37 +2,18 @@ package com.example.kangjisung.likeroom;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
 import android.os.Parcelable;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatImageView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kangjisung.likeroom.FragmentUser.ListView.UserStampListAdapter;
-import com.example.kangjisung.likeroom.NetworkManager.HttpCommunicationProcess;
-import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
-import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.example.kangjisung.likeroom.Util.NoScrollViewPager;
-
-import org.apache.http.protocol.HTTP;
-
-import java.util.ArrayList;
-
-import static com.example.kangjisung.likeroom.R.id.et_name;
-
 
 public class ActivityStoreAddPagerAdapter extends PagerAdapter
 {

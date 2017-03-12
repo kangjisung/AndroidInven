@@ -13,7 +13,7 @@ public class ColorTheme
     public static void initTheme(Context context)
     {
         SharedPreferenceManager mSharedPreferenceManager = new SharedPreferenceManager();
-        theme = mSharedPreferenceManager.getInt("theme", context);
+        theme = mSharedPreferenceManager.getInt("set_theme", context);
         if(theme == 0){
             theme = R.style.LikeRoomTheme_BreadTheme;
         }

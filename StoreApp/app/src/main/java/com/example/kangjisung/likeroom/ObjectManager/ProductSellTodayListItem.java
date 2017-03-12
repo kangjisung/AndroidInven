@@ -6,13 +6,12 @@ public class ProductSellTodayListItem {
     int month;
     int day;
     int sell;
+    String date;
 
-    public ProductSellTodayListItem(String name, int year, int month, int day, int sell) {
-        this.name = name;
-        this.year = year;
-        this.month = month;
-        this.day = day;
-        this.sell = sell;
+    public ProductSellTodayListItem(String name,String date,int sell){
+        this.name=name;
+        this.date=date;
+        this.sell=sell;
     }
 
     public String getName() {

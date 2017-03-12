@@ -62,20 +62,20 @@ public class NetworkModule {
 
     //매장에 등록된 고객 불러오기
     public void GetCustomerRegisteredInfo(int storeId){//매장번호
-    httpCommunicationProcess = new HttpCommunicationProcess();
-    String responseRawDate = null;
-    try {
-        responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/GetCustomerRegisteredInfo/?storeId="+storeId+"").get();
-        Log.d(logCatTag, responseRawDate);
-        JSONObject jsonObject = new JSONObject(responseRawDate);
-        if (jsonObject.getString("Result").equals("OK")) {
-            Log.d(logCatTag, "ok");
-        } else Log.d(logCatTag, jsonObject.getString("Result"));
+        httpCommunicationProcess = new HttpCommunicationProcess();
+        String responseRawDate = null;
+        try {
+            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/GetCustomerRegisteredInfo/?storeId="+storeId+"").get();
+            Log.d(logCatTag, responseRawDate);
+            JSONObject jsonObject = new JSONObject(responseRawDate);
+            if (jsonObject.getString("Result").equals("OK")) {
+                Log.d(logCatTag, "ok");
+            } else Log.d(logCatTag, jsonObject.getString("Result"));
 
-    } catch (Exception err) {
-        Log.d(logCatTag, "Error in GetCustomerRegisteredInfo: " + err.getMessage());
+        } catch (Exception err) {
+            Log.d(logCatTag, "Error in GetCustomerRegisteredInfo: " + err.getMessage());
+        }
     }
-}
 
     ///마일리지 업데이트
     public void InsertMileageLog(String customerAndStoreRegisteredId, String mileageSize, String changeDate) { //고유등록번호,마일리지량,바뀐날짜

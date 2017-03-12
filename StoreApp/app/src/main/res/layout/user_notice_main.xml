@@ -16,32 +16,11 @@
             android:background="@color/transparent" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <include
         android:layout_width="match_parent"
-        android:background="?attr/theme_color_D3"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_height="60dp"
-        android:id="@+id/layout_title">
-
-        <Button
-            android:id="@+id/button_back"
-            android:background="@mipmap/icon_arrow_left"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            app:backgroundTint="@color/white"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
-
-        <TextView
-            android:text="공지사항"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="22dp"
-            android:layout_centerInParent="true" />
-
-    </RelativeLayout>
+        android:layout_height="wrap_content"
+        layout="@layout/include_title_activity"
+        android:id="@+id/layout_title" />
 
     <ScrollView
         android:layout_width="match_parent"

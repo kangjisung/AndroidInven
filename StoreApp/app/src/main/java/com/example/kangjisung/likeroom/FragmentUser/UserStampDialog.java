@@ -11,10 +11,10 @@ import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
 
-import com.example.kangjisung.likeroom.MemberListItem;
+import com.example.kangjisung.likeroom.ObjectManager.MemberListItem;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.Util.LayoutManager;
 
 import java.util.ArrayList;
 
@@ -42,7 +42,13 @@ public class UserStampDialog extends Dialog
 
         setContentView(R.layout.user_stamp_dialog);
 
-        initializeDialogTitleBar();
+        LayoutManager.setDialogTitle(findViewById(R.id.layout_title), true, false, "스탬프 발송");
+        findViewById(R.id.inc_btn_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
 
         tabLayout = (TabLayout)findViewById(R.id.tabLayout);
         viewPager = (ViewPager)findViewById(R.id.viewPager);
@@ -83,22 +89,6 @@ public class UserStampDialog extends Dialog
             @Override
             public void onClick(View onClickView){
                 dismiss();
-            }
-        });
-    }
-
-    private void initializeDialogTitleBar()
-    {
-        TextView mTextViewTitle = (TextView)findViewById(R.id.textView_title);
-        Button mBackButton = (Button)findViewById(R.id.button_dialog_back);
-        Button mOKButton = (Button)findViewById(R.id.button_dialog_ok);
-        mOKButton.setVisibility(View.GONE);
-
-        mTextViewTitle.setText("스탬프 발송");
-        mBackButton.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View onClickView){
-                cancel();
             }
         });
     }

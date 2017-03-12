@@ -8,14 +8,19 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductMuchStoreListItem;
-import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductSellTodayListItem;
-import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
-import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
+import com.example.kangjisung.likeroom.ObjectManager.ProductListItem;
+import com.example.kangjisung.likeroom.ObjectManager.ProductMuchStoreListItem;
+import com.example.kangjisung.likeroom.ObjectManager.ProductSellTodayListItem;
+import com.example.kangjisung.likeroom.ObjectManager.ProductObjManager;
+import com.example.kangjisung.likeroom.ObjectManager.MemberObjectManager;
+import com.example.kangjisung.likeroom.ObjectManager.NoticeObjectManager;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
 
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 
@@ -26,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     public static Context con;
     public static String PriNum;
 
+    ArrayList<ProductSellTodayListItem> sellTodayArrayList = new ArrayList<>();
+    ArrayList<ProductMuchStoreListItem> muchStoreArrayList = new ArrayList<>();
     //networkmodule 예제
     //networkModule.InsertNewCustomerInfo("강지성");
     @Override
@@ -63,9 +70,7 @@ public class MainActivity extends AppCompatActivity {
             asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             asyncDialog.setMessage("로딩중입니다..");
 
-            NetworkModule networkModule=new NetworkModule();
-            //networkModule.InsertNewStoreInfoData("서울시","강지성","01012345678","2017-02-25");
-
+            // show dialog
             asyncDialog.show();
             super.onPreExecute();
         }
@@ -73,9 +78,16 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... arg0)
         {
-            Date date=new Date();
+            Date date = new Date();
+
             ProductObjManager.getContext(getApplicationContext());
             ProductObjManager.productLoad(date);
+
+            new MemberObjectManager();
+            MemberObjectManager.load(getApplicationContext());
+
+            new NoticeObjectManager();
+            NoticeObjectManager.load(getApplicationContext());
 
             //SystemClock.sleep(500);
 
