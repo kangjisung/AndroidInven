@@ -19,17 +19,17 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kangjisung.likeroom.FragmentUser.ListView.UserNoticeListItem;
+import com.example.kangjisung.likeroom.ObjectManager.NoticeListItem;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
+import com.example.kangjisung.likeroom.Util.LayoutManager;
 import com.example.kangjisung.likeroom.Util.SingleToast;
 
 import java.text.SimpleDateFormat;
@@ -48,7 +48,7 @@ public class UserNoticeEditDialog extends Dialog
     private int selectedType;
     private String[] listType = {"알림", "신제품", "이벤트"};
 
-    private UserNoticeListItem userNoticeItemBeforeModify;
+    private NoticeListItem userNoticeItemBeforeModify;
     private String query;
     private String mode;
 
@@ -57,11 +57,11 @@ public class UserNoticeEditDialog extends Dialog
     public UserNoticeEditDialog(Context context) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
 
-        userNoticeItemBeforeModify = new UserNoticeListItem(-1, "", "", new Date(), new Date(), new Date(), 0, 0, 0);
+        userNoticeItemBeforeModify = new NoticeListItem(-1, "", "", new Date(), new Date(), new Date(), 0, 0, 0);
         mode = "ADD";
     }
 
-    public UserNoticeEditDialog(UserNoticeListItem userNoticeItem, Context context) {
+    public UserNoticeEditDialog(NoticeListItem userNoticeItem, Context context) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
 
         userNoticeItemBeforeModify = userNoticeItem;
@@ -153,15 +153,19 @@ public class UserNoticeEditDialog extends Dialog
         mTextViewEnd.setText((new SimpleDateFormat("yyyy년 M월 d일", Locale.KOREA)).format(userNoticeItemBeforeModify.getEndDate().getTime()));
         mTextViewStart.setOnClickListener(onTextViewDateClickListener);
         mTextViewEnd.setOnClickListener(onTextViewDateClickListener);
-        Button mButtonBack = (Button) findViewById(R.id.button_dialog_back);
-        Button mButtonOk = (Button) findViewById(R.id.button_dialog_ok);
-        mButtonBack.setOnClickListener(new Button.OnClickListener(){
+        if(mode == "ADD"){
+            LayoutManager.setDialogTitle(findViewById(R.id.layout_title), true, true, "공지사항 추가");
+        }
+        else{
+            LayoutManager.setDialogTitle(findViewById(R.id.layout_title), true, true, "공지사항 수정");
+        }
+        findViewById(R.id.inc_btn_back).setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View onClickView){
                 dismiss();
             }
         });
-        mButtonOk.setOnClickListener(new Button.OnClickListener(){
+        findViewById(R.id.inc_btn_ok).setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View onClickView){
                 try{
@@ -226,16 +230,6 @@ public class UserNoticeEditDialog extends Dialog
                 setButtonType(selectedType, selectedType);
             }
         });
-
-        initializeDialogTitleBar();
-    }
-
-    private boolean validateDate(Date startDate, Date endDate)
-    {
-        if(endDate.getTime() < startDate.getTime()){
-            return false;
-        }
-        return true;
     }
 
     private Button.OnClickListener onButtonTypeClickListener = new Button.OnClickListener() {
@@ -346,18 +340,4 @@ public class UserNoticeEditDialog extends Dialog
             }
         }
     };
-
-    private void initializeDialogTitleBar()
-    {
-        TextView mTextViewTitle = (TextView)findViewById(R.id.textView_title);
-        Button mBackButton = (Button)findViewById(R.id.button_dialog_back);
-        Button mOKButton = (Button)findViewById(R.id.button_dialog_ok);
-
-        if(mode == "ADD"){
-            mTextViewTitle.setText("공지사항 추가");
-        }
-        else{
-            mTextViewTitle.setText("공지사항 수정");
-        }
-    }
 }

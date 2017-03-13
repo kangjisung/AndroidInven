@@ -7,17 +7,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
-import com.example.kangjisung.likeroom.MainActivity;
-import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
+import com.example.kangjisung.likeroom.ObjectManager.ProductListItem;
 import com.example.kangjisung.likeroom.R;
-import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
+import com.example.kangjisung.likeroom.Util.LayoutManager;
 import com.example.kangjisung.likeroom.inventory.calc;
-
-import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
 public class ProductEditDialog extends Dialog
 {
@@ -56,7 +50,13 @@ public class ProductEditDialog extends Dialog
 
         setContentView(R.layout.product_add_dialog);
 
-        initializeDialogTitleBar();
+        LayoutManager.setDialogTitle(findViewById(R.id.layout_title), true, false, "새 제품 추가");
+        findViewById(R.id.inc_btn_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
 
         Productname=(EditText)findViewById(R.id.editText_name);
         Productcost=(EditText)findViewById(R.id.editText_cost);
@@ -89,24 +89,6 @@ public class ProductEditDialog extends Dialog
                 networkModule.InsertNewProductName(Integer.parseInt(7), proDuct,Productname.getText().toString(),Integer.parseInt(Productcost.getText().toString()),Integer.parseInt(Productprice.getText().toString()),Integer.parseInt(Productresidual.getText().toString()));
                 */
                 dismiss();
-            }
-        });
-    }
-
-    private void initializeDialogTitleBar()
-    {
-        TextView mTextViewTitle = (TextView)findViewById(R.id.textView_title);
-        Button mBackButton = (Button)findViewById(R.id.button_dialog_back);
-        Button mOKButton = (Button)findViewById(R.id.button_dialog_ok);
-        RelativeLayout layoutBack = (RelativeLayout) findViewById(R.id.layout_back);
-        RelativeLayout layoutOk = (RelativeLayout) findViewById(R.id.layout_ok);
-        layoutOk.setVisibility(View.GONE);
-
-        mTextViewTitle.setText("새 제품 추가");
-        mBackButton.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View onClickView){
-                cancel();
             }
         });
     }

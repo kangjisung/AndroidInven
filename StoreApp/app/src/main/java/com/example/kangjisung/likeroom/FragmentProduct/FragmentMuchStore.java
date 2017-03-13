@@ -1,20 +1,16 @@
 package com.example.kangjisung.likeroom.FragmentProduct;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.kangjisung.likeroom.FragmentProduct.ListView.FragmentMuchStoreRecyclerViewAdapter;
-import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
-import com.example.kangjisung.likeroom.FragmentUser.UserEditDialog;
+import com.example.kangjisung.likeroom.FragmentProduct.Adapter.FragmentMuchStoreRecyclerViewAdapter;
+import com.example.kangjisung.likeroom.ObjectManager.ProductObjManager;
 import com.example.kangjisung.likeroom.R;
-import com.example.kangjisung.likeroom.Util.Utility;
 
 public class FragmentMuchStore extends Fragment {
     public static RecyclerView rvFragmentMuchStore;

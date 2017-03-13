@@ -1,28 +1,23 @@
 package com.example.kangjisung.likeroom.Setting;
 
-import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.ContextMenu;
-import android.view.Menu;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.kangjisung.likeroom.ActivityStoreAdd;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.Setting.Adapter.SettingStartListAdapter;
+import com.example.kangjisung.likeroom.Setting.Adapter.SettingThemeListAdapter;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
+import com.example.kangjisung.likeroom.Util.LayoutManager;
 import com.example.kangjisung.likeroom.Util.SharedPreferenceManager;
 import com.example.kangjisung.likeroom.Util.SingleToast;
 import com.example.kangjisung.likeroom.Util.Utility;
-
-import java.util.ArrayList;
 
 public class SettingMain extends AppCompatActivity
 {
@@ -36,11 +31,18 @@ public class SettingMain extends AppCompatActivity
         this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_setting);
 
-        findViewById(R.id.btn_back).setOnClickListener(onButtonSettingClickListener);
         findViewById(R.id.btn_set_theme).setOnClickListener(onButtonSettingClickListener);
         findViewById(R.id.btn_info_createdby).setOnClickListener(onButtonSettingClickListener);
         findViewById(R.id.btn_info_application).setOnClickListener(onButtonSettingClickListener);
         findViewById(R.id.btn_set_start).setOnClickListener(onButtonSettingClickListener);
+
+        LayoutManager.setActivityTitle(findViewById(R.id.layout_title), true, false, "설정 및 정보");
+        findViewById(R.id.inc_btn_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     Button.OnClickListener onButtonSettingClickListener = new Button.OnClickListener() {
@@ -107,20 +109,9 @@ public class SettingMain extends AppCompatActivity
                 case R.id.btn_info_createdby:
                     startActivity(new Intent(getApplicationContext(), SettingCreatedby.class));
                     break;
-                case R.id.btn_back:
-                    finish();
-                    break;
                 default:
                     break;
             }
         }
     };
-
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        menu.setHeaderTitle("작업 선택");
-        menu.add(Menu.NONE, 4, Menu.NONE, "제품 정보");
-        menu.add(Menu.NONE, 5, Menu.NONE, "고객 정보");
-        menu.add(Menu.NONE, 6, Menu.NONE, "포인트 적립");
-    }
 }

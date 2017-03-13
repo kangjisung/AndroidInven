@@ -4,12 +4,8 @@ package com.example.kangjisung.likeroom.inventory;
  * Created by kangjisung on 2016-11-21.
  */
 
-import android.content.Context;
-import android.content.Intent;
-
 import com.example.kangjisung.likeroom.MainActivity;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
-import com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.InvenActivity;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -17,7 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Random;
 
 import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 import static java.lang.Math.sqrt;
@@ -53,7 +48,7 @@ public class calc extends MainActivity {
 
 
     //4.그래프를 그리기 위해 생성해야하는 정보
-    public int[] Recent100_Sale, Recent100_FD;//최근 100일간의 판매량과 예측판매량(User입력한것 only)(Graph1-(2))
+    public int[] Recent100_Sale, Recent100_FD;//최근 100일간의 판매량과 예측판매량(User입력한것 only)(Fragment1-(2))
     public int[] Recent16_WeekSale; //최근 16주의 각 주 판매량 평균(Graph2)
 
     public boolean isChange = false;

@@ -16,7 +16,7 @@
         <include
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            layout="@layout/include_dialog_title" />
+            layout="@layout/include_title_dialog" />
 
         <ScrollView
             android:layout_width="wrap_content"
@@ -57,91 +57,113 @@
                     android:layout_below="@+id/imageView_emblem"
                     android:layout_margin="10dp">
 
-                    <LinearLayout
-                        android:orientation="horizontal"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp">
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
                         <TextView
                             android:text="이름"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/LikeRoomTheme.TextView.UserAdd"
                             android:layout_gravity="center_vertical"
-                            android:layout_weight="0"
-                            android:layout_width="80dp" />
+                            android:layout_marginStart="5dp"
+                            android:textColor="@color/gray160"
+                            android:textSize="14dp" />
 
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName"
-                            android:ems="10"
-                            android:id="@+id/editText_name"
-                            style="@style/LikeRoomTheme.EditText"
-                            android:background="@drawable/theme_textedit"
-                            android:textSize="20dp"
-                            android:layout_weight="1"
-                            android:padding="3dp"
-                            android:paddingStart="5dp"
-                            android:paddingEnd="5dp"
-                            android:layout_marginStart="10dp" />
-                    </LinearLayout>
+                            android:id="@+id/et_name"
+                            android:background="@color/transparent"
+                            android:textColor="@color/gray80"
+                            android:padding="5dp"
+                            android:textSize="18dp"
+                            android:layout_marginTop="20dp"
+                            android:maxLength="12"
+                            android:maxLines="1" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
+                        <View
+                            android:background="@color/gray160"
+                            android:layout_width="match_parent"
+                            android:layout_below="@+id/et_name"
+                            android:layout_height="1dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp">
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginTop="10dp">
 
                         <TextView
                             android:text="전화번호"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/LikeRoomTheme.TextView.UserAdd"
-                            android:layout_weight="0"
-                            android:layout_width="80dp" />
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:textColor="@color/gray160"
+                            android:textSize="14dp" />
 
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="phone"
-                            android:ems="10"
-                            android:id="@+id/editText_phone"
-                            style="@style/LikeRoomTheme.EditText"
-                            android:background="@drawable/theme_textedit"
-                            android:textSize="20dp"
-                            android:layout_weight="1"
-                            android:padding="3dp"
-                            android:paddingStart="5dp"
-                            android:paddingEnd="5dp"
-                            android:layout_marginStart="10dp" />
-                    </LinearLayout>
+                            android:id="@+id/et_phone"
+                            android:background="@color/transparent"
+                            android:textColor="@color/gray80"
+                            android:padding="5dp"
+                            android:textSize="18dp"
+                            android:layout_marginTop="20dp"
+                            android:maxLength="12"
+                            android:maxLines="1"
+                            android:textCursorDrawable="?attr/theme_color_N"
+                            android:inputType="number"
+                            android:numeric="signed" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
+                        <View
+                            android:background="@color/gray160"
+                            android:layout_width="match_parent"
+                            android:layout_below="@+id/et_phone"
+                            android:layout_height="1dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginTop="10dp">
 
                         <TextView
                             android:text="생년월일"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/LikeRoomTheme.TextView.UserAdd"
-                            android:layout_weight="0"
-                            android:layout_width="80dp" />
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:textColor="@color/gray160"
+                            android:textSize="14dp" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/textView_birth"
-                            android:layout_weight="0"
-                            android:background="@drawable/theme_textedit"
-                            android:layout_marginStart="10dp"
-                            android:textSize="20dp"
-                            android:padding="3dp"
-                            android:paddingEnd="5dp"
-                            android:paddingStart="5dp"
-                            android:textColor="@color/black" />
+                            android:id="@+id/et_birth"
+                            android:background="@color/transparent"
+                            android:textColor="@color/gray80"
+                            android:padding="5dp"
+                            android:textSize="18dp"
+                            android:layout_marginTop="20dp"
+                            android:maxLength="12"
+                            android:maxLines="1" />
 
-                    </LinearLayout>
+                        <View
+                            android:background="@color/gray160"
+                            android:layout_width="match_parent"
+                            android:layout_below="@+id/et_birth"
+                            android:layout_height="1dp" />
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -157,7 +179,7 @@
                         android:text="완료"
                         android:layout_width="90dp"
                         android:layout_height="40dp"
-                        android:id="@+id/button_ok"
+                        android:id="@+id/btn_ok"
                         android:textColor="@color/white"
                         android:background="@drawable/button_ripple_rectangle" />
                 </RelativeLayout>

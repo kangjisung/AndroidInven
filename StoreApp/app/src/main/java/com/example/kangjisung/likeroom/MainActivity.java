@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductListItem;
-import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductMuchStoreListItem;
-import com.example.kangjisung.likeroom.FragmentProduct.ListView.ProductSellTodayListItem;
-import com.example.kangjisung.likeroom.FragmentProduct.ProductObjManager;
+import com.example.kangjisung.likeroom.ObjectManager.ProductListItem;
+import com.example.kangjisung.likeroom.ObjectManager.ProductMuchStoreListItem;
+import com.example.kangjisung.likeroom.ObjectManager.ProductSellTodayListItem;
+import com.example.kangjisung.likeroom.ObjectManager.ProductObjManager;
+import com.example.kangjisung.likeroom.ObjectManager.MemberObjectManager;
+import com.example.kangjisung.likeroom.ObjectManager.NoticeObjectManager;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
@@ -116,7 +118,13 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-            ProductObjManager.context=getApplicationContext();
+            ProductObjManager.context = getApplicationContext();
+
+            new MemberObjectManager();
+            MemberObjectManager.load(getApplicationContext());
+
+            new NoticeObjectManager();
+            NoticeObjectManager.load(getApplicationContext());
 
             //SystemClock.sleep(500);
 
