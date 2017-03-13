@@ -12,10 +12,17 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.kangjisung.likeroom.MainActivity;
 import com.example.kangjisung.likeroom.ObjectManager.MemberListItem;
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.Util.LayoutManager;
 import com.example.kangjisung.likeroom.Util.Utility;
+
+import static android.R.attr.disabledAlpha;
+import static android.R.attr.name;
+import static com.example.kangjisung.likeroom.MainActivity.PriNum;
+import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
 public class PointSaveDialog extends Dialog {
     private TextView mTextViewValue;
@@ -28,6 +35,7 @@ public class PointSaveDialog extends Dialog {
 
     private String strValue = "";
     private int value = 0;
+    int nowPoint = 0;
 
     public PointSaveDialog(Context context, MemberListItem object) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
@@ -55,7 +63,7 @@ public class PointSaveDialog extends Dialog {
             }
         });
 
-        TextView mTextViewName = (TextView) findViewById(R.id.tv_name);
+        final TextView mTextViewName = (TextView) findViewById(R.id.tv_name);
         TextView mTextViewPhone = (TextView) findViewById(R.id.tv_phone);
         mTextViewGuide = (TextView) findViewById(R.id.tv_guide);
         mTextViewValue = (TextView) findViewById(R.id.tv_value);
@@ -75,8 +83,20 @@ public class PointSaveDialog extends Dialog {
         ((Button) findViewById(R.id.btn_cor)).setOnClickListener(onButtonNumberClickListener);
         ((Button) findViewById(R.id.btn_del)).setOnClickListener(onButtonNumberClickListener);
         ((Button) findViewById(R.id.button_ok)).setOnClickListener(new Button.OnClickListener() {
-            @Override
+
+            int UserPriNum; //고유회원등록번호
+            int point;//최종 포인트
+
             public void onClick(View onClickView) {
+                point = nowPoint + (int)(value * pointRate);
+                new ClientDataBase("select `포인트`,`고유회원등록번호` from `포인트` where `고유회원등록번호`=(select `고유회원등록번호` from `회원정보` where `이름`=\"" + mTextViewName.getText().toString() + "\");",1,2, MainActivity.con); //포인트 있는지 검색
+                UserPriNum=Integer.parseInt(DBstring[1]);
+                if(DBstring[0]==null){//////////////////없다면 insert
+                    new ClientDataBase("insert into `포인트` (`고유회원등록번호`,`포인트`,`포인트갱신날짜`) values ((select `고유회원등록번호` from `회원정보` where `이름`=\""+mTextViewName.getText().toString()+"\"),"+point+",(select date('now')));",2,0,MainActivity.con);
+                }
+                else {////////////////있으면 계산해서 update
+                    new ClientDataBase("UPDATE `포인트` SET `포인트`="+point+", `포인트갱신날짜`=(select date('now')) WHERE `고유회원등록번호`=(select `고유회원등록번호` from `회원정보` where `이름`=\"" + name + "\");", 3, 0, MainActivity.con);
+                }
                 // TODO : 완료 버튼 동작 삽입
             }
         });
@@ -145,7 +165,7 @@ public class PointSaveDialog extends Dialog {
 
     private void setPoint()
     {
-        int nowPoint = 0;
+
         if(modifyItem.getPoint() != "" && modifyItem.getPoint() != null){
             nowPoint = Integer.parseInt(modifyItem.getPoint());
         }

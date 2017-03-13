@@ -21,13 +21,6 @@ public class ActivityStoreAdd extends AppCompatActivity {
         setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_store_add);
 
-        /*
-        Intent intent = new Intent(getApplicationContext(), ActivityMenu.class);
-        startActivity(intent);
-
-        finish();
-        */
-
         viewPager = (NoScrollViewPager)findViewById(R.id.viewPager);
 
         pagerAdapter = new ActivityStoreAddPagerAdapter(this);

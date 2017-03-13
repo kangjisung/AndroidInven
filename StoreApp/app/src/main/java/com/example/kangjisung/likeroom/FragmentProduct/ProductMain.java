@@ -114,6 +114,7 @@ public class ProductMain extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         nowDate = selectedDate;
                         tvFragmentItemMainDate.setText((new SimpleDateFormat("yyyy년 M월 d일", Locale.KOREA)).format(nowDate.getTime()));
+                        ProductObjManager.productLoad(nowDate.getTime());
                         dialog.dismiss();
                     }
                 });
@@ -210,7 +211,7 @@ public class ProductMain extends Fragment {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
                         if(((ProductEditDialog)dialog).getDismissMessage() == 1) {
-                            // TODO : 여기서 리스트 갱신
+                            ProductObjManager.productLoad(nowDate.getTime());
                         }
                     }
                 });
@@ -358,7 +359,9 @@ public class ProductMain extends Fragment {
                     productAddDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public void onDismiss(DialogInterface dialog) {
-                            // TODO : 새 제품 추가 다이얼로그에서 완료 버튼 클릭 시 동작 삽입
+                            if(((ProductEditDialog)dialog).getDismissMessage() == 1){
+                                ProductObjManager.productLoad(nowDate.getTime());
+                            }
                         }
                     });
                     break;

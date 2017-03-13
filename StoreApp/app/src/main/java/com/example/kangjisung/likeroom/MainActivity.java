@@ -29,6 +29,7 @@ import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBa
 public class MainActivity extends AppCompatActivity {
     static DatabaseHelper databaseHelperTest;
     public static Context con;
+    public static String PriNum;
 
     ArrayList<ProductSellTodayListItem> sellTodayArrayList = new ArrayList<>();
     ArrayList<ProductMuchStoreListItem> muchStoreArrayList = new ArrayList<>();
@@ -77,48 +78,10 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... arg0)
         {
-            Date today = new Date();
-            //////////////////////////////////////////요기서, 제품 정보 배열 추가.(최근 데이터[오늘x])
-            new ClientDataBase("select `제품정보`.`이름`,`최적재고량`.`날짜`,`최적재고량`.`최적재고량` from `제품정보` join `최적재고량` on `제품정보`.`제품코드`= `최적재고량`.`제품코드` group by `최적재고량`.`제품코드` having max(`날짜`);", 1, 3, getApplicationContext());
-            int cnt = 0;
-            while (true) {
-                if (DBstring[cnt] != null) {
-                    muchStoreArrayList.add(new ProductMuchStoreListItem(DBstring[cnt], DBstring[cnt + 1], Integer.parseInt(DBstring[cnt + 2])));
-                    cnt += 3;
-                } else if (DBstring[cnt] == null) break;
-            }
-            Collections.sort(muchStoreArrayList, new MainActivity.MuchNameAscCompare());
+            Date date = new Date();
 
-            //제품 이름,날짜,판매량 불러오기(오늘 데이터)
-            new ClientDataBase("select `제품정보`.`이름`,`제품판매량`.`년`,`제품판매량`.`월`,`제품판매량`.`일`,`제품판매량`.`판매량` from `제품정보` join `제품판매량` on `제품정보`.`제품코드`= `제품판매량`.`제품코드` where `제품판매량`.`년`="+today.getYear()+1900+"and `제품판매량`.`월`="+today.getMonth()+1+"and `제품판매량`.`일`="+today.getDay()+"", 1, 5, getApplicationContext());
-            cnt = 0;
-            while (true) {
-                if (DBstring[cnt] != null) {
-                    sellTodayArrayList.add(new ProductSellTodayListItem(DBstring[cnt], Integer.parseInt(DBstring[cnt + 1]), Integer.parseInt(DBstring[cnt + 2]), Integer.parseInt(DBstring[cnt + 3]), Integer.parseInt(DBstring[cnt + 4])));
-                    cnt += 5;
-                } else if (DBstring[cnt] == null){
-                    //오늘 판매량이 없을시 muchStoreArrayList크기만큼 sellTodayArrayList에 빈값 넣기(데이터 뿌려줄떄 null이면 에러나서)
-                    if(cnt==0){
-                        for(int i=0; i<muchStoreArrayList.size(); i++) sellTodayArrayList.add(new ProductSellTodayListItem(" ",0, 0, 0, 0));
-                    }
-                    break;
-                }
-            }
-            Collections.sort(sellTodayArrayList, new MainActivity.SellNameAscCompare());
-
-            ProductObjManager.productInfos = new ArrayList<ProductListItem>();
-            for(int i=0; i<sellTodayArrayList.size(); i++){
-                ProductSellTodayListItem sellToday = sellTodayArrayList.get(i);
-                ProductMuchStoreListItem muchStore;
-                if(i<muchStoreArrayList.size()) muchStore = muchStoreArrayList.get(i);
-                else break;
-                try {
-                    ProductObjManager.add(new ProductListItem(muchStore.getName(), false, muchStore.getDate(), new Date(today.getYear()+1900, today.getMonth()+1, today.getDay()),sellToday.getSell(), muchStore.getMuch()));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-            ProductObjManager.context = getApplicationContext();
+            ProductObjManager.getContext(getApplicationContext());
+            ProductObjManager.productLoad(date);
 
             new MemberObjectManager();
             MemberObjectManager.load(getApplicationContext());
@@ -135,9 +98,24 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             asyncDialog.dismiss();
             super.onPostExecute(result);
+            //////매장이 클라이언트 디비에 있는지 검사
+            new ClientDataBase("select `매장번호` from `매장`;",1,1,getApplicationContext());
+            int cnt=0;
+            while(true) {
+                if (DBstring[cnt] != null) {
+                    PriNum=DBstring[cnt];
+                    cnt++;
+                }
+                else if(DBstring[cnt]==null) break;
+            }
+            if(PriNum==null) {
+                startActivity(new Intent(getApplicationContext(), ActivityStoreAdd.class));
+            }
+            else {
+                // show dialog
 
-            startActivity(new Intent(getApplicationContext(), ActivityStoreAdd.class));
-
+                startActivity(new Intent(getApplicationContext(),ActivityMenu.class));
+            }
             finish();
         }
     }
