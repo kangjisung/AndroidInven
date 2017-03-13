@@ -157,7 +157,7 @@
                     android:layout_height="1dp"
                     android:background="@android:color/darker_gray" />
 
-                <com.example.kangjisung.likeroom.Util.MaxHeightScrollView
+                <com.teamdk.android.bakery.utility.MaxHeightScrollView
                     app:maxHeight="270dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -188,7 +188,7 @@
                             android:textSize="18dp"
                             android:padding="5dp" />
                     </RelativeLayout>
-                </com.example.kangjisung.likeroom.Util.MaxHeightScrollView>
+                </com.teamdk.android.bakery.utility.MaxHeightScrollView>
 
                 <EditText
                     android:layout_width="match_parent"

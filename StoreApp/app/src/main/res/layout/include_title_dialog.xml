@@ -20,7 +20,6 @@
         android:layout_height="@dimen/title_size"
         android:id="@+id/inc_btn_back"
         android:layout_marginStart="-3dp">
-
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="25dp"
             android:layout_height="25dp"

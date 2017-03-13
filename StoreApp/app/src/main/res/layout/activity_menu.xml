@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.kangjisung.likeroom.ActivityMenu"
+        tools:context="com.teamdk.android.bakery.ActivityMenu"
         android:orientation="vertical"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
@@ -53,13 +53,13 @@
                 android:layout_marginStart="15dp" />
         </RelativeLayout>
 
-        <com.example.kangjisung.likeroom.Util.NoScrollViewPager
+        <com.teamdk.android.bakery.utility.NoScrollViewPager
             android:id="@+id/viewPager"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:background="@color/white"
             android:layout_weight="1">
-        </com.example.kangjisung.likeroom.Util.NoScrollViewPager>
+        </com.teamdk.android.bakery.utility.NoScrollViewPager>
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabLayout"
