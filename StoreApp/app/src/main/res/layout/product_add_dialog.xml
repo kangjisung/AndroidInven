@@ -31,7 +31,6 @@
                     android:layout_height="80dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
                     android:id="@+id/imageView_emblem">
 
                     <include
@@ -40,7 +39,7 @@
                         layout="@layout/include_emblem" />
 
                     <android.support.v7.widget.AppCompatImageView
-                        android:background="@mipmap/icon_bread"
+                        android:background="@mipmap/fab_add_product"
                         app:backgroundTint="@color/white"
                         android:layout_centerInParent="true"
                         android:layout_width="50dp"
@@ -51,146 +50,156 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
+                    android:padding="5dp"
                     android:id="@+id/layout_input"
                     android:layout_below="@+id/imageView_emblem"
-                    android:layout_margin="10dp">
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginTop="20dp">
 
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:gravity="center_vertical">
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:background="?attr/theme_color_L4">
 
                         <TextView
                             android:text="제품명"
                             android:layout_height="wrap_content"
-                            style="@style/LikeRoomTheme.TextView.UserAdd"
                             android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:textColor="?attr/theme_color_N"
+                            android:textSize="14dp"
                             android:layout_weight="0"
-                            android:layout_width="80dp" />
+                            android:layout_width="50dp"
+                            android:textStyle="bold" />
 
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
-                            android:ems="10"
                             android:id="@+id/editText_name"
-                            style="@style/LikeRoomTheme.EditText"
-                            android:background="@drawable/theme_textedit"
+                            android:background="@color/transparent"
+                            android:textColor="?attr/theme_color_D3"
                             android:textSize="20dp"
+                            android:maxLength="16"
+                            android:maxLines="2"
                             android:layout_weight="1"
-                            android:padding="3dp"
-                            android:paddingStart="5dp"
-                            android:paddingEnd="5dp"
-                            android:layout_marginStart="10dp" />
+                            android:layout_marginStart="15dp"
+                            android:inputType="textMultiLine"
+                            android:imeOptions="actionDone" />
+
                     </LinearLayout>
 
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:gravity="center_vertical">
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:background="?attr/theme_color_L4"
+                        android:layout_marginTop="10dp">
 
                         <TextView
                             android:text="원가"
                             android:layout_height="wrap_content"
-                            style="@style/LikeRoomTheme.TextView.UserAdd"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:textColor="?attr/theme_color_N"
+                            android:textSize="14dp"
                             android:layout_weight="0"
-                            android:layout_width="80dp" />
+                            android:layout_width="50dp"
+                            android:textStyle="bold" />
 
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:ems="10"
                             android:id="@+id/editText_cost"
-                            style="@style/LikeRoomTheme.EditText"
-                            android:background="@drawable/theme_textedit"
+                            android:background="@color/transparent"
+                            android:textColor="?attr/theme_color_D3"
                             android:textSize="20dp"
+                            android:maxLength="10"
+                            android:maxLines="1"
                             android:layout_weight="1"
-                            android:padding="3dp"
-                            android:paddingStart="5dp"
-                            android:paddingEnd="5dp"
-                            android:layout_marginStart="10dp"
-                            android:inputType="numberSigned|numberDecimal" />
+                            android:layout_marginStart="15dp"
+                            android:inputType="number"
+                            android:numeric="signed" />
+
                     </LinearLayout>
 
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"
-                        android:gravity="center_vertical">
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:background="?attr/theme_color_L4"
+                        android:layout_marginTop="10dp">
 
                         <TextView
                             android:text="판매가"
                             android:layout_height="wrap_content"
-                            style="@style/LikeRoomTheme.TextView.UserAdd"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:textColor="?attr/theme_color_N"
+                            android:textSize="14dp"
                             android:layout_weight="0"
-                            android:layout_width="80dp" />
+                            android:layout_width="50dp"
+                            android:textStyle="bold" />
 
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:ems="10"
                             android:id="@+id/editText_price"
-                            style="@style/LikeRoomTheme.EditText"
-                            android:background="@drawable/theme_textedit"
+                            android:background="@color/transparent"
+                            android:textColor="?attr/theme_color_D3"
                             android:textSize="20dp"
+                            android:maxLength="10"
+                            android:maxLines="1"
                             android:layout_weight="1"
-                            android:padding="3dp"
-                            android:paddingStart="5dp"
-                            android:paddingEnd="5dp"
-                            android:layout_marginStart="10dp"
-                            android:inputType="numberSigned|numberDecimal" />
+                            android:layout_marginStart="15dp"
+                            android:inputType="number"
+                            android:numeric="signed" />
+
                     </LinearLayout>
 
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical">
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:background="?attr/theme_color_L4"
+                        android:layout_marginTop="10dp">
 
-                        <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="80dp"
+                        <TextView
+                            android:text="잔존가"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0">
-
-                            <TextView
-                                android:text="잔존가 "
-                                android:layout_height="wrap_content"
-                                style="@style/LikeRoomTheme.TextView.UserAdd"
-                                android:layout_weight="0"
-                                android:layout_width="match_parent" />
-
-                            <TextView
-                                android:text="(선택)"
-                                android:layout_height="wrap_content"
-                                style="@style/LikeRoomTheme.TextView.UserAdd"
-                                android:layout_weight="0"
-                                android:layout_width="match_parent"
-                                android:id="@+id/textView7"
-                                android:textSize="14dp" />
-
-                        </LinearLayout>
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:textColor="?attr/theme_color_N"
+                            android:textSize="14dp"
+                            android:layout_weight="0"
+                            android:layout_width="50dp"
+                            android:textStyle="bold" />
 
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:ems="10"
                             android:id="@+id/editText_residual"
-                            style="@style/LikeRoomTheme.EditText"
-                            android:background="@drawable/theme_textedit"
+                            android:background="@color/transparent"
+                            android:textColor="?attr/theme_color_D3"
                             android:textSize="20dp"
+                            android:maxLength="10"
+                            android:maxLines="1"
                             android:layout_weight="1"
-                            android:padding="3dp"
-                            android:paddingStart="5dp"
-                            android:paddingEnd="5dp"
-                            android:layout_marginStart="10dp"
-                            android:inputType="numberSigned|numberDecimal" />
+                            android:layout_marginStart="15dp"
+                            android:inputType="number"
+                            android:numeric="signed"
+                            android:textColorHint="?attr/theme_color_L1"
+                            android:hint="선택사항" />
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -201,7 +210,8 @@
                     android:layout_alignParentBottom="false"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/layout_input"
-                    android:background="?attr/theme_color_L1">
+                    android:background="?attr/theme_color_L1"
+                    android:layout_marginTop="15dp">
 
                     <Button
                         android:text="완료"

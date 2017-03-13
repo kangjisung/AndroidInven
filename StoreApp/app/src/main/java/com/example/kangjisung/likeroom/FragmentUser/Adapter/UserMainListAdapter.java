@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapter.UserRecyclerViewHolder> {
-    private ArrayList<MemberListItem> userMainList;
     private Context context;
     private ViewGroup parent;
     private Boolean stampMode = false;

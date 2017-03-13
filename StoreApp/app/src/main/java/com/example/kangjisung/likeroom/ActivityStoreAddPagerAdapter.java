@@ -9,10 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
+=======
+
+>>>>>>> refs/remotes/origin/store-app-byeongmun
 import com.example.kangjisung.likeroom.Util.NoScrollViewPager;
 
 public class ActivityStoreAddPagerAdapter extends PagerAdapter

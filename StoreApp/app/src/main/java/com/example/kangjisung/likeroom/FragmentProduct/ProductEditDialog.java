@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+<<<<<<< HEAD
 import com.example.kangjisung.likeroom.MainActivity;
 import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
 import com.example.kangjisung.likeroom.ObjectManager.ProductListItem;
@@ -24,6 +25,13 @@ import static com.example.kangjisung.likeroom.ObjectManager.ProductObjManager.co
 import static com.example.kangjisung.likeroom.ObjectManager.ProductObjManager.muchStoreArrayList;
 import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
+=======
+import com.example.kangjisung.likeroom.ObjectManager.ProductListItem;
+import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.Util.LayoutManager;
+import com.example.kangjisung.likeroom.inventory.calc;
+
+>>>>>>> refs/remotes/origin/store-app-byeongmun
 public class ProductEditDialog extends Dialog
 {
     private EditText Productname;//이름

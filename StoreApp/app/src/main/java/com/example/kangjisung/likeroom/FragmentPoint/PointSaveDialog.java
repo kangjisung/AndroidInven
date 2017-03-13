@@ -12,10 +12,15 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+<<<<<<< HEAD
 import com.example.kangjisung.likeroom.MainActivity;
 import com.example.kangjisung.likeroom.ObjectManager.MemberListItem;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
+=======
+import com.example.kangjisung.likeroom.ObjectManager.MemberListItem;
+import com.example.kangjisung.likeroom.R;
+>>>>>>> refs/remotes/origin/store-app-byeongmun
 import com.example.kangjisung.likeroom.Util.LayoutManager;
 import com.example.kangjisung.likeroom.Util.Utility;
 
@@ -63,7 +68,11 @@ public class PointSaveDialog extends Dialog {
             }
         });
 
+<<<<<<< HEAD
         final TextView mTextViewName = (TextView) findViewById(R.id.tv_name);
+=======
+        TextView mTextViewName = (TextView) findViewById(R.id.tv_name);
+>>>>>>> refs/remotes/origin/store-app-byeongmun
         TextView mTextViewPhone = (TextView) findViewById(R.id.tv_phone);
         mTextViewGuide = (TextView) findViewById(R.id.tv_guide);
         mTextViewValue = (TextView) findViewById(R.id.tv_value);

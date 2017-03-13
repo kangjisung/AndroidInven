@@ -5,19 +5,27 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.kangjisung.likeroom.FragmentProduct.Adapter.FragmentSortRecyclerViewAdapter;
 import com.example.kangjisung.likeroom.FragmentProduct.RecyclerViewManager;
+<<<<<<< HEAD:StoreApp/app/src/main/java/com/example/kangjisung/likeroom/ObjectManager/ProductObjManager.java
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase;
 import com.example.kangjisung.likeroom.Util.SharedPreferenceManager;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+=======
+import com.example.kangjisung.likeroom.Util.SharedPreferenceManager;
+
+>>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/example/kangjisung/likeroom/ObjectManager/ProductObjManager.java
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+<<<<<<< HEAD:StoreApp/app/src/main/java/com/example/kangjisung/likeroom/ObjectManager/ProductObjManager.java
 import java.util.Locale;
 
 import static com.example.kangjisung.likeroom.SQLiteDatabaseControl.ClientDataBase.DBstring;
+=======
+>>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/example/kangjisung/likeroom/ObjectManager/ProductObjManager.java
 
 public class ProductObjManager {
     public static ArrayList<ProductListItem> productInfos = new ArrayList<ProductListItem>();
@@ -28,6 +36,7 @@ public class ProductObjManager {
     public ProductObjManager(){
 
     }
+<<<<<<< HEAD:StoreApp/app/src/main/java/com/example/kangjisung/likeroom/ObjectManager/ProductObjManager.java
     public static ArrayList<ProductSellTodayListItem> sellTodayArrayList = new ArrayList<>();
     public static ArrayList<ProductMuchStoreListItem> muchStoreArrayList = new ArrayList<>();
 
@@ -81,6 +90,8 @@ public class ProductObjManager {
         }
     }
 
+=======
+>>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/example/kangjisung/likeroom/ObjectManager/ProductObjManager.java
     public static void add(ProductListItem productInfo){
         productInfo.getSellTodayDate().setYear(productInfo.getSellTodayDate().getYear());
         productInfo.getMuchStoreDate().setYear(productInfo.getMuchStoreDate().getYear());

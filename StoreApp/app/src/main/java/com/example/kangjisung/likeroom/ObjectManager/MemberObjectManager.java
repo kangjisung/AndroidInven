@@ -44,10 +44,19 @@ public class MemberObjectManager {
                 e.printStackTrace();
                 continue;
             }
+<<<<<<< HEAD
             if (addListItem.getDelete() == 0) {
                 add(addListItem);
             }
             count += 7;
+=======
+            finally {
+                count += 7;
+            }
+            if (addListItem.getDelete() == 0) {
+                add(addListItem);
+            }
+>>>>>>> refs/remotes/origin/store-app-byeongmun
         }
     }
 

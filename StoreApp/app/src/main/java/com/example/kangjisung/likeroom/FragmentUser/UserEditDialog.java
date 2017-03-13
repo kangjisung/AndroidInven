@@ -32,7 +32,8 @@ public class UserEditDialog extends Dialog {
     private int dismissMessage;
     private String selectedDate;
     private String modifyDate;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("y-M-d", Locale.KOREA);
+    private SimpleDateFormat inputFormat = new SimpleDateFormat("y-M-d", Locale.KOREA);
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("y년 M월 d일", Locale.KOREA);
 
     private EditText UserAddName;
     private EditText UserAddPhone;
@@ -77,10 +78,15 @@ public class UserEditDialog extends Dialog {
         });
         findViewById(R.id.btn_ok).setOnClickListener(onClickListenerButtonOk);
 
-        UserAddName = (EditText)findViewById(R.id.editText_name);
-        UserAddPhone = (EditText)findViewById(R.id.editText_phone);
-        UserAddBirth = (TextView)findViewById(R.id.textView_birth);
 
+<<<<<<< HEAD
+=======
+        UserAddName = (EditText)findViewById(R.id.et_name);
+        UserAddPhone = (EditText)findViewById(R.id.et_phone);
+        UserAddBirth = (TextView)findViewById(R.id.et_birth);
+
+
+>>>>>>> refs/remotes/origin/store-app-byeongmun
         if(mode == "ADD") {
             selectedDate = dateFormat.format(new Date());
             UserAddBirth.setText(selectedDate);
@@ -104,11 +110,12 @@ public class UserEditDialog extends Dialog {
                     int year = dateFormat.parse(selectedDate).getYear()+1900;
                     int month = dateFormat.parse(selectedDate).getMonth();
                     int day = dateFormat.parse(selectedDate).getDate();
+                    modifyDate = selectedDate;
 
                     mDatePicker.init(year, month, day, new DatePicker.OnDateChangedListener() {
                         @Override
                         public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                            modifyDate = String.valueOf(year) + "-" + String.valueOf(monthOfYear+1) + "-" + String.valueOf(dayOfMonth);
+                            modifyDate = String.valueOf(year) + "년 " + String.valueOf(monthOfYear+1) + "월 " + String.valueOf(dayOfMonth) + "일";
                         }
                     });
 
@@ -142,26 +149,33 @@ public class UserEditDialog extends Dialog {
     public Button.OnClickListener onClickListenerButtonOk = new Button.OnClickListener() {
         @Override
         public void onClick(View onClickView) {
-            if(UserAddName.length() == 0){
-                SingleToast.show(getContext(), "이름을 입력하셔야 합니다.", Toast.LENGTH_LONG);
-                return;
+            try{
+                if(UserAddName.length() == 0){
+                    SingleToast.show(getContext(), "이름을 입력하셔야 합니다.", Toast.LENGTH_LONG);
+                    return;
+                }
+                String inputDate = inputFormat.format(dateFormat.parse(UserAddBirth.getText().toString()));
+                if(mode == "ADD") {
+                    String query = "INSERT INTO 회원정보 (이름, 전화번호, 생년월일) VALUES('"
+                            + UserAddName.getText().toString() + "', '"
+                            + UserAddPhone.getText().toString() + "', '"
+                            + inputDate + "');";
+                    new ClientDataBase(query, 2, 0, getContext());
+                    dismiss();
+                }
+                else{
+                    String query = String.format("UPDATE `회원정보` SET `이름` = \"%s\", `전화번호` = \"%s\", `생년월일` = \"%s\" WHERE `고유회원등록번호` = %d;" + "" + "",
+                            UserAddName.getText().toString(),
+                            UserAddPhone.getText().toString(),
+                            inputDate,
+                            modifyItem.getNum());
+                    new ClientDataBase(query, 2, 0, getContext());
+                    dismissMessage = 1;
+                    dismiss();
+                }
             }
-            if(mode == "ADD") {
-                String query = "INSERT INTO 회원정보 (이름, 전화번호, 생년월일) VALUES('"
-                        + UserAddName.getText().toString() + "', '"
-                        + UserAddPhone.getText().toString() + "', '"
-                        + selectedDate + "');";
-                new ClientDataBase(query, 2, 0, getContext());
-                dismiss();
-            }
-            else{
-                String query = String.format("UPDATE `회원정보` SET `이름` = \"%s\", `전화번호` = \"%s\", `생년월일` = \"%s\" WHERE `고유회원등록번호` = %d;" + "" + "",
-                        UserAddName.getText().toString(),
-                        UserAddPhone.getText().toString(),
-                        UserAddBirth.getText().toString(),
-                        modifyItem.getNum());
-                new ClientDataBase(query, 2, 0, getContext());
-                dismissMessage = 1;
+            catch(Exception e){
+                e.printStackTrace();
                 dismiss();
             }
         }
