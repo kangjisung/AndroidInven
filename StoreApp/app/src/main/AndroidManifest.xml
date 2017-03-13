@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kangjisung.likeroom">
+    package="com.teamdk.android.bakery">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/LikeRoomTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.teamdk.android.bakery.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,14 +20,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityMenu"
+            android:name="com.teamdk.android.bakery.ActivityMenu"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ActivityStoreAdd" />
-        <activity android:name=".Setting.SettingMain" />
-        <activity android:name=".Setting.SettingApplication" />
-        <activity android:name=".Setting.SettingCreatedby" />
-        <activity android:name="com.example.kangjisung.likeroom.inventory.InventoryMain"/>
-        <activity android:name="com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.StatActivity"/>
+        <activity android:name="com.teamdk.android.bakery.ActivityStoreAdd" />
+        <activity android:name="com.teamdk.android.bakery.setting.SettingMain" />
+        <activity android:name="com.teamdk.android.bakery.setting.SettingApplication" />
+        <activity android:name="com.teamdk.android.bakery.setting.SettingCreatedby" />
+        <activity android:name="com.teamdk.android.bakery.inventory.InventoryMain"/>
     </application>
 
 </manifest>

@@ -9,13 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.example.kangjisung.likeroom.Util.NoScrollViewPager
+        <com.teamdk.android.bakery.utility.NoScrollViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/theme_color_D4">
 
-        </com.example.kangjisung.likeroom.Util.NoScrollViewPager>
+        </com.teamdk.android.bakery.utility.NoScrollViewPager>
     </RelativeLayout>
 
     <include

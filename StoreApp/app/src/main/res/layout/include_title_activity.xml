@@ -19,13 +19,8 @@
     <RelativeLayout
         android:layout_width="@dimen/title_size"
         android:layout_height="@dimen/title_size"
-<<<<<<< HEAD
-        android:id="@+id/inc_btn_back">
-=======
         android:id="@+id/inc_btn_back"
         android:layout_marginStart="-3dp">
->>>>>>> refs/remotes/origin/store-app-byeongmun
-
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
