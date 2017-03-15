@@ -87,8 +87,10 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if(editTextInput.length() > 0) {
+                            c = calc.getInstance();
                             ProductObjectManager.get(position).setSellToday(Integer.parseInt(editTextInput.getText().toString()));
                             cal = Calendar.getInstance();
+                            c.RefreshClass(ProductObjectManager.get(position).getName());
                             //판매량 업데이트
                             new ClientDataBase("update `제품판매량` set `판매량`=\""+Integer.parseInt(editTextInput.getText().toString())+"\" where `년`=\""+cal.get(Calendar.YEAR)+"\" and `월`=\""+(cal.get(Calendar.MONTH)+1)+"\" and `일`=\""+cal.get(Calendar.DATE)+"\"",3,0, context);
                             //판매량 서버넣기

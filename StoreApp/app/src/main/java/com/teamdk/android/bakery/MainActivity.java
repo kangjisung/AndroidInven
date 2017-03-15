@@ -13,6 +13,7 @@ import com.teamdk.android.bakery.objectmanager.ProductObjectManager;
 import com.teamdk.android.bakery.objectmanager.ProductSellTodayListItem;
 import com.teamdk.android.bakery.objectmanager.MemberObjectManager;
 import com.teamdk.android.bakery.objectmanager.NoticeObjectManager;
+import com.teamdk.android.bakery.utility.NetworkManager.NetworkModule;
 import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
 import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.DatabaseHelper;
 import com.teamdk.android.bakery.utility.ColorTheme;
@@ -110,7 +111,9 @@ public class MainActivity extends AppCompatActivity {
             }
             else {
                 // show dialog
-
+                new ClientDataBase("select max(`수정일`) from `회원정보`;",1,1,getApplicationContext());
+                NetworkModule networkModule = new NetworkModule();
+                networkModule.GetCustomerRegisteredInfo(Integer.parseInt(PriNum), DBstring[0]);
                 startActivity(new Intent(getApplicationContext(),ActivityMenu.class));
             }
             finish();

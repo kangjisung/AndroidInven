@@ -108,9 +108,8 @@ public class calc extends MainActivity {
         dAvg = new double[8];
         monAvg = new double[13];
 
-                //////dAvg[7], monAvg[12] 구하기 //dAvg요일별판매량총평균, monAvg월별판매량총평균 구하기
-        //select AVG(`판매량`) from `제품판매량` where `
-        new ClientDataBase("select avg(`판매량`),`요일` from `제품판매량` group by `요일`",1,2, MainActivity.con);
+         //////dAvg[7], monAvg[12] 구하기 //dAvg요일별판매량총평균, monAvg월별판매량총평균 구하기
+        new ClientDataBase("select avg(`판매량`),`요일` from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\") group by `요일`",1,2, MainActivity.con);
         cnt = 0;
         while (true) {
             if (DBstring[cnt] != null) {
@@ -118,7 +117,7 @@ public class calc extends MainActivity {
                 cnt += 2;
             } else if (DBstring[cnt] == null) break;
         }
-        new ClientDataBase("select avg(`판매량`),`월` from `제품판매량` group by `월`",1,2, MainActivity.con);
+        new ClientDataBase("select avg(`판매량`),`월` from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\") group by `월`",1,2, MainActivity.con);
         cnt = 0;
         while (true) {
             if (DBstring[cnt] != null) {
@@ -132,15 +131,17 @@ public class calc extends MainActivity {
         //monAvg도 마찬가지for(m=0;m<7;m++){case (db-판매량의 월==ㅡm-->불러와서 그 값들의 평균을 monAvg[m]에 저장}
 
         //////m 구하기 //m전체평균판매량
-        new ClientDataBase("select avg(`판매량`) from `제품판매량`",1,1, MainActivity.con);
+        new ClientDataBase("select avg(`판매량`) from `제품판매량` `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\")",1,1, MainActivity.con);
         cnt = 0;
         m=Double.parseDouble(DBstring[cnt]);
 
         //db의 판매량 column의 총평균을 m에 저장
 
         ////////////////////////////////////////////최소예상판매량, 최대예상판매량
-        //new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>\"" + cal.get(Calendar.YEAR) + "\" and `월`>\"" + cal.get(Calendar.MONTH) + "\" and `일`>\"" + cal.get(Calendar.DATE) + "\";", 1, 2, MainActivity.con);
-        new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>=2016 and `월`>9 and `일`>1;", 1, 2, MainActivity.con);
+        ///한달의 데이터
+        new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>\"" + cal.get(Calendar.YEAR) + "\" and `월`>\"" + cal.get(Calendar.MONTH) + "\" and `일`>\"" + cal.get(Calendar.DATE) + "\";", 1, 2, MainActivity.con);
+        //예제
+        //new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>=2016 and `월`>9 and `일`>1;", 1, 2, MainActivity.con);
         cnt = 0;
         while (true) {
             if (DBstring[cnt] != null) {
@@ -149,7 +150,6 @@ public class calc extends MainActivity {
                 cnt += 2;
             } else if (DBstring[cnt] == null) break;
         }
-
         v = (max - min) / 6; //표준편차
         FD = (int)(calcT().predict(tDay)*(dAvg[curDay]/m)*(monAvg[curMonth]/m))+1; //예상판매량=추세*요일지수*월별지수
         FM = (min + max + (4 * FD)) / 6; //최종평균계산

@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import com.teamdk.android.bakery.MainActivity;
+
 import com.teamdk.android.bakery.objectmanager.ProductListItem;
 import com.teamdk.android.bakery.objectmanager.ProductObjectManager;
 import com.teamdk.android.bakery.R;
@@ -28,6 +30,7 @@ import com.teamdk.android.bakery.utility.LayoutManager;
 import com.teamdk.android.bakery.utility.NoScrollViewPager;
 import com.teamdk.android.bakery.utility.FirstPageFragmentListener;
 import com.github.clans.fab.FloatingActionMenu;
+import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -202,9 +205,9 @@ public class ProductMain extends Fragment {
     @Override
     public boolean onContextItemSelected(MenuItem item)
     {
+        final ProductListItem mProductListItem = ProductObjectManager.get(longClickPosition);
         switch(item.getItemId()){
             case LayoutManager.MENU_PRODUCT_MODIFY:
-                ProductListItem mProductListItem = ProductObjectManager.get(longClickPosition);
                 mProductEditDialog = new ProductEditDialog(getContext(), mProductListItem);
                 mProductEditDialog.show();
                 mProductEditDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -221,8 +224,12 @@ public class ProductMain extends Fragment {
                 dialogBuilder.setMessage("선택한 항목을 삭제하시겠습니까?");
                 dialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(DialogInterface dialog, int which) {////제품에 관련된거 삭제
+                        new ClientDataBase("delete from `제품정보` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+mProductListItem.getName()+"\")",2,0, MainActivity.con);
+                        new ClientDataBase("delete from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+mProductListItem.getName()+"\")",2,0, MainActivity.con);
+                        new ClientDataBase("delete from `최적재고량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+mProductListItem.getName()+"\")",2,0, MainActivity.con);
                         // TODO : 삭제 쿼리
+                        ProductObjectManager.productLoad(nowDate.getTime());
                         // TODO : 여기서 리스트 갱신
                     }
                 });
