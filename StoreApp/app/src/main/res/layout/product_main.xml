@@ -16,12 +16,12 @@
             android:focusableInTouchMode="true"
             android:id="@+id/relative">
 
-            <com.example.kangjisung.likeroom.Util.NoScrollViewPager
+            <com.teamdk.android.bakery.utility.NoScrollViewPager
                 android:id="@+id/vp_fragment_item_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/layout_info">
-            </com.example.kangjisung.likeroom.Util.NoScrollViewPager>
+            </com.teamdk.android.bakery.utility.NoScrollViewPager>
 
             <RelativeLayout
                 android:layout_width="match_parent"
