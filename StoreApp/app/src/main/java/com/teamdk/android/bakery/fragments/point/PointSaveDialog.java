@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.teamdk.android.bakery.MainActivity;
 import com.teamdk.android.bakery.objectmanager.MemberListItem;
 import com.teamdk.android.bakery.R;
+import com.teamdk.android.bakery.utility.NetworkManager.NetworkModule;
 import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
 import com.teamdk.android.bakery.utility.LayoutManager;
 import com.teamdk.android.bakery.utility.Utility;
@@ -96,6 +97,9 @@ public class PointSaveDialog extends Dialog {
                     new ClientDataBase("UPDATE `포인트` SET `포인트`="+point+", `포인트갱신날짜`=(select date('now')) WHERE `고유회원등록번호`=(select `고유회원등록번호` from `회원정보` where `이름`=\"" + name + "\");", 3, 0, MainActivity.con);
                 }
                 // TODO : 완료 버튼 동작 삽입
+                NetworkModule networkModule=new NetworkModule();
+                networkModule.InsertMileageLog(String.valueOf(UserPriNum), String.valueOf((int)(value*pointRate)));//서버 마일리지 업데이트 (유저코드,올라간 포인트양)
+                dismiss();
             }
         });
 

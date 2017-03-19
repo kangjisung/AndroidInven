@@ -5,6 +5,7 @@ package com.teamdk.android.bakery.inventory;
  */
 
 import com.teamdk.android.bakery.MainActivity;
+import com.teamdk.android.bakery.utility.NetworkManager.NetworkModule;
 import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
 
 import java.text.DateFormat;
@@ -202,7 +203,11 @@ public class calc extends MainActivity {
     public void calcQ() {
         cal = Calendar.getInstance();
         Q = (int) (FM + ((v / 2) * (sqrt((p - c) / (c - s)) - sqrt((c - s) / (p - c))))) + 1; //최적재고량 계산
-        new ClientDataBase("insert into `최적재고량` (`제품코드`,`최적재고량`,`날짜`) values ((select `제품코드` from `제품정보` where `이름`=\""+name+"\"),"+Q+",\"" + cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) +1) + "-" + (cal.get(Calendar.DATE)+1) + "\");",2,0,MainActivity.con);
+        new ClientDataBase("select `제품코드` from `제품정보` where `이름`=\""+name+"\"",1,1,MainActivity.con);
+        String ProductNum =DBstring[0];
+        new ClientDataBase("insert into `최적재고량` (`제품코드`,`최적재고량`,`날짜`) values (\""+ProductNum+"\","+Q+",\"" + cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) +1) + "-" + (cal.get(Calendar.DATE)+1) + "\");",2,0,MainActivity.con);
+        NetworkModule networkModule=new NetworkModule();
+        networkModule.InsertProductOptimalStock(Integer.parseInt(ProductNum),Q,""+ cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) +1) + "-" + (cal.get(Calendar.DATE)+1) + "");//서버에 최적재고량 넣기 (제품코드,최적재고량, 날짜)
     }
     ////////////////////////////////////////////그래프용 calc2
     public int calcQ2(){

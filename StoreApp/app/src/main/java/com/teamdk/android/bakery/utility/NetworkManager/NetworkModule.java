@@ -133,11 +133,11 @@ public class NetworkModule {
     }
 
     ///마일리지 업데이트
-    public void InsertMileageLog(String customerAndStoreRegisteredId, String mileageSize, String changeDate) { //고유등록번호,마일리지량,바뀐날짜
+    public void InsertMileageLog(String customerAndStoreRegisteredId, String mileageSize) { //고유등록번호,마일리지량,바뀐날짜
         httpCommunicationProcess = new HttpCommunicationProcess();
         String responseRawDate = null;
         try {
-            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/InsertMileageLog/?customerAndStoreRegisteredId=" + customerAndStoreRegisteredId + "&mileageSize=" + mileageSize + "&changeDate=" + changeDate +"").get();
+            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/InsertMileageLog/?customerAndStoreRegisteredId=" + customerAndStoreRegisteredId + "&mileageSize=" + mileageSize +"").get();
             Log.d(logCatTag, responseRawDate);
             JSONObject jsonObject = new JSONObject(responseRawDate);
             if (jsonObject.getString("Result").equals("OK")) {
