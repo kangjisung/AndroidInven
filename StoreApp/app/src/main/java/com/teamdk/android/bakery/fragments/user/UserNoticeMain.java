@@ -14,7 +14,11 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserNoticeMain.java
+=======
 import android.widget.Toast;
+>>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserNoticeMain.java
+
 import com.teamdk.android.bakery.fragments.user.adapter.UserNoticeListAdapter;
 import com.teamdk.android.bakery.objectmanager.NoticeListItem;
 import com.teamdk.android.bakery.objectmanager.NoticeObjectManager;
@@ -77,6 +81,15 @@ public class UserNoticeMain extends Fragment
     }
 
     private void reloadRecyclerView() {
+<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserNoticeMain.java
+        mAdapter = new UserNoticeListAdapter();
+        NoticeObjectManager.load(getContext());
+        mAdapter.sort();
+        listView.setAdapter(mAdapter);
+        registerForContextMenu(listView);
+        mAdapter.notifyDataSetChanged();
+        listViewHeightSet(mAdapter, listView);
+=======
         try{
             mAdapter = new UserNoticeListAdapter();
             NoticeObjectManager.load(getContext());
@@ -89,6 +102,7 @@ public class UserNoticeMain extends Fragment
         catch(Exception ex){
             Toast.makeText(getContext(), "목록을 불러오는데 실패했습니다.", Toast.LENGTH_LONG).show();
         }
+>>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserNoticeMain.java
     }
 
     @Override

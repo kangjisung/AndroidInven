@@ -2,11 +2,13 @@ package com.teamdk.android.bakery.fragments.product;
 
 import android.support.v7.widget.RecyclerView;
 
+import com.teamdk.android.bakery.fragments.product.adapter.FragmentSortRecyclerViewAdapter;
+
 public class RecyclerViewManager {
     RecyclerView recyclerView;
-    RecyclerView.Adapter<RecyclerView.ViewHolder> recyclerViewAdapter;
+    RecyclerView.Adapter<FragmentSortRecyclerViewAdapter.ViewHolder> recyclerViewAdapter;
 
-    public RecyclerViewManager(RecyclerView recyclerView, RecyclerView.Adapter<RecyclerView.ViewHolder> recyclerViewAdapter) {
+    public RecyclerViewManager(RecyclerView recyclerView, RecyclerView.Adapter<FragmentSortRecyclerViewAdapter.ViewHolder> recyclerViewAdapter) {
         this.recyclerView = recyclerView;
         this.recyclerViewAdapter = recyclerViewAdapter;
     }
@@ -19,11 +21,11 @@ public class RecyclerViewManager {
         this.recyclerView = recyclerView;
     }
 
-    public RecyclerView.Adapter<RecyclerView.ViewHolder> getRecyclerViewAdapter() {
+    public RecyclerView.Adapter<FragmentSortRecyclerViewAdapter.ViewHolder> getRecyclerViewAdapter() {
         return recyclerViewAdapter;
     }
 
-    public void setRecyclerViewAdapter(RecyclerView.Adapter<RecyclerView.ViewHolder> recyclerViewAdapter) {
+    public void setRecyclerViewAdapter(RecyclerView.Adapter<FragmentSortRecyclerViewAdapter.ViewHolder> recyclerViewAdapter) {
         this.recyclerViewAdapter = recyclerViewAdapter;
     }
 }
