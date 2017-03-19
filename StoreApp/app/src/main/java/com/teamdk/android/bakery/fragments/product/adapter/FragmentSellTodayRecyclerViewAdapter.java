@@ -32,13 +32,10 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
     Context context;
     public Calendar cal;
     calc c;
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
-=======
 
     public FragmentSellTodayRecyclerViewAdapter(Context context) {
         this.context = context;
     }
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         public View view;
@@ -85,17 +82,10 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
-        holder.tvName.setText(ProductObjectManager.get(position).getName());
-        holder.tvAddedDate.setText(ProductObjectManager.date2String(ProductObjectManager.get(position).getMuchStoreDate()));
-        holder.etInput.setText(String.valueOf(ProductObjectManager.get(position).getSellToday()));
-        holder.buttonInput.setOnClickListener(new Button.OnClickListener(){
-=======
         holder.mTextViewName.setText(ProductObjectManager.get(position).getName());
         holder.mTextViewAddedDate.setText("등록일 : " + ProductObjectManager.get(position).getAddedDateToString());
         holder.mTextViewInput.setText(String.valueOf(ProductObjectManager.get(position).getSellToday()));
         holder.mButtonInput.setOnClickListener(new Button.OnClickListener(){
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
             @Override
             public void onClick(View onClickView){
                 LayoutInflater inflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
@@ -107,15 +97,8 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if(editTextInput.length() > 0) {
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
-                            c = calc.getInstance();
                             ProductObjectManager.get(position).setSellToday(Integer.parseInt(editTextInput.getText().toString()));
                             cal = Calendar.getInstance();
-                            c.RefreshClass(ProductObjectManager.get(position).getName());
-=======
-                            ProductObjectManager.get(position).setSellToday(Integer.parseInt(editTextInput.getText().toString()));
-                            cal = Calendar.getInstance();
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
                             //판매량 업데이트
                             new ClientDataBase("update `제품판매량` set `판매량`=\""+Integer.parseInt(editTextInput.getText().toString())+"\" where `년`=\""+cal.get(Calendar.YEAR)+"\" and `월`=\""+(cal.get(Calendar.MONTH)+1)+"\" and `일`=\""+cal.get(Calendar.DATE)+"\"",3,0, context);
                             //판매량 서버넣기
@@ -150,25 +133,10 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
                 return false;
             }
         });
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
-        /*
-        if(ProductObjectManager.get(position).isStar()) {
-            holder.star.setBackgroundResource(R.drawable.sell_today_recyclerview_background_star);
-        }
-        else{
-            holder.star.setBackgroundResource(R.drawable.sell_today_recyclerview_background);
-        }
-        */
-=======
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
     }
 
     @Override
     public int getItemCount() {
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
-        return ProductObjectManager.productInfos.size();
-=======
         return ProductObjectManager.size();
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
     }
 }

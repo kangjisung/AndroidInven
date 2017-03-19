@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-=======
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
->>>>>>> refs/remotes/origin/store-app-byeongmun
     package="com.teamdk.android.bakery">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -23,13 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        <activity
-            android:name="com.teamdk.android.bakery.ActivityMenu"
-            android:windowSoftInputMode="adjustPan" />
-=======
         <activity android:name="com.teamdk.android.bakery.ActivityMenu"/>
->>>>>>> refs/remotes/origin/store-app-byeongmun
         <activity android:name="com.teamdk.android.bakery.ActivityStoreAdd" />
         <activity android:name="com.teamdk.android.bakery.setting.SettingMain" />
         <activity android:name="com.teamdk.android.bakery.setting.SettingApplication" />

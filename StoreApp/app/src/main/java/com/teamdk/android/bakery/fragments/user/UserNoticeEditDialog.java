@@ -27,10 +27,7 @@ import android.widget.Toast;
 
 import com.teamdk.android.bakery.objectmanager.NoticeListItem;
 import com.teamdk.android.bakery.R;
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserNoticeEditDialog.java
 import com.teamdk.android.bakery.utility.NetworkManager.NetworkModule;
-=======
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserNoticeEditDialog.java
 import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
 import com.teamdk.android.bakery.utility.ColorTheme;
 import com.teamdk.android.bakery.utility.LayoutManager;
