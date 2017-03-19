@@ -67,7 +67,7 @@ public class calc extends MainActivity {
             if (DBstring[cnt] != null) {
                 c = Integer.parseInt(DBstring[cnt]);
                 p = Integer.parseInt(DBstring[cnt + 1]);
-                s = Integer.parseInt(DBstring[cnt + 2]);
+                s = (DBstring[cnt + 2] == null)?(0):(Integer.parseInt(DBstring[cnt + 2]));
                 cnt += 3;
             } else if (DBstring[cnt] == null) break;
         }
@@ -131,7 +131,7 @@ public class calc extends MainActivity {
         //monAvg도 마찬가지for(m=0;m<7;m++){case (db-판매량의 월==ㅡm-->불러와서 그 값들의 평균을 monAvg[m]에 저장}
 
         //////m 구하기 //m전체평균판매량
-        new ClientDataBase("select avg(`판매량`) from `제품판매량` `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\")",1,1, MainActivity.con);
+        new ClientDataBase("select avg(`판매량`) from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\")",1,1, MainActivity.con);
         cnt = 0;
         m=Double.parseDouble(DBstring[cnt]);
 
