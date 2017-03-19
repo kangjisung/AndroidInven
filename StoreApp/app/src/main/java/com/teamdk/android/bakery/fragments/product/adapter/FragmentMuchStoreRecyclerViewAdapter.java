@@ -81,6 +81,7 @@ public class FragmentMuchStoreRecyclerViewAdapter extends RecyclerView.Adapter<F
                 calc c;
                 c = calc.getInstance();
                 c.RefreshClass(ProductObjectManager.get(position).getName());
+                //c.changeDate(ProductObjectManager.getSelectedDate());
                 context.startActivity(mil);
             }
         });

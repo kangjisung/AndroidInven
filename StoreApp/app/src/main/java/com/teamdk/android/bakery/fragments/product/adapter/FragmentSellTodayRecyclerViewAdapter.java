@@ -31,7 +31,8 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
 {
     Context context;
     public Calendar cal;
-    calc c;
+    calc mCalc;
+
 
     public FragmentSellTodayRecyclerViewAdapter(Context context) {
         this.context = context;
@@ -82,6 +83,7 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
+
         holder.mTextViewName.setText(ProductObjectManager.get(position).getName());
         holder.mTextViewAddedDate.setText("등록일 : " + ProductObjectManager.get(position).getAddedDateToString());
         holder.mTextViewInput.setText(String.valueOf(ProductObjectManager.get(position).getSellToday()));
@@ -97,17 +99,18 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if(editTextInput.length() > 0) {
-                            c = calc.getInstance();
                             ProductObjectManager.get(position).setSellToday(Integer.parseInt(editTextInput.getText().toString()));
                             cal = Calendar.getInstance();
-                            c.RefreshClass(ProductObjectManager.get(position).getName());
+                            mCalc.RefreshClass(ProductObjectManager.get(position).getName());
+                            mCalc = calc.getInstance();
+                            mCalc.calcQ();
                             //판매량 업데이트
                             new ClientDataBase("update `제품판매량` set `판매량`=\""+Integer.parseInt(editTextInput.getText().toString())+"\" where `년`=\""+cal.get(Calendar.YEAR)+"\" and `월`=\""+(cal.get(Calendar.MONTH)+1)+"\" and `일`=\""+cal.get(Calendar.DATE)+"\"",3,0, context);
                             //판매량 서버넣기
                             new ClientDataBase("select `제품코드` from `제품정보` where `이름`=\""+ ProductObjectManager.get(position).getName()+"\";",1,1, context);
                             int proDuct=Integer.parseInt(DBstring[0]);
                             NetworkModule networkModule=new NetworkModule();
-                            networkModule.InsertSalesVolume(proDuct,Integer.parseInt(editTextInput.getText().toString()),""+cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) +1) + "-" + (cal.get(Calendar.DATE)+1)+"",c.FD);
+                            networkModule.InsertSalesVolume(proDuct,Integer.parseInt(editTextInput.getText().toString()),""+cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) +1) + "-" + (cal.get(Calendar.DATE)+1)+"",mCalc.FD);
                             dialog.dismiss();
                             notifyDataSetChanged();
                         }
