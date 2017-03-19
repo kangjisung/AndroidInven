@@ -40,16 +40,15 @@ public class MemberObjectManager {
                 addListItem.setBirth(dateFormat.parse(DBstring[count + 4]));
                 addListItem.setEmail(DBstring[count + 5]);
                 addListItem.setDelete(Integer.parseInt(DBstring[count + 6]));
-
-                if (addListItem.getDelete() == 0) {
-                    add(addListItem);
-                }
             } catch (Exception e) {
                 e.printStackTrace();
                 continue;
             }
             finally {
                 count += 7;
+            }
+            if (addListItem.getDelete() == 0) {
+                add(addListItem);
             }
         }
     }

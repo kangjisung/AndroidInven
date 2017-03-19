@@ -11,6 +11,10 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ * Created by stories2 on 2016. 11. 25..
+ */
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     final boolean isDebugMode = true;
     String logCatTag = "ex13", dbPath;

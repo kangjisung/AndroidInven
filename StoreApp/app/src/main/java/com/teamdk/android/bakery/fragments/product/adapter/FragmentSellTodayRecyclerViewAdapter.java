@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.teamdk.android.bakery.fragments.product.ProductMain;
@@ -32,39 +31,21 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
     Context context;
     public Calendar cal;
     calc c;
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
-=======
-
-    public FragmentSellTodayRecyclerViewAdapter(Context context) {
-        this.context = context;
-    }
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
+        // each data item is just a string in this case
+        public TextView tvName;
+        public TextView tvAddedDate;
+        public TextView etInput;
+        public Button buttonInput;
         public View view;
-        public TextView mTextViewName;
-        public TextView mTextViewAddedDate;
-        public TextView mTextViewInput;
-        public TextView mTextViewPoint;
-        public Button mButtonInput;
-        public Button mButtonInventory;
-        public RelativeLayout mLayoutSellToday;
-        public RelativeLayout mLayoutMuchStore;
-
         public ViewHolder(View view) {
             super(view);
+            tvName=(TextView)view.findViewById(R.id.tv_name);
+            tvAddedDate=(TextView)view.findViewById(R.id.tv_added_date);
+            etInput=(TextView)view.findViewById(R.id.et_input);
+            buttonInput = (Button)view.findViewById(R.id.button_input);
             this.view = view;
-            mTextViewName =(TextView)view.findViewById(R.id.tv_name);
-            mTextViewAddedDate =(TextView)view.findViewById(R.id.tv_added_date);
-            mTextViewInput =(TextView)view.findViewById(R.id.tv_input);
-            mTextViewPoint = (TextView)view.findViewById(R.id.tv_point);
-            mButtonInput = (Button)view.findViewById(R.id.btn_input);
-            mButtonInventory = (Button)view.findViewById(R.id.btn_inventory);
-            mLayoutSellToday = (RelativeLayout)view.findViewById(R.id.layout_sell_today);
-            mLayoutMuchStore = (RelativeLayout)view.findViewById(R.id.layout_much_store);
-
-            mTextViewPoint.setVisibility(View.GONE);
-            mLayoutMuchStore.setVisibility(View.GONE);
             view.setOnCreateContextMenuListener(this);
         }
 
@@ -76,26 +57,25 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
         }
     }
 
+    public FragmentSellTodayRecyclerViewAdapter(Context context) {
+        this.context=context;
+    }
+
+    // Create new views (invoked by the layout manager)
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_listitem, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_sell_today_listitem, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
 
+    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
         holder.tvName.setText(ProductObjectManager.get(position).getName());
         holder.tvAddedDate.setText(ProductObjectManager.date2String(ProductObjectManager.get(position).getMuchStoreDate()));
         holder.etInput.setText(String.valueOf(ProductObjectManager.get(position).getSellToday()));
         holder.buttonInput.setOnClickListener(new Button.OnClickListener(){
-=======
-        holder.mTextViewName.setText(ProductObjectManager.get(position).getName());
-        holder.mTextViewAddedDate.setText("등록일 : " + ProductObjectManager.get(position).getAddedDateToString());
-        holder.mTextViewInput.setText(String.valueOf(ProductObjectManager.get(position).getSellToday()));
-        holder.mButtonInput.setOnClickListener(new Button.OnClickListener(){
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
             @Override
             public void onClick(View onClickView){
                 LayoutInflater inflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
@@ -107,15 +87,10 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if(editTextInput.length() > 0) {
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
                             c = calc.getInstance();
                             ProductObjectManager.get(position).setSellToday(Integer.parseInt(editTextInput.getText().toString()));
                             cal = Calendar.getInstance();
                             c.RefreshClass(ProductObjectManager.get(position).getName());
-=======
-                            ProductObjectManager.get(position).setSellToday(Integer.parseInt(editTextInput.getText().toString()));
-                            cal = Calendar.getInstance();
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
                             //판매량 업데이트
                             new ClientDataBase("update `제품판매량` set `판매량`=\""+Integer.parseInt(editTextInput.getText().toString())+"\" where `년`=\""+cal.get(Calendar.YEAR)+"\" and `월`=\""+(cal.get(Calendar.MONTH)+1)+"\" and `일`=\""+cal.get(Calendar.DATE)+"\"",3,0, context);
                             //판매량 서버넣기
@@ -150,7 +125,6 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
                 return false;
             }
         });
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
         /*
         if(ProductObjectManager.get(position).isStar()) {
             holder.star.setBackgroundResource(R.drawable.sell_today_recyclerview_background_star);
@@ -159,16 +133,10 @@ public class FragmentSellTodayRecyclerViewAdapter extends RecyclerView.Adapter<F
             holder.star.setBackgroundResource(R.drawable.sell_today_recyclerview_background);
         }
         */
-=======
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
     }
-
+    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
         return ProductObjectManager.productInfos.size();
-=======
-        return ProductObjectManager.size();
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/adapter/FragmentSellTodayRecyclerViewAdapter.java
     }
 }

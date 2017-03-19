@@ -55,6 +55,16 @@
                 android:hint="이름 또는 전화번호로 검색"
                 android:textColorHint="@color/text_hint" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/textView_search"
+                android:layout_marginStart="35dp"
+                android:textColor="@color/gray200"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="3dp"
+                android:textSize="18dp" />
+
         </RelativeLayout>
 
         <LinearLayout

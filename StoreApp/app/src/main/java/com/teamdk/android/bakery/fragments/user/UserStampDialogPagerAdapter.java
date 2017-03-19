@@ -44,10 +44,7 @@ public class UserStampDialogPagerAdapter extends PagerAdapter
 
         userStampListItem = new ArrayList<Integer>() ;
         userStampListItem.add(R.mipmap.icon_menu_item);
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserStampDialogPagerAdapter.java
         userStampListItem.add(R.mipmap.icon_menu_point);
-=======
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserStampDialogPagerAdapter.java
         userStampListItem.add(R.mipmap.icon_menu_user);
         userStampListItem.add(R.mipmap.icon_floating_stamp);
     }

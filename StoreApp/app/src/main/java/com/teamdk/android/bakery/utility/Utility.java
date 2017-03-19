@@ -1,6 +1,5 @@
 package com.teamdk.android.bakery.utility;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.TypedValue;
 import android.view.inputmethod.InputMethodManager;
@@ -38,18 +37,8 @@ public class Utility {
         return phone;
     }
 
-    public static void hideSoftKeyboard(Activity activity) {
-        try{
-            InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
-        }
-        catch(Exception ex){
-            ex.printStackTrace();
-        }
-    }
     public static void showKeyboard(Context context) {
-        ((InputMethodManager) (context).getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.SHOW_IMPLICIT);
-
+        ((InputMethodManager) (context).getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
 
     public static int convertDpToPixels(float dp, Context context) {

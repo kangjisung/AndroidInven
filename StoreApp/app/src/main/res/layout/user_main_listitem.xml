@@ -129,7 +129,7 @@
                 <android.support.v7.widget.AppCompatImageView
                     android:layout_centerInParent="true"
                     android:background="@mipmap/icon_info"
-                    app:backgroundTint="@color/gray120"
+                    app:backgroundTint="@color/alpha60"
                     android:layout_width="40dp"
                     android:layout_height="40dp" />
 

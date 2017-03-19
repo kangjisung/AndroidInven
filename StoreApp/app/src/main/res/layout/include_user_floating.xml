@@ -7,8 +7,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
+        android:layout_height="match_parent">
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_stamp_cancel"
@@ -62,8 +61,7 @@
                 android:src="@mipmap/icon_floating_add"
                 fab:fab_colorNormal="?attr/theme_color_type1"
                 fab:fab_colorPressed="@color/gray160"
-                fab:fab_label="@string/user_fab_add_user"
-                android:visibility="gone" />
+                fab:fab_label="@string/user_fab_add_user" />
 
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/fab_stamp"
@@ -72,8 +70,7 @@
                 android:src="@mipmap/icon_floating_stamp"
                 fab:fab_colorNormal="?attr/theme_color_type1"
                 fab:fab_colorPressed="@color/gray160"
-                fab:fab_label="@string/user_fab_stamp"
-                android:visibility="gone" />
+                fab:fab_label="@string/user_fab_stamp" />
 
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/fab_notice"

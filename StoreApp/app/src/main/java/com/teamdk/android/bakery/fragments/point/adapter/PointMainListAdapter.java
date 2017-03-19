@@ -103,6 +103,8 @@ public class PointMainListAdapter extends BaseAdapter implements Filterable
     }
 
     private class ArrayFilter extends Filter {
+        private Object lock;
+
         @Override
         protected FilterResults performFiltering(CharSequence prefix) {
             FilterResults results = new FilterResults();

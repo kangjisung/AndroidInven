@@ -48,16 +48,14 @@ public class NoticeObjectManager {
                 else{
                     addListItem.setClose(0);
                 }
-                if(addListItem.getDelete() == 0) {
-                    add(addListItem);
-                }
             }
             catch (Exception e) {
                 e.printStackTrace();
             }
-            finally {
-                count += 8;
+            if(addListItem.getDelete() == 0) {
+                add(addListItem);
             }
+            count += 8;
         }
     }
 

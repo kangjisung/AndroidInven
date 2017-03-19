@@ -8,10 +8,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
-=======
-import android.view.WindowManager;
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -21,10 +17,6 @@ import com.teamdk.android.bakery.setting.SettingMain;
 import com.teamdk.android.bakery.utility.ColorTheme;
 import com.teamdk.android.bakery.utility.NoScrollViewPager;
 import com.teamdk.android.bakery.utility.SharedPreferenceManager;
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
-=======
-import com.teamdk.android.bakery.utility.Utility;
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
 
 public class ActivityMenu extends AppCompatActivity
 {
@@ -36,18 +28,10 @@ public class ActivityMenu extends AppCompatActivity
     private TabLayout tabLayout;
     private TextView textViewTitle;
 
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
     private int selectedTabColor ;
     private int unselectedTabColor;
 
     private ActivityMenuPagerAdapter mAdapter;
-=======
-    private ActivityMenuPagerAdapter mAdapter;
-    private NoScrollViewPager viewPager;
-
-    private int REQUEST_SETTING = 1001;
-    private int nowPosition;
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -55,7 +39,6 @@ public class ActivityMenu extends AppCompatActivity
         super.onCreate(savedInstanceState);
         this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_menu);
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
         selectedTabColor = ContextCompat.getColor(this, R.color.gray80);
         unselectedTabColor = ContextCompat.getColor(this, R.color.gray160);
 
@@ -65,39 +48,16 @@ public class ActivityMenu extends AppCompatActivity
 
         tabLayoutInitialize(tabLayout);
         initializeColor();
-=======
-
-        tabLayout = (TabLayout)findViewById(R.id.tabLayout);
-
-        textViewTitle = (TextView)findViewById(R.id.textView_title);
-
-        nowPosition = 2 - (new SharedPreferenceManager()).getInt("set_start", this);
-        tabLayoutInitialize();
-        reloadViewPager();
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
 
         Button mButtonSetting = (Button) findViewById(R.id.btn_setting);
         mButtonSetting.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
                 startActivity(new Intent(getApplicationContext(), SettingMain.class));
             }
         });
 
         final NoScrollViewPager viewPager = (NoScrollViewPager)findViewById(R.id.viewPager);
-=======
-                Intent intent = new Intent(getApplicationContext(), SettingMain.class);
-                startActivityForResult(intent, REQUEST_SETTING);
-            }
-        });
-    }
-
-    public void reloadViewPager()
-    {
-        viewPager = null;
-        viewPager = (NoScrollViewPager)findViewById(R.id.viewPager);
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
         mAdapter = new ActivityMenuPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(mAdapter);
         viewPager.setPagingDisabled();
@@ -111,18 +71,7 @@ public class ActivityMenu extends AppCompatActivity
                 //view.findViewById(R.id.icon).getBackground().setColorFilter(selectedTabColor, PorterDuff.Mode.SRC_IN);
                 textViewTitle.setText(tabStringResIds[tab.getPosition()]);
                 viewPager.setCurrentItem(tab.getPosition());
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
 
-=======
-                if(tab.getPosition() != 0) {
-                    Utility.hideSoftKeyboard(ActivityMenu.this);
-                    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-                }
-                else{
-                    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-                }
-                nowPosition = viewPager.getCurrentItem();
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
             }
 
             @Override
@@ -138,22 +87,7 @@ public class ActivityMenu extends AppCompatActivity
             }
         });
 
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
         tabLayout.getTabAt(2 - (new SharedPreferenceManager()).getInt("set_start", this)).select();
-=======
-        viewPager.setCurrentItem(nowPosition);
-        tabLayout.getTabAt(nowPosition).select();
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent Data) {
-        super.onActivityResult(requestCode, resultCode, Data);
-
-        if(requestCode == REQUEST_SETTING) {
-            if (resultCode == RESULT_OK) {
-                reloadViewPager();
-            }
-        }
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
     }
 
     @Override
@@ -175,25 +109,14 @@ public class ActivityMenu extends AppCompatActivity
         //super.onBackPressed();
     }
 
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
     public void tabLayoutInitialize(TabLayout tabLayout)
     {
         int[] tabMipmapResIds = {
             R.mipmap.icon_mileage,
-=======
-    public void tabLayoutInitialize()
-    {
-        int[] tabMipmapResIds = {
-            R.mipmap.icon_menu_point,
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
             R.mipmap.icon_menu_user,
             R.mipmap.icon_menu_item
         };
 
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
-=======
-        tabLayout.removeAllTabs();
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
         for (int i = 0; i < tabMipmapResIds.length; i++)
         {
             TabLayout.Tab tab = tabLayout.newTab();
@@ -204,13 +127,6 @@ public class ActivityMenu extends AppCompatActivity
             tabLayout.addTab(tab);
         }
 
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
-=======
-        tabLayout.getTabAt(0).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
-        tabLayout.getTabAt(1).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
-        tabLayout.getTabAt(2).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
-
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
         /*
         for (int i = 0; i < tabMipmapResIds.length; i++)
         {
@@ -233,13 +149,9 @@ public class ActivityMenu extends AppCompatActivity
         //view.findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
         //view = (LinearLayout)tabLayout.getTabAt(1).getCustomView();
         //.findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
         tabLayout.getTabAt(0).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
         tabLayout.getTabAt(1).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
         tabLayout.getTabAt(2).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
-=======
-
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenu.java
         //view.findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
 
         /*

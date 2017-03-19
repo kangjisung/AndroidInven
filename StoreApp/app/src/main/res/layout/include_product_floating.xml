@@ -13,7 +13,7 @@
 
 
         <com.github.clans.fab.FloatingActionMenu
-            android:id="@+id/fam_menu"
+            android:id="@+id/menu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingEnd="10dp"
@@ -29,22 +29,22 @@
             fab:menu_fab_label="">
 
             <com.github.clans.fab.FloatingActionButton
-                android:src="@mipmap/fab_sort"
-                android:id="@+id/fab_sort"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:fab_colorNormal="?attr/theme_color_type1"
-                app:fab_colorPressed="@color/gray200"
-                fab:fab_label="정렬"/>
+                android:id="@+id/fab_add_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_floating_add"
+                fab:fab_colorNormal="?attr/theme_color_type1"
+                fab:fab_colorPressed="@color/gray160"
+                fab:fab_label="새 제품 추가" />
 
             <com.github.clans.fab.FloatingActionButton
-                android:src="@mipmap/fab_add_product"
-                android:id="@+id/fab_add"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:fab_colorNormal="?attr/theme_color_type1"
-                app:fab_colorPressed="@color/gray200"
-                fab:fab_label="새 제품 추가"/>
+                android:id="@+id/fab_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_floating_stamp"
+                fab:fab_colorNormal="?attr/theme_color_type1"
+                fab:fab_colorPressed="@color/gray160"
+                fab:fab_label="정렬" />
 
         </com.github.clans.fab.FloatingActionMenu>
 

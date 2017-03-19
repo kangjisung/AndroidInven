@@ -1,16 +1,8 @@
 package com.teamdk.android.bakery;
 
-<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenuPagerAdapter.java
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-=======
-import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.view.inputmethod.InputMethodManager;
->>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/ActivityMenuPagerAdapter.java
 
 import com.teamdk.android.bakery.fragments.product.ProductMain;
 import com.teamdk.android.bakery.fragments.point.PointMain;

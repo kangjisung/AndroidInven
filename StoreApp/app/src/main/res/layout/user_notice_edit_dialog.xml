@@ -232,7 +232,7 @@
 
                         <android.support.v7.widget.AppCompatImageView
                             android:layout_centerVertical="true"
-                            android:background="@mipmap/icon_calendar"
+                            android:background="@mipmap/calender"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             app:backgroundTint="@color/gray80" />
@@ -278,7 +278,7 @@
 
                         <android.support.v7.widget.AppCompatImageView
                             android:layout_centerVertical="true"
-                            android:background="@mipmap/icon_calendar"
+                            android:background="@mipmap/calender"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             app:backgroundTint="@color/gray80" />
