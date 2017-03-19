@@ -13,8 +13,6 @@ import com.teamdk.android.bakery.utility.NoScrollViewPager;
 public class ActivityStoreAdd extends AppCompatActivity {
     NoScrollViewPager viewPager;
     ActivityStoreAddPagerAdapter pagerAdapter;
-    EditText StoreName, StoreAddress, StorePhone;
-    Button StoreAddBtn;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

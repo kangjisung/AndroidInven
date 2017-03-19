@@ -7,11 +7,9 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.AppCompatImageView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +18,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.teamdk.android.bakery.objectmanager.ProductListItem;
 import com.teamdk.android.bakery.objectmanager.ProductObjectManager;
 import com.teamdk.android.bakery.R;
@@ -28,6 +27,7 @@ import com.teamdk.android.bakery.utility.LayoutManager;
 import com.teamdk.android.bakery.utility.NoScrollViewPager;
 import com.teamdk.android.bakery.utility.FirstPageFragmentListener;
 import com.github.clans.fab.FloatingActionMenu;
+import com.teamdk.android.bakery.utility.SharedPreferenceManager;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -48,11 +48,13 @@ public class ProductMain extends Fragment {
     private Calendar nowDate;
     private Calendar selectedDate;
     private TabLayout tabLayout;
+    private ProductMainPagerAdapter adapter;
+    private SharedPreferenceManager mSharedPreferenceManager;
 
     // TODO : 정렬 초기값 결정
-    private int tabPosition = 1;
-    private int sortStateImageView = R.id.iv_sort_name;
-    private int sortStateTextView = R.id.tv_sort_name;
+    private int tabPosition;
+    private int sortStateImageView;
+    private int sortStateTextView;
 
     public ProductMain() {
     }
@@ -74,7 +76,7 @@ public class ProductMain extends Fragment {
         tvFragmentItemMain=(TextView) rootView.findViewById(R.id.tv_fragment_item_main);
         tvFragmentItemMainDate=(TextView) rootView.findViewById(R.id.tv_fragment_item_main_date);
 
-        final ProductMainPagerAdapter adapter = new ProductMainPagerAdapter(getFragmentManager());
+        adapter = new ProductMainPagerAdapter(getFragmentManager());
         noScrollViewPager.setAdapter(adapter);
         noScrollViewPager.setPagingDisabled();
         noScrollViewPager.setOffscreenPageLimit(3);
@@ -82,6 +84,22 @@ public class ProductMain extends Fragment {
         btnSellToday.setOnClickListener(onClickSelectButton);
         //////////////////
         changeSelection(0);
+
+        mSharedPreferenceManager = new SharedPreferenceManager();
+
+        View layoutFloating1 = rootView.findViewById(R.id.layout_floating1);
+        View layoutFloating2 = rootView.findViewById(R.id.layout_floating2);
+        if(mSharedPreferenceManager.getInt("set_menu", getContext()) == 0) {
+            layoutFloating1.findViewById(R.id.fab_add).setOnClickListener(onFabClickListener);
+            layoutFloating1.findViewById(R.id.fab_sort).setOnClickListener(onFabClickListener);
+            layoutFloating2.setVisibility(View.GONE);
+            famMenu = (FloatingActionMenu) layoutFloating1.findViewById(R.id.fam_menu);
+        }
+        else{
+            layoutFloating2.findViewById(R.id.fab_add).setOnClickListener(onFabClickListener);
+            layoutFloating2.findViewById(R.id.fab_sort).setOnClickListener(onFabClickListener);
+            layoutFloating1.setVisibility(View.GONE);
+        }
 
         nowDate = Calendar.getInstance();
         tvFragmentItemMain.setText("일일판매량");
@@ -114,7 +132,7 @@ public class ProductMain extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         nowDate = selectedDate;
                         tvFragmentItemMainDate.setText((new SimpleDateFormat("yyyy년 M월 d일", Locale.KOREA)).format(nowDate.getTime()));
-                        ProductObjectManager.productLoad(nowDate.getTime());
+                        ProductObjectManager.load(nowDate.getTime(), getContext());
                         dialog.dismiss();
                     }
                 });
@@ -166,16 +184,25 @@ public class ProductMain extends Fragment {
         rootView.findViewById(R.id.fab_add).setOnClickListener(onFabClickListener);
         rootView.findViewById(R.id.fab_sort).setOnClickListener(onFabClickListener);
 
-        DrawerLayout layoutDrawer = (DrawerLayout) rootView.findViewById(R.id.layout_product_drawer);
-        layoutDrawer.setScrimColor(ContextCompat.getColor(getContext(), R.color.alpha80));
-        Button mButtonSortName = (Button) layoutDrawer.findViewById(R.id.btn_sort_name);
-        Button mButtonSortAdd = (Button) layoutDrawer.findViewById(R.id.btn_add);
-        Button mButtonSortModify = (Button) layoutDrawer.findViewById(R.id.btn_modify);
+        final SlidingUpPanelLayout layoutSliding = (SlidingUpPanelLayout) rootView.findViewById(R.id.layout_sliding);
+        layoutSliding.setFadeOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                layoutSliding.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+            }
+        });
+        //layoutSliding.color.setScrimColor(ContextCompat.getColor(getContext(), R.color.alpha80));
+        Button mButtonSortName = (Button) rootView.findViewById(R.id.btn_sort_name);
+        Button mButtonSortAdd = (Button) rootView.findViewById(R.id.btn_add);
+        Button mButtonSortSales = (Button) rootView.findViewById(R.id.btn_sales);
         mButtonSortName.setOnClickListener(onButtonSortClickListener);
         mButtonSortAdd.setOnClickListener(onButtonSortClickListener);
-        mButtonSortModify.setOnClickListener(onButtonSortClickListener);
+        mButtonSortSales.setOnClickListener(onButtonSortClickListener);
+        tabPosition = mSharedPreferenceManager.getInt("product_sort_order", getContext());
+        sortStateImageView = mSharedPreferenceManager.getInt("product_sort_mode_iv", getContext());
+        sortStateTextView = mSharedPreferenceManager.getInt("product_sort_mode_tv", getContext());
 
-        tabLayout = (TabLayout) layoutDrawer.findViewById(R.id.tabLayout);
+        tabLayout = (TabLayout) rootView.findViewById(R.id.tabLayout);
         TabLayout.Tab tab = tabLayout.getTabAt(tabPosition);
         tab.select();
         tabLayout.setTabTextColors(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D2), ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D4));
@@ -211,7 +238,7 @@ public class ProductMain extends Fragment {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
                         if(((ProductEditDialog)dialog).getDismissMessage() == 1) {
-                            ProductObjectManager.productLoad(nowDate.getTime());
+                            ProductObjectManager.load(nowDate.getTime(), getContext());
                         }
                     }
                 });
@@ -286,16 +313,17 @@ public class ProductMain extends Fragment {
                 acivUnselectDot = (AppCompatImageView)rootView.findViewById(R.id.aciv_sell_today_dot);
                 break;
         }
-
         acivSelectIcon.setSupportBackgroundTintList(ColorStateList.valueOf(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D3)));
         acivSelectDot.setSupportBackgroundTintList(ColorStateList.valueOf(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D3)));
-        acivUnselectIcon.setSupportBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.alpha40)));
+        acivUnselectIcon.setSupportBackgroundTintList(ColorStateList.valueOf(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D3)));
         acivUnselectDot.setSupportBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.transparent)));
+        acivSelectIcon.setAlpha(1.0f);
+        acivUnselectIcon.setAlpha(0.3f);
     }
 
     public static ProductMain createInstance(FirstPageFragmentListener listener){
         ProductMain fragmentItemMain=new ProductMain();
-        fragmentItemMain.firstPageListener=listener;
+        fragmentItemMain.firstPageListener = listener;
         return fragmentItemMain;
     }
 
@@ -315,9 +343,9 @@ public class ProductMain extends Fragment {
                     sortStateTextView = R.id.tv_sort_add;
                     onSortItem();
                     break;
-                case R.id.btn_modify:
-                    sortStateImageView = R.id.iv_sort_modify;
-                    sortStateTextView = R.id.tv_sort_modify;
+                case R.id.btn_sales:
+                    sortStateImageView = R.id.iv_sort_sales;
+                    sortStateTextView = R.id.tv_sort_sales;
                     onSortItem();
                     break;
                 default:
@@ -328,22 +356,32 @@ public class ProductMain extends Fragment {
 
     private void onSortItem()
     {
-        switch(sortStateImageView){
-            case R.id.iv_sort_name:
-                if(tabPosition == 0){
-                    ProductObjectManager.sortByNameAsc();
-                }
-                else{
-                    ProductObjectManager.sortByNameDesc();
-                }
+        String sortOrder = "ASC";
+        String sortMode = "NAME";
+        switch(tabPosition){
+            case 0:
+                sortOrder = "ASC";
                 break;
-            case R.id.iv_sort_add:
-                // TODO ; 여기에 정렬 추가
-                break;
-            case R.id.iv_sort_modify:
-                // TODO : 여기에 정렬 추가
+            case 1:
+                sortOrder = "DESC";
                 break;
         }
+        switch(sortStateImageView){
+            case R.id.iv_sort_name:
+                sortMode = "NAME";
+                break;
+            case R.id.iv_sort_add:
+                sortMode = "ADDEDDATE";
+                break;
+            case R.id.iv_sort_sales:
+                sortMode = "SALES";
+                break;
+        }
+        mSharedPreferenceManager.putInt("product_sort_order", tabPosition, getContext());
+        mSharedPreferenceManager.putInt("product_sort_mode_iv", sortStateImageView, getContext());
+        mSharedPreferenceManager.putInt("product_sort_mode_tv", sortStateTextView, getContext());
+        ProductObjectManager.setSortOption(sortMode, sortOrder);
+        ProductObjectManager.sort();
         rootView.findViewById(sortStateImageView).setVisibility(View.VISIBLE);
         ((TextView) rootView.findViewById(sortStateTextView)).setTextColor(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_type1));
     }
@@ -360,14 +398,21 @@ public class ProductMain extends Fragment {
                         @Override
                         public void onDismiss(DialogInterface dialog) {
                             if(((ProductEditDialog)dialog).getDismissMessage() == 1){
-                                ProductObjectManager.productLoad(nowDate.getTime());
+                                ProductObjectManager.load(nowDate.getTime(), getContext());
                             }
                         }
                     });
                     break;
                 case R.id.fab_sort:
+                    SlidingUpPanelLayout layoutSliding = (SlidingUpPanelLayout) getActivity().findViewById(R.id.layout_sliding);
+                    layoutSliding.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
+                    /*
                     DrawerLayout drawerLayout = (DrawerLayout) getActivity().findViewById(R.id.layout_product_drawer);
                     drawerLayout.openDrawer(Gravity.RIGHT);
+                    */
+                    if(famMenu != null){
+                        famMenu.close(true);
+                    }
                     break;
             }
         }

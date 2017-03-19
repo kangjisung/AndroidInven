@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.teamdk.android.bakery.fragments.user.adapter.UserNoticeListAdapter;
 import com.teamdk.android.bakery.objectmanager.NoticeListItem;
@@ -77,13 +78,18 @@ public class UserNoticeMain extends Fragment
     }
 
     private void reloadRecyclerView() {
-        mAdapter = new UserNoticeListAdapter();
-        NoticeObjectManager.load(getContext());
-        mAdapter.sort();
-        listView.setAdapter(mAdapter);
-        registerForContextMenu(listView);
-        mAdapter.notifyDataSetChanged();
-        listViewHeightSet(mAdapter, listView);
+        try{
+            mAdapter = new UserNoticeListAdapter();
+            NoticeObjectManager.load(getContext());
+            mAdapter.sort();
+            listView.setAdapter(mAdapter);
+            registerForContextMenu(listView);
+            mAdapter.notifyDataSetChanged();
+            listViewHeightSet(mAdapter, listView);
+        }
+        catch(Exception ex){
+            Toast.makeText(getContext(), "목록을 불러오는데 실패했습니다.", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
