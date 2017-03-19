@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:id="@+id/layout"
     android:layout_height="match_parent">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_fragment_much_store"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:paddingBottom="60dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"></android.support.v7.widget.RecyclerView>
 </LinearLayout>

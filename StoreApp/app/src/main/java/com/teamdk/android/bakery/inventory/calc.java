@@ -5,6 +5,7 @@ package com.teamdk.android.bakery.inventory;
  */
 
 import com.teamdk.android.bakery.MainActivity;
+import com.teamdk.android.bakery.utility.NetworkManager.NetworkModule;
 import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
 
 import java.text.DateFormat;
@@ -67,7 +68,7 @@ public class calc extends MainActivity {
             if (DBstring[cnt] != null) {
                 c = Integer.parseInt(DBstring[cnt]);
                 p = Integer.parseInt(DBstring[cnt + 1]);
-                s = Integer.parseInt(DBstring[cnt + 2]);
+                s = (DBstring[cnt + 2] == null)?(0):(Integer.parseInt(DBstring[cnt + 2]));
                 cnt += 3;
             } else if (DBstring[cnt] == null) break;
         }
@@ -131,7 +132,7 @@ public class calc extends MainActivity {
         //monAvg도 마찬가지for(m=0;m<7;m++){case (db-판매량의 월==ㅡm-->불러와서 그 값들의 평균을 monAvg[m]에 저장}
 
         //////m 구하기 //m전체평균판매량
-        new ClientDataBase("select avg(`판매량`) from `제품판매량` `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\")",1,1, MainActivity.con);
+        new ClientDataBase("select avg(`판매량`) from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\")",1,1, MainActivity.con);
         cnt = 0;
         m=Double.parseDouble(DBstring[cnt]);
 
@@ -202,7 +203,11 @@ public class calc extends MainActivity {
     public void calcQ() {
         cal = Calendar.getInstance();
         Q = (int) (FM + ((v / 2) * (sqrt((p - c) / (c - s)) - sqrt((c - s) / (p - c))))) + 1; //최적재고량 계산
-        new ClientDataBase("insert into `최적재고량` (`제품코드`,`최적재고량`,`날짜`) values ((select `제품코드` from `제품정보` where `이름`=\""+name+"\"),"+Q+",\"" + cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) +1) + "-" + (cal.get(Calendar.DATE)+1) + "\");",2,0,MainActivity.con);
+        new ClientDataBase("select `제품코드` from `제품정보` where `이름`=\""+name+"\"",1,1,MainActivity.con);
+        String ProductNum =DBstring[0];
+        new ClientDataBase("insert into `최적재고량` (`제품코드`,`최적재고량`,`날짜`) values (\""+ProductNum+"\","+Q+",\"" + cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) +1) + "-" + (cal.get(Calendar.DATE)+1) + "\");",2,0,MainActivity.con);
+        NetworkModule networkModule=new NetworkModule();
+        networkModule.InsertProductOptimalStock(Integer.parseInt(ProductNum),Q,""+ cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) +1) + "-" + (cal.get(Calendar.DATE)+1) + "");//서버에 최적재고량 넣기 (제품코드,최적재고량, 날짜)
     }
     ////////////////////////////////////////////그래프용 calc2
     public int calcQ2(){

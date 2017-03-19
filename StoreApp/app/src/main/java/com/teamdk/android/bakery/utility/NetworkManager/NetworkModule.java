@@ -11,12 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.teamdk.android.bakery.MainActivity.PriNum;
-import static com.teamdk.android.bakery.objectmanager.ProductObjectManager.context;
 import static com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase.DBstring;
-
-/**
- * Created by stories2 on 2017. 2. 4..
- */
 
 public class NetworkModule {
     HttpCommunicationProcess httpCommunicationProcess;
@@ -138,11 +133,11 @@ public class NetworkModule {
     }
 
     ///마일리지 업데이트
-    public void InsertMileageLog(String customerAndStoreRegisteredId, String mileageSize, String changeDate) { //고유등록번호,마일리지량,바뀐날짜
+    public void InsertMileageLog(String customerAndStoreRegisteredId, String mileageSize) { //고유등록번호,마일리지량,바뀐날짜
         httpCommunicationProcess = new HttpCommunicationProcess();
         String responseRawDate = null;
         try {
-            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/InsertMileageLog/?customerAndStoreRegisteredId=" + customerAndStoreRegisteredId + "&mileageSize=" + mileageSize + "&changeDate=" + changeDate +"").get();
+            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/InsertMileageLog/?customerAndStoreRegisteredId=" + customerAndStoreRegisteredId + "&mileageSize=" + mileageSize +"").get();
             Log.d(logCatTag, responseRawDate);
             JSONObject jsonObject = new JSONObject(responseRawDate);
             if (jsonObject.getString("Result").equals("OK")) {

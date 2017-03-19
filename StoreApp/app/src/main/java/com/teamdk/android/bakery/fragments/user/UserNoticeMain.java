@@ -14,13 +14,17 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.teamdk.android.bakery.fragments.user.adapter.UserNoticeListAdapter;
 import com.teamdk.android.bakery.objectmanager.NoticeListItem;
 import com.teamdk.android.bakery.objectmanager.NoticeObjectManager;
 import com.teamdk.android.bakery.R;
+import com.teamdk.android.bakery.utility.NetworkManager.NetworkModule;
 import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
 import com.teamdk.android.bakery.utility.LayoutManager;
+
+import static com.teamdk.android.bakery.MainActivity.PriNum;
 
 public class UserNoticeMain extends Fragment
 {
@@ -77,13 +81,18 @@ public class UserNoticeMain extends Fragment
     }
 
     private void reloadRecyclerView() {
-        mAdapter = new UserNoticeListAdapter();
-        NoticeObjectManager.load(getContext());
-        mAdapter.sort();
-        listView.setAdapter(mAdapter);
-        registerForContextMenu(listView);
-        mAdapter.notifyDataSetChanged();
-        listViewHeightSet(mAdapter, listView);
+        try{
+            mAdapter = new UserNoticeListAdapter();
+            NoticeObjectManager.load(getContext());
+            mAdapter.sort();
+            listView.setAdapter(mAdapter);
+            registerForContextMenu(listView);
+            mAdapter.notifyDataSetChanged();
+            listViewHeightSet(mAdapter, listView);
+        }
+        catch(Exception ex){
+            Toast.makeText(getContext(), "목록을 불러오는데 실패했습니다.", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -106,6 +115,8 @@ public class UserNoticeMain extends Fragment
                     public void onClick(DialogInterface dialog, int which) {
                         String query = String.format("DELETE FROM `매장공지` WHERE `코드` = %d;" + "" + "", listItem.getNum());
                         new ClientDataBase(query, 1, 0, getContext());
+                        NetworkModule networkModule=new NetworkModule();
+                        networkModule.DelStoreNoticeInfo(Integer.parseInt(PriNum),listItem.getNum()); //서버에 공지삭제(매장번호랑,공지코드)
                         reloadRecyclerView();
                     }
                 });

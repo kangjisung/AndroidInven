@@ -1,6 +1,5 @@
 <resources>
     <style name="LikeRoomTheme" parent="Theme.AppCompat.Light.NoActionBar">
-
     </style>
     <style name="LikeRoomTheme_StrawBerryTheme" parent="@style/LikeRoomTheme">
         <item name="theme_color_L4">#fff4f6</item>

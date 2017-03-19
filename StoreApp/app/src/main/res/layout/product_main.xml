@@ -1,14 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
+<com.sothree.slidinguppanel.SlidingUpPanelLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_sliding"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layout_product_drawer">
+    sothree:umanoPanelHeight="0dp"
+    sothree:umanoShadowHeight="4dp"
+    android:gravity="top"
+    app:umanoFadeColor="@color/alpha60"
+    app:umanoOverlay="true">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -56,7 +63,7 @@
                             android:layout_centerInParent="true">
 
                             <android.support.v7.widget.AppCompatImageView
-                                android:background="@mipmap/disable_sell_today"
+                                android:background="@mipmap/icon_sell_today"
                                 app:backgroundTint="@color/gray220"
                                 android:layout_centerInParent="true"
                                 android:layout_marginBottom="5dp"
@@ -95,7 +102,7 @@
                             android:layout_centerInParent="true">
 
                             <android.support.v7.widget.AppCompatImageView
-                                android:background="@mipmap/disable_store_much"
+                                android:background="@mipmap/icon_much_store"
                                 app:backgroundTint="@color/gray220"
                                 android:layout_centerInParent="true"
                                 android:layout_marginBottom="5dp"
@@ -150,7 +157,7 @@
                     android:orientation="horizontal">
 
                     <android.support.v7.widget.AppCompatImageView
-                        android:background="@mipmap/calender"
+                        android:background="@mipmap/icon_calendar"
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="5dp"
                         app:backgroundTint="?attr/theme_color_D3"
@@ -161,12 +168,10 @@
                         android:id="@+id/tv_fragment_item_main_date"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-
                         android:text="[날짜]"
                         android:gravity="center_vertical"
                         android:textColor="?attr/theme_color_D3"
                         android:textSize="16dp" />
-
 
                     <TextView
                         android:id="@+id/tv_fragment_item_main"
@@ -186,13 +191,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <android.support.design.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/layout_floating1">
+                    <include layout="@layout/include_product_floating" />
+
+                </android.support.design.widget.CoordinatorLayout>
+
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:id="@+id/layout_floating2">
 
                     <com.github.clans.fab.FloatingActionButton
                         android:src="@mipmap/fab_sort"
@@ -230,17 +244,17 @@
                 android:layout_height="3dp" />
 
         </RelativeLayout>
+
     </FrameLayout>
 
     <RelativeLayout
-        android:layout_height="match_parent"
-        android:layout_gravity="right"
+        android:layout_height="wrap_content"
         android:background="@color/white"
-        android:layout_width="200dp">
+        android:layout_width="match_parent">
 
         <include
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             layout="@layout/include_product_drawer" />
     </RelativeLayout>
-</android.support.v4.widget.DrawerLayout>
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

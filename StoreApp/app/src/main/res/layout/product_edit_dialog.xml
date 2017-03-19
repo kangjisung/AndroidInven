@@ -72,7 +72,6 @@
                             android:layout_marginStart="5dp"
                             android:textColor="?attr/theme_color_N"
                             android:textSize="14dp"
-                            android:layout_weight="0"
                             android:layout_width="50dp"
                             android:textStyle="bold" />
 
@@ -83,9 +82,8 @@
                             android:background="@color/transparent"
                             android:textColor="?attr/theme_color_D3"
                             android:textSize="20dp"
-                            android:maxLength="16"
-                            android:maxLines="2"
-                            android:layout_weight="1"
+                            android:maxLength="20"
+                            android:maxLines="3"
                             android:layout_marginStart="15dp"
                             android:inputType="textMultiLine"
                             android:imeOptions="actionDone" />
@@ -108,7 +106,6 @@
                             android:layout_marginStart="5dp"
                             android:textColor="?attr/theme_color_N"
                             android:textSize="14dp"
-                            android:layout_weight="0"
                             android:layout_width="50dp"
                             android:textStyle="bold" />
 
@@ -121,7 +118,6 @@
                             android:textSize="20dp"
                             android:maxLength="10"
                             android:maxLines="1"
-                            android:layout_weight="1"
                             android:layout_marginStart="15dp"
                             android:inputType="number"
                             android:numeric="signed" />
@@ -144,7 +140,6 @@
                             android:layout_marginStart="5dp"
                             android:textColor="?attr/theme_color_N"
                             android:textSize="14dp"
-                            android:layout_weight="0"
                             android:layout_width="50dp"
                             android:textStyle="bold" />
 
@@ -157,7 +152,6 @@
                             android:textSize="20dp"
                             android:maxLength="10"
                             android:maxLines="1"
-                            android:layout_weight="1"
                             android:layout_marginStart="15dp"
                             android:inputType="number"
                             android:numeric="signed" />
@@ -180,7 +174,6 @@
                             android:layout_marginStart="5dp"
                             android:textColor="?attr/theme_color_N"
                             android:textSize="14dp"
-                            android:layout_weight="0"
                             android:layout_width="50dp"
                             android:textStyle="bold" />
 
@@ -193,7 +186,6 @@
                             android:textSize="20dp"
                             android:maxLength="10"
                             android:maxLines="1"
-                            android:layout_weight="1"
                             android:layout_marginStart="15dp"
                             android:inputType="number"
                             android:numeric="signed"

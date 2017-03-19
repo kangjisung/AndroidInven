@@ -23,6 +23,7 @@ public class SettingCreatedby extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(0, 0);
             }
         });
     }
