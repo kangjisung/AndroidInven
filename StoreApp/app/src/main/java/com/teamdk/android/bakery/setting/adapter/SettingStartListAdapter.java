@@ -22,10 +22,12 @@ public class SettingStartListAdapter extends BaseAdapter {
     private SharedPreferenceManager mSharedPreferenceManager = new SharedPreferenceManager();
     private Context context;
     private Context appContext;
+    private String mode;
 
-    public SettingStartListAdapter(Context appContext) {
+    public SettingStartListAdapter(Context appContext, String mode) {
         super();
         this.appContext = appContext;
+        this.mode = mode;
     }
 
     @Override
@@ -46,7 +48,7 @@ public class SettingStartListAdapter extends BaseAdapter {
         mLayoutTheme.setVisibility(View.GONE);
 
         mTextViewName.setText(mStartListItem.get(position));
-        if(mSharedPreferenceManager.getInt("set_start", context) == position){
+        if(mSharedPreferenceManager.getInt(mode, context) == position){
             mTextViewName.setTextColor(ColorTheme.getThemeColorRGB(appContext, R.attr.theme_color_type1));
             mImageViewCheck.setVisibility(View.VISIBLE);
         }

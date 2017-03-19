@@ -3,6 +3,11 @@ package com.teamdk.android.bakery.fragments.product;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+<<<<<<< HEAD
+=======
+import android.text.Editable;
+import android.text.TextWatcher;
+>>>>>>> refs/remotes/origin/store-app-byeongmun
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -16,7 +21,10 @@ import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
 import com.teamdk.android.bakery.utility.LayoutManager;
 
 import static com.teamdk.android.bakery.MainActivity.PriNum;
+<<<<<<< HEAD
 import static com.teamdk.android.bakery.objectmanager.ProductObjectManager.context;
+=======
+>>>>>>> refs/remotes/origin/store-app-byeongmun
 import static com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
 public class ProductEditDialog extends Dialog
@@ -57,9 +65,15 @@ public class ProductEditDialog extends Dialog
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
+<<<<<<< HEAD
         setContentView(R.layout.product_add_dialog);
 
         LayoutManager.setDialogTitle(findViewById(R.id.layout_title), true, false, "새 제품 추가");
+=======
+        setContentView(R.layout.product_edit_dialog);
+
+
+>>>>>>> refs/remotes/origin/store-app-byeongmun
         findViewById(R.id.inc_btn_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +85,7 @@ public class ProductEditDialog extends Dialog
         Productcost=(EditText)findViewById(R.id.editText_cost);
         Productprice=(EditText)findViewById(R.id.editText_price);
         Productresidual=(EditText)findViewById(R.id.editText_residual);
+<<<<<<< HEAD
 
         if(mode == "MODIFY"){
             new ClientDataBase("select `제품코드`, `원가`,`판매가`,`잔존가` from `제품정보` where `이름`=\""+modifyItem.getName()+"\"",1,4,context);
@@ -86,6 +101,33 @@ public class ProductEditDialog extends Dialog
             if(DBstring[3]!=null) {
                 Productresidual.setText(DBstring[3]);
             }
+=======
+        Productname.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void afterTextChanged(Editable s) {
+                for(int i = s.length()-1; i >= 0; i--){
+                    if(s.charAt(i) == '\n'){
+                        s.delete(i, i + 1);
+                        return;
+                    }
+                }
+            }
+        });
+
+        if(mode == "ADD"){
+            LayoutManager.setDialogTitle(findViewById(R.id.layout_title), true, false, "새 제품 추가");
+        }
+        else{
+            LayoutManager.setDialogTitle(findViewById(R.id.layout_title), true, false, "새 제품 수정");
+            proDuct = modifyItem.getNum();
+            Productcost.setText(modifyItem.getCost());
+            Productprice.setText(modifyItem.getPrice());
+            Productresidual.setText(modifyItem.getResidual());
+>>>>>>> refs/remotes/origin/store-app-byeongmun
             Productname.setText(modifyItem.getName());
         }
 
@@ -93,7 +135,11 @@ public class ProductEditDialog extends Dialog
         mOKButton.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View onClickView){
+<<<<<<< HEAD
                 new ClientDataBase("select `제품코드` from `제품정보` where `이름`=\"" + Productname.getText().toString()+"\"", 1,1,context);
+=======
+                new ClientDataBase("select `제품코드` from `제품정보` where `이름`=\"" + Productname.getText().toString()+"\"", 1,1,getContext());
+>>>>>>> refs/remotes/origin/store-app-byeongmun
                 if(Productname.getText().length() == 0){
                     Toast.makeText(getContext(), "제품 이름을 입력해야 합니다.", Toast.LENGTH_LONG).show();
                     return;
@@ -115,10 +161,17 @@ public class ProductEditDialog extends Dialog
                     }
                     else {
                         query = "insert into `제품정보` (`매장번호`, `이름`,`원가`,`판매가`,`잔존가`,`등록일`,`사용여부`) values (" + PriNum + ", \"" + Productname.getText().toString() + "\"," + Productcost.getText().toString() + "," + Productprice.getText().toString() + "," + putResidual + ",(select date('now')),\"true\");";
+<<<<<<< HEAD
                         new ClientDataBase(query, 2, 0, context);
 
                         query ="select `제품코드` from `제품정보` where `이름`=\""+ Productname.getText().toString() + "\"";
                         new ClientDataBase(query,1,1,context);
+=======
+                        new ClientDataBase(query, 2, 0, getContext());
+
+                        query ="select `제품코드` from `제품정보` where `이름`=\""+ Productname.getText().toString() + "\"";
+                        new ClientDataBase(query, 1, 1, getContext());
+>>>>>>> refs/remotes/origin/store-app-byeongmun
                         if(DBstring[0]!=null) {
                             proDuct = Integer.parseInt(DBstring[0]);
 
@@ -137,7 +190,11 @@ public class ProductEditDialog extends Dialog
                         return;
                     }
                     else{
+<<<<<<< HEAD
                         new ClientDataBase("update `제품정보` set `이름`=\"" + Productname.getText().toString() + "\",`원가`=" + Productcost.getText().toString() + ",`판매가`=" + Productprice.getText().toString() + ",`잔존가`=" + putResidual + " where `제품코드`=" + proDuct + "", 2, 0, context);
+=======
+                        new ClientDataBase("update `제품정보` set `이름`=\"" + Productname.getText().toString() + "\",`원가`=" + Productcost.getText().toString() + ",`판매가`=" + Productprice.getText().toString() + ",`잔존가`=" + putResidual + " where `제품코드`=" + proDuct + "", 2, 0, getContext());
+>>>>>>> refs/remotes/origin/store-app-byeongmun
                         NetworkModule networkModule = new NetworkModule();
                         networkModule.UpdateRegisteredProductName(Integer.parseInt(PriNum), proDuct, Productname.getText().toString(), Integer.parseInt(Productcost.getText().toString()), Integer.parseInt(Productprice.getText().toString()), Integer.parseInt(putResidual));
 

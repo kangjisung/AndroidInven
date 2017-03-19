@@ -81,6 +81,7 @@ public class NetworkModule {
 
         } catch (Exception err) {
             Log.d(logCatTag, "Error in LoadAllStoreInfo: " + err.getMessage());
+<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/utility/NetworkManager/NetworkModule.java
         }
     }
 
@@ -149,6 +150,8 @@ public class NetworkModule {
         }
         catch (Exception err) {
             Log.d(logCatTag, "Error in GetCustomerRegisteredInfo: " + err.getMessage());
+=======
+>>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/utility/NetworkManager/NetworkModule.java
         }
         return allCustomerInfoData;
     }

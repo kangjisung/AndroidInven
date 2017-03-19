@@ -38,7 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/view_text"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textSize="16dp" />
 
         <RelativeLayout
             android:layout_width="wrap_content"

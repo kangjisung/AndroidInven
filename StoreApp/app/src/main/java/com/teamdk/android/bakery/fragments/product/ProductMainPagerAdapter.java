@@ -6,11 +6,19 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class ProductMainPagerAdapter extends FragmentStatePagerAdapter {
 
+<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/ProductMainPagerAdapter.java
         public ProductMainPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
+=======
+    public ProductMainPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+    @Override
+>>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/product/ProductMainPagerAdapter.java
     public Fragment getItem(int position)
     {
         switch (position) {

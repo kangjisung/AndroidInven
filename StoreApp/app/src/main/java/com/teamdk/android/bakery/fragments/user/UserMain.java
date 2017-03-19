@@ -6,6 +6,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserMain.java
+=======
+import android.support.v7.util.SortedList;
+>>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserMain.java
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -30,6 +34,13 @@ import com.teamdk.android.bakery.R;
 import com.teamdk.android.bakery.utility.LayoutManager;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserMain.java
+=======
+import com.teamdk.android.bakery.utility.SharedPreferenceManager;
+
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserMain.java
 
 public class UserMain extends Fragment
 {
@@ -66,6 +77,23 @@ public class UserMain extends Fragment
         setTextViewSearchResult(false);
         registerForContextMenu(userRecyclerView);
 
+<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserMain.java
+=======
+        SharedPreferenceManager mSharedPreferenceManager = new SharedPreferenceManager();
+
+        View layoutFloating1 = fragmentView.findViewById(R.id.layout_floating1);
+        View layoutFloating2 = fragmentView.findViewById(R.id.layout_floating2);
+        if(mSharedPreferenceManager.getInt("set_menu", getContext()) == 0) {
+            layoutFloating1.findViewById(R.id.fab_notice).setOnClickListener(onFabClickListener);
+            layoutFloating2.setVisibility(View.GONE);
+            famMenu = (FloatingActionMenu) layoutFloating1.findViewById(R.id.fam_menu);
+        }
+        else{
+            layoutFloating2.findViewById(R.id.fab_notice).setOnClickListener(onFabClickListener);
+            layoutFloating1.setVisibility(View.GONE);
+        }
+
+>>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserMain.java
         RelativeLayout layoutSortByName = (RelativeLayout) fragmentView.findViewById(R.id.layout_sort_by_name);
         RelativeLayout layoutSortByPhone = (RelativeLayout) fragmentView.findViewById(R.id.layout_sort_by_phone);
         RelativeLayout layoutSortByPoint = (RelativeLayout) fragmentView.findViewById(R.id.layout_sort_by_point);
@@ -164,7 +192,11 @@ public class UserMain extends Fragment
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserMain.java
                 fragmentView.findViewById(R.id.textView_search).setVisibility((s.length() == 0)?(View.VISIBLE):(View.INVISIBLE));
+=======
+                mAdapter.getFilter().filter(s);
+>>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserMain.java
             }
         });
 
@@ -199,6 +231,7 @@ public class UserMain extends Fragment
         return super.onContextItemSelected(item);
     }
 
+<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserMain.java
     private void reloadRecyclerView() {
 
         /*
@@ -233,6 +266,8 @@ public class UserMain extends Fragment
 
     }
 
+=======
+>>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserMain.java
     private void setTextViewSearchResult(boolean StampMode)
     {
         TextView textViewSearchResult = (TextView) fragmentView.findViewById(R.id.textView_search_result);
@@ -288,6 +323,7 @@ public class UserMain extends Fragment
                 switch (sortStateId) {
                     default:
                     case R.id.layout_sort_by_name:
+<<<<<<< HEAD:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserMain.java
                         mAdapter.sort("NAME", sortStateOrder);
                         break;
                     case R.id.layout_sort_by_phone:
@@ -295,6 +331,15 @@ public class UserMain extends Fragment
                         break;
                     case R.id.layout_sort_by_point:
                         mAdapter.sort("POINT", sortStateOrder);
+=======
+                        mAdapter.setSortOption("NAME", sortStateOrder);
+                        break;
+                    case R.id.layout_sort_by_phone:
+                        mAdapter.setSortOption("PHONE", sortStateOrder);
+                        break;
+                    case R.id.layout_sort_by_point:
+                        mAdapter.setSortOption("POINT", sortStateOrder);
+>>>>>>> refs/remotes/origin/store-app-byeongmun:StoreApp/app/src/main/java/com/teamdk/android/bakery/fragments/user/UserMain.java
                         break;
                 }
             }

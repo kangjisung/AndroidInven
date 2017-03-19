@@ -2,6 +2,7 @@
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout_drawer">
@@ -22,13 +23,38 @@
                 android:layout_height="wrap_content"
                 layout="@layout/include_member_search" />
 
-            <android.support.design.widget.CoordinatorLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/layout_floating">
-                <include layout="@layout/include_user_floating" />
+                android:layout_height="match_parent">
 
-            </android.support.design.widget.CoordinatorLayout>
+                <android.support.design.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/layout_floating1">
+                    <include layout="@layout/include_user_floating" />
+
+                </android.support.design.widget.CoordinatorLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="center_vertical"
+                    android:id="@+id/layout_floating2">
+
+                    <com.github.clans.fab.FloatingActionButton
+                        android:id="@+id/fab_notice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@mipmap/icon_floating_notice"
+                        app:fab_colorNormal="?attr/theme_color_type1"
+                        app:fab_colorPressed="@color/gray200"
+                        android:layout_margin="8dp" />
+                </LinearLayout>
+
+            </RelativeLayout>
         </RelativeLayout>
     </FrameLayout>
 

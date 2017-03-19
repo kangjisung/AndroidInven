@@ -70,7 +70,7 @@
                 android:gravity="center_horizontal">
 
                 <android.support.v7.widget.AppCompatImageView
-                    android:background="@mipmap/icon_mileage"
+                    android:background="@mipmap/icon_menu_point"
                     android:layout_weight="1"
                     app:backgroundTint="?attr/theme_color_D4"
                     android:alpha="0.5"
