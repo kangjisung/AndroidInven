@@ -28,6 +28,7 @@ import com.teamdk.android.bakery.utility.LayoutManager;
 import com.teamdk.android.bakery.utility.NoScrollViewPager;
 import com.teamdk.android.bakery.utility.FirstPageFragmentListener;
 import com.github.clans.fab.FloatingActionMenu;
+import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
 import com.teamdk.android.bakery.utility.SharedPreferenceManager;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -253,7 +254,7 @@ public class ProductMain extends Fragment {
                         new ClientDataBase("delete from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+mProductListItem.getName()+"\")",2,0, MainActivity.con);
                         new ClientDataBase("delete from `최적재고량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+mProductListItem.getName()+"\")",2,0, MainActivity.con);
                         // TODO : 삭제 쿼리
-                        ProductObjectManager.productLoad(nowDate.getTime());
+                        ProductObjectManager.load(nowDate.getTime(), getContext());
                         // TODO : 여기서 리스트 갱신
                     }
                 });

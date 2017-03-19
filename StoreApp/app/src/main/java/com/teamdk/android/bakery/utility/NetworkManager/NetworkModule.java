@@ -11,12 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.teamdk.android.bakery.MainActivity.PriNum;
-import static com.teamdk.android.bakery.objectmanager.ProductObjectManager.context;
 import static com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase.DBstring;
-
-/**
- * Created by stories2 on 2017. 2. 4..
- */
 
 public class NetworkModule {
     HttpCommunicationProcess httpCommunicationProcess;
@@ -65,22 +60,6 @@ public class NetworkModule {
 
         } catch (Exception err) {
             Log.d(logCatTag, "Error in DelMemberFromStore: " + err.getMessage());
-        }
-    }
-
-    //매장에 등록된 고객 불러오기
-    public void GetCustomerRegisteredInfo(int storeId,String date) {//매장번호,최신 업뎃 날짜
-        httpCommunicationProcess = new HttpCommunicationProcess();
-        String responseRawDate = null;
-        int i;
-        try {
-            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/GetCustomerRegisteredInfo/?storeId=" + storeId + "&date=" + date + "").get();
-            Log.d(logCatTag, responseRawDate);
-            JSONObject jsonObject = new JSONObject(responseRawDate);
-            JSONObject indexOfZeroStoreInfoData = jsonObject.getJSONObject("0");
-
-        } catch (Exception err) {
-            Log.d(logCatTag, "Error in LoadAllStoreInfo: " + err.getMessage());
         }
     }
 
