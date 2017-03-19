@@ -11,24 +11,21 @@ import android.widget.LinearLayout;
 
 import com.teamdk.android.bakery.fragments.product.adapter.FragmentSellTodayRecyclerViewAdapter;
 import com.teamdk.android.bakery.R;
+import com.teamdk.android.bakery.objectmanager.ProductObjectManager;
 
 public class FragmentSellToday extends Fragment {
     public static RecyclerView rvFragmentSellToday;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    public LinearLayout linearLayout;
-    int sortingStatus;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_sell_today, container, false);
 
-        rvFragmentSellToday = (RecyclerView) rootView.findViewById(R.id.rv_fragment_sell_today);
-        mLayoutManager = new LinearLayoutManager(rootView.getContext());
-        rvFragmentSellToday.setLayoutManager(mLayoutManager);
-
         mAdapter = new FragmentSellTodayRecyclerViewAdapter(getContext());
-
+        mLayoutManager = new LinearLayoutManager(rootView.getContext());
+        rvFragmentSellToday = (RecyclerView) rootView.findViewById(R.id.rv_fragment_sell_today);
+        rvFragmentSellToday.setLayoutManager(mLayoutManager);
         rvFragmentSellToday.setAdapter(mAdapter);
         rvFragmentSellToday.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -37,6 +34,7 @@ public class FragmentSellToday extends Fragment {
                     FragmentMuchStore.rvFragmentMuchStore.scrollBy(0, dy);
             }
         });
+        ProductObjectManager.addRecyclerView(rvFragmentSellToday, mAdapter);
         return rootView;
     }
 }

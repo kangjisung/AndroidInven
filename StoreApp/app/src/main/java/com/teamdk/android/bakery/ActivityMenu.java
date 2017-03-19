@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -17,6 +18,7 @@ import com.teamdk.android.bakery.setting.SettingMain;
 import com.teamdk.android.bakery.utility.ColorTheme;
 import com.teamdk.android.bakery.utility.NoScrollViewPager;
 import com.teamdk.android.bakery.utility.SharedPreferenceManager;
+import com.teamdk.android.bakery.utility.Utility;
 
 public class ActivityMenu extends AppCompatActivity
 {
@@ -28,10 +30,11 @@ public class ActivityMenu extends AppCompatActivity
     private TabLayout tabLayout;
     private TextView textViewTitle;
 
-    private int selectedTabColor ;
-    private int unselectedTabColor;
-
     private ActivityMenuPagerAdapter mAdapter;
+    private NoScrollViewPager viewPager;
+
+    private int REQUEST_SETTING = 1001;
+    private int nowPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,25 +42,29 @@ public class ActivityMenu extends AppCompatActivity
         super.onCreate(savedInstanceState);
         this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_menu);
-        selectedTabColor = ContextCompat.getColor(this, R.color.gray80);
-        unselectedTabColor = ContextCompat.getColor(this, R.color.gray160);
 
         tabLayout = (TabLayout)findViewById(R.id.tabLayout);
-        textViewTitle = (TextView)findViewById(R.id.textView_title);
-        textViewTitle.setText("포인트 적립");
 
-        tabLayoutInitialize(tabLayout);
-        initializeColor();
+        textViewTitle = (TextView)findViewById(R.id.textView_title);
+
+        nowPosition = 2 - (new SharedPreferenceManager()).getInt("set_start", this);
+        tabLayoutInitialize();
+        reloadViewPager();
 
         Button mButtonSetting = (Button) findViewById(R.id.btn_setting);
         mButtonSetting.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SettingMain.class));
+                Intent intent = new Intent(getApplicationContext(), SettingMain.class);
+                startActivityForResult(intent, REQUEST_SETTING);
             }
         });
+    }
 
-        final NoScrollViewPager viewPager = (NoScrollViewPager)findViewById(R.id.viewPager);
+    public void reloadViewPager()
+    {
+        viewPager = null;
+        viewPager = (NoScrollViewPager)findViewById(R.id.viewPager);
         mAdapter = new ActivityMenuPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(mAdapter);
         viewPager.setPagingDisabled();
@@ -71,7 +78,14 @@ public class ActivityMenu extends AppCompatActivity
                 //view.findViewById(R.id.icon).getBackground().setColorFilter(selectedTabColor, PorterDuff.Mode.SRC_IN);
                 textViewTitle.setText(tabStringResIds[tab.getPosition()]);
                 viewPager.setCurrentItem(tab.getPosition());
-
+                if(tab.getPosition() != 0) {
+                    Utility.hideSoftKeyboard(ActivityMenu.this);
+                    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+                }
+                else{
+                    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+                }
+                nowPosition = viewPager.getCurrentItem();
             }
 
             @Override
@@ -87,7 +101,18 @@ public class ActivityMenu extends AppCompatActivity
             }
         });
 
-        tabLayout.getTabAt(2 - (new SharedPreferenceManager()).getInt("set_start", this)).select();
+        viewPager.setCurrentItem(nowPosition);
+        tabLayout.getTabAt(nowPosition).select();
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent Data) {
+        super.onActivityResult(requestCode, resultCode, Data);
+
+        if(requestCode == REQUEST_SETTING) {
+            if (resultCode == RESULT_OK) {
+                reloadViewPager();
+            }
+        }
     }
 
     @Override
@@ -109,14 +134,15 @@ public class ActivityMenu extends AppCompatActivity
         //super.onBackPressed();
     }
 
-    public void tabLayoutInitialize(TabLayout tabLayout)
+    public void tabLayoutInitialize()
     {
         int[] tabMipmapResIds = {
-            R.mipmap.icon_mileage,
+            R.mipmap.icon_menu_point,
             R.mipmap.icon_menu_user,
             R.mipmap.icon_menu_item
         };
 
+        tabLayout.removeAllTabs();
         for (int i = 0; i < tabMipmapResIds.length; i++)
         {
             TabLayout.Tab tab = tabLayout.newTab();
@@ -126,6 +152,10 @@ public class ActivityMenu extends AppCompatActivity
             tab.setCustomView(view);
             tabLayout.addTab(tab);
         }
+
+        tabLayout.getTabAt(0).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
+        tabLayout.getTabAt(1).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
+        tabLayout.getTabAt(2).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
 
         /*
         for (int i = 0; i < tabMipmapResIds.length; i++)
@@ -149,9 +179,7 @@ public class ActivityMenu extends AppCompatActivity
         //view.findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
         //view = (LinearLayout)tabLayout.getTabAt(1).getCustomView();
         //.findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
-        tabLayout.getTabAt(0).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
-        tabLayout.getTabAt(1).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
-        tabLayout.getTabAt(2).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
+
         //view.findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
 
         /*

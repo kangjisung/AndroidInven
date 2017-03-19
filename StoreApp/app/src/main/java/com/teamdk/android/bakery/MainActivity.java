@@ -8,18 +8,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-import com.teamdk.android.bakery.objectmanager.ProductMuchStoreListItem;
 import com.teamdk.android.bakery.objectmanager.ProductObjectManager;
-import com.teamdk.android.bakery.objectmanager.ProductSellTodayListItem;
 import com.teamdk.android.bakery.objectmanager.MemberObjectManager;
 import com.teamdk.android.bakery.objectmanager.NoticeObjectManager;
 import com.teamdk.android.bakery.utility.NetworkManager.NetworkModule;
 import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
 import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.DatabaseHelper;
 import com.teamdk.android.bakery.utility.ColorTheme;
+import com.teamdk.android.bakery.utility.SharedPreferenceManager;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 
 import static com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase.DBstring;
@@ -29,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
     public static Context con;
     public static String PriNum;
 
-    ArrayList<ProductSellTodayListItem> sellTodayArrayList = new ArrayList<>();
-    ArrayList<ProductMuchStoreListItem> muchStoreArrayList = new ArrayList<>();
     //networkmodule 예제
     //networkModule.InsertNewCustomerInfo("강지성");
     @Override
@@ -42,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         con = getApplicationContext();
         databaseHelperTest = new DatabaseHelper(getApplicationContext(), ClientDataBase.testDatabaseName);
 
-
         /*
         NetWorkOrderProcessManager netWorkOrderProcessManager = new NetWorkOrderProcessManager();
         netWorkOrderProcessManager.LoadAllStoreInfo();
@@ -52,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run(){
-                MainActivity.CheckTypesTask task = new MainActivity.CheckTypesTask();
+                CheckTypesTask task = new CheckTypesTask();
                 task.execute();
             }
         }, 500);
@@ -67,8 +61,6 @@ public class MainActivity extends AppCompatActivity {
         protected void onPreExecute() {
             asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             asyncDialog.setMessage("로딩중입니다..");
-
-            // show dialog
             asyncDialog.show();
             super.onPreExecute();
         }
@@ -76,10 +68,20 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... arg0)
         {
-            Date date = new Date();
+            // 설정값이 없을 경우 환경설정 초기화
+            SharedPreferenceManager mSharedPreferenceManager = new SharedPreferenceManager();
+            if(mSharedPreferenceManager.getInt("product_sort_mode_iv", getApplicationContext()) == 0){
+                mSharedPreferenceManager.putInt("product_sort_mode_iv", R.id.iv_sort_add, getApplicationContext());
+            }
+            if(mSharedPreferenceManager.getInt("product_sort_mode_tv", getApplicationContext()) == 0){
+                mSharedPreferenceManager.putInt("product_sort_mode_tv", R.id.tv_sort_add, getApplicationContext());
+            }
+            if(mSharedPreferenceManager.getInt("set_theme", getApplicationContext()) == 0){
+                mSharedPreferenceManager.putInt("set_theme", R.style.LikeRoomTheme_BreadTheme, getApplicationContext());
+            }
 
-            ProductObjectManager.getContext(getApplicationContext());
-            ProductObjectManager.productLoad(date);
+            new ProductObjectManager();
+            ProductObjectManager.load(new Date(), getApplicationContext());
 
             new MemberObjectManager();
             MemberObjectManager.load(getApplicationContext());
@@ -97,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             asyncDialog.dismiss();
             super.onPostExecute(result);
             //////매장이 클라이언트 디비에 있는지 검사
-            new ClientDataBase("select `매장번호` from `매장`;",1,1,getApplicationContext());
+            new ClientDataBase("select `매장번호` from `매장`;", 1, 1, getApplicationContext());
             int cnt=0;
             while(true) {
                 if (DBstring[cnt] != null) {
@@ -117,22 +119,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),ActivityMenu.class));
             }
             finish();
-        }
-    }
-
-    static class SellNameAscCompare implements Comparator<ProductSellTodayListItem> {
-        @Override
-        public int compare(ProductSellTodayListItem arg0, ProductSellTodayListItem arg1) {
-            // TODO Auto-generated method stub
-            return arg0.getName().compareTo(arg1.getName());
-        }
-    }
-
-    static class MuchNameAscCompare implements Comparator<ProductMuchStoreListItem> {
-        @Override
-        public int compare(ProductMuchStoreListItem arg0, ProductMuchStoreListItem arg1) {
-            // TODO Auto-generated method stub
-            return arg0.getName().compareTo(arg1.getName());
         }
     }
 }

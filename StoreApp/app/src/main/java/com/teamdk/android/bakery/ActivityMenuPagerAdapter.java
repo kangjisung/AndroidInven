@@ -1,8 +1,10 @@
 package com.teamdk.android.bakery;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.view.inputmethod.InputMethodManager;
 
 import com.teamdk.android.bakery.fragments.product.ProductMain;
 import com.teamdk.android.bakery.fragments.point.PointMain;

@@ -44,7 +44,6 @@ public class UserStampDialogPagerAdapter extends PagerAdapter
 
         userStampListItem = new ArrayList<Integer>() ;
         userStampListItem.add(R.mipmap.icon_menu_item);
-        userStampListItem.add(R.mipmap.icon_menu_point);
         userStampListItem.add(R.mipmap.icon_menu_user);
         userStampListItem.add(R.mipmap.icon_floating_stamp);
     }
