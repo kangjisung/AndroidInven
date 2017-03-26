@@ -5,6 +5,7 @@ android {
     buildToolsVersion "25.0.0"
     defaultConfig {
         applicationId "com.project.coupon"
+        //applicationId "com.example.kangjisung.likeroom"
         minSdkVersion 19
         targetSdkVersion 25
         versionCode 1
@@ -38,4 +39,8 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.1.0'
     compile 'com.google.android.gms:play-services:10.0.1'
     compile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.google.firebase:firebase-core:10.0.1'
+
 }
+//apply plugin: 'com.google.gms.google-services'
