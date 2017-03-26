@@ -20,11 +20,8 @@ import com.teamdk.android.bakery.fragments.user.adapter.UserNoticeListAdapter;
 import com.teamdk.android.bakery.objectmanager.NoticeListItem;
 import com.teamdk.android.bakery.objectmanager.NoticeObjectManager;
 import com.teamdk.android.bakery.R;
-import com.teamdk.android.bakery.utility.NetworkManager.NetworkModule;
 import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
 import com.teamdk.android.bakery.utility.LayoutManager;
-
-import static com.teamdk.android.bakery.MainActivity.PriNum;
 
 public class UserNoticeMain extends Fragment
 {
@@ -115,8 +112,6 @@ public class UserNoticeMain extends Fragment
                     public void onClick(DialogInterface dialog, int which) {
                         String query = String.format("DELETE FROM `매장공지` WHERE `코드` = %d;" + "" + "", listItem.getNum());
                         new ClientDataBase(query, 1, 0, getContext());
-                        NetworkModule networkModule=new NetworkModule();
-                        networkModule.DelStoreNoticeInfo(Integer.parseInt(PriNum),listItem.getNum()); //서버에 공지삭제(매장번호랑,공지코드)
                         reloadRecyclerView();
                     }
                 });

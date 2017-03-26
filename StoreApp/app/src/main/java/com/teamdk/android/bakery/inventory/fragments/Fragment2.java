@@ -99,13 +99,13 @@ public class Fragment2 extends Fragment {
         for(int i = 1; i< mCalc.dAvg.length; i++){
             y.add(new Entry((float) mCalc.dAvg[i],i));
         }
-        x.add(1,"일");
-        x.add(2,"월");
-        x.add(3,"화");
-        x.add(4,"수");
-        x.add(5,"목");
-        x.add(6,"금");
-        x.add(7,"토");
+        x.add(0,"일");
+        x.add(1,"월");
+        x.add(2,"화");
+        x.add(3,"수");
+        x.add(4,"목");
+        x.add(5,"금");
+        x.add(6,"토");
 
         for(int i=0; i<7; i++){
             label[i]=x.get(i).toString();

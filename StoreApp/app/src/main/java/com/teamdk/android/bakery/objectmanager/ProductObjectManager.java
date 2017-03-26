@@ -66,7 +66,7 @@ public class ProductObjectManager {
                 "(SELECT `제품코드`, `이름`, `등록일` FROM `제품정보`) S LEFT JOIN " +
                 "(SELECT `제품정보`.`제품코드` AS A, `최적재고량`.`날짜` AS B, `최적재고량` AS C " +
                 "FROM `제품정보` LEFT JOIN `최적재고량` ON `제품정보`.`제품코드`= `최적재고량`.`제품코드` WHERE `최적재고량`.`날짜` = \"%s\") " +
-                "T on S.`제품코드` = T.A", dateFormat.format(_selectedDate));
+                "T on S.`제품코드` = T.A", dateFormat.format(selectedDate));
         new ClientDataBase(query, 1, 3, context);
         dbCount = 0;
         itemCount = 0;
@@ -88,7 +88,7 @@ public class ProductObjectManager {
                 "(SELECT `제품코드`, `이름` FROM `제품정보`) S LEFT JOIN " +
                 "(SELECT `제품정보`.`제품코드` AS A, `판매량` AS B, `예상판매량` AS C " +
                 "FROM `제품정보` LEFT JOIN `제품판매량` ON `제품정보`.`제품코드` = `제품판매량`.`제품코드` WHERE `제품판매량`.`년` = %d AND `제품판매량`.`월` = %d AND `제품판매량`.`일` = %d) T on S.`제품코드` = T.A",
-                _selectedDate.getYear()+1900, _selectedDate.getMonth()+1, _selectedDate.getDate());
+                selectedDate.getYear()+1900, selectedDate.getMonth()+1, selectedDate.getDate());
         new ClientDataBase(query, 1, 3, context);
         dbCount = 0;
         itemCount = 0;
