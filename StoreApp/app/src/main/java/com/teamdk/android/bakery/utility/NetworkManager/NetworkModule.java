@@ -1,5 +1,6 @@
 package com.teamdk.android.bakery.utility.NetworkManager;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.teamdk.android.bakery.MainActivity;
@@ -15,8 +16,9 @@ import static com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientData
 
 public class NetworkModule {
     HttpCommunicationProcess httpCommunicationProcess;
+    Context context;
 
-    String hostName = "lamb.kangnam.ac.kr:4200", apiName = "/Smoothie/2", logCatTag = "test";
+    String hostName = "stories3.iptime.org:4200", apiName = "/Smoothie/2", logCatTag = "test";
 
     public NetworkModule() {
     }
@@ -65,12 +67,12 @@ public class NetworkModule {
 
     //매장에 등록된 고객 불러오기
     public List<String[]> GetCustomerRegisteredInfo(int storeId, String date){//매장번호,최신 업뎃 날짜
-        if(date==null)
         httpCommunicationProcess = new HttpCommunicationProcess();
         String responseRawData = null;
         String[] eachStoreInfoData = new String[10];
         List<String[]> allCustomerInfoData = new ArrayList<String[]>();
         int i;
+        String test="http://" + hostName + apiName + "/GetCustomerRegisteredInfo/?storeId=" + storeId + "&date=" + date + "";
         try {
             responseRawData = httpCommunicationProcess.execute("http://" + hostName + apiName + "/GetCustomerRegisteredInfo/?storeId=" + storeId + "&date=" + date + "").get();
             Log.d(logCatTag, responseRawData);
@@ -90,6 +92,7 @@ public class NetworkModule {
                         indexOfZeroStoreInfoData.getString("회원탈퇴여부"),
                         indexOfZeroStoreInfoData.getString("이메일"),
                         indexOfZeroStoreInfoData.getString("회원비활성화"),
+                        indexOfZeroStoreInfoData.getString("회원 등록일"),
                         indexOfZeroStoreInfoData.getString("정보 변경 날짜"),
                         indexOfZeroStoreInfoData.getString("고유등록번호"),
                         indexOfZeroStoreInfoData.getString("이름"),
@@ -100,28 +103,29 @@ public class NetworkModule {
                         "\n회원탈퇴여부: " + indexOfZeroStoreInfoData.getString("회원탈퇴여부") +
                         "\n이메일: " + indexOfZeroStoreInfoData.getString("이메일") +
                         "\n회원비활성화" + indexOfZeroStoreInfoData.getString("회원비활성화") +
+                        "\n회원등록일" + indexOfZeroStoreInfoData.getString("회원 등록일") +
                         "\n정보 변경 날짜: " + indexOfZeroStoreInfoData.getString("정보 변경 날짜") +
                         "\n고유등록번호: " + indexOfZeroStoreInfoData.getString("고유등록번호") +
                         "\n이름: " + indexOfZeroStoreInfoData.getString("이름"));
-                new ClientDataBase("select `회원탈퇴여부` from `회원정보` where `고유회원등록번호`="+indexOfZeroStoreInfoData.getString("고유회원등록번호")+"",1,1, MainActivity.con);
+                new ClientDataBase("select `회원탈퇴여부` from `회원정보` where `고유회원등록번호`="+indexOfZeroStoreInfoData.getString("고유등록번호")+"",1,1, context);
                 if(DBstring[0]==null)//회원이 없을때 넣기
                 {
-                    new ClientDataBase("insert into `회원정보` (`고유회원등록번호`,`이름`,`전화번호`,`생년월일`,`이메일`,`수정일`) values(\""+indexOfZeroStoreInfoData.getString("고유등록번호")+"\"," +
+                    new ClientDataBase("insert into `회원정보` (`고유회원등록번호`,`이름`,`전화번호`,`생년월일`,`이메일`,`수정일`,`등록일`) values(\""+indexOfZeroStoreInfoData.getString("고유등록번호")+"\"," +
                             "\""+indexOfZeroStoreInfoData.getString("이름")+"\",\""+indexOfZeroStoreInfoData.getString("전화번호")+"\",\""+indexOfZeroStoreInfoData.getString("생일")+"\"," +
-                            "\""+indexOfZeroStoreInfoData.getString("이메일")+"\",\""+indexOfZeroStoreInfoData.getString("정보 변경 날짜")+"\")",2,0,MainActivity.con);
-                    new ClientDataBase("insert into `회원매장등록정보` (`고유회원등록번호`,`회원번호`,`매장번호`,`탈퇴여부`) values(\""+indexOfZeroStoreInfoData.getString("고유회원등록번호")+"\"," +
-                            "\""+indexOfZeroStoreInfoData.getString("회원번호")+"\",\""+PriNum+"\",\""+indexOfZeroStoreInfoData.getString("회원탈퇴여부")+"\")",2,0,MainActivity.con);
+                            "\""+indexOfZeroStoreInfoData.getString("이메일")+"\",\""+indexOfZeroStoreInfoData.getString("정보 변경 날짜")+"\",\""+indexOfZeroStoreInfoData.getString("회원 등록일")+"\n",2,0,context);
+                    new ClientDataBase("insert into `회원매장등록정보` (`고유회원등록번호`,`회원번호`,`매장번호`,`탈퇴여부`) values(\""+indexOfZeroStoreInfoData.getString("고유등록번호")+"\"," +
+                            "\""+indexOfZeroStoreInfoData.getString("회원번호")+"\",\""+PriNum+"\",\""+indexOfZeroStoreInfoData.getString("회원탈퇴여부")+"\")",2,0,context);
                 }
                 else if(DBstring[0]=="0")//회원이 있을떄 업데이트
                 {
                     new ClientDataBase("update `회원정보` set `이름`=\""+indexOfZeroStoreInfoData.getString("이름")+"\",`전화번호`=\""+indexOfZeroStoreInfoData.getString("전화번호")+"\"," +
                             "`생년월일`=\""+indexOfZeroStoreInfoData.getString("생일")+"\",`이메일`=\""+indexOfZeroStoreInfoData.getString("이메일")+"\"," +
-                            "`수정일`=\""+indexOfZeroStoreInfoData.getString("정보 변경 날짜")+"\" where `고유회원등록번호`=\""+indexOfZeroStoreInfoData.getString("고유회원등록번호")+"\"",2,0,MainActivity.con);
+                            "`수정일`=\""+indexOfZeroStoreInfoData.getString("정보 변경 날짜")+"\" where `고유회원등록번호`=\""+indexOfZeroStoreInfoData.getString("고유등록번호")+"\"",2,0,context);
                 }
                 else//회원이 탈퇴했을때
                 {
-                    new ClientDataBase("delete from `회원정보` where `고유회원등록번호`=\""+indexOfZeroStoreInfoData.getString("고유회원등록번호")+"\"",2,0, MainActivity.con);
-                    new ClientDataBase("delete from `회원매장등록정보` where `고유회원등록번호`=\""+indexOfZeroStoreInfoData.getString("고유회원등록번호")+"\"",2,0, MainActivity.con);
+                    new ClientDataBase("delete from `회원정보` where `고유회원등록번호`=\""+indexOfZeroStoreInfoData.getString("고유등록번호")+"\"",2,0, context);
+                    new ClientDataBase("delete from `회원매장등록정보` where `고유회원등록번호`=\""+indexOfZeroStoreInfoData.getString("고유등록번호")+"\"",2,0, context);
                 }
                 indexOfStoreNumber = indexOfStoreNumber + 1;
             }
@@ -133,11 +137,11 @@ public class NetworkModule {
     }
 
     ///마일리지 업데이트
-    public void InsertMileageLog(String customerAndStoreRegisteredId, String mileageSize, String changeDate) { //고유등록번호,마일리지량,바뀐날짜
+    public void InsertMileageLog(String customerAndStoreRegisteredId, String mileageSize) { //고유등록번호,마일리지량,바뀐날짜
         httpCommunicationProcess = new HttpCommunicationProcess();
         String responseRawDate = null;
         try {
-            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/InsertMileageLog/?customerAndStoreRegisteredId=" + customerAndStoreRegisteredId + "&mileageSize=" + mileageSize + "&changeDate=" + changeDate +"").get();
+            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/InsertMileageLog/?customerAndStoreRegisteredId=" + customerAndStoreRegisteredId + "&mileageSize=" + mileageSize +"").get();
             Log.d(logCatTag, responseRawDate);
             JSONObject jsonObject = new JSONObject(responseRawDate);
             if (jsonObject.getString("Result").equals("OK")) {
@@ -314,6 +318,4 @@ public class NetworkModule {
             Log.d(logCatTag, "Error in UpdateStoreInfoData: " + err.getMessage());
         }
     }
-
 }
-

@@ -394,7 +394,7 @@ public class UserMain extends Fragment
                     fragmentTransaction.commit();
                     break;
                 case R.id.fab_sort:
-                    SlidingUpPanelLayout layoutSliding = (SlidingUpPanelLayout) getActivity().findViewById(R.id.layout_sliding);
+                    SlidingUpPanelLayout layoutSliding = (SlidingUpPanelLayout) fragmentView.findViewById(R.id.layout_sliding);
                     layoutSliding.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
                     break;
             }

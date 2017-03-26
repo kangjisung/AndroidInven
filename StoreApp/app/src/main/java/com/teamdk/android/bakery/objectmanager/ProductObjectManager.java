@@ -23,15 +23,17 @@ public class ProductObjectManager {
     private static SharedPreferenceManager mSharedPreferenceManager = new SharedPreferenceManager();
     private static String sortMode = "ASC";
     private static String sortOrder = "ADDEDDATE";
+    private static Date selectedDate;
 
     public ProductObjectManager() {}
 
-    public static void load(Date selectedDate, Context context){
+    public static void load(Date _selectedDate, Context context){
         ProductListItem addItem;
         DateFormat dateFormat =new SimpleDateFormat("y-M-d", Locale.KOREA);
         String query;
         int dbCount;
         int itemCount;
+        selectedDate = _selectedDate;
 
         productItemList = new ArrayList<>();
 
@@ -104,6 +106,10 @@ public class ProductObjectManager {
         }
         sort();
         notifyChanged();
+    }
+
+    public static Date getSelectedDate(){
+        return selectedDate;
     }
 
     public static ProductListItem get(int position){

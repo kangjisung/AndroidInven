@@ -168,6 +168,7 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
                 ((TextView) drawerLayout.findViewById(R.id.tv_drawer_phone)).setText(Utility.convertPhoneNumber(userMainItem.getPhone()));
                 ((TextView) drawerLayout.findViewById(R.id.tv_drawer_point)).setText(userMainItem.getPoint());
                 ((TextView) drawerLayout.findViewById(R.id.tv_drawer_birth)).setText(dateFormat.format(userMainItem.getBirth()));
+                ((TextView) drawerLayout.findViewById(R.id.tv_drawer_join)).setText(dateFormat.format(userMainItem.getAddedDate()));
                 ((TextView) drawerLayout.findViewById(R.id.tv_drawer_email)).setText(userMainItem.getEmail());
             }
         });
@@ -290,13 +291,11 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
                         return obj2.getName().compareToIgnoreCase(obj1.getName());
                     }
                 } else if (sortOptionMode.equals("ADDEDDATE")) {
-                    /*
                     if (sortOptionOrder.equals("ASC")) {
-                        return obj1.getPhone().compareToIgnoreCase(obj2.getPhone());
+                        return obj1.getAddedDate().compareTo(obj2.getAddedDate());
                     } else {
-                        return obj2.getPhone().compareToIgnoreCase(obj1.getPhone());
+                        return obj2.getAddedDate().compareTo(obj1.getAddedDate());
                     }
-                    */
                 } else if (sortOptionMode.equals("POINT")) {
                     int p1 = Integer.valueOf(obj1.getPoint());
                     int p2 = Integer.valueOf(obj2.getPoint());

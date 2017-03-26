@@ -35,11 +35,6 @@ public class MainActivity extends AppCompatActivity {
         con = getApplicationContext();
         databaseHelperTest = new DatabaseHelper(getApplicationContext(), ClientDataBase.testDatabaseName);
 
-        /*
-        NetWorkOrderProcessManager netWorkOrderProcessManager = new NetWorkOrderProcessManager();
-        netWorkOrderProcessManager.LoadAllStoreInfo();
-        */
-
         Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
             @Override
@@ -60,49 +55,6 @@ public class MainActivity extends AppCompatActivity {
             asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             asyncDialog.setMessage("로딩중입니다..");
             asyncDialog.show();
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0)
-        {
-            // 설정값이 없을 경우 환경설정 초기화
-            SharedPreferenceManager mSharedPreferenceManager = new SharedPreferenceManager();
-
-            if (mSharedPreferenceManager.getInt("product_sort_mode_iv", getApplicationContext()) == 0){
-                mSharedPreferenceManager.putInt("product_sort_mode_iv", 201, getApplicationContext());
-            }
-            if (mSharedPreferenceManager.getInt("product_sort_mode_tv", getApplicationContext()) == 0){
-                mSharedPreferenceManager.putInt("product_sort_mode_tv", 101, getApplicationContext());
-            }
-            if (mSharedPreferenceManager.getInt("member_sort_mode_iv", getApplicationContext()) == 0){
-                mSharedPreferenceManager.putInt("member_sort_mode_iv", 201, getApplicationContext());
-            }
-            if (mSharedPreferenceManager.getInt("member_sort_mode_tv", getApplicationContext()) == 0){
-                mSharedPreferenceManager.putInt("member_sort_mode_tv", 101, getApplicationContext());
-            }
-            if (mSharedPreferenceManager.getInt("set_theme", getApplicationContext()) == 0){
-                mSharedPreferenceManager.putInt("set_theme", R.style.LikeRoomTheme_BreadTheme, getApplicationContext());
-            }
-
-            new ProductObjectManager();
-            ProductObjectManager.load(new Date(), getApplicationContext());
-
-            new MemberObjectManager();
-            MemberObjectManager.load(getApplicationContext());
-
-            new NoticeObjectManager();
-            NoticeObjectManager.load(getApplicationContext());
-
-            //SystemClock.sleep(500);
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            asyncDialog.dismiss();
-            super.onPostExecute(result);
             //////매장이 클라이언트 디비에 있는지 검사
             new ClientDataBase("select `매장번호` from `매장`;", 1, 1, getApplicationContext());
             int cnt=0;
@@ -113,14 +65,61 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if(DBstring[cnt]==null) break;
             }
-            if(PriNum==null) {
-                startActivity(new Intent(getApplicationContext(), ActivityStoreAdd.class));
-            }
-            else {
-                new ClientDataBase("select max(`수정일`) from `회원정보`;",1,1,getApplicationContext());
+            if(PriNum != null) {
+                new ClientDataBase("select max(`수정일`) from `회원정보`;", 1, 1, getApplicationContext());
                 NetworkModule networkModule = new NetworkModule();
                 networkModule.GetCustomerRegisteredInfo(Integer.parseInt(PriNum), DBstring[0]);
-                startActivity(new Intent(getApplicationContext(),ActivityMenu.class));
+            }
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0)
+        {
+            if(PriNum != null) {
+                // 설정값이 없을 경우 환경설정 초기화
+                SharedPreferenceManager mSharedPreferenceManager = new SharedPreferenceManager();
+                if (mSharedPreferenceManager.getInt("product_sort_mode_iv", getApplicationContext()) == 0){
+                    mSharedPreferenceManager.putInt("product_sort_mode_iv", 201, getApplicationContext());
+                }
+                if (mSharedPreferenceManager.getInt("product_sort_mode_tv", getApplicationContext()) == 0){
+                    mSharedPreferenceManager.putInt("product_sort_mode_tv", 101, getApplicationContext());
+                }
+                if (mSharedPreferenceManager.getInt("member_sort_mode_iv", getApplicationContext()) == 0){
+                    mSharedPreferenceManager.putInt("member_sort_mode_iv", 201, getApplicationContext());
+                }
+                if (mSharedPreferenceManager.getInt("member_sort_mode_tv", getApplicationContext()) == 0){
+                    mSharedPreferenceManager.putInt("member_sort_mode_tv", 101, getApplicationContext());
+                }
+                if (mSharedPreferenceManager.getInt("set_theme", getApplicationContext()) == 0){
+                    mSharedPreferenceManager.putInt("set_theme", R.style.LikeRoomTheme_BreadTheme, getApplicationContext());
+                }
+
+                new ProductObjectManager();
+                ProductObjectManager.load(new Date(), getApplicationContext());
+
+                new MemberObjectManager();
+                MemberObjectManager.load(getApplicationContext());
+
+                new NoticeObjectManager();
+                NoticeObjectManager.load(getApplicationContext());
+            }
+
+            //SystemClock.sleep(500);
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            asyncDialog.dismiss();
+            super.onPostExecute(result);
+
+            if(PriNum == null){
+                startActivity(new Intent(getApplicationContext(), ActivityStoreAdd.class));
+            }
+            else{
+                startActivity(new Intent(getApplicationContext(), ActivityMenu.class));
             }
             finish();
         }

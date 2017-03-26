@@ -5,6 +5,9 @@ package com.teamdk.android.bakery.inventory;
  */
 
 import com.teamdk.android.bakery.MainActivity;
+import com.teamdk.android.bakery.fragments.product.ProductMain;
+import com.teamdk.android.bakery.objectmanager.ProductObjectManager;
+import com.teamdk.android.bakery.utility.NetworkManager.NetworkModule;
 import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
 
 import java.text.DateFormat;
@@ -14,6 +17,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import static android.R.attr.y;
 import static com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase.DBstring;
 import static java.lang.Math.sqrt;
 ////////////////////////////////////////////////계산기
@@ -32,20 +36,20 @@ public class calc extends MainActivity {
     public static calc mInstance = null;
 
     //1.db only ----->기존에 있던 제품 정보(순수하게 db로부터 받아오기만 하면 됨)
-    public int c, p, s; //c원가(DB), p판매가(DB), s잔존가(가치)(DB)
+    public int c=0, p=0, s=0; //c원가(DB), p판매가(DB), s잔존가(가치)(DB)
     //2.db + Android ----->db로 부터 받아온 데이터를 안드로이드에서 가공해 얻은 정보
-    public int tWeek, tMonth, tDay; // tDay현재까지 총일수, tWeek총주수, tmonth총월수
+    public int tWeek=0, tMonth=0, tDay=0; // tDay현재까지 총일수, tWeek총주수, tmonth총월수
     public int curDay,curMonth;//현재 요일, 현재 월(이건 db 개입x// 순수안드로이드)
     public double [] dAvg, monAvg; //dAvg요일별판매량총평균, monAvg월별판매량총평균
-    public double m;//m전체평균판매량
+    public double m=0;//m전체평균판매량
     //1,2정보만으로 계산한 Q(최적재고량)값을 Q목록에 띄운다.이를 수정하고 싶은 User가 수정버튼을 눌러 Q값 결정에 사용되는 값(FD,min,max)를 변경->3.
     //3.db + Android + User -----> 모든 정보를 다 합쳐 얻는 최종결론
-    public int FD, min, max; //FD예측판매량, min, max최소최대예상판매량 (min max: db의 한달판매량의 min,max가 default+ graph1에서 사용자가 이 값 변경가능)
-    public double v, FM; //v표준편차, FM최종평균
+    public int FD=0, min=0, max=0; //FD예측판매량, min, max최소최대예상판매량 (min max: db의 한달판매량의 min,max가 default+ graph1에서 사용자가 이 값 변경가능)
+    public double v=0, FM=0; //v표준편차, FM최종평균
 
+    int year=0,month=0,day=0,dayOfWeek=0;
 
-    public int Q;//Q최적재고량
-
+    public int Q=0;//Q최적재고량
 
     //4.그래프를 그리기 위해 생성해야하는 정보
     public int[] Recent100_Sale, Recent100_FD;//최근 100일간의 판매량과 예측판매량(User입력한것 only)(Fragment1-(2))
@@ -78,10 +82,16 @@ public class calc extends MainActivity {
 //        double m;//m전체평균판매량
 
         /////int tWeek, tMonth, tDay; //매장등록 이후 지금까지 총 일수,주수,월수 구하기
-        sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+        sdf = new SimpleDateFormat("yyyy-M-d", Locale.KOREA);
         long tmp;
         curDate = new Date();//curDate는 현재날짜로 자동설정 되는 것임?
         curDateTemp = new Date();
+        if(curDate!= ProductObjectManager.getSelectedDate())
+            curDate=ProductObjectManager.getSelectedDate();
+        year=curDate.getYear()+1900;
+        month=curDate.getMonth()+1;
+        day=curDate.getDate();
+        dayOfWeek=curDate.getDay();
         /////////CurDateTemp
         new ClientDataBase("select `등록일` from `매장`;", 1, 1, MainActivity.con);
         cnt = 0;
@@ -100,15 +110,15 @@ public class calc extends MainActivity {
         tMonth = (int) ((tDay / 365.254) * 12);
 
         //////curDay,curMonth 구하기
-        cal = Calendar.getInstance();
-        curMonth = cal.get(Calendar.MONTH)+1; //안드로이드로부터 현재 월 받음
-        curDay = cal.get(Calendar.DAY_OF_WEEK); //안드로이드로부터 현재 요일 받는 코드 필요
+        //curMonth = curDate.getMonth()+1; //안드로이드로부터 현재 월 받음
+        //curDay = curDate.getDate(); //안드로이드로부터 현재 요일 받는 코드 필요
         strCurTime = sdf.format(curDate);
+        //선택한 데이트값 입력
 
         dAvg = new double[8];
         monAvg = new double[13];
 
-         //////dAvg[7], monAvg[12] 구하기 //dAvg요일별판매량총평균, monAvg월별판매량총평균 구하기
+        //////dAvg[7], monAvg[12] 구하기 //dAvg요일별판매량총평균, monAvg월별판매량총평균 구하기
         new ClientDataBase("select avg(`판매량`),`요일` from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\") group by `요일`",1,2, MainActivity.con);
         cnt = 0;
         while (true) {
@@ -133,13 +143,16 @@ public class calc extends MainActivity {
         //////m 구하기 //m전체평균판매량
         new ClientDataBase("select avg(`판매량`) from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\")",1,1, MainActivity.con);
         cnt = 0;
-        m=Double.parseDouble(DBstring[cnt]);
+        if(DBstring[0]==null)
+            m=0;
+        else
+            m=Double.parseDouble(DBstring[cnt]);
 
         //db의 판매량 column의 총평균을 m에 저장
 
         ////////////////////////////////////////////최소예상판매량, 최대예상판매량
         ///한달의 데이터
-        new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>\"" + cal.get(Calendar.YEAR) + "\" and `월`>\"" + cal.get(Calendar.MONTH) + "\" and `일`>\"" + cal.get(Calendar.DATE) + "\";", 1, 2, MainActivity.con);
+        new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>\"" + year + "\" and `월`>\"" + (month-1) + "\" and `일`>\"" + day + "\";", 1, 2, MainActivity.con);
         //예제
         //new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>=2016 and `월`>9 and `일`>1;", 1, 2, MainActivity.con);
         cnt = 0;
@@ -151,7 +164,7 @@ public class calc extends MainActivity {
             } else if (DBstring[cnt] == null) break;
         }
         v = (max - min) / 6; //표준편차
-        FD = (int)(calcT().predict(tDay)*(dAvg[curDay]/m)*(monAvg[curMonth]/m))+1; //예상판매량=추세*요일지수*월별지수
+        FD = (int)(calcT().predict(tDay)*(dAvg[dayOfWeek]/m)*(monAvg[month]/m))+1; //예상판매량=추세*요일지수*월별지수
         FM = (min + max + (4 * FD)) / 6; //최종평균계산
     }
 
@@ -172,7 +185,7 @@ public class calc extends MainActivity {
         Recent16_WeekSale = new int[16];
 
         //최근 사용자가 "FD를 변경한"날짜에 해당하는 FD와 Sale만 불러와야
-        new ClientDataBase("select `판매량`,`예상판매량` from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\") and `변경유무`=\"true\" order by `년` desc, `월` desc,`일` desc limit 100",1,2,MainActivity.con);
+        new ClientDataBase("select `판매량`,`예상판매량` from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\") and `변경유무`=\"true\" and `년`="+year+" and `월`="+month+" and `일`="+day+" order by `년` desc, `월` desc,`일` desc limit 100",1,2,MainActivity.con);
         int cnt = 0;
         while (true) {
             if (DBstring[cnt] != null) {
@@ -200,9 +213,12 @@ public class calc extends MainActivity {
     /////////////////////////////////////////////////////최적재고량 계산
     //////////////////////////////////////판매량 넣을때 실행
     public void calcQ() {
-        cal = Calendar.getInstance();
         Q = (int) (FM + ((v / 2) * (sqrt((p - c) / (c - s)) - sqrt((c - s) / (p - c))))) + 1; //최적재고량 계산
-        new ClientDataBase("insert into `최적재고량` (`제품코드`,`최적재고량`,`날짜`) values ((select `제품코드` from `제품정보` where `이름`=\""+name+"\"),"+Q+",\"" + cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) +1) + "-" + (cal.get(Calendar.DATE)+1) + "\");",2,0,MainActivity.con);
+        new ClientDataBase("select `제품코드` from `제품정보` where `이름`=\""+name+"\"",1,1,MainActivity.con);
+        String ProductNum =DBstring[0];
+        new ClientDataBase("insert into `최적재고량` (`제품코드`,`최적재고량`,`날짜`) values (\""+ProductNum+"\","+Q+",\"" + year + "-" + month + "-" + (day+1) + "\");",2,0,MainActivity.con);
+        NetworkModule networkModule=new NetworkModule();
+        networkModule.InsertProductOptimalStock(Integer.parseInt(ProductNum),Q,""+ year + "-" + month + "-" + (day+1) + "");//서버에 최적재고량 넣기 (제품코드,최적재고량, 날짜)
     }
     ////////////////////////////////////////////그래프용 calc2
     public int calcQ2(){
@@ -225,21 +241,21 @@ public class calc extends MainActivity {
     public int calcProfit(int Q){ //Q개만큼 구비시 예상 이익 --> graph3에 표시
         return -1*(int)(-(p-s)*FM+(c-s)*Q+(p-s)*((Math.sqrt(v*v+(Q-FM)*(Q-FM))-(Q-FM))/2));
     }
-/////////////////FD업데이트(예상판매량)
+    /////////////////FD업데이트(예상판매량)
     public void updateFD(){
-        new ClientDataBase("select `예상판매량` from `제품판매량`where `년`=\""+cal.get(Calendar.YEAR)+"\" and `월`=\""+(cal.get(Calendar.MONTH)+1)+"\" and `일`=\""+cal.get(Calendar.DATE)+"\"",1,1,MainActivity.con);
+        new ClientDataBase("select `예상판매량` from `제품판매량`where `년`=\""+year+"\" and `월`=\""+month+"\" and `일`=\""+day+"\"",1,1,MainActivity.con);
         if(DBstring[0]!=null)
-            new ClientDataBase("update `제품판매량` set `예상판매량`=\""+FD+"\" where `년`=\""+cal.get(Calendar.YEAR)+"\" and `월`=\""+(cal.get(Calendar.MONTH)+1)+"\" and `일`=\""+cal.get(Calendar.DATE)+"\"",3,0,MainActivity.con);
+            new ClientDataBase("update `제품판매량` set `예상판매량`=\""+FD+"\" where `년`=\""+year+"\" and `월`=\""+month+"\" and `일`=\""+day+"\"",3,0,MainActivity.con);
         else
-            new ClientDataBase("insert into `제품판매량` (`제품코드`,`예상판매량`,`년`,`월`,`일`) values ((select `제품코드` from `제품정보` where `이름`=\""+name+"\"),"+FD+",\"" + cal.get(Calendar.YEAR) + "\",\"" + (cal.get(Calendar.MONTH) +1) + "\",\"" + (cal.get(Calendar.DATE)+1) + "\");",2,0,MainActivity.con);
-}
+            new ClientDataBase("insert into `제품판매량` (`제품코드`,`예상판매량`,`년`,`월`,`일`) values ((select `제품코드` from `제품정보` where `이름`=\""+name+"\"),"+FD+",\"" + year + "\",\"" + month + "\",\"" + day + "\");",2,0,MainActivity.con);
+    }
     ///////////////////Q업데이트(최적재고량)
     public void updateQ(){
-        new ClientDataBase("select `최적재고량` from `최적재고량` where `날짜`=\""+cal.get(Calendar.YEAR)+"\"-\""+(cal.get(Calendar.MONTH)+1)+"\"-\""+cal.get(Calendar.DATE)+"\"",1,1,MainActivity.con);
+        new ClientDataBase("select `최적재고량` from `최적재고량` where `날짜`=\""+year+"\"-\""+month+"\"-\""+day+"\"",1,1,MainActivity.con);
         if(DBstring[0]!=null)
-            new ClientDataBase("update `최적재고량` set `최적재고량`=\""+Q+"\" where `날짜`=\""+cal.get(Calendar.YEAR)+"\"-\""+(cal.get(Calendar.MONTH)+1)+"\"-\""+cal.get(Calendar.DATE)+"\"",3,0,MainActivity.con);
+            new ClientDataBase("update `최적재고량` set `최적재고량`=\""+Q+"\" where `날짜`=\""+year+"\"-\""+month+"\"-\""+day+"\"",3,0,MainActivity.con);
         else
-            new ClientDataBase("insert into `최적재고량` (`제품코드`,`최적재고량`,`날짜`) values ((select `제품코드` from `제품정보` where `이름`=\""+name+"\"),"+Q+",\"" + cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) +1) + "-" + cal.get(Calendar.DATE) + "\");",2,0,MainActivity.con);
+            new ClientDataBase("insert into `최적재고량` (`제품코드`,`최적재고량`,`날짜`) values ((select `제품코드` from `제품정보` where `이름`=\""+name+"\"),"+Q+",\"" +year + "-" + month + "-" + day + "\");",2,0,MainActivity.con);
     }
 
     public class LinearRegression {
