@@ -3,6 +3,8 @@ package com.teamdk.android.bakery.fragments.point.adapter;
 import com.teamdk.android.bakery.fragments.point.PointSaveDialog;
 import com.teamdk.android.bakery.objectmanager.MemberListItem;
 import android.content.Context;
+import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +18,16 @@ import com.teamdk.android.bakery.objectmanager.MemberObjectManager;
 import com.teamdk.android.bakery.R;
 import com.teamdk.android.bakery.utility.Utility;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class PointMainListAdapter extends BaseAdapter implements Filterable
 {
     private ArrayList<MemberListItem> pointMainList = new ArrayList<>();
     private ArrayFilter mFilter;
     private Context context;
-    private PointSaveDialog pointSaveDialog;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("y년 M월 d일", Locale.KOREA);
 
     public PointMainListAdapter() {
         super();
@@ -37,7 +41,7 @@ public class PointMainListAdapter extends BaseAdapter implements Filterable
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent)
+    public View getView(final int position, View convertView, final ViewGroup parent)
     {
         final MemberListItem pointMainItem = pointMainList.get(position);
 
@@ -53,6 +57,8 @@ public class PointMainListAdapter extends BaseAdapter implements Filterable
 
             mTextViewName.setText(pointMainItem.getName());
             mTextViewPhone.setText(Utility.convertPhoneNumber(pointMainItem.getPhone()));
+
+            /*
             mButtonSelect.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View onClickView) {
@@ -60,10 +66,17 @@ public class PointMainListAdapter extends BaseAdapter implements Filterable
                     pointSaveDialog.show();
                 }
             });
+            */
             mButtonDetail.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View onClickView) {
-
+                    DrawerLayout drawerLayout = (DrawerLayout) parent.getParent().getParent().getParent().getParent();
+                    drawerLayout.openDrawer(Gravity.RIGHT);
+                    ((TextView) drawerLayout.findViewById(R.id.tv_drawer_name)).setText(pointMainItem.getName());
+                    ((TextView) drawerLayout.findViewById(R.id.tv_drawer_phone)).setText(Utility.convertPhoneNumber(pointMainItem.getPhone()));
+                    ((TextView) drawerLayout.findViewById(R.id.tv_drawer_point)).setText(pointMainItem.getPoint());
+                    ((TextView) drawerLayout.findViewById(R.id.tv_drawer_birth)).setText(dateFormat.format(pointMainItem.getBirth()));
+                    ((TextView) drawerLayout.findViewById(R.id.tv_drawer_email)).setText(pointMainItem.getEmail());
                 }
             });
             convertView.setVisibility(View.VISIBLE);

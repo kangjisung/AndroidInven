@@ -28,6 +28,7 @@ public class PointSaveDialog extends Dialog {
     private int layoutInputBoxSize = -1;
     private int maxLength = 8;
     private double pointRate = 0.05;
+    private int dismissMessage = 0;
 
     private MemberListItem modifyItem;
 
@@ -82,20 +83,19 @@ public class PointSaveDialog extends Dialog {
         ((Button) findViewById(R.id.btn_del)).setOnClickListener(onButtonNumberClickListener);
         ((Button) findViewById(R.id.button_ok)).setOnClickListener(new Button.OnClickListener() {
 
-            int UserPriNum; //고유회원등록번호
             int point;//최종 포인트
 
             public void onClick(View onClickView) {
                 point = nowPoint + (int)(value * pointRate);
-                new ClientDataBase("select `포인트`,`고유회원등록번호` from `포인트` where `고유회원등록번호`=(select `고유회원등록번호` from `회원정보` where `이름`=\"" + mTextViewName.getText().toString() + "\");",1,2, MainActivity.con); //포인트 있는지 검색
-                UserPriNum=Integer.parseInt(DBstring[1]);
+                new ClientDataBase("SELECT `고유회원등록번호` FROM `포인트` WHERE `고유회원등록번호` = " + modifyItem.getNum() + ";", 1, 1, getContext()); //포인트 있는지 검색
                 if(DBstring[0]==null){//////////////////없다면 insert
-                    new ClientDataBase("insert into `포인트` (`고유회원등록번호`,`포인트`,`포인트갱신날짜`) values ((select `고유회원등록번호` from `회원정보` where `이름`=\""+mTextViewName.getText().toString()+"\"),"+point+",(select date('now')));",2,0,MainActivity.con);
+                    new ClientDataBase("INSERT INTO `포인트` (`고유회원등록번호`,`포인트`,`포인트갱신날짜`) VALUES (" + modifyItem.getNum() + ", " + point + ", " + "(select date('now')));", 2, 0, getContext());
                 }
                 else {////////////////있으면 계산해서 update
-                    new ClientDataBase("UPDATE `포인트` SET `포인트`="+point+", `포인트갱신날짜`=(select date('now')) WHERE `고유회원등록번호`=(select `고유회원등록번호` from `회원정보` where `이름`=\"" + name + "\");", 3, 0, MainActivity.con);
+                    new ClientDataBase("UPDATE `포인트` SET `포인트`=" + point + ", `포인트갱신날짜`=(select date('now')) WHERE `고유회원등록번호` = " + modifyItem.getNum() + ";", 3, 0, getContext());
                 }
-                // TODO : 완료 버튼 동작 삽입
+                dismissMessage = point;
+                dismiss();
             }
         });
 
@@ -163,7 +163,6 @@ public class PointSaveDialog extends Dialog {
 
     private void setPoint()
     {
-
         if(modifyItem.getPoint() != "" && modifyItem.getPoint() != null){
             nowPoint = Integer.parseInt(modifyItem.getPoint());
         }
@@ -190,5 +189,10 @@ public class PointSaveDialog extends Dialog {
         set.play(slideAnimator);
         set.setInterpolator(new AccelerateDecelerateInterpolator());
         set.start();
+    }
+
+    public int getDismissMessage()
+    {
+        return dismissMessage;
     }
 }

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:background="?attr/theme_color_L3"
+            android:rotation="45"
+            android:layout_width="200dp"
+            android:layout_alignParentEnd="true"
+            android:layout_height="30dp"
+            android:layout_marginEnd="-53dp" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:background="?attr/theme_color_L2"
+            android:rotation="45"
+            android:layout_width="200dp"
+            android:layout_alignParentEnd="true"
+            android:layout_height="30dp"
+            android:layout_marginEnd="-95dp" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:background="?attr/theme_color_L3"
+            android:rotation="45"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-53dp" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:background="?attr/theme_color_L2"
+            android:rotation="45"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-95dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <TextView
+            android:text="매장 정보 수정"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/theme_color_D3"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:textSize="35dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_title"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_centerInParent="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:text="매장 이름"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:textColor="?attr/theme_color_D2"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:id="@+id/et_name"
+                    android:background="@color/transparent"
+                    android:textColor="?attr/theme_color_D4"
+                    android:padding="5dp"
+                    android:textSize="18dp"
+                    android:layout_marginTop="20dp"
+                    android:maxLength="12"
+                    android:maxLines="1"
+                    android:textCursorDrawable="?attr/theme_color_N" />
+
+                <View
+                    android:background="?attr/theme_color_D2"
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/et_name"
+                    android:layout_height="1dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:text="주소"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:textColor="?attr/theme_color_D2"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_address"
+                    android:background="@color/transparent"
+                    android:textColor="?attr/theme_color_D4"
+                    android:padding="5dp"
+                    android:textSize="18dp"
+                    android:inputType="textMultiLine"
+                    android:maxLines="3"
+                    android:textCursorDrawable="?attr/theme_color_N"
+                    android:maxLength="36"
+                    android:layout_marginTop="20dp" />
+
+                <View
+                    android:background="?attr/theme_color_D2"
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/et_address"
+                    android:layout_height="1dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:text="전화번호"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:textColor="?attr/theme_color_D2"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_phone"
+                    android:background="@color/transparent"
+                    android:textColor="?attr/theme_color_D4"
+                    android:padding="5dp"
+                    android:textSize="18dp"
+                    android:maxLines="3"
+                    android:textCursorDrawable="?attr/theme_color_N"
+                    android:maxLength="36"
+                    android:layout_marginTop="20dp"
+                    android:inputType="number"
+                    android:numeric="integer" />
+
+                <View
+                    android:background="?attr/theme_color_D2"
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/et_phone"
+                    android:layout_height="1dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?attr/theme_color_type1"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="50dp">
+
+                <Button
+                    android:text="수정하기"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btn_ok"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/button_ripple_rectangle"
+                    android:layout_width="match_parent"
+                    android:textSize="20dp"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="?attr/theme_color_N"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_height="50dp">
+
+                <Button
+                    android:text="취소"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btn_cancel"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/button_ripple_rectangle"
+                    android:layout_width="match_parent"
+                    android:textSize="20dp"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

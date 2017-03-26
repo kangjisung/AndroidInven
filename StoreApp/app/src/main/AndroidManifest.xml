@@ -24,6 +24,7 @@
         <activity android:name="com.teamdk.android.bakery.setting.SettingMain" />
         <activity android:name="com.teamdk.android.bakery.setting.SettingApplication" />
         <activity android:name="com.teamdk.android.bakery.setting.SettingCreatedby" />
+        <activity android:name="com.teamdk.android.bakery.setting.SettingStoreModify" />
         <activity android:name="com.teamdk.android.bakery.inventory.InventoryMain"/>
     </application>
 

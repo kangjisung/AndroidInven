@@ -173,7 +173,7 @@
                 app:backgroundTint="?attr/theme_color_L1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="12dp"
+                android:layout_margin="9dp"
                 android:id="@+id/iv_equal"
                 android:visibility="invisible" />
 

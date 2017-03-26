@@ -2,9 +2,11 @@ package com.teamdk.android.bakery.fragments.user;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,10 +24,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.teamdk.android.bakery.fragments.user.adapter.UserMainListAdapter;
 import com.teamdk.android.bakery.objectmanager.MemberListItem;
 import com.teamdk.android.bakery.objectmanager.MemberObjectManager;
+import com.teamdk.android.bakery.objectmanager.ProductObjectManager;
 import com.teamdk.android.bakery.utility.ColorTheme;
 import com.teamdk.android.bakery.R;
 import com.teamdk.android.bakery.utility.LayoutManager;
@@ -47,15 +52,19 @@ public class UserMain extends Fragment
     private FloatingActionMenu famMenu;
     private FloatingActionButton fabStampOk;
     private FloatingActionButton fabStampCancel;
-    private LinearLayout layoutStamp;
 
     private UserEditDialog userEditDialog;
     private UserStampDialog userStampDialog;
     private DrawerLayout mDrawerLayout;
 
-    private int sortStateId;
-    private String sortStateOrder;
+    private String searchString;
     private boolean stampSendMode = false;
+
+    private int tabPosition;
+    private int sortStateImageView;
+    private int sortStateTextView;
+    private SharedPreferenceManager mSharedPreferenceManager;
+    private TabLayout tabLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -71,23 +80,9 @@ public class UserMain extends Fragment
         setTextViewSearchResult(false);
         registerForContextMenu(userRecyclerView);
 
-        SharedPreferenceManager mSharedPreferenceManager = new SharedPreferenceManager();
+        mSharedPreferenceManager = new SharedPreferenceManager();
 
-        View layoutFloating1 = fragmentView.findViewById(R.id.layout_floating1);
-        View layoutFloating2 = fragmentView.findViewById(R.id.layout_floating2);
-        if(mSharedPreferenceManager.getInt("set_menu", getContext()) == 0) {
-            layoutFloating1.findViewById(R.id.fab_notice).setOnClickListener(onFabClickListener);
-            layoutFloating2.setVisibility(View.GONE);
-            famMenu = (FloatingActionMenu) layoutFloating1.findViewById(R.id.fam_menu);
-        }
-        else{
-            layoutFloating2.findViewById(R.id.fab_notice).setOnClickListener(onFabClickListener);
-            layoutFloating1.setVisibility(View.GONE);
-        }
-
-        RelativeLayout layoutSortByName = (RelativeLayout) fragmentView.findViewById(R.id.layout_sort_by_name);
-        RelativeLayout layoutSortByPhone = (RelativeLayout) fragmentView.findViewById(R.id.layout_sort_by_phone);
-        RelativeLayout layoutSortByPoint = (RelativeLayout) fragmentView.findViewById(R.id.layout_sort_by_point);
+        setFloatingMenu();
 
         mDrawerLayout = (DrawerLayout) fragmentView.findViewById(R.id.layout_drawer);
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
@@ -113,22 +108,7 @@ public class UserMain extends Fragment
             }
         });
 
-        sortStateId = R.id.layout_sort_by_name;
-        setSortOn(layoutSortByName, "ASC");
-        setSortWhite(layoutSortByPhone);
-        setSortWhite(layoutSortByPoint);
-
-        layoutSortByName.findViewById(R.id.button).setOnClickListener(onButtonSortClickListener);
-        layoutSortByPhone.findViewById(R.id.button).setOnClickListener(onButtonSortClickListener);
-        layoutSortByPoint.findViewById(R.id.button).setOnClickListener(onButtonSortClickListener);
-        ((TextView)layoutSortByName.findViewById(R.id.view_text)).setText(R.string.user_sort_name);
-        ((TextView)layoutSortByPhone.findViewById(R.id.view_text)).setText(R.string.user_sort_phone);
-        ((TextView)layoutSortByPoint.findViewById(R.id.view_text)).setText(R.string.user_sort_point);
-
         famMenu = (FloatingActionMenu) fragmentView.findViewById(R.id.menu);
-        fragmentView.findViewById(R.id.fab_add_user).setOnClickListener(onFabClickListener);
-        fragmentView.findViewById(R.id.fab_stamp).setOnClickListener(onFabClickListener);
-        fragmentView.findViewById(R.id.fab_notice).setOnClickListener(onFabClickListener);
         fabStampOk = (FloatingActionButton) fragmentView.findViewById(R.id.fab_stamp_ok);
         fabStampOk.setVisibility(View.INVISIBLE);
         fabStampOk.setEnabled(false);
@@ -173,21 +153,170 @@ public class UserMain extends Fragment
             }
         });
 
-        EditText editTextSearch = (EditText) fragmentView.findViewById(R.id.editText_search);
+        final EditText editTextSearch = (EditText) fragmentView.findViewById(R.id.editText_search);
+        final View acivClear = fragmentView.findViewById(R.id.iv_clear);
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+                if(s.length() == 0){
+                    acivClear.setVisibility(View.GONE);
+                }
+                else{
+                    acivClear.setVisibility(View.VISIBLE);
+                }
+            }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mAdapter.getFilter().filter(s);
+                searchString = s.toString();
+                mAdapter.getFilter().filter(searchString);
             }
         });
 
+        acivClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View onClickView) {
+                editTextSearch.setText("");
+            }
+        });
+
+        final SlidingUpPanelLayout layoutSliding = (SlidingUpPanelLayout) fragmentView.findViewById(R.id.layout_sliding);
+        layoutSliding.setFadeOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                layoutSliding.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+            }
+        });
+        Button mButtonSortName = (Button) fragmentView.findViewById(R.id.btn_sort_1);
+        Button mButtonSortAdd = (Button) fragmentView.findViewById(R.id.btn_sort_2);
+        Button mButtonSortPoint = (Button) fragmentView.findViewById(R.id.btn_sort_3);
+        mButtonSortName.setOnClickListener(onButtonSortClickListener);
+        mButtonSortAdd.setOnClickListener(onButtonSortClickListener);
+        mButtonSortPoint.setOnClickListener(onButtonSortClickListener);
+        tabPosition = mSharedPreferenceManager.getInt("member_sort_order", getContext());
+        sortStateImageView = getSortId(mSharedPreferenceManager.getInt("member_sort_mode_iv", getContext()));
+        sortStateTextView = getSortId(mSharedPreferenceManager.getInt("member_sort_mode_tv", getContext()));
+
+        tabLayout = (TabLayout) fragmentView.findViewById(R.id.tabLayout);
+        TabLayout.Tab tab = tabLayout.getTabAt(tabPosition);
+        tab.select();
+        tabLayout.setTabTextColors(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D2), ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D4));
+        onSortItem();
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                tabPosition = tab.getPosition();
+                onSortItem();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {}
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {}
+        });
+
         return fragmentView;
+    }
+
+    public void setFloatingMenu()
+    {
+        View layoutFloating1 = fragmentView.findViewById(R.id.layout_floating1);
+        View layoutFloating2 = fragmentView.findViewById(R.id.layout_floating2);
+        if(mSharedPreferenceManager.getInt("set_menu", getContext()) == 0) {
+            layoutFloating1.setVisibility(View.VISIBLE);
+            layoutFloating2.setVisibility(View.GONE);
+        }
+        else{
+            layoutFloating1.setVisibility(View.GONE);
+            layoutFloating2.setVisibility(View.VISIBLE);
+        }
+        famMenu = (FloatingActionMenu) layoutFloating1.findViewById(R.id.fam_menu);
+        layoutFloating1.findViewById(R.id.fab_notice).setOnClickListener(onFabClickListener);
+        layoutFloating1.findViewById(R.id.fab_sort).setOnClickListener(onFabClickListener);
+        layoutFloating2.findViewById(R.id.fab_notice).setOnClickListener(onFabClickListener);
+        layoutFloating2.findViewById(R.id.fab_sort).setOnClickListener(onFabClickListener);
+    }
+
+    public int getSortId(int p)
+    {
+        switch(p){
+            case 101: return R.id.tv_sort_1;
+            case 102: return R.id.tv_sort_2;
+            case 103: return R.id.tv_sort_3;
+            case 201: return R.id.iv_sort_1;
+            case 202: return R.id.iv_sort_2;
+            case 203: return R.id.iv_sort_3;
+            case R.id.tv_sort_1: return 101;
+            case R.id.tv_sort_2: return 102;
+            case R.id.tv_sort_3: return 103;
+            case R.id.iv_sort_1: return 201;
+            case R.id.iv_sort_2: return 202;
+            case R.id.iv_sort_3: return 203;
+        }
+        return 0;
+    }
+
+    private Button.OnClickListener onButtonSortClickListener = new Button.OnClickListener() {
+        @Override
+        public void onClick(View onClickView){
+            fragmentView.findViewById(sortStateImageView).setVisibility(View.INVISIBLE);
+            ((TextView) fragmentView.findViewById(sortStateTextView)).setTextColor(ContextCompat.getColor(getContext(), R.color.gray80));
+            switch(onClickView.getId()){
+                case R.id.btn_sort_1:
+                    sortStateImageView = R.id.iv_sort_1;
+                    sortStateTextView = R.id.tv_sort_1;
+                    onSortItem();
+                    break;
+                case R.id.btn_sort_2:
+                    sortStateImageView = R.id.iv_sort_2;
+                    sortStateTextView = R.id.tv_sort_2;
+                    onSortItem();
+                    break;
+                case R.id.btn_sort_3:
+                    sortStateImageView = R.id.iv_sort_3;
+                    sortStateTextView = R.id.tv_sort_3;
+                    onSortItem();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    private void onSortItem()
+    {
+        String sortOrder = "ASC";
+        String sortMode = "NAME";
+        switch(tabPosition){
+            case 0:
+                sortOrder = "ASC";
+                break;
+            case 1:
+                sortOrder = "DESC";
+                break;
+        }
+        switch(sortStateImageView){
+            case R.id.iv_sort_1:
+                sortMode = "NAME";
+                break;
+            case R.id.iv_sort_2:
+                sortMode = "ADDEDDATE";
+                break;
+            case R.id.iv_sort_3:
+                sortMode = "POINT";
+                break;
+        }
+        mSharedPreferenceManager.putInt("member_sort_order", tabPosition, getContext());
+        mSharedPreferenceManager.putInt("member_sort_mode_iv", getSortId(sortStateImageView), getContext());
+        mSharedPreferenceManager.putInt("member_sort_mode_tv", getSortId(sortStateTextView), getContext());
+        mAdapter.setSortOption(sortMode, sortOrder);
+        mAdapter.sort();
+        fragmentView.findViewById(sortStateImageView).setVisibility(View.VISIBLE);
+        ((TextView) fragmentView.findViewById(sortStateTextView)).setTextColor(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_type1));
     }
 
     @Override
@@ -222,77 +351,22 @@ public class UserMain extends Fragment
     {
         TextView textViewSearchResult = (TextView) fragmentView.findViewById(R.id.textView_search_result);
         if(StampMode == false){
-            textViewSearchResult.setText("등록된 회원 수 : " + mAdapter.getItemCount());
+            textViewSearchResult.setText("등록된 회원 수 : " + (mAdapter.getItemCount() - 1));
         }
         else{
             textViewSearchResult.setText(mAdapter.getItemCount() + "명 중 0명 선택됨");
         }
     }
 
-    private void setSortWhite(RelativeLayout layout) {
-        layout.findViewById(R.id.view_body_white).setVisibility(View.VISIBLE);
-        layout.findViewById(R.id.view_body_color).setVisibility(View.INVISIBLE);
-        layout.findViewById(R.id.view_asc).setVisibility(View.GONE);
-        layout.findViewById(R.id.view_desc).setVisibility(View.GONE);
-        TextView textSort = (TextView)layout.findViewById(R.id.view_text);
-        textSort.setTextColor(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D3));
-    }
-
-    private void setSortOn(RelativeLayout layout, String state) {
-        layout.findViewById(R.id.view_body_white).setVisibility(View.INVISIBLE);
-        layout.findViewById(R.id.view_body_color).setVisibility(View.VISIBLE);
-        if (state == "ASC") {
-            layout.findViewById(R.id.view_asc).setVisibility(View.VISIBLE);
-            layout.findViewById(R.id.view_desc).setVisibility(View.GONE);
-        } else {
-            layout.findViewById(R.id.view_asc).setVisibility(View.GONE);
-            layout.findViewById(R.id.view_desc).setVisibility(View.VISIBLE);
-        }
-        sortStateOrder = state;
-        TextView textSort = (TextView)layout.findViewById(R.id.view_text);
-        textSort.setTextColor(getResources().getColor(R.color.white));
-    }
-
-    private Button.OnClickListener onButtonSortClickListener = new Button.OnClickListener() {
-        @Override
-        public void onClick(View onClickView) {
-            RelativeLayout includingLayout = (RelativeLayout)onClickView.getParent().getParent();
-            if (includingLayout != null) {
-                if (sortStateId != includingLayout.getId()) {
-                    setSortOn(includingLayout, "ASC");
-                    setSortWhite((RelativeLayout) fragmentView.findViewById(sortStateId));
-                    sortStateId = includingLayout.getId();
-                } else {
-                    RelativeLayout parentLayout = (RelativeLayout)onClickView.getParent();
-                    if (parentLayout.findViewById(R.id.view_asc).getVisibility() == View.GONE) {
-                        setSortOn(includingLayout, "ASC");
-                    } else {
-                        setSortOn(includingLayout, "DESC");
-                    }
-                }
-                switch (sortStateId) {
-                    default:
-                    case R.id.layout_sort_by_name:
-                        mAdapter.setSortOption("NAME", sortStateOrder);
-                        break;
-                    case R.id.layout_sort_by_phone:
-                        mAdapter.setSortOption("PHONE", sortStateOrder);
-                        break;
-                    case R.id.layout_sort_by_point:
-                        mAdapter.setSortOption("POINT", sortStateOrder);
-                        break;
-                }
-            }
-        }
-    };
-
     private View.OnClickListener onFabClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            if(famMenu != null){
+                famMenu.close(true);
+            }
             switch (view.getId()) {
                 default:
                 case R.id.fab_add_user:
-                    famMenu.close(true);
                     userEditDialog = new UserEditDialog(getContext());
                     userEditDialog.show();
                     userEditDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -312,7 +386,6 @@ public class UserMain extends Fragment
                     setTextViewSearchResult(true);
                     break;
                 case R.id.fab_notice:
-                    famMenu.close(true);
                     UserNoticeMain fragmentNotice = new UserNoticeMain();
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -320,7 +393,17 @@ public class UserMain extends Fragment
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
                     break;
+                case R.id.fab_sort:
+                    SlidingUpPanelLayout layoutSliding = (SlidingUpPanelLayout) getActivity().findViewById(R.id.layout_sliding);
+                    layoutSliding.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
+                    break;
             }
+
         }
     };
+
+    public void refreshRecyclerView(){
+        mAdapter.getFilter().filter(searchString);
+        mAdapter.notifyDataSetChanged();
+    }
 }

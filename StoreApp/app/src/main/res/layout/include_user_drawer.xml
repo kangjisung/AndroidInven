@@ -140,6 +140,28 @@
                 android:layout_marginBottom="5dp" />
 
             <TextView
+                android:text="등록일"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray160"
+                android:textSize="12dp" />
+
+            <TextView
+                android:text="!등록일"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_drawer_join"
+                android:textSize="18dp"
+                android:textColor="@color/gray120" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray200"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
+
+            <TextView
                 android:text="이메일"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

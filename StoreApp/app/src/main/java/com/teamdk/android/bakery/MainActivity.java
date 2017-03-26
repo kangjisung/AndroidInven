@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
     public static Context con;
     public static String PriNum;
 
-    //networkmodule 예제
-    //networkModule.InsertNewCustomerInfo("강지성");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,13 +68,20 @@ public class MainActivity extends AppCompatActivity {
         {
             // 설정값이 없을 경우 환경설정 초기화
             SharedPreferenceManager mSharedPreferenceManager = new SharedPreferenceManager();
-            if(mSharedPreferenceManager.getInt("product_sort_mode_iv", getApplicationContext()) == 0){
-                mSharedPreferenceManager.putInt("product_sort_mode_iv", R.id.iv_sort_add, getApplicationContext());
+
+            if (mSharedPreferenceManager.getInt("product_sort_mode_iv", getApplicationContext()) == 0){
+                mSharedPreferenceManager.putInt("product_sort_mode_iv", 201, getApplicationContext());
             }
-            if(mSharedPreferenceManager.getInt("product_sort_mode_tv", getApplicationContext()) == 0){
-                mSharedPreferenceManager.putInt("product_sort_mode_tv", R.id.tv_sort_add, getApplicationContext());
+            if (mSharedPreferenceManager.getInt("product_sort_mode_tv", getApplicationContext()) == 0){
+                mSharedPreferenceManager.putInt("product_sort_mode_tv", 101, getApplicationContext());
             }
-            if(mSharedPreferenceManager.getInt("set_theme", getApplicationContext()) == 0){
+            if (mSharedPreferenceManager.getInt("member_sort_mode_iv", getApplicationContext()) == 0){
+                mSharedPreferenceManager.putInt("member_sort_mode_iv", 201, getApplicationContext());
+            }
+            if (mSharedPreferenceManager.getInt("member_sort_mode_tv", getApplicationContext()) == 0){
+                mSharedPreferenceManager.putInt("member_sort_mode_tv", 101, getApplicationContext());
+            }
+            if (mSharedPreferenceManager.getInt("set_theme", getApplicationContext()) == 0){
                 mSharedPreferenceManager.putInt("set_theme", R.style.LikeRoomTheme_BreadTheme, getApplicationContext());
             }
 
@@ -112,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), ActivityStoreAdd.class));
             }
             else {
-                // show dialog
                 new ClientDataBase("select max(`수정일`) from `회원정보`;",1,1,getApplicationContext());
                 NetworkModule networkModule = new NetworkModule();
                 networkModule.GetCustomerRegisteredInfo(Integer.parseInt(PriNum), DBstring[0]);

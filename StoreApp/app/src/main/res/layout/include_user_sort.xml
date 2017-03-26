@@ -78,7 +78,7 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/btn_sort_name"
+                    android:id="@+id/btn_sort_1"
                     android:background="@drawable/button_ripple_rectangle" />
 
                 <LinearLayout
@@ -96,11 +96,11 @@
                         android:textSize="18dp"
                         android:textColor="@color/gray80"
                         android:layout_weight="1"
-                        android:id="@+id/tv_sort_name" />
+                        android:id="@+id/tv_sort_1" />
 
                     <android.support.v7.widget.AppCompatImageView
                         android:layout_width="20dp"
-                        android:id="@+id/iv_sort_name"
+                        android:id="@+id/iv_sort_1"
                         android:layout_weight="1"
                         android:background="@mipmap/icon_check"
                         app:backgroundTint="?attr/theme_color_type1"
@@ -128,7 +128,7 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/btn_add"
+                    android:id="@+id/btn_sort_2"
                     android:background="@drawable/button_ripple_rectangle" />
 
                 <LinearLayout
@@ -146,11 +146,11 @@
                         android:textSize="18dp"
                         android:textColor="@color/gray80"
                         android:layout_weight="1"
-                        android:id="@+id/tv_sort_add" />
+                        android:id="@+id/tv_sort_2" />
 
                     <android.support.v7.widget.AppCompatImageView
                         android:layout_width="20dp"
-                        android:id="@+id/iv_sort_add"
+                        android:id="@+id/iv_sort_2"
                         android:layout_weight="1"
                         android:background="@mipmap/icon_check"
                         app:backgroundTint="?attr/theme_color_type1"
@@ -178,7 +178,7 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/btn_sales"
+                    android:id="@+id/btn_sort_3"
                     android:background="@drawable/button_ripple_rectangle" />
 
                 <LinearLayout
@@ -190,17 +190,17 @@
                     android:layout_marginStart="10dp">
 
                     <TextView
-                        android:text="판매량 순"
+                        android:text="포인트 순"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18dp"
                         android:textColor="@color/gray80"
                         android:layout_weight="1"
-                        android:id="@+id/tv_sort_sales" />
+                        android:id="@+id/tv_sort_3" />
 
                     <android.support.v7.widget.AppCompatImageView
                         android:layout_width="20dp"
-                        android:id="@+id/iv_sort_sales"
+                        android:id="@+id/iv_sort_3"
                         android:layout_weight="1"
                         android:background="@mipmap/icon_check"
                         app:backgroundTint="?attr/theme_color_type1"
@@ -213,12 +213,6 @@
             </RelativeLayout>
 
         </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </RelativeLayout>
 
     </LinearLayout>
 
