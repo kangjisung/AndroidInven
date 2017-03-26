@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.teamdk.android.bakery.objectmanager.NoticeListItem;
 import com.teamdk.android.bakery.R;
+import com.teamdk.android.bakery.utility.NetworkManager.NetworkModule;
 import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
 import com.teamdk.android.bakery.utility.ColorTheme;
 import com.teamdk.android.bakery.utility.LayoutManager;
@@ -37,6 +38,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+
+import static com.teamdk.android.bakery.MainActivity.PriNum;
+import static com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
 public class UserNoticeEditDialog extends Dialog
 {
@@ -200,6 +204,9 @@ public class UserNoticeEditDialog extends Dialog
                                 selectedType,
                                 0);
                         new ClientDataBase(query, 2, 0, getContext());
+                        new ClientDataBase("select `공지번호` from `매장공지` where `제목`=\""+mEditTextTitle.getText().toString()+"\"",1,1,getContext());
+                        NetworkModule networkModule=new NetworkModule();//서버에 공지 추가
+                        networkModule.InsertNewStoreNoticeInfo(Integer.parseInt(PriNum),Integer.parseInt(DBstring[0]),mEditTextTitle.getText().toString(),mEditTextBody.getText().toString(),startDateString,endDateString,makeDateString);
                     }
                     else if(mode.equals("MODIFY")) {
                         query = String.format("UPDATE `매장공지`" +
@@ -211,6 +218,8 @@ public class UserNoticeEditDialog extends Dialog
                                 selectedType,
                                 userNoticeItemBeforeModify.getNum());
                         new ClientDataBase(query, 3, 0, getContext());
+                        NetworkModule networkModule=new NetworkModule();//서버에 공지 업데이트
+                        networkModule.UpdateStoreNoticeInfo(Integer.parseInt(PriNum),userNoticeItemBeforeModify.getNum(),mEditTextTitle.getText().toString(),mEditTextBody.getText().toString(),startDateString,endDateString);
                     }
                 }
                 catch(Exception ex){

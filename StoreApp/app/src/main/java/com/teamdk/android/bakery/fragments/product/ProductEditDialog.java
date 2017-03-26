@@ -94,9 +94,9 @@ public class ProductEditDialog extends Dialog
         else{
             LayoutManager.setDialogTitle(findViewById(R.id.layout_title), true, false, "새 제품 수정");
             proDuct = modifyItem.getNum();
-            Productcost.setText(modifyItem.getCost());
-            Productprice.setText(modifyItem.getPrice());
-            Productresidual.setText(modifyItem.getResidual());
+            Productcost.setText(String.valueOf(modifyItem.getCost()));
+            Productprice.setText(String.valueOf(modifyItem.getPrice()));
+            Productresidual.setText(String.valueOf(modifyItem.getResidual()));
             Productname.setText(modifyItem.getName());
         }
 

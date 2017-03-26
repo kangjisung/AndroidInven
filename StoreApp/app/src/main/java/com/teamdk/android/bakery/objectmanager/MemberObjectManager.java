@@ -46,7 +46,6 @@ public class MemberObjectManager {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                continue;
             }
             finally {
                 count += 7;
@@ -76,41 +75,5 @@ public class MemberObjectManager {
     public static void delete(int position)
     {
         memberItemList.remove(position);
-    }
-
-    public static void sort(final String sortMode, final String sortOrder)
-    {
-        Collections.sort(memberItemList, new Comparator<MemberListItem>(){
-            @Override
-            public int compare(MemberListItem obj1, MemberListItem obj2) {
-                if(sortMode.equals("NAME")){
-                    if(sortOrder.equals("ASC")){
-                        return obj1.getName().compareToIgnoreCase(obj2.getName());
-                    }
-                    else{
-                        return obj2.getName().compareToIgnoreCase(obj1.getName());
-                    }
-                }
-                else if(sortMode.equals("PHONE")){
-                    if(sortOrder.equals("ASC")){
-                        return obj1.getPhone().compareToIgnoreCase(obj2.getPhone());
-                    }
-                    else{
-                        return obj2.getPhone().compareToIgnoreCase(obj1.getPhone());
-                    }
-                }
-                else if(sortMode.equals("POINT")){
-                    int p1 = Integer.valueOf(obj1.getPoint());
-                    int p2 = Integer.valueOf(obj2.getPoint());
-                    if(sortOrder.equals("ASC")){
-                        return (p1 < p2) ? -1 : (p1 > p2) ? 1 : 0;
-                    }
-                    else{
-                        return (p1 > p2) ? -1 : (p1 < p2) ? 1 : 0;
-                    }
-                }
-                return -1;
-            }
-        });
     }
 }

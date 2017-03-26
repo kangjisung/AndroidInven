@@ -4,34 +4,38 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.teamdk.android.bakery.fragments.product.FragmentMuchStore;
+import com.teamdk.android.bakery.fragments.product.FragmentSellToday;
+import com.teamdk.android.bakery.fragments.product.ProductMain;
+import com.teamdk.android.bakery.objectmanager.ProductObjectManager;
+import com.teamdk.android.bakery.utility.Interfaces;
+import com.teamdk.android.bakery.fragments.user.UserMain;
 import com.teamdk.android.bakery.setting.SettingMain;
 import com.teamdk.android.bakery.utility.ColorTheme;
 import com.teamdk.android.bakery.utility.NoScrollViewPager;
 import com.teamdk.android.bakery.utility.SharedPreferenceManager;
 import com.teamdk.android.bakery.utility.Utility;
 
-public class ActivityMenu extends AppCompatActivity
+public class ActivityMenu extends AppCompatActivity implements Interfaces
 {
-    private int[] tabStringResIds = {
-            R.string.menu_point_string,
-            R.string.menu_user_string,
-            R.string.menu_item_string
-    };
+    private int[] tabStringResIds = {R.string.menu_point_string, R.string.menu_user_string, R.string.menu_item_string};
     private TabLayout tabLayout;
     private TextView textViewTitle;
 
     private ActivityMenuPagerAdapter mAdapter;
     private NoScrollViewPager viewPager;
+    private FragmentMuchStore mFragmentMuchStore;
+    private FragmentSellToday mFragmentSellToday;
 
     private int REQUEST_SETTING = 1001;
     private int nowPosition;
@@ -43,7 +47,7 @@ public class ActivityMenu extends AppCompatActivity
         this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_menu);
 
-        tabLayout = (TabLayout)findViewById(R.id.tabLayout);
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
         textViewTitle = (TextView)findViewById(R.id.textView_title);
 
@@ -61,11 +65,25 @@ public class ActivityMenu extends AppCompatActivity
         });
     }
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent Data) {
+        super.onActivityResult(requestCode, resultCode, Data);
+
+        if(requestCode == REQUEST_SETTING) {
+            if (resultCode == 1002) {
+                ProductMain productFragment = (ProductMain) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.viewPager + ":" + 2);
+                UserMain userFragment = (UserMain) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.viewPager + ":" + 1);
+                productFragment.setFloatingMenu();
+                userFragment.setFloatingMenu();
+            }
+            else if (resultCode == 1003){
+            }
+        }
+    }
+
     public void reloadViewPager()
     {
-        viewPager = null;
-        viewPager = (NoScrollViewPager)findViewById(R.id.viewPager);
         mAdapter = new ActivityMenuPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager = (NoScrollViewPager)findViewById(R.id.viewPager);
         viewPager.setAdapter(mAdapter);
         viewPager.setPagingDisabled();
         viewPager.setOffscreenPageLimit(3);
@@ -75,7 +93,6 @@ public class ActivityMenu extends AppCompatActivity
             public void onTabSelected(TabLayout.Tab tab) {
                 RelativeLayout view = (RelativeLayout)tabLayout.getTabAt(tab.getPosition()).getCustomView();
                 view.findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
-                //view.findViewById(R.id.icon).getBackground().setColorFilter(selectedTabColor, PorterDuff.Mode.SRC_IN);
                 textViewTitle.setText(tabStringResIds[tab.getPosition()]);
                 viewPager.setCurrentItem(tab.getPosition());
                 if(tab.getPosition() != 0) {
@@ -92,7 +109,6 @@ public class ActivityMenu extends AppCompatActivity
             public void onTabUnselected(TabLayout.Tab tab) {
                 RelativeLayout view = (RelativeLayout)tabLayout.getTabAt(tab.getPosition()).getCustomView();
                 view.findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
-                //view.findViewById(R.id.icon).getBackground().setColorFilter(unselectedTabColor, PorterDuff.Mode.SRC_IN);
             }
 
             @Override
@@ -100,19 +116,67 @@ public class ActivityMenu extends AppCompatActivity
 
             }
         });
-
         viewPager.setCurrentItem(nowPosition);
         tabLayout.getTabAt(nowPosition).select();
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent Data) {
-        super.onActivityResult(requestCode, resultCode, Data);
+    public void tabLayoutInitialize()
+    {
+        int[] tabMipmapResIds = {
+                R.mipmap.icon_menu_point,
+                R.mipmap.icon_menu_user,
+                R.mipmap.icon_menu_item
+        };
 
-        if(requestCode == REQUEST_SETTING) {
-            if (resultCode == RESULT_OK) {
-                reloadViewPager();
+        tabLayout.removeAllTabs();
+        for (int i = 0; i < tabMipmapResIds.length; i++)
+        {
+            TabLayout.Tab tab = tabLayout.newTab();
+            View view = getLayoutInflater().inflate(R.layout.include_tabitem, null);
+            view.findViewById(R.id.icon_selected).setBackground(ContextCompat.getDrawable(this, tabMipmapResIds[i]));
+            view.findViewById(R.id.icon_unselected).setBackground(ContextCompat.getDrawable(this, tabMipmapResIds[i]));
+            tab.setCustomView(view);
+            tabLayout.addTab(tab);
+        }
+
+        tabLayout.getTabAt(0).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
+        tabLayout.getTabAt(1).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
+        tabLayout.getTabAt(2).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
+    }
+
+    // 포인트 적립 리스트 클릭
+    @Override
+    public void PointListClicked(int message){
+        if(message != 0){
+            UserMain page = (UserMain) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.viewPager + ":" + 1);
+            page.refreshRecyclerView();
+        }
+    }
+
+    @Override
+    public void SellTodayMoved(int dx, int dy){
+        if(mFragmentMuchStore == null) {
+            for (int p = 0; p < getSupportFragmentManager().getFragments().size(); p++) {
+                Fragment nowFragment = getSupportFragmentManager().getFragments().get(p);
+                if (nowFragment instanceof FragmentMuchStore) {
+                    mFragmentMuchStore = (FragmentMuchStore) nowFragment;
+                }
             }
         }
+        mFragmentMuchStore.setScroll(dx, dy);
+    }
+
+    @Override
+    public void MuchStoreMoved(int dx, int dy){
+        if(mFragmentSellToday == null){
+            for(int p=0; p<getSupportFragmentManager().getFragments().size(); p++){
+                Fragment nowFragment = getSupportFragmentManager().getFragments().get(p);
+                if(nowFragment instanceof FragmentSellToday){
+                    mFragmentSellToday = (FragmentSellToday) nowFragment;
+                }
+            }
+        }
+        mFragmentSellToday.setScroll(dx, dy);
     }
 
     @Override
@@ -132,92 +196,5 @@ public class ActivityMenu extends AppCompatActivity
         });
         dialog.show();
         //super.onBackPressed();
-    }
-
-    public void tabLayoutInitialize()
-    {
-        int[] tabMipmapResIds = {
-            R.mipmap.icon_menu_point,
-            R.mipmap.icon_menu_user,
-            R.mipmap.icon_menu_item
-        };
-
-        tabLayout.removeAllTabs();
-        for (int i = 0; i < tabMipmapResIds.length; i++)
-        {
-            TabLayout.Tab tab = tabLayout.newTab();
-            View view = getLayoutInflater().inflate(R.layout.include_tabitem, null);
-            view.findViewById(R.id.icon_selected).setBackground(ContextCompat.getDrawable(this, tabMipmapResIds[i]));
-            view.findViewById(R.id.icon_unselected).setBackground(ContextCompat.getDrawable(this, tabMipmapResIds[i]));
-            tab.setCustomView(view);
-            tabLayout.addTab(tab);
-        }
-
-        tabLayout.getTabAt(0).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
-        tabLayout.getTabAt(1).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
-        tabLayout.getTabAt(2).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
-
-        /*
-        for (int i = 0; i < tabMipmapResIds.length; i++)
-        {
-            TabLayout.Tab tab = tabLayout.getTabAt(i);
-            if (tab != null) {
-                View view = getLayoutInflater().inflate(R.layout.include_tabitem, null);
-                ((ImageView)view.findViewById(R.id.icon)).setImageResource(tabMipmapResIds[i]);
-                ((ImageView)view.findViewById(R.id.icon)).setBackground(ContextCompat.getDrawable(this, tabMipmapResIds[i]));
-                tab.setCustomView(view);
-            }
-        }
-        */
-    }
-
-    public void initializeColor()
-    {
-        LinearLayout view;
-
-        //view = (LinearLayout)tabLayout.getTabAt(0).getCustomView();
-        //view.findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
-        //view = (LinearLayout)tabLayout.getTabAt(1).getCustomView();
-        //.findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
-
-        //view.findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
-
-        /*
-        view = (LinearLayout)tabLayout.getTabAt(0).getCustomView();
-        view.findViewById(R.id.icon).getBackground().setColorFilter(selectedTabColor, PorterDuff.Mode.SRC_IN);
-        view = (LinearLayout)tabLayout.getTabAt(1).getCustomView();
-        view.findViewById(R.id.icon).getBackground().setColorFilter(unselectedTabColor, PorterDuff.Mode.SRC_IN);
-        view = (LinearLayout)tabLayout.getTabAt(2).getCustomView();
-        view.findViewById(R.id.icon).getBackground().setColorFilter(unselectedTabColor, PorterDuff.Mode.SRC_IN);
-        */
-
-        // 둥근 모서리 색상 변경
-        /*
-        RelativeLayout layoutCorner = (RelativeLayout)findViewById(R.id.layout_corner);
-        ((AppCompatImageView)layoutCorner.findViewById(R.id.corner_lt)).setSupportBackgroundTintList(ColorStateList.valueOf(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_N)));
-        ((AppCompatImageView)layoutCorner.findViewById(R.id.corner_lb)).setSupportBackgroundTintList(ColorStateList.valueOf(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_N)));
-        ((AppCompatImageView)layoutCorner.findViewById(R.id.corner_rt)).setSupportBackgroundTintList(ColorStateList.valueOf(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_N)));
-        ((AppCompatImageView)layoutCorner.findViewById(R.id.corner_rb)).setSupportBackgroundTintList(ColorStateList.valueOf(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_N)));
-        */
-
-        // 탭 아이콘 색상 변경
-        /*
-        LinearLayout view;
-        view = (LinearLayout)tabLayout.getTabAt(0).getCustomView();
-        view.findViewById(R.id.icon).getBackground().setColorFilter(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_D3), PorterDuff.Mode.SRC_IN);
-        view = (LinearLayout)tabLayout.getTabAt(1).getCustomView();
-        view.findViewById(R.id.icon).getBackground().setColorFilter(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_D1), PorterDuff.Mode.SRC_IN);
-        view = (LinearLayout)tabLayout.getTabAt(2).getCustomView();
-        view.findViewById(R.id.icon).getBackground().setColorFilter(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_D1), PorterDuff.Mode.SRC_IN);
-        */
-
-        /*
-        LayerDrawable layers = (LayerDrawable)ContextCompat.getDrawable(getBaseContext(), R.);
-        layers.setColorFilter(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_N), PorterDuff.Mode.SRC_IN);
-
-        tabLayout.getTabAt(0).getIcon().setColorFilter(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_D3), PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(1).getIcon().setColorFilter(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_D1), PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(2).getIcon().setColorFilter(ColorTheme.getThemeColorRGB(this, R.attr.theme_color_D1), PorterDuff.Mode.SRC_IN);
-        */
     }
 }

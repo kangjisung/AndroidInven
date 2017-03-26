@@ -20,15 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:id="@+id/relative">
-
-            <com.teamdk.android.bakery.utility.NoScrollViewPager
-                android:id="@+id/vp_fragment_item_main"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/layout_info">
-            </com.teamdk.android.bakery.utility.NoScrollViewPager>
+            android:focusableInTouchMode="true">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -138,7 +130,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/layout_info"
-
                 android:layout_below="@+id/layout_select"
                 android:background="?attr/theme_color_L3">
 
@@ -160,7 +151,7 @@
                         android:background="@mipmap/icon_calendar"
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="5dp"
-                        app:backgroundTint="?attr/theme_color_D3"
+                        app:backgroundTint="?attr/theme_color_D4"
                         android:layout_width="22dp"
                         android:layout_height="22dp" />
 
@@ -170,7 +161,7 @@
                         android:layout_height="match_parent"
                         android:text="[날짜]"
                         android:gravity="center_vertical"
-                        android:textColor="?attr/theme_color_D3"
+                        android:textColor="?attr/theme_color_D4"
                         android:textSize="16dp" />
 
                     <TextView
@@ -180,12 +171,20 @@
 
                         android:text="[탭 이름]"
                         android:gravity="center_vertical"
-                        android:textColor="?attr/theme_color_D3"
+                        android:textColor="?attr/theme_color_D4"
                         android:textSize="16dp"
                         android:layout_marginStart="5dp" />
 
                 </LinearLayout>
             </RelativeLayout>
+
+            <com.teamdk.android.bakery.utility.NoScrollViewPager
+                android:id="@+id/vp_fragment_item_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/layout_info"
+                android:background="@color/gray245">
+            </com.teamdk.android.bakery.utility.NoScrollViewPager>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -206,7 +205,9 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
                     android:gravity="center_vertical"
-                    android:id="@+id/layout_floating2">
+                    android:id="@+id/layout_floating2"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp">
 
                     <com.github.clans.fab.FloatingActionButton
                         android:src="@mipmap/fab_sort"
@@ -215,7 +216,7 @@
                         android:layout_height="match_parent"
                         app:fab_colorNormal="?attr/theme_color_type1"
                         app:fab_colorPressed="@color/gray200"
-                        android:layout_marginStart="15dp" />
+                        android:layout_marginEnd="3dp" />
 
                     <com.github.clans.fab.FloatingActionButton
                         android:src="@mipmap/fab_add_product"
@@ -223,8 +224,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:fab_colorNormal="?attr/theme_color_type1"
-                        app:fab_colorPressed="@color/gray200"
-                        android:layout_margin="8dp" />
+                        app:fab_colorPressed="@color/gray200" />
                 </LinearLayout>
 
             </RelativeLayout>
@@ -255,6 +255,6 @@
         <include
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            layout="@layout/include_product_drawer" />
+            layout="@layout/include_product_sort" />
     </RelativeLayout>
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

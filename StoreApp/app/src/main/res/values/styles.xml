@@ -11,16 +11,17 @@
         <item name="theme_color_D2">#c23451</item>
         <item name="theme_color_D3">#a40727</item>
         <item name="theme_color_D4">#5c0315</item>
-        <item name="theme_color_type1">#8ad968</item>
+        <item name="theme_color_type1">#74b332</item>
         <item name="theme_color_type2">#ff4c64</item>
+        <item name="theme_color_type3">#78a40727</item>
         <item name="colorAccent">?attr/theme_color_type1</item>
     </style>
 
     <style name="LikeRoomTheme_BreadTheme" parent="@style/LikeRoomTheme">
-        <item name="theme_color_L4">#f7ebd9</item>
-        <item name="theme_color_L3">#f1e1c9</item>
-        <item name="theme_color_L2">#e4d0b1</item>
-        <item name="theme_color_L1">#dcc39a</item>
+        <item name="theme_color_L4">#faf3e9</item>
+        <item name="theme_color_L3">#f5e7d2</item>
+        <item name="theme_color_L2">#ead7b9</item>
+        <item name="theme_color_L1">#dfc499</item>
         <item name="theme_color_N" >#caad80</item>
         <item name="theme_color_D1">#bc9b68</item>
         <item name="theme_color_D2">#a7854f</item>
@@ -28,6 +29,7 @@
         <item name="theme_color_D4">#664819</item>
         <item name="theme_color_type1">#f86f8d</item>
         <item name="theme_color_type2">#e88f2c</item>
+        <item name="theme_color_type3">#78997235</item>
         <item name="colorAccent">?attr/theme_color_type1</item>
     </style>
 
@@ -43,6 +45,7 @@
         <item name="theme_color_D4">#1f5907</item>
         <item name="theme_color_type1">#e4b164</item>
         <item name="theme_color_type2">#88ec74</item>
+        <item name="theme_color_type3">#78347c16</item>
         <item name="colorAccent">?attr/theme_color_type1</item>
     </style>
 
@@ -58,6 +61,7 @@
         <item name="theme_color_D4">#084660</item>
         <item name="theme_color_type1">#bf6ff5</item>
         <item name="theme_color_type2">#43d0ff</item>
+        <item name="theme_color_type3">#78185b78</item>
         <item name="colorAccent">?attr/theme_color_type1</item>
     </style>
 
@@ -73,6 +77,7 @@
         <item name="theme_color_D4">#641181</item>
         <item name="theme_color_type1">#ffa95d</item>
         <item name="theme_color_type2">#db74ff</item>
+        <item name="theme_color_type3">#761c96</item>
         <item name="colorAccent">?attr/theme_color_type1</item>
     </style>
     <style name="LikeRoomTheme_DarkTheme" parent="@style/LikeRoomTheme">
@@ -87,6 +92,23 @@
         <item name="theme_color_D4">#303030</item>
         <item name="theme_color_type1">#48f1dd</item>
         <item name="theme_color_type2">#a4a4a4</item>
+        <item name="theme_color_type3">#78515151</item>
+        <item name="colorAccent">?attr/theme_color_type1</item>
+    </style>
+
+    <style name="LikeRoomTheme_NavyBlueTheme" parent="@style/LikeRoomTheme">
+        <item name="theme_color_L4">#e0ddfa</item>
+        <item name="theme_color_L3">#c5bff7</item>
+        <item name="theme_color_L2">#a49be4</item>
+        <item name="theme_color_L1">#968ed9</item>
+        <item name="theme_color_N" >#7f75cf</item>
+        <item name="theme_color_D1">#685dba</item>
+        <item name="theme_color_D2">#5348a9</item>
+        <item name="theme_color_D3">#3a2f96</item>
+        <item name="theme_color_D4">#241a73</item>
+        <item name="theme_color_type1">#84f9f3</item>
+        <item name="theme_color_type2">#8d7fff</item>
+        <item name="theme_color_type3">#78185b78</item>
         <item name="colorAccent">?attr/theme_color_type1</item>
     </style>
 

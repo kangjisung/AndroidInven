@@ -2,13 +2,11 @@ package com.teamdk.android.bakery.fragments.user.adapter;
 
 import android.content.Context;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.util.SortedList;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,14 +17,11 @@ import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.teamdk.android.bakery.fragments.point.adapter.PointMainListAdapter;
+import com.github.clans.fab.FloatingActionButton;
+import com.teamdk.android.bakery.R;
 import com.teamdk.android.bakery.objectmanager.MemberListItem;
 import com.teamdk.android.bakery.objectmanager.MemberObjectManager;
-import com.teamdk.android.bakery.utility.LayoutManager;
 import com.teamdk.android.bakery.utility.Utility;
-import com.teamdk.android.bakery.R;
-
-import com.github.clans.fab.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,6 +33,7 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
     private Context context;
     private ViewGroup parent;
     private Boolean stampMode = false;
+    private int height = -1;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("y년 M월 d일", Locale.KOREA);
 
     private String sortOptionMode = "NAME";
@@ -72,11 +68,11 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
             super(view);
 
             this.view = view;
-            textViewName = (TextView) view.findViewById(R.id.textView_name);
-            textViewPhone = (TextView) view.findViewById(R.id.textView_phone);
-            textViewPoint = (TextView) view.findViewById(R.id.textView_point);
-            buttonDescription = (Button) view.findViewById(R.id.button_detail);
-            checkBoxStamp = (CheckBox) view.findViewById(R.id.checkBox_stamp);
+            textViewName = (TextView) view.findViewById(R.id.tv_name);
+            textViewPhone = (TextView) view.findViewById(R.id.tv_phone);
+            textViewPoint = (TextView) view.findViewById(R.id.tv_point);
+            buttonDescription = (Button) view.findViewById(R.id.btn_detail);
+            checkBoxStamp = (CheckBox) view.findViewById(R.id.cb_stamp);
             mImageViewDot = (AppCompatImageView) view.findViewById(R.id.iv_dot);
             view.setOnCreateContextMenuListener(this);
         }
@@ -149,6 +145,16 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
 
     @Override
     public void onBindViewHolder(final UserRecyclerViewHolder holder, final int position) {
+        if(position == getItemCount() - 1){
+            holder.view.setLayoutParams(new RelativeLayout.LayoutParams(holder.view.getLayoutParams().width, Utility.convertDpToPixels(80, context)));
+            holder.view.setVisibility(View.INVISIBLE);
+            return;
+        }
+        if(height == -1){
+            height = holder.view.getLayoutParams().height;
+        }
+        holder.view.setLayoutParams(new RelativeLayout.LayoutParams(holder.view.getLayoutParams().width, height));
+        holder.view.setVisibility(View.VISIBLE);
         final MemberListItem userMainItem = filteredList.get(position);
 
         holder.textViewName.setText(userMainItem.getName());
@@ -226,7 +232,7 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
 
     @Override
     public int getItemCount() {
-        return filteredList.size();
+        return filteredList.size() + 1;
     }
 
     public void setTextViewSearchResult(TextView textView) {
@@ -247,7 +253,7 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
     }
 
     public ArrayList<MemberListItem> getListItemToStampDialog() {
-        ArrayList<MemberListItem> uploadData = new ArrayList<MemberListItem>();
+        ArrayList<MemberListItem> uploadData = new ArrayList<>();
 
         for (int p = 0; p < MemberObjectManager.size(); p++) {
             if (MemberObjectManager.get(p).getCheck() == true) {
@@ -283,12 +289,14 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
                     } else {
                         return obj2.getName().compareToIgnoreCase(obj1.getName());
                     }
-                } else if (sortOptionMode.equals("PHONE")) {
+                } else if (sortOptionMode.equals("ADDEDDATE")) {
+                    /*
                     if (sortOptionOrder.equals("ASC")) {
                         return obj1.getPhone().compareToIgnoreCase(obj2.getPhone());
                     } else {
                         return obj2.getPhone().compareToIgnoreCase(obj1.getPhone());
                     }
+                    */
                 } else if (sortOptionMode.equals("POINT")) {
                     int p1 = Integer.valueOf(obj1.getPoint());
                     int p2 = Integer.valueOf(obj2.getPoint());

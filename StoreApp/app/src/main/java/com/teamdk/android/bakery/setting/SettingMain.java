@@ -36,6 +36,8 @@ public class SettingMain extends AppCompatActivity
         findViewById(R.id.btn_set_theme).setOnClickListener(onButtonSettingClickListener);
         findViewById(R.id.btn_set_start).setOnClickListener(onButtonSettingClickListener);
         findViewById(R.id.btn_set_menu).setOnClickListener(onButtonSettingClickListener);
+        findViewById(R.id.btn_store_modify).setOnClickListener(onButtonSettingClickListener);
+        findViewById(R.id.btn_store_delete).setOnClickListener(onButtonSettingClickListener);
 
         LayoutManager.setActivityTitle(findViewById(R.id.layout_title), true, false, "설정 및 정보");
         findViewById(R.id.inc_btn_back).setOnClickListener(new View.OnClickListener() {
@@ -57,7 +59,7 @@ public class SettingMain extends AppCompatActivity
                     mListView.setLayoutParams(new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, ListView.LayoutParams.MATCH_PARENT));
                     mListView.setDividerHeight(0);
 
-                    SettingStartListAdapter mAdapter1 = new SettingStartListAdapter(SettingMain.this, "set_start");
+                    final SettingStartListAdapter mAdapter1 = new SettingStartListAdapter(SettingMain.this, "set_start");
                     mAdapter1.addItem("제품 정보");
                     mAdapter1.addItem("고객 정보");
                     mAdapter1.addItem("포인트 적립");
@@ -66,7 +68,7 @@ public class SettingMain extends AppCompatActivity
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             if(mSharedPreferenceManager.getInt("set_start", getApplicationContext()) != position){
-                                setResult(RESULT_OK);
+                                setResult(1001);
                             }
                             mSharedPreferenceManager.putInt("set_start", position, getApplicationContext());
                             dialog.cancel();
@@ -92,7 +94,7 @@ public class SettingMain extends AppCompatActivity
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             if(mSharedPreferenceManager.getInt("set_menu", getApplicationContext()) != position){
-                                setResult(RESULT_OK);
+                                setResult(1002);
                             }
                             mSharedPreferenceManager.putInt("set_menu", position, getApplicationContext());
                             dialog.cancel();
@@ -117,10 +119,14 @@ public class SettingMain extends AppCompatActivity
                     mAdapter2.addItem(R.style.LikeRoomTheme_OceanTheme, "바다", "#5597bf");
                     mAdapter2.addItem(R.style.LikeRoomTheme_GrapeTheme, "포도", "#be6eda");
                     mAdapter2.addItem(R.style.LikeRoomTheme_DarkTheme, "흑백", "#939393");
+                    mAdapter2.addItem(R.style.LikeRoomTheme_NavyBlueTheme, "군청", "#7f75cf");
                     mListView.setAdapter(mAdapter2);
                     mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            if(mSharedPreferenceManager.getInt("set_theme", getApplicationContext()) != mAdapter2.getThemeId(position)){
+                                setResult(1003);
+                            }
                             mSharedPreferenceManager.putInt("set_theme", mAdapter2.getThemeId(position), getApplicationContext());
                             SingleToast.show(SettingMain.this, "테마 변경은 앱 재시작 후에 적용됩니다.", Toast.LENGTH_LONG);
                             dialog.cancel();
@@ -140,6 +146,11 @@ public class SettingMain extends AppCompatActivity
                 case R.id.btn_info_createdby:
                     startActivity(new Intent(getApplicationContext(), SettingCreatedby.class));
                     overridePendingTransition(0, 0);
+                    break;
+                case R.id.btn_store_modify:
+                    startActivity(new Intent(getApplicationContext(), SettingStoreModify.class));
+                    break;
+                case R.id.btn_store_delete:
                     break;
                 default:
                     break;

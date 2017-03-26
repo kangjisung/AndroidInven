@@ -43,8 +43,6 @@
             android:id="@+id/menu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingEnd="10dp"
-            android:paddingBottom="10dp"
             fab:menu_labels_ellipsize="end"
             fab:menu_labels_singleLine="true"
             fab:menu_labels_colorNormal="@color/transparent"
@@ -53,7 +51,9 @@
             fab:menu_icon="@mipmap/icon_floating_hamburger"
             fab:menu_colorNormal="?attr/theme_color_type1"
             fab:menu_colorPressed="@color/gray160"
-            fab:menu_fab_label="">
+            fab:menu_fab_label=""
+            android:paddingBottom="10dp"
+            android:paddingEnd="10dp">
 
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/fab_add_user"
@@ -74,6 +74,15 @@
                 fab:fab_colorPressed="@color/gray160"
                 fab:fab_label="@string/user_fab_stamp"
                 android:visibility="gone" />
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/fab_sort"
+                fab:fab_colorNormal="?attr/theme_color_type1"
+                fab:fab_colorPressed="@color/gray160"
+                fab:fab_label="정렬" />
 
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/fab_notice"

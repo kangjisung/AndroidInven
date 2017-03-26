@@ -16,8 +16,6 @@
             android:id="@+id/fam_menu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingEnd="10dp"
-            android:paddingBottom="10dp"
             fab:menu_labels_ellipsize="end"
             fab:menu_labels_singleLine="true"
             fab:menu_labels_colorNormal="@color/transparent"
@@ -26,7 +24,9 @@
             fab:menu_icon="@mipmap/icon_floating_hamburger"
             fab:menu_colorNormal="?attr/theme_color_type1"
             fab:menu_colorPressed="@color/gray160"
-            fab:menu_fab_label="">
+            fab:menu_fab_label=""
+            android:paddingBottom="10dp"
+            android:paddingEnd="10dp">
 
             <com.github.clans.fab.FloatingActionButton
                 android:src="@mipmap/fab_sort"

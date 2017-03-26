@@ -8,7 +8,6 @@ import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
 import com.teamdk.android.bakery.utility.SharedPreferenceManager;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -121,7 +120,7 @@ public class ProductObjectManager {
     }
 
     public static void addRecyclerView(RecyclerView recyclerView, RecyclerView.Adapter<RecyclerView.ViewHolder> recyclerViewAdapter){
-        recyclerViewManagers.add(new RecyclerViewManager(recyclerView,recyclerViewAdapter));
+        recyclerViewManagers.add(new RecyclerViewManager(recyclerView, recyclerViewAdapter));
     }
 
     public static void notifyChanged(){
