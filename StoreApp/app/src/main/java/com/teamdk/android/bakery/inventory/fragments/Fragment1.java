@@ -100,8 +100,8 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
                         editText.setText(String.valueOf(c.calcQ2()));
                         //RefreshGraph(c.min, (int) c.FD, c.max, true);
                     }
-                    //c.updateFD();//FD변경
-                    //c.updateQ();//Q변경
+                    c.updateFD();//FD변경
+                    c.updateQ();//Q변경
                 }
             }
         });

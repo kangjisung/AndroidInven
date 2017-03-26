@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.teamdk.android.bakery.utility.NetworkManager.NetworkModule;
 import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
 import com.teamdk.android.bakery.utility.NoScrollViewPager;
 
@@ -70,10 +71,10 @@ public class ActivityStoreAddPagerAdapter extends PagerAdapter
                         if(isConfirm == true) {
                             //매장추가
                             // TODO : 여기서 DB에 입력
-                            //NetworkModule networkModule=new NetworkModule();
-                            //networkModule.InsertNewStoreInfoData(etName.getText().toString(),etAddress.getText().toString(),etPhone.getText().toString());
                             new ClientDataBase("insert into `매장` (`주소`,`이름`,`전화번호`) values (\""+etName.getText().toString()+"\",\""+etAddress.getText().toString()+"\",\""+etPhone.getText().toString()+"\");",2,0,context);
                             Toast.makeText(context, "매장이 등록되었습니다.", Toast.LENGTH_SHORT).show();
+                            NetworkModule networkModule=new NetworkModule();
+                            networkModule.InsertNewStoreInfoData(etAddress.getText().toString(),etName.getText().toString(),etPhone.getText().toString());//매장추가(매장주소,이름,전화번호)
 
                             AppCompatActivity activity = (AppCompatActivity) context;
                             Intent intent = new Intent(activity, ActivityMenu.class);

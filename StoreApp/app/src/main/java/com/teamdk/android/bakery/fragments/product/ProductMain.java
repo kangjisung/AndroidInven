@@ -25,6 +25,7 @@ import com.teamdk.android.bakery.objectmanager.ProductObjectManager;
 import com.teamdk.android.bakery.R;
 import com.teamdk.android.bakery.utility.ColorTheme;
 import com.teamdk.android.bakery.utility.LayoutManager;
+import com.teamdk.android.bakery.utility.NetworkManager.NetworkModule;
 import com.teamdk.android.bakery.utility.NoScrollViewPager;
 import com.github.clans.fab.FloatingActionMenu;
 import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
@@ -33,6 +34,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+
+import static com.teamdk.android.bakery.MainActivity.PriNum;
+import static com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase.DBstring;
 
 public class ProductMain extends Fragment {
     private Button btnSellToday;
@@ -234,11 +238,15 @@ public class ProductMain extends Fragment {
                 dialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {////제품에 관련된거 삭제
-                        new ClientDataBase("delete from `제품정보` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+mProductListItem.getName()+"\")",2,0, MainActivity.con);
-                        new ClientDataBase("delete from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+mProductListItem.getName()+"\")",2,0, MainActivity.con);
-                        new ClientDataBase("delete from `최적재고량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+mProductListItem.getName()+"\")",2,0, MainActivity.con);
+                        new ClientDataBase("select `제품코드` from `제품정보` where `이름`=\""+mProductListItem.getName()+"\"",1,1,MainActivity.con);
+                        int ProductNum=Integer.parseInt(DBstring[0]);
+                        new ClientDataBase("delete from `제품정보` where `제품코드`="+ProductNum+"",2,0, MainActivity.con);
+                        new ClientDataBase("delete from `제품판매량` where `제품코드`="+ProductNum+"",2,0, MainActivity.con);
+                        new ClientDataBase("delete from `최적재고량` where `제품코드`="+ProductNum+"",2,0, MainActivity.con);
                         // TODO : 삭제 쿼리
                         ProductObjectManager.load(nowDate.getTime(), getContext());
+                        NetworkModule networkModule=new NetworkModule();
+                        networkModule.UpdateRegisteredProductName(Integer.parseInt(PriNum),ProductNum); //샵 아이디,제품코드
                         // TODO : 여기서 리스트 갱신
                     }
                 });
