@@ -16,8 +16,6 @@ import static com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientData
 
 public class NetworkModule {
     HttpCommunicationProcess httpCommunicationProcess;
-    Context context;
-
     String hostName = "stories3.iptime.org:4200", apiName = "/Smoothie/2", logCatTag = "test";
 
     public NetworkModule() {
@@ -107,25 +105,25 @@ public class NetworkModule {
                         "\n정보 변경 날짜: " + indexOfZeroStoreInfoData.getString("정보 변경 날짜") +
                         "\n고유등록번호: " + indexOfZeroStoreInfoData.getString("고유등록번호") +
                         "\n이름: " + indexOfZeroStoreInfoData.getString("이름"));
-                new ClientDataBase("select `회원탈퇴여부` from `회원정보` where `고유회원등록번호`="+indexOfZeroStoreInfoData.getString("고유등록번호")+"",1,1, context);
+                new ClientDataBase("select `회원탈퇴여부` from `회원정보` where `고유회원등록번호`="+indexOfZeroStoreInfoData.getString("고유등록번호")+"",1,1, MainActivity.con);
                 if(DBstring[0]==null)//회원이 없을때 넣기
                 {
                     new ClientDataBase("insert into `회원정보` (`고유회원등록번호`,`이름`,`전화번호`,`생년월일`,`이메일`,`수정일`,`등록일`) values(\""+indexOfZeroStoreInfoData.getString("고유등록번호")+"\"," +
                             "\""+indexOfZeroStoreInfoData.getString("이름")+"\",\""+indexOfZeroStoreInfoData.getString("전화번호")+"\",\""+indexOfZeroStoreInfoData.getString("생일")+"\"," +
-                            "\""+indexOfZeroStoreInfoData.getString("이메일")+"\",\""+indexOfZeroStoreInfoData.getString("정보 변경 날짜")+"\",\""+indexOfZeroStoreInfoData.getString("회원 등록일")+"\n",2,0,context);
+                            "\""+indexOfZeroStoreInfoData.getString("이메일")+"\",\""+indexOfZeroStoreInfoData.getString("정보 변경 날짜")+"\",\""+indexOfZeroStoreInfoData.getString("회원 등록일")+"\")",2,0,MainActivity.con);
                     new ClientDataBase("insert into `회원매장등록정보` (`고유회원등록번호`,`회원번호`,`매장번호`,`탈퇴여부`) values(\""+indexOfZeroStoreInfoData.getString("고유등록번호")+"\"," +
-                            "\""+indexOfZeroStoreInfoData.getString("회원번호")+"\",\""+PriNum+"\",\""+indexOfZeroStoreInfoData.getString("회원탈퇴여부")+"\")",2,0,context);
+                            "\""+indexOfZeroStoreInfoData.getString("회원번호")+"\",\""+PriNum+"\",\""+indexOfZeroStoreInfoData.getString("회원탈퇴여부")+"\")",2,0,MainActivity.con);
                 }
                 else if(DBstring[0]=="0")//회원이 있을떄 업데이트
                 {
                     new ClientDataBase("update `회원정보` set `이름`=\""+indexOfZeroStoreInfoData.getString("이름")+"\",`전화번호`=\""+indexOfZeroStoreInfoData.getString("전화번호")+"\"," +
                             "`생년월일`=\""+indexOfZeroStoreInfoData.getString("생일")+"\",`이메일`=\""+indexOfZeroStoreInfoData.getString("이메일")+"\"," +
-                            "`수정일`=\""+indexOfZeroStoreInfoData.getString("정보 변경 날짜")+"\" where `고유회원등록번호`=\""+indexOfZeroStoreInfoData.getString("고유등록번호")+"\"",2,0,context);
+                            "`수정일`=\""+indexOfZeroStoreInfoData.getString("정보 변경 날짜")+"\" where `고유회원등록번호`=\""+indexOfZeroStoreInfoData.getString("고유등록번호")+"\"",2,0,MainActivity.con);
                 }
                 else//회원이 탈퇴했을때
                 {
-                    new ClientDataBase("delete from `회원정보` where `고유회원등록번호`=\""+indexOfZeroStoreInfoData.getString("고유등록번호")+"\"",2,0, context);
-                    new ClientDataBase("delete from `회원매장등록정보` where `고유회원등록번호`=\""+indexOfZeroStoreInfoData.getString("고유등록번호")+"\"",2,0, context);
+                    new ClientDataBase("delete from `회원정보` where `고유회원등록번호`=\""+indexOfZeroStoreInfoData.getString("고유등록번호")+"\"",2,0, MainActivity.con);
+                    new ClientDataBase("delete from `회원매장등록정보` where `고유회원등록번호`=\""+indexOfZeroStoreInfoData.getString("고유등록번호")+"\"",2,0, MainActivity.con);
                 }
                 indexOfStoreNumber = indexOfStoreNumber + 1;
             }
@@ -137,7 +135,7 @@ public class NetworkModule {
     }
 
     ///마일리지 업데이트
-    public void InsertMileageLog(String customerAndStoreRegisteredId, String mileageSize) { //고유등록번호,마일리지량,바뀐날짜
+    public void InsertMileageLog(int customerAndStoreRegisteredId, int mileageSize) { //고유등록번호,마일리지량
         httpCommunicationProcess = new HttpCommunicationProcess();
         String responseRawDate = null;
         try {

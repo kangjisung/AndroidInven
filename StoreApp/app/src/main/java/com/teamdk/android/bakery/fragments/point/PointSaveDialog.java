@@ -15,9 +15,12 @@ import android.widget.TextView;
 import com.teamdk.android.bakery.MainActivity;
 import com.teamdk.android.bakery.objectmanager.MemberListItem;
 import com.teamdk.android.bakery.R;
+import com.teamdk.android.bakery.utility.NetworkManager.NetworkModule;
 import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
 import com.teamdk.android.bakery.utility.LayoutManager;
 import com.teamdk.android.bakery.utility.Utility;
+
+import java.util.Date;
 
 import static android.R.attr.name;
 import static com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase.DBstring;
@@ -94,6 +97,9 @@ public class PointSaveDialog extends Dialog {
                 else {////////////////있으면 계산해서 update
                     new ClientDataBase("UPDATE `포인트` SET `포인트`=" + point + ", `포인트갱신날짜`=(select date('now')) WHERE `고유회원등록번호` = " + modifyItem.getNum() + ";", 3, 0, getContext());
                 }
+                //마일리지 업데이트
+                NetworkModule networkModule=new NetworkModule();
+                networkModule.InsertMileageLog(modifyItem.getNum(),(int)(value * pointRate));
                 dismissMessage = point;
                 dismiss();
             }
@@ -157,7 +163,7 @@ public class PointSaveDialog extends Dialog {
                     mTextViewValue.setText("0");
                 }
             }
-           setPoint();
+            setPoint();
         }
     };
 

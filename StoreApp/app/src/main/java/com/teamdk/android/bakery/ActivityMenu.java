@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.teamdk.android.bakery.fragments.product.FragmentMuchStore;
 import com.teamdk.android.bakery.fragments.product.FragmentSellToday;
 import com.teamdk.android.bakery.fragments.product.ProductMain;
+import com.teamdk.android.bakery.fragments.user.UserNoticeMain;
 import com.teamdk.android.bakery.objectmanager.ProductObjectManager;
 import com.teamdk.android.bakery.utility.Interfaces;
 import com.teamdk.android.bakery.fragments.user.UserMain;
@@ -182,6 +183,13 @@ public class ActivityMenu extends AppCompatActivity implements Interfaces
     @Override
     public void onBackPressed()
     {
+        for(int p=0; p<getSupportFragmentManager().getFragments().size(); p++){
+            Fragment nowFragment = getSupportFragmentManager().getFragments().get(p);
+            if(nowFragment instanceof UserNoticeMain){
+                getSupportFragmentManager().popBackStack();
+                return;
+            }
+        }
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setMessage("앱을 종료하시겠습니까?");
         dialog.setPositiveButton("예", new DialogInterface.OnClickListener() {

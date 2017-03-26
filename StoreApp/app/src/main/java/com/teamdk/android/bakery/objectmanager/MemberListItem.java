@@ -15,7 +15,8 @@ public class MemberListItem {
     private int delete;
     private boolean check;
 
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("y-M-d", Locale.KOREA);
+    private SimpleDateFormat dateFormatInput = new SimpleDateFormat("y-M-d", Locale.KOREA);
+    private SimpleDateFormat dateFormatOutput = new SimpleDateFormat("y년 M월 d일", Locale.KOREA);
 
     public MemberListItem() {}
     public MemberListItem(int num, String name, String phone, String point, Date birth, String email, int delete){
@@ -58,13 +59,37 @@ public class MemberListItem {
     public int getDelete() {return this.delete;}
     public boolean getCheck() {return this.check;}
 
-    public String getAddedDateToString() {return dateFormat.format(addedDate);}
-    public void setAddedDateToString(String addedDate) {
+    public String getBirthToString() {
         try {
-            this.addedDate = dateFormat.parse(addedDate);
+            return dateFormatOutput.format(birth);
         }
         catch(Exception ex){
-            ex.printStackTrace();
+            return "-";
+        }
+    }
+    public void setBirthToString(String birth) {
+        try {
+            this.birth = dateFormatInput.parse(birth);
+        }
+        catch(Exception ex){
+            this.birth = null;
+        }
+    }
+
+    public String getAddedDateToString() {
+        try {
+            return dateFormatOutput.format(addedDate);
+        }
+        catch(Exception ex){
+            return "-";
+        }
+    }
+    public void setAddedDateToString(String addedDate) {
+        try {
+            this.addedDate = dateFormatInput.parse(addedDate);
+        }
+        catch(Exception ex){
+            this.addedDate = null;
         }
     }
 }
