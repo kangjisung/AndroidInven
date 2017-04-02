@@ -1,7 +1,6 @@
 package com.teamdk.android.bakery.objectmanager;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
 
@@ -38,8 +37,8 @@ public class MemberObjectManager {
                 addListItem.setName(DBstring[count + 1]);
                 addListItem.setPhone(DBstring[count + 2]);
                 addListItem.setPoint((DBstring[count + 3] == null) ? ("0") : (DBstring[count + 3]));
-                addListItem.setBirthToString(DBstring[count + 4]);
-                addListItem.setAddedDateToString(DBstring[count + 5]);
+                addListItem.setBirth(dateFormat.parse(DBstring[count + 4]));
+                addListItem.setAddedDateToString(DBstring[count+5]);
                 addListItem.setEmail(DBstring[count + 6]);
                 addListItem.setDelete(Integer.parseInt(DBstring[count + 7]));
 
@@ -47,7 +46,7 @@ public class MemberObjectManager {
                     add(addListItem);
                 }
             } catch (Exception e) {
-                Log.d("Exception Error : ", e.getMessage());
+                e.printStackTrace();
             }
             finally {
                 count += 8;

@@ -34,6 +34,7 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
     private ViewGroup parent;
     private Boolean stampMode = false;
     private int height = -1;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("y년 M월 d일", Locale.KOREA);
 
     private String sortOptionMode = "NAME";
     private String sortOptionOrder = "ASC";
@@ -166,8 +167,8 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
                 ((TextView) drawerLayout.findViewById(R.id.tv_drawer_name)).setText(userMainItem.getName());
                 ((TextView) drawerLayout.findViewById(R.id.tv_drawer_phone)).setText(Utility.convertPhoneNumber(userMainItem.getPhone()));
                 ((TextView) drawerLayout.findViewById(R.id.tv_drawer_point)).setText(userMainItem.getPoint());
-                ((TextView) drawerLayout.findViewById(R.id.tv_drawer_birth)).setText(userMainItem.getBirthToString());
-                ((TextView) drawerLayout.findViewById(R.id.tv_drawer_join)).setText(userMainItem.getAddedDateToString());
+                ((TextView) drawerLayout.findViewById(R.id.tv_drawer_birth)).setText(dateFormat.format(userMainItem.getBirth()));
+                ((TextView) drawerLayout.findViewById(R.id.tv_drawer_join)).setText(dateFormat.format(userMainItem.getAddedDate()));
                 ((TextView) drawerLayout.findViewById(R.id.tv_drawer_email)).setText(userMainItem.getEmail());
             }
         });

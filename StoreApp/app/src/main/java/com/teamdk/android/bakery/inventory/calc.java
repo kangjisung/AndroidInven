@@ -45,7 +45,7 @@ public class calc extends MainActivity {
     //1,2정보만으로 계산한 Q(최적재고량)값을 Q목록에 띄운다.이를 수정하고 싶은 User가 수정버튼을 눌러 Q값 결정에 사용되는 값(FD,min,max)를 변경->3.
     //3.db + Android + User -----> 모든 정보를 다 합쳐 얻는 최종결론
     public int FD=0, min=0, max=0; //FD예측판매량, min, max최소최대예상판매량 (min max: db의 한달판매량의 min,max가 default+ graph1에서 사용자가 이 값 변경가능)
-    public double v=0, FM=0; //v표준편차, FM최종평균
+    public double v=0, FM=0,STDEV=0; //v표준편차, FM최종평균, STDEV표준편차
 
     int year=0,month=0,day=0,dayOfWeek=0;
 
@@ -140,7 +140,15 @@ public class calc extends MainActivity {
         //for(d=0;d<7;d++){case (db-판매량의 요일==d)-->불러와서 그 값들의 평균을 dAvg[d]에 저장}
         //monAvg도 마찬가지for(m=0;m<7;m++){case (db-판매량의 월==ㅡm-->불러와서 그 값들의 평균을 monAvg[m]에 저장}
 
-        //////m 구하기 //m전체평균판매량
+        //////m 구하기 //m전체평균판매량 //STDEV표준편차
+        new ClientDataBase("select avg(`판매량`*`판매량`)-(avg(`판매량`)*avg(`판매량`)) from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\")",1,1,MainActivity.con);
+        cnt = 0;
+        if(DBstring[0]==null)
+            STDEV=0;
+        else
+            STDEV=sqrt(Double.parseDouble(DBstring[cnt]));
+
+
         new ClientDataBase("select avg(`판매량`) from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\")",1,1, MainActivity.con);
         cnt = 0;
         if(DBstring[0]==null)
@@ -152,9 +160,7 @@ public class calc extends MainActivity {
 
         ////////////////////////////////////////////최소예상판매량, 최대예상판매량
         ///한달의 데이터
-        new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>\"" + year + "\" and `월`>\"" + (month-1) + "\" and `일`>\"" + day + "\";", 1, 2, MainActivity.con);
-        //예제
-        //new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`>=2016 and `월`>9 and `일`>1;", 1, 2, MainActivity.con);
+        new ClientDataBase("select Min(`판매량`),Max(`판매량`) from `제품판매량` where `년`=\"" + year + "\" and `월`=\""+(month-1)+"\"and `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\");", 1, 2, MainActivity.con);
         cnt = 0;
         while (true) {
             if (DBstring[cnt] != null) {
@@ -164,7 +170,7 @@ public class calc extends MainActivity {
             } else if (DBstring[cnt] == null) break;
         }
         v = (max - min) / 6; //표준편차
-        FD = (int)(calcT().predict(tDay)*(dAvg[dayOfWeek]/m)*(monAvg[month]/m))+1; //예상판매량=추세*요일지수*월별지수
+        FD = (int)(m*(dAvg[dayOfWeek]/m)*(monAvg[month]/m))+1; //예상판매량=추세*요일지수*월별지수
         FM = (min + max + (4 * FD)) / 6; //최종평균계산
     }
 

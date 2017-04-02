@@ -2,10 +2,12 @@ package com.teamdk.android.bakery;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
 import com.teamdk.android.bakery.objectmanager.ProductObjectManager;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     static DatabaseHelper databaseHelperTest;
     public static Context con;
     public static String PriNum;
+    private NetworkModule networkModule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +69,27 @@ public class MainActivity extends AppCompatActivity {
                 else if(DBstring[cnt]==null) break;
             }
             if(PriNum != null) {
-                new ClientDataBase("select max(`수정일`) from `회원정보`;", 1, 1, getApplicationContext());
-                NetworkModule networkModule = new NetworkModule();
+                networkModule = new NetworkModule();
                 networkModule.GetCustomerRegisteredInfo(Integer.parseInt(PriNum), DBstring[0]);
+                if(networkModule.getNetworkModuleResult() == true){
+                    new ClientDataBase("select max(`수정일`) from `회원정보`;", 1, 1, getApplicationContext());
+                }
+                else{
+                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                    dialogBuilder.setMessage("서버 연결에 실패했습니다.");
+                    dialogBuilder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            finish();
+                        }
+                    });
+                    dialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {}
+                    });
+                    AlertDialog mAlertDialog = dialogBuilder.create();
+                    mAlertDialog.show();
+                }
             }
             super.onPreExecute();
         }
@@ -76,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... arg0)
         {
-            if(PriNum != null) {
+            if(PriNum != null && networkModule.getNetworkModuleResult() == true) {
                 // 설정값이 없을 경우 환경설정 초기화
                 SharedPreferenceManager mSharedPreferenceManager = new SharedPreferenceManager();
                 if (mSharedPreferenceManager.getInt("product_sort_mode_iv", getApplicationContext()) == 0){
@@ -115,13 +136,14 @@ public class MainActivity extends AppCompatActivity {
             asyncDialog.dismiss();
             super.onPostExecute(result);
 
-            if(PriNum == null){
-                startActivity(new Intent(getApplicationContext(), ActivityStoreAdd.class));
+            if(networkModule.getNetworkModuleResult() == true) {
+                if (PriNum == null) {
+                    startActivity(new Intent(getApplicationContext(), ActivityStoreAdd.class));
+                } else {
+                    startActivity(new Intent(getApplicationContext(), ActivityMenu.class));
+                }
+                finish();
             }
-            else{
-                startActivity(new Intent(getApplicationContext(), ActivityMenu.class));
-            }
-            finish();
         }
     }
 }

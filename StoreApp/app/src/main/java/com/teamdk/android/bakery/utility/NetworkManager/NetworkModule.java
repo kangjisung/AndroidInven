@@ -17,7 +17,11 @@ import static com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientData
 public class NetworkModule {
     HttpCommunicationProcess httpCommunicationProcess;
     String hostName = "stories3.iptime.org:4200", apiName = "/Smoothie/2", logCatTag = "test";
+    private boolean executeResult;
 
+    public boolean getNetworkModuleResult() {
+        return executeResult;
+    }
     public NetworkModule() {
     }
 
@@ -40,11 +44,16 @@ public class NetworkModule {
             JSONObject jsonObject = new JSONObject(responseRawDate);
             if (jsonObject.getString("Result").equals("OK")) {
                 Log.d(logCatTag, "ok");
-            } else Log.d(logCatTag, jsonObject.getString("Result"));
-
+            }
+            else{
+                Log.d(logCatTag, jsonObject.getString("Result"));
+            }
         } catch (Exception err) {
             Log.d(logCatTag, "Error in AddToStoreAsNewMember: " + err.getMessage());
+            executeResult = false;
+            return;
         }
+        executeResult = true;
     }
     //매장에서 고객 삭제
     public void DelMemberFromStore(int customerAndStoreRegisteredId) {//고유등록번호
@@ -60,7 +69,10 @@ public class NetworkModule {
 
         } catch (Exception err) {
             Log.d(logCatTag, "Error in DelMemberFromStore: " + err.getMessage());
+            executeResult = false;
+            return;
         }
+        executeResult = true;
     }
 
     //매장에 등록된 고객 불러오기
@@ -73,7 +85,6 @@ public class NetworkModule {
         String test="http://" + hostName + apiName + "/GetCustomerRegisteredInfo/?storeId=" + storeId + "&date=" + date + "";
         try {
             responseRawData = httpCommunicationProcess.execute("http://" + hostName + apiName + "/GetCustomerRegisteredInfo/?storeId=" + storeId + "&date=" + date + "").get();
-            Log.d(logCatTag, responseRawData);
             //JSONArray serverResponseArrayData = new JSONArray("{'test':1}");
             JSONObject jsonObject = new JSONObject(responseRawData);
             //Log.d(logCatTag, "test: " + jsonObject.getJSONObject("0"));
@@ -127,10 +138,14 @@ public class NetworkModule {
                 }
                 indexOfStoreNumber = indexOfStoreNumber + 1;
             }
+
         }
         catch (Exception err) {
             Log.d(logCatTag, "Error in GetCustomerRegisteredInfo: " + err.getMessage());
+            executeResult = false;
+            return null;
         }
+        executeResult = true;
         return allCustomerInfoData;
     }
 
@@ -145,10 +160,12 @@ public class NetworkModule {
             if (jsonObject.getString("Result").equals("OK")) {
                 Log.d(logCatTag, "ok");
             } else Log.d(logCatTag, jsonObject.getString("Result"));
-
         } catch (Exception err) {
             Log.d(logCatTag, "Error in InsertMileageLog: " + err.getMessage());
+            executeResult = false;
+            return;
         }
+        executeResult = true;
     }
     //제품등록
     public void InsertNewProductName(int shopId,int productId, String productName, int primeCost,int cellCost, int remainCost) { //샵 아이디,이름,원가,판매가,잔존가
@@ -161,10 +178,12 @@ public class NetworkModule {
             if (jsonObject.getString("Result").equals("OK")) {
                 Log.d(logCatTag, "ok");
             } else Log.d(logCatTag, jsonObject.getString("Result"));
-
         } catch (Exception err) {
             Log.d(logCatTag, "Error in InsertNewProductName: " + err.getMessage());
+            executeResult = false;
+            return;
         }
+        executeResult = true;
     }
 
     //제품수정
@@ -178,10 +197,12 @@ public class NetworkModule {
             if (jsonObject.getString("Result").equals("OK")) {
                 Log.d(logCatTag, "ok");
             } else Log.d(logCatTag, jsonObject.getString("Result"));
-
         } catch (Exception err) {
             Log.d(logCatTag, "Error in UpdateRegisteredProductName: " + err.getMessage());
+            executeResult = false;
+            return;
         }
+        executeResult = true;
     }
     //제품비활성화
     public void UpdateRegisteredProductName(int shopId,int productId) { //샵 아이디,제품코드
@@ -194,10 +215,12 @@ public class NetworkModule {
             if (jsonObject.getString("Result").equals("OK")) {
                 Log.d(logCatTag, "ok");
             } else Log.d(logCatTag, jsonObject.getString("Result"));
-
         } catch (Exception err) {
             Log.d(logCatTag, "Error in UpdateRegisteredProductName: " + err.getMessage());
+            executeResult = false;
+            return;
         }
+        executeResult = true;
     }
     //공지 업로드
     public void InsertNewStoreNoticeInfo(int shopId,int noticeId,String noticeTitle,String noticeBody,String noticeStartDate, String noticeStopDate, String noticeLastUpdateDate) { //샵 아이디,공지번호,공지제목, 공지내용, 공지시작날짜,공지마감날짜,공지마지막편집날짜
@@ -211,10 +234,12 @@ public class NetworkModule {
             if (jsonObject.getString("Result").equals("OK")) {
                 Log.d(logCatTag, "ok");
             } else Log.d(logCatTag, jsonObject.getString("Result"));
-
         } catch (Exception err) {
             Log.d(logCatTag, "Error in InsertNewStoreNoticeInfo: " + err.getMessage());
+            executeResult = false;
+            return;
         }
+        executeResult = true;
     }
 
     //공지업데이트
@@ -228,10 +253,12 @@ public class NetworkModule {
             if (jsonObject.getString("Result").equals("OK")) {
                 Log.d(logCatTag, "ok");
             } else Log.d(logCatTag, jsonObject.getString("Result"));
-
         } catch (Exception err) {
             Log.d(logCatTag, "Error in UpdateStoreNoticeInfo: " + err.getMessage());
+            executeResult = false;
+            return;
         }
+        executeResult = true;
     }
     //공지 삭제
     public void DelStoreNoticeInfo(int shopId,int noticeId) { //매장번호,공지번호
@@ -244,10 +271,12 @@ public class NetworkModule {
             if (jsonObject.getString("Result").equals("OK")) {
                 Log.d(logCatTag, "ok");
             } else Log.d(logCatTag, jsonObject.getString("Result"));
-
         } catch (Exception err) {
             Log.d(logCatTag, "Error in DelStoreNoticeInfo: " + err.getMessage());
+            executeResult = false;
+            return;
         }
+        executeResult = true;
     }
     //매장추가
     public void InsertNewStoreInfoData(String address, String name, String phone) { //매장주소,매장이름,매장전화번호,String serivceRegisterDate매장등록날짜
@@ -261,10 +290,12 @@ public class NetworkModule {
             if (jsonObject.getString("Result").equals("OK")) {
                 Log.d(logCatTag, "ok");
             } else Log.d(logCatTag, jsonObject.getString("Result"));
-
         } catch (Exception err) {
             Log.d(logCatTag, "Error in InsertNewStoreInfoData: " + err.getMessage());
+            executeResult = false;
+            return;
         }
+        executeResult = true;
     }
 
     //매장 업데이트
@@ -278,10 +309,12 @@ public class NetworkModule {
             if (jsonObject.getString("Result").equals("OK")) {
                 Log.d(logCatTag, "ok");
             } else Log.d(logCatTag, jsonObject.getString("Result"));
-
         } catch (Exception err) {
             Log.d(logCatTag, "Error in UpdateStoreInfoData: " + err.getMessage());
+            executeResult = false;
+            return;
         }
+        executeResult = true;
     }
 
     //최적재고량 넣기
@@ -295,10 +328,12 @@ public class NetworkModule {
             if (jsonObject.getString("Result").equals("OK")) {
                 Log.d(logCatTag, "ok");
             } else Log.d(logCatTag, jsonObject.getString("Result"));
-
         } catch (Exception err) {
             Log.d(logCatTag, "Error in UpdateStoreInfoData: " + err.getMessage());
+            executeResult = false;
+            return;
         }
+        executeResult = true;
     }
     //예상판매량 넣기
     public void InsertSalesVolume(int productCode,int salesVolume, String date,int projectedSales) { //제품번호, 판매량, 날짜, 예상 판매량
@@ -311,9 +346,11 @@ public class NetworkModule {
             if (jsonObject.getString("Result").equals("OK")) {
                 Log.d(logCatTag, "ok");
             } else Log.d(logCatTag, jsonObject.getString("Result"));
-
         } catch (Exception err) {
             Log.d(logCatTag, "Error in UpdateStoreInfoData: " + err.getMessage());
+            executeResult = false;
+            return;
         }
+        executeResult = true;
     }
 }

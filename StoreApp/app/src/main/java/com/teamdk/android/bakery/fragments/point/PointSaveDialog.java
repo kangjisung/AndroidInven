@@ -163,7 +163,7 @@ public class PointSaveDialog extends Dialog {
                     mTextViewValue.setText("0");
                 }
             }
-            setPoint();
+           setPoint();
         }
     };
 

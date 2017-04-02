@@ -1,7 +1,5 @@
 package com.teamdk.android.bakery.setting;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -20,8 +18,6 @@ public class SettingCreatedby extends AppCompatActivity
         this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.setting_createdby);
 
-        findViewById(R.id.btn_homepage).setOnClickListener(onButtonSettingClickListener);
-
         LayoutManager.setActivityTitle(findViewById(R.id.layout_title), true, false, "만든이");
         findViewById(R.id.inc_btn_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,10 +32,6 @@ public class SettingCreatedby extends AppCompatActivity
         @Override
         public void onClick(View onClickView) {
             switch(onClickView.getId()){
-                case R.id.btn_homepage:
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://stories3.iptime.org:4200/"));
-                    startActivity(browserIntent);
-                    break;
                 default:
                     break;
             }
