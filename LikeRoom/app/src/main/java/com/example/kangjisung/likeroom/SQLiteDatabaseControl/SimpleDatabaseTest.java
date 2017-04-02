@@ -180,7 +180,7 @@ public class SimpleDatabaseTest {
     }
 
     public void DeleteSelectedShop(int targetStoreId) {
-        Log.d("LikeRoom", "delete order accepted");
+        Log.d("LikeRoom", "delete order accepted: " + targetStoreId);
         localHostDatabaseManager = new LocalHostDatabaseManager(context, databaseSavedPath, customerDatabaseName);
         sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
         sqLiteDatabase.execSQL("update `매장` set `회원탈퇴여부` = 1 where `매장번호` = " + targetStoreId);

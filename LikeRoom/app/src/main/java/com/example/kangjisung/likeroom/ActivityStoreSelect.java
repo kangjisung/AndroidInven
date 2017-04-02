@@ -28,6 +28,7 @@ import static com.example.kangjisung.likeroom.DefineManager.databaseShopNameSave
 import static com.example.kangjisung.likeroom.DefineManager.databaseShopOpenTimeSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.databaseShopPhoneNumberSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.isStoreListNeedsRefresh;
+import static com.example.kangjisung.likeroom.DefineManager.synchronizedLocalAndServerDatabase;
 
 public class ActivityStoreSelect extends AppCompatActivity {
 
@@ -47,16 +48,22 @@ public class ActivityStoreSelect extends AppCompatActivity {
         Log.d(getString(R.string.app_name), "store detail activity end");
         if(requestCode == isStoreListNeedsRefresh) {
             if(resultCode == RESULT_OK) {
-                Log.d(getString(R.string.app_name), "resultCode: ok");
-                Log.d(getString(R.string.app_name), "is data null: " + data + " data: " + data.getStringExtra("deleteTargetStoreId"));
-                simpleDatabaseTest.DeleteSelectedShop(Integer.parseInt(data.getStringExtra("deleteTargetStoreId")));
-                registeredStoreListViewAdapter.DeleteAllItems();
-                registeredStoreListViewAdapter.notifyDataSetChanged();
-                storeWhichIRegistered = simpleDatabaseTest.GetStoreWhichIRegistered();
-                Log.d(getString(R.string.app_name), Arrays.toString(storeWhichIRegistered.toArray()));
-                registeredStoreListViewAdapter.ChangeListMode(DefineManager.showStoreList);
-                LoadIRegisteredStoreList(storeWhichIRegistered, registeredStoreListViewAdapter);
-                registeredStoreListViewAdapter.notifyDataSetChanged();
+                try {
+                    Log.d(getString(R.string.app_name), "resultCode: ok");
+                    Log.d(getString(R.string.app_name), "is data null: " + data + " data: " + data.getStringExtra("deleteTargetStoreId"));
+                    synchronizedLocalAndServerDatabase.DelMemberFromStore(Integer.parseInt(data.getStringExtra("deleteTargetStoreId")));
+                    //simpleDatabaseTest.DeleteSelectedShop(Integer.parseInt(data.getStringExtra("deleteTargetStoreId")));
+                    registeredStoreListViewAdapter.DeleteAllItems();
+                    registeredStoreListViewAdapter.notifyDataSetChanged();
+                    storeWhichIRegistered = simpleDatabaseTest.GetStoreWhichIRegistered();
+                    Log.d(getString(R.string.app_name), Arrays.toString(storeWhichIRegistered.toArray()));
+                    registeredStoreListViewAdapter.ChangeListMode(DefineManager.showStoreList);
+                    LoadIRegisteredStoreList(storeWhichIRegistered, registeredStoreListViewAdapter);
+                    registeredStoreListViewAdapter.notifyDataSetChanged();
+                }
+                catch (Exception err) {
+                    Log.d("shopDelete", "Error: " + err.getMessage());
+                }
             }
             else {
                 Log.d(getString(R.string.app_name), "resultCode: fail");
