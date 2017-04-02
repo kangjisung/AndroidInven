@@ -159,6 +159,14 @@ public class SimpleDatabaseTest {
         }*/
     }
 
+    public void AddStoreAndCustomerUniqueId(int targetStoreId, int uniqueId) {
+        localHostDatabaseManager = new LocalHostDatabaseManager(context, databaseSavedPath, customerDatabaseName);
+        sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
+        sqLiteDatabase.execSQL("update `매장` set `고유등록번호` = " + uniqueId + " where `매장번호` = " + targetStoreId);
+
+        sqLiteDatabase.close();
+    }
+
     public void DeleteSelectedShop(int targetStoreId) {
         Log.d("LikeRoom", "delete order accepted");
         localHostDatabaseManager = new LocalHostDatabaseManager(context, databaseSavedPath, customerDatabaseName);

@@ -1,10 +1,13 @@
 package com.example.kangjisung.likeroom.SQLiteDatabaseControl;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.kangjisung.likeroom.NetworkManager.NetworkModule;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by stories2 on 2017. 2. 11..
@@ -50,5 +53,16 @@ public class SynchronizedLocalAndServerDatabase extends Thread{
 
     public void GetStoreNoticeFromServer(String shopId) {
         simpleDatabaseTest.SaveStoreNoticeData(networkModule.ShowTargetStoreNoticeList(shopId));
+    }
+
+    public void GetStoreAndCustomerRegisteredInfo() {
+        int shopId = 1, uniqueId = 2, myId = 0;
+        String[] myInfo = simpleDatabaseTest.GetCustomerInfo();
+        Log.d("infoTest", Arrays.toString(myInfo));
+        List<String[]> userRegisteredStoreInfo = networkModule.GetStoreAndCustomerRegisteredInfo(Integer.parseInt(myInfo[myId]));
+        for(String[] eachRegisteredStoreInfo : userRegisteredStoreInfo) {
+            simpleDatabaseTest.AddSelectedShop(Integer.parseInt(eachRegisteredStoreInfo[shopId]));
+            simpleDatabaseTest.AddStoreAndCustomerUniqueId(Integer.parseInt(eachRegisteredStoreInfo[shopId]), Integer.parseInt(eachRegisteredStoreInfo[uniqueId]));
+        }
     }
 }

@@ -5,6 +5,7 @@ import android.util.Log;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -119,9 +120,10 @@ public class NetworkModule {
         }
     }
 
-    public void GetStoreAndCustomerRegisteredInfo(int customerId) {
+    public List<String[]> GetStoreAndCustomerRegisteredInfo(int customerId) {
         httpCommunicationProcess = new HttpCommunicationProcess();
         String responseRawData = null;
+        List<String[]> userRegisteredStoreStatus = null;
         try {
             responseRawData = httpCommunicationProcess.execute("http://" + hostName + apiName + "/GetStoreAndCustomerRegisteredInfo/?customerId=" + customerId).get();
             Log.d(logCatTag, responseRawData);
@@ -129,6 +131,25 @@ public class NetworkModule {
             try{
                 if(jsonObject.isNull("Result")) {
                     Log.d(logCatTag, "ok");
+                    //Log.d("infoTest", responseRawData);
+                    userRegisteredStoreStatus = new ArrayList<String[]>();
+                    JSONObject eachRegisteredInfo = jsonObject.getJSONObject("0");
+                    int eachInfoDataCounter = 0;
+                    while(eachRegisteredInfo != null) {
+                        String[] eachRegisteredInfoData = new String[] {
+                                eachRegisteredInfo.getString("회원탈퇴여부"),
+                                eachRegisteredInfo.getString("매장번호"),
+                                eachRegisteredInfo.getString("고유등록번호"),
+                                eachRegisteredInfo.getString("회원번호")
+                        };
+                        Log.d("infoTest", Arrays.toString(eachRegisteredInfoData));
+                        userRegisteredStoreStatus.add(eachRegisteredInfoData);
+                        eachInfoDataCounter += 1;
+                        if(jsonObject.isNull("" + eachInfoDataCounter)) {
+                            break;
+                        }
+                        eachRegisteredInfo = jsonObject.getJSONObject("" + eachInfoDataCounter);
+                    }
                 }
                 else {
                     Log.d(logCatTag, "fail");
@@ -141,6 +162,7 @@ public class NetworkModule {
         catch (Exception err) {
             Log.d(logCatTag, "Error in GetStoreAndCustomerRegisteredInfo: " + err.getMessage());
         }
+        return userRegisteredStoreStatus;
     }
 
     public void InsertMileageLog(int uniqueRegisteredId, int mileageSize) {
