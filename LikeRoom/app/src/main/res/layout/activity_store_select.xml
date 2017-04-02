@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.kangjisung.likeroom.ActivityStoreSelect">
+    tools:context="com.example.kangjisung.likeroom.ActivityStoreSelect"
+    android:background="?attr/theme_color_D4">
 
     <include
         android:layout_width="match_parent"
@@ -15,8 +16,7 @@
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerInParent="true">
 
         <TextView
             android:text="@string/selectStore"
@@ -28,7 +28,7 @@
             android:layout_marginBottom="30dp"
             android:layout_gravity="center_vertical|center_horizontal"
             android:gravity="center_vertical|center_horizontal"
-            android:textColor="?attr/theme_color_type1" />
+            android:textColor="?attr/theme_color_L4" />
 
         <RelativeLayout
             android:background="@color/gray240"
@@ -36,32 +36,42 @@
             android:layout_width="340dp"
             android:layout_height="85dp">
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/btnRegisterNewStore"
-                android:background="@drawable/button_mask"
-                android:onClick="onClickView" />
-
-            <ImageView
-                android:layout_height="wrap_content"
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_height="35dp"
                 android:id="@+id/imgAddNewStore"
-                app:srcCompat="@mipmap/plus"
-                android:layout_width="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                android:layout_centerVertical="true"
-                android:paddingLeft="15dp" />
+                android:layout_width="35dp"
+                android:backgroundTint="@color/gray200"
+                android:background="@mipmap/icon_plus_in_circle"
+                android:layout_weight="1"
+                android:layout_centerInParent="true" />
 
             <TextView
                 android:text="@string/addNewStore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtAddNewStore"
-                android:layout_centerVertical="true"
-                android:paddingLeft="100dp"
-                android:textColor="@color/clrTextColorDeepDark"
-                android:textSize="25dp" />
+                android:textColor="@color/gray120"
+                android:layout_weight="1"
+                android:textSize="22dp"
+                android:layout_marginStart="10dp"
+                android:layout_centerInParent="true" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center_vertical">
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/btnRegisterNewStore"
+                android:background="@drawable/button_ripple_rectangle"
+                android:onClick="onClickView" />
+
         </RelativeLayout>
 
         <!--<include
@@ -72,11 +82,11 @@
             />-->
 
         <android.support.v7.widget.RecyclerView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_below="@+id/newStoreAddLayout"
             android:id="@+id/registeredStoreList"
             android:layout_marginTop="15dp"
-            android:layout_height="230dp" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </RelativeLayout>
