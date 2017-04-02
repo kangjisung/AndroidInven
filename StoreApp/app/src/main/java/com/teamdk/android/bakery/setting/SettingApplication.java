@@ -1,5 +1,7 @@
 package com.teamdk.android.bakery.setting;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,6 +21,7 @@ public class SettingApplication extends AppCompatActivity
         setContentView(R.layout.setting_application);
 
         LayoutManager.setActivityTitle(findViewById(R.id.layout_title), true, false, "어플리케이션");
+
         findViewById(R.id.inc_btn_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

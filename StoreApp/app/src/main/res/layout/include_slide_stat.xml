@@ -47,7 +47,7 @@
             android:layout_height="25dp" />
 
         <TextView
-            android:id="@+id/graph1_graphtxt"
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -59,7 +59,7 @@
             android:textSize="28dp" />
 
         <TextView
-            android:id="@+id/graph1_txt2"
+            android:id="@+id/tv_title_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -81,56 +81,6 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/layout_body3"
         android:layout_marginTop="15dp">
-
-        <RelativeLayout
-            android:layout_weight="0"
-            android:layout_gravity="center"
-            android:layout_width="55dp"
-            android:layout_height="55dp">
-
-            <android.support.v7.widget.AppCompatImageView
-                android:background="@drawable/shape_ring_5dp"
-                app:backgroundTint="?attr/theme_color_N"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <android.support.v7.widget.AppCompatImageView
-                android:background="@mipmap/icon_good"
-                app:backgroundTint="?attr/theme_color_N"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="12dp" />
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:layout_marginEnd="30dp"
-            android:layout_width="65dp">
-
-            <TextView
-                android:id="@+id/graph1_txt3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="!추천"
-                android:textSize="26dp"
-                android:textColor="?attr/theme_color_N" />
-
-            <TextView
-                android:text="추천예측"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center_horizontal"
-                android:textSize="12dp"
-                android:textColor="@color/gray120" />
-
-        </LinearLayout>
 
         <RelativeLayout
             android:layout_weight="0"
@@ -184,10 +134,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:layout_width="65dp">
+            android:layout_width="65dp"
+            android:layout_marginEnd="30dp">
 
             <TextView
-                android:id="@+id/graph1_txt1"
+                android:id="@+id/tv_now"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -198,6 +149,55 @@
 
             <TextView
                 android:text="현재예측"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:textSize="12dp"
+                android:textColor="@color/gray120" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_weight="0"
+            android:layout_gravity="center"
+            android:layout_width="55dp"
+            android:layout_height="55dp">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="@drawable/shape_ring_5dp"
+                app:backgroundTint="?attr/theme_color_N"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="@mipmap/icon_good"
+                app:backgroundTint="?attr/theme_color_N"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="12dp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_width="65dp">
+
+            <TextView
+                android:id="@+id/tv_recommend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="!추천"
+                android:textSize="26dp"
+                android:textColor="?attr/theme_color_N" />
+
+            <TextView
+                android:text="추천예측"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

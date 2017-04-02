@@ -1,11 +1,10 @@
 package com.teamdk.android.bakery.inventory;
 
 /*
- * Created by kangjisung on 2016-11-21.
- */
+* Created by kangjisung on 2016-11-21.
+*/
 
 import com.teamdk.android.bakery.MainActivity;
-import com.teamdk.android.bakery.fragments.product.ProductMain;
 import com.teamdk.android.bakery.objectmanager.ProductObjectManager;
 import com.teamdk.android.bakery.utility.NetworkManager.NetworkModule;
 import com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase;
@@ -17,7 +16,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import static android.R.attr.y;
 import static com.teamdk.android.bakery.utility.SQLiteDatabaseControl.ClientDataBase.DBstring;
 import static java.lang.Math.sqrt;
 ////////////////////////////////////////////////계산기
@@ -45,7 +43,7 @@ public class calc extends MainActivity {
     //1,2정보만으로 계산한 Q(최적재고량)값을 Q목록에 띄운다.이를 수정하고 싶은 User가 수정버튼을 눌러 Q값 결정에 사용되는 값(FD,min,max)를 변경->3.
     //3.db + Android + User -----> 모든 정보를 다 합쳐 얻는 최종결론
     public int FD=0, min=0, max=0; //FD예측판매량, min, max최소최대예상판매량 (min max: db의 한달판매량의 min,max가 default+ graph1에서 사용자가 이 값 변경가능)
-    public double v=0, FM=0,STDEV=0; //v표준편차, FM최종평균, STDEV표준편차
+    public double  FM=0,stdev=0; //v표준편차, FM최종평균, STDEV표준편차
 
     int year=0,month=0,day=0,dayOfWeek=0;
 
@@ -140,13 +138,13 @@ public class calc extends MainActivity {
         //for(d=0;d<7;d++){case (db-판매량의 요일==d)-->불러와서 그 값들의 평균을 dAvg[d]에 저장}
         //monAvg도 마찬가지for(m=0;m<7;m++){case (db-판매량의 월==ㅡm-->불러와서 그 값들의 평균을 monAvg[m]에 저장}
 
-        //////m 구하기 //m전체평균판매량 //STDEV표준편차
+        //////m 구하기 //m전체평균판매량 //stdev 표준편차
         new ClientDataBase("select avg(`판매량`*`판매량`)-(avg(`판매량`)*avg(`판매량`)) from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\")",1,1,MainActivity.con);
         cnt = 0;
         if(DBstring[0]==null)
-            STDEV=0;
+            stdev=0;
         else
-            STDEV=sqrt(Double.parseDouble(DBstring[cnt]));
+            stdev=sqrt(Double.parseDouble(DBstring[cnt]));
 
 
         new ClientDataBase("select avg(`판매량`) from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\")",1,1, MainActivity.con);
@@ -169,7 +167,12 @@ public class calc extends MainActivity {
                 cnt += 2;
             } else if (DBstring[cnt] == null) break;
         }
-        v = (max - min) / 6; //표준편차
+        if(min<m-3*stdev){
+            min=(int)(m-3*stdev);
+        }
+        if(max>m+3*stdev){
+            max=(int)(m+3*stdev);
+        }
         FD = (int)(m*(dAvg[dayOfWeek]/m)*(monAvg[month]/m))+1; //예상판매량=추세*요일지수*월별지수
         FM = (min + max + (4 * FD)) / 6; //최종평균계산
     }
@@ -219,18 +222,18 @@ public class calc extends MainActivity {
     /////////////////////////////////////////////////////최적재고량 계산
     //////////////////////////////////////판매량 넣을때 실행
     public void calcQ() {
-        Q = (int) (FM + ((v / 2) * (sqrt((p - c) / (c - s)) - sqrt((c - s) / (p - c))))) + 1; //최적재고량 계산
+        Q = (int) (FM + ((stdev / 2) * (sqrt((p - c) / (c - s)) - sqrt((c - s) / (p - c))))) + 1; //최적재고량 계산
         new ClientDataBase("select `제품코드` from `제품정보` where `이름`=\""+name+"\"",1,1,MainActivity.con);
         String ProductNum =DBstring[0];
         new ClientDataBase("insert into `최적재고량` (`제품코드`,`최적재고량`,`날짜`) values (\""+ProductNum+"\","+Q+",\"" + year + "-" + month + "-" + (day+1) + "\");",2,0,MainActivity.con);
         NetworkModule networkModule=new NetworkModule();
         networkModule.InsertProductOptimalStock(Integer.parseInt(ProductNum),Q,""+ year + "-" + month + "-" + (day+1) + "");//서버에 최적재고량 넣기 (제품코드,최적재고량, 날짜)
     }
+
     ////////////////////////////////////////////그래프용 calc2
     public int calcQ2(){
-        v = (max - min) / 6; //표준편차
         FM = (min + max + (4 * FD)) / 6; //최종평균계산
-        return Q=(int) (FM + ((v / 2) * (sqrt((p - c) / (c - s)) - sqrt((c - s) / (p - c))))) + 1;
+        return Q=(int) (FM + ((stdev / 2) * (sqrt((p - c) / (c - s)) - sqrt((c - s) / (p - c))))) + 1;
     }
 
     ////////////////////////////////////////////////////////////주별평균으로 추세계산
@@ -245,7 +248,7 @@ public class calc extends MainActivity {
 
     //////////////////////////////////////구비재고량을 입력받아 그에따른 예상이익을 출력
     public int calcProfit(int Q){ //Q개만큼 구비시 예상 이익 --> graph3에 표시
-        return -1*(int)(-(p-s)*FM+(c-s)*Q+(p-s)*((Math.sqrt(v*v+(Q-FM)*(Q-FM))-(Q-FM))/2));
+        return -1*(int)(-(p-s)*FM+(c-s)*Q+(p-s)*((Math.sqrt(stdev*stdev+(Q-FM)*(Q-FM))-(Q-FM))/2));
     }
     /////////////////FD업데이트(예상판매량)
     public void updateFD(){
@@ -269,7 +272,7 @@ public class calc extends MainActivity {
         private final double r2;
         private final double svar0, svar1;
 
-        /**
+        /*
          * Performs a linear regression on the data points {@code (y[i], x[i])}.
          *
          * @param  x the values of the predictor variable
@@ -495,3 +498,5 @@ public class calc extends MainActivity {
 //        tSeason = (tMonth + 2) / 3;
 //        tYear = (int) ((tDay + 364) / 365.254);
 //yAvg연별판매량총평균(현재는 없으나 나중에 update가능->graph2에도 반영가능)
+
+

@@ -96,10 +96,11 @@ public class InventoryMain extends AppCompatActivity {
             }
         });
 
-        TextView graph1_txt1 = (TextView) findViewById(R.id.graph1_txt1);
-        TextView graph1_txt2 = (TextView) findViewById(R.id.graph1_txt2);
-        TextView graph1_txt3 = (TextView) findViewById(R.id.graph1_txt3);
-        TextView graph1_graphtxt = (TextView) findViewById(R.id.graph1_graphtxt);
+        TextView mTextViewTitle = (TextView) findViewById(R.id.tv_title);
+        TextView mTextViewTitleBody = (TextView) findViewById(R.id.tv_title_body);
+        TextView mTextViewNow = (TextView) findViewById(R.id.tv_now);
+        TextView mTextViewRecommend = (TextView) findViewById(R.id.tv_recommend);
+
 
         chart = (LineChart) findViewById(R.id.graph1);
         c = calc.getInstance();
@@ -145,8 +146,8 @@ public class InventoryMain extends AppCompatActivity {
         if(newFD>=c.max) newFD=c.max-1;
         if(newFD<=c.min) newFD=c.min+1;
 
-        graph1_txt1.setText(String.valueOf((int) c.FD));
-        graph1_txt3.setText(String.valueOf(newFD));
+        mTextViewNow.setText(String.valueOf((int) c.FD));
+        mTextViewRecommend.setText(String.valueOf(newFD));
 
         // 예상값을 낮춰주세요 // 높여주세요
 
@@ -170,8 +171,8 @@ public class InventoryMain extends AppCompatActivity {
             str2 = "예상값을 낮춰주세요";
             mImageViewUp.setVisibility(View.VISIBLE);
         }
-        graph1_graphtxt.setText(str);
-        graph1_txt2.setText(str2);
+        mTextViewTitle.setText(str);
+        mTextViewTitleBody.setText(str2);
 
         ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
 
