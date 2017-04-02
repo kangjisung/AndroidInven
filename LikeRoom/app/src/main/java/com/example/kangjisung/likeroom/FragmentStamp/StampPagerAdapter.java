@@ -29,12 +29,14 @@ public class StampPagerAdapter extends PagerAdapter
     private Context context;
     private String mode;
     Activity activity;
+    String[] selectedShopInfoData;
 
     // "NORMAL MODE"
-    public StampPagerAdapter(Context context, Activity activity, int _numOfStamp){
+    public StampPagerAdapter(Context context, Activity activity, int _numOfStamp, String[] selectedShopInfoData){
         super();
         this.context = context;//activity.getApplicationContext();
         this.activity = activity;
+        this.selectedShopInfoData = selectedShopInfoData;
         Log.d("test", "context: " + context + " activity: " + activity);
         mInflater = LayoutInflater.from(context);
         numOfStamp = _numOfStamp;
@@ -56,10 +58,11 @@ public class StampPagerAdapter extends PagerAdapter
         }
     }
 
-    public StampPagerAdapter(Context context, Activity activity){
+    public StampPagerAdapter(Context context, Activity activity, String[] selectedShopInfoData){
         super();
         this.context = context;//activity.getApplicationContext();
         this.activity = activity;
+        this.selectedShopInfoData = selectedShopInfoData;
         Log.d("test", "context: " + context + " activity: " + activity);
         mInflater = LayoutInflater.from(context);
         this.context = context;
@@ -112,7 +115,7 @@ public class StampPagerAdapter extends PagerAdapter
                     @Override
                     public void onClick(View onClickView){
                         Log.d("test", "Mileage position upper");
-                        StampUseDialog stampUseDialog = new StampUseDialog(context, activity, ((position + 1) * 2) * standardMileage);
+                        StampUseDialog stampUseDialog = new StampUseDialog(context, activity, ((position + 1) * 2) * standardMileage, selectedShopInfoData);
                         stampUseDialog.show();
                     }
                 });
@@ -124,7 +127,7 @@ public class StampPagerAdapter extends PagerAdapter
                 button.setOnClickListener(new Button.OnClickListener(){
                     @Override
                     public void onClick(View onClickView){
-                        StampUseDialog stampUseDialog = new StampUseDialog(context, activity, ((position + 1) * 2 - 1) * standardMileage);
+                        StampUseDialog stampUseDialog = new StampUseDialog(context, activity, ((position + 1) * 2 - 1) * standardMileage, selectedShopInfoData);
                         stampUseDialog.show();
                     }
                 });

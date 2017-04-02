@@ -69,8 +69,11 @@ public class MainActivity extends ActionBarActivity {
         //SimpleDatabaseTest simpleDatabaseTest = new SimpleDatabaseTest(getApplicationContext());
 
         userAccountInfo = userAccountCrawler.CheckPermissionGranted();
-        synchronizedLocalAndServerDatabase.RegisterMyInfoToServer("customer", "N/A", userAccountInfo, "0000-00-00");
-        synchronizedLocalAndServerDatabase.RegisterCustomerToStore();
+        if(userAccountInfo != null) {
+            synchronizedLocalAndServerDatabase.RegisterMyInfoToServer("customer", "N/A", userAccountInfo, "0000-00-00");
+            synchronizedLocalAndServerDatabase.GetStoreAndCustomerRegisteredInfo();
+            //synchronizedLocalAndServerDatabase.RegisterCustomerToStore();
+        }
 
         Log.d(getString(R.string.app_name), "crawled account info: " + userAccountInfo);
 
