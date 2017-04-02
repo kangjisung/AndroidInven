@@ -1,5 +1,6 @@
 package com.example.kangjisung.likeroom.FragmentStamp;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -28,23 +29,26 @@ public class StampUseDialog extends Dialog
     private View.OnClickListener mLeftClickListener;
     private View.OnClickListener mRightClickListener;
 
+    Activity activity;
     int mileageUseage;
 
     public StampUseDialog(Context context) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
     }
 
-    public StampUseDialog(Context context, int mileageUseage) {
+    public StampUseDialog(Context context, Activity activity, int mileageUseage) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
         Log.d(context.getString(R.string.app_name), "Mileage About to use: " + mileageUseage);
         this.mileageUseage = mileageUseage;
+        this.activity = activity;
     }
 
-    public StampUseDialog(Context context, String title, View.OnClickListener singleListener, View.OnClickListener useListener) {
+    public StampUseDialog(Context context, Activity activity, String title, View.OnClickListener singleListener, View.OnClickListener useListener) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
         this.mTitle = title;
         this.mLeftClickListener = singleListener;
         this.mRightClickListener= useListener;
+        this.activity = activity;
     }
 
     @Override
