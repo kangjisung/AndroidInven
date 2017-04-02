@@ -100,6 +100,7 @@ public class StampUseDialog extends Dialog
             @Override
             public void onClick(View onClickView){
                 synchronizedLocalAndServerDatabase.UseMileageFromTargetStore(1, -mileageUseage);
+
                 activity.finish();
                 dismiss();
             }
