@@ -56,17 +56,30 @@ public class SynchronizedLocalAndServerDatabase extends Thread{
     }
 
     public void GetStoreAndCustomerRegisteredInfo() {
-        int shopId = 1, uniqueId = 2, myId = 0;
+        int shopId = 1, uniqueId = 2, myId = 0, userStatus = 0, disabled = 1;
         String[] myInfo = simpleDatabaseTest.GetCustomerInfo();
         Log.d("infoTest", Arrays.toString(myInfo));
         List<String[]> userRegisteredStoreInfo = networkModule.GetStoreAndCustomerRegisteredInfo(Integer.parseInt(myInfo[myId]));
         for(String[] eachRegisteredStoreInfo : userRegisteredStoreInfo) {
-            simpleDatabaseTest.AddSelectedShop(Integer.parseInt(eachRegisteredStoreInfo[shopId]));
-            simpleDatabaseTest.AddStoreAndCustomerUniqueId(Integer.parseInt(eachRegisteredStoreInfo[shopId]), Integer.parseInt(eachRegisteredStoreInfo[uniqueId]));
+            if(!eachRegisteredStoreInfo[userStatus].equals("" + disabled)) {
+                Log.d("infoTest", "store: " + eachRegisteredStoreInfo[shopId] + " enabled");
+                simpleDatabaseTest.AddSelectedShop(Integer.parseInt(eachRegisteredStoreInfo[shopId]));
+                simpleDatabaseTest.AddStoreAndCustomerUniqueId(Integer.parseInt(eachRegisteredStoreInfo[shopId]), Integer.parseInt(eachRegisteredStoreInfo[uniqueId]));
+            }
+            else {
+                simpleDatabaseTest.DeleteSelectedShop(Integer.parseInt(eachRegisteredStoreInfo[shopId]));
+                Log.d("infoTest", "store: " + eachRegisteredStoreInfo[shopId] + " disabled");
+            }
         }
     }
 
     public int GetStoreUniqueId(int targetStoreId) {
         return simpleDatabaseTest.GetSelectedUniqueId(targetStoreId);
+    }
+
+    public void DelMemberFromStore(int targetStoreId) {
+        int uniqueId = GetStoreUniqueId(targetStoreId);
+        networkModule.DelMemberFromStore(uniqueId);
+        simpleDatabaseTest.DeleteSelectedShop(targetStoreId);
     }
 }

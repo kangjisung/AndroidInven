@@ -103,7 +103,6 @@ public class FragmentInfoMain extends DialogFragment implements OnMapReadyCallba
             public void onClick(View view) {
                 //Snackbar.make(view, getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
                 //simpleDatabaseTest.DeleteSelectedShop(Integer.parseInt(selectedShopInfoData[shopIdSavedPoint]));
-
                 storeDeleteCheckDialog = new StoreDeleteCheckDialog(getActivity(), getActivity(), selectedShopInfoData[shopIdSavedPoint]);
                 storeDeleteCheckDialog.show();
             }
