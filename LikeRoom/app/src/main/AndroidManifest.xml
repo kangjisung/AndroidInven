@@ -45,7 +45,6 @@
         <activity android:name=".ActivityStoreSelect"
             android:windowSoftInputMode="adjustPan|adjustResize"
             android:screenOrientation="portrait">
- 
         </activity>
         <meta-data
             android:name="com.google.android.gms.version"

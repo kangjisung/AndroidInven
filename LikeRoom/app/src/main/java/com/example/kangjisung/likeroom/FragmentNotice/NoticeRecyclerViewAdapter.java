@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.ActivityMenu;
@@ -60,7 +61,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
 
         TextView txtShopName, txtShopAddress, txtShopPhoneNumber;
         ImageView imgShopIcon;
-        LinearLayout layoutEachStoreItem;
+        RelativeLayout layoutEachStoreItem;
 
         NoticeRecyclerViewHolder(View view) {
             super(view);
@@ -79,14 +80,14 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                     txtShopName = (TextView) view.findViewById(R.id.txtShopName);
                     txtShopAddress = (TextView) view.findViewById(R.id.txtShopAddress);
                     txtShopPhoneNumber = (TextView) view.findViewById(R.id.txtShopPhoneNumber);
-                    layoutEachStoreItem = (LinearLayout) view.findViewById(R.id.layoutEachStoreItem);
+                    layoutEachStoreItem = (RelativeLayout) view.findViewById(R.id.layoutEachStoreItem);
                     break;
                 case showUnRegisteredStoreList:
                     imgShopIcon = (ImageView) view.findViewById(R.id.imgShopIcon);
                     txtShopName = (TextView) view.findViewById(R.id.txtShopName);
                     txtShopAddress = (TextView) view.findViewById(R.id.txtShopAddress);
                     txtShopPhoneNumber = (TextView) view.findViewById(R.id.txtShopPhoneNumber);
-                    layoutEachStoreItem = (LinearLayout) view.findViewById(R.id.layoutEachStoreItem);
+                    layoutEachStoreItem = (RelativeLayout) view.findViewById(R.id.layoutEachStoreItem);
                     break;
 
             }

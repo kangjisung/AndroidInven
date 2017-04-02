@@ -1,12 +1,10 @@
 package com.example.kangjisung.likeroom.FragmentStamp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatImageView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +25,6 @@ public class StampPagerAdapter extends PagerAdapter
     private int numOfStamp;
     private int numOfPage;
     private Context context;
-    Activity activity;
     private String mode;
 
     // "NORMAL MODE"
@@ -41,9 +38,9 @@ public class StampPagerAdapter extends PagerAdapter
         numOfPage = (numOfStamp > 0)? ((numOfStamp - 1) / 10 + 1):(1);
         stampNumList = new ArrayList<Integer>();
         mode = "NORMAL";
-
+        
         int nowStamp;
-
+        
         for(int p = 0; p < numOfPage; p++)
         {
             if((p + 1) * 10 < numOfStamp){
@@ -62,6 +59,7 @@ public class StampPagerAdapter extends PagerAdapter
         this.activity = activity;
         Log.d("test", "context: " + context + " activity: " + activity);
         mInflater = LayoutInflater.from(context);
+        this.context = context;
         numOfPage = 2;
         mode = "EVENT";
         this.activity = activity;

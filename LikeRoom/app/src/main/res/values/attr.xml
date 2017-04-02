@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="theme_color_L4" format="reference|color" />
     <attr name="theme_color_L3" format="reference|color" />
     <attr name="theme_color_L2" format="reference|color" />
     <attr name="theme_color_L1" format="reference|color" />
@@ -10,4 +11,5 @@
     <attr name="theme_color_D4" format="reference|color" />
     <attr name="theme_color_type1" format="reference|color" />
     <attr name="theme_color_type2" format="reference|color" />
+    <attr name="theme_color_type3" format="reference|color" />
 </resources>
