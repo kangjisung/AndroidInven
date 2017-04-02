@@ -110,7 +110,8 @@ public class StampPagerAdapter extends PagerAdapter
                 button.setOnClickListener(new Button.OnClickListener(){
                     @Override
                     public void onClick(View onClickView){
-                        StampUseDialog stampUseDialog = new StampUseDialog(context, activity, (position * 2 + 1) * standardMileage);
+                        Log.d("test", "Mileage position upper");
+                        StampUseDialog stampUseDialog = new StampUseDialog(context, activity, ((position + 1) * 2) * standardMileage);
                         stampUseDialog.show();
                     }
                 });
@@ -122,7 +123,7 @@ public class StampPagerAdapter extends PagerAdapter
                 button.setOnClickListener(new Button.OnClickListener(){
                     @Override
                     public void onClick(View onClickView){
-                        StampUseDialog stampUseDialog = new StampUseDialog(context, activity, (position * 2 + 1) * standardMileage);
+                        StampUseDialog stampUseDialog = new StampUseDialog(context, activity, ((position + 1) * 2 - 1) * standardMileage);
                         stampUseDialog.show();
                     }
                 });
