@@ -1,10 +1,12 @@
 package com.example.kangjisung.likeroom.FragmentStamp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatImageView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -26,20 +28,23 @@ public class StampPagerAdapter extends PagerAdapter
     private int numOfPage;
     private Context context;
     private String mode;
+    Activity activity;
 
     // "NORMAL MODE"
-        public StampPagerAdapter(Context context, int _numOfStamp){
-            super();
-            mInflater = LayoutInflater.from(context);
-            numOfStamp = _numOfStamp;
-            numOfPage = (numOfStamp > 0)? ((numOfStamp - 1) / 10 + 1):(1);
-            stampNumList = new ArrayList<Integer>();
-            this.context = context;
-            mode = "NORMAL";
-
-            int nowStamp;
-
-            for(int p = 0; p < numOfPage; p++)
+    public StampPagerAdapter(Context context, Activity activity, int _numOfStamp){
+        super();
+        this.context = context;//activity.getApplicationContext();
+        this.activity = activity;
+        Log.d("test", "context: " + context + " activity: " + activity);
+        mInflater = LayoutInflater.from(context);
+        numOfStamp = _numOfStamp;
+        numOfPage = (numOfStamp > 0)? ((numOfStamp - 1) / 10 + 1):(1);
+        stampNumList = new ArrayList<Integer>();
+        mode = "NORMAL";
+        
+        int nowStamp;
+        
+        for(int p = 0; p < numOfPage; p++)
         {
             if((p + 1) * 10 < numOfStamp){
                 nowStamp = 10;
@@ -51,12 +56,16 @@ public class StampPagerAdapter extends PagerAdapter
         }
     }
 
-    public StampPagerAdapter(Context context){
+    public StampPagerAdapter(Context context, Activity activity){
         super();
+        this.context = context;//activity.getApplicationContext();
+        this.activity = activity;
+        Log.d("test", "context: " + context + " activity: " + activity);
         mInflater = LayoutInflater.from(context);
         this.context = context;
         numOfPage = 2;
         mode = "EVENT";
+        this.activity = activity;
     }
 
     @Override
@@ -102,7 +111,8 @@ public class StampPagerAdapter extends PagerAdapter
                 button.setOnClickListener(new Button.OnClickListener(){
                     @Override
                     public void onClick(View onClickView){
-                        StampUseDialog stampUseDialog = new StampUseDialog(context, (position * 2 + 1) * standardMileage);
+                        Log.d("test", "Mileage position upper");
+                        StampUseDialog stampUseDialog = new StampUseDialog(context, activity, ((position + 1) * 2) * standardMileage);
                         stampUseDialog.show();
                     }
                 });
@@ -114,7 +124,7 @@ public class StampPagerAdapter extends PagerAdapter
                 button.setOnClickListener(new Button.OnClickListener(){
                     @Override
                     public void onClick(View onClickView){
-                        StampUseDialog stampUseDialog = new StampUseDialog(context, (position * 2 + 1) * standardMileage);
+                        StampUseDialog stampUseDialog = new StampUseDialog(context, activity, ((position + 1) * 2 - 1) * standardMileage);
                         stampUseDialog.show();
                     }
                 });

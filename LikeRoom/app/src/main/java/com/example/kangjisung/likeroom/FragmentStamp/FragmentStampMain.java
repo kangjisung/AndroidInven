@@ -109,11 +109,11 @@ public class FragmentStampMain extends Fragment {
             default:
             case "NORMAL":
                 layout = (RelativeLayout)stampLayout.findViewById(R.id.layout_normal);
-                pagerAdapter = new StampPagerAdapter(getActivity(), numOfStamp);
+                pagerAdapter = new StampPagerAdapter(getActivity(), getActivity(), numOfStamp);
                 break;
             case "EVENT":
                 layout = (RelativeLayout)stampLayout.findViewById(R.id.layout_event);
-                pagerAdapter = new StampPagerAdapter(getActivity());
+                pagerAdapter = new StampPagerAdapter(getActivity(), getActivity());
                 break;
         }
         viewPager = (ViewPager)layout.findViewById(R.id.viewPager);
