@@ -15,6 +15,9 @@ import android.widget.Switch;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
 
+import java.util.Arrays;
+
+import static com.example.kangjisung.likeroom.DefineManager.shopIdSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.synchronizedLocalAndServerDatabase;
 
 public class StampUseDialog extends Dialog
@@ -31,24 +34,28 @@ public class StampUseDialog extends Dialog
 
     Activity activity;
     int mileageUseage;
+    String[] selectedShopInfoData;
 
     public StampUseDialog(Context context) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
     }
 
-    public StampUseDialog(Context context, Activity activity, int mileageUseage) {
+    public StampUseDialog(Context context, Activity activity, int mileageUseage, String[] selectedShopInfoData) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
         Log.d(context.getString(R.string.app_name), "Mileage About to use: " + mileageUseage);
         this.mileageUseage = mileageUseage;
         this.activity = activity;
+        this.selectedShopInfoData = selectedShopInfoData;
+        Log.d("mileage use info", Arrays.toString(selectedShopInfoData));
     }
 
-    public StampUseDialog(Context context, Activity activity, String title, View.OnClickListener singleListener, View.OnClickListener useListener) {
+    public StampUseDialog(Context context, Activity activity, String title, View.OnClickListener singleListener, View.OnClickListener useListener, String[] selectedShopInfoData) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
         this.mTitle = title;
         this.mLeftClickListener = singleListener;
         this.mRightClickListener= useListener;
         this.activity = activity;
+        this.selectedShopInfoData = selectedShopInfoData;
     }
 
     @Override
@@ -96,7 +103,9 @@ public class StampUseDialog extends Dialog
         mRightButton.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View onClickView){
-                synchronizedLocalAndServerDatabase.UseMileageFromTargetStore(1, -mileageUseage);
+                int uniqueId = 0;
+                uniqueId = synchronizedLocalAndServerDatabase.GetStoreUniqueId(Integer.parseInt(selectedShopInfoData[shopIdSavedPoint]));
+                synchronizedLocalAndServerDatabase.UseMileageFromTargetStore(uniqueId, -mileageUseage);
                 activity.finish();
                 dismiss();
             }
