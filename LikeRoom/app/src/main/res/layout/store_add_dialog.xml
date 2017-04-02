@@ -1,90 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center"
     android:orientation="vertical"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="13dp"
+    android:paddingBottom="20dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:background="?attr/theme_color_N">
 
     <RelativeLayout
-        android:orientation="vertical"
-        android:layout_width="300dp"
-        android:layout_height="450dp"
-        android:paddingTop="13dp"
-        android:paddingBottom="20dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:background="?attr/theme_color_N">
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/store_list">
 
-        <RelativeLayout
+        <Button
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:id="@+id/button_ok"
+            android:background="@mipmap/icon_check"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:text="@string/addNewStorePopUpTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"
+            android:layout_centerInParent="true"
+            android:textSize="23dp"
+            android:textColor="@color/clrTextColorDeepDark" />
+
+        <Button
+            android:id="@+id/button_back"
+            android:background="@mipmap/icon_back"
+
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="45dp"
+            android:layout_height="40dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/search_bar"
+        android:id="@+id/search_bar"
+        android:layout_height="35dp"
+        android:layout_below="@+id/store_list"
+        android:layout_marginTop="10dp">
+
+
+        <SearchView
+            android:id="@+id/searchNewStore"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/store_list">
-
-            <Button
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:id="@+id/button_ok"
-                android:background="@mipmap/icon_check"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true" />
-
-            <TextView
-                android:text="@string/addNewStorePopUpTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView4"
-                android:layout_centerInParent="true"
-                android:textSize="23dp"
-                android:textColor="@color/clrTextColorDeepDark" />
-
-            <Button
-                android:id="@+id/button_back"
-                android:background="@mipmap/icon_back"
-
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_width="45dp"
-                android:layout_height="40dp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:background="@drawable/search_bar"
-            android:id="@+id/search_bar"
-            android:layout_height="35dp"
-            android:layout_below="@+id/store_list"
-            android:layout_marginTop="10dp">
-
-
-            <SearchView
-                android:id="@+id/searchNewStore"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:queryHint="@string/searchStoreName" />
-
-        </RelativeLayout>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/search_bar"
-            android:layout_marginTop="15dp">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <android.support.v7.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:id="@+id/listOfStoreWitchIsRegisteredByServer"
-                    android:layout_height="330dp" />
-            </LinearLayout>
-        </ScrollView>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:queryHint="@string/searchStoreName" />
 
     </RelativeLayout>
-</LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/search_bar"
+        android:layout_marginTop="15dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/listOfStoreWitchIsRegisteredByServer"
+                android:layout_height="330dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,59 +1,83 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layoutEachStoreItem"
-    android:orientation="horizontal"
+    android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:layout_marginTop="10dp"
-    android:background="@color/White"
-    android:layout_width="fill_parent"
-    android:padding="10dp">
+    android:layout_marginTop="10dp">
 
     <ImageView
-        android:id="@+id/imgShopIcon"
-        android:background="@mipmap/shop"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="0"
-        android:layout_width="55dp"
-        android:layout_height="55dp" />
-
-    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0"
-        android:layout_marginLeft="20dp"
-        android:layout_gravity="center_vertical">
+        android:background="?attr/theme_color_D2"
+        android:alpha="0.5" />
 
-        <TextView
-            android:text="@string/loadingStoreName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtShopName"
-            android:textColor="@color/clrTextColorDeepDark"
-            android:layout_centerVertical="true"
-            android:textSize="25dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtShopPhoneNumber" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@drawable/button_ripple_rectangle"
+            android:layout_weight="1">
 
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtShopAddress" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/icon_bread"
+                android:id="@+id/imgShopIcon"
+                android:visibility="gone" />
 
-        <Button
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:id="@+id/button2"
-            android:background="@mipmap/icon_back"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:rotation="180" />
+            <TextView
+                android:text="@string/loadingStoreName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtShopName"
+                android:textColor="?attr/theme_color_L3"
+                android:layout_centerVertical="true"
+                android:textSize="25dp"
+                android:layout_marginStart="15dp" />
 
-    </RelativeLayout>
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtShopPhoneNumber"
+                android:visibility="gone" />
 
-</LinearLayout>
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtShopAddress"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_weight="0">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/button2"
+                android:background="@drawable/button_ripple_rectangle" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@mipmap/icon_back"
+                android:rotation="180"
+                android:layout_centerInParent="true"
+                app:backgroundTint="?attr/theme_color_L3" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
