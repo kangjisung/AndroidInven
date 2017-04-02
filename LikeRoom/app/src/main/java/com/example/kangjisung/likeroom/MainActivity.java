@@ -15,6 +15,7 @@ import com.example.kangjisung.likeroom.PermissionManager.AndroidVersionControlle
 import com.example.kangjisung.likeroom.PermissionManager.UserAccountCrawler;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.SynchronizedLocalAndServerDatabase;
+import com.example.kangjisung.likeroom.Util.ColorTheme;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.apache.http.HttpResponse;
@@ -46,6 +47,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.setTheme(ColorTheme.getTheme(2));
         setContentView(R.layout.activity_main);
 
         userAccountCrawler = new UserAccountCrawler(this);

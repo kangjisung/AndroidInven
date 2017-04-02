@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.kangjisung.likeroom.DefineManager;
 import com.example.kangjisung.likeroom.R;
 
+import static com.example.kangjisung.likeroom.DefineManager.standardMileage;
 import static com.example.kangjisung.likeroom.DefineManager.synchronizedLocalAndServerDatabase;
 
 public class FragmentStampMain extends Fragment {
@@ -52,7 +53,7 @@ public class FragmentStampMain extends Fragment {
             numOfStamp = 0;
         }
         else {
-            numOfStamp = numOfStamp / 200;
+            numOfStamp = numOfStamp / (standardMileage / 5);
         }
 
         //쿠폰<->스탬프 레이아웃을 전환하면서 나의 쿠폰과 스탬프 상태를 봄
@@ -86,8 +87,8 @@ public class FragmentStampMain extends Fragment {
         p.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                numOfStamp = 48;
-                initializeLayout("NORMAL");
+                //numOfStamp = 48;
+                //initializeLayout("NORMAL");
             }
         });
 
@@ -108,11 +109,11 @@ public class FragmentStampMain extends Fragment {
             default:
             case "NORMAL":
                 layout = (RelativeLayout)stampLayout.findViewById(R.id.layout_normal);
-                pagerAdapter = new StampPagerAdapter(getActivity(), numOfStamp);
+                pagerAdapter = new StampPagerAdapter(getActivity(), getActivity(), numOfStamp);
                 break;
             case "EVENT":
                 layout = (RelativeLayout)stampLayout.findViewById(R.id.layout_event);
-                pagerAdapter = new StampPagerAdapter(getActivity());
+                pagerAdapter = new StampPagerAdapter(getActivity(), getActivity());
                 break;
         }
         viewPager = (ViewPager)layout.findViewById(R.id.viewPager);

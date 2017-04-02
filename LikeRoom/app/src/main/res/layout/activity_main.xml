@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shape_emptybackground">
-</GridLayout>
+    android:theme="@style/LikeRoomTheme"
+    android:background="?attr/theme_color_D4">
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/include_main_background" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:background="@mipmap/icon_bread"
+        app:backgroundTint="?attr/theme_color_N"
+        android:layout_centerInParent="true"
+        android:layout_width="150dp"
+        android:layout_height="150dp" />
+
+</RelativeLayout>
