@@ -167,6 +167,18 @@ public class SimpleDatabaseTest {
         sqLiteDatabase.close();
     }
 
+    public int GetSelectedUniqueId(int targetStoreId) {
+        int uniqueId = -1;
+        localHostDatabaseManager = new LocalHostDatabaseManager(context, databaseSavedPath, customerDatabaseName);
+        sqLiteDatabase = localHostDatabaseManager.OpenSQLiteDatabase();
+        Cursor sqlResult = sqLiteDatabase.rawQuery("select `고유등록번호` from `매장` where `매장번호` = " + targetStoreId, null);
+
+        while(sqlResult.moveToNext()){
+            uniqueId = Integer.parseInt(sqlResult.getString(sqlResult.getColumnIndex("고유등록번호")));
+        }
+        return uniqueId;
+    }
+
     public void DeleteSelectedShop(int targetStoreId) {
         Log.d("LikeRoom", "delete order accepted");
         localHostDatabaseManager = new LocalHostDatabaseManager(context, databaseSavedPath, customerDatabaseName);

@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,9 @@ import android.widget.TextView;
 import com.example.kangjisung.likeroom.DefineManager;
 import com.example.kangjisung.likeroom.R;
 
+import java.util.Arrays;
+
+import static com.example.kangjisung.likeroom.DefineManager.shopIdSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.standardMileage;
 import static com.example.kangjisung.likeroom.DefineManager.synchronizedLocalAndServerDatabase;
 
@@ -32,7 +36,7 @@ public class FragmentStampMain extends Fragment {
     StampPagerAdapter pagerAdapter;
 
     //나중에 갯수 수정
-    int numOfStamp = 35;
+    int numOfStamp = 35, uniqueId;
     String cardMode = "NORMAL";
 
     @Override
@@ -48,7 +52,9 @@ public class FragmentStampMain extends Fragment {
         txtShopName.setText(selectedShopInfoData[DefineManager.shopNameSavedPoint]);
         txtShopPhoneNumber.setText(selectedShopInfoData[DefineManager.shopPhoneNumberSavedPoint]);
 
-        numOfStamp = synchronizedLocalAndServerDatabase.GetMileageStatusFromTargetStore(1);
+        uniqueId = synchronizedLocalAndServerDatabase.GetStoreUniqueId(Integer.parseInt(selectedShopInfoData[shopIdSavedPoint]));
+        Log.d("shopData", Arrays.toString(selectedShopInfoData) + " unique: " + uniqueId);
+        numOfStamp = synchronizedLocalAndServerDatabase.GetMileageStatusFromTargetStore(uniqueId);
         if(numOfStamp < 0) {
             numOfStamp = 0;
         }
@@ -109,11 +115,11 @@ public class FragmentStampMain extends Fragment {
             default:
             case "NORMAL":
                 layout = (RelativeLayout)stampLayout.findViewById(R.id.layout_normal);
-                pagerAdapter = new StampPagerAdapter(getActivity(), getActivity(), numOfStamp);
+                pagerAdapter = new StampPagerAdapter(getActivity(), getActivity(), numOfStamp, selectedShopInfoData);
                 break;
             case "EVENT":
                 layout = (RelativeLayout)stampLayout.findViewById(R.id.layout_event);
-                pagerAdapter = new StampPagerAdapter(getActivity(), getActivity());
+                pagerAdapter = new StampPagerAdapter(getActivity(), getActivity(), selectedShopInfoData);
                 break;
         }
         viewPager = (ViewPager)layout.findViewById(R.id.viewPager);

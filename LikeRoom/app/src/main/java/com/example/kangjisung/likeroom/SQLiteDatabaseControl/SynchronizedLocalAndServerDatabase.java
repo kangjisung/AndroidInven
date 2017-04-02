@@ -44,7 +44,7 @@ public class SynchronizedLocalAndServerDatabase extends Thread{
     }
 
     public int GetMileageStatusFromTargetStore(int storeId) {
-        return networkModule.GetMileageSum(1);
+        return networkModule.GetMileageSum(storeId);
     }
 
     public void UseMileageFromTargetStore(int uniqueRegisteredId, int mileageSize) {
@@ -64,5 +64,9 @@ public class SynchronizedLocalAndServerDatabase extends Thread{
             simpleDatabaseTest.AddSelectedShop(Integer.parseInt(eachRegisteredStoreInfo[shopId]));
             simpleDatabaseTest.AddStoreAndCustomerUniqueId(Integer.parseInt(eachRegisteredStoreInfo[shopId]), Integer.parseInt(eachRegisteredStoreInfo[uniqueId]));
         }
+    }
+
+    public int GetStoreUniqueId(int targetStoreId) {
+        return simpleDatabaseTest.GetSelectedUniqueId(targetStoreId);
     }
 }
