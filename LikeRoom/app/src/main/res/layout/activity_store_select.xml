@@ -3,21 +3,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.kangjisung.likeroom.ActivityStoreSelect"
-    android:background="?attr/theme_color_D4">
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.AppCompatImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:background="@mipmap/icon_bread"
-        app:backgroundTint="?attr/theme_color_D3"
-        android:layout_centerInParent="true" />
+        app:backgroundTint="?attr/theme_color_L2"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="10dp" />
 
-    <include
+    <TextView
+        android:text="매장 선택"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/theme_color_D3"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:textSize="35dp" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        layout="@layout/include_main_background" />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:background="?attr/theme_color_L3"
+            android:rotation="45"
+            android:layout_width="200dp"
+            android:layout_alignParentEnd="true"
+            android:layout_height="30dp"
+            android:layout_marginEnd="-53dp" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:background="?attr/theme_color_L2"
+            android:rotation="45"
+            android:layout_width="200dp"
+            android:layout_alignParentEnd="true"
+            android:layout_height="30dp"
+            android:layout_marginEnd="-95dp" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:background="?attr/theme_color_L3"
+            android:rotation="45"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-53dp" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:background="?attr/theme_color_L2"
+            android:rotation="45"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-95dp" />
+
+    </RelativeLayout>
 
     <ScrollView
         android:layout_height="wrap_content"
@@ -30,23 +74,11 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true">
 
-            <TextView
-                android:text="@string/selectStore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtSelectStore"
-                style="@android:style/Widget.TextView"
-                android:textSize="35dp"
-                android:layout_marginBottom="30dp"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:gravity="center_vertical|center_horizontal"
-                android:textColor="?attr/theme_color_L4" />
-
             <RelativeLayout
                 android:background="?attr/theme_color_D1"
                 android:id="@+id/newStoreAddLayout"
                 android:layout_width="match_parent"
-                android:layout_height="80dp">
+                android:layout_height="70dp">
 
                 <android.support.v7.widget.AppCompatImageView
                     android:layout_height="40dp"

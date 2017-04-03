@@ -50,7 +50,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
     private ArrayList<NoticeRecyclerViewItem> noticeListViewItemRecycler = new ArrayList<NoticeRecyclerViewItem>();
     private Context context;
     Activity activity;
-    Button acceptButtonEnableControl;
+    View acceptButtonEnableControl;
 
     public static class NoticeRecyclerViewHolder extends RecyclerView.ViewHolder {
 
@@ -105,7 +105,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
         this.context = context;
     }
 
-    public NoticeRecyclerViewAdapter(int modeOfRecyclerView, Context context, Button acceptButtonEnableControl) {
+    public NoticeRecyclerViewAdapter(int modeOfRecyclerView, Context context, View acceptButtonEnableControl) {
         this.modeOfRecyclerView = modeOfRecyclerView;
         this.context = context;
         this.acceptButtonEnableControl = acceptButtonEnableControl;

@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layoutEachStoreItem"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:layout_marginTop="10dp">
+    android:layout_marginTop="10dp"
+    android:layout_height="70dp">
 
     <ImageView
         android:layout_width="match_parent"
@@ -38,8 +38,8 @@
                 android:id="@+id/txtShopName"
                 android:textColor="?attr/theme_color_L3"
                 android:layout_centerVertical="true"
-                android:textSize="25dp"
-                android:layout_marginStart="15dp" />
+                android:layout_marginStart="15dp"
+                android:textSize="22dp" />
 
             <TextView
                 android:text="TextView"

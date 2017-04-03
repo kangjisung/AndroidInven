@@ -5,11 +5,15 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.FragmentNotice.NoticeRecyclerViewAdapter;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.SimpleDatabaseTest;
@@ -28,8 +32,8 @@ import static com.example.kangjisung.likeroom.DefineManager.databaseShopPhoneNum
 public class StoreAddDialog extends Dialog {
 
     public static String selectedWantRegisterNewStoreId;
-    private Button mLeftButton;
-    private Button mRightButton;
+    private View mLeftButton;
+    private View mRightButton;
     SearchView searchNewStore;
 
     private View.OnClickListener mLeftClickListener;
@@ -52,10 +56,11 @@ public class StoreAddDialog extends Dialog {
 
         View addNewStoreDialogView = View.inflate(getContext(), R.layout.store_add_dialog, null);
         setContentView(addNewStoreDialogView);
+        ((TextView) findViewById(R.id.inc_tv_title)).setText("매장 검색");
         //setContentView(R.layout.store_add_dialog);
 
-        mLeftButton = (Button) addNewStoreDialogView.findViewById(R.id.button_back);
-        mRightButton = (Button) addNewStoreDialogView.findViewById(R.id.button_ok);
+        mLeftButton = addNewStoreDialogView.findViewById(R.id.inc_btn_back);
+        mRightButton = addNewStoreDialogView.findViewById(R.id.inc_btn_close);
         searchNewStore = (SearchView) addNewStoreDialogView.findViewById(R.id.searchNewStore);
         listOfStoreWitchIsRegisteredByServer = (RecyclerView) addNewStoreDialogView.findViewById(R.id.listOfStoreWitchIsRegisteredByServer);
 
@@ -99,6 +104,38 @@ public class StoreAddDialog extends Dialog {
             }
         });
 
+        final EditText editTextSearch = (EditText) findViewById(R.id.editText_search);
+        final View acivClear = findViewById(R.id.iv_clear);
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length() == 0){
+                    acivClear.setVisibility(View.GONE);
+                }
+                else{
+                    acivClear.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                ArrayList<String[]> unRegisteredAndSearchingSimillarStoreList = simpleDatabaseTest.GetSimillarStoreInfoSearched(s.toString());
+                unRegisteredStoreListViewAdapter.DeleteAllItems();
+                LoadStoreWhichIsImFinding(unRegisteredAndSearchingSimillarStoreList, unRegisteredStoreListViewAdapter);
+                unRegisteredStoreListViewAdapter.notifyDataSetChanged();
+            }
+        });
+
+        acivClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View onClickView) {
+                editTextSearch.setText("");
+            }
+        });
+        /*
         searchNewStore.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -116,6 +153,7 @@ public class StoreAddDialog extends Dialog {
                 return true;
             }
         });
+        */
     }
     public void LoadIRegisteredStoreList(ArrayList<String[]> storeWhichIRegistered, NoticeRecyclerViewAdapter registeredStoreListViewAdapter) {
         int i;
