@@ -1,5 +1,6 @@
 package com.example.kangjisung.likeroom;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
@@ -51,12 +52,16 @@ public class ActivityMenu extends AppCompatActivity
     private int selectedTabColor;
     private int unselectedTabColor;
 
+
     final int firstShowTabPageNumber = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        Log.d(this.getClass().getSimpleName(), "onCreate()");
+
+
         this.setTheme(ColorTheme.getTheme(ColorTheme.basicTheme));
         setContentView(R.layout.activity_menu);
         selectedTabColor = ContextCompat.getColor(this, R.color.gray80);
@@ -111,6 +116,11 @@ public class ActivityMenu extends AppCompatActivity
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
     }
 
     public void tabLayoutInitialize(TabLayout tabLayout)

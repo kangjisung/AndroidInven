@@ -8,6 +8,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.util.TimingLogger;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,8 +40,10 @@ public class FragmentStampMain extends Fragment {
     int numOfStamp = 35, uniqueId;
     String cardMode = "NORMAL";
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         /* 초기화 코드는 여기서 */
         stampLayout = inflater.inflate(R.layout.fragment_stamp_main, container, false);
         btnShowSpecialStamp = (Button)stampLayout.findViewById(R.id.btnShowSpecialStamp);
@@ -98,8 +101,9 @@ public class FragmentStampMain extends Fragment {
             }
         });
 
-        CheckTypesTask task = new CheckTypesTask();
-        task.execute();
+        initializeLayout("NORMAL");
+        initializeLayout("EVENT");
+
         return stampLayout;
     }
 
@@ -178,38 +182,6 @@ public class FragmentStampMain extends Fragment {
             tab.setCustomView(R.layout.include_tabitem_circle);
             tab.getCustomView().findViewById((i==0)?(R.id.icon_unselected):(R.id.icon_selected)).setVisibility(View.INVISIBLE);
             tabLayout.addTab(tab);
-        }
-    }
-
-    private class CheckTypesTask extends AsyncTask<Void, Void, Void>
-    {
-        ProgressDialog asyncDialog = new ProgressDialog(getActivity());
-
-        @Override
-        protected void onPreExecute() {
-            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            asyncDialog.setMessage("로딩중입니다..");
-
-            // show dialog
-            asyncDialog.show();
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0)
-        {
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-
-
-            initializeLayout("NORMAL");
-            initializeLayout("EVENT");
-
-            asyncDialog.dismiss();
-            super.onPostExecute(result);
         }
     }
 }

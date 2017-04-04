@@ -66,13 +66,10 @@
                     android:paddingTop="3dp"
                     android:layout_marginTop="10dp">
 
-                    <ImageView
-                        app:srcCompat="@android:drawable/sym_def_app_icon"
-                        android:id="@+id/imageView3"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp" />
+                    <include
+                        android:layout_width="@dimen/stamp_icon_size"
+                        android:layout_height="@dimen/stamp_icon_size"
+                        layout="@layout/include_stamp" />
 
                     <TextView
                         android:text="@string/useStampName"
