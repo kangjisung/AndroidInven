@@ -92,14 +92,6 @@ public class FragmentStampMain extends Fragment {
                 }
             }
         });
-        View p = stampLayout.findViewById(R.id.textView2);
-        p.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //numOfStamp = 48;
-                //initializeLayout("NORMAL");
-            }
-        });
 
         initializeLayout("NORMAL");
         initializeLayout("EVENT");

@@ -179,17 +179,17 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
 
         <GridView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/gridView"
             android:numColumns="5"
-            android:horizontalSpacing="5dp"
-            android:verticalSpacing="5dp"
+            android:horizontalSpacing="1dp"
+            android:verticalSpacing="1dp"
             android:listSelector="@color/transparent" />
     </RelativeLayout>
 

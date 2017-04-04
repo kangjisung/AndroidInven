@@ -5,22 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/stamp_box_background"
-    android:layout_marginTop="52dp">
+    android:background="@drawable/stamp_box_background">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_alignParentBottom="false"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
+        android:layout_marginRight="15dp"
+        android:id="@+id/layout_tab">
 
         <Button
             android:id="@+id/button_stamp_left"
-            android:background="@mipmap/icon_back"
-            android:layout_width="40dp"
+            android:background="@mipmap/icon_arrow_left"
+            android:layout_width="30dp"
             android:layout_centerVertical="true"
-            android:layout_height="35dp" />
+            android:layout_height="30dp" />
 
         <android.support.design.widget.TabLayout
             android:layout_width="wrap_content"
@@ -34,39 +33,29 @@
         </android.support.design.widget.TabLayout>
 
         <Button
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:id="@+id/button_stamp_right"
-            android:background="@mipmap/icon_back"
+            android:background="@mipmap/icon_arrow_left"
             android:rotation="180"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_height="35dp" />
+            android:layout_height="30dp" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginBottom="15dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
         android:layout_marginStart="5dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="60dp">
-
-        <TextView
-            android:text="Loading..."
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView12"
-            android:textColor="?attr/theme_color_D4"
-            android:textSize="40dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp" />
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/transparent">
+            android:background="@color/white">
 
         </android.support.v4.view.ViewPager>
     </RelativeLayout>

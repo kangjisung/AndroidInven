@@ -16,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="3dp"
-        android:id="@+id/layout_normal">
+        android:id="@+id/layout_normal"
+        android:visibility="gone">
 
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="match_parent"
@@ -30,13 +31,15 @@
             android:background="@mipmap/icon_bread"
             android:layout_margin="5dp"
             app:backgroundTint="@color/White" />
+
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="3dp"
-        android:id="@+id/layout_use">
+        android:id="@+id/layout_use"
+        android:visibility="gone">
 
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="match_parent"
@@ -60,13 +63,12 @@
             android:layout_centerInParent="true"
             android:text="사용"
             android:id="@+id/view_text" />
+
     </RelativeLayout>
 
-    <Button
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/button_ripple_circle"
-        android:id="@+id/button"
-        android:visibility="gone" />
+        app:srcCompat="@drawable/button_ripple_circle" />
 
 </RelativeLayout>

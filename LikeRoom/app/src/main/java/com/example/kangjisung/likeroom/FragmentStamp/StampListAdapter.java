@@ -59,25 +59,20 @@ public class StampListAdapter extends BaseAdapter {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.include_stamp, parent, false);
+
             View layoutNormal = convertView.findViewById(R.id.layout_normal);
             View layoutUse = convertView.findViewById(R.id.layout_use);
-            if(data.get(position) == 0){
-                layoutNormal.setVisibility(View.GONE);
-                layoutUse.setVisibility(View.GONE);
+            if(data.get(position) == 1){
+                layoutNormal.setVisibility(View.VISIBLE);
             }
-            else{
-                if(data.get(position) == 1){
-                    layoutUse.setVisibility(View.GONE);
+            else if(data.get(position) != 0){
+                layoutUse.setVisibility(View.VISIBLE);
+                ((TextView) convertView.findViewById(R.id.view_text)).setText(String.valueOf(data.get(position)));
+                if(position >= numStampInPage){
+                    convertView.findViewById(R.id.view_on).setVisibility(View.INVISIBLE);
                 }
                 else{
-                    layoutNormal.setVisibility(View.GONE);
-                    ((TextView) convertView.findViewById(R.id.view_text)).setText(String.valueOf(data.get(position)));
-                    if(position >= numStampInPage){
-                        convertView.findViewById(R.id.view_on).setVisibility(View.INVISIBLE);
-                    }
-                    else{
-                        convertView.findViewById(R.id.view_off).setVisibility(View.INVISIBLE);
-                    }
+                    convertView.findViewById(R.id.view_off).setVisibility(View.INVISIBLE);
                 }
             }
         }

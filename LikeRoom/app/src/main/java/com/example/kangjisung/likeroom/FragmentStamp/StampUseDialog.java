@@ -76,8 +76,8 @@ public class StampUseDialog extends Dialog
         mRightButton = (Button) useStampDialogView.findViewById(R.id.button_use);
         switchLockUnlockCoupon = (Switch) useStampDialogView.findViewById(R.id.switchLockUnlockCoupon);
 
-        View layoutNormal = findViewById(R.id.layout_normal);
-        layoutNormal.setVisibility(View.GONE);
+        View layoutUse = findViewById(R.id.layout_use);
+        layoutUse.setVisibility(View.VISIBLE);
         findViewById(R.id.view_off).setVisibility(View.INVISIBLE);
         ((TextView) findViewById(R.id.view_text)).setText(String.valueOf(mileageUseage));
 
