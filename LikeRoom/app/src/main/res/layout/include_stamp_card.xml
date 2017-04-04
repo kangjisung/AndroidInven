@@ -10,16 +10,25 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:id="@+id/layout_tab">
 
-        <Button
-            android:id="@+id/button_stamp_left"
-            android:background="@mipmap/icon_arrow_left"
-            android:layout_width="30dp"
-            android:layout_centerVertical="true"
-            android:layout_height="30dp" />
+        <RelativeLayout
+            android:layout_width="60dp"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@mipmap/icon_arrow_left"
+                app:backgroundTint="@color/gray100"
+                android:layout_centerInParent="true" />
+
+            <Button
+                android:id="@+id/button_stamp_left"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent" />
+        </RelativeLayout>
 
         <android.support.design.widget.TabLayout
             android:layout_width="wrap_content"
@@ -32,30 +41,40 @@
             app:tabPaddingStart="5dp">
         </android.support.design.widget.TabLayout>
 
-        <Button
-            android:layout_width="30dp"
-            android:id="@+id/button_stamp_right"
-            android:background="@mipmap/icon_arrow_left"
-            android:rotation="180"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_height="30dp" />
+        <RelativeLayout
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@mipmap/icon_arrow_left"
+                app:backgroundTint="@color/gray100"
+                android:rotation="180"
+                android:layout_centerInParent="true" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:id="@+id/button_stamp_right"
+                android:background="@color/transparent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp">
+        android:layout_marginTop="55dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white">
+            android:layout_height="match_parent">
 
         </android.support.v4.view.ViewPager>
     </RelativeLayout>

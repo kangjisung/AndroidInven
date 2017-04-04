@@ -12,6 +12,7 @@ import android.util.TimingLogger;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -95,6 +96,17 @@ public class FragmentStampMain extends Fragment {
 
         initializeLayout("NORMAL");
         initializeLayout("EVENT");
+
+        /*
+        stampLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            public void onGlobalLayout() {
+                stampLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+
+                View layoutCard = stampLayout.findViewById(R.id.layout_card);
+                stampLayout.findViewById(R.id.iv_shadow).setLayoutParams(new RelativeLayout.LayoutParams(layoutCard.getWidth(), layoutCard.getHeight()));
+            }
+        });
+        */
 
         return stampLayout;
     }
