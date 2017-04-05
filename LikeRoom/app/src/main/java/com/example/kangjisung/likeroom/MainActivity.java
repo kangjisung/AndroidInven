@@ -48,7 +48,8 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setTheme(ColorTheme.getTheme(2));
+        ColorTheme.initTheme(this);
+        this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_main);
 
         userAccountCrawler = new UserAccountCrawler(this);
