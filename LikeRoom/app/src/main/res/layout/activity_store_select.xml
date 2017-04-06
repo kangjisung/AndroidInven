@@ -74,7 +74,7 @@
             android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:background="?attr/theme_color_L1"
+                android:background="?attr/theme_color_N"
                 android:id="@+id/newStoreAddLayout"
                 android:layout_width="match_parent"
                 android:layout_height="70dp">
