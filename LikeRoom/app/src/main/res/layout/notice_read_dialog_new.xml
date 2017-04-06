@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:id="@+id/layout_root">
+
+    <RelativeLayout
+        android:background="@drawable/dialog_background"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            layout="@layout/include_title_dialog" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="제목"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtNoticeTitle"
+                    android:textSize="24dp"
+                    android:textColor="?attr/theme_color_N"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:maxLines="3" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray200" />
+
+                <TextView
+                    android:text="내용"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtNoticeBody"
+                    android:textColor="@color/gray100"
+                    android:textSize="18dp"
+                    android:minHeight="150dp"
+                    android:layout_margin="5dp"
+                    android:maxLines="255" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray200" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:id="@+id/imgNoticeType"
+                        android:background="@mipmap/ic_launcher"
+                        app:backgroundTint="@color/gray100"
+                        android:layout_weight="0" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:layout_marginStart="10dp">
+
+                        <TextView
+                            android:text="공지 종류"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/theme_color_N"
+                            android:layout_weight="1"
+                            android:textSize="14dp" />
+
+                        <TextView
+                            android:text="공지 종류"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txtNoticeType"
+                            android:textColor="@color/gray100"
+                            android:textSize="18dp"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray200" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@mipmap/icon_time"
+                        app:backgroundTint="@color/gray100"
+                        android:layout_weight="0" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:layout_marginStart="10dp">
+
+                        <TextView
+                            android:text="공지 기간"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/theme_color_N"
+                            android:layout_weight="1"
+                            android:textSize="14dp" />
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:text="년"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_start_year"
+                                android:layout_weight="1"
+                                android:textSize="18dp"
+                                android:textColor="@color/gray100" />
+
+                            <TextView
+                                android:text="/"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginEnd="2dp"
+                                android:textSize="16dp"
+                                android:textColor="@color/gray100" />
+
+                            <TextView
+                                android:text="월"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_start_month"
+                                android:layout_weight="1"
+                                android:textSize="18dp"
+                                android:textColor="@color/gray100" />
+
+                            <TextView
+                                android:text="/"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginEnd="2dp"
+                                android:textSize="16dp"
+                                android:textColor="@color/gray100" />
+
+                            <TextView
+                                android:text="일 ~ "
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_start_day"
+                                android:layout_weight="1"
+                                android:textSize="18dp"
+                                android:textColor="@color/gray100" />
+
+                            <TextView
+                                android:text="년"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_end_year"
+                                android:layout_weight="1"
+                                android:textSize="18dp"
+                                android:textColor="@color/gray100" />
+
+                            <TextView
+                                android:text="/"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginEnd="2dp"
+                                android:textSize="16dp"
+                                android:textColor="@color/gray100" />
+
+                            <TextView
+                                android:text="월"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_end_month"
+                                android:layout_weight="1"
+                                android:textSize="18dp"
+                                android:textColor="@color/gray100" />
+
+                            <TextView
+                                android:text="/"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginEnd="2dp"
+                                android:textSize="16dp"
+                                android:textColor="@color/gray100" />
+
+                            <TextView
+                                android:text="일"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_end_day"
+                                android:layout_weight="1"
+                                android:textSize="18dp"
+                                android:textColor="@color/gray100" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -6,16 +6,18 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="13dp"
-    android:paddingBottom="20dp"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp"
-    android:background="?attr/theme_color_N">
+    android:background="@color/white">
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/include_title_activity" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/store_list">
+        android:id="@+id/store_list"
+        android:visibility="gone">
 
         <Button
             android:layout_width="45dp"
@@ -37,7 +39,6 @@
         <Button
             android:id="@+id/button_back"
             android:background="@mipmap/icon_back"
-
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_width="45dp"
@@ -46,12 +47,71 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:background="?attr/theme_color_L2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/layout_searchbar"
+        android:layout_height="60dp"
+        android:layout_marginTop="60dp">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="5dp"
+            app:cardBackgroundColor="@color/white">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:background="@mipmap/icon_search"
+                    app:backgroundTint="@color/gray160"
+                    android:layout_marginStart="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPersonName"
+                    android:id="@+id/editText_search"
+                    android:layout_marginStart="40dp"
+                    android:textColor="@color/gray120"
+                    android:maxLines="1"
+                    android:padding="0dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@color/transparent"
+                    android:hint="이름, 주소, 전화번호로 검색"
+                    android:textColorHint="@color/text_hint"
+                    android:textSize="20dp" />
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:background="@mipmap/fab_reject"
+                    app:backgroundTint="@color/gray160"
+                    android:layout_centerVertical="true"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:id="@+id/iv_clear"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="2dp"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:background="@drawable/search_bar"
         android:id="@+id/search_bar"
         android:layout_height="35dp"
         android:layout_below="@+id/store_list"
-        android:layout_marginTop="10dp">
-
+        android:layout_marginTop="60dp"
+        android:visibility="gone">
 
         <SearchView
             android:id="@+id/searchNewStore"
@@ -65,8 +125,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/search_bar"
-        android:layout_marginTop="15dp">
+        android:layout_below="@+id/layout_searchbar">
 
         <LinearLayout
             android:orientation="vertical"
@@ -76,8 +135,16 @@
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:id="@+id/listOfStoreWitchIsRegisteredByServer"
-                android:layout_height="330dp" />
+                android:layout_height="match_parent"
+                android:paddingTop="3dp" />
         </LinearLayout>
     </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_below="@+id/layout_searchbar"
+        android:background="@drawable/shape_gradient_border_y"
+        android:layout_height="3dp"
+        android:rotation="180" />
 
 </RelativeLayout>

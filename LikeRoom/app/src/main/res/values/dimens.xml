@@ -14,4 +14,8 @@
     <dimen name="menu_side_margin">15dp</dimen>
 
     <dimen name="stamp_icon_size">60dp</dimen>
+    <dimen name="title_size">60dp</dimen>
+    <dimen name="popup_title_height">60dp</dimen>
+    <dimen name="popup_backbutton_size">45dp</dimen>
+    <dimen name="popup_title_textsize">20dp</dimen>
 </resources>

@@ -61,20 +61,6 @@ public class FragmentNoticeMain extends Fragment {
         txtStoreName.setText(selectedShopInfoData[DefineManager.shopNameSavedPoint]);
         //new GregorianCalendar();
 
-        
-        Button buttonTempRead = (Button)view.findViewById(R.id.buttonTempRead);
-        buttonTempRead.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View view)
-            {
-                noticeReadDialog = new NoticeReadDialog(getActivity(),
-                        "[다이얼로그 제목]", // 제목
-                        leftListener); // 오른쪽 버튼 이벤트
-                noticeReadDialog.show();
-            }
-        });
-        buttonTempRead.setVisibility(View.INVISIBLE);
-
         noticeDataList = simpleDatabaseTest.GetSelectedStoreNoticeInfo(Integer.parseInt(selectedShopInfoData[shopIdSavedPoint]), 2);
 
         synchronizedLocalAndServerDatabase.GetStoreNoticeFromServer(selectedShopInfoData[shopIdSavedPoint]);

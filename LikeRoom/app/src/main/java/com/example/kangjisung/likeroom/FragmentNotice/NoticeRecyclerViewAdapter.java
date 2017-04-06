@@ -1,6 +1,7 @@
 package com.example.kangjisung.likeroom.FragmentNotice;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -50,11 +51,13 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
     private ArrayList<NoticeRecyclerViewItem> noticeListViewItemRecycler = new ArrayList<NoticeRecyclerViewItem>();
     private Context context;
     Activity activity;
-    Button acceptButtonEnableControl;
+    View acceptButtonEnableControl;
+    private String listTypeText[] = {"알림", "신제품", "이벤트"};
+    private int listTypeImage[] = {R.mipmap.icon_notice1_notification, R.mipmap.icon_notice2_event, R.mipmap.icon_notice3_newproduct};
 
     public static class NoticeRecyclerViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewTitle, textViewBody, txtNoticeDate;
+        TextView textViewTitle, textViewBody, txtNoticeDate, textViewType;
         Button btnEachNoticeItem;
         ImageView imgNoticeType;
         View view;
@@ -71,6 +74,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
                 case showNoticeList:
                     textViewTitle = (TextView) view.findViewById(R.id.textViewTitle);
                     textViewBody = (TextView) view.findViewById(R.id.textViewBody);
+                    textViewType = (TextView) view.findViewById(R.id.textViewType);
                     txtNoticeDate = (TextView) view.findViewById(R.id.txtNoticeDate);
                     imgNoticeType = (ImageView) view.findViewById(R.id.imgNoticeType);
                     btnEachNoticeItem = (Button) view.findViewById(R.id.btnEachNoticeItem);
@@ -105,7 +109,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
         this.context = context;
     }
 
-    public NoticeRecyclerViewAdapter(int modeOfRecyclerView, Context context, Button acceptButtonEnableControl) {
+    public NoticeRecyclerViewAdapter(int modeOfRecyclerView, Context context, View acceptButtonEnableControl) {
         this.modeOfRecyclerView = modeOfRecyclerView;
         this.context = context;
         this.acceptButtonEnableControl = acceptButtonEnableControl;
@@ -115,7 +119,7 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
         View v = null;
         switch (modeOfRecyclerView) {
             case showNoticeList:
-                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_notice_recycler_view, parent, false);
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_notice_recycler_view_new, parent, false);
                 break;
             case showStoreList:
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_each_registered_store_item, parent, false);
@@ -138,29 +142,25 @@ public class NoticeRecyclerViewAdapter extends RecyclerView.Adapter<NoticeRecycl
         final NoticeRecyclerViewItem noticeRecyclerViewItem = noticeListViewItemRecycler.get(position);
         switch (modeOfRecyclerView) {
             case showNoticeList:
+                String textDate = GetNoticeReadableDate(noticeRecyclerViewItem);
                 holder.textViewTitle.setText(noticeRecyclerViewItem.getTitle());
                 holder.textViewBody.setText(noticeRecyclerViewItem.getBody());
-                String textDate = GetNoticeReadableDate(noticeRecyclerViewItem);
-                holder.txtNoticeDate.setText(textDate);
-                switch (noticeRecyclerViewItem.getType()) {
-                    default:
-                    case 1:
-                        holder.imgNoticeType.setBackgroundResource(R.mipmap.icon_menu_item);
-                        break;
-                    case 2:
-                        holder.imgNoticeType.setBackgroundResource(R.mipmap.icon_menu_point);
-                        break;
-                    case 3:
-                        holder.imgNoticeType.setBackgroundResource(R.mipmap.icon_menu_user);
-                        break;
-                }
-                holder.btnEachNoticeItem.setOnClickListener(new Button.OnClickListener() {
+                holder.textViewType.setText(listTypeText[noticeRecyclerViewItem.getType()-1]);
+                holder.imgNoticeType.setBackgroundResource(listTypeImage[noticeRecyclerViewItem.getType()-1]);
+                ((TextView) holder.view.findViewById(R.id.tv_start_year)).setText(String.valueOf(noticeRecyclerViewItem.getStartDate().get(Calendar.YEAR)));
+                ((TextView) holder.view.findViewById(R.id.tv_start_month)).setText(String.valueOf(noticeRecyclerViewItem.getStartDate().get(Calendar.MONTH)+1));
+                ((TextView) holder.view.findViewById(R.id.tv_start_day)).setText((String.valueOf(noticeRecyclerViewItem.getStartDate().get(Calendar.DAY_OF_MONTH)) + " - "));
+                ((TextView) holder.view.findViewById(R.id.tv_end_year)).setText(String.valueOf(noticeRecyclerViewItem.getEndDate().get(Calendar.YEAR)));
+                ((TextView) holder.view.findViewById(R.id.tv_end_month)).setText(String.valueOf(noticeRecyclerViewItem.getEndDate().get(Calendar.MONTH)+1));
+                ((TextView) holder.view.findViewById(R.id.tv_end_day)).setText(String.valueOf(noticeRecyclerViewItem.getEndDate().get(Calendar.DAY_OF_MONTH)));
+                //holder.txtNoticeDate.setText(textDate);
+                holder.view.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
                         //SingleToast.show(context, noticeRecyclerViewItem.getTitle().toString() + " 항목을 눌렀습니다", Toast.LENGTH_SHORT);
                         //Snackbar.make(v, noticeRecyclerViewItem.getTitle().toString(), Snackbar.LENGTH_SHORT).show();
                         //공지사항을 눌렀을 시 세부 내용을 출력하는 팝업을 구현해야함
                         NoticeReadDialog noticeReadDialog = new NoticeReadDialog(context, noticeRecyclerViewItem.getTitle(),
-                                noticeRecyclerViewItem.getBody(), GetNoticeReadableDate(noticeRecyclerViewItem));
+                                noticeRecyclerViewItem.getBody(), noticeRecyclerViewItem.getStartDate(), noticeRecyclerViewItem.getEndDate(), noticeRecyclerViewItem.getType());
                         noticeReadDialog.show();
                     }
                 });

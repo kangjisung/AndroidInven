@@ -3,6 +3,7 @@ package com.example.kangjisung.likeroom.FragmentNotice;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -10,30 +11,28 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.R;
+import com.example.kangjisung.likeroom.Util.LayoutManager;
+
+import java.util.Calendar;
 
 public class NoticeReadDialog extends Dialog
 {
-    private Button mLeftButton;
-    private String mTitle, mContent, readableDate;
+    private String mTitle;
+    private String mContent;
+    private Calendar startDate;
+    private Calendar endDate;
+    private int noticeType;
 
-    private View.OnClickListener mLeftClickListener;
-    private View.OnClickListener mRightClickListener;
+    private String listTypeText[] = {"알림", "신제품", "이벤트"};
+    private int listTypeImage[] = {R.mipmap.icon_notice1_notification, R.mipmap.icon_notice2_event, R.mipmap.icon_notice3_newproduct};
 
-    int modeOfDialog;
-    TextView txtNoticeTitle, txtNoticeBody, txtNoticeDate;
-
-    public NoticeReadDialog(Context context, String title, View.OnClickListener singleListener) {
-        super(context, android.R.style.Theme_Translucent_NoTitleBar);
-        this.mTitle = title;
-        this.mLeftClickListener = singleListener;
-    }
-
-    public NoticeReadDialog(Context context, String mTitle, String noticeBody, String readableDate) {
+    public NoticeReadDialog(Context context, String mTitle, String mContent, Calendar startDate, Calendar endDate, int noticeType) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
         this.mTitle = mTitle;
-        this.mContent = noticeBody;
-        this.readableDate = readableDate;
-        modeOfDialog = 1;
+        this.mContent = mContent;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.noticeType = noticeType;
     }
 
     @Override
@@ -46,32 +45,25 @@ public class NoticeReadDialog extends Dialog
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
-        View noticeListDialogView = View.inflate(getContext(), R.layout.notice_read_dialog, null);
-        setContentView(noticeListDialogView);
-        //setContentView(R.layout.store_add_dialog);
+        setContentView(R.layout.notice_read_dialog_new);
 
-        txtNoticeTitle = (TextView) noticeListDialogView.findViewById(R.id.txtNoticeTitle);
-        txtNoticeBody = (TextView) noticeListDialogView.findViewById(R.id.txtNoticeBody);
-        txtNoticeDate = (TextView) noticeListDialogView.findViewById(R.id.txtNoticeDate);
-        Log.d(getContext().getString(R.string.app_name), "title: " + txtNoticeTitle + " body: " + txtNoticeBody + " date: " + txtNoticeDate);
-        txtNoticeTitle.setText(mTitle);
-        txtNoticeBody.setText(mContent);
-        txtNoticeDate.setText(readableDate);
-
-        mLeftButton = (Button) noticeListDialogView.findViewById(R.id.button_back);
-
-        Log.d(getContext().getString(R.string.app_name), "lbtn: " + mLeftButton);
-
-        mLeftButton.setOnClickListener(new View.OnClickListener() {
+        LayoutManager.setDialogTitle(findViewById(R.id.layout_title), true, false, "공지사항");
+        findViewById(R.id.inc_btn_back).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                //Snackbar.make(view, getContext().getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
+            public void onClick(View v) {
                 dismiss();
             }
         });
 
-        // 클릭 이벤트 셋팅
-        if(modeOfDialog == 0)
-            mLeftButton.setOnClickListener(mLeftClickListener);
+        ((TextView) findViewById(R.id.txtNoticeTitle)).setText(mTitle);
+        ((TextView) findViewById(R.id.txtNoticeBody)).setText(mContent);
+        ((TextView) findViewById(R.id.tv_start_year)).setText(String.valueOf(startDate.get(Calendar.YEAR)));
+        ((TextView) findViewById(R.id.tv_start_month)).setText(String.valueOf(startDate.get(Calendar.MONTH)+1));
+        ((TextView) findViewById(R.id.tv_start_day)).setText((String.valueOf(startDate.get(Calendar.DAY_OF_MONTH)) + " - "));
+        ((TextView) findViewById(R.id.tv_end_year)).setText(String.valueOf(endDate.get(Calendar.YEAR)));
+        ((TextView) findViewById(R.id.tv_end_month)).setText(String.valueOf(endDate.get(Calendar.MONTH)+1));
+        ((TextView) findViewById(R.id.tv_end_day)).setText(String.valueOf(endDate.get(Calendar.DAY_OF_MONTH)));
+        ((TextView) findViewById(R.id.txtNoticeType)).setText(listTypeText[noticeType-1]);
+        findViewById(R.id.imgNoticeType).setBackgroundResource(listTypeImage[noticeType-1]);
     }
 }

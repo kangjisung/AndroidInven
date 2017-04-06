@@ -34,7 +34,7 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:orientation="horizontal"
             android:layout_marginTop="25dp"
             android:gravity="center_horizontal">
@@ -42,7 +42,7 @@
             <Button
                 android:id="@+id/btnCancel"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="@string/deleteCancel"
                 android:textColor="@color/common_google_signin_btn_text_light_default"
                 android:background="@drawable/button_mask" />
@@ -50,7 +50,7 @@
             <Button
                 android:id="@+id/btnAccept"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="@string/deleteAccept"
                 android:textColor="@color/Red"
                 android:background="@drawable/button_mask" />

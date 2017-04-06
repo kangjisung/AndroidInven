@@ -3,12 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.kangjisung.likeroom.FragmentStamp.FragmentStampMain"
-    android:background="@color/White"
-    android:paddingTop="15dp"
-    android:paddingBottom="15dp"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp">
+    android:background="@color/White">
 
     <!-- TODO: Update blank fragment layout -->
 <!--점주앱에서 포인트적립이 메인페이지라면 고객앱에서는 이 페이지가 메인페이지이다.
@@ -20,7 +15,8 @@
         android:background="?attr/theme_color_L3"
         android:layout_alignParentTop="true"
         android:layout_height="90dp"
-        android:id="@+id/layout_title">
+        android:id="@+id/layout_title"
+        android:layout_margin="15dp">
 
         <include
             android:layout_width="wrap_content"
@@ -71,15 +67,18 @@
 
     </RelativeLayout>
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layout_title"
-        android:layout_marginTop="25dp">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout_title">
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -88,16 +87,17 @@
                 android:layout_centerHorizontal="true">
 
                 <ImageView
-                    android:layout_width="400dp"
                     android:background="?attr/theme_color_L2"
-                    android:layout_height="280dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginStart="5dp" />
+                    android:layout_marginStart="5dp"
+                    android:id="@+id/iv_shadow"
+                    android:layout_width="400dp"
+                    android:layout_height="260dp" />
 
                 <RelativeLayout
-                    android:layout_height="280dp"
                     android:layout_width="400dp"
-                    android:layout_marginEnd="5dp">
+                    android:layout_marginEnd="5dp"
+                    android:layout_height="260dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -105,32 +105,27 @@
                         android:background="@drawable/stamp_box_background">
 
                         <android.support.v7.widget.AppCompatImageView
-                            android:layout_height="25dp"
+                            android:layout_height="20dp"
                             android:background="@drawable/shape_circle"
                             android:layout_centerInParent="true"
-                            app:backgroundTint="@color/gray240"
-                            android:layout_width="200dp" />
+                            app:backgroundTint="@color/gray245"
+                            android:layout_width="150dp" />
 
                         <Button
                             android:text="이벤트 스탬프 카드 보기"
                             android:layout_width="match_parent"
                             android:id="@+id/btnShowSpecialStamp"
-                            android:gravity="center_horizontal"
-                            android:paddingTop="15dp"
-                            android:paddingBottom="15dp"
-                            android:layout_alignParentTop="true"
-                            android:layout_alignParentEnd="true"
-                            android:background="@drawable/button_mask"
-                            android:textColor="@color/Black"
+                            android:gravity="center"
+                            android:background="@drawable/button_ripple_rectangle"
+                            android:textColor="@color/gray100"
                             android:textSize="20dp"
-                            android:layout_height="match_parent"
-                            android:textStyle="bold" />
+                            android:layout_height="match_parent" />
 
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:id="@+id/layout_normal"
                         android:background="@drawable/stamp_box_background"
                         android:layout_marginTop="53dp">
@@ -143,7 +138,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:id="@+id/layout_event"
                         android:background="@drawable/stamp_box_background"
                         android:layout_marginTop="53dp"
@@ -160,62 +155,62 @@
             </RelativeLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="15dp"
-                android:layout_below="@+id/layout_card">
+                android:layout_below="@+id/layout_card"
+                android:layout_margin="10dp">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@android:drawable/presence_invisible"
-                        android:id="@+id/imageView"
-                        android:layout_marginLeft="10dp"
-                        android:layout_centerVertical="true" />
-
-                    <TextView
-                        android:text="스탬프 유의사항"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView2"
-                        android:textColor="@color/clrTextColorMediumDark"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="45dp"
-                        android:textSize="18dp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@android:drawable/presence_invisible"
-                        android:id="@+id/imageView2"
-                        android:layout_marginLeft="10dp"
-                        android:layout_centerVertical="true" />
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:background="@drawable/shape_circle"
+                        app:backgroundTint="@color/gray160" />
 
                     <TextView
-                        android:text="스탬프 유의사항"
+                        android:text="스탬프 유의사항 1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView3"
-                        android:layout_centerVertical="true"
-                        android:textColor="@color/clrTextColorMediumDark"
+                        android:id="@+id/tv_caution1"
+                        android:textColor="@color/gray160"
                         android:textSize="18dp"
-                        android:layout_marginLeft="45dp" />
-                </RelativeLayout>
+                        android:layout_marginStart="10dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:background="@drawable/shape_circle"
+                        app:backgroundTint="@color/gray160" />
+
+                    <TextView
+                        android:text="스탬프 유의사항 2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_caution2"
+                        android:textColor="@color/gray160"
+                        android:textSize="18dp"
+                        android:layout_marginStart="10dp" />
+
+                </LinearLayout>
 
             </LinearLayout>
-
         </RelativeLayout>
-    </ScrollView>
+
+    </RelativeLayout>
 
 </RelativeLayout>
