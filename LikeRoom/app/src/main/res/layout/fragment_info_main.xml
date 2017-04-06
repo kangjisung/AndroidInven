@@ -1,13 +1,47 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.kangjisung.likeroom.FragmentNotice.FragmentNoticeMain"
-    android:background="@color/White">
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <!--매장정보부분. 내가 주말동안 디자인할 부분이다!-->
-    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/theme_color_N">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/sample"
+            android:layout_alignParentEnd="true" />
+
+        <RelativeLayout android:layout_width="150dp"
+            android:layout_height="150dp">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/cafe_cappuccino"
+                android:scaleType="centerCrop" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:background="@mipmap/mask_oval"
+                app:backgroundTint="@color/white" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:backgroundTint="?attr/theme_color_N"
+                android:background="@mipmap/mask_oval" />
+
+        </RelativeLayout>
+    </RelativeLayout>
 
     <ImageView
         android:layout_width="match_parent"
@@ -29,7 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="25dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp"
+            android:visibility="gone">
 
             <Button
                 android:id="@+id/callButtonMask"
@@ -175,12 +210,6 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                app:srcCompat="@drawable/icon_menu_user_selected"
-                android:id="@+id/storePicture"
-                android:layout_height="200dp" />
-
-            <ImageView
-                android:layout_width="match_parent"
                 app:srcCompat="@color/Gray"
                 android:id="@+id/line"
                 android:layout_height="1dp" />
@@ -216,4 +245,4 @@
         </LinearLayout>
     </ScrollView>
 
-</RelativeLayout>
+</LinearLayout>

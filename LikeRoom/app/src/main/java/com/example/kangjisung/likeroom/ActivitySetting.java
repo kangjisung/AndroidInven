@@ -227,7 +227,6 @@ public class ActivitySetting extends AppCompatActivity
             AlertDialog.Builder builder;
             switch(onClickView.getId()){
                 case R.id.btn_set_start:
-                    break;
                     /*
                     mListView = new ListView(getBaseContext());
                     mListView.setLayoutParams(new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, ListView.LayoutParams.MATCH_PARENT));
@@ -255,7 +254,7 @@ public class ActivitySetting extends AppCompatActivity
                     dialog = builder.create();
                     dialog.show();
                     break;
-                    */
+                */
                 case R.id.btn_set_theme:
                     mListView = new ListView(getBaseContext());
                     mListView.setLayoutParams(new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, ListView.LayoutParams.MATCH_PARENT));

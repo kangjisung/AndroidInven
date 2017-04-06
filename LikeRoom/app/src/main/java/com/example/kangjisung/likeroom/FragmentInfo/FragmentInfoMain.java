@@ -1,7 +1,10 @@
 package com.example.kangjisung.likeroom.FragmentInfo;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,7 @@ import com.example.kangjisung.likeroom.PermissionManager.AndroidVersionControlle
 import com.example.kangjisung.likeroom.PermissionManager.PhoneCallBridge;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.StoreDeleteCheckDialog;
+import com.example.kangjisung.likeroom.Util.RoundedDrawable;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -85,6 +89,12 @@ public class FragmentInfoMain extends DialogFragment implements OnMapReadyCallba
                 }
             }
         });
+
+
+        ImageView storePicture = (ImageView) registeredStoreInfoView.findViewById(R.id.sample);
+        RoundedDrawable rrr = new RoundedDrawable(BitmapFactory.decodeResource(getResources(), R.mipmap.test), storePicture.getLayoutParams());
+        storePicture.setImageDrawable(rrr);
+
 
         txtStorePhone.setOnClickListener(new View.OnClickListener() {
             @Override

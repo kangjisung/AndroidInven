@@ -20,19 +20,29 @@
             android:layout_weight="0"
             android:background="?attr/theme_color_D4">
 
-            <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/imageViewSetting"
-                android:adjustViewBounds="true"
-                android:layout_marginEnd="20dp"
+            <RelativeLayout
                 android:layout_alignParentEnd="true"
-                android:background="@mipmap/icon_setting"
                 android:layout_centerVertical="true"
-                app:backgroundTint="@color/white"
-                android:layout_width="25dp"
-                android:layout_height="25dp" />
+                android:layout_width="@dimen/title_size"
+                android:layout_height="@dimen/title_size">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@mipmap/icon_setting"
+                    android:layout_centerInParent="true"
+                    app:backgroundTint="@color/white" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btn_setting"
+                    android:background="@color/transparent"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
 
             <TextView
-                android:text="@string/mainactivity_string"
+                android:text="!제목"
                 android:layout_height="wrap_content"
                 android:id="@+id/textViewTitle"
                 android:gravity="center_vertical|center_horizontal"

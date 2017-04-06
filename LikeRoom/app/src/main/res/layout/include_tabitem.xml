@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--고객앱에서는 사용한 적이 없다.-->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_gravity="center"
+    <android.support.v7.widget.AppCompatImageView
+        android:scaleType="fitCenter"
+        android:id="@+id/icon_unselected"
+        android:layout_gravity="center_horizontal"
+        android:rotation="180"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:rotation="180" />
-</LinearLayout>
+        app:backgroundTint="@color/gray160"
+        android:layout_centerInParent="true" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:scaleType="fitCenter"
+        android:id="@+id/icon_selected"
+        android:layout_gravity="center_horizontal"
+        android:rotation="180"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:backgroundTint="@color/gray80"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>
