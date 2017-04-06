@@ -20,7 +20,7 @@ public class RoundedDrawable extends Drawable {
     private final int mBitmapWidth;
     private final int mBitmapHeight;
 
-    public RoundedDrawable(Bitmap bitmap, ViewGroup.LayoutParams layoutParams) {
+    public RoundedDrawable(Bitmap bitmap) {
         mBitmap = setCenterCrop(bitmap);
         mRectF = new RectF();
         mPaint = new Paint();
@@ -28,7 +28,6 @@ public class RoundedDrawable extends Drawable {
         mPaint.setDither(true);
         final BitmapShader shader = new BitmapShader(mBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
         mPaint.setShader(shader);
-
 
         //mBitmapWidth = layoutParams.width;
         //mBitmapHeight = layoutParams.height;
@@ -41,7 +40,6 @@ public class RoundedDrawable extends Drawable {
     {
         Bitmap dstBmp;
         if (srcBmp.getWidth() >= srcBmp.getHeight()){
-
             dstBmp = Bitmap.createBitmap(
                     srcBmp,
                     srcBmp.getWidth()/2 - srcBmp.getHeight()/2,
@@ -49,9 +47,8 @@ public class RoundedDrawable extends Drawable {
                     srcBmp.getHeight(),
                     srcBmp.getHeight()
             );
-
-        }else{
-
+        }
+        else{
             dstBmp = Bitmap.createBitmap(
                     srcBmp,
                     0,

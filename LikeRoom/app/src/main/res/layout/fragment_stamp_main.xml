@@ -87,7 +87,7 @@
                 android:layout_centerHorizontal="true">
 
                 <ImageView
-                    android:background="?attr/theme_color_L3"
+                    android:background="?attr/theme_color_L2"
                     android:layout_marginTop="5dp"
                     android:layout_marginStart="5dp"
                     android:id="@+id/iv_shadow"

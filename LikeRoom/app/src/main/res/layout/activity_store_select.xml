@@ -71,8 +71,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
+            android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:background="?attr/theme_color_L1"
@@ -84,9 +83,8 @@
                     android:layout_height="40dp"
                     android:id="@+id/imgAddNewStore"
                     android:layout_width="40dp"
-                    android:backgroundTint="?attr/theme_color_L2"
+                    app:backgroundTint="?attr/theme_color_L2"
                     android:background="@mipmap/icon_plus_in_circle"
-                    android:layout_weight="1"
                     android:layout_centerInParent="true" />
 
                 <TextView
@@ -95,7 +93,6 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/txtAddNewStore"
                     android:textColor="?attr/theme_color_L4"
-                    android:layout_weight="1"
                     android:textSize="22dp"
                     android:layout_marginStart="10dp"
                     android:layout_centerInParent="true" />
@@ -104,21 +101,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/btnRegisterNewStore"
-                    android:background="@drawable/button_ripple_rectangle"
-                    android:onClick="onClickView" />
+                    android:background="@drawable/button_ripple_rectangle" />
 
             </RelativeLayout>
 
-            <!--<include
-                android:id="@+id/eachStoreListItemSample"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                layout="@layout/layout_each_registered_store_item"
-                />-->
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_below="@+id/newStoreAddLayout"
                 android:id="@+id/registeredStoreList"
                 android:layout_height="wrap_content" />
 

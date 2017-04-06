@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +18,7 @@ import com.example.kangjisung.likeroom.PermissionManager.PhoneCallBridge;
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.StoreDeleteCheckDialog;
 import com.example.kangjisung.likeroom.Util.RoundedDrawable;
+import com.example.kangjisung.likeroom.Util.Utility;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -50,10 +50,8 @@ public class FragmentInfoMain extends DialogFragment implements OnMapReadyCallba
         /* 초기화 코드는 여기서 */
         View registeredStoreInfoView = inflater.inflate(R.layout.fragment_info_main, container, false);
 
-        btnCallButton = (ImageView) registeredStoreInfoView.findViewById(R.id.btnCallButton);
         txtStorePhone = (TextView) registeredStoreInfoView.findViewById(R.id.txtStorePhone);
         txtStoreName = (TextView) registeredStoreInfoView.findViewById(R.id.storeName);
-        btnDeleteThisStore = (Button) registeredStoreInfoView.findViewById(R.id.deleteButton);
         storeLocation = (TextView) registeredStoreInfoView.findViewById(R.id.storeLocation);
         txtStoreManageTime = (TextView) registeredStoreInfoView.findViewById(R.id.txtStoreManageTime);
 
@@ -76,27 +74,25 @@ public class FragmentInfoMain extends DialogFragment implements OnMapReadyCallba
         else {
             googleMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.googleMap);
         }
-        googleMapFragment.getMapAsync(this);
+        try{
+            googleMapFragment.getMapAsync(this);
+        }
+        catch(Exception ex){
 
-        btnCallButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(phoneCallBridge.PermissionChecker()) {
-                    phoneCallBridge.CallToTargetStorePhoneNumber(registeredStorePhoneNumber);
-                }
-                else {
-                    phoneCallBridge.AlertPopUp();
-                }
-            }
-        });
+        }
 
 
-        ImageView storePicture = (ImageView) registeredStoreInfoView.findViewById(R.id.sample);
-        RoundedDrawable rrr = new RoundedDrawable(BitmapFactory.decodeResource(getResources(), R.mipmap.test), storePicture.getLayoutParams());
+        ImageView storePicture = (ImageView) registeredStoreInfoView.findViewById(R.id.iv_image);
+        RoundedDrawable rrr = new RoundedDrawable(BitmapFactory.decodeResource(getResources(), R.mipmap.cafe_cappuccino));
         storePicture.setImageDrawable(rrr);
 
+        Bitmap backgroundBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.cafe_cappuccino);
+        backgroundBitmap = Utility.blur(getContext(), Utility.blur(getContext(), backgroundBitmap, 25.0f), 25.0f);
 
-        txtStorePhone.setOnClickListener(new View.OnClickListener() {
+        ImageView mImageViewBackground = (ImageView) registeredStoreInfoView.findViewById(R.id.iv_background);
+        mImageViewBackground.setImageBitmap(backgroundBitmap);
+
+        registeredStoreInfoView.findViewById(R.id.card1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(phoneCallBridge.PermissionChecker()) {
@@ -108,7 +104,7 @@ public class FragmentInfoMain extends DialogFragment implements OnMapReadyCallba
             }
         });
 
-        btnDeleteThisStore.setOnClickListener(new View.OnClickListener() {
+        registeredStoreInfoView.findViewById(R.id.card4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Snackbar.make(view, getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
@@ -142,7 +138,4 @@ public class FragmentInfoMain extends DialogFragment implements OnMapReadyCallba
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(targetLocationInfo));
         googleMap.animateCamera(CameraUpdateFactory.zoomTo(googleMapCameraZoomScale));
     }
-
-
-    /* 이벤트 코드는 여기서 */
 }
