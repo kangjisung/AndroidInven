@@ -6,11 +6,13 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
@@ -32,29 +34,27 @@ public class StampUseDialog extends Dialog
     private View.OnClickListener mLeftClickListener;
     private View.OnClickListener mRightClickListener;
 
-    Activity activity;
     int mileageUseage;
     String[] selectedShopInfoData;
+    private int dismissMessage = 0;
 
     public StampUseDialog(Context context) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
     }
 
-    public StampUseDialog(Context context, Activity activity, int mileageUseage, String[] selectedShopInfoData) {
+    public StampUseDialog(Context context, int mileageUseage, String[] selectedShopInfoData) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
         Log.d(context.getString(R.string.app_name), "Mileage About to use: " + mileageUseage);
         this.mileageUseage = mileageUseage;
-        this.activity = activity;
         this.selectedShopInfoData = selectedShopInfoData;
         Log.d("mileage use info", Arrays.toString(selectedShopInfoData));
     }
 
-    public StampUseDialog(Context context, Activity activity, String title, View.OnClickListener singleListener, View.OnClickListener useListener, String[] selectedShopInfoData) {
+    public StampUseDialog(Context context, String title, View.OnClickListener singleListener, View.OnClickListener useListener, String[] selectedShopInfoData) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
         this.mTitle = title;
         this.mLeftClickListener = singleListener;
         this.mRightClickListener= useListener;
-        this.activity = activity;
         this.selectedShopInfoData = selectedShopInfoData;
     }
 
@@ -75,6 +75,11 @@ public class StampUseDialog extends Dialog
         mLeftButton = (Button) useStampDialogView.findViewById(R.id.button_back);
         mRightButton = (Button) useStampDialogView.findViewById(R.id.button_use);
         switchLockUnlockCoupon = (Switch) useStampDialogView.findViewById(R.id.switchLockUnlockCoupon);
+
+        View layoutUse = findViewById(R.id.layout_use);
+        layoutUse.setVisibility(View.VISIBLE);
+        findViewById(R.id.view_off).setVisibility(View.INVISIBLE);
+        ((TextView) findViewById(R.id.view_text)).setText(String.valueOf(mileageUseage));
 
         mRightButton.setEnabled(false);//blocking user cant use stamp at first
 
@@ -106,13 +111,14 @@ public class StampUseDialog extends Dialog
                 int uniqueId = 0;
                 uniqueId = synchronizedLocalAndServerDatabase.GetStoreUniqueId(Integer.parseInt(selectedShopInfoData[shopIdSavedPoint]));
                 synchronizedLocalAndServerDatabase.UseMileageFromTargetStore(uniqueId, -mileageUseage);
-                activity.finish();
+                dismissMessage = 1;
                 dismiss();
             }
         });
     }
 
-
-
-
+    public int getDismissMessage()
+    {
+        return dismissMessage;
+    }
 }

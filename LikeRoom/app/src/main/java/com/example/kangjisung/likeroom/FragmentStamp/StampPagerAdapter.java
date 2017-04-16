@@ -2,21 +2,28 @@ package com.example.kangjisung.likeroom.FragmentStamp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Parcelable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.kangjisung.likeroom.R;
 
 import java.util.ArrayList;
 
+import static com.example.kangjisung.likeroom.DefineManager.shopIdSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.standardMileage;
+import static com.example.kangjisung.likeroom.DefineManager.synchronizedLocalAndServerDatabase;
 
 public class StampPagerAdapter extends PagerAdapter
 {
@@ -30,6 +37,8 @@ public class StampPagerAdapter extends PagerAdapter
     private String mode;
     Activity activity;
     String[] selectedShopInfoData;
+    private int numStamp;
+    private int uniqueId;
 
     // "NORMAL MODE"
     public StampPagerAdapter(Context context, Activity activity, int _numOfStamp, String[] selectedShopInfoData){
@@ -43,9 +52,9 @@ public class StampPagerAdapter extends PagerAdapter
         numOfPage = (numOfStamp > 0)? ((numOfStamp - 1) / 10 + 1):(1);
         stampNumList = new ArrayList<Integer>();
         mode = "NORMAL";
-        
+
         int nowStamp;
-        
+
         for(int p = 0; p < numOfPage; p++)
         {
             if((p + 1) * 10 < numOfStamp){
@@ -56,6 +65,7 @@ public class StampPagerAdapter extends PagerAdapter
             }
             stampNumList.add(p, nowStamp);
         }
+        setNumStamp();
     }
 
     public StampPagerAdapter(Context context, Activity activity, String[] selectedShopInfoData){
@@ -76,10 +86,47 @@ public class StampPagerAdapter extends PagerAdapter
         return numOfPage;
     }
 
+    public void setNumStamp()
+    {
+        uniqueId = synchronizedLocalAndServerDatabase.GetStoreUniqueId(Integer.parseInt(selectedShopInfoData[shopIdSavedPoint]));
+        numStamp = synchronizedLocalAndServerDatabase.GetMileageStatusFromTargetStore(uniqueId);
+        numStamp = (numStamp < 0)?(0):(numStamp / (standardMileage / 5));
+    }
+
     @Override
     public Object instantiateItem(View pager, final int position) {
         View view;
 
+        view = mInflater.inflate(R.layout.stamp_normal_page, null);
+
+        if(stampNumList != null){
+            GridView mGridView = (GridView) view.findViewById(R.id.gridView);
+            final StampListAdapter mAdapter = new StampListAdapter(position, numStamp);
+            mGridView.setAdapter(mAdapter);
+            mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    final int mileage = mAdapter.getStampPoint(position);
+                    if(mileage != -1){
+                        StampUseDialog stampUseDialog = new StampUseDialog(context, mileage, selectedShopInfoData);
+                        stampUseDialog.show();
+                        stampUseDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                if(((StampUseDialog)dialog).getDismissMessage() == 1) {
+                                    setNumStamp();
+                                    notifyDataSetChanged();
+                                    Toast.makeText(context, mileage + "포인트가 사용되었습니다", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+
+        /*
         if(mode == "NORMAL")
         {
             view = mInflater.inflate(R.layout.stamp_normal_page, null);
@@ -144,10 +191,17 @@ public class StampPagerAdapter extends PagerAdapter
             nowLayout = (RelativeLayout)view.findViewById(R.id.layout_stamp_4);
             nowLayout.findViewById(R.id.stamp_layout).setVisibility(View.GONE);
         }
+        */
+
 
         ((ViewPager)pager).addView (view);
 
         return view;
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 
     @Override

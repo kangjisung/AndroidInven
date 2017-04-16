@@ -1,5 +1,6 @@
 package com.example.kangjisung.likeroom;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
@@ -32,15 +33,11 @@ public class ActivityMenu extends AppCompatActivity
 
     //ActivityMenu는 ActivityMenuPagerAdapter와 연결되어 있으며
     //ActivityMenuPagerAdapter는 스탬프,공지사항,매장정보 아이콘을 눌렀을 때 실제로 이동시켜주는 부분을 담당한다.
-    private int[] tabMipmapResIds = {
-            R.mipmap.icon_menu_tab1,
-            R.mipmap.icon_menu_tab2,
-            R.mipmap.icon_menu_tab3
-    };
+
     private int[] tabStringResIds = {
-            R.string.menu_stamp_string,
+            R.string.menu_info_string,
             R.string.menu_notice_string,
-            R.string.menu_info_string
+            R.string.menu_stamp_string
     };
     String[] selectedShopInfoData;
 
@@ -57,17 +54,17 @@ public class ActivityMenu extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        this.setTheme(ColorTheme.getTheme(ColorTheme.basicTheme));
+        Log.d(this.getClass().getSimpleName(), "onCreate()");
+
+        this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_menu);
         selectedTabColor = ContextCompat.getColor(this, R.color.gray80);
         unselectedTabColor = ContextCompat.getColor(this, R.color.gray160);
 
         tabLayout = (TabLayout)findViewById(R.id.tabLayout);
-        imageViewSetting = (ImageView)findViewById(R.id.imageViewSetting);
         textViewTitle = (TextView)findViewById(R.id.textViewTitle);
 
         tabLayoutInitialize(tabLayout);
-        colorInitialize();
 
         selectedShopInfoData = new String[selectedShopInfoDataKey.length];
         int i;
@@ -85,16 +82,16 @@ public class ActivityMenu extends AppCompatActivity
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                LinearLayout view = (LinearLayout)tabLayout.getTabAt(tab.getPosition()).getCustomView();
-                view.findViewById(R.id.icon).getBackground().setColorFilter(selectedTabColor, PorterDuff.Mode.SRC_IN);
+                RelativeLayout view = (RelativeLayout)tabLayout.getTabAt(tab.getPosition()).getCustomView();
+                view.findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
                 textViewTitle.setText(tabStringResIds[tab.getPosition()]);
                 viewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                LinearLayout view = (LinearLayout)tabLayout.getTabAt(tab.getPosition()).getCustomView();
-                view.findViewById(R.id.icon).getBackground().setColorFilter(unselectedTabColor, PorterDuff.Mode.SRC_IN);
+                RelativeLayout view = (RelativeLayout)tabLayout.getTabAt(tab.getPosition()).getCustomView();
+                view.findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -104,13 +101,18 @@ public class ActivityMenu extends AppCompatActivity
         });
         tabLayout.getTabAt(2).select();
 
-        imageViewSetting.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_setting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ActivitySetting.class);
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
     }
 
     public void tabLayoutInitialize(TabLayout tabLayout)
@@ -121,24 +123,19 @@ public class ActivityMenu extends AppCompatActivity
                 R.mipmap.icon_menu_tab1
         };
 
+        tabLayout.removeAllTabs();
         for (int i = 0; i < tabMipmapResIds.length; i++)
         {
             TabLayout.Tab tab = tabLayout.newTab();
             View view = getLayoutInflater().inflate(R.layout.include_tabitem, null);
-            view.findViewById(R.id.icon).setBackground(ContextCompat.getDrawable(this, tabMipmapResIds[i]));
+            view.findViewById(R.id.icon_selected).setBackground(ContextCompat.getDrawable(this, tabMipmapResIds[i]));
+            view.findViewById(R.id.icon_unselected).setBackground(ContextCompat.getDrawable(this, tabMipmapResIds[i]));
             tab.setCustomView(view);
             tabLayout.addTab(tab);
         }
-    }
 
-    public void colorInitialize()
-    {
-        LinearLayout view;
-        view = (LinearLayout)tabLayout.getTabAt(0).getCustomView();
-        view.findViewById(R.id.icon).getBackground().setColorFilter(selectedTabColor, PorterDuff.Mode.SRC_IN);
-        view = (LinearLayout)tabLayout.getTabAt(1).getCustomView();
-        view.findViewById(R.id.icon).getBackground().setColorFilter(unselectedTabColor, PorterDuff.Mode.SRC_IN);
-        view = (LinearLayout)tabLayout.getTabAt(2).getCustomView();
-        view.findViewById(R.id.icon).getBackground().setColorFilter(unselectedTabColor, PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(0).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.VISIBLE);
+        tabLayout.getTabAt(1).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
+        tabLayout.getTabAt(2).getCustomView().findViewById(R.id.icon_selected).setVisibility(View.INVISIBLE);
     }
 }

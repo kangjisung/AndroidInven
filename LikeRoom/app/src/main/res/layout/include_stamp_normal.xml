@@ -2,14 +2,15 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="@dimen/stamp_icon_size"
+    android:layout_height="@dimen/stamp_icon_size"
     android:id="@+id/stamp_layout">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="3dp">
+        android:layout_margin="3dp"
+        android:background="@mipmap/shape_empty_stamp">
 
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="match_parent"
@@ -22,8 +23,10 @@
             android:layout_height="match_parent"
             android:background="@mipmap/icon_bread"
             android:layout_margin="5dp"
-            android:backgroundTint="@color/White" />
+            app:backgroundTint="@color/White" />
     </RelativeLayout>
+
+
 
     <Button
         android:layout_width="match_parent"

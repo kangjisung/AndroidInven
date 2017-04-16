@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/test01"
-        android:id="@+id/relativeLayout">
+        android:id="@+id/relativeLayout"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/hamburgerMenu"
@@ -38,7 +39,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
 
         <Button
             android:text="임시 - 공지사항 보기"

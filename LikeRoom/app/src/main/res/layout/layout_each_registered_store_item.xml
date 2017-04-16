@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layoutEachStoreItem"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:layout_marginTop="10dp">
+    android:layout_marginTop="10dp"
+    android:layout_height="70dp">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/theme_color_D2"
-        android:alpha="0.5" />
+        android:background="?attr/theme_color_D2" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -36,10 +35,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtShopName"
-                android:textColor="?attr/theme_color_L3"
+                android:textColor="?attr/theme_color_L4"
                 android:layout_centerVertical="true"
-                android:textSize="25dp"
-                android:layout_marginStart="15dp" />
+                android:layout_marginStart="15dp"
+                android:textSize="22dp" />
 
             <TextView
                 android:text="TextView"
