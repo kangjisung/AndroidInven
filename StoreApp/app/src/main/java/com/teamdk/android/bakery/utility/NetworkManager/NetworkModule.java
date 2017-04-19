@@ -199,12 +199,12 @@ public class NetworkModule {
         }
     }
     //공지 업로드
-    public void InsertNewStoreNoticeInfo(int shopId,int noticeId,String noticeTitle,String noticeBody,String noticeStartDate, String noticeStopDate, String noticeLastUpdateDate) { //샵 아이디,공지번호,공지제목, 공지내용, 공지시작날짜,공지마감날짜,공지마지막편집날짜
+    public void InsertNewStoreNoticeInfo(int shopId,int noticeId,String noticeTitle,String noticeBody,String noticeStartDate, String noticeStopDate, String noticeLastUpdateDate,int noticeType) { //샵 아이디,공지번호,공지제목, 공지내용, 공지시작날짜,공지마감날짜,공지마지막편집날짜,공지종류
         httpCommunicationProcess = new HttpCommunicationProcess();
         String responseRawDate = null;
         try {
             Log.d("test", "http://" + hostName + apiName + "/InsertNewStoreNoticeInfo/?shopId=" + shopId +"&noticeId="+noticeId+"&noticeTitle="+noticeTitle+"&noticeBody="+noticeBody+"&noticeStartDate="+noticeStartDate+"&noticeStopDate="+noticeStopDate+"&noticeLastUpdateDate="+noticeLastUpdateDate);
-            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/InsertNewStoreNoticeInfo/?shopId=" + shopId +"&noticeId="+noticeId+"&noticeTitle="+noticeTitle+"&noticeBody="+noticeBody+"&noticeStartDate="+noticeStartDate+"&noticeStopDate="+noticeStopDate+"&noticeLastUpdateDate="+noticeLastUpdateDate+"").get();
+            responseRawDate = httpCommunicationProcess.execute("http://" + hostName + apiName + "/InsertNewStoreNoticeInfo/?shopId=" + shopId +"&noticeId="+noticeId+"&noticeTitle="+noticeTitle+"&noticeBody="+noticeBody+"&noticeStartDate="+noticeStartDate+"&noticeStopDate="+noticeStopDate+"&noticeLastUpdateDate="+noticeLastUpdateDate+"&noticeType="+noticeType+"").get();
             Log.d(logCatTag, responseRawDate);
             JSONObject jsonObject = new JSONObject(responseRawDate);
             if (jsonObject.getString("Result").equals("OK")) {

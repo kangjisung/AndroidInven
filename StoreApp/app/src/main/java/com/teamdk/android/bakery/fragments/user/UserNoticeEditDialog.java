@@ -206,7 +206,7 @@ public class UserNoticeEditDialog extends Dialog
                         new ClientDataBase(query, 2, 0, getContext());
                         new ClientDataBase("select `공지번호` from `매장공지` where `제목`=\""+mEditTextTitle.getText().toString()+"\"",1,1,getContext());
                         NetworkModule networkModule=new NetworkModule();//서버에 공지 추가
-                        networkModule.InsertNewStoreNoticeInfo(Integer.parseInt(PriNum),Integer.parseInt(DBstring[0]),mEditTextTitle.getText().toString(),mEditTextBody.getText().toString(),startDateString,endDateString,makeDateString);
+                        networkModule.InsertNewStoreNoticeInfo(Integer.parseInt(PriNum),Integer.parseInt(DBstring[0]),mEditTextTitle.getText().toString(),mEditTextBody.getText().toString(),startDateString,endDateString,makeDateString,selectedType);
                     }
                     else if(mode.equals("MODIFY")) {
                         query = String.format("UPDATE `매장공지`" +
