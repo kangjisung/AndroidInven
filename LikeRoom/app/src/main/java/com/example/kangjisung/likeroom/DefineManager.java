@@ -26,7 +26,11 @@ public class DefineManager {
 
             isStoreListNeedsRefresh = 0,
 
-            standardMileage = 1000;
+            standardMileage = 1000,
+
+            LOG_LEVEL_VERBOSE = 0, LOG_LEVEL_DEBUG = 1, LOG_LEVEL_INFO = 2, LOG_LEVEL_WARN = 3, LOG_LEVEL_ERROR = 4,
+
+            ANDROID_VERSION_OF_MARSHMALLOW = 23, PERMISSION_REQUESTED_ORDER = 1;
 
     public final static boolean isDebugMode = false;
 
@@ -36,7 +40,7 @@ public class DefineManager {
             "shopName", "shopAddress", "shopPhoneNumber", "shopLatitude", "shopLongtitude", "shopOpenTime", "shopCloseTime", "shopId"
     };
 
-    public final static String customerDatabaseName = "CustomerDatabase.db";
+    public final static String customerDatabaseName = "CustomerDatabase.db", APP_NAME = "고객앱";
 
     public static SynchronizedLocalAndServerDatabase synchronizedLocalAndServerDatabase;
 }
