@@ -1,6 +1,5 @@
 package com.example.kangjisung.likeroom;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +16,7 @@ import com.example.kangjisung.likeroom.PermissionManager.UserAccountCrawler;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.DatabaseHelper;
 import com.example.kangjisung.likeroom.SQLiteDatabaseControl.SynchronizedLocalAndServerDatabase;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
+import com.example.kangjisung.likeroom.Util.LogManager;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.apache.http.HttpResponse;
@@ -26,6 +26,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.InputStream;
 
+import static com.example.kangjisung.likeroom.DefineManager.LOG_LEVEL_ERROR;
 import static com.example.kangjisung.likeroom.DefineManager.customerDatabaseName;
 import static com.example.kangjisung.likeroom.DefineManager.synchronizedLocalAndServerDatabase;
 
@@ -72,8 +73,14 @@ public class MainActivity extends ActionBarActivity {
 
         userAccountInfo = userAccountCrawler.CheckPermissionGranted();
         if(userAccountInfo != null) {
-            synchronizedLocalAndServerDatabase.RegisterMyInfoToServer("customer", "N/A", userAccountInfo, "0000-00-00");
-            synchronizedLocalAndServerDatabase.GetStoreAndCustomerRegisteredInfo();
+            try {
+                synchronizedLocalAndServerDatabase.RegisterMyInfoToServer("customer", "N/A", userAccountInfo, "0000-00-00");
+                synchronizedLocalAndServerDatabase.GetStoreAndCustomerRegisteredInfo();
+            }
+            catch (Exception e)
+            {
+                LogManager.PrintLog("MainActivity", "onCreate", "Error: " + e.getMessage(), LOG_LEVEL_ERROR);
+            }
             //synchronizedLocalAndServerDatabase.RegisterCustomerToStore();
         }
 
