@@ -7,10 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -28,6 +26,7 @@ import static com.example.kangjisung.likeroom.DefineManager.databaseShopLongtitu
 import static com.example.kangjisung.likeroom.DefineManager.databaseShopNameSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.databaseShopOpenTimeSavedPoint;
 import static com.example.kangjisung.likeroom.DefineManager.databaseShopPhoneNumberSavedPoint;
+import static com.example.kangjisung.likeroom.DefineManager.synchronizedLocalAndServerDatabase;
 
 public class StoreAddDialog extends Dialog {
 
@@ -94,6 +93,7 @@ public class StoreAddDialog extends Dialog {
             public void onClick(View view) {
                 //Snackbar.make(view, getContext().getString(R.string.featureLoadFail), Snackbar.LENGTH_SHORT).show();
                 simpleDatabaseTest.AddSelectedShop(Integer.parseInt(selectedWantRegisterNewStoreId));
+                synchronizedLocalAndServerDatabase.RegisterCustomerToStore();
                 registeredStoreListViewAdapter.DeleteAllItems();
                 registeredStoreListViewAdapter.notifyDataSetChanged();
                 ArrayList<String[]> storeWhichIRegistered = simpleDatabaseTest.GetStoreWhichIRegistered();
