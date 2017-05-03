@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
+import com.teamdk.android.bakery.inventory.calc;
 import com.teamdk.android.bakery.objectmanager.ProductObjectManager;
 import com.teamdk.android.bakery.objectmanager.MemberObjectManager;
 import com.teamdk.android.bakery.objectmanager.NoticeObjectManager;
@@ -103,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
 
                 new NoticeObjectManager();
                 NoticeObjectManager.load(getApplicationContext());
+
+
             }
 
             //SystemClock.sleep(500);

@@ -255,8 +255,9 @@ public class calc extends MainActivity {
         new ClientDataBase("select `예상판매량` from `제품판매량`where `년`=\""+year+"\" and `월`=\""+month+"\" and `일`=\""+day+"\"",1,1,MainActivity.con);
         if(DBstring[0]!=null)
             new ClientDataBase("update `제품판매량` set `예상판매량`=\""+FD+"\" where `년`=\""+year+"\" and `월`=\""+month+"\" and `일`=\""+day+"\"",3,0,MainActivity.con);
-        else
-            new ClientDataBase("insert into `제품판매량` (`제품코드`,`예상판매량`,`년`,`월`,`일`) values ((select `제품코드` from `제품정보` where `이름`=\""+name+"\"),"+FD+",\"" + year + "\",\"" + month + "\",\"" + day + "\");",2,0,MainActivity.con);
+        else {
+            new ClientDataBase("insert into `제품판매량` (`제품코드`,`판매량`,`예상판매량`,`년`,`월`,`일`,`요일`,`몇주차`) values ((select `제품코드` from `제품정보` where `이름`=\""+name+"\"),0,"+FD+",\"" + year + "\",\"" + month + "\",\"" + day + "\",\""+dayOfWeek+"\",\""+tWeek+"\");",2,0,MainActivity.con);
+        }
     }
     ///////////////////Q업데이트(최적재고량)
     public void updateQ(){

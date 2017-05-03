@@ -202,7 +202,8 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            android:visibility="gone">
 
                             <LinearLayout
                                 android:orientation="vertical"
@@ -253,7 +254,8 @@
                             android:layout_weight="0"
                             android:layout_gravity="center"
                             android:layout_height="30dp"
-                            android:layout_width="2dp" />
+                            android:layout_width="2dp"
+                            android:visibility="gone" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -291,7 +293,7 @@
                                     android:layout_marginTop="-5dp" />
 
                                 <TextView
-                                    android:text="예상"
+                                    android:text="선택"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -347,7 +349,7 @@
                                     android:layout_marginTop="-5dp" />
 
                                 <TextView
-                                    android:text="낙관"
+                                    android:text="추천"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"

@@ -18,6 +18,7 @@ import com.teamdk.android.bakery.fragments.product.FragmentMuchStore;
 import com.teamdk.android.bakery.fragments.product.FragmentSellToday;
 import com.teamdk.android.bakery.fragments.product.ProductMain;
 import com.teamdk.android.bakery.fragments.user.UserNoticeMain;
+import com.teamdk.android.bakery.inventory.calc;
 import com.teamdk.android.bakery.objectmanager.ProductObjectManager;
 import com.teamdk.android.bakery.utility.Interfaces;
 import com.teamdk.android.bakery.fragments.user.UserMain;
@@ -47,6 +48,12 @@ public class ActivityMenu extends AppCompatActivity implements Interfaces
         super.onCreate(savedInstanceState);
         this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_menu);
+
+        calc c;
+        for(int p=0; p<ProductObjectManager.size(); p++){
+            c = new calc(ProductObjectManager.get(p).getName());
+            c.updateFD();
+        }
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
