@@ -17,6 +17,7 @@ reated by https://www.gitignore.io/api/python,pycharm,intellij+iml
 .idea/**/sqlDataSources.xml
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
+local.properties
 
 # Gradle:
 .idea/**/gradle.xml
