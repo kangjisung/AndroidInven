@@ -49,9 +49,9 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
         changeBtn.setOnClickListener(this);
 
         c = calc.getInstance();
-        mTextViewSellSelect.setText("0");
+        mTextViewSellSelect.setText(String.valueOf(c.FD));
         mTextViewSellRec.setText(String.valueOf(c.FD));
-        mTextViewStoreSelect.setText("0");
+        mTextViewStoreSelect.setText(String.valueOf(c.calcQ2()));
         mTextViewStoreRec.setText(String.valueOf(c.calcQ2()));
 
         tv_bdname.setText(c.name);
@@ -73,15 +73,16 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
 
         int tday= c.tDay;
 
+        multiSlider.setMin((c.min!=0)?(c.min):(0));
+        multiSlider.setMax((c.max!=0)?(c.max):(c.FD * 3));
+        multiSlider.getThumb(0).setValue(c.FD);
+
         multiSlider.setOnThumbValueChangeListener(new MultiSlider.OnThumbValueChangeListener() {
             @Override
             public void onValueChanged(MultiSlider multiSlider, MultiSlider.Thumb thumb, int thumbIndex, int value) {
-
-                        if (value == c.min) thumb.setValue(++value);
-                        if (value == c.max) thumb.setValue(--value);
-                        mTextViewSellSelect.setText("" + value);
-                        c.FD=value;
-                        mTextViewStoreSelect.setText(""+c.calcQ2());
+                mTextViewSellSelect.setText("" + value);
+                c.FD=value;
+                mTextViewStoreSelect.setText(""+c.calcQ2());
                         //RefreshGraph(c.min, value, c.max, false);
 
                 /*

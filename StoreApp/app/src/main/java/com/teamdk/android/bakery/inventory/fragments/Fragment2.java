@@ -34,11 +34,7 @@ public class Fragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.inventory_fragment2, container, false);
 
-<<<<<<< HEAD
-        mCalc =calc.getInstance();
-=======
         mCalc = calc.getInstance();
->>>>>>> origin/store-app
 
         chart = (LineChart)rootView.findViewById(R.id.chart);
         chart.setDescription("");

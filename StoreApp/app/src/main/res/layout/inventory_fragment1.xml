@@ -101,7 +101,7 @@
                 android:layout_centerInParent="true">
 
                 <TextView
-                    android:text="오늘의 최적재고량"
+                    android:text="최적재고량"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/gray120"
@@ -189,7 +189,7 @@
                         android:background="@drawable/shape_rectangle_rad_15dp" />
 
                     <TextView
-                        android:text="판매량"
+                        android:text="예상 판매량"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"

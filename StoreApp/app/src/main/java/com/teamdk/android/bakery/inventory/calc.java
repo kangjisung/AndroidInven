@@ -59,11 +59,6 @@ public class calc extends MainActivity {
         int cnt;
         this.name=name;
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> origin/store-app
         //1. db 불러오기
 //        int c, p, s; //c원가(DB), p판매가(DB), s잔존가(가치)(DB) db에서 불러와 저장하는 코드필요!
         new ClientDataBase("select `원가`,`판매가`,`잔존가` from `제품정보` where `이름`=\"" + name + "\";", 1, 3, MainActivity.con);

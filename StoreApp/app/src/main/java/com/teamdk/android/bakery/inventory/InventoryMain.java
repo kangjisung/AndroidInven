@@ -42,10 +42,6 @@ public class InventoryMain extends AppCompatActivity {
         this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_inven);
 
-        Fragment1 page = (Fragment1) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + 1);
-
-        //커밋 테스트
-
         //Intent mil = getIntent(); ////user클래스에서 눌렀던 사용자의 이름을 가져옴
         //final String name1 = mil.getExtras().getString("name");  //가져온 사용자의 이름을 넣음
         //calc c=calc.getInstance();
@@ -58,7 +54,7 @@ public class InventoryMain extends AppCompatActivity {
 
         viewPager.setAdapter(mAdapter);
 
-        LayoutManager.setActivityTitle(findViewById(R.id.layout_title), false, true, R.attr.theme_color_D3, "최적재고량");
+        LayoutManager.setActivityTitle(findViewById(R.id.layout_title), false, true, R.attr.theme_color_D3, "데이터 분석");
         findViewById(R.id.inc_btn_close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
