@@ -49,7 +49,10 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
         changeBtn.setOnClickListener(this);
 
         c = calc.getInstance();
-        mTextViewStoreSelect.setText(String.valueOf(c.calcQ2()));
+        mTextViewSellSelect.setText("0");
+        mTextViewSellRec.setText(String.valueOf(c.FD));
+        mTextViewStoreSelect.setText("0");
+        mTextViewStoreRec.setText(String.valueOf(c.calcQ2()));
 
         tv_bdname.setText(c.name);
 
@@ -81,6 +84,8 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
                         if (value == c.min) thumb.setValue(++value);
                         if (value == c.max) thumb.setValue(--value);
                         mTextViewSellSelect.setText("" + value);
+                        c.FD=value;
+                        mTextViewStoreSelect.setText(""+c.calcQ2());
                         //RefreshGraph(c.min, value, c.max, false);
                         break;
                     case 2:
