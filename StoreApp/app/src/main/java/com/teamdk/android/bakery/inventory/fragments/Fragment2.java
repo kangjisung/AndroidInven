@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.teamdk.android.bakery.R;
+import com.teamdk.android.bakery.objectmanager.ProductObjectManager;
 import com.teamdk.android.bakery.utility.ColorTheme;
 import com.teamdk.android.bakery.inventory.calc;
 import com.github.mikephil.charting.charts.LineChart;
@@ -33,7 +34,8 @@ public class Fragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.inventory_fragment2, container, false);
 
-        mCalc = calc.getInstance();
+        mCalc=calc.RefreshClass(mCalc.getName());
+        mCalc =calc.getInstance();
 
         chart = (LineChart)rootView.findViewById(R.id.chart);
         chart.setDescription("");

@@ -29,7 +29,7 @@ public class ProductObjectManager {
 
     public static void load(Date _selectedDate, Context context){
         ProductListItem addItem;
-        DateFormat dateFormat =new SimpleDateFormat("y-M-d", Locale.KOREA);
+        DateFormat dateFormat =new SimpleDateFormat("y-MM-dd", Locale.KOREA);
         String query;
         int dbCount;
         int itemCount;

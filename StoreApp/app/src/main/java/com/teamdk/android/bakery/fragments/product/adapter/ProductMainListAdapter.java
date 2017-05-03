@@ -149,7 +149,7 @@ public class ProductMainListAdapter extends RecyclerView.Adapter<ProductMainList
                                 ProductObjectManager.get(position).setSellToday(Integer.parseInt(editTextInput.getText().toString()));
                                 cal = Calendar.getInstance();
                                 //판매량 업데이트
-                                new ClientDataBase("update `제품판매량` set `판매량`=\""+Integer.parseInt(editTextInput.getText().toString())+"\" where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+ProductObjectManager.get(position).getName()+"\") and  `년`=\""+cal.get(Calendar.YEAR)+"\" and `월`=\""+(cal.get(Calendar.MONTH)+1)+"\" and `일`=\""+cal.get(Calendar.DATE)+"\"",3,0, context);
+                                new ClientDataBase("update `제품판매량` set `판매량`=\""+Integer.parseInt(editTextInput.getText().toString())+"\" where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+ProductObjectManager.get(position).getName()+"\") and  `년`=\""+(ProductObjectManager.getSelectedDate().getYear()+1900)+"\" and `월`=\""+(ProductObjectManager.getSelectedDate().getMonth()+1)+"\" and `일`=\""+ProductObjectManager.getSelectedDate().getDate()+"\"",3,0, context);
                                 //판매량 서버넣기
                                 new ClientDataBase("select `제품코드` from `제품정보` where `이름`=\""+ ProductObjectManager.get(position).getName()+"\";",1,1, context);
                                 int proDuct=Integer.parseInt(DBstring[0]);

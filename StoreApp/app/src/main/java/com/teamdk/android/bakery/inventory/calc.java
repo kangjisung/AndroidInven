@@ -80,9 +80,9 @@ public class calc extends MainActivity {
 //        double m;//m전체평균판매량
 
         /////int tWeek, tMonth, tDay; //매장등록 이후 지금까지 총 일수,주수,월수 구하기
-        sdf = new SimpleDateFormat("yyyy-M-d", Locale.KOREA);
+        sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
         long tmp;
-        curDate = new Date();//curDate는 현재날짜로 자동설정 되는 것임?
+        curDate = new Date();
         curDateTemp = new Date();
         if(curDate!= ProductObjectManager.getSelectedDate())
             curDate=ProductObjectManager.getSelectedDate();
@@ -117,7 +117,7 @@ public class calc extends MainActivity {
         monAvg = new double[13];
 
         //////dAvg[7], monAvg[12] 구하기 //dAvg요일별판매량총평균, monAvg월별판매량총평균 구하기
-        new ClientDataBase("select avg(`판매량`),`요일` from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\") group by `요일`",1,2, MainActivity.con);
+        new ClientDataBase("select avg(`판매량`),`요일` from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\")and (31*`몇주차`+`일`)<(31*\""+tWeek+"\"+\""+day+"\") group by `요일`",1,2, MainActivity.con);
         cnt = 0;
         while (true) {
             if (DBstring[cnt] != null) {
@@ -125,7 +125,7 @@ public class calc extends MainActivity {
                 cnt += 2;
             } else if (DBstring[cnt] == null) break;
         }
-        new ClientDataBase("select avg(`판매량`),`월` from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\") group by `월`",1,2, MainActivity.con);
+        new ClientDataBase("select avg(`판매량`),`월` from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\")and (31*`몇주차`+`일`)<(31*\""+tWeek+"\"+\""+day+"\") group by `월`",1,2, MainActivity.con);
         cnt = 0;
         while (true) {
             if (DBstring[cnt] != null) {
@@ -139,7 +139,7 @@ public class calc extends MainActivity {
         //monAvg도 마찬가지for(m=0;m<7;m++){case (db-판매량의 월==ㅡm-->불러와서 그 값들의 평균을 monAvg[m]에 저장}
 
         //////m 구하기 //m전체평균판매량 //stdev 표준편차
-        new ClientDataBase("select avg(`판매량`*`판매량`)-(avg(`판매량`)*avg(`판매량`)) from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\")",1,1,MainActivity.con);
+        new ClientDataBase("select avg(`판매량`*`판매량`)-(avg(`판매량`)*avg(`판매량`)) from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\")and (31*`몇주차`+`일`)<(31*\""+tWeek+"\"+\""+day+"\")",1,1,MainActivity.con);
         cnt = 0;
         if(DBstring[0]==null)
             stdev=0;
@@ -147,7 +147,7 @@ public class calc extends MainActivity {
             stdev=sqrt(Double.parseDouble(DBstring[cnt]));
 
 
-        new ClientDataBase("select avg(`판매량`) from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\")",1,1, MainActivity.con);
+        new ClientDataBase("select avg(`판매량`) from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\")and(31*`몇주차`+`일`)<(31*\""+tWeek+"\"+\""+day+"\")",1,1, MainActivity.con);
         cnt = 0;
         if(DBstring[0]==null)
             m=0;
@@ -187,6 +187,10 @@ public class calc extends MainActivity {
         return calc.mInstance;
     }
 
+    public String getName(){
+        return name;
+    }
+
     ////////////////////매일 데이터값 받아오기
     public void graphdata() {
         Recent100_Sale=new int[101];
@@ -206,7 +210,7 @@ public class calc extends MainActivity {
         if(cnt<101) Recent100_Sale[cnt]=-1;
         if(cnt<101) Recent100_FD[cnt]=-1;
         /////////////////////////////////////////////최근 16주차 평균
-        new ClientDataBase("select avg(`판매량`) from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\") and `몇주차`>(select max(`몇주차`) from `제품판매량`)-16 group by `몇주차`",1,1,MainActivity.con);
+        new ClientDataBase("select avg(`판매량`) from `제품판매량` where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\") and `몇주차`>(\""+tWeek+"\"-16) and `몇주차`<=\""+tWeek+"\" group by `몇주차`",1,1,MainActivity.con);
         cnt = 0;
         while (true) {
             if (DBstring[cnt] != null) {
