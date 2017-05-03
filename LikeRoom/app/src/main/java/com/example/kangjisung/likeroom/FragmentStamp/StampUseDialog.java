@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.kangjisung.likeroom.R;
 import com.example.kangjisung.likeroom.Util.ColorTheme;
+import com.example.kangjisung.likeroom.Util.LayoutManager;
 
 import java.util.Arrays;
 
@@ -24,7 +26,6 @@ import static com.example.kangjisung.likeroom.DefineManager.synchronizedLocalAnd
 
 public class StampUseDialog extends Dialog
 {
-    private Button mLeftButton;
     private Button mRightButton;
     Switch switchLockUnlockCoupon;
 
@@ -37,10 +38,6 @@ public class StampUseDialog extends Dialog
     int mileageUseage;
     String[] selectedShopInfoData;
     private int dismissMessage = 0;
-
-    public StampUseDialog(Context context) {
-        super(context, android.R.style.Theme_Translucent_NoTitleBar);
-    }
 
     public StampUseDialog(Context context, int mileageUseage, String[] selectedShopInfoData) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
@@ -72,7 +69,14 @@ public class StampUseDialog extends Dialog
         setContentView(useStampDialogView);
         //setContentView(R.layout.store_add_dialog);
 
-        mLeftButton = (Button) useStampDialogView.findViewById(R.id.button_back);
+        LayoutManager.setDialogTitle(findViewById(R.id.layout_title), true, false, "스탬프 사용");
+        findViewById(R.id.inc_btn_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+
         mRightButton = (Button) useStampDialogView.findViewById(R.id.button_use);
         switchLockUnlockCoupon = (Switch) useStampDialogView.findViewById(R.id.switchLockUnlockCoupon);
 
@@ -90,7 +94,7 @@ public class StampUseDialog extends Dialog
                 mRightButton.setBackgroundColor(ColorTheme.getThemeColorRGB(getContext(), R.attr.theme_color_D3));
             }
                 else {
-                mRightButton.setBackgroundColor(Color.GRAY);
+                mRightButton.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.gray200));
             }
 
                Log.d(getContext().getString(R.string.app_name), "status: " + b);
@@ -99,12 +103,6 @@ public class StampUseDialog extends Dialog
         });
 
         // 클릭 이벤트 셋팅
-        mLeftButton.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View onClickView){
-                cancel();
-            }
-        });
         mRightButton.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View onClickView){

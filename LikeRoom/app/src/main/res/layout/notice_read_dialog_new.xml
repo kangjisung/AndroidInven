@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/txtNoticeTitle"
                     android:textSize="24dp"
-                    android:textColor="?attr/theme_color_N"
+                    android:textColor="?attr/theme_color_D2"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
