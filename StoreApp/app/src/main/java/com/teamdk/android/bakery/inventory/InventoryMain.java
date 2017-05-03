@@ -40,6 +40,8 @@ public class InventoryMain extends AppCompatActivity {
         this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_inven);
 
+        //커밋 테스트
+
         //Intent mil = getIntent(); ////user클래스에서 눌렀던 사용자의 이름을 가져옴
         //final String name1 = mil.getExtras().getString("name");  //가져온 사용자의 이름을 넣음
         //calc c=calc.getInstance();
