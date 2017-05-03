@@ -28,6 +28,8 @@ import com.teamdk.android.bakery.utility.NoScrollViewPager;
 import com.teamdk.android.bakery.utility.SharedPreferenceManager;
 import com.teamdk.android.bakery.utility.Utility;
 
+import java.util.Date;
+
 public class ActivityMenu extends AppCompatActivity implements Interfaces
 {
     private int[] tabStringResIds = {R.string.menu_point_string, R.string.menu_user_string, R.string.menu_item_string};

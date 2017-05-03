@@ -23,38 +23,42 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
     calc c;
 
     MultiSlider multiSlider;
-    EditText editText,et1,et2,et3;
+    TextView mTextViewStoreSelect;
+    TextView mTextViewStoreRec;
+    TextView mTextViewSellSelect;
+    TextView mTextViewSellRec;
     ImageView chart;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.inventory_fragment1, container, false);
-        mView=view;
+        View view = inflater.inflate(R.layout.inventory_fragment1, container, false);
+        mView = view;
 
         multiSlider=(MultiSlider)view.findViewById(R.id.graph1_multiSlider);
         chart=(ImageView)view.findViewById(R.id.chart1);
 
         TextView tv_bdname = (TextView)view.findViewById(R.id.bdName);
 
-        editText = (EditText)view.findViewById(R.id.editText3);
+        mTextViewStoreSelect = (TextView)view.findViewById(R.id.tv_store_select);
+        mTextViewStoreRec = (TextView)view.findViewById(R.id.tv_store_rec);
+        mTextViewSellSelect = (TextView)view.findViewById(R.id.tv_sell_select);
+        mTextViewSellRec = (TextView)view.findViewById(R.id.tv_sell_rec);
         Button changeBtn = (Button)view.findViewById(R.id.graph1_changeBtn);
         Button button = (Button)view.findViewById(R.id.button3);
-
-        et1=(EditText)view.findViewById(R.id.SeekBarTxt1);
-        et2=(EditText)view.findViewById(R.id.SeekBarTxt2);
-        et3=(EditText)view.findViewById(R.id.SeekBarTxt3);
 
         changeBtn.setOnClickListener(this);
 
         c = calc.getInstance();
-        editText.setText(String.valueOf(c.calcQ2()));
+        mTextViewStoreSelect.setText(String.valueOf(c.calcQ2()));
 
         tv_bdname.setText(c.name);
 
         //////비관, 예상, 낙관 초기화/////
+        /*
         et1.setText(String.valueOf(c.min));                 //비관
         et2.setText(String.valueOf((int)c.FD));             //예상
         et3.setText(String.valueOf(c.max));                 //낙관
+        */
         ////////////////////////////////////
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +80,7 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
                     case 1:
                         if (value == c.min) thumb.setValue(++value);
                         if (value == c.max) thumb.setValue(--value);
-                        et2.setText("" + value);
+                        mTextViewSellSelect.setText("" + value);
                         //RefreshGraph(c.min, value, c.max, false);
                         break;
                     case 2:
@@ -84,6 +88,7 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
                         break;
                 }
 
+                /*
                 if (et1.getText().length() == 0 || et2.getText().length() == 0 || et3.getText().length() == 0) {
                 }
                 else {
@@ -97,12 +102,13 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
                         c.min = v1;
                         c.FD = v2;
                         c.max = v3;
-                        editText.setText(String.valueOf(c.calcQ2()));
+                        mTextViewStoreSelect.setText(String.valueOf(c.calcQ2()));
                         //RefreshGraph(c.min, (int) c.FD, c.max, true);
                     }
                     //c.updateFD();//FD변경
                     //c.updateQ();//Q변경
                 }
+                */
             }
         });
 
@@ -114,6 +120,7 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
         int id = view.getId();
         switch(id){
             case R.id.graph1_changeBtn:
+                /*
                 if(et1.getText().length()==0 || et2.getText().length()==0 || et3.getText().length()==0) Toast.makeText(super.getContext(),"비관, 예상, 낙관 값을 모두 입력해주세요",Toast.LENGTH_LONG).show();
                 else {
                     int v1 = Integer.parseInt(et1.getText().toString());
@@ -125,12 +132,13 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
                         c.min=v1;
                         c.FD=v2;
                         c.max=v3;
-                        editText.setText(String.valueOf(c.calcQ2()));
+                        mTextViewStoreSelect.setText(String.valueOf(c.calcQ2()));
                         Toast.makeText(super.getContext(),"변경되었습니다",Toast.LENGTH_SHORT).show();
                     }
                     c.updateFD();//FD변경
                     c.updateQ();//Q변경
                 }
+                */
                 break;
             case R.id.button3:
                 DialogSimple();

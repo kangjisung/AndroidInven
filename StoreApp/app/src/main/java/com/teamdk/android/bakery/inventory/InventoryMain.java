@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.teamdk.android.bakery.R;
+import com.teamdk.android.bakery.fragments.user.UserMain;
+import com.teamdk.android.bakery.inventory.fragments.Fragment1;
 import com.teamdk.android.bakery.utility.ColorTheme;
 import com.teamdk.android.bakery.utility.LayoutManager;
 import com.github.mikephil.charting.charts.LineChart;
@@ -39,6 +41,8 @@ public class InventoryMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.setTheme(ColorTheme.getTheme());
         setContentView(R.layout.activity_inven);
+
+        Fragment1 page = (Fragment1) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + 1);
 
         //커밋 테스트
 

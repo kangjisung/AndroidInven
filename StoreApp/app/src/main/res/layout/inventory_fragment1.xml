@@ -28,7 +28,7 @@
                 android:layout_marginStart="-500dp"
                 android:layout_weight="1"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="50dp" />
+                android:layout_marginBottom="70dp" />
 
             <android.support.v7.widget.AppCompatImageView
                 android:background="@drawable/shape_circle"
@@ -39,7 +39,7 @@
                 android:layout_marginStart="-500dp"
                 android:layout_weight="1"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp" />
+                android:layout_marginTop="70dp" />
         </LinearLayout>
 
     </RelativeLayout>
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/layout_body2"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="35dp">
+            android:layout_marginBottom="55dp">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -88,46 +88,71 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:id="@+id/layout_body2"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/layout_much"
                 android:layout_centerInParent="true">
 
                 <TextView
                     android:text="오늘의 최적재고량"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView2"
                     android:textColor="@color/gray120"
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:textSize="18dp" />
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/tv_store_select"
                     android:text="!num"
                     android:textAlignment="center"
                     android:layout_gravity="center"
-                    android:id="@+id/editText3"
-                    android:layout_centerInParent="true"
-                    android:layout_below="@+id/textView2"
-                    android:inputType="number|numberSigned"
-                    android:padding="0dp"
-                    android:background="@color/transparent"
                     android:textColor="@color/gray120"
                     android:layout_weight="1"
                     android:textSize="48dp"
-                    android:layout_marginTop="-3dp"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false" />
+                    android:layout_marginTop="-3dp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_horizontal">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_height="20dp"
+                        android:background="@mipmap/icon_setting_history"
+                        app:backgroundTint="?attr/theme_color_type1"
+                        android:layout_width="20dp" />
+
+                    <TextView
+                        android:text="추천"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="?attr/theme_color_type1"
+                        android:layout_marginStart="5dp"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:text="0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_store_rec"
+                        android:layout_marginStart="5dp"
+                        android:textColor="?attr/theme_color_type1"
+                        android:textSize="18dp" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -137,7 +162,7 @@
             android:layout_width="match_parent"
             android:id="@+id/layout_body3"
             android:layout_below="@+id/layout_body2"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.CardView
@@ -276,21 +301,20 @@
                                     android:layout_width="14dp"
                                     android:layout_height="14dp" />
 
-                                <EditText
+                                <TextView
                                     android:layout_width="match_parent"
                                     android:layout_weight="1"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/SeekBarTxt2"
                                     android:gravity="center"
-                                    android:hint="비관"
                                     android:text="!n"
                                     android:textSize="30dp"
-                                    android:numeric="integer"
                                     android:background="@color/transparent"
-                                    android:textColor="?attr/theme_color_D2"
+                                    android:textColor="?attr/theme_color_D3"
                                     android:padding="0dp"
                                     android:layout_marginBottom="-5dp"
-                                    android:layout_marginTop="-5dp" />
+                                    android:layout_marginTop="-5dp"
+                                    android:id="@+id/tv_sell_select"
+                                    android:layout_marginStart="5dp" />
 
                                 <TextView
                                     android:text="선택"
@@ -332,21 +356,20 @@
                                     android:layout_width="14dp"
                                     android:layout_height="14dp" />
 
-                                <EditText
+                                <TextView
                                     android:layout_width="match_parent"
                                     android:layout_weight="1"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/SeekBarTxt3"
                                     android:gravity="center"
-                                    android:hint="비관"
                                     android:text="!n"
                                     android:textSize="30dp"
-                                    android:numeric="integer"
                                     android:background="@color/transparent"
                                     android:textColor="?attr/theme_color_D3"
                                     android:padding="0dp"
                                     android:layout_marginBottom="-5dp"
-                                    android:layout_marginTop="-5dp" />
+                                    android:layout_marginTop="-5dp"
+                                    android:id="@+id/tv_sell_rec"
+                                    android:layout_marginStart="5dp" />
 
                                 <TextView
                                     android:text="추천"

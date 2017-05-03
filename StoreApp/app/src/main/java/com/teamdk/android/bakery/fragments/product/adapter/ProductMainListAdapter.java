@@ -117,6 +117,7 @@ public class ProductMainListAdapter extends RecyclerView.Adapter<ProductMainList
                     calc c;
                     c = calc.getInstance();
                     c.RefreshClass(ProductObjectManager.get(position).getName());
+
                     context.startActivity(mil);
                 }
             });
