@@ -97,7 +97,7 @@ public class Fragment2 extends Fragment {
         String[] label = new String[7];
 
         for(int i = 1; i< mCalc.dAvg.length; i++){
-            y.add(new Entry((float) mCalc.dAvg[i],i));
+            y.add(new Entry((float) mCalc.dAvg[i],i-1));
         }
         x.add(0,"일");
         x.add(1,"월");
@@ -140,7 +140,7 @@ public class Fragment2 extends Fragment {
         ArrayList<Entry> y = new ArrayList<>();
         String[] label = new String[12];
 
-        for(int i = 1; i< mCalc.monAvg.length; i++) y.add(new Entry((float) mCalc.monAvg[i],i));
+        for(int i = 1; i< mCalc.monAvg.length; i++) y.add(new Entry((float) mCalc.monAvg[i],i-1));
         x.add(0,"1월");
         x.add(1,"2월");
         x.add(2,"3월");
