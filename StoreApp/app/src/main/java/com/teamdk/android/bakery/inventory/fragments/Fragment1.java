@@ -76,22 +76,13 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
         multiSlider.setOnThumbValueChangeListener(new MultiSlider.OnThumbValueChangeListener() {
             @Override
             public void onValueChanged(MultiSlider multiSlider, MultiSlider.Thumb thumb, int thumbIndex, int value) {
-                switch (thumbIndex) {
-                    case 0:
-                        if (value != c.min) thumb.setValue(c.min);
-                        break;
-                    case 1:
+
                         if (value == c.min) thumb.setValue(++value);
                         if (value == c.max) thumb.setValue(--value);
                         mTextViewSellSelect.setText("" + value);
                         c.FD=value;
                         mTextViewStoreSelect.setText(""+c.calcQ2());
                         //RefreshGraph(c.min, value, c.max, false);
-                        break;
-                    case 2:
-                        if (value != c.max) thumb.setValue(c.max);
-                        break;
-                }
 
                 /*
                 if (et1.getText().length() == 0 || et2.getText().length() == 0 || et3.getText().length() == 0) {

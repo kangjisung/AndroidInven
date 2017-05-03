@@ -414,7 +414,7 @@
 
                     <io.apptik.widget.MultiSlider
                         android:id="@+id/graph1_multiSlider"
-                        app:thumbNumber="3"
+                        app:thumbNumber="1"
                         app:thumbColor="?attr/theme_color_N"
                         app:rangeColor="?attr/theme_color_N"
                         android:layout_width="match_parent"
