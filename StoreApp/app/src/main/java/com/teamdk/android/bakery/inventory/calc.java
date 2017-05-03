@@ -174,7 +174,7 @@ public class calc extends MainActivity {
             max=(int)(m+3*stdev);
         }
         FD = (int)(m*(dAvg[dayOfWeek]/m)*(monAvg[month]/m))+1; //예상판매량=추세*요일지수*월별지수
-        FM = (min + max + (4 * FD)) / 6; //최종평균계산
+        // = (min + max + (4 * FD)) / 6; //최종평균계산
     }
 
     public static calc getInstance() {
@@ -222,7 +222,7 @@ public class calc extends MainActivity {
     /////////////////////////////////////////////////////최적재고량 계산
     //////////////////////////////////////판매량 넣을때 실행
     public void calcQ() {
-        Q = (int) (FM + ((stdev / 2) * (sqrt((p - c) / (c - s)) - sqrt((c - s) / (p - c))))) + 1; //최적재고량 계산
+        Q = (int) (FD + ((stdev / 2) * (sqrt((p - c) / (c - s)) - sqrt((c - s) / (p - c))))) + 1; //최적재고량 계산
         new ClientDataBase("select `제품코드` from `제품정보` where `이름`=\""+name+"\"",1,1,MainActivity.con);
         String ProductNum =DBstring[0];
         new ClientDataBase("insert into `최적재고량` (`제품코드`,`최적재고량`,`날짜`) values (\""+ProductNum+"\","+Q+",\"" + year + "-" + month + "-" + (day+1) + "\");",2,0,MainActivity.con);
@@ -232,8 +232,8 @@ public class calc extends MainActivity {
 
     ////////////////////////////////////////////그래프용 calc2
     public int calcQ2(){
-        FM = (min + max + (4 * FD)) / 6; //최종평균계산
-        return Q=(int) (FM + ((stdev / 2) * (sqrt((p - c) / (c - s)) - sqrt((c - s) / (p - c))))) + 1;
+        //FM = (min + max + (4 * FD)) / 6; //최종평균계산
+        return Q=(int) (FD + ((stdev / 2) * (sqrt((p - c) / (c - s)) - sqrt((c - s) / (p - c))))) + 1;
     }
 
     ////////////////////////////////////////////////////////////주별평균으로 추세계산
@@ -248,13 +248,13 @@ public class calc extends MainActivity {
 
     //////////////////////////////////////구비재고량을 입력받아 그에따른 예상이익을 출력
     public int calcProfit(int Q){ //Q개만큼 구비시 예상 이익 --> graph3에 표시
-        return -1*(int)(-(p-s)*FM+(c-s)*Q+(p-s)*((Math.sqrt(stdev*stdev+(Q-FM)*(Q-FM))-(Q-FM))/2));
+        return -1*(int)(-(p-s)*FD+(c-s)*Q+(p-s)*((Math.sqrt(stdev*stdev+(Q-FD)*(Q-FD))-(Q-FD))/2));
     }
     /////////////////FD업데이트(예상판매량)
     public void updateFD(){
-        new ClientDataBase("select `예상판매량` from `제품판매량`where `년`=\""+year+"\" and `월`=\""+month+"\" and `일`=\""+day+"\"",1,1,MainActivity.con);
+        new ClientDataBase("select `예상판매량` from `제품판매량`where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\") and `년`=\""+year+"\" and `월`=\""+month+"\" and `일`=\""+day+"\"",1,1,MainActivity.con);
         if(DBstring[0]!=null)
-            new ClientDataBase("update `제품판매량` set `예상판매량`=\""+FD+"\" where `년`=\""+year+"\" and `월`=\""+month+"\" and `일`=\""+day+"\"",3,0,MainActivity.con);
+            new ClientDataBase("update `제품판매량` set `예상판매량`=\""+FD+"\" where `제품코드`=(select `제품코드` from `제품정보` where `이름`=\""+name+"\") and `년`=\""+year+"\" and `월`=\""+month+"\" and `일`=\""+day+"\"",3,0,MainActivity.con);
         else {
             new ClientDataBase("insert into `제품판매량` (`제품코드`,`판매량`,`예상판매량`,`년`,`월`,`일`,`요일`,`몇주차`) values ((select `제품코드` from `제품정보` where `이름`=\""+name+"\"),0,"+FD+",\"" + year + "\",\"" + month + "\",\"" + day + "\",\""+dayOfWeek+"\",\""+tWeek+"\");",2,0,MainActivity.con);
         }
@@ -499,5 +499,4 @@ public class calc extends MainActivity {
 //        tSeason = (tMonth + 2) / 3;
 //        tYear = (int) ((tDay + 364) / 365.254);
 //yAvg연별판매량총평균(현재는 없으나 나중에 update가능->graph2에도 반영가능)
-
 
