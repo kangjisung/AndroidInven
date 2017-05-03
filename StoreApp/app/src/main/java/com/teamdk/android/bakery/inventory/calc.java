@@ -59,7 +59,7 @@ public class calc extends MainActivity {
         int cnt;
         this.name=name;
 
-        graphdata();
+
 
         //1. db 불러오기
 //        int c, p, s; //c원가(DB), p판매가(DB), s잔존가(가치)(DB) db에서 불러와 저장하는 코드필요!
@@ -175,6 +175,8 @@ public class calc extends MainActivity {
         }
         FD = (int)(m*(dAvg[dayOfWeek]/m)*(monAvg[month]/m))+1; //예상판매량=추세*요일지수*월별지수
         // = (min + max + (4 * FD)) / 6; //최종평균계산
+
+        graphdata();
     }
 
     public static calc getInstance() {
