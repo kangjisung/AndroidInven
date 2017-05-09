@@ -41,6 +41,7 @@ public class SynchronizedLocalAndServerDatabase extends Thread{
         for(String[] eachStoreRegistered : storeInfoWhichIRegistered) {
             networkModule.AddToStoreAsNewMember(Integer.parseInt(customerInfo[0]), Integer.parseInt(eachStoreRegistered[0]));
         }
+        GetStoreAndCustomerRegisteredInfo();
     }
 
     public int GetMileageStatusFromTargetStore(int storeId) {
