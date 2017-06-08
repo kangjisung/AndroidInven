@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:id="@+id/layout_root">
+
+    <RelativeLayout
+        android:background="@drawable/dialog_background"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            layout="@layout/include_title_dialog" />
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:padding="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/layout_type_parent"
+                android:layout_height="80dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="5dp"
+                        android:id="@+id/layout_type">
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/button_type1"
+                            android:layout_weight="0"
+                            android:background="@mipmap/icon_notice1_notification"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            app:backgroundTint="@color/gray200" />
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/button_type2"
+                            android:layout_weight="0"
+                            android:background="@mipmap/icon_notice2_event"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            app:backgroundTint="@color/gray200" />
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/button_type3"
+                            android:layout_weight="0"
+                            android:background="@mipmap/icon_notice3_newproduct"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            app:backgroundTint="@color/gray200" />
+
+                    </LinearLayout>
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:id="@+id/imageView_dot"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/shape_circle"
+                        app:backgroundTint="?attr/theme_color_D3" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/gray220"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="75dp" />
+
+                    <TextView
+                        android:text="!종류"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView_type"
+                        android:textColor="@color/gray40"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="15dp"
+                        android:textSize="18dp"
+                        android:gravity="center_horizontal"
+                        android:layout_width="50dp" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_title"
+                android:layout_below="@+id/layout_type_parent">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="!제목"
+                    android:id="@+id/tv_title"
+                    android:textSize="18dp"
+                    android:textColor="@color/gray80"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:background="@drawable/shape_rectangle_edit" />
+
+                <TextView
+                    android:text="제목"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_title_show"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:textColor="@color/gray140"
+                    android:textSize="18dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_body"
+                android:layout_below="@+id/layout_title">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <com.teamdk.android.bakery.utility.MaxHeightScrollView
+                    app:maxHeight="270dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/alpha20">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="!내용"
+                            android:id="@+id/tv_body"
+                            android:textColor="@color/gray80"
+                            android:background="@drawable/button_ripple_rectangle"
+                            android:padding="5dp"
+                            android:minHeight="100dp"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:text="내용"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv_body_show"
+                            android:textColor="@color/gray140"
+                            android:textSize="18dp"
+                            android:padding="5dp" />
+                    </RelativeLayout>
+                </com.teamdk.android.bakery.utility.MaxHeightScrollView>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:text="!내용"
+                    android:textColor="@color/gray40"
+                    android:textSize="18dp"
+                    android:background="@drawable/shape_rectangle_edit"
+                    android:maxHeight="270dp"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_date"
+                android:layout_below="@+id/layout_body">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:layout_weight="0">
+
+                        <android.support.v7.widget.AppCompatImageView
+                            android:layout_centerVertical="true"
+                            android:background="@mipmap/icon_calendar"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            app:backgroundTint="@color/gray80" />
+
+                        <TextView
+                            android:text="시작"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:textColor="@color/black"
+                            android:layout_marginStart="45dp"
+                            android:layout_centerVertical="true"
+                            android:textSize="16dp" />
+
+                        <RelativeLayout
+                            android:layout_alignParentEnd="true"
+                            android:layout_width="180dp"
+                            android:layout_height="30dp"
+                            android:background="@color/gray220"
+                            android:layout_centerVertical="true">
+
+                            <TextView
+                                android:text="!시작날짜"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/tv_start"
+                                android:textColor="@color/gray40"
+                                android:maxLines="1"
+                                android:background="@drawable/button_ripple_rectangle"
+                                android:textSize="16dp"
+                                android:gravity="center" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:layout_weight="0">
+
+                        <android.support.v7.widget.AppCompatImageView
+                            android:layout_centerVertical="true"
+                            android:background="@mipmap/icon_calendar"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            app:backgroundTint="@color/gray80" />
+
+                        <TextView
+                            android:text="종료"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:textColor="@color/black"
+
+                            tools:ignore="ObsoleteLayoutParam"
+                            android:layout_marginStart="45dp"
+                            android:layout_centerVertical="true"
+                            android:textSize="16dp" />
+
+                        <RelativeLayout
+                            android:layout_alignParentEnd="true"
+                            android:layout_width="180dp"
+                            android:layout_height="30dp"
+                            android:background="@color/gray220"
+                            android:layout_centerVertical="true">
+
+                            <TextView
+                                android:text="!종료날짜"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/tv_end"
+                                android:textColor="@color/gray40"
+                                android:maxLines="1"
+                                android:background="@drawable/button_ripple_rectangle"
+                                android:textSize="16dp"
+                                android:gravity="center" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:visibility="gone">
+
+                        <CheckBox
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:id="@+id/checkBox"
+                            android:layout_weight="0"
+                            android:textSize="16dp"
+                            android:background="@drawable/user_checkbox"
+                            android:button="@null"
+                            android:layout_marginRight="10dp" />
+
+                        <TextView
+                            android:text="기간 종료 시 자동 삭제"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView5"
+                            android:textColor="@color/black"
+                            android:layout_centerInParent="true"
+                            android:layout_weight="0"
+                            android:textSize="16dp"
+                            tools:ignore="ObsoleteLayoutParam" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

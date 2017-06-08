@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3f51b5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#ff4081</color>
+
+    <!-- Basic Color -->
+    <color name="transparent">#00000000</color>
+    <color name="alpha20">#14000000</color>
+    <color name="alpha40">#28000000</color>
+    <color name="alpha60">#3c000000</color>
+    <color name="alpha80">#50000000</color>
+    <color name="alpha100">#64000000</color>
+    <color name="alpha120">#78000000</color>
+    <color name="alpha140">#8c000000</color>
+    <color name="alpha160">#a0000000</color>
+    <color name="alpha180">#b4000000</color>
+    <color name="alpha200">#c8000000</color>
+    <color name="alpha220">#dc000000</color>
+    <color name="alpha240">#f0000000</color>
+    <color name="black">#000000</color>
+    <color name="gray20">#141414</color>
+    <color name="gray40">#282828</color>
+    <color name="gray60">#3c3c3c</color>
+    <color name="gray80">#505050</color>
+    <color name="gray100">#646464</color>
+    <color name="gray120">#787878</color>
+    <color name="gray140">#8c8c8c</color>
+    <color name="gray160">#a0a0a0</color>
+    <color name="gray180">#b4b4b4</color>
+    <color name="gray200">#c8c8c8</color>
+    <color name="gray220">#dcdcdc</color>
+    <color name="gray240">#f0f0f0</color>
+    <color name="gray245">#f5f5f5</color>
+    <color name="white">#ffffff</color>
+    <color name="red">#ff0000</color>
+    <color name="green">#00ff00</color>
+    <color name="blue">#0000ff</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="purple">#FF00FF</color>
+    <color name="yellow">#FFFF00</color>
+
+    <!-- Theme Color -->
+    <color name="ripple_button">#78000000</color>
+    <color name="text_hint">#41000000</color>
+
+    <!-- Sample Color -->
+    <color name="theme_color_L3">#FEFAE9</color>
+    <color name="theme_color_L2">#FFF7DA</color>
+    <color name="theme_color_L1">#fff4cb</color>
+    <color name="theme_color_N">#dcd1a7</color>
+    <color name="theme_color_D1">#cfbe7c</color>
+    <color name="theme_color_D2">#ae9949</color>
+    <color name="theme_color_D3">#514E3F</color>
+    <color name="theme_color_type1">#f86f8d</color>
+    <color name="theme_color_type2">#e88f2c</color>
+
+    <!-- Test Color -->
+    <color name="test01">#777777</color>
+    <color name="test02">#999999</color>
+</resources>

@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<com.sothree.slidinguppanel.SlidingUpPanelLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_sliding"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    sothree:umanoPanelHeight="0dp"
+    sothree:umanoShadowHeight="4dp"
+    android:gravity="top"
+    app:umanoFadeColor="@color/alpha60"
+    app:umanoOverlay="true">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/layout_select"
+                android:layout_height="90dp"
+                android:background="?attr/theme_color_L2">
+
+                <View
+                    android:layout_height="match_parent"
+                    android:background="@color/alpha40"
+
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="1dp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:background="@mipmap/icon_sell_today"
+                                app:backgroundTint="@color/gray220"
+                                android:layout_centerInParent="true"
+                                android:layout_marginBottom="5dp"
+                                android:id="@+id/aciv_sell_today_icon"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp" />
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:background="@drawable/shape_circle"
+                                app:backgroundTint="@color/gray220"
+                                android:layout_centerInParent="true"
+                                android:id="@+id/aciv_sell_today_dot"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="8dp"
+                                android:layout_height="8dp" />
+
+                        </LinearLayout>
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/btn_fragment_item_main_sell_today"
+                            android:background="@drawable/button_ripple_rectangle_rad5" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:background="@mipmap/icon_much_store"
+                                app:backgroundTint="@color/gray220"
+                                android:layout_centerInParent="true"
+                                android:layout_marginBottom="5dp"
+                                android:id="@+id/aciv_much_store_icon"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp" />
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:background="@drawable/shape_circle"
+                                app:backgroundTint="@color/gray220"
+                                android:layout_centerInParent="true"
+                                android:id="@+id/aciv_much_store_dot"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="8dp"
+                                android:layout_height="8dp" />
+
+                        </LinearLayout>
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/btn_fragment_item_main_store_match"
+
+                            android:background="@drawable/button_ripple_rectangle_rad5" />
+
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/layout_info"
+                android:layout_below="@+id/layout_select"
+                android:background="?attr/theme_color_L3">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/button_select_date"
+                    android:background="@drawable/button_ripple_rectangle" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:background="@mipmap/icon_calendar"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="5dp"
+                        app:backgroundTint="?attr/theme_color_D4"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp" />
+
+                    <TextView
+                        android:id="@+id/tv_fragment_item_main_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="[날짜]"
+                        android:gravity="center_vertical"
+                        android:textColor="?attr/theme_color_D4"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/tv_fragment_item_main"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+
+                        android:text="[탭 이름]"
+                        android:gravity="center_vertical"
+                        android:textColor="?attr/theme_color_D4"
+                        android:textSize="16dp"
+                        android:layout_marginStart="5dp" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <com.teamdk.android.bakery.utility.NoScrollViewPager
+                android:id="@+id/vp_fragment_item_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/layout_info"
+                android:background="@color/gray245">
+            </com.teamdk.android.bakery.utility.NoScrollViewPager>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/layout_floating1">
+                    <include layout="@layout/include_product_floating" />
+
+                </android.support.design.widget.CoordinatorLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="center_vertical"
+                    android:id="@+id/layout_floating2"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <com.github.clans.fab.FloatingActionButton
+                        android:src="@mipmap/fab_sort"
+                        android:id="@+id/fab_sort"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:fab_colorNormal="?attr/theme_color_type1"
+                        app:fab_colorPressed="@color/gray200"
+                        android:layout_marginEnd="3dp" />
+
+                    <com.github.clans.fab.FloatingActionButton
+                        android:src="@mipmap/fab_add_product"
+                        android:id="@+id/fab_add"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:fab_colorNormal="?attr/theme_color_type1"
+                        app:fab_colorPressed="@color/gray200" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_below="@+id/layout_info"
+                android:background="@drawable/shape_gradient_border_y"
+                android:rotation="180"
+                android:layout_height="3dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_below="@+id/layout_select"
+                android:background="@drawable/shape_gradient_border_y"
+                android:rotation="180"
+                android:layout_height="3dp" />
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_width="match_parent">
+
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/include_product_sort" />
+    </RelativeLayout>
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.example.kangjisung.likeroom.inventory.statistics.ChangeStat.Graph.Graph2">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:text="그래프"
+            android:textSize="30dp"/>
+
+        <RadioGroup
+            android:id="@+id/graph3_radiogroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:checkedButton="@+id/graph3_radio1"
+            android:orientation="vertical" >
+
+            <RadioButton
+                android:id="@id/graph3_radio1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="요일별" />
+
+            <RadioButton
+                android:id="@+id/graph3_radio2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="월별" />
+
+            <RadioButton
+                android:id="@+id/graph3_radio3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="최근14일" />
+        </RadioGroup>
+
+    </RelativeLayout>
+
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/graph3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"/>
+
+</LinearLayout>

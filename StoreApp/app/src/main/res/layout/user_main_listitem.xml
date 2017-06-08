@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:layout_height="75dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="2dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_ripple_rectangle_color">
+
+                <RelativeLayout
+                    android:layout_centerVertical="true"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_width="55dp"
+                    android:visibility="invisible">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:background="@drawable/shape_circle"
+                        app:backgroundTint="@color/gray160"
+                        android:layout_centerInParent="true"
+                        android:id="@+id/iv_dot" />
+
+                    <CheckBox
+                        android:id="@+id/cb_stamp"
+                        android:layout_centerInParent="true"
+                        app:buttonTint="?attr/theme_color_D3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_centerVertical="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="이름"
+                        android:id="@+id/tv_name"
+                        android:textColor="@color/gray100"
+                        style="@android:style/TextAppearance.DeviceDefault.Medium"
+                        android:maxLines="1"
+                        android:textSize="20dp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="폰번호"
+                            android:id="@+id/tv_phone"
+                            android:textSize="16dp"
+                            android:textColor="@color/gray160"
+                            style="@android:style/TextAppearance.DeviceDefault.Medium"
+                            android:maxLines="1" />
+
+                        <TextView
+                            android:text="포인트"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv_point"
+                            android:layout_width="wrap_content"
+                            android:textColor="?attr/theme_color_D1"
+                            android:textSize="16dp"
+                            android:maxLines="1"
+                            android:layout_marginEnd="10dp"
+                            android:layout_alignParentEnd="true" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:layout_weight="0"
+                android:layout_width="70dp">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:background="@drawable/shape_line_dash"
+                    app:backgroundTint="?attr/theme_color_N"
+                    android:layout_height="match_parent"
+                    android:layout_width="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:visibility="invisible" />
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:background="?attr/theme_color_L4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_centerInParent="true"
+                    android:background="@mipmap/icon_info"
+                    app:backgroundTint="?attr/theme_color_N"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" />
+
+                <Button
+                    android:id="@+id/btn_detail"
+                    android:background="@drawable/button_ripple_rectangle_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+
+</RelativeLayout>

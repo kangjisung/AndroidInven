@@ -1,0 +1,19 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Partial Include Dimensions -->
+    <dimen name="background_border_radius">15dp</dimen>
+    <dimen name="page_corner_radius">16dp</dimen>
+
+    <!-- Menu Activity Dimensions -->
+    <dimen name="menu_top_margin">60dp</dimen>
+    <dimen name="menu_bottom_margin">60dp</dimen>
+    <dimen name="menu_side_margin">15dp</dimen>
+
+    <dimen name="popup_title_height">60dp</dimen>
+    <dimen name="popup_backbutton_size">45dp</dimen>
+    <dimen name="popup_title_textsize">20dp</dimen>
+</resources>

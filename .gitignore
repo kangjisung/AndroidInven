@@ -279,3 +279,11 @@ modules.xml
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 
 # End of https://www.gitignore.io/api/java,android,intellij,intellij+iml,androidstudio
+
+CouponTan/.idea/gradle.xml
+
+kangjisung/likeroom/.idea/gradle.xml
+
+CouponTan/.idea/misc.xml
+
+CouponTan/build.gradle

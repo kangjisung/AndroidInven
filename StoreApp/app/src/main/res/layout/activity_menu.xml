@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:theme="@style/LikeRoomTheme">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.teamdk.android.bakery.ActivityMenu"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_top_margin"
+            android:layout_weight="0"
+            android:background="?attr/theme_color_D4">
+
+            <RelativeLayout
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/title_size"
+                android:layout_height="@dimen/title_size">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/drawable_setting"
+                    android:layout_centerInParent="true" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btn_setting"
+                    android:background="@color/transparent"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+
+            <TextView
+                android:text="!제목"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_title"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_width="wrap_content"
+                android:textSize="22dp"
+                android:textColor="@color/white"
+                android:layout_centerInParent="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="15dp" />
+        </RelativeLayout>
+
+        <com.teamdk.android.bakery.utility.NoScrollViewPager
+            android:id="@+id/viewPager"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_weight="1">
+        </com.teamdk.android.bakery.utility.NoScrollViewPager>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_weight="0"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_bottom_margin"
+            android:fadingEdge="horizontal|vertical"
+            app:tabIndicatorHeight="3dp"
+            android:background="@drawable/menu_background"
+            app:tabIndicatorColor="@color/gray80"
+            android:rotation="180"
+            app:tabPadding="0dp"
+            app:tabPaddingEnd="0dp"
+            app:tabPaddingStart="0dp">
+
+            <!--
+            <android.support.design.widget.TabItem
+                android:icon="@drawable/selector_menu_item"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+            <android.support.design.widget.TabItem
+                android:icon="@drawable/selector_menu_user"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+            <android.support.design.widget.TabItem
+                android:icon="@drawable/icon_test02"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+                -->
+
+        </android.support.design.widget.TabLayout>
+    </LinearLayout>
+</RelativeLayout>

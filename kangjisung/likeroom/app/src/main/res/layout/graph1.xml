@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="빵이름"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:id="@+id/bdName"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:text="오늘의 최적재고량"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:layout_width="170dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/textView2"
+        android:layout_gravity="center"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="숫자"
+            android:textAlignment="center"
+            android:ems="10"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/editText3" />
+
+        <Button
+            android:text="가격정보"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:id="@+id/button3" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/chart1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:src="@drawable/seek_thumb_normal"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+        <io.apptik.widget.MultiSlider
+            android:id="@+id/graph1_multiSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:thumbNumber="3" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/graph1_multiSlider">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/SeekBarTxt1"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:hint="비관"
+                android:text="25"
+                android:textSize="30dp"
+                android:numeric="integer"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/SeekBarTxt2"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:hint="예상"
+                android:text="50"
+                android:textSize="30dp"
+                android:numeric="integer"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/SeekBarTxt3"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:hint="낙관"
+                android:text="75"
+                android:textSize="30dp"
+                android:numeric="integer"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
+    <Button
+        android:text="변경하기"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/graph1_changeBtn"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/showStatBtn"
+        android:text="^"
+        android:layout_gravity="end" />
+
+</LinearLayout>
